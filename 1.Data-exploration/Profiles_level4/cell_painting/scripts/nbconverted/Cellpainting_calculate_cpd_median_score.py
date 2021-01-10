@@ -88,21 +88,27 @@ df_level4 = pd.concat(map(pd.read_csv, normalized_dmso_lvl4_files)).reset_index(
 df_level4.shape
 
 
+# In[9]:
+
+
+len(df_level4['Metadata_Plate'].unique())
+
+
 # - We have 136 plates * 384 wells; in each plate we have 384 wells
 
-# In[9]:
+# In[10]:
 
 
 df_level4.head()
 
 
-# In[10]:
+# In[11]:
 
 
 dose_liter = df_level4['Metadata_mmoles_per_liter'].unique().tolist()
 
 
-# In[11]:
+# In[12]:
 
 
 dose_liter
@@ -121,7 +127,7 @@ dose_liter
 # | ~10 | 6 |
 # | ~20 | 7 |
 
-# In[12]:
+# In[13]:
 
 
 def recode_dose(dose_value):
@@ -134,19 +140,19 @@ def recode_dose(dose_value):
     return dose_value
 
 
-# In[13]:
+# In[14]:
 
 
 df_level4['Metadata_dose_recode'] = df_level4['Metadata_mmoles_per_liter'].apply(recode_dose)
 
 
-# In[14]:
+# In[15]:
 
 
 df_level4['Metadata_dose_recode'].unique()
 
 
-# In[15]:
+# In[16]:
 
 
 def feature_selection(df_lvl4): 
@@ -166,26 +172,26 @@ def feature_selection(df_lvl4):
         if df_lvl4_features[col].isnull().sum():
             df_lvl4_features[col].fillna(value=df_lvl4_features[col].mean(), inplace = True)
             
-    df_meta_info = df_lvl4_metadata[['Metadata_broad_sample', 'Metadata_pert_id', 
+    df_meta_info = df_lvl4_metadata[['Metadata_broad_sample', 'Metadata_pert_id', 'Metadata_Plate', 'Metadata_Well',
                                      'Metadata_broad_id', 'Metadata_moa', 'Metadata_dose_recode']].copy()
     df_lvl4_new = pd.concat([df_meta_info, df_lvl4_features], axis=1)
     
     return df_lvl4_new
 
 
-# In[16]:
+# In[17]:
 
 
 df_level4_new = feature_selection(df_level4)
 
 
-# In[17]:
+# In[18]:
 
 
 df_level4_new.shape
 
 
-# In[18]:
+# In[19]:
 
 
 def merge_dataframe(df, pertinfo_file):
@@ -206,26 +212,26 @@ def merge_dataframe(df, pertinfo_file):
     return df_lvl4_new, no_cpds_df
 
 
-# In[19]:
+# In[20]:
 
 
 pertinfo_file = '../aligned_moa_CP_L1000.csv'
 
 
-# In[20]:
+# In[21]:
 
 
 df_level4_new, df_level4_no_cpds = merge_dataframe(df_level4_new, pertinfo_file)
 
 
-# In[21]:
+# In[22]:
 
 
 ##list of "Broad samples" WITHOUT Compounds after aligning L1000 and Cell painting MOAs
 df_level4_no_cpds['Metadata_broad_sample'].unique().tolist()
 
 
-# In[22]:
+# In[23]:
 
 
 def get_median_score(cpds_list, df):
@@ -236,9 +242,9 @@ def get_median_score(cpds_list, df):
     cpds_median_score = {}
     for cpd in cpds_list:
         cpd_replicates = df[df['pert_iname'] == cpd].copy()
-        cpd_replicates.drop(['Metadata_broad_sample', 'Metadata_pert_id', 'Metadata_dose_recode', 
-                             'Metadata_broad_id', 'Metadata_moa', 'broad_id', 'pert_iname', 'moa', 'replicate_name'], 
-                            axis = 1, inplace = True)
+        cpd_replicates.drop(['Metadata_broad_sample', 'Metadata_pert_id', 'Metadata_dose_recode', 'Metadata_Plate',
+                             'Metadata_Well', 'Metadata_broad_id', 'Metadata_moa', 'broad_id', 
+                             'pert_iname', 'moa', 'replicate_name'], axis = 1, inplace = True)
         cpd_replicates_corr = cpd_replicates.astype('float64').T.corr(method = 'spearman').values
         if len(cpd_replicates_corr) == 1:
             median_val = 1
@@ -250,7 +256,7 @@ def get_median_score(cpds_list, df):
     return cpds_median_score
 
 
-# In[23]:
+# In[24]:
 
 
 def check_compounds(cpd_med_score, df):
@@ -268,7 +274,7 @@ def check_compounds(cpd_med_score, df):
     return cpd_med_score
 
 
-# In[24]:
+# In[25]:
 
 
 def get_cpd_medianscores(df):
@@ -291,19 +297,19 @@ def get_cpd_medianscores(df):
     return df_cpd_med_score
 
 
-# In[25]:
+# In[26]:
 
 
 df_cpd_med_score = get_cpd_medianscores(df_level4_new)
 
 
-# In[26]:
+# In[27]:
 
 
 df_cpd_med_score.head(10)
 
 
-# In[27]:
+# In[28]:
 
 
 def drop_cpds_with_null(df):
@@ -320,19 +326,19 @@ def drop_cpds_with_null(df):
     return df
 
 
-# In[28]:
+# In[29]:
 
 
 df_cpd_med_score = drop_cpds_with_null(df_cpd_med_score)
 
 
-# In[29]:
+# In[30]:
 
 
 df_cpd_med_score.head(10)
 
 
-# In[30]:
+# In[31]:
 
 
 def no_of_replicates_per_cpd(df, df_lvl4):
@@ -353,19 +359,19 @@ def no_of_replicates_per_cpd(df, df_lvl4):
     return df
 
 
-# In[31]:
+# In[32]:
 
 
 df_cpd_med_score = no_of_replicates_per_cpd(df_cpd_med_score, df_level4_new)
 
 
-# In[32]:
+# In[33]:
 
 
 df_cpd_med_score.shape
 
 
-# In[33]:
+# In[34]:
 
 
 def save_to_csv(df, path, file_name, compress=None):
@@ -377,14 +383,14 @@ def save_to_csv(df, path, file_name, compress=None):
     df.to_csv(os.path.join(path, file_name), index=False, compression=compress)
 
 
-# In[34]:
+# In[35]:
 
 
 save_to_csv(df_cpd_med_score.reset_index().rename({'index':'cpd'}, axis = 1), 
             'cellpainting_lvl4_cpd_replicate_datasets', 'cpd_replicate_median_scores.csv')
 
 
-# In[35]:
+# In[36]:
 
 
 save_to_csv(df_level4_new, 'cellpainting_lvl4_cpd_replicate_datasets', 

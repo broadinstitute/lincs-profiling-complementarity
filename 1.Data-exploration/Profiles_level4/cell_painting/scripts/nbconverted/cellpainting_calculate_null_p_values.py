@@ -254,7 +254,6 @@ def assert_null_distribution(null_distribution_reps, dose_list):
     This function assert that each of the list in the 1000 lists of 
     random replicate combination (per dose) for each cpd size are distinct with no duplicates
     """
-    
     duplicates_reps = {}
     for dose in dose_list:
         for keys in null_distribution_reps:
@@ -296,7 +295,8 @@ def calc_null_dist_median_scores(df, dose_num, replicate_lists):
     df_dose = df[df['Metadata_dose_recode'] == dose_num].copy()
     df_dose = df_dose.set_index('replicate_name').rename_axis(None, axis=0)
     df_dose.drop(['Metadata_broad_sample', 'Metadata_pert_id', 'Metadata_dose_recode', 
-                  'Metadata_broad_id', 'Metadata_moa', 'broad_id', 'pert_iname', 'moa'], 
+                  'Metadata_Plate', 'Metadata_Well', 'Metadata_broad_id', 'Metadata_moa', 
+                  'broad_id', 'pert_iname', 'moa'], 
                  axis = 1, inplace = True)
     median_corr_list = []
     for rep_list in replicate_lists:
@@ -332,9 +332,40 @@ def get_null_dist_median_scores(null_distribution_cpds, dose_list, df):
 null_distribution_medians = get_null_dist_median_scores(null_distribution_replicates, dose_list, df_level4)
 
 
+# In[24]:
+
+
+def compute_dose_median_scores(null_dist_medians, dose_list):
+    """
+    Align median scores per dose, this function return a dictionary, 
+    with keys as dose numbers and values as all median scores for each dose
+    """
+    median_scores_per_dose = {}
+    for dose in dose_list:
+        median_list = []
+        for keys in null_distribution_medians:
+            dose_median_list = null_distribution_medians[keys][dose-1]
+            median_list += dose_median_list
+        median_scores_per_dose[dose] = median_list
+    return median_scores_per_dose
+
+
+# In[25]:
+
+
+dose_null_medians = compute_dose_median_scores(null_distribution_medians, dose_list)
+
+
+# In[26]:
+
+
+#save the null_distribution_medians_per_dose to pickle
+save_to_pickle(dose_null_medians, cp_level4_path, 'null_dist_medians_per_dose.pickle')
+
+
 # **A P value can be computed nonparametrically by evaluating the probability of random replicates of different compounds having median similarity value greater than replicates of the same compounds.**
 
-# In[24]:
+# In[28]:
 
 
 def get_p_value(median_scores_list, df, dose_name, cpd_name):
@@ -347,7 +378,7 @@ def get_p_value(median_scores_list, df, dose_name, cpd_name):
     return p_value
 
 
-# In[25]:
+# In[29]:
 
 
 def get_moa_p_vals(null_dist_median, dose_list, df_med_values):
@@ -369,31 +400,31 @@ def get_moa_p_vals(null_dist_median, dose_list, df_med_values):
     return sorted_null_p_vals
 
 
-# In[26]:
+# In[30]:
 
 
 null_p_vals = get_moa_p_vals(null_distribution_medians, dose_list, df_cpd_med_scores)
 
 
-# In[27]:
+# In[31]:
 
 
 df_null_p_vals = pd.DataFrame.from_dict(null_p_vals, orient='index', columns = ['dose_' + str(x) for x in dose_list])
 
 
-# In[28]:
+# In[32]:
 
 
 df_null_p_vals['cpd_size'] = df_cpd_med_scores['cpd_size']
 
 
-# In[29]:
+# In[33]:
 
 
 df_null_p_vals.head(10)
 
 
-# In[30]:
+# In[34]:
 
 
 def save_to_csv(df, path, file_name):
@@ -405,7 +436,7 @@ def save_to_csv(df, path, file_name):
     df.to_csv(os.path.join(path, file_name), index = False)
 
 
-# In[31]:
+# In[35]:
 
 
 save_to_csv(df_null_p_vals.reset_index().rename({'index':'cpd'}, axis = 1), cp_level4_path, 
