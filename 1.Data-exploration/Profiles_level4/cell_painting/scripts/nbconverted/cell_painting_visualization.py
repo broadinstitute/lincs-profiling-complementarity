@@ -90,7 +90,7 @@ def melt_df(df, col_name):
     This function returns a reformatted dataframe with 
     3 columns: cpd, dose number and dose_values(median score or p-value)
     """
-    df = df.melt(id_vars=['cpd', 'cpd_size'], var_name="dose", value_name=col_name)
+    df = df.melt(id_vars=['cpd', 'no_of_replicates'], var_name="dose", value_name=col_name)
     return df
 
 
@@ -126,7 +126,7 @@ def plot_p_vs_median(df, path, file_name):
                           style="dose", palette = "viridis")
     fig.axhline(0.05, ls='--', c='black')
     fig.legend(loc = 'upper right')
-    fig.text(-0.45,0.07, "Significance level (0.05)")
+    fig.text(-0.18,0.07, "Significance level (0.05)")
     plt.savefig(os.path.join(path, file_name))
     plt.show()
 
@@ -215,7 +215,7 @@ def get_replicate_score(cpds_list, df):
     return cpds_replicate_score
 
 
-# In[17]:
+# In[19]:
 
 
 def get_true_replicate_score(df, df_lvl4):
@@ -223,27 +223,27 @@ def get_true_replicate_score(df, df_lvl4):
     """This function gets the true spearman percentile correlation scores for all compounds across all doses (1-6)"""
     
     dose_list = list(set(df_lvl4['Metadata_dose_recode'].unique().tolist()))[1:7]
-    cpd_sizes =  df['cpd_size'].unique().tolist()
+    cpd_sizes =  df['no_of_replicates'].unique().tolist()
     df = df.set_index('cpd').rename_axis(None, axis=0)
     true_replicates = {}
     for dose in dose_list:
         rep_list = []
         df_dose = df_lvl4[df_lvl4['Metadata_dose_recode'] == dose].copy()
         for keys in cpd_sizes:
-            cpds_keys = df[df['cpd_size'] == keys].index
+            cpds_keys = df[df['no_of_replicates'] == keys].index
             replicates_vals = get_replicate_score(cpds_keys, df_dose)
             rep_list += replicates_vals
         true_replicates[dose] = rep_list
     return true_replicates
 
 
-# In[18]:
+# In[20]:
 
 
 true_replicates = get_true_replicate_score(df_cpd_median_scores, df_level4)
 
 
-# In[19]:
+# In[21]:
 
 
 def get_random_replicate_score(random_rep_list, df):
@@ -262,7 +262,7 @@ def get_random_replicate_score(random_rep_list, df):
     return rep_corr_list
 
 
-# In[20]:
+# In[22]:
 
 
 def get_rand_replicate_corr(df_lvl4, null_dist):
@@ -286,13 +286,13 @@ def get_rand_replicate_corr(df_lvl4, null_dist):
     return random_replicates
 
 
-# In[21]:
+# In[23]:
 
 
 random_replicates = get_rand_replicate_corr(df_level4, null_distribution_replicates)
 
 
-# In[22]:
+# In[24]:
 
 
 def transform_dataframe(rep, rep_name):
@@ -306,14 +306,14 @@ def transform_dataframe(rep, rep_name):
     return rep_melt
 
 
-# In[23]:
+# In[25]:
 
 
 df_true_rep = transform_dataframe(true_replicates, 'true replicate')
 df_rand_rep = transform_dataframe(random_replicates, 'non replicate')
 
 
-# In[24]:
+# In[26]:
 
 
 def plot_replicate_vs_non_replicate(df_true, df_rand, title, path, file_name):
@@ -341,7 +341,7 @@ def plot_replicate_vs_non_replicate(df_true, df_rand, title, path, file_name):
     plt.show()
 
 
-# In[25]:
+# In[27]:
 
 
 plot_replicate_vs_non_replicate(df_true_rep, df_rand_rep, 
@@ -351,7 +351,7 @@ plot_replicate_vs_non_replicate(df_true_rep, df_rand_rep,
 
 # ### - Compounds with statistically significant p-values i.e. their replicate median correlation values can be reproducible
 
-# In[26]:
+# In[30]:
 
 
 def reproducible_dose(df):
@@ -359,40 +359,40 @@ def reproducible_dose(df):
     This function computes how many doses each compound 
     has reproducible median correlation score in, (out of the 6 doses based on p values)
     """
-    df_new = df.set_index('cpd').rename_axis(None, axis=0).drop(['cpd_size'], axis = 1).copy()
+    df_new = df.set_index('cpd').rename_axis(None, axis=0).drop(['no_of_replicates'], axis = 1).copy()
     cpd_values = {cpd:sum(df_new.loc[cpd] <= 0.05) for cpd in df_new.index}
     df['No_of_reproducible_doses'] = cpd_values.values()
     
     return df
 
 
-# In[27]:
+# In[31]:
 
 
 df_cp_pvals = reproducible_dose(df_null_p_vals)
-df_all_scores = df_all_scores.merge(df_cp_pvals[['cpd', 'cpd_size', 'No_of_reproducible_doses']], on=['cpd'])
+df_all_scores = df_all_scores.merge(df_cp_pvals[['cpd', 'no_of_replicates', 'No_of_reproducible_doses']], on=['cpd'])
 
 
-# In[28]:
+# In[32]:
 
 
 stat_cpds = df_cp_pvals[df_cp_pvals['No_of_reproducible_doses'] == 6]['cpd'].values.tolist()
 
 
-# In[29]:
+# In[33]:
 
 
 df_stat_vals = df_all_scores.loc[df_all_scores['cpd'].isin(stat_cpds)].reset_index(drop=True)
 
 
-# In[30]:
+# In[34]:
 
 
 df_stat_p = df_stat_vals[['cpd', 'dose', 'replicate_correlation']].rename({'replicate_correlation':'median_scores'}, 
                                                                           axis = 1)
 
 
-# In[31]:
+# In[35]:
 
 
 plot_median_score_distribution(df_stat_p, 
@@ -404,25 +404,25 @@ plot_median_score_distribution(df_stat_p,
 
 # ### Visualizing TAS and signature strength scores for L1000 compounds
 
-# In[32]:
+# In[36]:
 
 
 df_all_scores.head()
 
 
-# In[33]:
+# In[37]:
 
 
 cp_95pct = [np.percentile(null_dist_med_cp[keys],95) for keys in null_dist_med_cp]
 
 
-# In[34]:
+# In[38]:
 
 
 cp_95pct
 
 
-# In[35]:
+# In[39]:
 
 
 def plot_mas_vs_corr(df, title, cp_95pct, dmso_95pct, path, file_name, alp = 0.3, size =(50,300)):
@@ -448,7 +448,7 @@ def plot_mas_vs_corr(df, title, cp_95pct, dmso_95pct, path, file_name, alp = 0.3
     plt.show()
 
 
-# In[36]:
+# In[40]:
 
 
 plot_mas_vs_corr(df_all_scores,
@@ -456,7 +456,7 @@ plot_mas_vs_corr(df_all_scores,
                  cp_95pct, dmso_95_pctile, 'cellpainting_figures', 'MAS_vs_median_corr.png')
 
 
-# In[37]:
+# In[41]:
 
 
 def plot_ss_vs_corr(df, title, cp_95pct, path, file_name, alp = 0.3, size =(50,300)):
@@ -481,7 +481,7 @@ def plot_ss_vs_corr(df, title, cp_95pct, path, file_name, alp = 0.3, size =(50,3
     plt.show()
 
 
-# In[38]:
+# In[42]:
 
 
 plot_ss_vs_corr(df_all_scores, "Signature strength vs replicate correlation (median) for compound replicates", 
@@ -490,7 +490,7 @@ plot_ss_vs_corr(df_all_scores, "Signature strength vs replicate correlation (med
 
 # ### Visualization based on reproducible median score (compounds with p-values < 0.05 across all doses)
 
-# In[39]:
+# In[43]:
 
 
 plot_mas_vs_corr(df_stat_vals,
@@ -498,7 +498,7 @@ plot_mas_vs_corr(df_stat_vals,
                  cp_95pct, dmso_95_pctile, 'cellpainting_figures', 'stat_MAS_vs_median_corr.png', alp = 0.5, size = (200,200))
 
 
-# In[40]:
+# In[44]:
 
 
 plot_ss_vs_corr(df_stat_vals, "Signature strength vs reproducible median correlation scores for compound", 

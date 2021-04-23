@@ -119,7 +119,7 @@ def construct_lvl4_data(data_dir, level4_dir, pertinfo_file):
 # In[7]:
 
 
-df_level4 = construct_lvl4_data(data_dir, 'level_4W_zspc_n27837x978.gctx', pertinfo_file)
+df_level4 = construct_lvl4_data(data_dir, 'level_4_zspc_n27837x978.gctx', pertinfo_file)
 
 
 # In[8]:
@@ -306,17 +306,15 @@ def no_of_replicates_per_cpd(df, df_lvl4):
     """This function computes the numbers of replicates for each compound (cpd_size)"""
     
     dose_list = list(set(df_lvl4['dose'].unique().tolist()))[1:7]
-    cpds_size = {}
+    cpds_no_of_reps = {}
     for cpd in df.index:
-        num_of_replicates = 0
+        num_of_reps = 0
+        df_cpd = df_lvl4[df_lvl4['pert_iname'] == cpd].copy()
         for dose in dose_list:
-            df_dose = df_lvl4[df_lvl4['dose'] == dose].copy()
-            cpd_replicates = df_dose[df_dose['pert_iname'] == cpd].copy()
-            num_of_replicates += cpd_replicates.shape[0]
-        cpd_replicate_length = num_of_replicates // len(dose_list)
-        cpds_size[cpd] = cpd_replicate_length
-    df['cpd_size'] = cpds_size.values()
-    
+            df_dose = df_cpd[df_cpd['dose'] == dose].copy()
+            num_of_reps += df_dose.shape[0]
+        cpds_no_of_reps[cpd] = num_of_reps // len(dose_list)
+    df['no_of_replicates'] = cpds_no_of_reps.values()
     return df
 
 
@@ -348,12 +346,12 @@ def save_to_csv(df, path, file_name, compress=None):
 
 
 save_to_csv(df_cpd_med_score.reset_index().rename({'index':'cpd'}, axis = 1), 
-            'L1000_lvl4_cpd_replicate_datasets', 'cpd_replicate_median_scores_W.csv')
+            'L1000_lvl4_cpd_replicate_datasets', 'cpd_replicate_median_scores.csv')
 
 
 # In[29]:
 
 
 save_to_csv(df_level4, 'L1000_lvl4_cpd_replicate_datasets', 
-            'L1000_level4W_cpd_replicates.csv.gz', compress="gzip")
+            'L1000_level4_cpd_replicates.csv.gz', compress="gzip")
 

@@ -16,15 +16,13 @@
 # 
 # 
 # 
-# - In our case, we generated 1000 median correlation scores from randomly combined replicates as the **null distribution** for each CPD_SIZE class per DOSE i.e. for a cpd_size class for every DOSE (1-6) - we have 1000 medians scores from randomly combined replicates of different compounds.
+# - In our case, we generated 1000 median correlation scores from randomly combined replicates as the **null distribution** for each no_of_replicates/replicate class per DOSE i.e. for a no_of_replicates class for every DOSE (1-6) - we have 1000 medians scores from randomly combined replicates of different compounds.
 # 
 # 
 # 
 # 
 # 
-# 
-# 
-# Cpd_size is the number of replicates in a specific compound and cpd_size class is a specific group of compounds that have the same amount of replicates e.g all compounds with 3 replicates in them are in the same cpd_size class.
+# **no_of_replicate** is the number of replicates in a specific compound and **no_of_replicate class** is a specific group of compounds that have the same amount of replicates e.g all compounds with 3 replicates in them are in the same no_of_replicates class.
 
 # In[1]:
 
@@ -59,9 +57,9 @@ L1000_level4_path = "L1000_lvl4_cpd_replicate_datasets"
 # In[3]:
 
 
-df_level4 = pd.read_csv(os.path.join(L1000_level4_path, 'L1000_level4_cpd_replicates.csv.gz'), 
+df_level4 = pd.read_csv(os.path.join(L1000_level4_path, 'L1000_level4W_cpd_replicates.csv.gz'), 
                         compression='gzip',low_memory = False)
-df_cpd_med_scores = pd.read_csv(os.path.join(L1000_level4_path, 'cpd_replicate_median_scores.csv'))
+df_cpd_med_scores = pd.read_csv(os.path.join(L1000_level4_path, 'cpd_replicate_median_scores_w.csv'))
 
 
 # In[4]:
@@ -118,40 +116,46 @@ replicates_in_all, cpds_replicates = get_cpds_replicates(df_cpd_med_scores, df_l
 # In[9]:
 
 
-def replicates_per_cpd_size(df, df_lvl4, cpds_replicates):
+def get_replicates_classes_per_dose(df, df_lvl4, cpds_replicates):
     
     """
     This function gets all replicates ids for each distinct 
-    cpd_size (i.e. number of replicates per cpd) classes
+    no_of_replicates (i.e. number of replicates per cpd) class per dose (1-6)
     
-    Returns cpd_size_dict dictionary, with cpd_size as the keys, 
-    and replicate_ids for each cpd_size as the values
+    Returns replicate_class_dict dictionary, with no_of_replicate classes as the keys, 
+    and all the replicate_ids for each no_of_replicate class as the values
     """
     
     df['replicate_id'] = list(cpds_replicates.values())
     dose_list = list(set(df_lvl4['dose'].unique().tolist()))[1:7]
-    cpd_size_dict = {}
+    replicate_class_dict = {}
     for dose in dose_list:
-        for size in df['cpd_size'].unique():
+        for size in df['no_of_replicates'].unique():
             rep_lists = []
-            for idx in range(df[df['cpd_size'] == size].shape[0]):
-                rep_ids = df[df['cpd_size'] == size]['replicate_id'].values.tolist()[idx][dose-1]
+            for idx in range(df[df['no_of_replicates'] == size].shape[0]):
+                rep_ids = df[df['no_of_replicates'] == size]['replicate_id'].values.tolist()[idx][dose-1]
                 rep_lists += rep_ids
-            if size not in cpd_size_dict:
-                cpd_size_dict[size] = [rep_lists]
+            if size not in replicate_class_dict:
+                replicate_class_dict[size] = [rep_lists]
             else:
-                cpd_size_dict[size] += [rep_lists]
+                replicate_class_dict[size] += [rep_lists]
                 
-    return cpd_size_dict
+    return replicate_class_dict
 
 
 # In[10]:
 
 
-cpd_size_dict = replicates_per_cpd_size(df_cpd_med_scores, df_level4, cpds_replicates)
+cpd_replicate_class_dict = get_replicates_classes_per_dose(df_cpd_med_scores, df_level4, cpds_replicates)
 
 
 # In[11]:
+
+
+cpd_replicate_class_dict.keys()
+
+
+# In[12]:
 
 
 def check_similar_replicates(replicates, dose, cpd_dict):
@@ -165,61 +169,64 @@ def check_similar_replicates(replicates, dose, cpd_dict):
     return False
 
 
-# In[12]:
+# In[13]:
 
 
-def get_random_replicates(all_replicates, cpd_size, dose, replicates_ids, cpd_replicate_dict):
+def get_random_replicates(all_replicates, no_of_replicates, dose, replicates_ids, cpd_replicate_dict):
     """
     This function return a list of random replicates that are not of the same compounds
     or found in the current cpd's size list
     """
     while (True):
-        random_replicates = random.sample(all_replicates, cpd_size)
+        random_replicates = random.sample(all_replicates, no_of_replicates)
         if not (any(rep in replicates_ids for rep in random_replicates) & 
                 (check_similar_replicates(random_replicates, dose, cpd_replicate_dict))):
             break
     return random_replicates
 
 
-# In[13]:
+# In[14]:
 
 
-def get_null_distribution_replicates(cpd_size_dict, dose_list, replicates_lists, cpd_replicate_dict, rand_num = 1000):
+def get_null_distribution_replicates(cpd_replicate_class_dict, dose_list, replicates_lists, 
+                                     cpd_replicate_dict, rand_num = 1000):
     
     """
-    This function returns a null distribution dictionary, with CPD_SIZEs as the keys and 
-    1000 lists of randomly selected replicate combinations as the values
-    for each cpd_size class per DOSE(1-6)
+    This function returns a null distribution dictionary, with no_of_replicates(replicate class) 
+    as the keys and 1000 lists of randomly selected replicate combinations as the values
+    for each no_of_replicates class per DOSE(1-6)
     """
+    random.seed(1903)
     null_distribution_reps = {}
     for dose in dose_list:
-        for size in cpd_size_dict:
-            replicates_ids = cpd_size_dict[size][dose-1]
+        for replicate_class in cpd_replicate_class_dict:
+            replicates_ids = cpd_replicate_class_dict[replicate_class][dose-1]
             replicate_list = []
             for idx in range(rand_num):
                 start_again = True
                 while (start_again):
-                    rand_cpds = get_random_replicates(replicates_lists[dose-1], size, dose, 
+                    rand_cpds = get_random_replicates(replicates_lists[dose-1], replicate_class, dose, 
                                                       replicates_ids, cpd_replicate_dict)
                     if rand_cpds not in replicate_list:
                         start_again = False
                 replicate_list.append(rand_cpds)
-            if size not in null_distribution_reps:
-                null_distribution_reps[size] = [replicate_list]
+            if replicate_class not in null_distribution_reps:
+                null_distribution_reps[replicate_class] = [replicate_list]
             else:
-                null_distribution_reps[size] += [replicate_list]
+                null_distribution_reps[replicate_class] += [replicate_list]
     
     return null_distribution_reps
 
 
-# In[14]:
+# In[15]:
 
 
 dose_list = list(set(df_level4['dose'].unique().tolist()))[1:7]
-null_distribution_replicates = get_null_distribution_replicates(cpd_size_dict, dose_list, replicates_in_all, cpds_replicates)
+null_distribution_replicates = get_null_distribution_replicates(cpd_replicate_class_dict, dose_list, 
+                                                                replicates_in_all, cpds_replicates)
 
 
-# In[15]:
+# In[16]:
 
 
 def save_to_pickle(null_distribution, path, file_name):
@@ -232,21 +239,21 @@ def save_to_pickle(null_distribution, path, file_name):
         pickle.dump(null_distribution, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
 
-# In[16]:
-
-
-save_to_pickle(null_distribution_replicates, L1000_level4_path, 'null_distribution.pickle')
-
-
 # In[17]:
 
 
-##load the null_distribution_moa from pickle
-with open(os.path.join(L1000_level4_path, 'null_distribution.pickle'), 'rb') as handle:
-    null_distribution_replicates = pickle.load(handle)
+save_to_pickle(null_distribution_replicates, L1000_level4_path, 'null_distribution_w.pickle')
 
 
 # In[18]:
+
+
+##load the null_distribution_moa from pickle
+with open(os.path.join(L1000_level4_path, 'null_distribution_w.pickle'), 'rb') as handle:
+    null_distribution_replicates = pickle.load(handle)
+
+
+# In[19]:
 
 
 def assert_null_distribution(null_distribution_reps, dose_list):
@@ -273,26 +280,26 @@ def assert_null_distribution(null_distribution_reps, dose_list):
     return duplicates_reps
 
 
-# In[19]:
+# In[20]:
 
 
 duplicate_replicates = assert_null_distribution(null_distribution_replicates, dose_list)
 
 
-# In[20]:
+# In[21]:
 
 
 duplicate_replicates ##no duplicates
 
 
-# In[21]:
+# In[22]:
 
 
 def calc_null_dist_median_scores(df, dose_num, replicate_lists):
     """
     This function calculate the median of the correlation 
     values for each list in the 1000 lists of random replicate 
-    combination for each cpd size per dose
+    combination for each no_of_replicate class per dose
     """
     df_dose = df[df['dose'] == dose_num].copy()
     df_dose = df_dose.set_index('replicate_id').rename_axis(None, axis=0)
@@ -307,13 +314,13 @@ def calc_null_dist_median_scores(df, dose_num, replicate_lists):
     return median_corr_list
 
 
-# In[22]:
+# In[23]:
 
 
 def get_null_dist_median_scores(null_distribution_cpds, dose_list, df):
     """ 
     This function calculate the median correlation scores for all 
-    1000 lists of randomly combined compounds for each cpd_size class 
+    1000 lists of randomly combined compounds for each no_of_replicate class 
     across all doses (1-6)
     """
     null_distribution_medians = {}
@@ -326,13 +333,13 @@ def get_null_dist_median_scores(null_distribution_cpds, dose_list, df):
     return null_distribution_medians
 
 
-# In[23]:
+# In[24]:
 
 
 null_distribution_medians = get_null_dist_median_scores(null_distribution_replicates, dose_list, df_level4)
 
 
-# In[24]:
+# In[25]:
 
 
 def compute_dose_median_scores(null_dist_medians, dose_list):
@@ -350,22 +357,22 @@ def compute_dose_median_scores(null_dist_medians, dose_list):
     return median_scores_per_dose
 
 
-# In[25]:
+# In[26]:
 
 
 dose_null_medians = compute_dose_median_scores(null_distribution_medians, dose_list)
 
 
-# In[26]:
+# In[27]:
 
 
 #save the null_distribution_medians_per_dose to pickle
-save_to_pickle(dose_null_medians, L1000_level4_path, 'null_dist_medians_per_dose.pickle')
+save_to_pickle(dose_null_medians, L1000_level4_path, 'null_dist_medians_per_dose_w.pickle')
 
 
 # **A P value can be computed nonparametrically by evaluating the probability of random replicates of different compounds having median similarity value greater than replicates of the same compounds.**
 
-# In[27]:
+# In[28]:
 
 
 def get_p_value(median_scores_list, df, dose_name, cpd_name):
@@ -378,7 +385,7 @@ def get_p_value(median_scores_list, df, dose_name, cpd_name):
     return p_value
 
 
-# In[28]:
+# In[29]:
 
 
 def get_moa_p_vals(null_dist_median, dose_list, df_med_values):
@@ -388,7 +395,7 @@ def get_moa_p_vals(null_dist_median, dose_list, df_med_values):
     """
     null_p_vals = {}
     for key in null_dist_median:
-        df_cpd_size = df_med_values[df_med_values['cpd_size'] == key]
+        df_cpd_size = df_med_values[df_med_values['no_of_replicates'] == key]
         for cpd in df_cpd_size.index:
             dose_p_values = []
             for num in dose_list:
@@ -400,31 +407,31 @@ def get_moa_p_vals(null_dist_median, dose_list, df_med_values):
     return sorted_null_p_vals
 
 
-# In[29]:
+# In[30]:
 
 
 null_p_vals = get_moa_p_vals(null_distribution_medians, dose_list, df_cpd_med_scores)
 
 
-# In[30]:
+# In[31]:
 
 
 df_null_p_vals = pd.DataFrame.from_dict(null_p_vals, orient='index', columns = ['dose_' + str(x) for x in dose_list])
 
 
-# In[31]:
-
-
-df_null_p_vals['cpd_size'] = df_cpd_med_scores['cpd_size']
-
-
 # In[32]:
+
+
+df_null_p_vals['no_of_replicates'] = df_cpd_med_scores['no_of_replicates']
+
+
+# In[33]:
 
 
 df_null_p_vals.head(10)
 
 
-# In[33]:
+# In[34]:
 
 
 def save_to_csv(df, path, file_name):
@@ -436,9 +443,9 @@ def save_to_csv(df, path, file_name):
     df.to_csv(os.path.join(path, file_name), index = False)
 
 
-# In[34]:
+# In[35]:
 
 
 save_to_csv(df_null_p_vals.reset_index().rename({'index':'cpd'}, axis = 1), L1000_level4_path, 
-            'cpd_replicate_p_values.csv')
+            'cpd_replicate_p_values_w.csv')
 

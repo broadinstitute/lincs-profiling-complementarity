@@ -91,7 +91,7 @@ def melt_df(df, col_name):
     This function returns a reformatted dataframe with 
     3 columns: cpd, dose number and dose_values(median score or p-value)
     """
-    df = df.melt(id_vars=['cpd', 'cpd_size'], var_name="dose", value_name=col_name)
+    df = df.melt(id_vars=['cpd', 'no_of_replicates'], var_name="dose", value_name=col_name)
     return df
 
 
@@ -219,14 +219,14 @@ def get_true_replicate_score(df, df_lvl4):
     """This function gets the spearman correlation scores for all compounds across all doses (1-6)"""
     
     dose_list = list(set(df_lvl4['dose'].unique().tolist()))[1:7]
-    cpd_sizes =  df['cpd_size'].unique().tolist()
+    cpd_sizes =  df['no_of_replicates'].unique().tolist()
     df = df.set_index('cpd').rename_axis(None, axis=0)
     true_replicates = {}
     for dose in dose_list:
         rep_list = []
         df_dose = df_lvl4[df_lvl4['dose'] == dose].copy()
         for keys in cpd_sizes:
-            cpds_keys = df[df['cpd_size'] == keys].index
+            cpds_keys = df[df['no_of_replicates'] == keys].index
             replicates_vals = get_replicate_score(cpds_keys, df_dose)
             rep_list += replicates_vals
         true_replicates[dose] = rep_list  
@@ -361,7 +361,7 @@ def reproducible_dose(df):
     This function computes how many doses each compound 
     has reproducible median correlation score in, (out of the 6 doses based on p values)
     """
-    df_new = df.set_index('cpd').rename_axis(None, axis=0).drop(['cpd_size'], axis = 1).copy()
+    df_new = df.set_index('cpd').rename_axis(None, axis=0).drop(['no_of_replicates'], axis = 1).copy()
     cpd_values = {cpd:sum(df_new.loc[cpd] <= 0.05) for cpd in df_new.index}
     df['No_of_reproducible_doses'] = cpd_values.values()
     
@@ -372,7 +372,7 @@ def reproducible_dose(df):
 
 
 df_L1_pvals = reproducible_dose(df_null_p_vals)
-df_all_scores = df_all_scores.merge(df_L1_pvals[['cpd', 'cpd_size', 'No_of_reproducible_doses']], on=['cpd'])
+df_all_scores = df_all_scores.merge(df_L1_pvals[['cpd', 'no_of_replicates', 'No_of_reproducible_doses']], on=['cpd'])
 
 
 # In[28]:
