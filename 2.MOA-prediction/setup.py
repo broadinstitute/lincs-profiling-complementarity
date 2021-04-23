@@ -3,7 +3,7 @@ import subprocess
 import pkg_resources
 
 required = {'iterative-stratification', 'pytorch-tabnet', 'umap-learn', 'scikit-learn', 'matplotlib', 'seaborn',
-            'https://github.com/Phlya/adjustText/archive/master.zip','pandas','numpy', 'scikit-multilearn'} 
+            'https://github.com/Phlya/adjustText/archive/master.zip','pandas','numpy', 'scikit-multilearn', 'cmappy'} 
 installed = {pkg.key for pkg in pkg_resources.working_set}
 missing = required - installed
 
