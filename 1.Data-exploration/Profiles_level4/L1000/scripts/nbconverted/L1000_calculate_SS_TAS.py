@@ -15,8 +15,6 @@
 
 
 import os
-import requests
-import pickle
 import argparse
 import pandas as pd
 import numpy as np
@@ -28,11 +26,7 @@ import shutil
 from statistics import median
 import math
 from math import sqrt
-import cmapPy.pandasGEXpress.parse_gct as pg
-from cmapPy.pandasGEXpress.parse import parse
-from io import BytesIO
-from urllib.request import urlopen
-from zipfile import ZipFile
+from functools import reduce
 import matplotlib.pyplot as plt
 get_ipython().run_line_magic('matplotlib', 'inline')
 import seaborn as sns
@@ -61,15 +55,34 @@ df_cpd_med_scores = pd.read_csv(os.path.join(L1000_level4_path, 'cpd_replicate_m
 # In[4]:
 
 
-def compute_signature_strength(cpds_list, df):
+##cpds_replicates_dict = dict(zip(df_cpd_med_scores['cpd'], df_cpd_med_scores['no_of_replicates']))
+
+
+# In[5]:
+
+
+metadata_cols = ['replicate_id', 'Metadata_broad_sample', 'pert_id', 'dose', 'pert_idose',
+                 'pert_iname', 'moa', 'det_plate', 'det_well', 'sig_id']
+
+
+# In[6]:
+
+
+n_L1000_feats = df_level4.drop(metadata_cols, axis=1).shape[1]
+
+
+# In[7]:
+
+
+def compute_signature_strength(cpds_list, df, metadata_cols = metadata_cols):
     """Computes signature strength per compound based on its replicates"""
     
     cpds_SS = {}
     
     for cpd in cpds_list:
         cpd_replicates = df[df['pert_iname'] == cpd].copy()
-        cpd_replicates.drop(['replicate_id', 'Metadata_broad_sample', 'pert_id', 'dose', 'pert_idose', 
-                             'pert_iname', 'moa', 'det_plate', 'det_well', 'sig_id'], axis = 1, inplace = True)
+        cpd_replicates.drop(metadata_cols, axis = 1, inplace = True)
+        cpd_replicates = cpd_replicates * sqrt(cpd_replicates.shape[0])
         df_cpd_reps = abs(cpd_replicates.T)
         ldmk_genes_gtr_2 = df_cpd_reps[df_cpd_reps >= 2.0].stack().count()
         ss_norm = ldmk_genes_gtr_2/len(df_cpd_reps.columns)
@@ -78,22 +91,22 @@ def compute_signature_strength(cpds_list, df):
     return cpds_SS
 
 
-# In[5]:
+# In[8]:
 
 
-def compute_tas(cpds_SS, cpds_median_score, dose):
+def compute_tas(cpds_SS, cpds_median_score, dose, num_feats):
     """Computes Transcriptional activity score (TAS) per compound based on its replicates"""
     cpds_TAS = {}
     for cpd in cpds_SS:
-        cpds_TAS[cpd] = sqrt((max(cpds_median_score[cpd][dose-1],0) * cpds_SS[cpd])/978)
+        cpds_TAS[cpd] = sqrt((max(cpds_median_score[cpd][dose-1],0) * cpds_SS[cpd])/num_feats)
     
     return cpds_TAS
 
 
-# In[6]:
+# In[9]:
 
 
-def compute_SS_TAS(df, cpds_median_score):
+def compute_SS_TAS(df, cpds_median_score, num_L1000_feats = n_L1000_feats):
     """
     Computes both Transcriptional activity score (TAS) and 
     signature strength per compound based on its replicates across all doses"""
@@ -103,7 +116,7 @@ def compute_SS_TAS(df, cpds_median_score):
     for dose in dose_list:
         df_dose = df[df['dose'] == dose].copy()
         cpds_ss = compute_signature_strength(list(cpds_median_score.keys()), df_dose)
-        cpds_tas = compute_tas(cpds_ss, cpds_median_score, dose)
+        cpds_tas = compute_tas(cpds_ss, cpds_median_score, dose, num_L1000_feats)
         sorted_ss = {key:value for key, value in sorted(cpds_ss.items(), key=lambda item: item[0])}
         sorted_tas = {key:value for key, value in sorted(cpds_tas.items(), key=lambda item: item[0])}
         if dose == 1:
@@ -116,33 +129,33 @@ def compute_SS_TAS(df, cpds_median_score):
     return df_cpd_ss, df_cpd_tas
 
 
-# In[7]:
+# In[10]:
 
 
-df_med_scores = df_cpd_med_scores.set_index('cpd').rename_axis(None, axis=0).drop(['cpd_size'], axis = 1)
+df_med_scores = df_cpd_med_scores.set_index('cpd').rename_axis(None, axis=0).drop(['no_of_replicates'], axis = 1)
 cpd_med_scores = df_med_scores.T.to_dict('list')
 
 
-# In[8]:
+# In[11]:
 
 
 df_ss_score, df_tas_score = compute_SS_TAS(df_level4, cpd_med_scores)
 
 
-# In[9]:
+# In[12]:
 
 
-df_cpd_med_scores.drop(['cpd_size'],axis = 1, inplace = True)
+df_cpd_med_scores.drop(['no_of_replicates'],axis = 1, inplace = True)
 
 
-# In[10]:
+# In[13]:
 
 
 df_ss_score = df_ss_score.reset_index().rename({'index':'cpd'}, axis = 1)
 df_tas_score = df_tas_score.reset_index().rename({'index':'cpd'}, axis = 1)
 
 
-# In[11]:
+# In[14]:
 
 
 def rename_cols(df):
@@ -153,7 +166,7 @@ def rename_cols(df):
     return df
 
 
-# In[12]:
+# In[15]:
 
 
 df_cpd_med_scores = rename_cols(df_cpd_med_scores)
@@ -161,7 +174,7 @@ df_ss_score = rename_cols(df_ss_score)
 df_tas_score = rename_cols(df_tas_score)
 
 
-# In[13]:
+# In[16]:
 
 
 def melt_df(df, col_name):
@@ -173,7 +186,7 @@ def melt_df(df, col_name):
     return df
 
 
-# In[14]:
+# In[17]:
 
 
 def merge_ss_tas_med_scores(df_med_scores, df_ss_scores, df_tas_scores):
@@ -185,34 +198,24 @@ def merge_ss_tas_med_scores(df_med_scores, df_ss_scores, df_tas_scores):
     df_med_vals = melt_df(df_med_scores, 'replicate_correlation')
     df_ss_vals = melt_df(df_ss_scores, 'signature_strength')
     df_tas_vals = melt_df(df_tas_scores, 'TAS')
-    return df_med_vals, df_ss_vals, df_tas_vals
-
-
-# In[15]:
-
-
-df_med_vals, df_ss_vals, df_tas_vals = merge_ss_tas_med_scores(df_cpd_med_scores, df_ss_score, df_tas_score)
-
-
-# In[16]:
-
-
-df_all_vals = df_tas_vals.merge(df_ss_vals, on=['cpd', 'dose'])
-
-
-# In[17]:
-
-
-df_all_vals = df_all_vals.merge(df_med_vals, on=['cpd', 'dose'])
+    metrics_df = [df_med_vals, df_ss_vals, df_tas_vals]
+    df_merged = reduce(lambda  left,right: pd.merge(left,right,on=['cpd', 'dose'], how='inner'), metrics_df)
+    return df_merged
 
 
 # In[18]:
 
 
-df_all_vals.head(10)
+df_all_vals = merge_ss_tas_med_scores(df_cpd_med_scores, df_ss_score, df_tas_score)
 
 
 # In[19]:
+
+
+df_all_vals.head(10)
+
+
+# In[20]:
 
 
 def save_to_csv(df, path, file_name, compress=None):
@@ -224,7 +227,7 @@ def save_to_csv(df, path, file_name, compress=None):
     df.to_csv(os.path.join(path, file_name), index=False, compression=compress)
 
 
-# In[20]:
+# In[21]:
 
 
 save_to_csv(df_all_vals, L1000_level4_path, 'L1000_all_scores.csv')
@@ -234,25 +237,25 @@ save_to_csv(df_all_vals, L1000_level4_path, 'L1000_all_scores.csv')
 # 
 # - Calculate 95th percentile of DMSO MAS score
 
-# In[21]:
+# In[22]:
 
 
 df_dmso = df_level4[df_level4['pert_iname'] == 'DMSO'].copy()
 
 
-# In[22]:
+# In[23]:
 
 
 df_dmso['det_plate'].unique()
 
 
-# In[23]:
+# In[24]:
 
 
 len(df_dmso['det_plate'].unique())
 
 
-# In[24]:
+# In[25]:
 
 
 def compute_dmso_SS_median_score(df):
@@ -273,6 +276,7 @@ def compute_dmso_SS_median_score(df):
             dmso_median_scores[plate] = median_score
             
             ##signature strength --ss
+            plt_replicates = plt_replicates * sqrt(plt_replicates.shape[0])
             df_plt_reps = abs(plt_replicates.T)
             ldk_genes_gtr_2 = df_plt_reps[df_plt_reps >= 2.0].stack().count()
             ss_norm = ldk_genes_gtr_2/len(df_plt_reps.columns)
@@ -281,45 +285,45 @@ def compute_dmso_SS_median_score(df):
     return dmso_median_scores, dmso_ss_scores
 
 
-# In[25]:
+# In[26]:
 
 
 dmso_median_scores, dmso_ss_scores = compute_dmso_SS_median_score(df_dmso)
 
 
-# In[26]:
+# In[27]:
 
 
-def compute_dmso_TAS(dmso_median, dmso_ss):
+def compute_dmso_TAS(dmso_median, dmso_ss, num_feats = n_L1000_feats):
     """
     This function computes Transcriptional Activity Score (TAS) 
     per plate for only DMSO replicates
     """
     dmso_tas_scores = {}
     for plate in dmso_median:
-        dmso_tas_scores[plate] = sqrt((abs(dmso_median[plate]) * dmso_ss[plate])/978) ##978 - no of landmark in CP 
+        dmso_tas_scores[plate] = sqrt((abs(dmso_median[plate]) * dmso_ss[plate])/num_feats)
     return dmso_tas_scores
-
-
-# In[27]:
-
-
-dmso_tas_scores = compute_dmso_TAS(dmso_median_scores, dmso_ss_scores)
 
 
 # In[28]:
 
 
-dmso_95pct = np.percentile(list(dmso_tas_scores.values()),95)
+dmso_tas_scores = compute_dmso_TAS(dmso_median_scores, dmso_ss_scores)
 
 
 # In[29]:
 
 
-print(dmso_95pct)
+dmso_95pct = np.percentile(list(dmso_tas_scores.values()),95)
 
 
 # In[30]:
+
+
+print(dmso_95pct)
+
+
+# In[31]:
 
 
 def save_to_pickle(value, path, file_name):
@@ -332,7 +336,7 @@ def save_to_pickle(value, path, file_name):
         pickle.dump(value, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
 
-# In[31]:
+# In[32]:
 
 
 save_to_pickle(dmso_95pct, L1000_level4_path, 'L1000_dmso_95_percentile_TAS.pickle')
