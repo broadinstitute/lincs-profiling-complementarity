@@ -735,9 +735,3 @@ plot_ss(df_stat_all, "L1000 vs Cell Painting signature strength for Compounds wi
         'L1000_cp_figures', 'stat_L1000_SS_vs_CP_SS_1b.png', 
         hue = 'L1000', alp=0.5, size =(100,300))
 
-
-# In[ ]:
-
-
-
-

@@ -29,7 +29,7 @@ warnings.filterwarnings("ignore", message="Glyph 128 missing from current font."
 # In[2]:
 
 
-df_cp_modz = pd.read_csv(os.path.join('../consensus/moa_sizes_consensus_datasets', 'modz_moa_median_scores.csv'))
+df_cp_modz = pd.read_csv(os.path.join('../cell_painting/moa_sizes_consensus_datasets', 'modz_moa_median_scores.csv'))
 df_L1_modz = pd.read_csv(os.path.join('../L1000/moa_sizes_consensus_datasets', 'modz_moa_median_scores.csv'))
 
 
