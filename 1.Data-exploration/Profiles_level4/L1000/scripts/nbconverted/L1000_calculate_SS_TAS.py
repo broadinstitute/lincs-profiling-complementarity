@@ -341,9 +341,3 @@ def save_to_pickle(value, path, file_name):
 
 save_to_pickle(dmso_95pct, L1000_level4_path, 'L1000_dmso_95_percentile_TAS.pickle')
 
-
-# In[ ]:
-
-
-
-
