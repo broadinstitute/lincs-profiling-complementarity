@@ -83,10 +83,12 @@ def feature_selection(dataset_link):
 # In[3]:
 
 
-consensus_median_link = 'https://github.com/broadinstitute/lincs-cell-painting/blob/master/consensus/2016_04_01_a549_48hr_batch1/2016_04_01_a549_48hr_batch1_consensus_median.csv.gz?raw=true'
-consensus_median_dmso_link = 'https://github.com/broadinstitute/lincs-cell-painting/blob/master/consensus/2016_04_01_a549_48hr_batch1/2016_04_01_a549_48hr_batch1_consensus_median_dmso.csv.gz?raw=true'
-consensus_modz_link = 'https://github.com/broadinstitute/lincs-cell-painting/blob/master/consensus/2016_04_01_a549_48hr_batch1/2016_04_01_a549_48hr_batch1_consensus_modz.csv.gz?raw=true'
-consensus_modz_dmso_link = 'https://github.com/broadinstitute/lincs-cell-painting/blob/master/consensus/2016_04_01_a549_48hr_batch1/2016_04_01_a549_48hr_batch1_consensus_modz_dmso.csv.gz?raw=true'
+commit = "94bfaeeab0d107beac262b4307aa6e9b783625fa"
+
+consensus_median_link = f'https://github.com/broadinstitute/lincs-cell-painting/blob/{commit}/consensus/2016_04_01_a549_48hr_batch1/2016_04_01_a549_48hr_batch1_consensus_median.csv.gz?raw=true'
+consensus_median_dmso_link = f'https://github.com/broadinstitute/lincs-cell-painting/blob/{commit}/consensus/2016_04_01_a549_48hr_batch1/2016_04_01_a549_48hr_batch1_consensus_median_dmso.csv.gz?raw=true'
+consensus_modz_link = f'https://github.com/broadinstitute/lincs-cell-painting/blob/{commit}/consensus/2016_04_01_a549_48hr_batch1/2016_04_01_a549_48hr_batch1_consensus_modz.csv.gz?raw=true'
+consensus_modz_dmso_link = f'https://github.com/broadinstitute/lincs-cell-painting/blob/{commit}/consensus/2016_04_01_a549_48hr_batch1/2016_04_01_a549_48hr_batch1_consensus_modz_dmso.csv.gz?raw=true'
 
 
 # In[4]:
