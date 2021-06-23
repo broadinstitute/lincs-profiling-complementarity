@@ -27,6 +27,7 @@
 
 
 import os
+import pathlib
 import requests
 import pickle
 import argparse
@@ -52,34 +53,11 @@ np.warnings.filterwarnings('ignore', category=np.VisibleDeprecationWarning)
 # In[2]:
 
 
-data_dir = 'D:\Documents\L1000' #os.getcwd() ##current dir
-zipurl = "https://ndownloader.figshare.com/articles/13181966/versions/1"
-def download_L1000_data(data_dir, zipurl):
-    """
-    Download L1000 data from figshare and extract 
-    the zipped files into a directory
-    """
-    if not os.path.exists(data_dir):
-        os.mkdir(data_dir)
-        
-    with urlopen(zipurl) as zipresp:
-        with ZipFile(BytesIO(zipresp.read())) as zfile:
-            zfile.extractall(data_dir)
-
-
-# In[3]:
-
-
-#download_L1000_data(data_dir, zipurl)
-
-
-# In[4]:
-
-
+data_dir = pathlib.Path("../L1000/L1000_figshare_data")
 os.listdir(data_dir) ##files in L1000 downloaded dataset
 
 
-# In[5]:
+# In[3]:
 
 
 pertinfo_file = '../aligned_moa_CP_L1000.csv'
@@ -90,7 +68,7 @@ pertinfo_file = '../aligned_moa_CP_L1000.csv'
 # - 'level_4W_zspc_n27837x978.gctx'
 # - 'level_4_zspc_n27837x978.gctx',
 
-# In[6]:
+# In[4]:
 
 
 def construct_lvl4_data(data_dir, level4_dir, pertinfo_file):
@@ -116,31 +94,31 @@ def construct_lvl4_data(data_dir, level4_dir, pertinfo_file):
     return lvl4_data
 
 
-# In[7]:
+# In[5]:
 
 
 df_level4 = construct_lvl4_data(data_dir, 'level_4_zspc_n27837x978.gctx', pertinfo_file)
 
 
-# In[8]:
+# In[6]:
 
 
 df_level4.head()
 
 
-# In[9]:
+# In[7]:
 
 
 df_level4.shape
 
 
-# In[10]:
+# In[8]:
 
 
 len(df_level4['det_plate'].unique())
 
 
-# In[11]:
+# In[9]:
 
 
 len(df_level4['det_well'].unique())
@@ -148,7 +126,7 @@ len(df_level4['det_well'].unique())
 
 # ### - Remove highly correlated landmark genes and samples with Null compound values
 
-# In[12]:
+# In[10]:
 
 
 def feature_selection(df_data):
@@ -175,19 +153,19 @@ def feature_selection(df_data):
     return df_data
 
 
-# In[13]:
+# In[11]:
 
 
 df_level4 = feature_selection(df_level4)
 
 
-# In[14]:
+# In[12]:
 
 
 df_level4.shape
 
 
-# In[15]:
+# In[13]:
 
 
 def get_median_score(cpds_list, df):
@@ -211,7 +189,7 @@ def get_median_score(cpds_list, df):
     return cpds_median_score
 
 
-# In[16]:
+# In[14]:
 
 
 def check_compounds(cpd_med_score, df):
@@ -229,7 +207,7 @@ def check_compounds(cpd_med_score, df):
     return cpd_med_score
 
 
-# In[17]:
+# In[15]:
 
 
 def get_cpd_medianscores(df):
@@ -252,19 +230,19 @@ def get_cpd_medianscores(df):
     return df_cpd_med_score
 
 
-# In[18]:
+# In[16]:
 
 
 df_cpd_med_score = get_cpd_medianscores(df_level4)
 
 
-# In[19]:
+# In[17]:
 
 
 df_cpd_med_score.head(10)
 
 
-# In[20]:
+# In[18]:
 
 
 def drop_cpds_with_null(df):
@@ -281,25 +259,25 @@ def drop_cpds_with_null(df):
     return df
 
 
-# In[21]:
+# In[19]:
 
 
 df_cpd_med_score = drop_cpds_with_null(df_cpd_med_score)
 
 
-# In[22]:
+# In[20]:
 
 
 df_cpd_med_score.shape
 
 
-# In[23]:
+# In[21]:
 
 
 df_cpd_med_score.head(10)
 
 
-# In[24]:
+# In[22]:
 
 
 def no_of_replicates_per_cpd(df, df_lvl4):
@@ -318,19 +296,19 @@ def no_of_replicates_per_cpd(df, df_lvl4):
     return df
 
 
-# In[25]:
+# In[23]:
 
 
 df_cpd_med_score = no_of_replicates_per_cpd(df_cpd_med_score, df_level4)
 
 
-# In[26]:
+# In[24]:
 
 
 df_cpd_med_score.head(10)
 
 
-# In[27]:
+# In[25]:
 
 
 def save_to_csv(df, path, file_name, compress=None):
@@ -342,14 +320,14 @@ def save_to_csv(df, path, file_name, compress=None):
     df.to_csv(os.path.join(path, file_name), index=False, compression=compress)
 
 
-# In[28]:
+# In[26]:
 
 
 save_to_csv(df_cpd_med_score.reset_index().rename({'index':'cpd'}, axis = 1), 
             'L1000_lvl4_cpd_replicate_datasets', 'cpd_replicate_median_scores.csv')
 
 
-# In[29]:
+# In[27]:
 
 
 save_to_csv(df_level4, 'L1000_lvl4_cpd_replicate_datasets', 
