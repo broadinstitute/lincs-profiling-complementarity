@@ -38,7 +38,8 @@ np.warnings.filterwarnings('ignore', category=np.VisibleDeprecationWarning)
 # In[2]:
 
 
-spherized_profile_link = "https://github.com/broadinstitute/lincs-cell-painting/blob/e17a47c9a524d4789982511dd5db9b0202ff6cc8/spherized_profiles/profiles/2016_04_01_a549_48hr_batch1_dmso_spherized_profiles_with_input_normalized_by_whole_plate.csv.gz?raw=true"
+commit = "94bfaeeab0d107beac262b4307aa6e9b783625fa"
+spherized_profile_link = f"https://github.com/broadinstitute/lincs-cell-painting/blob/{commit}/spherized_profiles/profiles/2016_04_01_a549_48hr_batch1_dmso_spherized_profiles_with_input_normalized_by_whole_plate.csv.gz?raw=true"
 
 
 # In[3]:

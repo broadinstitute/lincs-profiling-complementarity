@@ -215,7 +215,7 @@ def get_replicate_score(cpds_list, df):
     return cpds_replicate_score
 
 
-# In[19]:
+# In[17]:
 
 
 def get_true_replicate_score(df, df_lvl4):
@@ -237,13 +237,13 @@ def get_true_replicate_score(df, df_lvl4):
     return true_replicates
 
 
-# In[20]:
+# In[18]:
 
 
 true_replicates = get_true_replicate_score(df_cpd_median_scores, df_level4)
 
 
-# In[21]:
+# In[19]:
 
 
 def get_random_replicate_score(random_rep_list, df):
@@ -262,7 +262,7 @@ def get_random_replicate_score(random_rep_list, df):
     return rep_corr_list
 
 
-# In[22]:
+# In[20]:
 
 
 def get_rand_replicate_corr(df_lvl4, null_dist):
@@ -286,13 +286,13 @@ def get_rand_replicate_corr(df_lvl4, null_dist):
     return random_replicates
 
 
-# In[23]:
+# In[21]:
 
 
 random_replicates = get_rand_replicate_corr(df_level4, null_distribution_replicates)
 
 
-# In[24]:
+# In[22]:
 
 
 def transform_dataframe(rep, rep_name):
@@ -306,14 +306,14 @@ def transform_dataframe(rep, rep_name):
     return rep_melt
 
 
-# In[25]:
+# In[23]:
 
 
 df_true_rep = transform_dataframe(true_replicates, 'true replicate')
 df_rand_rep = transform_dataframe(random_replicates, 'non replicate')
 
 
-# In[26]:
+# In[24]:
 
 
 def plot_replicate_vs_non_replicate(df_true, df_rand, title, path, file_name):
@@ -341,7 +341,7 @@ def plot_replicate_vs_non_replicate(df_true, df_rand, title, path, file_name):
     plt.show()
 
 
-# In[27]:
+# In[25]:
 
 
 plot_replicate_vs_non_replicate(df_true_rep, df_rand_rep, 
@@ -351,7 +351,7 @@ plot_replicate_vs_non_replicate(df_true_rep, df_rand_rep,
 
 # ### - Compounds with statistically significant p-values i.e. their replicate median correlation values can be reproducible
 
-# In[30]:
+# In[26]:
 
 
 def reproducible_dose(df):
@@ -366,33 +366,33 @@ def reproducible_dose(df):
     return df
 
 
-# In[31]:
+# In[27]:
 
 
 df_cp_pvals = reproducible_dose(df_null_p_vals)
 df_all_scores = df_all_scores.merge(df_cp_pvals[['cpd', 'no_of_replicates', 'No_of_reproducible_doses']], on=['cpd'])
 
 
-# In[32]:
+# In[28]:
 
 
 stat_cpds = df_cp_pvals[df_cp_pvals['No_of_reproducible_doses'] == 6]['cpd'].values.tolist()
 
 
-# In[33]:
+# In[29]:
 
 
 df_stat_vals = df_all_scores.loc[df_all_scores['cpd'].isin(stat_cpds)].reset_index(drop=True)
 
 
-# In[34]:
+# In[30]:
 
 
 df_stat_p = df_stat_vals[['cpd', 'dose', 'replicate_correlation']].rename({'replicate_correlation':'median_scores'}, 
                                                                           axis = 1)
 
 
-# In[35]:
+# In[31]:
 
 
 plot_median_score_distribution(df_stat_p, 
@@ -404,25 +404,25 @@ plot_median_score_distribution(df_stat_p,
 
 # ### Visualizing TAS and signature strength scores for L1000 compounds
 
-# In[36]:
+# In[32]:
 
 
 df_all_scores.head()
 
 
-# In[37]:
+# In[33]:
 
 
 cp_95pct = [np.percentile(null_dist_med_cp[keys],95) for keys in null_dist_med_cp]
 
 
-# In[38]:
+# In[34]:
 
 
 cp_95pct
 
 
-# In[39]:
+# In[35]:
 
 
 def plot_mas_vs_corr(df, title, cp_95pct, dmso_95pct, path, file_name, alp = 0.3, size =(50,300)):
@@ -448,7 +448,7 @@ def plot_mas_vs_corr(df, title, cp_95pct, dmso_95pct, path, file_name, alp = 0.3
     plt.show()
 
 
-# In[40]:
+# In[36]:
 
 
 plot_mas_vs_corr(df_all_scores,
@@ -456,7 +456,7 @@ plot_mas_vs_corr(df_all_scores,
                  cp_95pct, dmso_95_pctile, 'cellpainting_figures', 'MAS_vs_median_corr.png')
 
 
-# In[41]:
+# In[37]:
 
 
 def plot_ss_vs_corr(df, title, cp_95pct, path, file_name, alp = 0.3, size =(50,300)):
@@ -481,7 +481,7 @@ def plot_ss_vs_corr(df, title, cp_95pct, path, file_name, alp = 0.3, size =(50,3
     plt.show()
 
 
-# In[42]:
+# In[38]:
 
 
 plot_ss_vs_corr(df_all_scores, "Signature strength vs replicate correlation (median) for compound replicates", 
@@ -490,7 +490,7 @@ plot_ss_vs_corr(df_all_scores, "Signature strength vs replicate correlation (med
 
 # ### Visualization based on reproducible median score (compounds with p-values < 0.05 across all doses)
 
-# In[43]:
+# In[39]:
 
 
 plot_mas_vs_corr(df_stat_vals,
@@ -498,15 +498,9 @@ plot_mas_vs_corr(df_stat_vals,
                  cp_95pct, dmso_95_pctile, 'cellpainting_figures', 'stat_MAS_vs_median_corr.png', alp = 0.5, size = (200,200))
 
 
-# In[44]:
+# In[40]:
 
 
 plot_ss_vs_corr(df_stat_vals, "Signature strength vs reproducible median correlation scores for compound", 
                 cp_95pct, 'cellpainting_figures', 'stat_SS_vs_median_corr.png', alp = 0.5, size = (200,200))
-
-
-# In[ ]:
-
-
-
 
