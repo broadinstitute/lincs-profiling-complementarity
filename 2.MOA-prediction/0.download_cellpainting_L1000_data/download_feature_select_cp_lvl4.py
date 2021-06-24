@@ -80,7 +80,6 @@ def download_cp_lvl4_align_moa(profile_link=None, pertinfo_file=None, data_dir=N
     Output:
             saved csv file: Cell painting level-4 profiles data
     """
-    data_dir = 'D:\cell_painting_profiles\profiles\cellpainting_lvl4_cpd_replicate_datasets'
     df_level4 = pd.read_csv(profile_link, compression='gzip',low_memory = False)
     df_level4['Metadata_dose_recode'] = df_level4['Metadata_mmoles_per_liter'].apply(recode_dose)
     df_level4_new = feature_selection(df_level4)
@@ -92,11 +91,11 @@ def parse_args():
     """Arguments to pass to this Script"""
     
     parser = argparse.ArgumentParser(description="Parse arguments")
-    parser.add_argument('profile_link', type=str, default = "https://github.com/broadinstitute/lincs-cell-painting/blob/e17a47c9a524d4789982511dd5db9b0202ff6cc8\
+    parser.add_argument('--profile_link', type=str, default = "https://github.com/broadinstitute/lincs-cell-painting/blob/94bfaeeab0d107beac262b4307aa6e9b783625fa\
 /spherized_profiles/profiles/2016_04_01_a549_48hr_batch1_dmso_spherized_profiles_with_input_normalized_by_whole_plate.csv.gz?raw=true",
                         nargs='?', help='Github repo link of Cell painting level-4 data')
-    parser.add_argument('pertinfo_file', type=str, default = '../aligned_moa_CP_L1000.csv', nargs='?', help='Aligned metadata perturbation.csv file directory for Cell painting & L1000')
-    parser.add_argument('data_dir', type=str, default = os.getcwd(), nargs='?', help='Directory to save the cell painting \
+    parser.add_argument('--pertinfo_file', type=str, default = '../aligned_moa_CP_L1000.csv', nargs='?', help='Aligned metadata perturbation.csv file directory for Cell painting & L1000')
+    parser.add_argument('--data_dir', type=str, default = "datasets/raw", nargs='?', help='Directory to save the cell painting \
     level-4 data')
     return parser.parse_args()
     

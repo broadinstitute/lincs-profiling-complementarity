@@ -79,8 +79,6 @@ def download_L1000_lvl4_align_moa(L1000_datalink=None, pertinfo_file=None, data_
     Output:
             Directory: L1000 data
     """
-    data_dir = 'D:\Documents\L1000\L1k'
-    lvl4_dir = 'D:\Documents\L1000\L1k\L1000_lvl4_cpd_replicate_datasets'
     zipurl = L1000_datalink
     ##download from figshare
     if not os.path.exists(data_dir):
@@ -91,18 +89,18 @@ def download_L1000_lvl4_align_moa(L1000_datalink=None, pertinfo_file=None, data_
             
     df_level4 = construct_lvl4_data(data_dir, 'level_4_zspc_n27837x978.gctx', pertinfo_file)
     df_level4 = feature_selection(df_level4)
-    save_to_csv(df_level4, lvl4_dir, 'L1000_level4_cpd_replicates.csv.gz', compress="gzip")
+    save_to_csv(df_level4, data_dir, 'L1000_level4_cpd_replicates.csv.gz', compress="gzip")
     print("Done!! downloaded L1000 data and cleaned the Level-4 profiles data for further analysis")
     
 def parse_args():
     """Arguments to pass to this Script"""
     
     parser = argparse.ArgumentParser(description="Parse arguments")
-    parser.add_argument('L1000_datalink', type=str, default = "https://ndownloader.figshare.com/articles/13181966/versions/1", nargs='?', 
+    parser.add_argument('--L1000_datalink', type=str, default = "https://ndownloader.figshare.com/articles/13181966/versions/1", nargs='?', 
                         help='L1000 data repository link')
-    parser.add_argument('pertinfo_file', type=str, default = '../aligned_moa_CP_L1000.csv', nargs='?', 
+    parser.add_argument('--pertinfo_file', type=str, default = '../aligned_moa_CP_L1000.csv', nargs='?', 
                         help='Aligned metadata perturbation csv file directory for Cell painting & L1000')
-    parser.add_argument('data_dir', type=str, default = os.getcwd(), nargs='?', 
+    parser.add_argument('--data_dir', type=str, default = os.getcwd(), nargs='?', 
                         help='Directory where all the L1000 data are saved.')
     return parser.parse_args()
     
