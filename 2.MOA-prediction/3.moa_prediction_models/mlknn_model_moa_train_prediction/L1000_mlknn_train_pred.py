@@ -82,12 +82,12 @@ def parse_args():
     
     parser = argparse.ArgumentParser(description="Parse arguments")
     ##file directories
-    parser.add_argument('data_dir', type=str, help='directory that contains train, test and target labels csv files')
-    parser.add_argument('model_pred_dir', type=str, help='directory where model predictions for train & test will be stored')
-    parser.add_argument('shuffle', type=bool, help='True or False argument, to check if the train data is shuffled \
+    parser.add_argument('--data_dir', type=str, help='directory that contains train, test and target labels csv files')
+    parser.add_argument('--model_pred_dir', type=str, help='directory where model predictions for train & test will be stored')
+    parser.add_argument('--shuffle', action="store_true", help='True or False argument, to check if the train data is shuffled \
     i.e. given to the wrong target labels OR NOT')
     ##model hyperparameters
-    parser.add_argument('k_list', type=list, default = [8], nargs='?', help='A list of "K" nearest neighbours to\
+    parser.add_argument('--k_list', type=list, default = [8], nargs='?', help='A list of "K" nearest neighbours to\
     perform gridsearch on')
     return parser.parse_args()
     

@@ -181,14 +181,14 @@ def parse_args():
     
     parser = argparse.ArgumentParser(description="Parse arguments")
     ##file directories
-    parser.add_argument('data_dir', type=str, help='directory that contains train, test and target labels csv files')
-    parser.add_argument('model_pred_dir', type=str, help='directory where model predictions for train & test will be stored')
-    parser.add_argument('shuffle', type=bool, help='True or False argument, to check if the train data is shuffled \
+    parser.add_argument('--data_dir', type=str, help='directory that contains train, test and target labels csv files')
+    parser.add_argument('--model_pred_dir', type=str, help='directory where model predictions for train & test will be stored')
+    parser.add_argument('--shuffle', action="store_true", help='True or False argument, to check if the train data is shuffled \
     i.e. given to the wrong target labels OR NOT')
     ##model hyperparameters
-    parser.add_argument('batch_size', type=int, default = 128, nargs='?', help='Batch size for the model inputs')
-    parser.add_argument('learning_rate', type=float, default = 5e-3, nargs='?', help='learning rate')
-    parser.add_argument('epochs', type=int, default = 30, nargs='?', help='Number of epochs')
+    parser.add_argument('--batch_size', type=int, default = 128, nargs='?', help='Batch size for the model inputs')
+    parser.add_argument('--learning_rate', type=float, default = 5e-3, nargs='?', help='learning rate')
+    parser.add_argument('--epochs', type=int, default = 30, nargs='?', help='Number of epochs')
     return parser.parse_args()
     
 if __name__ == '__main__':
