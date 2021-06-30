@@ -12,13 +12,13 @@ from skmultilearn.adapt import MLkNN
 from mlknn_helpers import mlknn_train_pred,model_eval_results,save_to_csv
 from mlknn_helpers import split_data,check_if_shuffle_data
 
-class L1000_mlknn_moa_train_prediction:
+class cp_L1000_mlknn_moa_train_prediction:
     
     """
-    This function performs Multilabel-KNearest Neighbours training on L1000 level-4 profiles and also performs 
-    prediction on the hold-out test set. The model training includes running 5-Kfold cross validation on the train data 
-    for the purpose of tuning the hyperparameters (searching for the best "K"), and making prediction on the entire test 
-    dataset for every fold and then averaging out the predictions to get the final test predictions.
+    This function performs Multilabel-KNearest Neighbours training on the combined Cell painting & L1000 level-4 profiles 
+    and also performs prediction on the hold-out test set. The model training includes running 5-Kfold cross validation on 
+    the train data for the purpose of tuning the hyperparameters (searching for the best "K"), and making prediction on the 
+    entire test dataset for every fold and then averaging out the predictions to get the final test predictions.
     
     Args:
             data_dir: directory that contains train, test and moa target labels
@@ -43,14 +43,14 @@ class L1000_mlknn_moa_train_prediction:
         self.shuffle = shuffle
         self.k_list = k_list
     
-    def L1000_mlknn_moa_train_pred(self):
+    def cp_L1000_mlknn_moa_train_pred(self):
             
         NFOLDS = 5
         ##dir names
         model_file_name = None
         model_dir_name = None
-        trn_pred_name = 'L1000_train_preds_mlknn'
-        tst_pred_name = 'L1000_test_preds_mlknn'
+        trn_pred_name = 'cp_L1000_train_preds_mlknn'
+        tst_pred_name = 'cp_L1000_test_preds_mlknn'
         _,_,trn_pred_name,tst_pred_name = check_if_shuffle_data(self.shuffle, model_file_name, 
                                                                 model_dir_name, trn_pred_name, tst_pred_name)
         if self.shuffle:
@@ -63,8 +63,9 @@ class L1000_mlknn_moa_train_prediction:
                               compression='gzip',low_memory = False)
         df_targets = pd.read_csv(os.path.join(self.data_dir, 'target_labels.csv'))
         
-        metadata_cols = ['Metadata_broad_sample', 'pert_id', 'pert_idose', 'replicate_id', 
-                         'pert_iname', 'moa', 'sig_id', 'det_plate', 'dose', 'det_well']
+        metadata_cols = ['replicate_name', 'replicate_id', 'Metadata_broad_sample', 'Metadata_pert_id', 
+                         'Metadata_Plate', 'Metadata_Well', 'Metadata_broad_id', 'Metadata_moa', 'sig_id', 
+                         'pert_id', 'pert_idose', 'det_plate', 'det_well', 'pert_iname', 'moa', 'dose']
         
         target_cols = df_targets.columns[1:]
         df_train_x, df_train_y, df_test_x, df_test_y = split_data(df_train, df_test, metadata_cols, target_cols)
@@ -82,16 +83,16 @@ def parse_args():
     
     parser = argparse.ArgumentParser(description="Parse arguments")
     ##file directories
-    parser.add_argument('data_dir', type=str, help='directory that contains train, test and target labels csv files')
-    parser.add_argument('model_pred_dir', type=str, help='directory where model predictions for train & test will be stored')
-    parser.add_argument('shuffle', type=bool, help='True or False argument, to check if the train data is shuffled \
+    parser.add_argument('--data_dir', type=str, help='directory that contains train, test and target labels csv files')
+    parser.add_argument('--model_pred_dir', type=str, help='directory where model predictions for train & test will be stored')
+    parser.add_argument('--shuffle', action="store_true", help='True or False argument, to check if the train data is shuffled \
     i.e. given to the wrong target labels OR NOT')
     ##model hyperparameters
-    parser.add_argument('k_list', type=list, default = [8], nargs='?', help='A list of "K" nearest neighbours to\
+    parser.add_argument('--k_list', type=list, default = [15], nargs='?', help='A list of "K" nearest neighbours to\
     perform gridsearch on')
     return parser.parse_args()
     
 if __name__ == '__main__':
     args = parse_args()
-    L1000_mlknn = L1000_mlknn_moa_train_prediction(args.data_dir, args.model_pred_dir, args.shuffle, args.k_list)
-    L1000_mlknn.L1000_mlknn_moa_train_pred()
+    cp_L1000_mlknn = cp_L1000_mlknn_moa_train_prediction(args.data_dir, args.model_pred_dir, args.shuffle, args.k_list)
+    cp_L1000_mlknn.cp_L1000_mlknn_moa_train_pred()

@@ -19,10 +19,10 @@ from pytorch_utils import train_fn,valid_fn,inference_fn,SimpleNN_Model,seed_eve
 from pytorch_helpers import drug_stratification,normalize,umap_factor_features,model_eval_results
 from pytorch_helpers import preprocess,split_data,check_if_shuffle_data,save_to_csv
 
-class L1000_simplenn_moa_train_prediction:
+class cp_simplenn_moa_train_prediction:
     
     """
-    This function performs Simple NN model training on the L1000 level-4 profiles and also performs
+    This function performs Simple NN model training on the Cell painting level-4 profiles and also performs
     prediction on the hold-out test set. The model training includes running 5-Kfold cross validation on 
     the train data for the purpose of tuning the hyperparameters, and making prediction on the entire test 
     dataset for every fold and then averaging out the predictions to get the final test predictions.
@@ -39,8 +39,8 @@ class L1000_simplenn_moa_train_prediction:
             shuffle: True or False argument, to check if the train data is shuffled i.e. given to the wrong 
             target labels OR NOT
             
-            Epochs: A number that defines the number of times the Model will be trained on the entire training 
-            dataset.
+            Epochs: A number that defines the number of times that the 1D-CNN Model will be trained 
+            on the entire training dataset.
             
             Batch_size: A number that defines number of samples to work through before updating the 
             internal model parameters. The number of training examples in one forward & backward pass.
@@ -50,11 +50,11 @@ class L1000_simplenn_moa_train_prediction:
             
     Output:
             dataframes: train and hold-out test predictions are read in as csv files to the model_pred_dir
-            saved simplenn model: the Simple-NN model for every train fold is saved in a model folder in the data_dir
+            saved model: the Simple-NN model for every train fold is saved in a model folder in the data_dir
 
     """
     
-    def __init__(self, data_dir=None, model_pred_dir=None, shuffle= None, Epochs=None, Batch_size=None, learning_rate=None):
+    def __init__(self, data_dir=None, model_pred_dir=None, shuffle=None, Epochs=None, Batch_size=None, learning_rate=None):
 
         self.data_dir = data_dir
         self.model_pred_dir = model_pred_dir
@@ -63,7 +63,7 @@ class L1000_simplenn_moa_train_prediction:
         self.BATCH_SIZE = Batch_size
         self.LEARNING_RATE = learning_rate
     
-    def L1000_nn_moa_train_prediction(self):
+    def cp_nn_moa_train_prediction(self):
         
         print("Is GPU Available?")
         if torch.cuda.is_available():
@@ -72,7 +72,7 @@ class L1000_simplenn_moa_train_prediction:
             print("No, GPU is NOT Available!!", "\n")
             
         DEVICE = ('cuda' if torch.cuda.is_available() else 'cpu')
-        no_of_compts = 50
+        no_of_compts = 20
         no_of_dims = 25
         IS_TRAIN = True
         NSEEDS = 5
@@ -81,12 +81,12 @@ class L1000_simplenn_moa_train_prediction:
         WEIGHT_DECAY = 1e-5
         EARLY_STOPPING_STEPS = 10
         EARLY_STOP = False
-        hidden_size=1024
+        hidden_size=2048
         ##dir names
-        model_file_name = "L1000_simplenn"
-        model_dir_name = "L1000_simplenn_model"
-        trn_pred_name = 'L1000_train_preds_simplenn'
-        tst_pred_name = 'L1000_test_preds_simplenn'
+        model_file_name = "cp_simplenn"
+        model_dir_name = "cp_simplenn_model"
+        trn_pred_name = 'cp_train_preds_simplenn'
+        tst_pred_name = 'cp_test_preds_simplenn'
         model_file_name,model_dir_name,trn_pred_name,tst_pred_name = \
         check_if_shuffle_data(self.shuffle, model_file_name, model_dir_name, trn_pred_name, tst_pred_name)
         model_dir = os.path.join(self.data_dir, model_dir_name)
@@ -102,15 +102,17 @@ class L1000_simplenn_moa_train_prediction:
                               compression='gzip',low_memory = False)
         df_targets = pd.read_csv(os.path.join(self.data_dir, 'target_labels.csv'))
         
-        metadata_cols = ['Metadata_broad_sample', 'pert_id', 'pert_idose', 'replicate_id', 
-                         'pert_iname', 'moa', 'sig_id', 'det_plate', 'dose', 'det_well']
+        metadata_cols = ['Metadata_broad_sample', 'Metadata_pert_id', 'Metadata_Plate', 'Metadata_Well', 
+                         'Metadata_broad_id', 'Metadata_moa', 'broad_id', 'pert_iname', 'moa', 'replicate_name', 
+                         'Metadata_dose_recode']
+        
         target_cols = df_targets.columns[1:]
         df_train_x, df_train_y, df_test_x, df_test_y = split_data(df_train, df_test, metadata_cols, target_cols)
         df_train_x, df_test_x = umap_factor_features(df_train_x, df_test_x, no_of_compts, no_of_dims)
         features = df_train_x.columns.tolist()
         num_features=len(features)
         num_targets=len(target_cols)
-        df_train = drug_stratification(df_train,NFOLDS,target_cols,col_name='replicate_id',cpd_freq_num=36)
+        df_train = drug_stratification(df_train,NFOLDS,target_cols,col_name='replicate_name',cpd_freq_num=50)
         pos_weight = initialize_weights(df_train, target_cols, DEVICE)
         
         def model_train_pred(fold, seed):
@@ -136,10 +138,11 @@ class L1000_simplenn_moa_train_prediction:
             model = SimpleNN_Model(num_features=num_features, num_targets=num_targets, hidden_size=hidden_size)
             model.to(DEVICE)
             
-            optimizer = torch.optim.Adam(model.parameters(), weight_decay=WEIGHT_DECAY, lr=self.LEARNING_RATE)
+            optimizer = torch.optim.Adam(model.parameters(), weight_decay=WEIGHT_DECAY, lr=self.LEARNING_RATE,
+                                         eps=1e-10)
             scheduler = optim.lr_scheduler.OneCycleLR(optimizer=optimizer, pct_start=0.2, div_factor=1e3, 
-                                                      max_lr=1e-2, epochs=self.EPOCHS, steps_per_epoch=len(trainloader))
-            loss_train = SmoothBCEwLogits(smoothing = 0.001)
+                                                      max_lr=1e-3, epochs=self.EPOCHS, steps_per_epoch=len(trainloader))
+            loss_train = SmoothBCEwLogits(smoothing = 0.001, pos_weight=pos_weight)
             loss_val = nn.BCEWithLogitsLoss()
             early_stopping_steps = EARLY_STOPPING_STEPS
             early_step = 0
@@ -210,18 +213,18 @@ def parse_args():
     
     parser = argparse.ArgumentParser(description="Parse arguments")
     ##file directories
-    parser.add_argument('data_dir', type=str, help='directory that contains train, test and target labels csv files')
-    parser.add_argument('model_pred_dir', type=str, help='directory where model predictions for train & test will be stored')
-    parser.add_argument('shuffle', type=bool, help='True or False argument, to check if the train data is shuffled \
+    parser.add_argument('--data_dir', type=str, help='directory that contains train, test and target labels csv files')
+    parser.add_argument('--model_pred_dir', type=str, help='directory where model predictions for train & test will be stored')
+    parser.add_argument('--shuffle', action="store_true", help='True or False argument, to check if the train data is shuffled \
     i.e. given to the wrong target labels OR NOT')
     ##model hyperparameters
-    parser.add_argument('batch_size', type=int, default = 256, nargs='?', help='Batch size for the model inputs')
-    parser.add_argument('learning_rate', type=float, default = 5e-3, nargs='?', help='learning rate')
-    parser.add_argument('epochs', type=int, default = 50, nargs='?', help='Number of epochs')
+    parser.add_argument('--batch_size', type=int, default = 128, nargs='?', help='Batch size for the model inputs')
+    parser.add_argument('--learning_rate', type=float, default = 1e-4, nargs='?', help='learning rate')
+    parser.add_argument('--epochs', type=int, default = 50, nargs='?', help='Number of epochs')
     return parser.parse_args()
     
 if __name__ == '__main__':
     args = parse_args()
-    L1000_simplenn = L1000_simplenn_moa_train_prediction(args.data_dir, args.model_pred_dir, args.shuffle, args.epochs,
-                                                         args.batch_size, args.learning_rate)
-    L1000_simplenn.L1000_nn_moa_train_prediction()
+    cp_simplenn = cp_simplenn_moa_train_prediction(args.data_dir, args.model_pred_dir, args.shuffle, args.epochs,
+                                                    args.batch_size, args.learning_rate)
+    cp_simplenn.cp_nn_moa_train_prediction()

@@ -16,13 +16,14 @@ from resnet_utils import resnet_model,freeze_unfreeze_model_weights
 from resnet_helpers import drug_stratification, preprocess, save_to_csv, split_data
 from resnet_helpers import logloss, mean_logloss, check_if_shuffle_data, model_eval_results
 
-class L1000_resnet_moa_train_prediction:
+class cp_L1000_resnet_moa_train_prediction:
     
     """
-    This function performs ResNet model training on the L1000 level-4 profiles and also performs
-    prediction on the hold-out test set. The model training includes running 5-Kfold cross validation on 
-    the train data for the purpose of tuning the hyperparameters, thereafter making prediction on the entire
-    test dataset for every fold and then averaging out the predictions to get the final test predictions.
+    This function performs ResNet model training on the combined Cell painting & L1000 level-4 profiles 
+    and also performs prediction on the hold-out test set. The model training includes running 5-Kfold 
+    cross validation on the train data for the purpose of tuning the hyperparameters, thereafter making 
+    prediction on the entire test dataset for every fold and then averaging out the predictions to get the 
+    final test predictions.
     
     For more info:https://github.com/guitarmind/kaggle_moa_winner_hungry_for_gold/blob/main/final\
     /Best%20LB/Training/2heads-ResNest-train.ipynb
@@ -47,7 +48,7 @@ class L1000_resnet_moa_train_prediction:
             
     Output:
             dataframes: train and hold-out test predictions are read in as csv files to the model_pred_dir
-            saved model: the Resnet model for every train fold is saved in a folder called 'L1000_resnet_model'
+            saved model: the Resnet model for every train fold is saved in a folder called 'cp_L1000_resnet_model'
             in the data_dir
 
     """
@@ -61,11 +62,11 @@ class L1000_resnet_moa_train_prediction:
         self.BATCH_SIZE = Batch_size
         self.LEARNING_RATE = learning_rate
     
-    def L1000_resnet_moa_train_pred(self):
+    def cp_L1000_resnet_moa_train_pred(self):
         
         print("Is GPU Available?")
         if (len(tf.config.list_physical_devices('GPU')) > 0) & (tf.test.is_built_with_cuda()):
-            print("Yes, GPU is available!!")
+            print("\n Yes, GPU is available!!")
         else:
             print("No, GPU is not available!!")
             
@@ -75,10 +76,10 @@ class L1000_resnet_moa_train_prediction:
         P_MAX = 1 - P_MIN
         NFOLDS = 5
         ##dir names
-        model_file_name = "L1000_resnet"
-        model_dir_name = "L1000_resnet_model"
-        trn_pred_name = 'L1000_train_preds_resnet'
-        tst_pred_name = 'L1000_test_preds_resnet'
+        model_file_name = "cp_L1000_resnet"
+        model_dir_name = "cp_L1000_resnet_model"
+        trn_pred_name = 'cp_L1000_train_preds_resnet'
+        tst_pred_name = 'cp_L1000_test_preds_resnet'
         model_file_name,model_dir_name,trn_pred_name,tst_pred_name = \
         check_if_shuffle_data(self.shuffle, model_file_name, model_dir_name, trn_pred_name, tst_pred_name)
         model_dir = os.path.join(self.data_dir, model_dir_name)
@@ -94,12 +95,13 @@ class L1000_resnet_moa_train_prediction:
                               compression='gzip',low_memory = False)
         df_targets = pd.read_csv(os.path.join(self.data_dir, 'target_labels.csv'))
         
-        metadata_cols = ['Metadata_broad_sample', 'pert_id', 'pert_idose', 'replicate_id', 
-                         'pert_iname', 'moa', 'sig_id', 'det_plate', 'dose', 'det_well']
+        metadata_cols = ['replicate_name', 'replicate_id', 'Metadata_broad_sample', 'Metadata_pert_id', 
+                         'Metadata_Plate', 'Metadata_Well', 'Metadata_broad_id', 'Metadata_moa', 'sig_id', 
+                         'pert_id', 'pert_idose', 'det_plate', 'det_well', 'pert_iname','moa', 'dose']
         
         target_cols = df_targets.columns[1:]
         df_train_x, df_train_y, df_test_x, df_test_y = split_data(df_train, df_test, metadata_cols, target_cols)
-        df_train = drug_stratification(df_train,NFOLDS,target_cols,col_name='replicate_id',cpd_freq_num=36)
+        df_train = drug_stratification(df_train,NFOLDS,target_cols,col_name='replicate_name',cpd_freq_num=36)
         
         oof_preds = np.zeros(df_train_y.shape)
         y_pred = np.zeros(df_test_y.shape)
@@ -125,7 +127,7 @@ class L1000_resnet_moa_train_prediction:
             model_nn = tf.keras.models.load_model(model_path,custom_objects={'logloss': logloss})
             val_old = model_nn.predict(x_fold_val)
             val_metric_old = mean_logloss(val_old, y_fold_val)
-            print('Before loop: validation_loss =', val_metric_old)
+            print('Before Freezing & Unfreezing model weights (loop): validation_loss =', val_metric_old)
             
             #---------Freeze and Unfreeze model weights to improve model training------
             model_nn = freeze_unfreeze_model_weights(model_nn, x_fold_trn, y_fold_trn, x_fold_val, y_fold_val, 
@@ -155,18 +157,18 @@ def parse_args():
     
     parser = argparse.ArgumentParser(description="Parse arguments")
     ##file directories
-    parser.add_argument('data_dir', type=str, help='directory that contains train, test and target labels csv files')
-    parser.add_argument('model_pred_dir', type=str, help='directory where model predictions for train & test will be stored')
-    parser.add_argument('shuffle', type=bool, help='True or False argument, to check if the train data is shuffled \
+    parser.add_argument('--data_dir', type=str, help='directory that contains train, test and target labels csv files')
+    parser.add_argument('--model_pred_dir', type=str, help='directory where model predictions for train & test will be stored')
+    parser.add_argument('--shuffle', action="store_true", help='True or False argument, to check if the train data is shuffled \
     i.e. given to the wrong target labels OR NOT')
     ##model hyperparameters
-    parser.add_argument('batch_size', type=int, default = 128, nargs='?', help='Batch size for the model inputs')
-    parser.add_argument('learning_rate', type=float, default = 1e-3, nargs='?', help='learning rate')
-    parser.add_argument('epochs', type=int, default = 50, nargs='?', help='Number of epochs')
+    parser.add_argument('--batch_size', type=int, default = 128, nargs='?', help='Batch size for the model inputs')
+    parser.add_argument('--learning_rate', type=float, default = 1e-3, nargs='?', help='learning rate')
+    parser.add_argument('--epochs', type=int, default = 50, nargs='?', help='Number of epochs')
     return parser.parse_args()
     
 if __name__ == '__main__':
     args = parse_args()
-    L1000_resnet = L1000_resnet_moa_train_prediction(args.data_dir, args.model_pred_dir, args.shuffle, args.epochs,
-                                                     args.batch_size, args.learning_rate)
-    L1000_resnet.L1000_resnet_moa_train_pred()
+    cp_L1000_resnet = cp_L1000_resnet_moa_train_prediction(args.data_dir, args.model_pred_dir, args.shuffle, args.epochs,
+                                                           args.batch_size, args.learning_rate)
+    cp_L1000_resnet.cp_L1000_resnet_moa_train_pred()

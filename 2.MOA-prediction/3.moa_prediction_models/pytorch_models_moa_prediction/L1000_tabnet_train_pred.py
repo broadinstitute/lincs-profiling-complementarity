@@ -3,30 +3,36 @@ import sys
 import argparse
 import pandas as pd
 import numpy as np
+from copy import deepcopy as dp
 import torch
-import torch.utils.data
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
+from torch.nn.modules.loss import _WeightedLoss
+from torchsummary import summary
+
+# Tabnet 
+from torch.optim.lr_scheduler import ReduceLROnPlateau
+from pytorch_tabnet.metrics import Metric
+from pytorch_tabnet.tab_model import TabNetRegressor
 
 ##custom modules required
 sys.path.append('../pytorch_model_helpers')
 import pytorch_utils
 import pytorch_helpers
-from pytorch_utils import initialize_weights,SmoothBCEwLogits,TrainDataset,TestDataset
-from pytorch_utils import train_fn,valid_fn,inference_fn,CNN_Model
-from pytorch_helpers import drug_stratification,normalize,pca_features,model_eval_results
-from pytorch_helpers import preprocess,split_data,check_if_shuffle_data,save_to_csv
+from pytorch_utils import initialize_weights,SmoothBCEwLogits,LogitsLogLoss
+from pytorch_helpers import drug_stratification,variance_threshold,model_eval_results
+from pytorch_helpers import preprocess,split_data,check_if_shuffle_data,add_stat_feats,save_to_csv
 
-class L1000_1dcnn_moa_train_prediction:
+class L1000_tabnet_moa_train_prediction:
     
     """
-    This function performs 1D-CNN model training on the L1000 level-4 profiles and also performs
+    This function performs TabNet model training on the L1000 level-4 profiles and also performs
     prediction on the hold-out test set. The model training includes running 5-Kfold cross validation on 
     the train data for the purpose of tuning the hyperparameters, and making prediction on the entire test 
     dataset for every fold and then averaging out the predictions to get the final test predictions.
     
-    For more info:https://github.com/baosenguo/Kaggle-MoA-2nd-Place-Solution/blob/main/training/1d-cnn-train.ipynb
+    For more info:https://github.com/baosenguo/Kaggle-MoA-2nd-Place-Solution/blob/main/training/tabnet-train.ipynb
     
     Args:
             data_dir: directory that contains train, test and moa target labels
@@ -37,18 +43,18 @@ class L1000_1dcnn_moa_train_prediction:
             shuffle: True or False argument, to check if the train data is shuffled i.e. given to the wrong 
             target labels OR NOT
             
-            Epochs: A number that defines the number of times that the 1D-CNN Model will be trained 
+            Epochs: A number that defines the number of times that the TabNet Model will be trained 
             on the entire training dataset.
             
             Batch_size: A number that defines number of samples to work through before updating the 
             internal model parameters. The number of training examples in one forward & backward pass.
             
-            learning_rate: A number that controls how much we are adjusting the weights of our 1D-CNN network
+            learning_rate: A number that controls how much we are adjusting the weights of our TabNet network
             with respect the loss gradient after every pass/iteration. 
             
     Output:
             dataframes: train and hold-out test predictions are read in as csv files to the model_pred_dir
-            saved cnn model: the 1D-CNN model for every train fold is saved in a folder in the data_dir
+            saved model: the TabNet model for every train fold is saved in a model folder in the data_dir
 
     """
     
@@ -61,7 +67,7 @@ class L1000_1dcnn_moa_train_prediction:
         self.BATCH_SIZE = Batch_size
         self.LEARNING_RATE = learning_rate
     
-    def L1000_cnn_moa_train_prediction(self):
+    def L1000_tabnet_moa_train_pred(self):
         
         print("Is GPU Available?")
         if torch.cuda.is_available():
@@ -70,17 +76,13 @@ class L1000_1dcnn_moa_train_prediction:
             print("No, GPU is NOT Available!!", "\n")
             
         DEVICE = ('cuda' if torch.cuda.is_available() else 'cpu')
-        no_of_components = 50
+        no_of_components = 25
         NFOLDS = 5
-        WEIGHT_DECAY = 1e-5
-        EARLY_STOPPING_STEPS = 10
-        EARLY_STOP = False
-        hidden_size=4096
         ##dir names
-        model_file_name = "L1000_1dcnn"
-        model_dir_name = "L1000_cnn_model"
-        trn_pred_name = 'L1000_train_preds_1dcnn'
-        tst_pred_name = 'L1000_test_preds_1dcnn'
+        model_file_name = "L1000_tabnet"
+        model_dir_name = "L1000_tabnet_model"
+        trn_pred_name = 'L1000_train_preds_tabnet'
+        tst_pred_name = 'L1000_test_preds_tabnet'
         model_file_name,model_dir_name,trn_pred_name,tst_pred_name = \
         check_if_shuffle_data(self.shuffle, model_file_name, model_dir_name, trn_pred_name, tst_pred_name)
         model_dir = os.path.join(self.data_dir, model_dir_name)
@@ -101,61 +103,44 @@ class L1000_1dcnn_moa_train_prediction:
         
         target_cols = df_targets.columns[1:]
         df_train_x, df_train_y, df_test_x, df_test_y = split_data(df_train, df_test, metadata_cols, target_cols)
-        features = df_train_x.columns.tolist()
-        num_features=len(features) + no_of_components
-        num_targets=len(target_cols)
+        df_train_x = add_stat_feats(df_train_x)
+        df_test_x = add_stat_feats(df_test_x)
+        
         df_train = drug_stratification(df_train,NFOLDS,target_cols,col_name='replicate_id',cpd_freq_num=36)
         pos_weight = initialize_weights(df_train, target_cols, DEVICE)
+        wgt_bce = dp(F.binary_cross_entropy_with_logits)
+        wgt_bce.__defaults__ = (None, None, None, 'mean', pos_weight)
         
-        def model_train_pred(fold, Model = CNN_Model, df_train_y = df_train_y, df_test_y = df_test_y, features=features,
-                           file_name = model_file_name):
+        def model_train_pred(fold):
             
-            model_path = os.path.join(model_dir, file_name + f"_FOLD{fold}.pth")
+            model_path = os.path.join(model_dir, model_file_name + f"_FOLD{fold}.pth")
+            tabnet_params = dict(n_d = 64, n_a = 128, n_steps = 1,
+                                 gamma = 1.3,lambda_sparse = 0,
+                                 n_independent = 2,n_shared = 1,optimizer_fn = optim.Adam,
+                                 optimizer_params = dict(lr = self.LEARNING_RATE, weight_decay = 1e-5),
+                                 mask_type = "entmax",
+                                 scheduler_params = dict(mode = "min", patience = 10, min_lr = 1e-5, factor = 0.9),
+                                 scheduler_fn = ReduceLROnPlateau,verbose = 10)
+            
             x_fold_train, y_fold_train, x_fold_val, y_fold_val, df_test_x_copy, val_idx = \
             preprocess(fold, df_train, df_train_x, df_train_y, df_test_x, no_of_components)
-            train_dataset = TrainDataset(x_fold_train.values, y_fold_train.values)
-            valid_dataset = TrainDataset(x_fold_val.values, y_fold_val.values)
+            x_fold_train, x_fold_val, df_test_x_copy = variance_threshold(x_fold_train, x_fold_val, df_test_x_copy)
             
-            trainloader = torch.utils.data.DataLoader(train_dataset, batch_size=self.BATCH_SIZE, shuffle=True)
-            validloader = torch.utils.data.DataLoader(valid_dataset, batch_size=self.BATCH_SIZE, shuffle=False)
+            ### Fit ###
+            model = TabNetRegressor(**tabnet_params)
+            model.fit(X_train = x_fold_train.values, y_train = y_fold_train.values,
+                      eval_set = [(x_fold_val.values, y_fold_val.values)], eval_name = ["val"],
+                      eval_metric = ["logits_ll"],max_epochs = self.EPOCHS,
+                      patience = 40,batch_size = self.BATCH_SIZE,
+                      virtual_batch_size = 32,num_workers = 1,drop_last = False,
+                      loss_fn = SmoothBCEwLogits(smoothing = 0.001, pos_weight=pos_weight))
             
-            model = Model(num_features=num_features, num_targets=num_targets, hidden_size=hidden_size)
-            model.to(DEVICE)
-            optimizer = torch.optim.Adam(model.parameters(), lr=self.LEARNING_RATE, weight_decay=WEIGHT_DECAY)
-            scheduler = optim.lr_scheduler.OneCycleLR(optimizer=optimizer, pct_start=0.1, div_factor=1e3,
-                                                      max_lr=1e-2, epochs=self.EPOCHS, steps_per_epoch=len(trainloader))
-            loss_train = SmoothBCEwLogits(smoothing = 0.001, pos_weight=pos_weight)
-            loss_val = nn.BCEWithLogitsLoss()
-            early_stopping_steps = EARLY_STOPPING_STEPS
-            early_step = 0
+            ###---- Prediction ---
             oof = np.zeros(df_train_y.shape)
-            best_loss = np.inf
-            best_loss_epoch = -1
-            
-            for epoch in range(self.EPOCHS):
-                train_loss = train_fn(model, optimizer,scheduler, loss_train, trainloader, DEVICE)
-                valid_loss, valid_preds = valid_fn(model, loss_val, validloader, DEVICE)
-                if valid_loss < best_loss:
-                    best_loss = valid_loss
-                    best_loss_epoch = epoch
-                    oof[val_idx] = valid_preds
-                    torch.save(model.state_dict(), model_path)
-                elif (EARLY_STOP == True):
-                    early_step += 1
-                    if (early_step >= early_stopping_steps):
-                        break
-                print(f"FOLD: {fold}, EPOCH: {epoch},train_loss: {train_loss:.6f},\
-                valid_loss: {valid_loss:.6f} best_loss: {best_loss:.6f}, best_loss_epoch: {best_loss_epoch}")
-                
-            #--------------------- PREDICTION---------------------
-            testdataset = TestDataset(df_test_x_copy.values)
-            testloader = torch.utils.data.DataLoader(testdataset, batch_size=self.BATCH_SIZE, shuffle=False)
-            model = Model(num_features=num_features, num_targets=num_targets, hidden_size=hidden_size)
-            model.load_state_dict(torch.load(model_path))
-            model.to(DEVICE)
-            
-            predictions = np.zeros(df_test_y.shape)
-            predictions = inference_fn(model, testloader, DEVICE)
+            valid_preds = 1 / (1 + np.exp(-model.predict(x_fold_val.values)))
+            oof[val_idx] = valid_preds
+            predictions = 1 / (1 + np.exp(-model.predict(df_test_x_copy.values)))
+            model_path = model.save_model(model_path)
             return oof, predictions
         
         def run_k_fold(NFOLDS, df_train_y = df_train_y, df_test_y = df_test_y):
@@ -181,18 +166,18 @@ def parse_args():
     
     parser = argparse.ArgumentParser(description="Parse arguments")
     ##file directories
-    parser.add_argument('data_dir', type=str, help='directory that contains train, test and target labels csv files')
-    parser.add_argument('model_pred_dir', type=str, help='directory where model predictions for train & test will be stored')
-    parser.add_argument('shuffle', type=bool, help='True or False argument, to check if the train data is shuffled \
+    parser.add_argument('--data_dir', type=str, help='directory that contains train, test and target labels csv files')
+    parser.add_argument('--model_pred_dir', type=str, help='directory where model predictions for train & test will be stored')
+    parser.add_argument('--shuffle', action="store_true", help='True or False argument, to check if the train data is shuffled \
     i.e. given to the wrong target labels OR NOT')
     ##model hyperparameters
-    parser.add_argument('batch_size', type=int, default = 128, nargs='?', help='Batch size for the model inputs')
-    parser.add_argument('learning_rate', type=float, default = 5e-3, nargs='?', help='learning rate')
-    parser.add_argument('epochs', type=int, default = 30, nargs='?', help='Number of epochs')
+    parser.add_argument('--batch_size', type=int, default = 1024, nargs='?', help='Batch size for the model inputs')
+    parser.add_argument('--learning_rate', type=float, default = 2e-3, nargs='?', help='learning rate')
+    parser.add_argument('--epochs', type=int, default = 200, nargs='?', help='Number of epochs')
     return parser.parse_args()
     
 if __name__ == '__main__':
     args = parse_args()
-    L1000_1dcnn = L1000_1dcnn_moa_train_prediction(args.data_dir, args.model_pred_dir, args.shuffle, args.epochs,
-                                                   args.batch_size, args.learning_rate)
-    L1000_1dcnn.L1000_cnn_moa_train_prediction()
+    L1000_tabnet = L1000_tabnet_moa_train_prediction(args.data_dir, args.model_pred_dir, args.shuffle, args.epochs,
+                                                     args.batch_size, args.learning_rate)
+    L1000_tabnet.L1000_tabnet_moa_train_pred()
