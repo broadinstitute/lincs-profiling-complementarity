@@ -55,8 +55,8 @@ python cp_L1000_simplenn_train_pred.py --data_dir $merged_data_dir --model_pred_
 python cp_L1000_simplenn_train_pred.py --data_dir $merged_data_dir --model_pred_dir $model_pred_dir --shuffle
 
 # Step 4 - TabNet
-python cp_tabnet_train_pred.py --data_dir $cp_data_dir --model_pred_dir $model_pred_dir
-python cp_tabnet_train_pred.py --data_dir $cp_data_dir --model_pred_dir $model_pred_dir --shuffle
+python cp_tabnet_train_predict.py --data_dir $cp_data_dir --model_pred_dir $model_pred_dir
+python cp_tabnet_train_predict.py --data_dir $cp_data_dir --model_pred_dir $model_pred_dir --shuffle
 
 python L1000_tabnet_train_pred.py --data_dir $l1000_data_dir --model_pred_dir $model_pred_dir
 python L1000_tabnet_train_pred.py --data_dir $l1000_data_dir --model_pred_dir $model_pred_dir --shuffle
