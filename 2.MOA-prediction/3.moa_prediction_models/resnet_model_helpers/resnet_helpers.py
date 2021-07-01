@@ -6,7 +6,7 @@ import random
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 from tensorflow.keras import layers, regularizers, Sequential, Model, backend, optimizers, metrics, losses
-from keras.callbacks import EarlyStopping, ModelCheckpoint, ReduceLROnPlateau
+from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint, ReduceLROnPlateau
 import tensorflow as tf
 from iterstrat.ml_stratifiers import MultilabelStratifiedKFold
 from sklearn.metrics import precision_recall_curve,log_loss
