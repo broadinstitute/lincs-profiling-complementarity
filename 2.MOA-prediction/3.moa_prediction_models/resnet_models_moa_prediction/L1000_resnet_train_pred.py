@@ -4,9 +4,6 @@ import sys
 import os
 import random
 import argparse
-from tensorflow.keras import layers, regularizers, Sequential, Model, backend, optimizers, metrics, losses
-from keras.callbacks import EarlyStopping, ModelCheckpoint, ReduceLROnPlateau
-import tensorflow as tf
 
 ##custom modules required
 sys.path.append('../resnet_model_helpers')
@@ -15,6 +12,11 @@ import resnet_utils
 from resnet_utils import resnet_model,freeze_unfreeze_model_weights
 from resnet_helpers import drug_stratification, preprocess, save_to_csv, split_data
 from resnet_helpers import logloss, mean_logloss, check_if_shuffle_data, model_eval_results
+
+from tensorflow.keras import layers, regularizers, Sequential, Model, backend, optimizers, metrics, losses
+from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint, ReduceLROnPlateau
+import tensorflow as tf
+
 
 class L1000_resnet_moa_train_prediction:
     

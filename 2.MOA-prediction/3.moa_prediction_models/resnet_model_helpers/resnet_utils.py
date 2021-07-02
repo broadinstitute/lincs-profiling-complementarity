@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 from tensorflow.keras import layers, regularizers, Sequential, Model, backend, optimizers, metrics, losses
-from keras.callbacks import EarlyStopping, ModelCheckpoint, ReduceLROnPlateau
+from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint, ReduceLROnPlateau
 import tensorflow as tf
 import sys
 import os
