@@ -1,8 +1,15 @@
-numpy
+numpy==1.19.5
+scipy==1.7.0
 pandas>=1.2
-scikit-learn==0.24.2
+scikit-learn==0.2
+scikit-multilearn==0.2.0
+umap-learn==0.5.1
+seaborn
+matplotlib
 tensorflow==2.5.0
 keras==2.4.3
 iterative-stratification==0.1.6
 cmapPy==4.0.1
 git+https://github.com/cytomining/pycytominer@4f37e019918256111933aed4e3b9afb50055b4a1
+git+https://github.com/Phlya/adjustText@00bcef038fe6032e6ff1272a23ab6752c32cd79a
+
