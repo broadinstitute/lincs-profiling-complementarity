@@ -1,6 +1,6 @@
-BSD 3-Clause License
+# BSD 3-Clause License
 
-Copyright (c) 2020, Broad Institute
+**Copyright (c) 2020, Broad Institute of MIT and Harvard**
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
