@@ -28,6 +28,7 @@
 
 
 import os
+import pathlib
 import requests
 import pickle
 import argparse
@@ -442,4 +443,32 @@ def save_to_csv(df, path, file_name):
 
 
 save_to_csv(df_null_p_vals, 'moa_sizes_consensus_datasets', 'modz_null_p_values.csv')
+
+
+# In[40]:
+
+
+# Output files for visualization
+cpd_summary_file = pathlib.Path("moa_sizes_consensus_datasets/matching_score_per_MOA_L1000_p_values_compared_to_nonparametric_null.tsv.gz")
+
+dose_recode_info = {
+    'dose_1': '0.04 uM', 'dose_2':'0.12 uM', 'dose_3':'0.37 uM',
+    'dose_4': '1.11 uM', 'dose_5':'3.33 uM', 'dose_6':'10 uM'
+}
+
+cpd_score_summary_df = (
+    df_null_p_vals
+    .rename(columns={"moa_size": "no_of_replicates"})
+    .melt(
+        id_vars=["moa", "no_of_replicates"],
+        value_vars=["dose_1", "dose_2", "dose_3", "dose_4", "dose_5", "dose_6"],
+        var_name="dose",
+        value_name="p_value"
+    )
+)
+
+cpd_score_summary_df.dose = cpd_score_summary_df.dose.replace(dose_recode_info)
+
+cpd_score_summary_df.to_csv(cpd_summary_file, sep="\t", index=False)
+cpd_score_summary_df.head()
 

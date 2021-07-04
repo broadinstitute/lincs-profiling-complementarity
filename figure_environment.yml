@@ -1,0 +1,27 @@
+name: lincs-complimentarity-figures
+channels:
+- conda-forge
+- bioconda
+dependencies:
+- conda-forge::jupyter
+- conda-forge::jupyterlab
+- conda-forge::ipykernel
+- conda-forge::python
+- conda-forge::r-irkernel
+- conda-forge::nb_conda_kernels
+- conda-forge::widgetsnbextension
+- conda-forge::jupyter_contrib_nbextensions
+- conda-forge::r-base=3.5.1
+- conda-forge::r-stringr=1.3.1
+- conda-forge::r-patchwork
+- conda-forge::r-cowplot
+- conda-forge::r-gridextra
+- conda-forge::r-dplyr=0.8.0
+- conda-forge::r-tidyr=0.8.1
+- conda-forge::r-reshape2
+- conda-forge::r-readr
+- conda-forge::r-ggplot2
+- conda-forge::r-ggrepel
+- conda-forge::r-gridextra
+- conda-forge::r-hmisc
+- conda-forge::r-devtools

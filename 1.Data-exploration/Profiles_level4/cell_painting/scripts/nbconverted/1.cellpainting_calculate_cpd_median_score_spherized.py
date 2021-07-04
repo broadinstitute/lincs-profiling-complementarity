@@ -211,7 +211,7 @@ def get_median_score(cpds_list, df):
     cpds_median_score = {}
     for cpd in cpds_list:
         cpd_replicates = df[df['pert_iname'] == cpd].copy()
-        cpd_replicates.drop(['Metadata_broad_sample', 'Metadata_pert_id', 'Metadata_dose_recode', 'Metadata_Plate',
+        cpd_replicates.drop(['Metadata_broad_sample', 'Metadaxta_pert_id', 'Metadata_dose_recode', 'Metadata_Plate',
                              'Metadata_Well', 'Metadata_broad_id', 'Metadata_moa', 'broad_id', 
                              'pert_iname', 'moa', 'replicate_name'], axis = 1, inplace = True)
         cpd_replicates_corr = cpd_replicates.astype('float64').T.corr(method = 'spearman').values
@@ -368,4 +368,38 @@ save_to_csv(df_cpd_med_score.reset_index().rename({'index':'cpd'}, axis = 1),
 
 save_to_csv(df_level4_new, 'cellpainting_lvl4_cpd_replicate_datasets', 
             'cp_level4_cpd_replicates.csv.gz', compress="gzip")
+
+
+# In[34]:
+
+
+# Output files for visualization
+results_dir = pathlib.Path("../results")
+cpd_summary_file = pathlib.Path(f"{results_dir}/median_score_per_compound_CellPainting.tsv.gz")
+
+dose_recode_info = {
+    'dose_1': '0.04 uM', 'dose_2':'0.12 uM', 'dose_3':'0.37 uM',
+    'dose_4': '1.11 uM', 'dose_5':'3.33 uM', 'dose_6':'10 uM'
+}
+
+
+# In[35]:
+
+
+cpd_score_summary_df = (
+    df_cpd_med_score
+    .reset_index()
+    .rename(columns={"index": "compound"})
+    .melt(
+        id_vars=["compound", "no_of_replicates"],
+        value_vars=["dose_1", "dose_2", "dose_3", "dose_4", "dose_5", "dose_6"],
+        var_name="dose",
+        value_name="median_replicate_score"
+    )
+)
+
+cpd_score_summary_df.dose = cpd_score_summary_df.dose.replace(dose_recode_info)
+
+cpd_score_summary_df.to_csv(cpd_summary_file, sep="\t", index=False)
+cpd_score_summary_df.head()
 

@@ -496,6 +496,17 @@ df_moa_vals.head(10)
 # In[28]:
 
 
+# Output analytical file
+output_file = pathlib.Path("moa_sizes_consensus_datasets/l1000_moa_analytical_set_profiles.tsv.gz")
+analytical_set_df = df_lvl5.query("moa in @df_moa_cpds.moa").reset_index(drop=True)
+
+print(analytical_set_df.shape)
+analytical_set_df.to_csv(output_file, index=False, sep="\t")
+
+
+# In[29]:
+
+
 def check_moas_cpds_doses(df_moa_cpds):
     """
     check if moas have the same compounds in all doses,
@@ -521,13 +532,13 @@ def check_moas_cpds_doses(df_moa_cpds):
     return df_moa_not_equals_cpds
 
 
-# In[29]:
+# In[30]:
 
 
 data_moa_not_equals_cpds = check_moas_cpds_doses(df_moa_cpds) ##MOAs with not the same cpds in all doses
 
 
-# In[30]:
+# In[31]:
 
 
 data_moa_not_equals_cpds.shape
@@ -535,7 +546,7 @@ data_moa_not_equals_cpds.shape
 
 # ### - MOAS that do not have the same number of/same compounds in all Doses
 
-# In[31]:
+# In[32]:
 
 
 for moa in data_moa_not_equals_cpds.index:
@@ -547,7 +558,7 @@ for moa in data_moa_not_equals_cpds.index:
 
 # ### - Save dataframes to .csv files
 
-# In[32]:
+# In[33]:
 
 
 def conv_list_to_str_cols(df_moa_cpds):
@@ -561,7 +572,7 @@ def conv_list_to_str_cols(df_moa_cpds):
     return df_moa_cpds_nw
 
 
-# In[33]:
+# In[34]:
 
 
 def save_to_csv(df, path, file_name):
@@ -573,20 +584,48 @@ def save_to_csv(df, path, file_name):
     df.to_csv(os.path.join(path, file_name), index = False)
 
 
-# In[34]:
+# In[35]:
 
 
 save_to_csv(df_lvl5, 'moa_sizes_consensus_datasets', 'modz_level5_data.csv')
 
 
-# In[35]:
+# In[36]:
 
 
 save_to_csv(df_moa_vals, 'moa_sizes_consensus_datasets', 'modz_moa_median_scores.csv')
 
 
-# In[36]:
+# In[37]:
 
 
 save_to_csv(conv_list_to_str_cols(df_moa_cpds), 'moa_sizes_consensus_datasets', 'L1000_moa_compounds.csv')
+
+
+# In[38]:
+
+
+# Output files for visualization
+cpd_summary_file = pathlib.Path("moa_sizes_consensus_datasets/matching_score_per_MOA_L1000.tsv.gz")
+
+dose_recode_info = {
+    'dose_1': '0.04 uM', 'dose_2':'0.12 uM', 'dose_3':'0.37 uM',
+    'dose_4': '1.11 uM', 'dose_5':'3.33 uM', 'dose_6':'10 uM'
+}
+
+cpd_score_summary_df = (
+    df_moa_vals
+    .rename(columns={"moa_size": "no_of_replicates"})
+    .melt(
+        id_vars=["moa", "no_of_replicates"],
+        value_vars=["dose_1", "dose_2", "dose_3", "dose_4", "dose_5", "dose_6"],
+        var_name="dose",
+        value_name="matching_score"
+    )
+)
+
+cpd_score_summary_df.dose = cpd_score_summary_df.dose.replace(dose_recode_info)
+
+cpd_score_summary_df.to_csv(cpd_summary_file, sep="\t", index=False)
+cpd_score_summary_df.head()
 
