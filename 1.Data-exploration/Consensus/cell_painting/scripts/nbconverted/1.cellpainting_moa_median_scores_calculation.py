@@ -427,6 +427,23 @@ data_moa_cpds.head()
 # In[22]:
 
 
+data_moa_values.head(10)
+
+
+# In[23]:
+
+
+# Output analytical file
+output_file = pathlib.Path("moa_sizes_consensus_datasets/cell_painting_moa_analytical_set_profiles.tsv.gz")
+analytical_set_df = df_moa.query("moa in @data_moa_cpds.moa").reset_index(drop=True)
+
+print(analytical_set_df.shape)
+analytical_set_df.to_csv(output_file, index=False, sep="\t")
+
+
+# In[24]:
+
+
 def get_moa_size(df_moa_cpds, df_moa_values):
     """
     This function computes the number of compunds in each MOA
@@ -460,7 +477,7 @@ def get_moa_size(df_moa_cpds, df_moa_values):
     return df_moa_cpds, df_moa_values
 
 
-# In[23]:
+# In[25]:
 
 
 data_moa_cpds, data_moa_values = get_moa_size(data_moa_cpds, data_moa_values)
@@ -468,7 +485,7 @@ data_moa_cpds, data_moa_values = get_moa_size(data_moa_cpds, data_moa_values)
 
 # ### - Check if the MOAs have the same compounds in all the Doses
 
-# In[24]:
+# In[26]:
 
 
 def check_moas_cpds_doses(df_moa_cpds):
@@ -496,7 +513,7 @@ def check_moas_cpds_doses(df_moa_cpds):
     return df_moa_not_equals_cpds
 
 
-# In[25]:
+# In[27]:
 
 
 data_moa_not_equals_cpds = check_moas_cpds_doses(data_moa_cpds) ##MOAs with not the same cpds in all doses
@@ -504,7 +521,7 @@ data_moa_not_equals_cpds = check_moas_cpds_doses(data_moa_cpds) ##MOAs with not 
 
 # ### - MOAS that do not have the same number of compounds in all Doses
 
-# In[26]:
+# In[28]:
 
 
 for moa in data_moa_not_equals_cpds.index:
@@ -516,13 +533,13 @@ for moa in data_moa_not_equals_cpds.index:
 
 # ### - MOAS with their median scores for all doses
 
-# In[27]:
+# In[29]:
 
 
 data_moa_values.head(10)
 
 
-# In[28]:
+# In[30]:
 
 
 def conv_list_to_str_cols(df_moa_cpds):
@@ -535,7 +552,7 @@ def conv_list_to_str_cols(df_moa_cpds):
     return df_moa_cpds
 
 
-# In[29]:
+# In[31]:
 
 
 def save_to_csv(df, path, file_name):
@@ -547,20 +564,48 @@ def save_to_csv(df, path, file_name):
     df.to_csv(os.path.join(path, file_name), index=False)
 
 
-# In[30]:
+# In[32]:
 
 
 save_to_csv(df_moa, 'moa_sizes_consensus_datasets', 'modz_consensus_data.csv')
 
 
-# In[31]:
+# In[33]:
 
 
 save_to_csv(conv_list_to_str_cols(data_moa_cpds), 'moa_sizes_consensus_datasets', 'cellpainting_moa_compounds.csv')
 
 
-# In[32]:
+# In[34]:
 
 
 save_to_csv(data_moa_values, 'moa_sizes_consensus_datasets', 'modz_moa_median_scores.csv')
+
+
+# In[35]:
+
+
+# Output files for visualization
+cpd_summary_file = pathlib.Path("moa_sizes_consensus_datasets/matching_score_per_MOA_CellPainting.tsv.gz")
+
+dose_recode_info = {
+    'dose_1': '0.04 uM', 'dose_2':'0.12 uM', 'dose_3':'0.37 uM',
+    'dose_4': '1.11 uM', 'dose_5':'3.33 uM', 'dose_6':'10 uM'
+}
+
+cpd_score_summary_df = (
+    data_moa_values
+    .rename(columns={"moa_size": "no_of_replicates"})
+    .melt(
+        id_vars=["moa", "no_of_replicates"],
+        value_vars=["dose_1", "dose_2", "dose_3", "dose_4", "dose_5", "dose_6"],
+        var_name="dose",
+        value_name="matching_score"
+    )
+)
+
+cpd_score_summary_df.dose = cpd_score_summary_df.dose.replace(dose_recode_info)
+
+cpd_score_summary_df.to_csv(cpd_summary_file, sep="\t", index=False)
+cpd_score_summary_df.head()
 
