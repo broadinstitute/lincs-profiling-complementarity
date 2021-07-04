@@ -1,214 +1,214 @@
 moa,dose_1,dose_2,dose_3,dose_4,dose_5,dose_6,moa_size
-5 alpha reductase inhibitor,0.042,0.227,0.187,0.393,0.488,0.571,2
-acat inhibitor,0.896,0.97,0.586,0.767,0.903,0.878,3
-acetylcholine receptor agonist,0.676,0.01,0.007,0.512,0.464,0.893,8
-acetylcholine receptor antagonist,0.669,0.275,0.294,0.55,0.708,0.213,21
-acetylcholine release stimulant,0.495,0.728,0.179,0.155,0.323,0.531,2
-acetylcholinesterase inhibitor,0.314,0.576,0.192,0.324,0.406,0.782,2
-adenosine receptor agonist,0.424,0.542,0.467,0.461,0.557,0.062,3
-adenosine receptor antagonist,0.585,0.131,0.225,0.0,0.032,0.706,4
-adrenergic inhibitor,0.646,0.528,0.866,0.91,0.301,0.271,2
-adrenergic receptor agonist,0.666,0.337,0.409,0.32,0.396,0.763,20
-adrenergic receptor antagonist,0.341,0.057,0.365,0.04,0.051,0.414,33
-akt inhibitor,0.773,0.279,0.464,0.047,0.128,0.064,6
-alcohol dehydrogenase inhibitor,0.521,0.315,0.632,0.324,0.655,0.541,2
-aldose reductase inhibitor,0.458,0.651,0.186,0.031,0.169,0.183,2
-alk tyrosine kinase receptor inhibitor,0.447,0.185,0.07,0.169,0.004,0.0,4
-ampk activator,0.703,0.647,0.949,0.758,0.44,0.809,2
-androgen receptor agonist,0.304,0.008,0.01,0.042,0.063,0.019,3
-androgen receptor antagonist,0.518,0.852,0.784,0.427,0.309,0.502,6
-androgen receptor modulator,0.617,0.319,0.312,0.21,0.12,0.941,4
-angiogenesis inhibitor,0.555,0.576,0.767,0.881,0.932,0.386,3
-angiotensin converting enzyme inhibitor,0.877,0.39,0.049,0.061,0.049,0.349,8
-angiotensin receptor antagonist,0.05,0.043,0.145,0.085,0.065,0.224,5
-antithyroid agent,0.391,0.675,0.668,0.538,0.367,0.959,2
-antiviral,0.558,0.641,0.765,0.648,0.577,0.633,2
-aromatase inhibitor,0.579,0.069,0.062,0.195,0.142,0.413,3
-atp channel blocker,0.385,0.375,0.118,0.082,0.058,0.22,3
-atpase inhibitor,0.853,0.509,0.841,0.06,0.225,0.12,4
-aurora kinase inhibitor,0.574,0.018,0.017,0.006,0.008,0.037,2
-bacterial 30s ribosomal subunit inhibitor,0.628,0.677,0.111,0.51,0.292,0.106,5
-bacterial 50s ribosomal subunit inhibitor,0.372,0.23,0.108,0.059,0.341,0.315,6
-bacterial antifolate,0.46,0.013,0.616,0.398,0.353,0.585,2
-bacterial cell wall synthesis inhibitor,0.758,0.585,0.176,0.077,0.288,0.273,14
-bacterial dna gyrase inhibitor,0.216,0.066,0.018,0.431,0.303,0.855,11
-bcl inhibitor,0.274,0.63,0.639,0.832,0.703,0.009,3
-bcr-abl kinase inhibitor,0.967,0.994,0.824,0.962,0.711,0.426,2
-benzodiazepine receptor agonist,0.185,0.186,0.671,0.255,0.461,0.093,7
-benzodiazepine receptor antagonist,0.42,0.438,0.16,0.305,0.412,0.721,3
-beta lactamase inhibitor,0.961,0.958,0.977,0.658,0.472,0.501,2
-beta-secretase inhibitor,0.381,0.267,0.447,0.488,0.184,0.204,2
-bruton's tyrosine kinase (btk) inhibitor,0.653,0.656,0.585,0.076,0.378,0.017,2
-c-met inhibitor,0.361,0.147,0.19,0.009,0.824,0.477,2
-calcineurin inhibitor,0.325,0.562,0.07,0.779,0.336,0.015,3
-calcitonin antagonist,0.078,0.78,0.206,0.185,0.145,0.228,3
-calcium channel activator,0.499,0.069,0.411,0.314,0.142,0.199,2
-calcium channel blocker,0.206,0.901,0.951,0.527,0.295,0.118,15
-calmodulin antagonist,0.421,0.897,0.78,0.858,0.436,0.271,2
-cannabinoid receptor agonist,0.949,0.965,0.996,0.978,0.183,0.996,3
-cannabinoid receptor antagonist,0.858,0.443,0.78,0.306,0.0,0.817,2
-cannabinoid receptor inverse agonist,0.673,0.972,0.882,0.755,0.267,0.497,2
-carbonic anhydrase inhibitor,0.293,0.68,0.822,0.967,0.393,0.559,5
-carnitine palmitoyltransferase inhibitor,0.026,0.09,0.624,0.098,0.138,0.311,2
-cathepsin inhibitor,0.002,0.001,0.351,0.902,0.988,0.968,2
-cc chemokine receptor antagonist,0.349,0.38,0.695,0.765,0.333,0.669,7
-cck receptor antagonist,0.851,0.776,0.31,0.705,0.687,0.724,4
-cdk inhibitor,0.826,0.959,0.149,0.001,0.0,0.0,7
-cftr channel agonist,0.406,0.189,0.547,0.576,0.91,0.586,2
-chelating agent,0.161,0.229,0.607,0.622,0.128,0.88,4
-cholesterol inhibitor,0.775,0.437,0.305,0.752,0.412,0.353,3
-coagulation factor inhibitor,0.192,0.015,0.266,0.974,0.219,0.991,4
-cyclooxygenase inhibitor,0.642,0.591,0.407,0.223,0.899,0.747,30
-cyclooxygenase inhibitor|prostanoid receptor antagonist,0.388,0.585,0.23,0.444,0.497,0.945,4
-cytochrome p450 inhibitor,0.885,0.947,0.93,0.962,0.658,0.391,2
-diacylglycerol o acyltransferase inhibitor,0.002,0.001,0.119,0.121,0.01,0.022,2
-dihydrofolate reductase inhibitor,0.508,0.509,0.64,0.255,0.343,0.782,4
-dihydroorotate dehydrogenase inhibitor,0.208,0.025,0.78,0.669,0.188,0.453,2
-dipeptidyl peptidase inhibitor,0.771,0.349,0.6,0.481,0.586,0.613,4
-diuretic,0.741,0.903,0.984,0.757,0.567,0.89,3
-dna alkylating agent,0.783,0.899,0.532,0.169,0.755,0.272,2
-dna alkylating drug,0.038,0.11,0.699,0.782,0.45,0.48,2
-dna directed dna polymerase inhibitor,0.694,0.447,0.302,0.385,0.17,0.304,3
-dna inhibitor,0.523,0.693,0.918,0.923,0.534,0.395,6
-dna methyltransferase inhibitor,0.26,0.4,0.087,0.185,0.276,0.107,3
-dna polymerase inhibitor,0.717,0.886,0.663,0.939,0.32,0.194,3
-dna synthesis inhibitor,0.346,0.326,0.297,0.523,0.672,0.887,7
-dopamine receptor agonist,0.424,0.381,0.187,0.186,0.124,0.257,9
-dopamine receptor antagonist,0.054,0.061,0.353,0.072,0.076,0.005,20
-dopamine receptor antagonist|serotonin receptor antagonist,0.837,0.196,0.946,0.921,0.493,0.429,9
-dopamine reuptake inhibitor,0.541,0.5,0.542,0.117,0.464,0.158,2
-dopamine uptake inhibitor,0.767,0.277,0.15,0.465,0.242,0.367,2
-egfr inhibitor,0.358,0.001,0.002,0.0,0.0,0.0,13
-elastase inhibitor,0.447,0.969,0.132,0.071,0.525,0.665,2
-endothelin receptor antagonist,0.192,0.295,0.312,0.4,0.196,0.157,4
-estrogen receptor agonist,0.323,0.454,0.778,0.724,0.975,0.704,6
-estrogen receptor antagonist,0.242,0.15,0.027,0.008,0.019,0.092,2
-estrogen receptor antagonist|selective estrogen receptor modulator (serm),0.499,0.191,0.187,0.341,0.505,0.114,2
-farnesyltransferase inhibitor,0.634,0.989,0.683,0.245,0.292,0.377,3
-fatty acid synthase inhibitor,0.13,0.03,0.078,0.122,0.274,0.347,2
-fgfr inhibitor|vegfr inhibitor,0.229,0.226,0.999,0.282,0.426,0.873,3
-focal adhesion kinase inhibitor,0.643,0.692,0.561,0.228,0.294,0.987,2
-free radical scavenger,0.097,0.54,0.228,0.008,0.125,0.03,4
-fungal squalene epoxidase inhibitor,0.23,0.734,0.381,0.748,0.964,0.267,4
-gaba receptor agonist,0.501,0.31,0.217,0.01,0.784,0.272,3
-gaba receptor antagonist,0.296,0.227,0.575,0.281,0.426,0.126,2
-gaba receptor modulator,0.94,0.889,0.916,0.266,0.61,0.549,4
-gamma secretase inhibitor,0.434,0.651,0.016,0.054,0.024,0.025,7
+5 alpha reductase inhibitor,0.056,0.22,0.143,0.37,0.52,0.583,2
+acat inhibitor,0.905,0.966,0.602,0.751,0.925,0.895,3
+acetylcholine receptor agonist,0.676,0.005,0.008,0.563,0.462,0.905,8
+acetylcholine receptor antagonist,0.61,0.244,0.27,0.556,0.711,0.201,21
+acetylcholine release stimulant,0.476,0.721,0.129,0.128,0.333,0.543,2
+acetylcholinesterase inhibitor,0.274,0.538,0.153,0.292,0.429,0.762,2
+adenosine receptor agonist,0.444,0.532,0.478,0.457,0.552,0.055,3
+adenosine receptor antagonist,0.601,0.127,0.249,0.005,0.024,0.701,4
+adrenergic inhibitor,0.628,0.501,0.855,0.894,0.308,0.269,2
+adrenergic receptor agonist,0.659,0.329,0.386,0.332,0.378,0.767,20
+adrenergic receptor antagonist,0.399,0.068,0.346,0.028,0.049,0.446,33
+akt inhibitor,0.746,0.264,0.446,0.049,0.118,0.071,6
+alcohol dehydrogenase inhibitor,0.503,0.301,0.598,0.292,0.688,0.551,2
+aldose reductase inhibitor,0.434,0.634,0.14,0.04,0.158,0.18,2
+alk tyrosine kinase receptor inhibitor,0.458,0.182,0.074,0.175,0.004,0.001,4
+ampk activator,0.681,0.627,0.951,0.757,0.472,0.805,2
+androgen receptor agonist,0.317,0.004,0.009,0.036,0.058,0.017,3
+androgen receptor antagonist,0.48,0.803,0.764,0.383,0.284,0.46,6
+androgen receptor modulator,0.63,0.303,0.344,0.218,0.112,0.952,4
+angiogenesis inhibitor,0.563,0.572,0.762,0.859,0.947,0.386,3
+angiotensin converting enzyme inhibitor,0.895,0.43,0.053,0.057,0.046,0.396,8
+angiotensin receptor antagonist,0.049,0.058,0.164,0.093,0.091,0.237,5
+antithyroid agent,0.36,0.651,0.635,0.502,0.39,0.944,2
+antiviral,0.547,0.619,0.747,0.644,0.622,0.633,2
+aromatase inhibitor,0.589,0.077,0.061,0.199,0.125,0.424,3
+atp channel blocker,0.411,0.357,0.123,0.077,0.05,0.192,3
+atpase inhibitor,0.851,0.509,0.841,0.076,0.227,0.131,4
+aurora kinase inhibitor,0.563,0.017,0.011,0.004,0.008,0.034,2
+bacterial 30s ribosomal subunit inhibitor,0.645,0.705,0.146,0.557,0.284,0.106,5
+bacterial 50s ribosomal subunit inhibitor,0.349,0.223,0.106,0.062,0.32,0.296,6
+bacterial antifolate,0.436,0.012,0.583,0.374,0.376,0.596,2
+bacterial cell wall synthesis inhibitor,0.746,0.578,0.184,0.081,0.306,0.261,14
+bacterial dna gyrase inhibitor,0.237,0.066,0.006,0.452,0.303,0.848,11
+bcl inhibitor,0.284,0.606,0.65,0.821,0.733,0.008,3
+bcr-abl kinase inhibitor,0.96,0.991,0.81,0.957,0.738,0.425,2
+benzodiazepine receptor agonist,0.186,0.185,0.714,0.252,0.429,0.093,7
+benzodiazepine receptor antagonist,0.441,0.45,0.163,0.282,0.405,0.731,3
+beta lactamase inhibitor,0.955,0.96,0.975,0.656,0.505,0.518,2
+beta-secretase inhibitor,0.349,0.252,0.404,0.46,0.171,0.199,2
+bruton's tyrosine kinase (btk) inhibitor,0.634,0.642,0.545,0.065,0.398,0.019,2
+c-met inhibitor,0.333,0.153,0.152,0.021,0.846,0.472,2
+calcineurin inhibitor,0.342,0.559,0.07,0.767,0.335,0.013,3
+calcitonin antagonist,0.07,0.758,0.219,0.189,0.136,0.201,3
+calcium channel activator,0.482,0.059,0.369,0.285,0.134,0.199,2
+calcium channel blocker,0.227,0.899,0.963,0.536,0.279,0.101,15
+calmodulin antagonist,0.397,0.904,0.759,0.829,0.469,0.268,2
+cannabinoid receptor agonist,0.95,0.961,0.998,0.957,0.167,0.997,3
+cannabinoid receptor antagonist,0.848,0.431,0.757,0.276,0.001,0.807,2
+cannabinoid receptor inverse agonist,0.653,0.97,0.867,0.747,0.262,0.516,2
+carbonic anhydrase inhibitor,0.292,0.711,0.878,0.976,0.374,0.564,5
+carnitine palmitoyltransferase inhibitor,0.031,0.08,0.589,0.084,0.13,0.294,2
+cathepsin inhibitor,0.007,0.002,0.306,0.877,0.987,0.951,2
+cc chemokine receptor antagonist,0.352,0.39,0.724,0.765,0.3,0.704,7
+cck receptor antagonist,0.848,0.794,0.337,0.712,0.713,0.721,4
+cdk inhibitor,0.827,0.945,0.143,0.001,0.0,0.0,7
+cftr channel agonist,0.373,0.194,0.499,0.549,0.901,0.597,2
+chelating agent,0.188,0.215,0.642,0.628,0.122,0.897,4
+cholesterol inhibitor,0.796,0.446,0.312,0.741,0.406,0.355,3
+coagulation factor inhibitor,0.207,0.02,0.294,0.996,0.223,0.988,4
+cyclooxygenase inhibitor,0.662,0.603,0.431,0.218,0.9,0.776,30
+cyclooxygenase inhibitor|prostanoid receptor antagonist,0.413,0.6,0.255,0.449,0.537,0.955,4
+cytochrome p450 inhibitor,0.88,0.955,0.928,0.957,0.688,0.377,2
+diacylglycerol o acyltransferase inhibitor,0.007,0.001,0.092,0.101,0.01,0.024,2
+dihydrofolate reductase inhibitor,0.524,0.509,0.678,0.257,0.367,0.774,4
+dihydroorotate dehydrogenase inhibitor,0.178,0.02,0.759,0.665,0.174,0.451,2
+dipeptidyl peptidase inhibitor,0.794,0.337,0.626,0.492,0.634,0.591,4
+diuretic,0.749,0.889,0.988,0.745,0.572,0.898,3
+dna alkylating agent,0.765,0.908,0.482,0.142,0.792,0.271,2
+dna alkylating drug,0.051,0.094,0.676,0.772,0.482,0.476,2
+dna directed dna polymerase inhibitor,0.695,0.456,0.311,0.367,0.162,0.289,3
+dna inhibitor,0.483,0.641,0.908,0.899,0.517,0.367,6
+dna methyltransferase inhibitor,0.281,0.393,0.086,0.188,0.263,0.086,3
+dna polymerase inhibitor,0.715,0.869,0.672,0.919,0.329,0.148,3
+dna synthesis inhibitor,0.35,0.34,0.295,0.519,0.671,0.901,7
+dopamine receptor agonist,0.407,0.414,0.194,0.18,0.119,0.248,9
+dopamine receptor antagonist,0.039,0.063,0.312,0.048,0.056,0.014,20
+dopamine receptor antagonist|serotonin receptor antagonist,0.832,0.193,0.95,0.916,0.484,0.44,9
+dopamine reuptake inhibitor,0.521,0.477,0.494,0.1,0.493,0.165,2
+dopamine uptake inhibitor,0.747,0.258,0.107,0.438,0.236,0.363,2
+egfr inhibitor,0.358,0.001,0.001,0.0,0.0,0.0,13
+elastase inhibitor,0.421,0.966,0.1,0.064,0.559,0.658,2
+endothelin receptor antagonist,0.207,0.273,0.345,0.407,0.193,0.181,4
+estrogen receptor agonist,0.314,0.408,0.76,0.703,0.964,0.672,6
+estrogen receptor antagonist,0.198,0.157,0.022,0.016,0.025,0.09,2
+estrogen receptor antagonist|selective estrogen receptor modulator (serm),0.482,0.196,0.145,0.308,0.536,0.115,2
+farnesyltransferase inhibitor,0.638,0.985,0.691,0.242,0.302,0.379,3
+fatty acid synthase inhibitor,0.113,0.026,0.061,0.103,0.273,0.328,2
+fgfr inhibitor|vegfr inhibitor,0.238,0.224,1.0,0.258,0.411,0.878,3
+focal adhesion kinase inhibitor,0.626,0.672,0.515,0.197,0.298,0.983,2
+free radical scavenger,0.113,0.555,0.252,0.009,0.119,0.036,4
+fungal squalene epoxidase inhibitor,0.249,0.76,0.413,0.747,0.965,0.282,4
+gaba receptor agonist,0.508,0.304,0.227,0.009,0.8,0.239,3
+gaba receptor antagonist,0.256,0.22,0.535,0.249,0.449,0.135,2
+gaba receptor modulator,0.945,0.896,0.933,0.273,0.651,0.525,4
+gamma secretase inhibitor,0.431,0.659,0.014,0.052,0.015,0.031,7
 glucocorticoid receptor agonist,0.0,0.0,0.0,0.0,0.0,0.0,14
-"glucose-dependent insulinotropic receptor (gdir, gpr119) agonists",0.376,0.193,0.462,0.339,0.462,0.501,2
-glucosidase inhibitor,0.11,0.506,0.23,0.331,0.019,0.273,4
-glutamate receptor agonist,0.536,0.789,0.054,0.044,0.954,0.434,4
-glutamate receptor antagonist,0.236,0.296,0.365,0.774,0.627,0.864,5
-glutamate receptor modulator,0.831,0.61,0.084,0.55,0.711,0.661,3
-gonadotropin releasing factor hormone receptor agonist,0.31,0.125,0.152,0.656,0.064,0.299,2
-growth hormone secretagogue receptor agonist,0.988,0.847,0.607,0.06,0.309,0.368,2
-hcv inhibitor,0.404,0.024,0.488,0.448,0.724,0.022,8
-hdac inhibitor,0.155,0.005,0.0,0.0,0.0,0.0,13
-histamine receptor agonist,0.421,0.01,0.153,0.306,0.107,0.347,2
-histamine receptor antagonist,0.349,0.165,0.112,0.322,0.333,0.166,24
-histamine receptor modulator,0.258,0.486,0.615,0.888,0.635,0.89,2
-hiv integrase inhibitor,0.018,0.653,0.909,0.838,0.707,0.092,3
-hiv protease inhibitor,0.987,0.388,0.153,0.939,0.347,0.307,6
-hmgcr inhibitor,0.568,0.493,0.575,0.775,0.851,0.515,6
-hsp inhibitor,0.014,0.373,0.0,0.0,0.0,0.0,5
-immunostimulant,0.239,0.33,0.079,0.099,0.245,0.495,2
-immunosuppressant,0.247,0.935,0.762,0.692,0.045,0.397,2
-inosine monophosphate dehydrogenase inhibitor,0.716,0.874,0.118,0.604,0.488,0.001,2
-insulin secretagogue,0.339,0.201,0.078,0.087,0.279,0.624,4
-insulin sensitizer,0.081,0.734,0.379,0.664,0.077,0.278,2
-integrin antagonist,0.413,0.22,0.718,0.752,0.917,0.53,5
-isocitrate dehydrogenase inhibitor,0.545,0.545,0.08,0.844,0.63,0.772,2
-jak inhibitor,0.951,0.85,0.572,0.155,0.357,0.58,5
-jnk inhibitor,0.505,0.3,0.045,0.203,0.996,0.184,2
-leukotriene inhibitor,0.417,0.339,0.135,0.668,0.823,0.15,2
-leukotriene receptor antagonist,0.193,0.579,0.274,0.688,0.572,0.412,5
-lipase inhibitor,0.406,0.195,0.783,0.468,0.604,0.267,2
-lipoxygenase inhibitor,0.46,0.298,0.429,0.309,0.65,0.658,3
-matrix metalloprotease inhibitor,0.855,0.889,0.456,0.909,0.417,0.1,3
-mdm inhibitor,0.927,0.664,0.457,0.005,0.0,0.0,3
+"glucose-dependent insulinotropic receptor (gdir, gpr119) agonists",0.343,0.199,0.421,0.306,0.489,0.518,2
+glucosidase inhibitor,0.128,0.505,0.254,0.337,0.013,0.287,4
+glutamate receptor agonist,0.559,0.802,0.055,0.056,0.96,0.432,4
+glutamate receptor antagonist,0.231,0.331,0.392,0.805,0.638,0.869,5
+glutamate receptor modulator,0.84,0.6,0.085,0.533,0.736,0.667,3
+gonadotropin releasing factor hormone receptor agonist,0.271,0.117,0.107,0.655,0.061,0.287,2
+growth hormone secretagogue receptor agonist,0.986,0.84,0.567,0.058,0.314,0.364,2
+hcv inhibitor,0.386,0.017,0.512,0.479,0.729,0.019,8
+hdac inhibitor,0.159,0.006,0.0,0.0,0.0,0.0,13
+histamine receptor agonist,0.398,0.012,0.11,0.276,0.102,0.328,2
+histamine receptor antagonist,0.363,0.144,0.092,0.331,0.34,0.176,24
+histamine receptor modulator,0.221,0.467,0.581,0.855,0.672,0.872,2
+hiv integrase inhibitor,0.015,0.63,0.913,0.827,0.735,0.072,3
+hiv protease inhibitor,0.965,0.347,0.155,0.918,0.331,0.285,6
+hmgcr inhibitor,0.541,0.46,0.562,0.742,0.839,0.467,6
+hsp inhibitor,0.018,0.404,0.0,0.0,0.0,0.0,5
+immunostimulant,0.198,0.309,0.061,0.084,0.244,0.506,2
+immunosuppressant,0.202,0.94,0.745,0.681,0.044,0.388,2
+inosine monophosphate dehydrogenase inhibitor,0.689,0.878,0.092,0.584,0.52,0.0,2
+insulin secretagogue,0.374,0.192,0.08,0.094,0.291,0.609,4
+insulin sensitizer,0.086,0.733,0.327,0.658,0.068,0.274,2
+integrin antagonist,0.414,0.264,0.772,0.783,0.928,0.525,5
+isocitrate dehydrogenase inhibitor,0.533,0.522,0.061,0.817,0.664,0.756,2
+jak inhibitor,0.959,0.868,0.611,0.166,0.349,0.577,5
+jnk inhibitor,0.489,0.286,0.032,0.164,0.997,0.18,2
+leukotriene inhibitor,0.391,0.329,0.1,0.664,0.846,0.151,2
+leukotriene receptor antagonist,0.19,0.606,0.293,0.729,0.559,0.397,5
+lipase inhibitor,0.372,0.2,0.76,0.443,0.644,0.264,2
+lipoxygenase inhibitor,0.478,0.292,0.435,0.282,0.666,0.667,3
+matrix metalloprotease inhibitor,0.856,0.877,0.464,0.876,0.406,0.081,3
+mdm inhibitor,0.927,0.638,0.47,0.005,0.0,0.0,3
 mek inhibitor,0.0,0.0,0.0,0.0,0.0,0.0,8
-membrane integrity inhibitor,0.038,0.782,0.607,0.519,0.152,0.121,2
-membrane permeability inhibitor,0.187,0.693,0.371,0.329,0.222,0.697,2
-microtubule inhibitor,0.451,0.52,0.212,0.374,0.528,0.08,4
-mineralocorticoid receptor antagonist,0.927,0.919,0.884,0.663,0.768,0.265,3
-monoamine oxidase inhibitor,0.677,0.12,0.1,0.363,0.474,0.261,6
+membrane integrity inhibitor,0.049,0.782,0.567,0.488,0.142,0.127,2
+membrane permeability inhibitor,0.16,0.677,0.315,0.3,0.21,0.684,2
+microtubule inhibitor,0.462,0.525,0.23,0.366,0.563,0.076,4
+mineralocorticoid receptor antagonist,0.927,0.916,0.882,0.668,0.784,0.235,3
+monoamine oxidase inhibitor,0.659,0.13,0.091,0.335,0.45,0.25,6
 mtor inhibitor,0.0,0.0,0.0,0.0,0.0,0.0,6
-mtor inhibitor|pi3k inhibitor,0.232,0.057,0.027,0.0,0.0,0.0,4
-mucolytic agent,0.725,0.986,0.387,0.29,0.578,0.51,3
-neurotrophic agent,0.088,0.8,0.605,0.479,0.732,0.848,3
-nfkb pathway inhibitor,0.164,0.551,0.417,0.599,0.672,0.528,5
-nitric oxide donor,0.531,0.965,0.958,0.36,0.45,0.699,2
-nitric oxide stimulant,0.997,0.941,0.875,0.813,0.23,0.565,2
-nitric oxide synthase inhibitor,0.441,0.845,0.534,0.853,0.406,0.059,4
-non-nucleoside reverse transcriptase inhibitor,0.703,0.656,0.861,0.135,0.794,0.147,4
-norepinephrine reputake inhibitor|tricyclic antidepressant,0.004,0.304,0.022,0.007,0.988,0.031,2
-nucleoside reverse transcriptase inhibitor,0.133,0.992,0.235,0.121,0.831,0.907,4
-o6-alkylguanine-dna alkyltransferase inhibitor,0.51,0.396,0.209,0.619,0.908,0.279,2
-opioid receptor agonist,0.598,0.257,0.02,0.676,0.689,0.188,3
-opioid receptor agonist|opioid receptor antagonist,0.926,0.844,0.397,0.962,0.297,0.401,2
-opioid receptor antagonist,0.114,0.138,0.22,0.8,0.394,0.46,4
-orexin receptor antagonist,0.506,0.522,0.377,0.117,0.436,0.897,2
-oxidative stress inducer,0.827,0.401,0.545,0.341,0.539,0.329,2
-p38 mapk inhibitor,0.113,0.018,0.032,0.018,0.011,0.008,6
-parp inhibitor,0.618,0.085,0.607,0.753,0.715,0.903,5
-pdgfr tyrosine kinase receptor inhibitor|vegfr inhibitor,0.569,0.28,0.352,0.339,0.088,0.517,2
-phosphodiesterase inhibitor,0.219,0.296,0.369,0.385,0.289,0.565,32
-pi3k inhibitor,0.514,0.303,0.127,0.209,0.866,0.074,7
-pim kinase inhibitor,0.313,0.575,0.761,0.915,0.635,0.684,2
-pkc activator,0.0,0.0,0.0,0.0,0.0,0.002,2
-pkc inhibitor,0.902,0.04,0.614,0.344,0.614,0.152,5
-platelet activating factor receptor antagonist,0.969,0.861,0.058,0.543,0.938,0.139,2
-plk inhibitor,0.0,0.0,0.0,0.0,0.0,0.0,4
-potassium channel activator,0.889,0.851,0.663,0.484,0.825,0.546,6
-potassium channel blocker,0.016,0.628,0.205,0.995,0.486,0.352,6
-ppar receptor agonist,0.087,0.234,0.564,0.024,0.605,0.165,4
-ppar receptor agonist|insulin sensitizer,0.732,0.672,0.895,0.17,0.3,0.082,3
-progesterone receptor agonist,0.601,0.637,0.471,0.105,0.304,0.04,7
-progesterone receptor antagonist,0.421,0.634,0.711,0.741,0.304,0.072,2
-progestogen hormone,0.07,0.004,0.232,0.07,0.153,0.233,2
-prostanoid receptor agonist,0.88,0.491,0.432,0.89,0.082,0.009,4
-prostanoid receptor antagonist,0.081,0.124,0.553,0.412,0.166,0.912,4
-protein synthesis inhibitor,0.39,0.092,0.971,0.986,0.807,0.922,6
-protein synthesis stimulant,0.313,0.676,0.145,0.6,0.591,0.514,3
-purine antagonist,0.682,0.361,0.534,0.072,0.0,0.0,2
-purinergic receptor antagonist,0.699,0.512,0.011,0.677,0.88,0.428,3
-raf inhibitor,0.148,0.163,0.234,0.354,0.453,0.528,5
-retinoid receptor agonist,0.067,0.1,0.044,0.032,0.06,0.027,7
-reverse transcriptase inhibitor,0.303,0.169,0.7,0.561,0.662,0.489,3
-rho associated kinase inhibitor,0.935,0.882,0.564,0.21,0.453,0.243,6
-ribonucleoside reductase inhibitor,0.852,0.842,0.57,0.757,0.445,0.876,2
-ribonucleotide reductase inhibitor,0.919,0.43,0.843,0.853,0.803,0.882,2
-rna polymerase inhibitor,0.264,0.419,0.158,0.542,0.631,0.463,8
-rna synthesis inhibitor,0.884,0.265,0.725,0.818,0.253,0.878,2
-selective serotonin reuptake inhibitor (ssri),0.951,0.879,0.735,0.535,0.829,0.125,4
-serotonin receptor agonist,0.914,0.973,0.152,0.494,0.527,0.965,12
-serotonin receptor agonist|serotonin receptor antagonist,0.094,0.235,0.887,0.049,0.103,0.351,3
-serotonin receptor antagonist,0.45,0.305,0.099,0.068,0.205,0.131,14
-serotonin reuptake inhibitor,0.159,0.929,0.453,0.466,0.293,0.17,5
-sigma receptor antagonist,1.0,0.872,0.522,0.156,0.997,0.439,3
-sodium channel blocker,0.011,0.124,0.061,0.0,0.042,0.325,11
-sodium/glucose cotransporter inhibitor,0.928,0.205,0.061,0.084,0.44,0.726,2
-sodium/potassium/chloride transporter inhibitor,0.281,0.067,0.773,0.229,0.891,0.173,2
-sterol demethylase inhibitor,0.154,0.695,0.39,0.314,0.088,0.277,7
-sulfonylurea,0.905,0.395,0.342,0.03,0.135,0.066,2
-t-type calcium channel blocker,0.726,0.933,0.276,0.595,0.103,0.113,3
-tachykinin antagonist,0.576,0.741,0.042,0.387,0.099,0.331,6
-tgf beta receptor inhibitor,0.217,0.733,0.521,0.213,0.147,0.278,3
-thrombin inhibitor,0.695,0.596,0.938,0.609,0.935,0.317,2
-thromboxane receptor antagonist,0.505,0.693,0.713,0.489,0.932,0.966,2
-thromboxane synthase inhibitor,0.955,0.223,0.55,0.287,0.179,0.012,2
-thymidylate synthase inhibitor,0.208,0.535,0.38,0.757,0.68,0.565,2
-thyrotropin releasing hormone receptor agonist,0.838,0.638,0.406,0.683,0.246,0.236,2
-topoisomerase inhibitor,0.895,0.725,0.12,0.059,0.003,0.0,15
-tricyclic antidepressant,0.656,0.692,0.306,0.235,0.493,0.294,2
-trpv antagonist,0.489,0.862,0.85,0.576,0.413,0.653,2
-tubulin inhibitor,0.02,0.498,0.944,0.155,0.0,0.0,8
-tumor necrosis factor release inhibitor,0.811,0.5,0.231,0.769,0.563,0.465,2
-tyrosinase inhibitor,0.283,0.434,0.371,0.041,0.243,0.267,2
-tyrosine kinase inhibitor,0.314,0.624,0.179,0.895,0.977,0.871,4
-vasopressin receptor antagonist,0.363,0.575,0.366,0.462,0.17,0.619,4
-vegfr inhibitor,0.777,0.743,0.542,0.837,0.086,0.003,4
-vesicular monoamine transporter inhibitor,0.16,0.657,0.153,0.235,0.33,0.434,2
-vitamin d receptor agonist,0.401,0.168,0.022,0.31,0.328,0.029,6
-xanthine oxidase inhibitor,0.279,0.627,0.131,0.393,0.201,0.575,4
-xiap inhibitor,0.282,0.338,0.009,0.005,0.013,0.019,3
+mtor inhibitor|pi3k inhibitor,0.252,0.061,0.026,0.0,0.0,0.0,4
+mucolytic agent,0.725,0.984,0.391,0.268,0.58,0.534,3
+neurotrophic agent,0.078,0.779,0.624,0.473,0.761,0.851,3
+nfkb pathway inhibitor,0.151,0.584,0.439,0.648,0.671,0.515,5
+nitric oxide donor,0.513,0.963,0.96,0.326,0.482,0.684,2
+nitric oxide stimulant,0.998,0.947,0.861,0.795,0.223,0.571,2
+nitric oxide synthase inhibitor,0.456,0.862,0.547,0.896,0.438,0.066,4
+non-nucleoside reverse transcriptase inhibitor,0.716,0.676,0.874,0.131,0.8,0.164,4
+norepinephrine reputake inhibitor|tricyclic antidepressant,0.011,0.288,0.014,0.006,0.988,0.028,2
+nucleoside reverse transcriptase inhibitor,0.153,0.989,0.257,0.113,0.841,0.922,4
+o6-alkylguanine-dna alkyltransferase inhibitor,0.491,0.389,0.167,0.604,0.899,0.275,2
+opioid receptor agonist,0.608,0.254,0.012,0.679,0.729,0.143,3
+opioid receptor agonist|opioid receptor antagonist,0.917,0.834,0.348,0.957,0.301,0.394,2
+opioid receptor antagonist,0.129,0.133,0.245,0.822,0.411,0.448,4
+orexin receptor antagonist,0.49,0.5,0.322,0.101,0.469,0.88,2
+oxidative stress inducer,0.814,0.39,0.497,0.308,0.573,0.309,2
+p38 mapk inhibitor,0.12,0.013,0.029,0.019,0.008,0.014,6
+parp inhibitor,0.639,0.096,0.654,0.785,0.723,0.903,5
+pdgfr tyrosine kinase receptor inhibitor|vegfr inhibitor,0.559,0.267,0.308,0.308,0.077,0.534,2
+phosphodiesterase inhibitor,0.198,0.287,0.337,0.409,0.285,0.582,32
+pi3k inhibitor,0.525,0.309,0.126,0.193,0.889,0.063,7
+pim kinase inhibitor,0.273,0.538,0.744,0.9,0.668,0.674,2
+pkc activator,0.0,0.0,0.0,0.0,0.0,0.0,2
+pkc inhibitor,0.92,0.054,0.663,0.362,0.612,0.157,5
+platelet activating factor receptor antagonist,0.96,0.858,0.047,0.511,0.926,0.143,2
+plk inhibitor,0.001,0.0,0.0,0.0,0.0,0.002,4
+potassium channel activator,0.861,0.803,0.637,0.447,0.814,0.496,6
+potassium channel blocker,0.022,0.576,0.199,0.994,0.457,0.327,6
+ppar receptor agonist,0.104,0.218,0.593,0.029,0.649,0.193,4
+ppar receptor agonist|insulin sensitizer,0.737,0.656,0.897,0.169,0.307,0.069,3
+progesterone receptor agonist,0.592,0.641,0.468,0.096,0.273,0.041,7
+progesterone receptor antagonist,0.397,0.603,0.681,0.728,0.311,0.062,2
+progestogen hormone,0.073,0.004,0.198,0.063,0.145,0.221,2
+prostanoid receptor agonist,0.869,0.497,0.457,0.925,0.089,0.011,4
+prostanoid receptor antagonist,0.088,0.126,0.582,0.419,0.147,0.929,4
+protein synthesis inhibitor,0.369,0.098,0.974,0.98,0.782,0.907,6
+protein synthesis stimulant,0.322,0.663,0.146,0.599,0.592,0.535,3
+purine antagonist,0.664,0.351,0.486,0.064,0.001,0.0,2
+purinergic receptor antagonist,0.696,0.504,0.01,0.682,0.898,0.438,3
+raf inhibitor,0.136,0.193,0.248,0.377,0.448,0.515,5
+retinoid receptor agonist,0.058,0.094,0.037,0.031,0.059,0.033,7
+reverse transcriptase inhibitor,0.317,0.168,0.708,0.545,0.694,0.514,3
+rho associated kinase inhibitor,0.914,0.849,0.546,0.195,0.423,0.239,6
+ribonucleoside reductase inhibitor,0.841,0.832,0.525,0.754,0.478,0.86,2
+ribonucleotide reductase inhibitor,0.909,0.414,0.83,0.826,0.83,0.868,2
+rna polymerase inhibitor,0.25,0.455,0.173,0.586,0.637,0.528,8
+rna synthesis inhibitor,0.877,0.247,0.704,0.8,0.25,0.865,2
+selective serotonin reuptake inhibitor (ssri),0.956,0.887,0.752,0.53,0.839,0.138,4
+serotonin receptor agonist,0.899,0.974,0.177,0.524,0.523,0.975,12
+serotonin receptor agonist|serotonin receptor antagonist,0.086,0.231,0.888,0.049,0.092,0.353,3
+serotonin receptor antagonist,0.421,0.307,0.099,0.071,0.215,0.132,14
+serotonin reuptake inhibitor,0.15,0.927,0.479,0.508,0.286,0.172,5
+sigma receptor antagonist,0.999,0.855,0.543,0.155,0.993,0.457,3
+sodium channel blocker,0.021,0.116,0.064,0.002,0.038,0.312,11
+sodium/glucose cotransporter inhibitor,0.919,0.209,0.048,0.071,0.471,0.711,2
+sodium/potassium/chloride transporter inhibitor,0.243,0.058,0.75,0.199,0.888,0.172,2
+sterol demethylase inhibitor,0.156,0.688,0.379,0.331,0.079,0.309,7
+sulfonylurea,0.895,0.389,0.285,0.038,0.127,0.056,2
+t-type calcium channel blocker,0.727,0.922,0.287,0.592,0.092,0.092,3
+tachykinin antagonist,0.559,0.687,0.038,0.352,0.096,0.312,6
+tgf beta receptor inhibitor,0.22,0.715,0.539,0.215,0.143,0.249,3
+thrombin inhibitor,0.673,0.561,0.936,0.587,0.922,0.301,2
+thromboxane receptor antagonist,0.489,0.677,0.685,0.464,0.92,0.951,2
+thromboxane synthase inhibitor,0.949,0.219,0.503,0.257,0.166,0.015,2
+thymidylate synthase inhibitor,0.178,0.516,0.333,0.752,0.711,0.573,2
+thyrotropin releasing hormone receptor agonist,0.819,0.614,0.356,0.674,0.246,0.227,2
+topoisomerase inhibitor,0.902,0.733,0.143,0.067,0.002,0.0,15
+tricyclic antidepressant,0.637,0.672,0.253,0.205,0.527,0.282,2
+trpv antagonist,0.468,0.859,0.837,0.549,0.431,0.651,2
+tubulin inhibitor,0.015,0.526,0.948,0.155,0.0,0.0,8
+tumor necrosis factor release inhibitor,0.796,0.478,0.196,0.767,0.599,0.459,2
+tyrosinase inhibitor,0.243,0.417,0.315,0.046,0.238,0.264,2
+tyrosine kinase inhibitor,0.329,0.635,0.194,0.928,0.974,0.882,4
+vasopressin receptor antagonist,0.387,0.59,0.398,0.471,0.157,0.603,4
+vegfr inhibitor,0.795,0.77,0.57,0.877,0.093,0.004,4
+vesicular monoamine transporter inhibitor,0.143,0.643,0.11,0.205,0.337,0.433,2
+vitamin d receptor agonist,0.378,0.175,0.02,0.302,0.308,0.037,6
+xanthine oxidase inhibitor,0.295,0.637,0.151,0.404,0.202,0.565,4
+xiap inhibitor,0.29,0.326,0.008,0.003,0.01,0.017,3
