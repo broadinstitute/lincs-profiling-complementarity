@@ -19,3 +19,8 @@ figure_theme <- (
         strip.background = element_rect(colour = "black", fill = "#fdfff4")
     )
 )
+
+# Set heatmap legend info
+legend_scale_cols = circlize::colorRamp2(c(-1, 0, 1), c("blue", "white", "red"))
+lgd_title_fontsize = 9
+lgd_label_fontsize = 6.5
