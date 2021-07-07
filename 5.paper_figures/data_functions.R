@@ -2,6 +2,8 @@ suppressPackageStartupMessages(library(dplyr))
 
 default_results_dir <- file.path("../1.Data-exploration/Profiles_level4/results")
 default_consensus_dir <- file.path("../1.Data-exploration/Consensus/")
+default_umap_dir <- file.path("../1.Data-exploration/Profiles_level4/")
+
 
 load_percent_replicating <- function(assay, results_dir = default_results_dir) {
     cell_painting_pr_file <- file.path(results_dir, "cell_painting_percent_replicating_data.tsv.gz")
@@ -97,4 +99,84 @@ load_percent_matching <- function(assay, results_dir = default_consensus_dir) {
     pm_output_list[["percent_matching_pvals"]] <- pm_pval_df
     
     return(pm_output_list)
+}
+
+
+load_embeddings_data <- function(assay, cell_painting_batch = "batch1", results_dir = default_embeddings_dir) {
+    cell_painting_embeddings_file <- file.path(
+        results_dir, "cell_painting", "embeddings",
+        paste0("cellpainting_embeddings_", cell_painting_batch, ".tsv.gz") 
+    )
+    l1000_embeddings_file <- file.path(results_dir, "L1000", "embeddings", "l1000_embeddings_umap_tsne.tsv.gz")
+    
+    embedding_cols <- readr::cols(
+        .default = readr::col_character(),
+        UMAP_0 = readr::col_double(),
+        UMAP_1 = readr::col_double(),
+        TSNE_0 = readr::col_double(),
+        TSNE_1 = readr::col_double(),
+        dmso_label = readr::col_character()
+    )
+    # load data
+    if (assay == "cellpainting") {
+        embeddings_df <- readr::read_tsv(cell_painting_embeddings_file, col_types = embedding_cols) %>%
+            dplyr::mutate(assay = "Cell Painting")
+    } else if (assay == "l1000") {
+        embeddings_df <- readr::read_tsv(l1000_embeddings_file, col_types = embedding_cols) %>%
+            dplyr::mutate(assay = "L1000")
+    }
+    
+    return(embeddings_df)
+}
+
+
+load_consensus_signatures<- function(assay, data_dir = default_consensus_dir, cell_painting_feature_select = TRUE) {
+    
+    if (cell_painting_feature_select) {
+        cp_file <- file.path(
+            data_dir, "cell_painting", "moa_sizes_consensus_datasets", "modz_consensus_data.csv"
+        )
+    } else {
+        commit <- "94bfaeeab0d107beac262b4307aa6e9b783625fa"
+        cp_file <- paste0(
+            "https://media.githubusercontent.com/media/broadinstitute/lincs-cell-painting/",
+            commit, 
+            "/consensus/2016_04_01_a549_48hr_batch1/2016_04_01_a549_48hr_batch1_consensus_modz.csv.gz"
+        )
+    }
+
+    l1000_file <- file.path(
+        data_dir, "L1000", "moa_sizes_consensus_datasets", "modz_level5_data.csv"
+    )
+
+    cp_5_cols <- readr::cols(
+        .default = readr::col_double(),
+        Metadata_Plate_Map_Name = readr::col_character(),
+        Metadata_cell_id = readr::col_character(),
+        Metadata_broad_sample = readr::col_character(),
+        Metadata_pert_well = readr::col_character(),
+        Metadata_time_point = readr::col_character(),
+        Metadata_moa = readr::col_character(),
+        Metadata_target = readr::col_character(),
+        broad_id = readr::col_character(),
+        pert_iname = readr::col_character(),
+        moa = readr::col_character()
+    )
+    
+    l1000_5_cols <- readr::cols(
+        .default = readr::col_double(),
+        sig_id = readr::col_character(),
+        pert_id = readr::col_character(),
+        pert_idose = readr::col_character(),
+        pert_iname = readr::col_character(),
+        moa = readr::col_character()
+    )
+    if (assay == "cellpainting") {
+        consensus_df <- readr::read_csv(cp_file, col_types = cp_5_cols)
+    } else if (assay == "l1000") {
+        consensus_df <- readr::read_csv(l1000_file, col_types = l1000_5_cols)
+    }
+    
+    return(consensus_df)
+    
 }
