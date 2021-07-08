@@ -1,0 +1,17 @@
+name: lincs-complimentarity
+channels:
+- conda-forge
+dependencies:
+- pip=21.1.2
+- conda-forge::pandas=1.2
+- conda-forge::scikit-learn=0.24.2
+- conda-forge::jupyter
+- conda-forge::jupyterlab
+- conda-forge::ipykernel
+- conda-forge::nb_conda_kernels
+- conda-forge::widgetsnbextension
+- conda-forge::jupyter_contrib_nbextensions
+- conda-forge::matplotlib
+- conda-forge::plotnine
+- pip:
+  - git+https://github.com/cytomining/pycytominer@4f37e019918256111933aed4e3b9afb50055b4a1

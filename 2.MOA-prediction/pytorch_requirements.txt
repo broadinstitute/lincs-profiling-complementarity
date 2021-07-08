@@ -1,0 +1,9 @@
+numpy
+pandas>=1.2
+scikit-learn==0.24.2
+torch==1.9.0
+torchsummary==1.5.1
+pytorch-tabnet==3.1.1
+iterative-stratification==0.1.6
+umap-learn==0.5.1
+git+https://github.com/cytomining/pycytominer@4f37e019918256111933aed4e3b9afb50055b4a1

@@ -26,7 +26,7 @@ from zipfile import ZipFile
 # In[2]:
 
 
-data_dir = os.getcwd() ##current dir
+data_dir = pathlib.Path("L1000/L1000_figshare_data")
 zipurl = "https://ndownloader.figshare.com/articles/13181966/versions/1"
 def download_L1000_data(data_dir, zipurl):
     """
@@ -102,13 +102,15 @@ def merge_align_moa(data_dir, cp_moa_link):
 # In[6]:
 
 
-moa_dataset = "https://github.com/broadinstitute/lincs-cell-painting/blob/master/metadata/moa/repurposing_info_external_moa_map_resolved.tsv?raw=true"
+commit = "94bfaeeab0d107beac262b4307aa6e9b783625fa"
+moa_dataset = f"https://github.com/broadinstitute/lincs-cell-painting/blob/{commit}/metadata/moa/repurposing_info_external_moa_map_resolved.tsv?raw=true"
 df_pertinfo = merge_align_moa(data_dir, moa_dataset)
 
 
 # In[7]:
 
 
+print(df_pertinfo.shape)
 df_pertinfo.head()
 
 

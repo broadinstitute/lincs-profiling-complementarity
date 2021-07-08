@@ -1,0 +1,1744 @@
+pert_iname,moa,train,test,marked
+ketoprofen,cyclooxygenase inhibitor,False,True,True
+valdecoxib,cyclooxygenase inhibitor,False,True,True
+epirizole,cyclooxygenase inhibitor,True,False,True
+ketorolac,cyclooxygenase inhibitor,True,False,True
+balsalazide,cyclooxygenase inhibitor,True,False,True
+paracetamol,cyclooxygenase inhibitor,True,False,True
+nepafenac,cyclooxygenase inhibitor,True,False,True
+etofenamate,cyclooxygenase inhibitor,False,True,True
+nimesulide,cyclooxygenase inhibitor,True,False,True
+etodolac,cyclooxygenase inhibitor,False,True,True
+nefopam,cyclooxygenase inhibitor,True,False,True
+tenidap,cyclooxygenase inhibitor,True,False,True
+felbinac,cyclooxygenase inhibitor,True,False,True
+amtolmetin-guacil,cyclooxygenase inhibitor,True,False,True
+aminosalicylic-acid,cyclooxygenase inhibitor,False,True,True
+piketoprofen,cyclooxygenase inhibitor,True,False,True
+suprofen,cyclooxygenase inhibitor,True,False,True
+diclofenac,cyclooxygenase inhibitor,True,False,True
+aspirin,cyclooxygenase inhibitor,False,True,True
+oxaprozin,cyclooxygenase inhibitor,True,False,True
+fentiazac,cyclooxygenase inhibitor,True,False,True
+carprofen,cyclooxygenase inhibitor,True,False,True
+ibuprofen,cyclooxygenase inhibitor,True,False,True
+meloxicam,cyclooxygenase inhibitor,True,False,True
+phenazone,cyclooxygenase inhibitor,True,False,True
+indometacin,cyclooxygenase inhibitor,True,False,True
+piroxicam,cyclooxygenase inhibitor,True,False,True
+naproxen,cyclooxygenase inhibitor,True,False,True
+celecoxib,cyclooxygenase inhibitor,True,False,True
+etoricoxib,cyclooxygenase inhibitor,True,False,True
+ebselen,cyclooxygenase inhibitor,True,False,True
+tolfenamic-acid,cyclooxygenase inhibitor,True,False,True
+curcumin,cyclooxygenase inhibitor,True,False,True
+indobufen,cyclooxygenase inhibitor,False,True,True
+metamizole,cyclooxygenase inhibitor,True,False,True
+fpl-62064,cyclooxygenase inhibitor,False,True,True
+loxoprofen,cyclooxygenase inhibitor,True,False,True
+indoprofen,cyclooxygenase inhibitor,True,False,True
+meclofenamic-acid,cyclooxygenase inhibitor,True,False,True
+phenylbutazone,cyclooxygenase inhibitor,False,True,True
+pterostilbene,cyclooxygenase inhibitor,True,False,True
+iguratimod,cyclooxygenase inhibitor,True,False,True
+oglemilast,phosphodiesterase inhibitor,True,False,True
+apremilast,phosphodiesterase inhibitor,True,False,True
+YM-976,phosphodiesterase inhibitor,True,False,True
+vardenafil,phosphodiesterase inhibitor,True,False,True
+zardaverine,phosphodiesterase inhibitor,True,False,True
+gsk256066,phosphodiesterase inhibitor,True,False,True
+cilomilast,phosphodiesterase inhibitor,True,False,True
+isbufylline,phosphodiesterase inhibitor,True,False,True
+resorcinol,phosphodiesterase inhibitor,True,False,True
+irsogladine,phosphodiesterase inhibitor,True,False,True
+sildenafil,phosphodiesterase inhibitor,True,False,True
+pentoxifylline,phosphodiesterase inhibitor,True,False,True
+mirodenafil,phosphodiesterase inhibitor,False,True,True
+piclamilast,phosphodiesterase inhibitor,True,False,True
+pf-04447943,phosphodiesterase inhibitor,True,False,True
+pf-02545920,phosphodiesterase inhibitor,True,False,True
+rolipram,phosphodiesterase inhibitor,True,False,True
+theobromine,phosphodiesterase inhibitor,False,True,True
+arofylline,phosphodiesterase inhibitor,False,True,True
+cilostazol,phosphodiesterase inhibitor,True,False,True
+milrinone,phosphodiesterase inhibitor,True,False,True
+papaverine,phosphodiesterase inhibitor,True,False,True
+zaprinast,phosphodiesterase inhibitor,True,False,True
+amrinone,phosphodiesterase inhibitor,False,True,True
+siguazodan,phosphodiesterase inhibitor,False,True,True
+anagrelide,phosphodiesterase inhibitor,True,False,True
+etazolate,phosphodiesterase inhibitor,True,False,True
+emd-53998,phosphodiesterase inhibitor,True,False,True
+avanafil,phosphodiesterase inhibitor,True,False,True
+tadalafil,phosphodiesterase inhibitor,True,False,True
+roflumilast,phosphodiesterase inhibitor,False,True,True
+dipyridamole,phosphodiesterase inhibitor,False,True,True
+ketotifen,phosphodiesterase inhibitor,True,False,True
+propentofylline,phosphodiesterase inhibitor,True,False,True
+pimobendan,phosphodiesterase inhibitor,False,True,True
+caffeine,phosphodiesterase inhibitor,True,False,True
+ibudilast,phosphodiesterase inhibitor,True,False,True
+vinpocetine,phosphodiesterase inhibitor,True,False,True
+doxazosin,adrenergic receptor antagonist,True,False,True
+atipamezole,adrenergic receptor antagonist,True,False,True
+reboxetine,adrenergic receptor antagonist,True,False,True
+vinburnine,adrenergic receptor antagonist,True,False,True
+org-9768,adrenergic receptor antagonist,False,True,True
+metoprolol,adrenergic receptor antagonist,True,False,True
+nebivolol,adrenergic receptor antagonist,False,True,True
+dronedarone,adrenergic receptor antagonist,True,False,True
+esmolol,adrenergic receptor antagonist,True,False,True
+bopindolol,adrenergic receptor antagonist,False,True,True
+labetalol,adrenergic receptor antagonist,True,False,True
+atenolol,adrenergic receptor antagonist,True,False,True
+tamsulosin,adrenergic receptor antagonist,False,True,True
+nicergoline,adrenergic receptor antagonist,False,True,True
+indoramin,adrenergic receptor antagonist,True,False,True
+pindolol,adrenergic receptor antagonist,True,False,True
+phentolamine,adrenergic receptor antagonist,True,False,True
+bisoprolol,adrenergic receptor antagonist,False,True,True
+naftidrofuryl,adrenergic receptor antagonist,True,False,True
+levobunolol,adrenergic receptor antagonist,True,False,True
+sotalol,adrenergic receptor antagonist,False,True,True
+yohimbine,adrenergic receptor antagonist,True,False,True
+setiptiline,adrenergic receptor antagonist,True,False,True
+propranolol,adrenergic receptor antagonist,True,False,True
+imiloxan,adrenergic receptor antagonist,True,False,True
+carvedilol,adrenergic receptor antagonist,True,False,True
+prazosin,adrenergic receptor antagonist,True,False,True
+acebutolol,adrenergic receptor antagonist,True,False,True
+timolol,adrenergic receptor antagonist,True,False,True
+talinolol,adrenergic receptor antagonist,True,False,True
+naftopidil,adrenergic receptor antagonist,True,False,True
+urapidil,adrenergic receptor antagonist,True,False,True
+moxisylyte,adrenergic receptor antagonist,False,True,True
+dihydroergocristine,adrenergic receptor antagonist,True,False,True
+trazodone,adrenergic receptor antagonist,True,False,True
+niguldipine,adrenergic receptor antagonist,True,False,True
+mirtazapine,adrenergic receptor antagonist,True,False,True
+rs-127445,serotonin receptor antagonist,True,False,True
+alaproclate,serotonin receptor antagonist,True,False,True
+idalopirdine,serotonin receptor antagonist,True,False,True
+sertraline,serotonin receptor antagonist,True,False,True
+sb-271046,serotonin receptor antagonist,True,False,True
+ketanserin,serotonin receptor antagonist,True,False,True
+mianserin,serotonin receptor antagonist,True,False,True
+ondansetron,serotonin receptor antagonist,True,False,True
+palonosetron,serotonin receptor antagonist,True,False,True
+granisetron,serotonin receptor antagonist,False,True,True
+MDL-73005EF,serotonin receptor antagonist,True,False,True
+lerisetron,serotonin receptor antagonist,True,False,True
+mirtazapine,serotonin receptor antagonist,True,False,True
+prx-08066,serotonin receptor antagonist,True,False,True
+altanserin,serotonin receptor antagonist,True,False,True
+telotristat,serotonin receptor antagonist,True,False,True
+agomelatine,serotonin receptor antagonist,False,True,True
+kakonein,serotonin receptor antagonist,False,True,True
+trazodone,serotonin receptor antagonist,True,False,True
+metergoline,serotonin receptor antagonist,True,False,True
+lamotrigine,serotonin receptor antagonist,True,False,True
+aripiprazole,serotonin receptor antagonist,True,False,True
+adatanserin,serotonin receptor antagonist,False,True,True
+vortioxetine,serotonin receptor antagonist,True,False,True
+clozapine,serotonin receptor antagonist,True,False,True
+metoclopramide,serotonin receptor antagonist,False,True,True
+quetiapine,serotonin receptor antagonist,False,True,True
+sertindole,serotonin receptor antagonist,True,False,True
+blonanserin,serotonin receptor antagonist,True,False,True
+ziprasidone,serotonin receptor antagonist,True,False,True
+melperone,serotonin receptor antagonist,True,False,True
+asenapine,serotonin receptor antagonist,True,False,True
+lurasidone,serotonin receptor antagonist,True,False,True
+risperidone,serotonin receptor antagonist,False,True,True
+droperidol,dopamine receptor antagonist,False,True,True
+thiothixene,dopamine receptor antagonist,True,False,True
+clozapine,dopamine receptor antagonist,True,False,True
+raclopride,dopamine receptor antagonist,True,False,True
+isofloxythepin,dopamine receptor antagonist,False,True,True
+oxiperomide,dopamine receptor antagonist,True,False,True
+fluspirilene,dopamine receptor antagonist,False,True,True
+metoclopramide,dopamine receptor antagonist,False,True,True
+chlorpromazine,dopamine receptor antagonist,True,False,True
+quetiapine,dopamine receptor antagonist,False,True,True
+sertindole,dopamine receptor antagonist,True,False,True
+tiapride,dopamine receptor antagonist,True,False,True
+nemonapride,dopamine receptor antagonist,True,False,True
+prochlorperazine,dopamine receptor antagonist,True,False,True
+triflupromazine,dopamine receptor antagonist,True,False,True
+haloperidol,dopamine receptor antagonist,True,False,True
+molindone,dopamine receptor antagonist,True,False,True
+blonanserin,dopamine receptor antagonist,True,False,True
+ziprasidone,dopamine receptor antagonist,True,False,True
+thioridazine,dopamine receptor antagonist,True,False,True
+chlorprothixene,dopamine receptor antagonist,True,False,True
+cariprazine,dopamine receptor antagonist,True,False,True
+melperone,dopamine receptor antagonist,True,False,True
+asenapine,dopamine receptor antagonist,True,False,True
+itopride,dopamine receptor antagonist,True,False,True
+pimozide,dopamine receptor antagonist,False,True,True
+alizapride,dopamine receptor antagonist,True,False,True
+lurasidone,dopamine receptor antagonist,True,False,True
+risperidone,dopamine receptor antagonist,False,True,True
+fluphenazine,dopamine receptor antagonist,True,False,True
+adoprazine,dopamine receptor antagonist,True,False,True
+mepyramine,histamine receptor antagonist,True,False,True
+emedastine,histamine receptor antagonist,True,False,True
+chlorphenamine,histamine receptor antagonist,True,False,True
+bavisant,histamine receptor antagonist,True,False,True
+bepotastine,histamine receptor antagonist,True,False,True
+epinastine,histamine receptor antagonist,True,False,True
+azelastine,histamine receptor antagonist,True,False,True
+ranitidine,histamine receptor antagonist,True,False,True
+loratadine,histamine receptor antagonist,True,False,True
+tecastemizole,histamine receptor antagonist,True,False,True
+abt-239,histamine receptor antagonist,False,True,True
+levocetirizine,histamine receptor antagonist,False,True,True
+cimetidine,histamine receptor antagonist,True,False,True
+levocabastine,histamine receptor antagonist,False,True,True
+ici-162846,histamine receptor antagonist,True,False,True
+acrivastine,histamine receptor antagonist,False,True,True
+lodoxamide,histamine receptor antagonist,True,False,True
+levomequitazine,histamine receptor antagonist,False,True,True
+cyproheptadine,histamine receptor antagonist,False,True,True
+doxepin,histamine receptor antagonist,True,False,True
+lafutidine,histamine receptor antagonist,True,False,True
+famotidine,histamine receptor antagonist,True,False,True
+oxatomide,histamine receptor antagonist,True,False,True
+fexofenadine,histamine receptor antagonist,True,False,True
+rupatadine,histamine receptor antagonist,True,False,True
+betahistine,histamine receptor antagonist,True,False,True
+fenoterol,adrenergic receptor agonist,True,False,True
+cgp12177,adrenergic receptor agonist,True,False,True
+tizanidine,adrenergic receptor agonist,True,False,True
+clenbuterol,adrenergic receptor agonist,True,False,True
+clonidine,adrenergic receptor agonist,False,True,True
+naphazoline,adrenergic receptor agonist,True,False,True
+midodrine,adrenergic receptor agonist,True,False,True
+phenylephrine,adrenergic receptor agonist,False,True,True
+indacaterol,adrenergic receptor agonist,True,False,True
+guanabenz,adrenergic receptor agonist,False,True,True
+levalbuterol,adrenergic receptor agonist,True,False,True
+zd-7114,adrenergic receptor agonist,True,False,True
+oxymetazoline,adrenergic receptor agonist,False,True,True
+bambuterol,adrenergic receptor agonist,True,False,True
+mephentermine,adrenergic receptor agonist,True,False,True
+methyldopa,adrenergic receptor agonist,True,False,True
+ritodrine,adrenergic receptor agonist,False,True,True
+lofexidine,adrenergic receptor agonist,True,False,True
+lidamidine,adrenergic receptor agonist,True,False,True
+formoterol,adrenergic receptor agonist,True,False,True
+rilmenidine,adrenergic receptor agonist,True,False,True
+epinephrine,adrenergic receptor agonist,True,False,True
+cyclobenzaprine,adrenergic receptor agonist,True,False,True
+golvatinib,vegfr inhibitor,True,False,True
+semaxanib,vegfr inhibitor,True,False,True
+foretinib,vegfr inhibitor,True,False,True
+tivozanib,vegfr inhibitor,True,False,True
+palomid-529,vegfr inhibitor,True,False,True
+vandetanib,vegfr inhibitor,True,False,True
+sunitinib,vegfr inhibitor,False,True,True
+regorafenib,vegfr inhibitor,True,False,True
+cabozantinib,vegfr inhibitor,True,False,True
+tg-100801,vegfr inhibitor,False,True,True
+raf265,vegfr inhibitor,True,False,True
+ENMD-2076,vegfr inhibitor,False,True,True
+lenvatinib,vegfr inhibitor,False,True,True
+mk-2461,vegfr inhibitor,True,False,True
+nintedanib,vegfr inhibitor,True,False,True
+brivanib,vegfr inhibitor,False,True,True
+lucitanib,vegfr inhibitor,True,False,True
+orantinib,vegfr inhibitor,True,False,True
+pazopanib,vegfr inhibitor,True,False,True
+telatinib,vegfr inhibitor,True,False,True
+cediranib,vegfr inhibitor,False,True,True
+su014813,vegfr inhibitor,True,False,True
+linifanib,vegfr inhibitor,False,True,True
+darifenacin,acetylcholine receptor antagonist,True,False,True
+sulbutiamine,acetylcholine receptor antagonist,True,False,True
+pirenzepine,acetylcholine receptor antagonist,True,False,True
+carisoprodol,acetylcholine receptor antagonist,True,False,True
+rocuronium,acetylcholine receptor antagonist,True,False,True
+otilonium,acetylcholine receptor antagonist,True,False,True
+umeclidinium,acetylcholine receptor antagonist,False,True,True
+flavoxate,acetylcholine receptor antagonist,True,False,True
+mecamylamine,acetylcholine receptor antagonist,True,False,True
+solifenacin-succinate,acetylcholine receptor antagonist,True,False,True
+metixene,acetylcholine receptor antagonist,False,True,True
+oxybutynin,acetylcholine receptor antagonist,True,False,True
+atracurium,acetylcholine receptor antagonist,True,False,True
+scopolamine,acetylcholine receptor antagonist,False,True,True
+ipratropium,acetylcholine receptor antagonist,True,False,True
+piperidolate,acetylcholine receptor antagonist,True,False,True
+biperiden,acetylcholine receptor antagonist,False,True,True
+aclidinium,acetylcholine receptor antagonist,True,False,True
+afloqualone,acetylcholine receptor antagonist,True,False,True
+glycopyrrolate,acetylcholine receptor antagonist,True,False,True
+orphenadrine,acetylcholine receptor antagonist,False,True,True
+cinoxacin,topoisomerase inhibitor,True,False,True
+camptothecin,topoisomerase inhibitor,True,False,True
+etoposide,topoisomerase inhibitor,False,True,True
+enoxacin,topoisomerase inhibitor,True,False,True
+genz-644282,topoisomerase inhibitor,True,False,True
+doxorubicin,topoisomerase inhibitor,True,False,True
+amsacrine,topoisomerase inhibitor,False,True,True
+amonafide,topoisomerase inhibitor,False,True,True
+epirubicin,topoisomerase inhibitor,True,False,True
+voreloxin,topoisomerase inhibitor,True,False,True
+irinotecan,topoisomerase inhibitor,True,False,True
+tas-103,topoisomerase inhibitor,True,False,True
+licochalcone-a,topoisomerase inhibitor,True,False,True
+merbarone,topoisomerase inhibitor,True,False,True
+pazufloxacin,topoisomerase inhibitor,True,False,True
+betulinic-acid,topoisomerase inhibitor,True,False,True
+diminazene-aceturate,topoisomerase inhibitor,True,False,True
+valrubicin,topoisomerase inhibitor,False,True,True
+azd8931,egfr inhibitor,True,False,True
+tyrphostin-1,egfr inhibitor,True,False,True
+dacomitinib,egfr inhibitor,True,False,True
+tak-285,egfr inhibitor,True,False,True
+neratinib,egfr inhibitor,True,False,True
+rociletinib,egfr inhibitor,False,True,True
+pelitinib,egfr inhibitor,True,False,True
+canertinib,egfr inhibitor,True,False,True
+arry-334543,egfr inhibitor,True,False,True
+pd153035,egfr inhibitor,False,True,True
+gefitinib,egfr inhibitor,True,False,True
+afatinib,egfr inhibitor,False,True,True
+erlotinib,egfr inhibitor,False,True,True
+bms-599626,egfr inhibitor,True,False,True
+lapatinib,egfr inhibitor,True,False,True
+vandetanib,egfr inhibitor,True,False,True
+CP-724714,egfr inhibitor,True,False,True
+BIBX-1382,egfr inhibitor,True,False,True
+buspirone,serotonin receptor agonist,True,False,True
+cisapride,serotonin receptor agonist,True,False,True
+cyclobenzaprine,serotonin receptor agonist,True,False,True
+rizatriptan,serotonin receptor agonist,True,False,True
+mcpp,serotonin receptor agonist,True,False,True
+xaliproden,serotonin receptor agonist,True,False,True
+dihydroergotamine,serotonin receptor agonist,False,True,True
+dexfenfluramine,serotonin receptor agonist,True,False,True
+donitriptan,serotonin receptor agonist,True,False,True
+adoprazine,serotonin receptor agonist,True,False,True
+rotundine,serotonin receptor agonist,True,False,True
+SR-57227A,serotonin receptor agonist,False,True,True
+sumatriptan,serotonin receptor agonist,False,True,True
+aripiprazole,serotonin receptor agonist,True,False,True
+adatanserin,serotonin receptor agonist,False,True,True
+vortioxetine,serotonin receptor agonist,True,False,True
+lorcaserin,serotonin receptor agonist,True,False,True
+amiloride,sodium channel blocker,False,True,True
+ranolazine,sodium channel blocker,False,True,True
+procainamide,sodium channel blocker,True,False,True
+triamterene,sodium channel blocker,True,False,True
+quinidine,sodium channel blocker,False,True,True
+flecainide,sodium channel blocker,False,True,True
+disopyramide,sodium channel blocker,True,False,True
+ambroxol,sodium channel blocker,True,False,True
+lupanine,sodium channel blocker,True,False,True
+lamotrigine,sodium channel blocker,True,False,True
+bupivacaine,sodium channel blocker,True,False,True
+co-102862,sodium channel blocker,True,False,True
+vinpocetine,sodium channel blocker,True,False,True
+lacosamide,sodium channel blocker,True,False,True
+ivabradine,sodium channel blocker,True,False,True
+zonisamide,sodium channel blocker,True,False,True
+mepivacaine,sodium channel blocker,True,False,True
+sr-33805,calcium channel blocker,True,False,True
+cinnarizine,calcium channel blocker,True,False,True
+isradipine,calcium channel blocker,True,False,True
+nimodipine,calcium channel blocker,False,True,True
+dantrolene,calcium channel blocker,True,False,True
+nitrendipine,calcium channel blocker,False,True,True
+amlodipine,calcium channel blocker,True,False,True
+felodipine,calcium channel blocker,True,False,True
+verapamil,calcium channel blocker,False,True,True
+lomerizine,calcium channel blocker,True,False,True
+lidoflazine,calcium channel blocker,True,False,True
+gabapentin,calcium channel blocker,False,True,True
+nicardipine,calcium channel blocker,True,False,True
+levetiracetam,calcium channel blocker,True,False,True
+diltiazem,calcium channel blocker,True,False,True
+niguldipine,calcium channel blocker,True,False,True
+fluorometholone,glucocorticoid receptor agonist,True,False,True
+fluocinonide,glucocorticoid receptor agonist,True,False,True
+triamcinolone,glucocorticoid receptor agonist,True,False,True
+hydrocortisone,glucocorticoid receptor agonist,True,False,True
+halcinonide,glucocorticoid receptor agonist,False,True,True
+fludroxycortide,glucocorticoid receptor agonist,False,True,True
+medrysone,glucocorticoid receptor agonist,True,False,True
+rimexolone,glucocorticoid receptor agonist,True,False,True
+ciclesonide,glucocorticoid receptor agonist,True,False,True
+clobetasol,glucocorticoid receptor agonist,True,False,True
+fluticasone,glucocorticoid receptor agonist,True,False,True
+prednisone,glucocorticoid receptor agonist,True,False,True
+dexamethasone,glucocorticoid receptor agonist,True,False,True
+methylprednisolone,glucocorticoid receptor agonist,True,False,True
+triamcinolone-acetonide,glucocorticoid receptor agonist,False,True,True
+beclomethasone-dipropionate,glucocorticoid receptor agonist,False,True,True
+trapidil,pdgfr tyrosine kinase receptor inhibitor,False,True,True
+su014813,pdgfr tyrosine kinase receptor inhibitor,True,False,True
+linifanib,pdgfr tyrosine kinase receptor inhibitor,False,True,True
+dasatinib,pdgfr tyrosine kinase receptor inhibitor,True,False,True
+amuvatinib,pdgfr tyrosine kinase receptor inhibitor,True,False,True
+leflunomide,pdgfr tyrosine kinase receptor inhibitor,True,False,True
+sunitinib,pdgfr tyrosine kinase receptor inhibitor,False,True,True
+regorafenib,pdgfr tyrosine kinase receptor inhibitor,True,False,True
+masitinib,pdgfr tyrosine kinase receptor inhibitor,True,False,True
+imatinib,pdgfr tyrosine kinase receptor inhibitor,True,False,True
+lenvatinib,pdgfr tyrosine kinase receptor inhibitor,False,True,True
+nintedanib,pdgfr tyrosine kinase receptor inhibitor,True,False,True
+orantinib,pdgfr tyrosine kinase receptor inhibitor,True,False,True
+tandutinib,pdgfr tyrosine kinase receptor inhibitor,True,False,True
+pazopanib,pdgfr tyrosine kinase receptor inhibitor,True,False,True
+telatinib,pdgfr tyrosine kinase receptor inhibitor,True,False,True
+cefepime,bacterial cell wall synthesis inhibitor,False,True,True
+penicillin-v-potassium,bacterial cell wall synthesis inhibitor,True,False,True
+dicloxacillin,bacterial cell wall synthesis inhibitor,True,False,True
+tebipenem,bacterial cell wall synthesis inhibitor,True,False,True
+cefotetan,bacterial cell wall synthesis inhibitor,True,False,True
+oxiconazole,bacterial cell wall synthesis inhibitor,True,False,True
+miconazole,bacterial cell wall synthesis inhibitor,True,False,True
+fosfomycin,bacterial cell wall synthesis inhibitor,True,False,True
+fenticonazole,bacterial cell wall synthesis inhibitor,True,False,True
+cefdinir,bacterial cell wall synthesis inhibitor,True,False,True
+butoconazole,bacterial cell wall synthesis inhibitor,False,True,True
+cefozopran,bacterial cell wall synthesis inhibitor,True,False,True
+etanidazole,bacterial cell wall synthesis inhibitor,False,True,True
+cefoperazone,bacterial cell wall synthesis inhibitor,True,False,True
+econazole,bacterial cell wall synthesis inhibitor,True,False,True
+iguratimod,nfkb pathway inhibitor,True,False,True
+cepharanthine,nfkb pathway inhibitor,True,False,True
+bindarit,nfkb pathway inhibitor,False,True,True
+erythromycin,nfkb pathway inhibitor,True,False,True
+sasapyrine,nfkb pathway inhibitor,False,True,True
+gibberellic-acid,nfkb pathway inhibitor,True,False,True
+IKK-2-inhibitor-V,nfkb pathway inhibitor,True,False,True
+bardoxolone-methyl,nfkb pathway inhibitor,True,False,True
+dimethyl-fumarate,nfkb pathway inhibitor,True,False,True
+sulfasalazine,nfkb pathway inhibitor,True,False,True
+ursolic-acid,nfkb pathway inhibitor,True,False,True
+mepacrine,nfkb pathway inhibitor,True,False,True
+curcumin,nfkb pathway inhibitor,True,False,True
+manumycin-a,nfkb pathway inhibitor,True,False,True
+bortezomib,nfkb pathway inhibitor,False,True,True
+THM-I-94,hdac inhibitor,False,True,True
+valproic-acid,hdac inhibitor,True,False,True
+phenylbutyrate,hdac inhibitor,True,False,True
+dacinostat,hdac inhibitor,True,False,True
+romidepsin,hdac inhibitor,False,True,True
+JNJ-26854165,hdac inhibitor,False,True,True
+sb-939,hdac inhibitor,True,False,True
+resminostat,hdac inhibitor,True,False,True
+belinostat,hdac inhibitor,True,False,True
+acy-1215,hdac inhibitor,True,False,True
+rg2833,hdac inhibitor,True,False,True
+entinostat,hdac inhibitor,True,False,True
+tacedinaline,hdac inhibitor,True,False,True
+fiacitabine,dna synthesis inhibitor,True,False,True
+floxuridine,dna synthesis inhibitor,True,False,True
+cb-10-277-(free-acid),dna synthesis inhibitor,True,False,True
+idoxuridin,dna synthesis inhibitor,True,False,True
+altretamine,dna synthesis inhibitor,False,True,True
+artesunate,dna synthesis inhibitor,False,True,True
+methoxsalen,dna synthesis inhibitor,True,False,True
+fludarabine-phosphate,dna synthesis inhibitor,True,False,True
+nelarabine,dna synthesis inhibitor,True,False,True
+mitomycin-c,dna synthesis inhibitor,False,True,True
+estramustine-phosphate,dna synthesis inhibitor,True,False,True
+capecitabine,dna synthesis inhibitor,True,False,True
+griseofulvin,tubulin inhibitor,True,False,True
+docetaxel,tubulin inhibitor,False,True,True
+indibulin,tubulin inhibitor,True,False,True
+albendazole,tubulin inhibitor,True,False,True
+mebendazole,tubulin inhibitor,False,True,True
+CYT-997,tubulin inhibitor,True,False,True
+paclitaxel,tubulin inhibitor,False,True,True
+dimesna,tubulin inhibitor,True,False,True
+dolastatin-10,tubulin inhibitor,True,False,True
+noscapine,tubulin inhibitor,True,False,True
+epothilone-b,tubulin inhibitor,True,False,True
+podophyllotoxin,tubulin inhibitor,True,False,True
+pazopanib,kit inhibitor,True,False,True
+telatinib,kit inhibitor,True,False,True
+cediranib,kit inhibitor,False,True,True
+dasatinib,kit inhibitor,True,False,True
+amuvatinib,kit inhibitor,True,False,True
+sunitinib,kit inhibitor,False,True,True
+regorafenib,kit inhibitor,True,False,True
+masitinib,kit inhibitor,True,False,True
+imatinib,kit inhibitor,True,False,True
+midostaurin,kit inhibitor,True,False,True
+lenvatinib,kit inhibitor,False,True,True
+tandutinib,kit inhibitor,True,False,True
+taselisib,pi3k inhibitor,True,False,True
+gsk2636771,pi3k inhibitor,False,True,True
+pilaralisib,pi3k inhibitor,True,False,True
+idelalisib,pi3k inhibitor,True,False,True
+TG100-115,pi3k inhibitor,True,False,True
+XL-147,pi3k inhibitor,True,False,True
+AS-605240,pi3k inhibitor,True,False,True
+pf-04691502,pi3k inhibitor,False,True,True
+voxtalisib,pi3k inhibitor,True,False,True
+pki-179,pi3k inhibitor,True,False,True
+NVP-BEZ235,pi3k inhibitor,False,True,True
+dopamine,dopamine receptor agonist,True,False,True
+pramipexole,dopamine receptor agonist,False,True,True
+mesulergine,dopamine receptor agonist,False,True,True
+rotigotine,dopamine receptor agonist,False,True,True
+cabergoline,dopamine receptor agonist,True,False,True
+ropinirole,dopamine receptor agonist,True,False,True
+bromocriptine,dopamine receptor agonist,True,False,True
+piribedil,dopamine receptor agonist,True,False,True
+abt-724,dopamine receptor agonist,True,False,True
+metergoline,dopamine receptor agonist,True,False,True
+r(-)-apomorphine,dopamine receptor agonist,True,False,True
+gemifloxacin,bacterial dna gyrase inhibitor,False,True,True
+ciprofloxacin,bacterial dna gyrase inhibitor,True,False,True
+novobiocin,bacterial dna gyrase inhibitor,True,False,True
+ofloxacin,bacterial dna gyrase inhibitor,False,True,True
+sparfloxacin,bacterial dna gyrase inhibitor,True,False,True
+levofloxacin,bacterial dna gyrase inhibitor,False,True,True
+norfloxacin,bacterial dna gyrase inhibitor,True,False,True
+moxifloxacin,bacterial dna gyrase inhibitor,True,False,True
+clinafloxacin,bacterial dna gyrase inhibitor,True,False,True
+trovafloxacin,bacterial dna gyrase inhibitor,True,False,True
+gatifloxacin,bacterial dna gyrase inhibitor,True,False,True
+mestranol,estrogen receptor agonist,True,False,True
+erteberel,estrogen receptor agonist,False,True,True
+diethylstilbestrol,estrogen receptor agonist,True,False,True
+estriol,estrogen receptor agonist,False,True,True
+mf-101,estrogen receptor agonist,True,False,True
+equol,estrogen receptor agonist,True,False,True
+estrone,estrogen receptor agonist,True,False,True
+ethinyl-estradiol,estrogen receptor agonist,True,False,True
+levonorgestrel,estrogen receptor agonist,False,True,True
+tibolone,estrogen receptor agonist,True,False,True
+estramustine-phosphate,estrogen receptor agonist,True,False,True
+dinaciclib,cdk inhibitor,False,True,True
+roscovitine,cdk inhibitor,False,True,True
+alvocidib,cdk inhibitor,True,False,True
+PHA-793887,cdk inhibitor,True,False,True
+AZD-5438,cdk inhibitor,True,False,True
+palbociclib,cdk inhibitor,False,True,True
+r547,cdk inhibitor,True,False,True
+AT-7519,cdk inhibitor,True,False,True
+indirubin,cdk inhibitor,True,False,True
+pha-848125,cdk inhibitor,True,False,True
+bisindolylmaleimide,cdk inhibitor,True,False,True
+everolimus,mtor inhibitor,True,False,True
+pf-04691502,mtor inhibitor,False,True,True
+sirolimus,mtor inhibitor,True,False,True
+azd2014,mtor inhibitor,True,False,True
+voxtalisib,mtor inhibitor,True,False,True
+mln0128,mtor inhibitor,False,True,True
+temsirolimus,mtor inhibitor,True,False,True
+deforolimus,mtor inhibitor,True,False,True
+pki-179,mtor inhibitor,True,False,True
+NVP-BEZ235,mtor inhibitor,False,True,True
+palomid-529,mtor inhibitor,True,False,True
+tanaproget,progesterone receptor agonist,True,False,True
+norgestrel,progesterone receptor agonist,True,False,True
+medroxyprogesterone-acetate,progesterone receptor agonist,False,True,True
+dienogest,progesterone receptor agonist,True,False,True
+17-hydroxyprogesterone-caproate,progesterone receptor agonist,True,False,True
+norethisterone,progesterone receptor agonist,True,False,True
+progesterone,progesterone receptor agonist,False,True,True
+cyproterone-acetate,progesterone receptor agonist,True,False,True
+levonorgestrel,progesterone receptor agonist,False,True,True
+tibolone,progesterone receptor agonist,True,False,True
+danazol,progesterone receptor agonist,True,False,True
+milnacipran,serotonin reuptake inhibitor,True,False,True
+desvenlafaxine,serotonin reuptake inhibitor,True,False,True
+vilazodone,serotonin reuptake inhibitor,False,True,True
+citalopram,serotonin reuptake inhibitor,True,False,True
+minaprine,serotonin reuptake inhibitor,True,False,True
+trazodone,serotonin reuptake inhibitor,True,False,True
+venlafaxine,serotonin reuptake inhibitor,True,False,True
+mazindol,serotonin reuptake inhibitor,True,False,True
+duloxetine,serotonin reuptake inhibitor,False,True,True
+phentermine,serotonin reuptake inhibitor,True,False,True
+imipramine,serotonin reuptake inhibitor,False,True,True
+valrubicin,dna inhibitor,False,True,True
+chlorambucil,dna inhibitor,True,False,True
+pibenzimol,dna inhibitor,True,False,True
+bendamustine,dna inhibitor,True,False,True
+teroxirone,dna inhibitor,True,False,True
+cordycepin,dna inhibitor,True,False,True
+tirapazamine,dna inhibitor,True,False,True
+primaquine,dna inhibitor,True,False,True
+mitomycin-c,dna inhibitor,False,True,True
+estramustine-phosphate,dna inhibitor,True,False,True
+nicotine,acetylcholine receptor agonist,True,False,True
+evp-6124,acetylcholine receptor agonist,True,False,True
+levamisole,acetylcholine receptor agonist,True,False,True
+cytisine,acetylcholine receptor agonist,True,False,True
+abt-202,acetylcholine receptor agonist,False,True,True
+pilocarpine,acetylcholine receptor agonist,True,False,True
+varenicline,acetylcholine receptor agonist,True,False,True
+diphenidol,acetylcholine receptor agonist,False,True,True
+choline-alfoscerate,acetylcholine receptor agonist,True,False,True
+nefiracetam,acetylcholine receptor agonist,True,False,True
+clemizole,hcv inhibitor,True,False,True
+ledipasvir,hcv inhibitor,False,True,True
+simeprevir,hcv inhibitor,True,False,True
+mericitabine,hcv inhibitor,True,False,True
+vx-222,hcv inhibitor,True,False,True
+grazoprevir,hcv inhibitor,True,False,True
+narlaprevir,hcv inhibitor,True,False,True
+dasabuvir,hcv inhibitor,True,False,True
+ellagic-acid,hcv inhibitor,True,False,True
+tegobuvir,hcv inhibitor,False,True,True
+tandutinib,flt3 inhibitor,True,False,True
+quizartinib,flt3 inhibitor,True,False,True
+BMS-777607,flt3 inhibitor,True,False,True
+amuvatinib,flt3 inhibitor,True,False,True
+kw-2449,flt3 inhibitor,True,False,True
+lestaurtinib,flt3 inhibitor,False,True,True
+sunitinib,flt3 inhibitor,False,True,True
+tozasertib,flt3 inhibitor,True,False,True
+midostaurin,flt3 inhibitor,True,False,True
+ENMD-2076,flt3 inhibitor,False,True,True
+clofibric-acid,ppar receptor agonist,False,True,True
+clofibrate,ppar receptor agonist,True,False,True
+pterostilbene,ppar receptor agonist,True,False,True
+bezafibrate,ppar receptor agonist,True,False,True
+ciglitazone,ppar receptor agonist,True,False,True
+bardoxolone-methyl,ppar receptor agonist,True,False,True
+troglitazone,ppar receptor agonist,True,False,True
+pioglitazone,ppar receptor agonist,True,False,True
+tesaglitazar,ppar receptor agonist,True,False,True
+rosiglitazone,ppar receptor agonist,False,True,True
+PD-184352,mek inhibitor,True,False,True
+selumetinib,mek inhibitor,False,True,True
+mek162,mek inhibitor,True,False,True
+tak-733,mek inhibitor,True,False,True
+ro-4987655,mek inhibitor,True,False,True
+refametinib,mek inhibitor,True,False,True
+AZD-8330,mek inhibitor,True,False,True
+cobimetinib,mek inhibitor,False,True,True
+PD-0325901,mek inhibitor,True,False,True
+loxoprofen,prostanoid receptor antagonist,True,False,True
+indoprofen,prostanoid receptor antagonist,True,False,True
+laropiprant,prostanoid receptor antagonist,True,False,True
+meclofenamic-acid,prostanoid receptor antagonist,True,False,True
+diflunisal,prostanoid receptor antagonist,False,True,True
+ramatroban,prostanoid receptor antagonist,True,False,True
+phenylbutazone,prostanoid receptor antagonist,False,True,True
+benzydamine,prostanoid receptor antagonist,True,False,True
+tolfenamic-acid,prostanoid receptor antagonist,True,False,True
+arn-509,androgen receptor antagonist,True,False,True
+flutamide,androgen receptor antagonist,True,False,True
+bicalutamide,androgen receptor antagonist,False,True,True
+eugenol,androgen receptor antagonist,True,False,True
+enzalutamide,androgen receptor antagonist,True,False,True
+ru-58841,androgen receptor antagonist,True,False,True
+cyproterone-acetate,androgen receptor antagonist,True,False,True
+orteronel,androgen receptor antagonist,False,True,True
+ramipril,angiotensin converting enzyme inhibitor,True,False,True
+lisinopril,angiotensin converting enzyme inhibitor,True,False,True
+enalapril,angiotensin converting enzyme inhibitor,True,False,True
+zofenopril-calcium,angiotensin converting enzyme inhibitor,False,True,True
+benazepril,angiotensin converting enzyme inhibitor,True,False,True
+methiopril,angiotensin converting enzyme inhibitor,True,False,True
+ore1001,angiotensin converting enzyme inhibitor,False,True,True
+quinapril,angiotensin converting enzyme inhibitor,True,False,True
+homoharringtonine,protein synthesis inhibitor,True,False,True
+rifabutin,protein synthesis inhibitor,True,False,True
+retapamulin,protein synthesis inhibitor,False,True,True
+bruceantin,protein synthesis inhibitor,False,True,True
+clofoctol,protein synthesis inhibitor,True,False,True
+clindamycin,protein synthesis inhibitor,True,False,True
+phenylacetylglutamine,protein synthesis inhibitor,True,False,True
+mercaptopurine,protein synthesis inhibitor,True,False,True
+ibutilide,potassium channel blocker,True,False,True
+linopirdine,potassium channel blocker,True,False,True
+doxapram,potassium channel blocker,True,False,True
+penitrem-a,potassium channel blocker,False,True,True
+amiodarone,potassium channel blocker,False,True,True
+mepivacaine,potassium channel blocker,True,False,True
+meglitinide,potassium channel blocker,True,False,True
+ivabradine,potassium channel blocker,True,False,True
+honokiol,akt inhibitor,False,True,True
+azd5363,akt inhibitor,True,False,True
+MK-2206,akt inhibitor,True,False,True
+AKT-inhibitor-1-2,akt inhibitor,True,False,True
+gsk2110183,akt inhibitor,True,False,True
+gdc-0068,akt inhibitor,False,True,True
+tic10,akt inhibitor,True,False,True
+palomid-529,akt inhibitor,True,False,True
+cabazitaxel,microtubule inhibitor,True,False,True
+triclabendazole,microtubule inhibitor,False,True,True
+cytochalasin-b,microtubule inhibitor,False,True,True
+podophyllotoxin,microtubule inhibitor,True,False,True
+colchicine,microtubule inhibitor,True,False,True
+dolastatin-10,microtubule inhibitor,True,False,True
+estramustine-phosphate,microtubule inhibitor,True,False,True
+secnidazole,microtubule inhibitor,True,False,True
+amg-208,tyrosine kinase inhibitor,False,True,True
+tivantinib,tyrosine kinase inhibitor,True,False,True
+hypericin,tyrosine kinase inhibitor,True,False,True
+JNJ-38877605,tyrosine kinase inhibitor,False,True,True
+CP-724714,tyrosine kinase inhibitor,True,False,True
+BIBX-1382,tyrosine kinase inhibitor,True,False,True
+BMS-777607,tyrosine kinase inhibitor,True,False,True
+dasatinib,tyrosine kinase inhibitor,True,False,True
+lenvatinib,fgfr inhibitor,False,True,True
+mk-2461,fgfr inhibitor,True,False,True
+nintedanib,fgfr inhibitor,True,False,True
+azd4547,fgfr inhibitor,True,False,True
+brivanib,fgfr inhibitor,False,True,True
+lucitanib,fgfr inhibitor,True,False,True
+orantinib,fgfr inhibitor,True,False,True
+regorafenib,fgfr inhibitor,True,False,True
+moclobemide,monoamine oxidase inhibitor,False,True,True
+rasagiline,monoamine oxidase inhibitor,True,False,True
+hymecromone,monoamine oxidase inhibitor,True,False,True
+selegiline,monoamine oxidase inhibitor,True,False,True
+milacemide,monoamine oxidase inhibitor,True,False,True
+tetrindole,monoamine oxidase inhibitor,True,False,True
+safinamide,monoamine oxidase inhibitor,True,False,True
+desoxypeganine,monoamine oxidase inhibitor,False,True,True
+cx-5461,rna polymerase inhibitor,False,True,True
+favipiravir,rna polymerase inhibitor,True,False,True
+sofosbuvir,rna polymerase inhibitor,True,False,True
+psi-6130,rna polymerase inhibitor,False,True,True
+nesbuvir,rna polymerase inhibitor,True,False,True
+balapiravir,rna polymerase inhibitor,True,False,True
+fidaxomicin,rna polymerase inhibitor,True,False,True
+triptolide,rna polymerase inhibitor,True,False,True
+FPL-55712,leukotriene receptor antagonist,True,False,True
+tomelukast,leukotriene receptor antagonist,False,True,True
+ibudilast,leukotriene receptor antagonist,True,False,True
+sr-2640,leukotriene receptor antagonist,True,False,True
+pranlukast,leukotriene receptor antagonist,False,True,True
+zafirlukast,leukotriene receptor antagonist,True,False,True
+ketotifen,leukotriene receptor antagonist,True,False,True
+REV-5901,leukotriene receptor antagonist,True,False,True
+bifonazole,sterol demethylase inhibitor,True,False,True
+sertaconazole,sterol demethylase inhibitor,False,True,True
+fluconazole,sterol demethylase inhibitor,True,False,True
+luliconazole,sterol demethylase inhibitor,True,False,True
+tioconazole,sterol demethylase inhibitor,False,True,True
+ketoconazole,sterol demethylase inhibitor,True,False,True
+flutrimazole,sterol demethylase inhibitor,True,False,True
+econazole,sterol demethylase inhibitor,True,False,True
+zaleplon,benzodiazepine receptor agonist,False,True,True
+lorazepam,benzodiazepine receptor agonist,True,False,True
+zolpidem,benzodiazepine receptor agonist,True,False,True
+ZK-93423,benzodiazepine receptor agonist,False,True,True
+diazepam,benzodiazepine receptor agonist,True,False,True
+CGS-20625,benzodiazepine receptor agonist,True,False,True
+etizolam,benzodiazepine receptor agonist,True,False,True
+indiplon,benzodiazepine receptor agonist,True,False,True
+ly215490,glutamate receptor antagonist,False,True,True
+basimglurant,glutamate receptor antagonist,False,True,True
+budipine,glutamate receptor antagonist,True,False,True
+fenobam,glutamate receptor antagonist,True,False,True
+amantadine,glutamate receptor antagonist,True,False,True
+topiramate,glutamate receptor antagonist,True,False,True
+dextromethorphan,glutamate receptor antagonist,True,False,True
+avagacestat,gamma secretase inhibitor,True,False,True
+mk-0752,gamma secretase inhibitor,True,False,True
+rg4733,gamma secretase inhibitor,True,False,True
+pf-03084014,gamma secretase inhibitor,True,False,True
+BMS-299897,gamma secretase inhibitor,False,True,True
+pinitol,gamma secretase inhibitor,False,True,True
+semagacestat,gamma secretase inhibitor,True,False,True
+lobenzarit,immunosuppressant,True,False,True
+cromoglicic-acid,immunosuppressant,True,False,True
+beclomethasone-dipropionate,immunosuppressant,False,True,True
+ginkgolide-b,immunosuppressant,True,False,True
+mycophenolate-mofetil,immunosuppressant,True,False,True
+triamcinolone-acetonide,immunosuppressant,False,True,True
+mercaptopurine,immunosuppressant,True,False,True
+CYT387,jak inhibitor,False,True,True
+ly2784544,jak inhibitor,True,False,True
+tofacitinib,jak inhibitor,True,False,True
+filgotinib,jak inhibitor,True,False,True
+azd1480,jak inhibitor,True,False,True
+lestaurtinib,jak inhibitor,False,True,True
+tozasertib,jak inhibitor,True,False,True
+tazarotene,retinoid receptor agonist,False,True,True
+palovarotene,retinoid receptor agonist,True,False,True
+TTNPB,retinoid receptor agonist,True,False,True
+adapalene,retinoid receptor agonist,True,False,True
+tamibarotene,retinoid receptor agonist,True,False,True
+bexarotene,retinoid receptor agonist,True,False,True
+adarotene,retinoid receptor agonist,False,True,True
+alisertib,aurora kinase inhibitor,True,False,True
+pf-03814735,aurora kinase inhibitor,False,True,True
+ENMD-2076,aurora kinase inhibitor,False,True,True
+MLN-8054,aurora kinase inhibitor,True,False,True
+kw-2449,aurora kinase inhibitor,True,False,True
+danusertib,aurora kinase inhibitor,True,False,True
+tozasertib,aurora kinase inhibitor,True,False,True
+azithromycin,bacterial 50s ribosomal subunit inhibitor,True,False,True
+tedizolid,bacterial 50s ribosomal subunit inhibitor,False,True,True
+josamycin,bacterial 50s ribosomal subunit inhibitor,True,False,True
+clarithromycin,bacterial 50s ribosomal subunit inhibitor,True,False,True
+roxithromycin,bacterial 50s ribosomal subunit inhibitor,True,False,True
+linezolid,bacterial 50s ribosomal subunit inhibitor,False,True,True
+radezolid,bacterial 50s ribosomal subunit inhibitor,True,False,True
+Y-27152,potassium channel activator,False,True,True
+levcromakalim,potassium channel activator,False,True,True
+retigabine,potassium channel activator,True,False,True
+hexachlorophene,potassium channel activator,True,False,True
+diazoxide,potassium channel activator,True,False,True
+Y-26763,potassium channel activator,True,False,True
+pinacidil,potassium channel activator,True,False,True
+efavirenz,hiv protease inhibitor,True,False,True
+lopinavir,hiv protease inhibitor,False,True,True
+indinavir,hiv protease inhibitor,True,False,True
+tipranavir,hiv protease inhibitor,True,False,True
+saquinavir,hiv protease inhibitor,False,True,True
+darunavir,hiv protease inhibitor,True,False,True
+ursolic-acid,hiv protease inhibitor,True,False,True
+mk-0812,cc chemokine receptor antagonist,False,True,True
+amd11070,cc chemokine receptor antagonist,True,False,True
+maraviroc,cc chemokine receptor antagonist,True,False,True
+zk811752,cc chemokine receptor antagonist,True,False,True
+vicriviroc,cc chemokine receptor antagonist,True,False,True
+reparixin,cc chemokine receptor antagonist,True,False,True
+pf-04136309,cc chemokine receptor antagonist,False,True,True
+midostaurin,pkc inhibitor,True,False,True
+enzastaurin,pkc inhibitor,True,False,True
+dequalinium,pkc inhibitor,False,True,True
+bisindolylmaleimide,pkc inhibitor,True,False,True
+sotrastaurin,pkc inhibitor,False,True,True
+ethylenediaminetetraacetic-acid,pkc inhibitor,True,False,True
+safingol,pkc inhibitor,True,False,True
+troglitazone,insulin sensitizer,True,False,True
+metformin,insulin sensitizer,True,False,True
+pioglitazone,insulin sensitizer,True,False,True
+tesaglitazar,insulin sensitizer,True,False,True
+rosiglitazone,insulin sensitizer,False,True,True
+inositol,insulin sensitizer,False,True,True
+balaglitazone,insulin sensitizer,True,False,True
+tiabendazole,angiogenesis inhibitor,True,False,True
+asa-404,angiogenesis inhibitor,True,False,True
+tranilast,angiogenesis inhibitor,True,False,True
+tasquinimod,angiogenesis inhibitor,True,False,True
+roquinimex,angiogenesis inhibitor,False,True,True
+pomalidomide,angiogenesis inhibitor,False,True,True
+anecortave-acetate,angiogenesis inhibitor,True,False,True
+zidovudine,reverse transcriptase inhibitor,True,False,True
+nevirapine,reverse transcriptase inhibitor,False,True,True
+abacavir,reverse transcriptase inhibitor,False,True,True
+entecavir,reverse transcriptase inhibitor,True,False,True
+ellagic-acid,reverse transcriptase inhibitor,True,False,True
+thioctic-acid,reverse transcriptase inhibitor,True,False,True
+stavudine,reverse transcriptase inhibitor,True,False,True
+bortezomib,proteasome inhibitor,False,True,True
+MG-132,proteasome inhibitor,True,False,True
+carfilzomib,proteasome inhibitor,True,False,True
+MLN-2238,proteasome inhibitor,False,True,True
+oprozomib,proteasome inhibitor,True,False,True
+delanzomib,proteasome inhibitor,True,False,True
+mln9708,proteasome inhibitor,True,False,True
+raf265,raf inhibitor,True,False,True
+mln2480,raf inhibitor,False,True,True
+AZ-628,raf inhibitor,False,True,True
+vemurafenib,raf inhibitor,True,False,True
+dabrafenib,raf inhibitor,True,False,True
+lgx818,raf inhibitor,True,False,True
+regorafenib,raf inhibitor,True,False,True
+imatinib,bcr-abl kinase inhibitor,True,False,True
+flumatinib,bcr-abl kinase inhibitor,False,True,True
+tozasertib,bcr-abl kinase inhibitor,True,False,True
+metatinib,bcr-abl kinase inhibitor,True,False,True
+dasatinib,bcr-abl kinase inhibitor,True,False,True
+nilotinib,bcr-abl kinase inhibitor,True,False,True
+bosutinib,bcr-abl kinase inhibitor,False,True,True
+maxacalcitol,vitamin d receptor agonist,True,False,True
+ercalcitriol,vitamin d receptor agonist,True,False,True
+seocalcitol,vitamin d receptor agonist,False,True,True
+calcitriol,vitamin d receptor agonist,True,False,True
+paricalcitol,vitamin d receptor agonist,False,True,True
+tacalcitol,vitamin d receptor agonist,True,False,True
+atorvastatin,hmgcr inhibitor,True,False,True
+rosuvastatin,hmgcr inhibitor,True,False,True
+procaine,hmgcr inhibitor,False,True,True
+simvastatin,hmgcr inhibitor,False,True,True
+pravastatin,hmgcr inhibitor,True,False,True
+pitavastatin,hmgcr inhibitor,True,False,True
+REV-5901,lipoxygenase inhibitor,True,False,True
+am-24,lipoxygenase inhibitor,True,False,True
+fpl-62064,lipoxygenase inhibitor,False,True,True
+diethylcarbamazine,lipoxygenase inhibitor,False,True,True
+masoprocol,lipoxygenase inhibitor,True,False,True
+curcumin,lipoxygenase inhibitor,True,False,True
+fasudil,rho associated kinase inhibitor,False,True,True
+kd025,rho associated kinase inhibitor,True,False,True
+Y-39983,rho associated kinase inhibitor,True,False,True
+ripasudil,rho associated kinase inhibitor,True,False,True
+Y-27632,rho associated kinase inhibitor,False,True,True
+RHO-kinase-inhibitor-III[rockout],rho associated kinase inhibitor,True,False,True
+voriconazole,cytochrome p450 inhibitor,False,True,True
+vt-464,cytochrome p450 inhibitor,True,False,True
+resveratrol,cytochrome p450 inhibitor,True,False,True
+clotrimazole,cytochrome p450 inhibitor,True,False,True
+abiraterone-acetate,cytochrome p450 inhibitor,True,False,True
+orteronel,cytochrome p450 inhibitor,False,True,True
+desoxypeganine,acetylcholinesterase inhibitor,False,True,True
+secnidazole,acetylcholinesterase inhibitor,True,False,True
+tacrine,acetylcholinesterase inhibitor,True,False,True
+donepezil,acetylcholinesterase inhibitor,False,True,True
+ursolic-acid,acetylcholinesterase inhibitor,True,False,True
+physostigmine,acetylcholinesterase inhibitor,True,False,True
+methazolamide,carbonic anhydrase inhibitor,True,False,True
+acetazolamide,carbonic anhydrase inhibitor,False,True,True
+dorzolamide,carbonic anhydrase inhibitor,True,False,True
+benzthiazide,carbonic anhydrase inhibitor,False,True,True
+metolazone,carbonic anhydrase inhibitor,True,False,True
+topiramate,carbonic anhydrase inhibitor,True,False,True
+tg-100801,src inhibitor,False,True,True
+saracatinib,src inhibitor,True,False,True
+masitinib,src inhibitor,True,False,True
+dasatinib,src inhibitor,True,False,True
+kx2-391,src inhibitor,True,False,True
+bosutinib,src inhibitor,False,True,True
+alvimopan,opioid receptor antagonist,False,True,True
+methylnaltrexone,opioid receptor antagonist,False,True,True
+chloroxine,opioid receptor antagonist,True,False,True
+JTC-801,opioid receptor antagonist,True,False,True
+butorphanol-(+)-tartrate,opioid receptor antagonist,True,False,True
+nalbuphine,opioid receptor antagonist,True,False,True
+l-name,nitric oxide synthase inhibitor,False,True,True
+2-iminobiotin,nitric oxide synthase inhibitor,False,True,True
+aminoguanidine,nitric oxide synthase inhibitor,True,False,True
+targinine,nitric oxide synthase inhibitor,True,False,True
+ebselen,nitric oxide synthase inhibitor,True,False,True
+melatonin,nitric oxide synthase inhibitor,True,False,True
+tobramycin,bacterial 30s ribosomal subunit inhibitor,True,False,True
+fusidic-acid,bacterial 30s ribosomal subunit inhibitor,True,False,True
+radezolid,bacterial 30s ribosomal subunit inhibitor,True,False,True
+eperezolid,bacterial 30s ribosomal subunit inhibitor,False,True,True
+doxycycline-hyclate,bacterial 30s ribosomal subunit inhibitor,False,True,True
+amikacin,bacterial 30s ribosomal subunit inhibitor,True,False,True
+ph-797804,p38 mapk inhibitor,False,True,True
+doramapimod,p38 mapk inhibitor,True,False,True
+losmapimod,p38 mapk inhibitor,True,False,True
+talmapimod,p38 mapk inhibitor,True,False,True
+ly2228820,p38 mapk inhibitor,True,False,True
+TAK-715,p38 mapk inhibitor,False,True,True
+av-608,tachykinin antagonist,True,False,True
+talnetant,tachykinin antagonist,False,True,True
+FK-888,tachykinin antagonist,True,False,True
+aprepitant,tachykinin antagonist,True,False,True
+sdz-nkt-343,tachykinin antagonist,True,False,True
+netupitant,tachykinin antagonist,False,True,True
+digoxin,atpase inhibitor,True,False,True
+istaroxime,atpase inhibitor,True,False,True
+SCH-28080,atpase inhibitor,True,False,True
+omeprazole,atpase inhibitor,False,True,True
+ursolic-acid,atpase inhibitor,True,False,True
+rabeprazole,atpase inhibitor,False,True,True
+trimebutine,opioid receptor agonist,False,True,True
+butorphanol-(+)-tartrate,opioid receptor agonist,True,False,True
+metamizole,opioid receptor agonist,True,False,True
+loperamide,opioid receptor agonist,True,False,True
+salvinorin-a,opioid receptor agonist,False,True,True
+nalbuphine,opioid receptor agonist,True,False,True
+clomifene,estrogen receptor antagonist,True,False,True
+danazol,estrogen receptor antagonist,True,False,True
+fulvestrant,estrogen receptor antagonist,True,False,True
+raloxifene,estrogen receptor antagonist,True,False,True
+tamoxifen,estrogen receptor antagonist,False,True,True
+sb-683698,integrin antagonist,True,False,True
+firategrast,integrin antagonist,True,False,True
+cilengitide,integrin antagonist,True,False,True
+ct-7758,integrin antagonist,True,False,True
+atn-161,integrin antagonist,False,True,True
+chlormezanone,gaba receptor modulator,True,False,True
+tracazolate,gaba receptor modulator,True,False,True
+ganaxolone,gaba receptor modulator,False,True,True
+etomidate,gaba receptor modulator,True,False,True
+clomethiazole,gaba receptor modulator,True,False,True
+capecitabine,thymidylate synthase inhibitor,True,False,True
+ftorafur,thymidylate synthase inhibitor,True,False,True
+doxifluridine,thymidylate synthase inhibitor,True,False,True
+fluorouracil,thymidylate synthase inhibitor,True,False,True
+trifluridine,thymidylate synthase inhibitor,False,True,True
+indiplon,gaba receptor agonist,True,False,True
+ivermectin,gaba receptor agonist,True,False,True
+nefiracetam,gaba receptor agonist,True,False,True
+temazepam,gaba receptor agonist,True,False,True
+CL-218872,gaba receptor agonist,False,True,True
+vandetanib,ret tyrosine kinase inhibitor,True,False,True
+sunitinib,ret tyrosine kinase inhibitor,False,True,True
+regorafenib,ret tyrosine kinase inhibitor,True,False,True
+cabozantinib,ret tyrosine kinase inhibitor,True,False,True
+amuvatinib,ret tyrosine kinase inhibitor,True,False,True
+theophylline,adenosine receptor antagonist,True,False,True
+doxofylline,adenosine receptor antagonist,True,False,True
+preladenant,adenosine receptor antagonist,False,True,True
+dpcpx,adenosine receptor antagonist,True,False,True
+caffeine,adenosine receptor antagonist,True,False,True
+losartan,angiotensin receptor antagonist,True,False,True
+olmesartan,angiotensin receptor antagonist,False,True,True
+telmisartan,angiotensin receptor antagonist,True,False,True
+candesartan,angiotensin receptor antagonist,True,False,True
+valsartan,angiotensin receptor antagonist,True,False,True
+kakonein,gaba receptor antagonist,False,True,True
+clomethiazole,gaba receptor antagonist,True,False,True
+primidone,gaba receptor antagonist,True,False,True
+thiocolchicoside,gaba receptor antagonist,True,False,True
+ginkgolide-b,gaba receptor antagonist,True,False,True
+nateglinide,insulin secretagogue,True,False,True
+repaglinide,insulin secretagogue,True,False,True
+glimepiride,insulin secretagogue,True,False,True
+tak-875,insulin secretagogue,True,False,True
+gliclazide,insulin secretagogue,False,True,True
+kw-2478,hsp inhibitor,True,False,True
+xl888,hsp inhibitor,True,False,True
+alvespimycin,hsp inhibitor,False,True,True
+snx-2112,hsp inhibitor,True,False,True
+BIIB021,hsp inhibitor,True,False,True
+dolutegravir,hiv integrase inhibitor,False,True,True
+bms-707035,hiv integrase inhibitor,True,False,True
+raltegravir,hiv integrase inhibitor,True,False,True
+betulinic-acid,hiv integrase inhibitor,True,False,True
+ellagic-acid,hiv integrase inhibitor,True,False,True
+veliparib,parp inhibitor,True,False,True
+3-amino-benzamide,parp inhibitor,True,False,True
+iniparib,parp inhibitor,False,True,True
+talazoparib,parp inhibitor,True,False,True
+olaparib,parp inhibitor,True,False,True
+clofarabine,ribonucleoside reductase inhibitor,False,True,True
+hydroxyurea,ribonucleoside reductase inhibitor,True,False,True
+cladribine,ribonucleoside reductase inhibitor,True,False,True
+ly2334737,ribonucleoside reductase inhibitor,True,False,True
+imexon,ribonucleoside reductase inhibitor,True,False,True
+stavudine,dna directed dna polymerase inhibitor,True,False,True
+penciclovir,dna directed dna polymerase inhibitor,True,False,True
+brivudine,dna directed dna polymerase inhibitor,True,False,True
+trifluridine,dna directed dna polymerase inhibitor,False,True,True
+edoxudine,dna directed dna polymerase inhibitor,True,False,True
+edoxaban,coagulation factor inhibitor,True,False,True
+otamixaban,coagulation factor inhibitor,True,False,True
+rivaroxaban,coagulation factor inhibitor,False,True,True
+apixaban,coagulation factor inhibitor,True,False,True
+tipifarnib-P2,farnesyltransferase inhibitor,True,False,True
+lonafarnib,farnesyltransferase inhibitor,False,True,True
+arglabin,farnesyltransferase inhibitor,True,False,True
+manumycin-a,farnesyltransferase inhibitor,True,False,True
+fdcyd,dna methyltransferase inhibitor,True,False,True
+decitabine,dna methyltransferase inhibitor,False,True,True
+azacitidine,dna methyltransferase inhibitor,True,False,True
+disulfiram,dna methyltransferase inhibitor,True,False,True
+temozolomide,dna alkylating drug,True,False,True
+estramustine-phosphate,dna alkylating drug,True,False,True
+estramustine,dna alkylating drug,True,False,True
+mitomycin-c,dna alkylating drug,False,True,True
+ursodeoxycholyltaurine,cholesterol inhibitor,True,False,True
+acifran,cholesterol inhibitor,True,False,True
+acipimox,cholesterol inhibitor,True,False,True
+timofibrate,cholesterol inhibitor,False,True,True
+nicaraven,free radical scavenger,True,False,True
+nxy-059,free radical scavenger,True,False,True
+l-ergothioneine,free radical scavenger,True,False,True
+rebamipide,free radical scavenger,False,True,True
+MLN-8054,protein kinase inhibitor,True,False,True
+maribavir,protein kinase inhibitor,True,False,True
+PD-0325901,protein kinase inhibitor,True,False,True
+rottlerin,protein kinase inhibitor,False,True,True
+ginkgolide-b,reducing agent,True,False,True
+bardoxolone-methyl,reducing agent,True,False,True
+thioctic-acid,reducing agent,True,False,True
+acexamic-acid,reducing agent,True,False,True
+emtricitabine,nucleoside reverse transcriptase inhibitor,True,False,True
+dideoxyadenosine,nucleoside reverse transcriptase inhibitor,False,True,True
+zalcitabine,nucleoside reverse transcriptase inhibitor,True,False,True
+lamivudine,nucleoside reverse transcriptase inhibitor,True,False,True
+ici-192605,thromboxane receptor antagonist,True,False,True
+"ici-185,282",thromboxane receptor antagonist,False,True,True
+torasemide,thromboxane receptor antagonist,True,False,True
+picotamide,thromboxane receptor antagonist,True,False,True
+ABT-737,bcl inhibitor,False,True,True
+gdc-0199,bcl inhibitor,True,False,True
+navitoclax,bcl inhibitor,True,False,True
+bardoxolone-methyl,bcl inhibitor,True,False,True
+volasertib,plk inhibitor,True,False,True
+nms-1286937,plk inhibitor,False,True,True
+BI-2536,plk inhibitor,True,False,True
+GSK-461364,plk inhibitor,True,False,True
+betahistine,histamine receptor agonist,True,False,True
+histamine,histamine receptor agonist,False,True,True
+lidocaine,histamine receptor agonist,True,False,True
+ketotifen,histamine receptor agonist,True,False,True
+aniracetam,glutamate receptor agonist,True,False,True
+d-serine,glutamate receptor agonist,True,False,True
+bci-540,glutamate receptor agonist,False,True,True
+ampalex,glutamate receptor agonist,True,False,True
+topiroxostat,xanthine oxidase inhibitor,True,False,True
+allopurinol,xanthine oxidase inhibitor,False,True,True
+febuxostat,xanthine oxidase inhibitor,True,False,True
+oxypurinol,xanthine oxidase inhibitor,True,False,True
+tibolone,androgen receptor agonist,True,False,True
+testosterone,androgen receptor agonist,True,False,True
+oxandrolone,androgen receptor agonist,True,False,True
+epitiostanol,androgen receptor agonist,False,True,True
+tioguanine,purine antagonist,True,False,True
+mercaptopurine,purine antagonist,True,False,True
+thioguanine,purine antagonist,False,True,True
+fludarabine-phosphate,purine antagonist,True,False,True
+fluorouracil,rna synthesis inhibitor,True,False,True
+rifaximin,rna synthesis inhibitor,True,False,True
+aphidicolin,rna synthesis inhibitor,True,False,True
+rimantadine,rna synthesis inhibitor,False,True,True
+CI-976,acat inhibitor,False,True,True
+avasimibe,acat inhibitor,True,False,True
+kd-023,acat inhibitor,True,False,True
+nsc-4644,acat inhibitor,True,False,True
+chlorpropamide,atp channel blocker,True,False,True
+gliclazide,atp channel blocker,False,True,True
+tolbutamide,atp channel blocker,True,False,True
+tolazamide,atp channel blocker,True,False,True
+crizotinib,alk tyrosine kinase receptor inhibitor,True,False,True
+cep-37440,alk tyrosine kinase receptor inhibitor,True,False,True
+alectinib,alk tyrosine kinase receptor inhibitor,True,False,True
+ap26113,alk tyrosine kinase receptor inhibitor,False,True,True
+regadenoson,adenosine receptor agonist,True,False,True
+ib-meca,adenosine receptor agonist,True,False,True
+adenosine,adenosine receptor agonist,False,True,True
+bucladesine,adenosine receptor agonist,True,False,True
+nvp-dpp728,dipeptidyl peptidase inhibitor,True,False,True
+linagliptin,dipeptidyl peptidase inhibitor,True,False,True
+teneligliptin,dipeptidyl peptidase inhibitor,True,False,True
+saxagliptin,dipeptidyl peptidase inhibitor,False,True,True
+exemestane,aromatase inhibitor,True,False,True
+fadrozole,aromatase inhibitor,True,False,True
+formestane,aromatase inhibitor,True,False,True
+naringenin,aromatase inhibitor,False,True,True
+dexloxiglumide,cck receptor antagonist,True,False,True
+proglumide,cck receptor antagonist,True,False,True
+lorglumide,cck receptor antagonist,False,True,True
+SR-27897,cck receptor antagonist,True,False,True
+trimethoprim,dihydrofolate reductase inhibitor,True,False,True
+pralatrexate,dihydrofolate reductase inhibitor,True,False,True
+pyrimethamine,dihydrofolate reductase inhibitor,True,False,True
+proguanil,dihydrofolate reductase inhibitor,False,True,True
+deferiprone,chelating agent,False,True,True
+clioquinol,chelating agent,True,False,True
+deferasirox,chelating agent,True,False,True
+picolinic-acid,chelating agent,True,False,True
+luteolin,glucosidase inhibitor,False,True,True
+voglibose,glucosidase inhibitor,True,False,True
+miglitol,glucosidase inhibitor,True,False,True
+acarbose,glucosidase inhibitor,True,False,True
+tolnaftate,fungal squalene epoxidase inhibitor,True,False,True
+naftifine,fungal squalene epoxidase inhibitor,True,False,True
+liranaftate,fungal squalene epoxidase inhibitor,True,False,True
+terbinafine,fungal squalene epoxidase inhibitor,False,True,True
+protriptyline,tricyclic antidepressant,True,False,True
+nortriptyline,tricyclic antidepressant,False,True,True
+trimipramine,tricyclic antidepressant,True,False,True
+maprotiline,tricyclic antidepressant,True,False,True
+ambrisentan,endothelin receptor antagonist,True,False,True
+bosentan,endothelin receptor antagonist,True,False,True
+atrasentan,endothelin receptor antagonist,True,False,True
+macitentan,endothelin receptor antagonist,False,True,True
+mk-0773,androgen receptor modulator,True,False,True
+ps178990,androgen receptor modulator,True,False,True
+galeterone,androgen receptor modulator,True,False,True
+ostarine,androgen receptor modulator,False,True,True
+imipramine,norepinephrine reputake inhibitor,False,True,True
+trimipramine,norepinephrine reputake inhibitor,True,False,True
+maprotiline,norepinephrine reputake inhibitor,True,False,True
+amoxapine,norepinephrine reputake inhibitor,True,False,True
+paroxetine,selective serotonin reuptake inhibitor (ssri),True,False,True
+escitalopram,selective serotonin reuptake inhibitor (ssri),True,False,True
+fluoxetine,selective serotonin reuptake inhibitor (ssri),True,False,True
+fluvoxamine,selective serotonin reuptake inhibitor (ssri),False,True,True
+eptifibatide,platelet aggregation inhibitor,True,False,True
+indobufen,platelet aggregation inhibitor,False,True,True
+tirofiban,platelet aggregation inhibitor,True,False,True
+etofylline-clofibrate,platelet aggregation inhibitor,True,False,True
+tasisulam,apoptosis stimulant,False,True,True
+imexon,apoptosis stimulant,True,False,True
+betulinic-acid,apoptosis stimulant,True,False,True
+bardoxolone-methyl,apoptosis stimulant,True,False,True
+conivaptan,vasopressin receptor antagonist,True,False,True
+mozavaptan,vasopressin receptor antagonist,True,False,True
+relcovaptan,vasopressin receptor antagonist,True,False,True
+tolvaptan,vasopressin receptor antagonist,False,True,True
+penfluridol,t-type calcium channel blocker,True,False,True
+pinaverium,t-type calcium channel blocker,False,True,True
+zonisamide,t-type calcium channel blocker,True,False,True
+mibefradil,t-type calcium channel blocker,True,False,True
+dapivirine,non-nucleoside reverse transcriptase inhibitor,False,True,True
+rilpivirine,non-nucleoside reverse transcriptase inhibitor,True,False,True
+etravirine,non-nucleoside reverse transcriptase inhibitor,True,False,True
+lersivirine,non-nucleoside reverse transcriptase inhibitor,True,False,True
+rupatadine,platelet activating factor receptor antagonist,True,False,True
+apafant,platelet activating factor receptor antagonist,True,False,True
+PCA-4248,platelet activating factor receptor antagonist,False,True,True
+ginkgolide-b,platelet activating factor receptor antagonist,True,False,True
+phentermine,dopamine uptake inhibitor,True,False,True
+bupropion,dopamine uptake inhibitor,False,True,True
+vanoxerine,dopamine uptake inhibitor,True,False,True
+safinamide,dopamine uptake inhibitor,True,False,True
+"16,16-dimethylprostaglandin-e2",prostanoid receptor agonist,False,True,True
+travoprost,prostanoid receptor agonist,True,False,True
+latanoprost,prostanoid receptor agonist,True,False,True
+bimatoprost,prostanoid receptor agonist,True,False,True
+dutasteride,5 alpha reductase inhibitor,True,False,True
+finasteride,5 alpha reductase inhibitor,False,True,True
+acexamic-acid,5 alpha reductase inhibitor,True,False,True
+merimepodib,inosine monophosphate dehydrogenase inhibitor,True,False,True
+avn-944,inosine monophosphate dehydrogenase inhibitor,False,True,True
+mycophenolate-mofetil,inosine monophosphate dehydrogenase inhibitor,True,False,True
+lcl-161,xiap inhibitor,True,False,True
+birinapant,xiap inhibitor,False,True,True
+gdc-0152,xiap inhibitor,True,False,True
+danusertib,growth factor receptor inhibitor,True,False,True
+lestaurtinib,growth factor receptor inhibitor,False,True,True
+pha-848125,growth factor receptor inhibitor,True,False,True
+azathioprine,dehydrogenase inhibitor,True,False,True
+mycophenolate-mofetil,dehydrogenase inhibitor,True,False,True
+mycophenolic-acid,dehydrogenase inhibitor,False,True,True
+amg-517,trpv antagonist,True,False,True
+naringenin,trpv antagonist,False,True,True
+sb-705498,trpv antagonist,True,False,True
+L-690330,inositol monophosphatase inhibitor,True,False,True
+mycophenolic-acid,inositol monophosphatase inhibitor,False,True,True
+mycophenolate-mofetil,inositol monophosphatase inhibitor,True,False,True
+marimastat,matrix metalloprotease inhibitor,True,False,True
+batimastat,matrix metalloprotease inhibitor,True,False,True
+ilomastat,matrix metalloprotease inhibitor,False,True,True
+PD-0325901,map kinase inhibitor,True,False,True
+bvd-523,map kinase inhibitor,True,False,True
+rottlerin,map kinase inhibitor,False,True,True
+mitomycin-c,dna alkylating agent,False,True,True
+dacarbazine,dna alkylating agent,True,False,True
+ifosfamide,dna alkylating agent,True,False,True
+ticagrelor,purinergic receptor antagonist,False,True,True
+ticlopidine,purinergic receptor antagonist,True,False,True
+NF-449,purinergic receptor antagonist,True,False,True
+dazoxiben,thromboxane synthase inhibitor,False,True,True
+picotamide,thromboxane synthase inhibitor,True,False,True
+ozagrel,thromboxane synthase inhibitor,True,False,True
+tegobuvir,protease inhibitor,False,True,True
+ginkgolide-b,protease inhibitor,True,False,True
+aliskiren,protease inhibitor,True,False,True
+nilotinib,abl kinase inhibitor,True,False,True
+kw-2449,abl kinase inhibitor,True,False,True
+bosutinib,abl kinase inhibitor,False,True,True
+duloxetine,norepinephrine reuptake inhibitor,False,True,True
+nisoxetine,norepinephrine reuptake inhibitor,True,False,True
+venlafaxine,norepinephrine reuptake inhibitor,True,False,True
+bts-54505,dopamine reuptake inhibitor,False,True,True
+mazindol,dopamine reuptake inhibitor,True,False,True
+diclofensine,dopamine reuptake inhibitor,True,False,True
+telcagepant,calcitonin antagonist,True,False,True
+bms-927711,calcitonin antagonist,True,False,True
+mk-3207,calcitonin antagonist,False,True,True
+cutamesine,sigma receptor agonist,False,True,True
+sk&f-10047-(+),sigma receptor agonist,True,False,True
+dextromethorphan,sigma receptor agonist,True,False,True
+bazedoxifene,selective estrogen receptor modulator (serm),True,False,True
+raloxifene,selective estrogen receptor modulator (serm),True,False,True
+tamoxifen,selective estrogen receptor modulator (serm),False,True,True
+clinofibrate,lipase clearing factor inhibitor,True,False,True
+etofylline-clofibrate,lipase clearing factor inhibitor,True,False,True
+timofibrate,lipase clearing factor inhibitor,False,True,True
+sorbinil,aldose reductase inhibitor,True,False,True
+fidarestat,aldose reductase inhibitor,False,True,True
+ellagic-acid,aldose reductase inhibitor,True,False,True
+ursodiol,"nuclear factor erythroid derived, like (nrf2) activator",False,True,True
+bardoxolone-methyl,"nuclear factor erythroid derived, like (nrf2) activator",True,False,True
+dimethyl-fumarate,"nuclear factor erythroid derived, like (nrf2) activator",True,False,True
+ly2157299,tgf beta receptor inhibitor,False,True,True
+D-4476,tgf beta receptor inhibitor,True,False,True
+pirfenidone,tgf beta receptor inhibitor,True,False,True
+rimantadine,antiviral,False,True,True
+vidarabine,antiviral,True,False,True
+ribavirin,antiviral,True,False,True
+torcitabine,dna polymerase inhibitor,True,False,True
+famciclovir,dna polymerase inhibitor,False,True,True
+telbivudine,dna polymerase inhibitor,True,False,True
+tosedostat,peptidase inhibitor,False,True,True
+ginkgolide-b,peptidase inhibitor,True,False,True
+aliskiren,peptidase inhibitor,True,False,True
+pimecrolimus,calcineurin inhibitor,False,True,True
+tacrolimus,calcineurin inhibitor,True,False,True
+cyclosporin-a,calcineurin inhibitor,True,False,True
+leflunomide,dihydroorotate dehydrogenase inhibitor,True,False,True
+sc-12267,dihydroorotate dehydrogenase inhibitor,True,False,True
+brequinar,dihydroorotate dehydrogenase inhibitor,False,True,True
+furosemide,diuretic,True,False,True
+chlortalidone,diuretic,False,True,True
+pyrazinoylguanidine,diuretic,True,False,True
+ulipristal,progesterone receptor antagonist,True,False,True
+gestrinone,progesterone receptor antagonist,True,False,True
+levonorgestrel,progesterone receptor antagonist,False,True,True
+nsi-189,neurotrophic agent,True,False,True
+inosine,neurotrophic agent,False,True,True
+pym50028,neurotrophic agent,True,False,True
+telmesteine,mucolytic agent,True,False,True
+sorbitol,mucolytic agent,True,False,True
+acetylcysteine,mucolytic agent,False,True,True
+mibampator,glutamate receptor modulator,False,True,True
+cx516,glutamate receptor modulator,True,False,True
+s18986,glutamate receptor modulator,True,False,True
+anandamide,cannabinoid receptor agonist,True,False,True
+palmitoylethanolamide,cannabinoid receptor agonist,False,True,True
+gw842166,cannabinoid receptor agonist,True,False,True
+PK-11195,benzodiazepine receptor antagonist,True,False,True
+flumazenil,benzodiazepine receptor antagonist,False,True,True
+ZK-93426,benzodiazepine receptor antagonist,True,False,True
+mk-8033,c-met inhibitor,False,True,True
+PF-04217903,c-met inhibitor,True,False,True
+BMS-777607,c-met inhibitor,True,False,True
+pf-04620110,diacylglycerol o acyltransferase inhibitor,True,False,True
+azd7687,diacylglycerol o acyltransferase inhibitor,False,True,True
+betulinic-acid,diacylglycerol o acyltransferase inhibitor,True,False,True
+BMY-14802,sigma receptor antagonist,False,True,True
+rimcazole,sigma receptor antagonist,True,False,True
+api-001,sigma receptor antagonist,True,False,True
+ammonium-glycyrrhizinate,thrombin inhibitor,False,True,True
+argatroban,thrombin inhibitor,True,False,True
+dabigatran-etexilate,thrombin inhibitor,True,False,True
+meisoindigo,stat inhibitor,False,True,True
+lisofylline,stat inhibitor,True,False,True
+ursolic-acid,stat inhibitor,True,False,True
+guanadrel,adrenergic inhibitor,True,False,True
+guanethidine,adrenergic inhibitor,False,True,True
+venlafaxine,adrenergic inhibitor,True,False,True
+nutlin-3,mdm inhibitor,True,False,True
+rg-7388,mdm inhibitor,False,True,True
+amg-232,mdm inhibitor,True,False,True
+malotilate,protein synthesis stimulant,True,False,True
+nicotinamide,protein synthesis stimulant,True,False,True
+dehydroepiandrosterone,protein synthesis stimulant,False,True,True
+spironolactone,mineralocorticoid receptor antagonist,True,False,True
+canrenoic-acid,mineralocorticoid receptor antagonist,True,False,True
+drospirenone,mineralocorticoid receptor antagonist,False,True,True
+nikethamide,immunostimulant,False,True,True
+metenkephalin,immunostimulant,True,False,True
+dolastatin-10,immunostimulant,True,False,True
+melatonin,melatonin receptor agonist,True,False,True
+agomelatine,melatonin receptor agonist,False,True,True
+ramelteon,melatonin receptor agonist,True,False,True
+vx-661,cftr channel agonist,False,True,True
+vx-809,cftr channel agonist,True,False,True
+ataluren,cftr channel agonist,True,False,True
+ly2811376,beta-secretase inhibitor,True,False,True
+ly2886721,beta-secretase inhibitor,False,True,True
+ellagic-acid,beta-secretase inhibitor,True,False,True
+indoximod,"indoleamine 2,3-dioxygenase inhibitor",False,True,True
+"3,3'-diindolylmethane","indoleamine 2,3-dioxygenase inhibitor",True,False,True
+indole,"indoleamine 2,3-dioxygenase inhibitor",True,False,True
+tetrabenazine,vesicular monoamine transporter inhibitor,True,False,True
+reserpine,vesicular monoamine transporter inhibitor,False,True,True
+triamcinolone-acetonide,corticosteroid agonist,False,True,True
+anecortave-acetate,corticosteroid agonist,True,False,True
+rabeprazole,gastrin inhibitor,False,True,True
+acexamic-acid,gastrin inhibitor,True,False,True
+ubenimex,leukotriene inhibitor,False,True,True
+quiflapon,leukotriene inhibitor,True,False,True
+pimobendan,calcium sensitizer,False,True,True
+levosimendan,calcium sensitizer,True,False,True
+lenalidomide,anticancer agent,False,True,True
+sulforaphane,anticancer agent,True,False,True
+orteronel,androgen biosynthesis inhibitor,False,True,True
+abiraterone-acetate,androgen biosynthesis inhibitor,True,False,True
+bropirimine,interferon inducer,False,True,True
+imiquimod,interferon inducer,True,False,True
+ursolic-acid,quorum sensing signaling modulator,True,False,True
+ellagic-acid,quorum sensing signaling modulator,True,False,True
+anisodamine,lipid peroxidase inhibitor,False,True,True
+ursolic-acid,lipid peroxidase inhibitor,True,False,True
+vx-765,caspase inhibitor,False,True,True
+ursolic-acid,caspase inhibitor,True,False,True
+zk-200775,kainate receptor antagonist,False,True,True
+topiramate,kainate receptor antagonist,True,False,True
+ibutamoren,growth hormone secretagogue receptor agonist,True,False,True
+anamorelin,growth hormone secretagogue receptor agonist,False,True,True
+sulfafurazole,bacterial antifolate,True,False,True
+dapsone,bacterial antifolate,False,True,True
+apd668,"glucose-dependent insulinotropic receptor (gdir, gpr119) agonists",True,False,True
+gsk1292263,"glucose-dependent insulinotropic receptor (gdir, gpr119) agonists",False,True,True
+ipriflavone,bone resorption inhibitor,False,True,True
+tiludronate,bone resorption inhibitor,True,False,True
+azelaic-acid,tyrosinase inhibitor,False,True,True
+rucinol,tyrosinase inhibitor,True,False,True
+omecamtiv-mecarbil,unidentified pharmacological activity,True,False,True
+deoxycholic-acid,unidentified pharmacological activity,True,False,True
+glasdegib,hedgehog pathway inhibitor,True,False,True
+vismodegib,hedgehog pathway inhibitor,False,True,True
+miltefosine,membrane integrity inhibitor,False,True,True
+tetracaine,membrane integrity inhibitor,True,False,True
+taranabant,cannabinoid receptor inverse agonist,False,True,True
+JTE-907,cannabinoid receptor inverse agonist,True,False,True
+azd9668,elastase inhibitor,True,False,True
+dmp-777,elastase inhibitor,False,True,True
+odanacatib,cathepsin inhibitor,False,True,True
+balicatib,cathepsin inhibitor,True,False,True
+azd1208,pim kinase inhibitor,False,True,True
+sgi-1776,pim kinase inhibitor,True,False,True
+perhexiline,carnitine palmitoyltransferase inhibitor,False,True,True
+etomoxir,carnitine palmitoyltransferase inhibitor,True,False,True
+forskolin,adenylyl cyclase activator,False,True,True
+colforsin-daproate,adenylyl cyclase activator,True,False,True
+capsaicin,trpv agonist,False,True,True
+disulfiram,trpv agonist,True,False,True
+taladegib,smoothened receptor antagonist,True,False,True
+vismodegib,smoothened receptor antagonist,False,True,True
+benzbromarone,chloride channel blocker,False,True,True
+fipronil,chloride channel blocker,True,False,True
+cc-401,jnk inhibitor,False,True,True
+cc-930,jnk inhibitor,True,False,True
+sb-756050,g protein-coupled receptor agonist,False,True,True
+deoxycholic-acid,g protein-coupled receptor agonist,True,False,True
+sulbactam,beta lactamase inhibitor,True,False,True
+tazobactam,beta lactamase inhibitor,False,True,True
+almorexant,orexin receptor antagonist,False,True,True
+suvorexant,orexin receptor antagonist,True,False,True
+vtp-27999,renin inhibitor,False,True,True
+aliskiren,renin inhibitor,True,False,True
+combretastatin-a-4,tubulin polymerization inhibitor,False,True,True
+kx2-391,tubulin polymerization inhibitor,True,False,True
+niacin,vitamin b,True,False,True
+cyanocobalamin,vitamin b,True,False,True
+propentofylline,adenosine reuptake inhibitor,True,False,True
+dilazep,adenosine reuptake inhibitor,False,True,True
+oxybenzone,lipase inhibitor,True,False,True
+orlistat,lipase inhibitor,False,True,True
+cianidanol,fatty acid synthase inhibitor,False,True,True
+pyrazinamide,fatty acid synthase inhibitor,True,False,True
+aminolevulinic-acid,oxidative stress inducer,True,False,True
+elesclomol,oxidative stress inducer,False,True,True
+fomepizole,alcohol dehydrogenase inhibitor,False,True,True
+n6022,alcohol dehydrogenase inhibitor,True,False,True
+linsidomine,nitric oxide donor,True,False,True
+pa-824,nitric oxide donor,False,True,True
+levonorgestrel,glucocorticoid receptor antagonist,False,True,True
+aminoglutethimide,glucocorticoid receptor antagonist,True,False,True
+o6-benzylguanine,o6-alkylguanine-dna alkyltransferase inhibitor,False,True,True
+lomeguatrib,o6-alkylguanine-dna alkyltransferase inhibitor,True,False,True
+chloroquine,antimalarial agent,False,True,True
+primaquine,antimalarial agent,True,False,True
+BAY-K8644,calcium channel activator,True,False,True
+cinepazide,calcium channel activator,False,True,True
+DMP-543,acetylcholine release stimulant,True,False,True
+bifemelane,acetylcholine release stimulant,False,True,True
+carbimazole,antithyroid agent,False,True,True
+methimazole,antithyroid agent,True,False,True
+avl-292,bruton's tyrosine kinase (btk) inhibitor,True,False,True
+gdc-0834,bruton's tyrosine kinase (btk) inhibitor,False,True,True
+bendroflumethiazide,sodium/potassium/chloride transporter inhibitor,True,False,True
+etacrynic-acid,sodium/potassium/chloride transporter inhibitor,False,True,True
+glycitein,tumor necrosis factor release inhibitor,True,False,True
+cpi-1189,tumor necrosis factor release inhibitor,False,True,True
+sacubitril,neprilysin inhibitor,False,True,True
+kbg,neprilysin inhibitor,True,False,True
+cyclizine,histamine receptor modulator,True,False,True
+amlexanox,histamine receptor modulator,False,True,True
+ly2090314,glycogen synthase kinase inhibitor,False,True,True
+indirubin,glycogen synthase kinase inhibitor,True,False,True
+nafamostat,serine protease inhibitor,False,True,True
+dabigatran-etexilate,serine protease inhibitor,True,False,True
+agi-6780,isocitrate dehydrogenase inhibitor,False,True,True
+agi-5198,isocitrate dehydrogenase inhibitor,True,False,True
+ixabepilone,microtubule stabilizing agent,False,True,True
+epothilone-b,microtubule stabilizing agent,True,False,True
+dexniguldipine,calmodulin antagonist,False,True,True
+zaldaride,calmodulin antagonist,True,False,True
+AICA-ribonucleotide,ampk activator,False,True,True
+phenformin,ampk activator,True,False,True
+azd7762,chk inhibitor,False,True,True
+"3,3'-diindolylmethane",chk inhibitor,True,False,True
+tirofiban,structural glycoprotein antagonist,True,False,True
+du-728,structural glycoprotein antagonist,False,True,True
+gemcitabine,ribonucleotide reductase inhibitor,False,True,True
+cytarabine,ribonucleotide reductase inhibitor,True,False,True
+zosuquidar,p-glycoprotein inhibitor,False,True,True
+dofequidar,p-glycoprotein inhibitor,True,False,True
+r-428,axl kinase inhibitor,False,True,True
+BMS-777607,axl kinase inhibitor,True,False,True
+altrenogest,progestogen hormone,True,False,True
+norethindrone,progestogen hormone,False,True,True
+sarcosine,glyt-1 inhibitor,False,True,True
+bitopertin,glyt-1 inhibitor,True,False,True
+bitopertin,glycine transporter inhibitor,True,False,True
+ALX-5407,glycine transporter inhibitor,False,True,True
+rimonabant,cannabinoid receptor antagonist,True,False,True
+"cp-945,598",cannabinoid receptor antagonist,False,True,True
+pomalidomide,tumor necrosis factor production inhibitor,False,True,True
+andrographolide,tumor necrosis factor production inhibitor,True,False,True
+l-citrulline,nitric oxide stimulant,True,False,True
+isosorbide,nitric oxide stimulant,False,True,True
+glipizide,sulfonylurea,True,False,True
+gliquidone,sulfonylurea,False,True,True
+emd-1214063,hepatocyte growth factor receptor inhibitor,False,True,True
+BMS-777607,hepatocyte growth factor receptor inhibitor,True,False,True
+timonacic,antioxidant,False,True,True
+rutin,antioxidant,True,False,True
+agp-103,membrane permeability inhibitor,False,True,True
+exalamide,membrane permeability inhibitor,True,False,True
+PF-562271,focal adhesion kinase inhibitor,False,True,True
+defactinib,focal adhesion kinase inhibitor,True,False,True
+canagliflozin,sodium/glucose cotransporter inhibitor,False,True,True
+dapagliflozin,sodium/glucose cotransporter inhibitor,True,False,True
+goserelin-acetate,gonadotropin releasing factor hormone receptor agonist,True,False,True
+triptorelin,gonadotropin releasing factor hormone receptor agonist,False,True,True
+rutin,capillary stabilizing agent,True,False,True
+diosmin,capillary stabilizing agent,False,True,True
+diosmin,aryl hydrocarbon receptor agonist,False,True,True
+indole,aryl hydrocarbon receptor agonist,True,False,True
+ingenol-mebutate,pkc activator,True,False,True
+phorbol-myristate-acetate,pkc activator,False,True,True
+taltirelin,thyrotropin releasing hormone receptor agonist,True,False,True
+protirelin,thyrotropin releasing hormone receptor agonist,False,True,True
+thalidomide,tnf production inhibitor,True,False,True
+roquinimex,tnf production inhibitor,False,True,True
+apocynin,nadph oxidase inhibitor,True,False,True
+trehalose,pharmacological chaperone,True,False,True
+ots167,maternal embryonic leucine zipper kinase inhibitor,True,False,True
+curcumin,histone acetyltransferase inhibitor,True,False,True
+benzylpenicillin,penicillin binding protein inhibitor,True,False,True
+MK-1775,wee1 kinase inhibitor,True,False,True
+ivacaftor,cftr channel potentiator,True,False,True
+econazole,lanosterol demethylase inhibitor,True,False,True
+tirasemtiv,troponin activator,True,False,True
+dinoprost,prostacyclin analog,True,False,True
+almitrine,neurotransmitter agonist,True,False,True
+MLN-4924,nedd activating enzyme inhibitor,True,False,True
+choline-alfoscerate,acetylcholine precursor,True,False,True
+choline-alfoscerate,membrane permeability enhancer,True,False,True
+bay-87-2243,hypoxia inducible factor inhibitor,True,False,True
+sb-743921,kinesin-like spindle protein inhibitor,True,False,True
+epothilone-b,microtubule stimulant,True,False,True
+ethinyl-estradiol,estrogenic component in oral contraceptives,True,False,True
+ethinyl-estradiol,dna directed dna polymerase stimunlant,True,False,True
+sofalcone,mucus protecting agent,True,False,True
+brexpiprazole,dopamine receptor partial agonist,True,False,True
+balaglitazone,ppar receptor partial agonist,True,False,True
+cyanocobalamin,methylmalonyl coa mutase stimulant,True,False,True
+quercetin,polar auxin transport inhibitor,True,False,True
+dihydroergocristine,prolactin inhibitor,True,False,True
+bretazenil,gaba benzodiazepine site receptor partial agonist,True,False,True
+eflornithine,ornithine decarboxylase inhibitor,True,False,True
+probenecid,uricosuric blocker,True,False,True
+ataluren,dystrophin stimulant,True,False,True
+hesperidin,flavanone glycoside,True,False,True
+isoconazole,fungal lanosterol demethylase inhibitor,True,False,True
+diminazene-aceturate,dna intercalating agent,True,False,True
+diminazene-aceturate,angiotensin converting enzyme activator,True,False,True
+safinamide,glutamate inhibitor,True,False,True
+mycophenolate-mofetil,hydroxycarboxylic acid receptor agonist,True,False,True
+amuvatinib,rad51 inhibitor,True,False,True
+dipraglurant,glutamate receptor negative allosteric modulator,True,False,True
+torcetrapib,cholesteryl ester transfer protein inhibitor,True,False,True
+telotristat,serotonin release inhibitor,True,False,True
+epinephrine,neurotransmitter,True,False,True
+triclosan,enoyl-[acyl-carrier-protein] reductase [nadh] inhibitor,True,False,True
+deoxycholic-acid,biliverdin reductase a activator,True,False,True
+deoxycholic-acid,g protein coupled receptor agonist,True,False,True
+bumetanide,solute carrier family member inhibitor,True,False,True
+pf-03758309,p21 activated kinase inhibitor,True,False,True
+sulforaphane,aryl hydrocarbon receptor antagonist,True,False,True
+cyproterone-acetate,testosterone receptor antagonist,True,False,True
+maribavir,cytomegalovirus inhibitor,True,False,True
+at13387,hsp antagonist,True,False,True
+clofazimine,gk0582 inhibitor,True,False,True
+PX-12,thioredoxin inhibitor,True,False,True
+climbazole,enzyme inducer,True,False,True
+sep-227900,d-amino acid oxidase inhibitor,True,False,True
+tolfenamic-acid,prostanoid receptor inhibitor,True,False,True
+tolfenamic-acid,leukotriene synthesis inhibitor,True,False,True
+mepacrine,tp53 activator,True,False,True
+mepacrine,cytokine production inhibitor,True,False,True
+xbd173,benzodiazepine receptor ligand,True,False,True
+nizofenone,ion channel antagonist,True,False,True
+exherin,cadherin antagonist,True,False,True
+dicoumarol,nadph inhibitor,True,False,True
+linsitinib,igf-1 inhibitor,True,False,True
+azd3514,drugs acting on androgen receptor,True,False,True
+nelarabine,t cell inhibitor,True,False,True
+t-5224,ap inhibitor,True,False,True
+azd1981,crth receptor antagonist,True,False,True
+pimavanserin,serotonin receptor inverse agonist,True,False,True
+ZD-7288,hcn channel blocker,True,False,True
+folic-acid,folate receptor ligand,True,False,True
+phensuximide,succinimide antiepileptic,True,False,True
+ly2874455,fgfr antagonist,True,False,True
+bevirimat-dimeglumine,hiv gag inhibitor,True,False,True
+bevirimat-dimeglumine,hiv capsid assembly inhibitor,True,False,True
+mk-0893,glucagon receptor antagonist,True,False,True
+thioctic-acid,protein kinase activator,True,False,True
+thioctic-acid,aldehyde dehydrogenase activator,True,False,True
+abiraterone-acetate,steroid sulfatase inhibitor,True,False,True
+abiraterone-acetate,"17,20 lyase inhibitor",True,False,True
+z160,n-type calcium channel blocker,True,False,True
+clotrimazole,imidazoline ligand,True,False,True
+ellagic-acid,glutathione transferase inhibitor,True,False,True
+asc-j9,androgen receptor enhancer,True,False,True
+torasemide,electrolyte reabsorption inhibitor,True,False,True
+mk-8245,stearoyl-coa desaturase inhibitor,True,False,True
+ebselen,h+/k+-atpase inhibitor,True,False,True
+ebselen,glutathione peroxidase agonist,True,False,True
+tolperisone,voltage-gated sodium channel blocker,True,False,True
+imiquimod,tlr agonist,True,False,True
+propafenone,antiarrhythmic,True,False,True
+physostigmine,cholinesterase inhibitor,True,False,True
+pritelivir,helicase primase inhibitor,True,False,True
+molsidomine,guanylyl cyclase activator,True,False,True
+ursolic-acid,tyrosine phosphatase inhibitor,True,False,True
+ursolic-acid,steryl sulfatase inhibitor,True,False,True
+ursolic-acid,11-beta hydroxysteroid dehydrogenase inhibitor,True,False,True
+nsc-4644,sterol regulatory element binding protein (srebp) inhibitor,True,False,True
+moxidectin,chloride channel antagonist,True,False,True
+CI-966,gat inhibitor,True,False,True
+pirenoxine,age inhibitor,True,False,True
+trilostane,3beta-hydroxy-delta5-steroid dehydrogenase inhibitor,True,False,True
+aminocaproic-acid,plasminogen activator inhibitor,True,False,True
+dpi-201106,sodium channel activator,True,False,True
+meclozine,car agonist,True,False,True
+palomid-529,fibroblast growth factor inhibitor,True,False,True
+resveratrol,sirt activator,True,False,True
+gemfibrozil,lipoprotein lipase activator,True,False,True
+tiludronate,osteoclast inhibitor,True,False,True
+sulfasalazine,antirheumatic drug,True,False,True
+tolcapone,catechol o methyltransferase inhibitor,True,False,True
+varespladib,secretory phospholipase inhibitor,True,False,True
+entecavir,dna replication inhibitor,True,False,True
+racecadotril,enkephalinase inhibitor,True,False,True
+arbutin,melanin inhibitor,True,False,True
+i-bet-762,bromodomain inhibitor,True,False,True
+omecamtiv-mecarbil,cardiac myosin activator,True,False,True
+gimeracil,dihydropyrimidine dehydrogenase inhibitor,True,False,True
+danegaptide,gap junction modulator,True,False,True
+pd123319,angiotensin antagonist,True,False,True
+lacitol,osmosis stimulant,True,False,True
+oxfendazole,anthelmintic agent,True,False,True
+vgx-1027,tumor necrosis factor receptor antagonist,True,False,True
+disulfiram,aldehyde dehydrogenase inhibitor,True,False,True
+lx1031,tryptophan hydroxylase inhibitor,True,False,True
+pemirolast,mediator release inhibitor,True,False,True
+methocarbamol,muscle relaxant,True,False,True
+ivabradine,hcn channel antagonist,True,False,True
+dimethyl-fumarate,kelch-like ech-associated protein ligand,True,False,True
+actarit,interleukin receptor agonist,True,False,True
+mbx-2982,glucose dependent insulinotropic receptor agonist,True,False,True
+aliskiren,antihypertensive agent,True,False,True
+levothyroxine,thyroid hormone stimulant,True,False,True
+ketotifen,histamine receptor ligand,True,False,True
+camicinal,motilin receptor agonist,True,False,True
+tic10,trail modulator,True,False,True
+homochlorcyclizine,antihistamine,True,False,True
+tafamidis-meglumine,transthyretin stabilizer,True,False,True
+tafamidis-meglumine,transthyretin amyloid inhibitor,True,False,True
+bardoxolone-methyl,nitric oxide production inhibitor,True,False,True
+bardoxolone-methyl,ikk-1 (ikk-alpha) inhibitors,True,False,True
+bardoxolone-methyl,heme oxygenase activators,True,False,True
+bardoxolone-methyl,glutathione reductase (nadph) activators,True,False,True
+senicapoc,intermediate conductance potassium channel blocker,True,False,True
+kpt-330,exportin antagonist,True,False,True
+atomoxetine,norepinephrine transporter inhibitor,True,False,True
+fostamatinib,syk inhibitor,True,False,True
+lapatinib,erbb2 inhibitor,True,False,True
+colforsin-daproate,adenylate cyclase stimulant,True,False,True
+cts-1027,metalloproteinase inhibitor,True,False,True
+fipronil,gaba gated chloride channel blocker,True,False,True
+e-2012,gamma secretase modulator,True,False,True
+faropenem,lactamase inhibitor,True,False,True
+desmopressin-acetate,vasopressin receptor agonist,True,False,True
+dasatinib,ephrin inhibitor,True,False,True
+delivert,angiotensin receptor agonist,True,False,True
+fomocaine,voltage-gated sodium channel modulator,True,False,True
+pf-04457845,faah inhibitor,True,False,True
+tetrahydrouridine,cytidine deaminase inhibitor,True,False,True
+sobetirome,thyroid hormone receptor agonist,True,False,True
+iowh032,cftr channel antagonist,True,False,True
+sodium-tanshinone-ii-a-sulfonate,inward rectifier potassium channel activator,True,False,True
+riociguat,guanylate cyclase stimulant,True,False,True
+MLN-8054,mitotic inhibitor,True,False,True
+mepazine,mucosa associated lymphoid tissue lymphoma translocation protein 1 (malt1) inhibitor,True,False,True
+ginkgolide-b,glycine receptor antagonist,True,False,True
+tramiprosate,beta amyloid aggregation inhibitor,True,False,True
+cx-4945,casein kinase inhibitor,True,False,True
+resatorvid,toll-like receptor antagonist,True,False,True
+carglumic-acid,carbamoyl phosphate synthase activator,True,False,True
+tiagabine,gaba uptake inhibitor,True,False,True
+pasireotide,somatostatin receptor agonist,True,False,True
+niacin,nad precursor with lipid lowering effects,True,False,True
+selamectin,nematocide,True,False,True
+phenytoin,hydantoin antiepileptic,True,False,True
+lasalocid,bacterial permeability inducer,True,False,True
+mifobate,ppar receptor antagonist,True,False,True
+carbamazepine,carboxamide antiepileptic,True,False,True
+probucol,atherogenesis inhibitor,True,False,True
+fludarabine-phosphate,dna repair enzyme inhibitor,True,False,True
+phenylacetylglutamine,dna methylase inhibitor,True,False,True
+ibrutinib,btk inhibitor,True,False,True
+diacerein,interleukin inhibitor,True,False,True
+amitifadine,serotonin transporter (sert) inhibitor,True,False,True
+lacosamide,collapsin response mediator protein stimulant,True,False,True
+lacosamide,collapsin response mediator protein inhibitor,True,False,True
+bucladesine,camp stimulant,True,False,True
+acenocoumarol,vitamin k antagonist,True,False,True
+trimetazidine,3-ketoacyl coa thiolase inhibitor,True,False,True
+azd7545,pyruvate dehydrogenase kinase inhibitor,True,False,True
+cinaciguat,guanylate cyclase activator,True,False,True
+sodium-gualenate,antacid,True,False,True
+broxuridine,antimetabolite,True,False,True
+menadione,phosphatase inhibitor,True,False,True
+menadione,mitochondrial dna polymerase inhibitor,True,False,True
+resiquimod,toll-like receptor agonist,True,False,True
+anidulafungin,"fungal 1,3-beta-d-glucan synthase inhibitor",True,False,True
+EX-527,sirt inhibitor,True,False,True
+hc-030031,trpa1 channel blocker,True,False,True
+noscapine,bradykinin receptor antagonist,True,False,True
+carbenoxolone,11-beta-hsd1 inhibitor,True,False,True
+baicalin,beta glucuronidase inhibitor,True,False,True
+lomitapide,microsomal trigylceride transfer protein inhibitor,True,False,True
+3-deazaadenosine,adenosylhomocysteinase inhibitor,True,False,True
+lonidamine,glucokinase inhibitor,True,False,True
+dolastatin-10,tubulin polymerisation inhibitor,True,False,True
+betrixaban,coagulation inhibitor,True,False,True
+rutin,nitric oxide scavenger,True,False,True
+r(-)-apomorphine,trpa1 modulator,True,False,True
+carbachol,cholinergic receptor agonist,True,False,True
+IKK-2-inhibitor-V,ikk inhibitor,True,False,True
+tagatose,phosphorylase inhibitor,True,False,True
+st-1859,antiamyloidogenic agent,True,False,True
+acecainide,polarization inhibitor,True,False,True
+oxybuprocaine,local anesthetic,True,False,True
+minoxidil,vasodilator,True,False,True
+minoxidil,kir6 channel (katp) activator,True,False,True
+minoxidil,katp activator,True,False,True
+bms-599626,protein tyrosine kinase inhibitor,True,False,True
+cpi-613,pyruvate dehydrogenase inhibitor,True,False,True
+uk-383367,procollagen c-endopeptidase inhibitor,True,False,True
+lisofylline,interleukin receptor antagonist,True,False,True
+ly2334737,antitumor agent,True,False,True
+pinacidil,atp channel activator,True,False,True
+cholic-acid,bile acid,True,False,True
+sta-5326,interleukin synthesis inhibitor,True,False,True
+BMS-777607,macrophage inhibitor,True,False,True
+clonazepam,gaba benzodiazepine site receptor agonist,True,False,True
+"3,3'-diindolylmethane",cytochrome p450 activator,True,False,True
+estrone,estrogenic hormone,True,False,True
+betulinic-acid,sars coronavirus 3c-like protease inhibitor,True,False,True
+betulinic-acid,nfkb pathway activator,True,False,True
+betulinic-acid,caspase activator,True,False,True
+efaproxiral,haemoglobin oxygen release stimulant,True,False,True
+rilmenidine,imidazoline receptor agonist,True,False,True
+bemegride,chemoreceptor agonist,True,False,True
+dofequidar,mrp inhibitor,True,False,True
+swainsonine,alpha mannosidase inhibitor,True,False,True
+berberine,ldl receptor activator,True,False,True
+tasquinimod,s100a9 inhibitor,True,False,True
+AT-7519,cell cycle inhibitor,True,False,True
+pentamidine,anti-pneumocystis agent,True,False,True
+acivicin,gamma glutamyltransferase inhibitors,True,False,True
+tipiracil,thymidine phosphorylase inhibitor,True,False,True
+letermovir,cmv terminase inhibitor,True,False,True
+cladribine,adenosine deaminase inhibitor,True,False,True
+amiprilose,cd antagonist,True,False,True
+indapamide,thiazide diuretic,True,False,True
+oseltamivir-carboxylate,neuraminidase inhibitor,True,False,True
+thiomersal,other antibiotic,True,False,True
