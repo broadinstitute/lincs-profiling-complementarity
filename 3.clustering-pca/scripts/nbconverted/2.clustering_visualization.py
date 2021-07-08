@@ -38,6 +38,9 @@ np.warnings.filterwarnings('ignore', category=np.VisibleDeprecationWarning)
 cp_level4_path = '../1.Data-exploration/Profiles_level4/cell_painting/cellpainting_lvl4_cpd_replicate_datasets'
 L1000_level4_path = "../1.Data-exploration/Profiles_level4/L1000/L1000_lvl4_cpd_replicate_datasets"
 
+l1000_results_dir = "results/L1000"
+cp_results_dir = "results/cell_painting"
+
 
 # In[3]:
 
@@ -57,22 +60,22 @@ df_lvl4_cp.shape
 # In[5]:
 
 
-df_silh_L1000 = pd.read_csv(os.path.join(L1000_level4_path, 'L1000_silhouette_scores.csv'))
-df_db_L1000 = pd.read_csv(os.path.join(L1000_level4_path, 'L1000_db_scores.csv'))
+df_silh_L1000 = pd.read_csv(os.path.join(l1000_results_dir, 'L1000_silhouette_scores.csv'))
+df_db_L1000 = pd.read_csv(os.path.join(l1000_results_dir, 'L1000_db_scores.csv'))
 
 
 # In[6]:
 
 
-df_silh_cp = pd.read_csv(os.path.join(cp_level4_path, 'cp_silhouette_scores.csv'))
-df_db_cp = pd.read_csv(os.path.join(cp_level4_path, 'cp_db_scores.csv'))
+df_silh_cp = pd.read_csv(os.path.join(cp_results_dir, 'cp_silhouette_scores.csv'))
+df_db_cp = pd.read_csv(os.path.join(cp_results_dir, 'cp_db_scores.csv'))
 
 
 # In[7]:
 
 
-df_cp_bic = pd.read_csv(os.path.join(cp_level4_path, 'cp_bic_scores.csv'))
-df_L1_bic = pd.read_csv(os.path.join(L1000_level4_path, 'L1000_bic_scores.csv'))
+df_cp_bic = pd.read_csv(os.path.join(cp_results_dir, 'cp_bic_scores.csv'))
+df_L1_bic = pd.read_csv(os.path.join(l1000_results_dir, 'L1000_bic_scores.csv'))
 
 
 # In[8]:
