@@ -20,6 +20,27 @@ figure_theme <- (
     )
 )
 
+# Select MOA colors
+moa_targets <- c(
+    "plk inhibitor" = "PLK inhibitor",
+    "proteasome inhibitor" = "Proteasome inhibitor",
+    "cdk inhibitor" = "CDK inhibitor",
+    "tubulin inhibitor" = "Tubulin inhibitor",
+    "hsp inhibitor" = "HSP inhibitor",
+    "xiap inhibitor" = "XIAP inhibitor",
+    "other" = "Other"
+)
+
+moa_colors <- c(
+    "plk inhibitor" = "#332288",
+    "proteasome inhibitor" = "#117733",
+    "cdk inhibitor" = "#88CCEE",
+    "tubulin inhibitor" = "#CC6677",
+    "hsp inhibitor" = "#FF9A00",
+    "xiap inhibitor" = "#882255",
+    "other" = "grey"
+)
+
 # Set heatmap legend info
 legend_scale_cols = circlize::colorRamp2(c(-1, 0, 1), c("blue", "white", "red"))
 lgd_title_fontsize = 9

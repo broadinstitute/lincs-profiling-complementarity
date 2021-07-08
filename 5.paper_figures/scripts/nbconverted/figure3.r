@@ -16,26 +16,6 @@ cp_df <- load_embeddings_data(assay="cellpainting", results_dir = results_dir)
 l1000_df <- load_embeddings_data(assay="l1000", results_dir = results_dir)
 
 # Create compounds to highlight
-moa_targets <- c(
-    "plk inhibitor" = "PLK inhibitor",
-    "proteasome inhibitor" = "Proteasome inhibitor",
-    "cdk inhibitor" = "CDK inhibitor",
-    "tubulin inhibitor" = "Tubulin inhibitor",
-    "hsp inhibitor" = "HSP inhibitor",
-    "xiap inhibitor" = "XIAP inhibitor",
-    "other" = "Other"
-)
-
-moa_colors <- c(
-    "plk inhibitor" = "#332288",
-    "proteasome inhibitor" = "#117733",
-    "cdk inhibitor" = "#88CCEE",
-    "tubulin inhibitor" = "#CC6677",
-    "hsp inhibitor" = "#FF9A00",
-    "xiap inhibitor" = "#882255",
-    "other" = "grey"
-)
-
 moa_targets_size_values <- c(rep(1, length(moa_targets) -1), 0.1)
 names(moa_targets_size_values) <- names(moa_targets)
 
