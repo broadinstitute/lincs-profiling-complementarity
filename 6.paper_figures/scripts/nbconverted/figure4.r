@@ -25,6 +25,7 @@ cp_corr_df <- cp_subset_df %>%
     Hmisc::rcorr(type = "pearson")
 
 cp_corr_df <- cp_corr_df$r
+print(dim(cp_corr_df))
 
 # L1000
 l1000_subset_df <- l1000_df %>%
@@ -36,6 +37,7 @@ l1000_corr_df <- l1000_subset_df %>%
     Hmisc::rcorr(type = "pearson")
 
 l1000_corr_df <- l1000_corr_df$r
+print(dim(l1000_corr_df))
 
 cp_heat_gg <- grid::grid.grabExpr(
     draw(
@@ -179,6 +181,8 @@ ss_df <- cp_ss_df %>%
 
 output_file <- file.path("data", "compound_activity_full.tsv")
 ss_df %>% readr::write_tsv(output_file)
+
+ss_df$dose <- factor(ss_df$dose, levels = dose_order)
 
 print(dim(ss_df))
 head(ss_df, 2)
