@@ -63,6 +63,10 @@ significant_compounds_df <- significant_compounds_df %>%
 
 significant_compounds_df$dose <- factor(significant_compounds_df$dose, levels = dose_order)
 
+# Output file for further use
+output_file <- file.path("data", "significant_compounds_by_threshold_both_assays.tsv.gz")
+significant_compounds_df %>% readr::write_tsv(output_file)
+
 head(significant_compounds_df, 3)
 
 panel_a_gg <- (

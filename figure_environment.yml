@@ -25,3 +25,4 @@ dependencies:
 - conda-forge::r-gridextra
 - conda-forge::r-hmisc
 - conda-forge::r-devtools
+- bioconda::bioconductor-complexheatmap
