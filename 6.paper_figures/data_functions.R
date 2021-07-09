@@ -3,6 +3,7 @@ suppressPackageStartupMessages(library(dplyr))
 default_results_dir <- file.path("../1.Data-exploration/Profiles_level4/results")
 default_consensus_dir <- file.path("../1.Data-exploration/Consensus/")
 default_umap_dir <- file.path("../1.Data-exploration/Profiles_level4/")
+default_model_directory <- file.path("../2.MOA-prediction/L1000_CP_model_predictions/")
 
 
 load_percent_replicating <- function(assay, results_dir = default_results_dir) {
@@ -179,4 +180,32 @@ load_consensus_signatures<- function(assay, data_dir = default_consensus_dir, ce
     
     return(consensus_df)
     
+}
+
+
+load_model_predictions <- function(model, assay, train_or_test = "train", shuffle = FALSE, model_dir = default_model_directory) {
+    # Construct a file name
+    if (assay == "cellpainting") {
+        prefix = "cp"
+    } else if (assay == "l1000") {
+        prefix = "L1000"
+    } else if (assay == "both") {
+        prefix = "cp_L1000"
+    }
+    
+    if (train_or_test == "train") {
+        suffix = ".csv.gz"
+    } else if (train_or_test == "test") {
+        suffix = ".csv"
+    }
+    
+    if (shuffle) {
+        suffix = paste0("_shuffle", suffix)
+    }
+    
+    file_name <- paste0(prefix, "_", train_or_test, "_preds_", model, suffix)
+    file_name <- file.path(model_dir, file_name)
+    
+    df <- readr::read_csv(file_name)
+    return(df)
 }
