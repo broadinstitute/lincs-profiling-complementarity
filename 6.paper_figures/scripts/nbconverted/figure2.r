@@ -164,6 +164,10 @@ plot_ready_pm_df <- pm_df %>%
         )
     )
 
+# Output file for further use
+output_pm_file <- file.path("data", "significant_moas_by_threshold_both_assays.tsv.gz")
+plot_ready_pm_df %>% readr::write_tsv(output_pm_file)
+
 head(plot_ready_pm_df)
 
 passing_colors <- unique(plot_ready_pm_df$moa_color_passing)
