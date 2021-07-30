@@ -222,16 +222,33 @@ def feature_selection(df_data):
 
 df_lvl5 = feature_selection(df_lvl5)
 
+print(df_lvl5.shape)
+df_lvl5.head()
+
 
 # In[12]:
 
+
+# Load common compounds
+common_file = pathlib.Path("..", "..", "..", "6.paper_figures", "data", "significant_compounds_by_threshold_both_assays.tsv.gz")
+common_df = pd.read_csv(common_file, sep="\t")
+
+common_compounds = common_df.compound.unique().tolist()
+print(len(common_compounds))
+
+
+# In[13]:
+
+
+# Only calculate using common compounds
+df_lvl5 = df_lvl5.query("pert_iname in @common_compounds")
 
 df_lvl5.shape
 
 
 # ### - Get the median scores for the MOAs based on the correlation values of cpds in the same MOAs
 
-# In[13]:
+# In[14]:
 
 
 def get_median_score(moa_list, df_dose, df_cpd_agg):
@@ -270,7 +287,7 @@ def get_median_score(moa_list, df_dose, df_cpd_agg):
     return moa_median_score, moa_cpds
 
 
-# In[14]:
+# In[15]:
 
 
 def check_moa(moa_med_score, moa_cpds, df_moa):
@@ -298,7 +315,7 @@ def check_moa(moa_med_score, moa_cpds, df_moa):
     return moa_med_score, moa_cpds
 
 
-# In[15]:
+# In[16]:
 
 
 def get_moa_medianscores(df_moa):
@@ -315,7 +332,7 @@ def get_moa_medianscores(df_moa):
     and list of compounds for all doses.
     
     """
-    dose_list = list(set(df_moa['dose'].unique().tolist()))[1:]
+    dose_list = list(set(df_moa['dose'].unique().tolist()))
     
     for dose in dose_list:
         df_dose = df_moa[df_moa['dose'] == dose].copy()
@@ -339,13 +356,13 @@ def get_moa_medianscores(df_moa):
     return df_moa_med_score
 
 
-# In[16]:
+# In[17]:
 
 
 df_moa_median_scores = get_moa_medianscores(df_lvl5)
 
 
-# In[17]:
+# In[18]:
 
 
 df_moa_median_scores.shape
@@ -355,7 +372,7 @@ df_moa_median_scores.shape
 # 
 # #### The reason why we are excluding MOAs with median value == 1, is because they have only ONE compound and as a result the median correlation value will be just 1, and there will not be differences in values btw different doses.
 
-# In[18]:
+# In[19]:
 
 
 def exclude_moa(df_moa_med_score):
@@ -387,25 +404,25 @@ def exclude_moa(df_moa_med_score):
     return df_moa_medians
 
 
-# In[19]:
+# In[20]:
 
 
 df_moa_medn_scores = exclude_moa(df_moa_median_scores)
 
 
-# In[20]:
+# In[21]:
 
 
 df_moa_medn_scores.isnull().sum()
 
 
-# In[21]:
+# In[22]:
 
 
 df_moa_medn_scores.shape
 
 
-# In[22]:
+# In[23]:
 
 
 def seperate_cpds_values(df_moa_medians):
@@ -433,13 +450,13 @@ def seperate_cpds_values(df_moa_medians):
     return df_moa_cpds, df_moa_values
 
 
-# In[23]:
+# In[24]:
 
 
 df_moa_cpds, df_moa_vals = seperate_cpds_values(df_moa_medn_scores)
 
 
-# In[24]:
+# In[25]:
 
 
 def get_moa_size(df_moa_cpds, df_moa_values):
@@ -475,25 +492,25 @@ def get_moa_size(df_moa_cpds, df_moa_values):
     return df_moa_cpds, df_moa_values
 
 
-# In[25]:
+# In[26]:
 
 
 df_moa_cpds, df_moa_vals = get_moa_size(df_moa_cpds, df_moa_vals)
 
 
-# In[26]:
+# In[27]:
 
 
 df_moa_cpds.head()
 
 
-# In[27]:
+# In[28]:
 
 
 df_moa_vals.head(10)
 
 
-# In[28]:
+# In[29]:
 
 
 # Output analytical file
@@ -504,7 +521,7 @@ print(analytical_set_df.shape)
 analytical_set_df.to_csv(output_file, index=False, sep="\t")
 
 
-# In[29]:
+# In[30]:
 
 
 def check_moas_cpds_doses(df_moa_cpds):
@@ -532,13 +549,13 @@ def check_moas_cpds_doses(df_moa_cpds):
     return df_moa_not_equals_cpds
 
 
-# In[30]:
+# In[31]:
 
 
 data_moa_not_equals_cpds = check_moas_cpds_doses(df_moa_cpds) ##MOAs with not the same cpds in all doses
 
 
-# In[31]:
+# In[32]:
 
 
 data_moa_not_equals_cpds.shape
@@ -546,7 +563,7 @@ data_moa_not_equals_cpds.shape
 
 # ### - MOAS that do not have the same number of/same compounds in all Doses
 
-# In[32]:
+# In[33]:
 
 
 for moa in data_moa_not_equals_cpds.index:
@@ -558,7 +575,7 @@ for moa in data_moa_not_equals_cpds.index:
 
 # ### - Save dataframes to .csv files
 
-# In[33]:
+# In[34]:
 
 
 def conv_list_to_str_cols(df_moa_cpds):
@@ -572,7 +589,7 @@ def conv_list_to_str_cols(df_moa_cpds):
     return df_moa_cpds_nw
 
 
-# In[34]:
+# In[35]:
 
 
 def save_to_csv(df, path, file_name):
@@ -584,25 +601,25 @@ def save_to_csv(df, path, file_name):
     df.to_csv(os.path.join(path, file_name), index = False)
 
 
-# In[35]:
+# In[36]:
 
 
 save_to_csv(df_lvl5, 'moa_sizes_consensus_datasets', 'modz_level5_data.csv')
 
 
-# In[36]:
+# In[37]:
 
 
 save_to_csv(df_moa_vals, 'moa_sizes_consensus_datasets', 'modz_moa_median_scores.csv')
 
 
-# In[37]:
+# In[38]:
 
 
 save_to_csv(conv_list_to_str_cols(df_moa_cpds), 'moa_sizes_consensus_datasets', 'L1000_moa_compounds.csv')
 
 
-# In[38]:
+# In[39]:
 
 
 # Output files for visualization
