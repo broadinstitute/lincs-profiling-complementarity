@@ -44,6 +44,12 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 np.warnings.filterwarnings('ignore', category=np.VisibleDeprecationWarning)
 
 
+# In[ ]:
+
+
+np.random.seed(42)
+
+
 # In[2]:
 
 
