@@ -339,7 +339,7 @@ save_to_csv(df_cpd_med_score.reset_index().rename({'index':'cpd'}, axis = 1),
 # In[30]:
 
 
-save_to_csv(df_level4_new, 'cellpainting_lvl4_cpd_replicate_datasets', 
+save_to_csv(df_level4_new_subsample, 'cellpainting_lvl4_cpd_replicate_datasets', 
             'cp_level4_cpd_replicates_subsample.csv.gz', compress="gzip")
 
 
