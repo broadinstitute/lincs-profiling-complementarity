@@ -50,18 +50,24 @@ cp_level4_path = "cellpainting_lvl4_cpd_replicate_datasets"
 # In[3]:
 
 
-df_level4 = pd.read_csv(os.path.join(cp_level4_path, 'cp_level4_cpd_replicates.csv.gz'), 
-                        compression='gzip',low_memory = False)
-df_cpd_med_scores = pd.read_csv(os.path.join(cp_level4_path, 'cpd_replicate_median_scores.csv'))
+file_indicator = "_subsample"
 
 
 # In[4]:
 
 
-##cpds_replicates_dict = dict(zip(df_cpd_med_scores['cpd'], df_cpd_med_scores['no_of_replicates']))
+df_level4 = pd.read_csv(os.path.join(cp_level4_path, f'cp_level4_cpd_replicates{file_indicator}.csv.gz'), 
+                        compression='gzip',low_memory = False).rename(columns={"cpd_size": "no_of_replicates"})
+df_cpd_med_scores = pd.read_csv(os.path.join(cp_level4_path, f'cpd_replicate_median_scores{file_indicator}.csv')).rename(columns={"cpd_size": "no_of_replicates"})
 
 
 # In[5]:
+
+
+##cpds_replicates_dict = dict(zip(df_cpd_med_scores['cpd'], df_cpd_med_scores['no_of_replicates']))
+
+
+# In[6]:
 
 
 metadata_cols = ['Metadata_broad_sample', 'Metadata_pert_id', 'Metadata_dose_recode', 
@@ -69,13 +75,13 @@ metadata_cols = ['Metadata_broad_sample', 'Metadata_pert_id', 'Metadata_dose_rec
                  'broad_id', 'pert_iname', 'moa', 'replicate_name']
 
 
-# In[6]:
+# In[7]:
 
 
 n_cp_feats = df_level4.drop(metadata_cols, axis=1).shape[1]
 
 
-# In[7]:
+# In[8]:
 
 
 def compute_signature_strength(cpds_list, df, metadata_cols = metadata_cols):
@@ -94,7 +100,7 @@ def compute_signature_strength(cpds_list, df, metadata_cols = metadata_cols):
     return cpds_SS
 
 
-# In[8]:
+# In[9]:
 
 
 def compute_mas(cpds_SS, cpds_median_score, dose, num_feats):
@@ -106,7 +112,7 @@ def compute_mas(cpds_SS, cpds_median_score, dose, num_feats):
     return cpds_MAS
 
 
-# In[9]:
+# In[10]:
 
 
 def compute_SS_MAS(df, cpds_median_score, num_cp_feats = n_cp_feats):
@@ -132,33 +138,33 @@ def compute_SS_MAS(df, cpds_median_score, num_cp_feats = n_cp_feats):
     return df_cpd_ss, df_cpd_mas
 
 
-# In[10]:
+# In[11]:
 
 
 df_med_scores = df_cpd_med_scores.set_index('cpd').rename_axis(None, axis=0).drop(['no_of_replicates'], axis = 1)
 cpd_med_scores = df_med_scores.T.to_dict('list')
 
 
-# In[11]:
+# In[12]:
 
 
 df_ss_score, df_mas_score = compute_SS_MAS(df_level4, cpd_med_scores)
 
 
-# In[12]:
+# In[13]:
 
 
 df_ss_score = df_ss_score.reset_index().rename({'index':'cpd'}, axis = 1)
 df_mas_score = df_mas_score.reset_index().rename({'index':'cpd'}, axis = 1)
 
 
-# In[13]:
+# In[14]:
 
 
 df_cpd_med_scores.drop(['no_of_replicates'],axis = 1, inplace = True)
 
 
-# In[14]:
+# In[15]:
 
 
 def rename_cols(df):
@@ -169,7 +175,7 @@ def rename_cols(df):
     return df
 
 
-# In[15]:
+# In[16]:
 
 
 df_cpd_med_scores = rename_cols(df_cpd_med_scores)
@@ -177,7 +183,7 @@ df_ss_score = rename_cols(df_ss_score)
 df_mas_score = rename_cols(df_mas_score)
 
 
-# In[16]:
+# In[17]:
 
 
 def melt_df(df, col_name):
@@ -189,7 +195,7 @@ def melt_df(df, col_name):
     return df
 
 
-# In[17]:
+# In[18]:
 
 
 def merge_ss_mas_med_scores(df_med_scores, df_ss_scores, df_mas_scores):
@@ -206,19 +212,19 @@ def merge_ss_mas_med_scores(df_med_scores, df_ss_scores, df_mas_scores):
     return df_merged
 
 
-# In[18]:
+# In[19]:
 
 
 df_all_vals = merge_ss_mas_med_scores(df_cpd_med_scores, df_ss_score, df_mas_score)
 
 
-# In[19]:
+# In[20]:
 
 
 df_all_vals.head(10)
 
 
-# In[20]:
+# In[21]:
 
 
 def save_to_csv(df, path, file_name, compress=None):
@@ -230,35 +236,35 @@ def save_to_csv(df, path, file_name, compress=None):
     df.to_csv(os.path.join(path, file_name), index=False, compression=compress)
 
 
-# In[21]:
+# In[22]:
 
 
-save_to_csv(df_all_vals, cp_level4_path, 'cp_all_scores.csv')
+save_to_csv(df_all_vals, cp_level4_path, f'cp_all_scores{file_indicator}.csv')
 
 
 # ### - DMSO MAS and replicate correlation
 # 
 # - Calculate 95th percentile of DMSO MAS score
 
-# In[22]:
+# In[23]:
 
 
 df_dmso = df_level4[df_level4['pert_iname'] == 'DMSO'].copy()
 
 
-# In[23]:
+# In[24]:
 
 
 df_dmso['Metadata_Plate'].unique()
 
 
-# In[24]:
+# In[25]:
 
 
 len(df_dmso['Metadata_Plate'].unique())
 
 
-# In[25]:
+# In[26]:
 
 
 def compute_dmso_SS_median_score(df):
@@ -288,13 +294,13 @@ def compute_dmso_SS_median_score(df):
     return dmso_median_scores, dmso_ss_scores
 
 
-# In[26]:
+# In[27]:
 
 
 dmso_median_scores, dmso_ss_scores = compute_dmso_SS_median_score(df_dmso)
 
 
-# In[27]:
+# In[28]:
 
 
 def compute_dmso_MAS(dmso_median, dmso_ss, num_feats = n_cp_feats):
@@ -308,25 +314,25 @@ def compute_dmso_MAS(dmso_median, dmso_ss, num_feats = n_cp_feats):
     return dmso_mas_scores
 
 
-# In[28]:
+# In[29]:
 
 
 dmso_mas_scores = compute_dmso_MAS(dmso_median_scores, dmso_ss_scores)
 
 
-# In[29]:
+# In[30]:
 
 
 dmso_95pct = np.percentile(list(dmso_mas_scores.values()),95)
 
 
-# In[30]:
+# In[31]:
 
 
 print(dmso_95pct)
 
 
-# In[31]:
+# In[32]:
 
 
 def save_to_pickle(value, path, file_name):
@@ -339,8 +345,8 @@ def save_to_pickle(value, path, file_name):
         pickle.dump(value, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
 
-# In[32]:
+# In[33]:
 
 
-save_to_pickle(dmso_95pct, cp_level4_path, 'CP_dmso_95_percentile_MAS.pickle')
+save_to_pickle(dmso_95pct, cp_level4_path, f'CP_dmso_95_percentile_MAS{file_indicator}.pickle')
 
