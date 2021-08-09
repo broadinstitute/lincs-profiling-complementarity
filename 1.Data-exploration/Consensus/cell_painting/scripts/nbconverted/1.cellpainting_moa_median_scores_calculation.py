@@ -174,15 +174,11 @@ df_moa, df_no_moa = merge_align_moa(data_dir, moa_dataset, data)
 
 df_moa.loc[df_moa.Metadata_broad_sample == 'DMSO', "Metadata_dose_recode"] = 0
 
-
-# In[9]:
-
-
 print(df_moa.shape)
 df_moa.head()
 
 
-# In[10]:
+# In[9]:
 
 
 # Load common compounds
@@ -193,13 +189,20 @@ common_compounds = common_df.compound.unique().tolist()
 print(len(common_compounds))
 
 
-# In[11]:
+# In[10]:
 
 
 # Only calculate using common compounds
 df_moa = df_moa.query("pert_iname in @common_compounds")
 
 df_moa.shape
+
+
+# In[11]:
+
+
+# How many total MOAs
+df_moa.moa.nunique()
 
 
 # In[12]:
@@ -451,7 +454,7 @@ data_moa_values.head(10)
 
 # Output analytical file
 output_file = pathlib.Path("moa_sizes_consensus_datasets/cell_painting_moa_analytical_set_profiles.tsv.gz")
-analytical_set_df = df_moa.query("moa in @data_moa_cpds.moa").reset_index(drop=True)
+analytical_set_df = df_moa.query("moa in @data_moa_cpds.moa").query("Metadata_moa != 'unknown'").reset_index(drop=True)
 
 print(analytical_set_df.shape)
 analytical_set_df.to_csv(output_file, index=False, sep="\t")

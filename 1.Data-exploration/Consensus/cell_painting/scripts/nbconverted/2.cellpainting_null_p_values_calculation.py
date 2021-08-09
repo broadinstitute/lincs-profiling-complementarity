@@ -46,11 +46,17 @@ from urllib.request import urlopen
 from zipfile import ZipFile
 
 
+# In[2]:
+
+
+np.random.seed(42)
+
+
 # #### - Load in the datasets required, 
 # 
 # - They were generated from the `cell_painting_moa_median_scores_calculation notebook`
 
-# In[2]:
+# In[3]:
 
 
 data_moa = pd.read_csv(os.path.join('moa_sizes_consensus_datasets', 'modz_consensus_data.csv'))
@@ -58,19 +64,19 @@ data_moa_vals = pd.read_csv(os.path.join('moa_sizes_consensus_datasets', 'modz_m
 data_moa_cpds = pd.read_csv(os.path.join('moa_sizes_consensus_datasets', 'cellpainting_moa_compounds.csv'))
 
 
-# In[3]:
+# In[4]:
 
 
 data_moa.shape
 
 
-# In[4]:
+# In[5]:
 
 
 data_moa_vals.shape
 
 
-# In[5]:
+# In[6]:
 
 
 data_moa_cpds.shape
@@ -392,6 +398,35 @@ null_distribution_medns = get_null_dist_median_scores(null_distribution_moa, dat
 # In[35]:
 
 
+def transform_dataframe(rep, rep_name):
+    """
+    Transforms replicate correlation dataframe to have 3 columns: 
+    dose, correlation_values and type of replicates
+    """
+    df_reps = pd.DataFrame.from_dict(rep, orient='index').T
+    rep_melt = df_reps.melt(var_name="dose", value_name="correlation_values")
+    rep_melt['type'] = rep_name
+    return rep_melt
+
+
+# In[36]:
+
+
+threshold_df = []
+for n_replicate in null_distribution_medns.keys():
+    matched_null = pd.DataFrame(null_distribution_medns[n_replicate])
+    for dose, dose_row in matched_null.iterrows():
+        thresh = dose_row.quantile(0.95)
+        dose_id = dose + 1
+        threshold_df.append([n_replicate, dose_id, thresh])
+        
+threshold_df = pd.DataFrame(threshold_df, columns=["n_replicates", "dose", "95th_threshold"])
+threshold_df
+
+
+# In[37]:
+
+
 def get_moa_p_vals(null_dist_median, df_moa_values):
     """
     This function returns a dict, with MOAs as the keys and the MOA's 
@@ -412,13 +447,13 @@ def get_moa_p_vals(null_dist_median, df_moa_values):
     return sorted_null_p_vals
 
 
-# In[36]:
+# In[38]:
 
 
 null_p_vals = get_moa_p_vals(null_distribution_medns, data_moa_vals)
 
 
-# In[37]:
+# In[39]:
 
 
 df_null_p_vals = pd.DataFrame.from_dict(null_p_vals, orient='index', 
@@ -426,25 +461,25 @@ df_null_p_vals = pd.DataFrame.from_dict(null_p_vals, orient='index',
                                                    for x in range(1,7)]).reset_index().rename(columns={"index": "moa"})
 
 
-# In[38]:
+# In[40]:
 
 
 df_null_p_vals['moa_size'] = data_moa_vals['moa_size']
 
 
-# In[39]:
+# In[41]:
 
 
 df_null_p_vals.shape
 
 
-# In[40]:
+# In[42]:
 
 
 df_null_p_vals.head(10)
 
 
-# In[41]:
+# In[43]:
 
 
 def save_to_csv(df, path, file_name):
@@ -456,13 +491,13 @@ def save_to_csv(df, path, file_name):
     df.to_csv(os.path.join(path, file_name), index=False)
 
 
-# In[42]:
+# In[44]:
 
 
 save_to_csv(df_null_p_vals, 'moa_sizes_consensus_datasets', 'modz_null_p_values.csv')
 
 
-# In[43]:
+# In[45]:
 
 
 # Output files for visualization
