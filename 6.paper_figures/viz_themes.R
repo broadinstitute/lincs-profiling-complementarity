@@ -18,6 +18,7 @@ assay_colors <- c("Cell Painting" = "#F0C178", "L1000" = "#8AA7F0")
 
 replicate_labels <- c("non_replicate" = "non-replicates", "replicate" = "replicates")
 replicate_colors <- c("non_replicate" = "black", "replicate" = "red")
+cell_line_colors <- c("A549" = "#2ED6D9", "MCF7" = "#434FDE", "U2OS" = "#D950C4")
 
 figure_theme <- (
     theme_bw()
