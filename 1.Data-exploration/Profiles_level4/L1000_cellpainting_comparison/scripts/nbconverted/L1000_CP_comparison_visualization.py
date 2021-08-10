@@ -38,25 +38,53 @@ L1000_level4_path = '../L1000/L1000_lvl4_cpd_replicate_datasets'
 # In[3]:
 
 
-df_cp_med = pd.read_csv(os.path.join(cp_level4_path, 'cpd_replicate_median_scores.csv'))
-df_L1_med = pd.read_csv(os.path.join(L1000_level4_path, 'cpd_replicate_median_scores.csv'))
+# Load common compounds
+common_file = pathlib.Path(
+    "..", "..", "..", "6.paper_figures", "data", "significant_compounds_by_threshold_both_assays.tsv.gz"
+)
+common_df = pd.read_csv(common_file, sep="\t")
+
+common_compounds = common_df.compound.unique()
+print(len(common_compounds))
 
 
 # In[4]:
 
 
-df_cp_pvals = pd.read_csv(os.path.join(cp_level4_path, 'cpd_replicate_p_values.csv'))
-df_L1_pvals = pd.read_csv(os.path.join(L1000_level4_path, 'cpd_replicate_p_values.csv'))
+df_cp_med = pd.read_csv(os.path.join(cp_level4_path, 'cpd_replicate_median_scores.csv'))
+df_cp_med.cpd = df_cp_med.cpd.str.lower()
+df_cp_med = df_cp_med.query("cpd in @common_compounds")
+
+df_L1_med = pd.read_csv(os.path.join(L1000_level4_path, 'cpd_replicate_median_scores.csv'))
+df_L1_med.cpd = df_L1_med.cpd.str.lower()
+df_L1_med = df_L1_med.query("cpd in @common_compounds")
 
 
 # In[5]:
 
 
-df_cp_all = pd.read_csv(os.path.join(cp_level4_path, 'cp_all_scores.csv'))
-df_L1_all = pd.read_csv(os.path.join(L1000_level4_path, 'L1000_all_scores.csv'))
+df_cp_pvals = pd.read_csv(os.path.join(cp_level4_path, 'cpd_replicate_p_values.csv'))
+df_cp_pvals.cpd = df_cp_pvals.cpd.str.lower()
+df_cp_pvals = df_cp_pvals.query("cpd in @common_compounds")
+
+df_L1_pvals = pd.read_csv(os.path.join(L1000_level4_path, 'cpd_replicate_p_values.csv'))
+df_L1_pvals.cpd = df_L1_pvals.cpd.str.lower()
+df_L1_pvals = df_L1_pvals.query("cpd in @common_compounds")
 
 
 # In[6]:
+
+
+df_cp_all = pd.read_csv(os.path.join(cp_level4_path, 'cp_all_scores.csv'))
+df_cp_all.cpd = df_cp_all.cpd.str.lower()
+df_cp_all = df_cp_all.query("cpd in @common_compounds")
+
+df_L1_all = pd.read_csv(os.path.join(L1000_level4_path, 'L1000_all_scores.csv'))
+df_L1_all.cpd = df_L1_all.cpd.str.lower()
+df_L1_all = df_L1_all.query("cpd in @common_compounds")
+
+
+# In[7]:
 
 
 with open(os.path.join(cp_level4_path, 'CP_dmso_95_percentile_MAS.pickle'), 'rb') as handle:
@@ -65,7 +93,7 @@ with open(os.path.join(L1000_level4_path, 'L1000_dmso_95_percentile_TAS.pickle')
     L1_dmso_95pct = pickle.load(handle)
 
 
-# In[7]:
+# In[8]:
 
 
 with open(os.path.join(cp_level4_path, 'null_dist_medians_per_dose.pickle'), 'rb') as handle:
@@ -75,7 +103,7 @@ with open(os.path.join(L1000_level4_path, 'null_dist_medians_per_dose.pickle'), 
     null_dist_med_L1000 = pickle.load(handle)
 
 
-# In[8]:
+# In[9]:
 
 
 def reproducible_dose(df, df_med):
@@ -91,14 +119,14 @@ def reproducible_dose(df, df_med):
     return df, df_med
 
 
-# In[9]:
+# In[10]:
 
 
 df_cp_pvals, df_cp_med = reproducible_dose(df_cp_pvals, df_cp_med)
 df_L1_pvals, df_L1_med = reproducible_dose(df_L1_pvals, df_L1_med)
 
 
-# In[10]:
+# In[11]:
 
 
 def rename_cols(df):
@@ -109,21 +137,21 @@ def rename_cols(df):
     return df
 
 
-# In[11]:
+# In[12]:
 
 
 df_cp_med = rename_cols(df_cp_med)
 df_L1_med = rename_cols(df_L1_med)
 
 
-# In[12]:
+# In[13]:
 
 
 df_cp_pvals = rename_cols(df_cp_pvals)
 df_L1_pvals = rename_cols(df_L1_pvals)
 
 
-# In[13]:
+# In[14]:
 
 
 def melt_df(df, col_name):
@@ -132,7 +160,7 @@ def melt_df(df, col_name):
     return df_melt
 
 
-# In[14]:
+# In[15]:
 
 
 def melt_L1000_CP(df_cp,df_L1):
@@ -151,25 +179,25 @@ def melt_L1000_CP(df_cp,df_L1):
     return df_cp_melt, df_L1_melt
 
 
-# In[15]:
+# In[16]:
 
 
 df_cp_melt, df_L1_melt = melt_L1000_CP(df_cp_med,df_L1_med)
 
 
-# In[16]:
+# In[17]:
 
 
 len(df_L1_melt['cpd'].unique())
 
 
-# In[17]:
+# In[18]:
 
 
 df_L1_melt.head()
 
 
-# In[18]:
+# In[19]:
 
 
 def merge_L1000_CP(df_cp, df_L1):
@@ -190,25 +218,25 @@ def merge_L1000_CP(df_cp, df_L1):
     return df_cp_L1, df_L1_cp_merge
 
 
-# In[19]:
+# In[20]:
 
 
 df_cp_L1_melt, df_L1_cp_med = merge_L1000_CP(df_cp_melt, df_L1_melt)
 
 
-# In[20]:
+# In[21]:
 
 
 df_cp_L1_melt.head()
 
 
-# In[21]:
+# In[22]:
 
 
 cp_95pct = [np.percentile(null_dist_med_cp[keys],95) for keys in null_dist_med_cp]
 
 
-# In[22]:
+# In[23]:
 
 
 L1000_95pct = [np.percentile(null_dist_med_L1000[keys],95) for keys in null_dist_med_L1000]
@@ -216,7 +244,7 @@ L1000_95pct = [np.percentile(null_dist_med_L1000[keys],95) for keys in null_dist
 
 # ### - Plot median scores of L1000 vs Cell painting compound replicates
 
-# In[23]:
+# In[24]:
 
 
 def plot_median_scores(df, L1000_95pct, cp_95pct, title, path, file_name, hue = 'Cell painting', 
@@ -243,7 +271,7 @@ def plot_median_scores(df, L1000_95pct, cp_95pct, title, path, file_name, hue = 
     plt.show()
 
 
-# In[24]:
+# In[25]:
 
 
 plot_median_scores(df_L1_cp_med, L1000_95pct, cp_95pct, 
@@ -251,7 +279,7 @@ plot_median_scores(df_L1_cp_med, L1000_95pct, cp_95pct,
                    'L1000_cp_figures', 'median_scores_plot_1a.png')
 
 
-# In[25]:
+# In[26]:
 
 
 plot_median_scores(df_L1_cp_med, L1000_95pct, cp_95pct, 
@@ -259,30 +287,22 @@ plot_median_scores(df_L1_cp_med, L1000_95pct, cp_95pct,
                    'L1000_cp_figures', 'median_scores_plot_1b.png', hue = 'L1000')
 
 
-# In[26]:
+# In[27]:
 
 
 df_L1_cp_med.head()
 
 
-# In[27]:
+# In[28]:
 
 
 df_highcp_lowL1_med = df_L1_cp_med[(df_L1_cp_med['L1000'] < 0.2) &                                    (df_L1_cp_med['Cell painting'] > 0.8)].reset_index(drop=True).copy()
 
 
-# In[28]:
-
-
-df_highcp_lowL1_med
-
-
 # In[29]:
 
 
-# plot_median_scores(df_highcp_lowL1_med, L1000_95pct, cp_95pct, 
-#                    "Low L1000 vs High Cell Painting median correlation scores for compound replicates",
-#                    'L1000_cp_figures', 'lowL1000_HighCP_med_scores1b.png', hue = 'Cell painting', alp =0.7)
+df_highcp_lowL1_med
 
 
 # In[30]:
@@ -290,22 +310,30 @@ df_highcp_lowL1_med
 
 # plot_median_scores(df_highcp_lowL1_med, L1000_95pct, cp_95pct, 
 #                    "Low L1000 vs High Cell Painting median correlation scores for compound replicates",
-#                    'L1000_cp_figures', 'lowL1000_HighCP_med_scores1b.png', hue = 'L1000', alp =0.7)
+#                    'L1000_cp_figures', 'lowL1000_HighCP_med_scores1b.png', hue = 'Cell painting', alp =0.7)
 
 
 # In[31]:
 
 
-df_lowcp_highL1_med = df_L1_cp_med[(df_L1_cp_med['L1000'] > 0.4) &                                    (df_L1_cp_med['Cell painting'] < 0.2)].reset_index(drop=True).copy()
+# plot_median_scores(df_highcp_lowL1_med, L1000_95pct, cp_95pct, 
+#                    "Low L1000 vs High Cell Painting median correlation scores for compound replicates",
+#                    'L1000_cp_figures', 'lowL1000_HighCP_med_scores1b.png', hue = 'L1000', alp =0.7)
 
 
 # In[32]:
 
 
-df_lowcp_highL1_med
+df_lowcp_highL1_med = df_L1_cp_med[(df_L1_cp_med['L1000'] > 0.4) &                                    (df_L1_cp_med['Cell painting'] < 0.2)].reset_index(drop=True).copy()
 
 
 # In[33]:
+
+
+df_lowcp_highL1_med
+
+
+# In[34]:
 
 
 plot_median_scores(df_lowcp_highL1_med, L1000_95pct, cp_95pct, 
@@ -313,7 +341,7 @@ plot_median_scores(df_lowcp_highL1_med, L1000_95pct, cp_95pct,
                    'L1000_cp_figures', 'HighL1000_LowCP_med_scores1b.png', hue = 'L1000')
 
 
-# In[34]:
+# In[35]:
 
 
 def plot_median_distribution(df, title, path, file_name, plot_type = "hist"):
@@ -332,14 +360,14 @@ def plot_median_distribution(df, title, path, file_name, plot_type = "hist"):
     plt.show()
 
 
-# In[35]:
+# In[36]:
 
 
 plot_median_distribution(df_cp_L1_melt, 'Distribution of median correlation scores across L1000 and Cell painting data per doses', 
                          'L1000_cp_figures', 'median_score_distribution.png', plot_type = "hist")
 
 
-# In[36]:
+# In[37]:
 
 
 def plot_median_dist(df, path, file_name):
@@ -363,7 +391,7 @@ def plot_median_dist(df, path, file_name):
     plt.show()
 
 
-# In[37]:
+# In[38]:
 
 
 plot_median_dist(df_cp_L1_melt, 'L1000_cp_figures', 'median_score_dist.png')
@@ -371,7 +399,7 @@ plot_median_dist(df_cp_L1_melt, 'L1000_cp_figures', 'median_score_dist.png')
 
 # ### - Compounds with reproducible median correlation values (i.e. p_values below 0.05) in 1.11 - 10uM doses
 
-# In[38]:
+# In[39]:
 
 
 def stat_significant_df(df_cp_pvalues, df_L1_pvalues, df_cp_medscores, df_L1_medscores):
@@ -388,25 +416,25 @@ def stat_significant_df(df_cp_pvalues, df_L1_pvalues, df_cp_medscores, df_L1_med
     return df_stat_cp, df_stat_L1
 
 
-# In[39]:
+# In[40]:
 
 
 df_stat_cp, df_stat_L1 = stat_significant_df(df_cp_pvals, df_L1_pvals, df_cp_melt, df_L1_melt)
 
 
-# In[40]:
+# In[41]:
 
 
 df_cp_L1_stat_melt, df_L1_cp_stat_med = merge_L1000_CP(df_stat_cp, df_stat_L1)
 
 
-# In[41]:
+# In[42]:
 
 
 df_L1_cp_stat_med.head()
 
 
-# In[42]:
+# In[43]:
 
 
 plot_median_scores(df_L1_cp_stat_med, L1000_95pct, cp_95pct, 
@@ -414,7 +442,7 @@ plot_median_scores(df_L1_cp_stat_med, L1000_95pct, cp_95pct,
                    'L1000_cp_figures', 'stat_sign_med_scores_plot1a.png',  alp =0.6, size =(100,300))
 
 
-# In[43]:
+# In[44]:
 
 
 plot_median_scores(df_L1_cp_stat_med, L1000_95pct, cp_95pct, 
@@ -423,7 +451,7 @@ plot_median_scores(df_L1_cp_stat_med, L1000_95pct, cp_95pct,
                    hue = 'L1000', alp =0.6, size =(100,300))
 
 
-# In[44]:
+# In[45]:
 
 
 plot_median_distribution(df_cp_L1_stat_melt, 'Distribution of reproducible median correlation scores across L1000 and Cell painting', 
@@ -432,7 +460,7 @@ plot_median_distribution(df_cp_L1_stat_melt, 'Distribution of reproducible media
 
 # ### - Number of compounds with reproducible median scores for Cell painting and L1000 across all doses
 
-# In[45]:
+# In[46]:
 
 
 def reproducible_no_of_cpd(df_L1, df_cp):
@@ -449,13 +477,13 @@ def reproducible_no_of_cpd(df_L1, df_cp):
     return df_cpd
 
 
-# In[46]:
+# In[47]:
 
 
 df_cpd = reproducible_no_of_cpd(df_L1_pvals, df_cp_pvals)
 
 
-# In[47]:
+# In[48]:
 
 
 def plot_no_of_cpd_dose(df, path, file_name):
@@ -478,13 +506,13 @@ def plot_no_of_cpd_dose(df, path, file_name):
     plt.show()
 
 
-# In[48]:
+# In[49]:
 
 
 plot_no_of_cpd_dose(df_cpd, 'L1000_cp_figures', 'no_of_reprod_cpd_per_dose.png')
 
 
-# In[49]:
+# In[50]:
 
 
 def plot_no_of_cpd(df, path, file_name):
@@ -505,31 +533,31 @@ def plot_no_of_cpd(df, path, file_name):
     plt.show()
 
 
-# In[50]:
+# In[51]:
 
 
 ##'#eb3434', '#eb7a34', '#ebae34', '#a45445', '#ea7862', '#eabe62'
 
 
-# In[51]:
+# In[52]:
 
 
 len(df_cp_L1_melt['cpd'].unique())
 
 
-# In[52]:
+# In[53]:
 
 
 df_cpd = (df_cpd/len(df_cp_L1_melt['cpd'].unique())) * 100
 
 
-# In[53]:
+# In[54]:
 
 
 df_cpd
 
 
-# In[54]:
+# In[55]:
 
 
 plot_no_of_cpd(df_cpd, 'L1000_cp_figures', 'no_of_reproducible_cpd.png')
@@ -537,7 +565,7 @@ plot_no_of_cpd(df_cpd, 'L1000_cp_figures', 'no_of_reproducible_cpd.png')
 
 # ### Visualizing TAS, MAS and signature strength scores for L1000 vs Cell painting
 
-# In[55]:
+# In[56]:
 
 
 def merge_L1000_CP_2(df_cp,df_L1):
@@ -558,19 +586,19 @@ def merge_L1000_CP_2(df_cp,df_L1):
     return df_L1_cp
 
 
-# In[56]:
+# In[57]:
 
 
 df_L1_cp_all = merge_L1000_CP_2(df_cp_all,df_L1_all)
 
 
-# In[57]:
+# In[58]:
 
 
 df_L1_cp_all[['No_of_reproducible_doses-Cell painting', 'No_of_reproducible_doses-L1000']] = df_L1_cp_med[['No_of_reproducible_doses-Cell painting', 'No_of_reproducible_doses-L1000']]
 
 
-# In[58]:
+# In[59]:
 
 
 def plot_mas_vs_tas(df, title, L1_dmso_95pct, cp_dmso_95pct, path, file_name, hue = 'Cell painting', 
@@ -597,21 +625,21 @@ def plot_mas_vs_tas(df, title, L1_dmso_95pct, cp_dmso_95pct, path, file_name, hu
     plt.show()
 
 
-# In[59]:
+# In[60]:
 
 
 plot_mas_vs_tas(df_L1_cp_all, "L1000 Transcriptional activity score (TAS) vs Cell Painting Morphological activity score (MAS)",
                L1_dmso_95pct, cp_dmso_95pct, 'L1000_cp_figures', 'TAS_vs_MAS_1a.png')
 
 
-# In[60]:
+# In[61]:
 
 
 plot_mas_vs_tas(df_L1_cp_all, "L1000 Transcriptional activity score (TAS) vs Cell Painting Morphological activity score (MAS)",
                L1_dmso_95pct, cp_dmso_95pct, 'L1000_cp_figures', 'TAS_vs_MAS_1b.png', hue = 'L1000')
 
 
-# In[61]:
+# In[62]:
 
 
 def plot_ss(df, title, path, file_name, hue = 'Cell painting', alp=0.3, size =(50,300)):
@@ -633,14 +661,14 @@ def plot_ss(df, title, path, file_name, hue = 'Cell painting', alp=0.3, size =(5
     plt.show()
 
 
-# In[62]:
+# In[63]:
 
 
 plot_ss(df_L1_cp_all, "L1000 vs Cell Painting signature strength for compound replicates across all doses",
                 'L1000_cp_figures', 'L1000_SS_vs_CP_SS_1a.png')
 
 
-# In[63]:
+# In[64]:
 
 
 plot_ss(df_L1_cp_all, "L1000 vs Cell Painting signature strength for compound replicates across all doses",
@@ -649,20 +677,20 @@ plot_ss(df_L1_cp_all, "L1000 vs Cell Painting signature strength for compound re
 
 # ### - Compounds with high MAS but low TAS (i.e. TAS below 0.3 and MAS > 0.7)
 
-# In[64]:
+# In[65]:
 
 
 df_highmas_lowtas = df_L1_cp_all[(df_L1_cp_all['TAS'] < 0.3) & (df_L1_cp_all['MAS'] > 0.7)].copy()
 
 
-# In[65]:
+# In[66]:
 
 
 plot_mas_vs_tas(df_highmas_lowtas, "Low L1000 TAS vs High Cell Painting MAS",
                L1_dmso_95pct, cp_dmso_95pct, 'L1000_cp_figures', 'Low_TAS_vs_High_MAS_1a.png', alp = 0.7)
 
 
-# In[66]:
+# In[67]:
 
 
 plot_mas_vs_tas(df_highmas_lowtas, "Low L1000 TAS vs Cell Painting MAS",
@@ -670,13 +698,13 @@ plot_mas_vs_tas(df_highmas_lowtas, "Low L1000 TAS vs Cell Painting MAS",
                 hue = 'L1000',alp = 0.8)
 
 
-# In[67]:
+# In[68]:
 
 
 df_lowmas_hightas = df_L1_cp_all[(df_L1_cp_all['MAS'] < 0.2) & (df_L1_cp_all['TAS'] > 0.5)].copy()
 
 
-# In[68]:
+# In[69]:
 
 
 df_lowmas_hightas
@@ -688,32 +716,32 @@ df_lowmas_hightas
 # 
 # ### -  L1000 vs Cell painting Signature Strength
 
-# In[69]:
+# In[70]:
 
 
 stat_cpds = df_stat_cp['cpd'].unique().tolist()
 
 
-# In[70]:
+# In[71]:
 
 
 len(stat_cpds)
 
 
-# In[71]:
+# In[72]:
 
 
 df_stat_all = df_L1_cp_all.loc[df_L1_cp_all['cpd'].isin(stat_cpds)].reset_index(drop=True)
 
 
-# In[72]:
+# In[73]:
 
 
 plot_mas_vs_tas(df_stat_all, "L1000 TAS vs Cell Painting MAS for Compounds with reproducible median correlation values",
                L1_dmso_95pct, cp_dmso_95pct, 'L1000_cp_figures', 'stat_TAS_vs_MAS_1a.png', alp=0.5, size =(100,300))
 
 
-# In[73]:
+# In[74]:
 
 
 plot_mas_vs_tas(df_stat_all, "L1000 TAS vs Cell Painting MAS for Compounds with reproducible median correlation values",
@@ -721,14 +749,14 @@ plot_mas_vs_tas(df_stat_all, "L1000 TAS vs Cell Painting MAS for Compounds with 
                 hue = 'L1000', alp=0.5, size =(100,300))
 
 
-# In[74]:
+# In[75]:
 
 
 plot_ss(df_stat_all, "L1000 vs Cell Painting signature strength for Compounds with reproducible median correlation values",
                 'L1000_cp_figures', 'stat_L1000_SS_vs_CP_SS_1a.png', alp=0.5, size =(100,300))
 
 
-# In[75]:
+# In[76]:
 
 
 plot_ss(df_stat_all, "L1000 vs Cell Painting signature strength for Compounds with reproducible median correlation values",

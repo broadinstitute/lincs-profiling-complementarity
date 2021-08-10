@@ -5,9 +5,10 @@ source("viz_themes.R")
 get_cor <- function(df, assay = "cellpainting") {
     
     corr_compare <- list()
-    for (dose in unique(df$Metadata_dose_recode)) {
+    for (dose in sort(unique(df$Metadata_dose_recode))) {
         corr_mat <- df %>%
-            dplyr::filter(Metadata_dose_recode == !!dose)
+            dplyr::filter(Metadata_dose_recode == !!dose) %>%
+            dplyr::arrange(pert_iname)
         
             if (assay == "cellpainting") {
                 corr_mat <- corr_mat %>%
@@ -27,6 +28,7 @@ get_cor <- function(df, assay = "cellpainting") {
         metadata_id_info_df <- df %>%
             dplyr::filter(Metadata_dose_recode == !!dose) %>%
             dplyr::select(Metadata_dose_recode, pert_iname) %>%
+            dplyr::arrange(pert_iname) %>%
             dplyr::mutate(id_number = row_number())
 
         corr_compare[[dose]] <- corr_mat %>%
@@ -43,7 +45,8 @@ get_subset_correlation_data <- function(cp_df, l1000_df, target_moa) {
     cp_subset_df <- cp_df %>% dplyr::filter(moa == !!target_moa)
     l1000_subset_df <- l1000_df %>% dplyr::filter(moa == !!target_moa)
     
-    cp_corr_compare <- get_cor(cp_subset_df, assay = "cellpainting") %>% dplyr::mutate(assay = "Cell Painting")
+    cp_corr_compare <- get_cor(cp_subset_df, assay = "cellpainting") %>%
+        dplyr::mutate(assay = "Cell Painting")
     l1000_corr_compare <- get_cor(l1000_subset_df, assay = "l1000") %>%
         dplyr::mutate(assay = "L1000")
     
@@ -71,13 +74,15 @@ plot_correlation_data <- function(plot_ready_df, target_moa, fix_coords = TRUE) 
             + ylab("")
             + scale_x_continuous(
                 labels = unique(plot_ready_df$pert_iname_left),
+                limits = c(1, length(unique(plot_ready_df$pert_iname_left))),
                 breaks = seq(1, length(unique(plot_ready_df$pert_iname_left))),
-                expand = c(0.5, 0, 0.3, 0.4)
+                expand = c(0.15, 0.1)
             )
             + scale_y_continuous(
                 labels = unique(plot_ready_df$pert_iname_left),
+                limits = c(1, length(unique(plot_ready_df$pert_iname_left))),
                 breaks = seq(1, length(unique(plot_ready_df$pert_iname_left))),
-                expand = c(0.5, 0, 0.3, 0.4)
+                expand = c(0.15, 0.1)
             )
         )
     

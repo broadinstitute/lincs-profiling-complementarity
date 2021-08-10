@@ -46,37 +46,43 @@ from urllib.request import urlopen
 from zipfile import ZipFile
 
 
+# In[2]:
+
+
+np.random.seed(42)
+
+
 # #### - Load in the datasets required, 
 # 
 # - They were generated from the `cell_painting_moa_median_scores_calculation notebook`
 
-# In[2]:
-
-
-data_moa = pd.read_csv(os.path.join('moa_sizes_consensus_datasets', 'modz_dmso_consensus_data.csv'))
-data_moa_vals = pd.read_csv(os.path.join('moa_sizes_consensus_datasets', 'modz_dmso_moa_median_scores.csv'))
-data_moa_cpds = pd.read_csv(os.path.join('moa_sizes_consensus_datasets', 'cellpainting_moa_compounds.csv'))
-
-
 # In[3]:
 
 
-data_moa.shape
+data_moa = pd.read_csv(os.path.join('moa_sizes_consensus_datasets', 'modz_consensus_data.csv'))
+data_moa_vals = pd.read_csv(os.path.join('moa_sizes_consensus_datasets', 'modz_moa_median_scores.csv'))
+data_moa_cpds = pd.read_csv(os.path.join('moa_sizes_consensus_datasets', 'cellpainting_moa_compounds.csv'))
 
 
 # In[4]:
 
 
-data_moa_vals.shape
+data_moa.shape
 
 
 # In[5]:
 
 
-data_moa_cpds.shape
+data_moa_vals.shape
 
 
 # In[6]:
+
+
+data_moa_cpds.shape
+
+
+# In[7]:
 
 
 def conv_cols_to_list(df_moa_cpds):
@@ -89,13 +95,13 @@ def conv_cols_to_list(df_moa_cpds):
     return df_moa_cpds
 
 
-# In[7]:
+# In[8]:
 
 
 data_moa_cpds = conv_cols_to_list(data_moa_cpds)
 
 
-# In[8]:
+# In[9]:
 
 
 def get_cpd_agg(data_moa, dose_number):
@@ -115,7 +121,7 @@ def get_cpd_agg(data_moa, dose_number):
     return df_compound_agg
 
 
-# In[9]:
+# In[10]:
 
 
 def cpds_found_in_all_doses(data_moa):
@@ -134,31 +140,31 @@ def cpds_found_in_all_doses(data_moa):
     return cpds_fd_in_all
 
 
-# In[10]:
+# In[11]:
 
 
 cpds_fd_in_all = cpds_found_in_all_doses(data_moa)
 
 
-# In[11]:
+# In[12]:
 
 
 len(cpds_fd_in_all)
 
 
-# In[12]:
+# In[13]:
 
 
 all_moa_list = data_moa['moa'].unique().tolist()
 
 
-# In[13]:
+# In[14]:
 
 
 len(all_moa_list)
 
 
-# In[14]:
+# In[15]:
 
 
 all_moa_dict = {moa: [cpd for cpd in data_moa['pert_iname'][data_moa['moa']== moa].unique().tolist() 
@@ -167,13 +173,13 @@ all_moa_dict = {moa: [cpd for cpd in data_moa['pert_iname'][data_moa['moa']== mo
 all_moa_dict = {kys:all_moa_dict[kys] for kys in all_moa_dict if all_moa_dict[kys]}
 
 
-# In[15]:
+# In[16]:
 
 
 len(all_moa_dict)
 
 
-# In[16]:
+# In[17]:
 
 
 def generate_moa_size_dict(df_moa_cpds):
@@ -191,25 +197,25 @@ def generate_moa_size_dict(df_moa_cpds):
     return moa_size_dict
 
 
-# In[17]:
+# In[18]:
 
 
 moa_sizes_dict = generate_moa_size_dict(data_moa_cpds)
 
 
-# In[18]:
+# In[19]:
 
 
 len(data_moa_cpds['moa_size'].unique())
 
 
-# In[19]:
+# In[20]:
 
 
 len(moa_sizes_dict)
 
 
-# In[20]:
+# In[21]:
 
 
 def check_similar_cpds(cpds, moa_dict):
@@ -223,7 +229,7 @@ def check_similar_cpds(cpds, moa_dict):
     return False
 
 
-# In[21]:
+# In[22]:
 
 
 def get_random_cpds(all_cpds, moa_size, moa_cpds, all_moa_cpds):
@@ -240,7 +246,7 @@ def get_random_cpds(all_cpds, moa_size, moa_cpds, all_moa_cpds):
 
 # #### - You only need to generate the null distribution once (i.e. you can re-use the pickled null distribution for other consensus data), since the 1000 lists of randomly generated compounds combinations  for each MOA are found in all doses and all consensus datasets
 
-# In[22]:
+# In[23]:
 
 
 def get_null_distribution_cpds(moa_size_dict, cpds_list, all_moa_dict, rand_num = 1000):
@@ -265,13 +271,13 @@ def get_null_distribution_cpds(moa_size_dict, cpds_list, all_moa_dict, rand_num 
     return null_distribution_moa
 
 
-# In[23]:
+# In[24]:
 
 
 null_distribution_moa = get_null_distribution_cpds(moa_sizes_dict, cpds_fd_in_all, all_moa_dict)
 
 
-# In[24]:
+# In[25]:
 
 
 #save the null_distribution_moa to pickle, you only need to run the code once
@@ -279,7 +285,7 @@ with open(os.path.join('moa_sizes_consensus_datasets', 'null_distribution.pickle
     pickle.dump(null_distribution_moa, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
 
-# In[25]:
+# In[26]:
 
 
 ##load the null_distribution_moa from pickle
@@ -287,7 +293,7 @@ with open(os.path.join('moa_sizes_consensus_datasets', 'null_distribution.pickle
     null_distribution_moa = pickle.load(handle)
 
 
-# In[26]:
+# In[27]:
 
 
 print('moa_size', '\tnumber of generated lists of randomly combined compounds')
@@ -295,7 +301,7 @@ for keys in null_distribution_moa:
     print(keys, '\t\t', len(null_distribution_moa[keys]))
 
 
-# In[27]:
+# In[28]:
 
 
 def assert_null_distribution(null_distribution_moa):
@@ -318,19 +324,19 @@ def assert_null_distribution(null_distribution_moa):
     return duplicates_moa
 
 
-# In[28]:
+# In[29]:
 
 
 duplicates_cpds_list = assert_null_distribution(null_distribution_moa)
 
 
-# In[29]:
+# In[30]:
 
 
 duplicates_cpds_list ##no duplicate found
 
 
-# In[30]:
+# In[31]:
 
 
 def calc_null_dist_median_scores(data_moa, dose_num, moa_cpds_list):
@@ -351,7 +357,7 @@ def calc_null_dist_median_scores(data_moa, dose_num, moa_cpds_list):
 
 # **A P value can be computed nonparametrically by evaluating the probability of random compounds of different MOAs having greater median similarity value than compounds of the same MOAs.**
 
-# In[31]:
+# In[32]:
 
 
 def get_p_value(median_scores_list, df_moa_values, dose_name, moa_name):
@@ -364,7 +370,7 @@ def get_p_value(median_scores_list, df_moa_values, dose_name, moa_name):
     return p_value
 
 
-# In[32]:
+# In[33]:
 
 
 def get_null_dist_median_scores(null_distribution_moa, df_moa):
@@ -383,13 +389,42 @@ def get_null_dist_median_scores(null_distribution_moa, df_moa):
     return null_distribution_medians
 
 
-# In[33]:
+# In[34]:
 
 
 null_distribution_medns = get_null_dist_median_scores(null_distribution_moa, data_moa)
 
 
-# In[34]:
+# In[35]:
+
+
+def transform_dataframe(rep, rep_name):
+    """
+    Transforms replicate correlation dataframe to have 3 columns: 
+    dose, correlation_values and type of replicates
+    """
+    df_reps = pd.DataFrame.from_dict(rep, orient='index').T
+    rep_melt = df_reps.melt(var_name="dose", value_name="correlation_values")
+    rep_melt['type'] = rep_name
+    return rep_melt
+
+
+# In[36]:
+
+
+threshold_df = []
+for n_replicate in null_distribution_medns.keys():
+    matched_null = pd.DataFrame(null_distribution_medns[n_replicate])
+    for dose, dose_row in matched_null.iterrows():
+        thresh = dose_row.quantile(0.95)
+        dose_id = dose + 1
+        threshold_df.append([n_replicate, dose_id, thresh])
+        
+threshold_df = pd.DataFrame(threshold_df, columns=["n_replicates", "dose", "95th_threshold"])
+threshold_df
+
+
+# In[37]:
 
 
 def get_moa_p_vals(null_dist_median, df_moa_values):
@@ -412,13 +447,13 @@ def get_moa_p_vals(null_dist_median, df_moa_values):
     return sorted_null_p_vals
 
 
-# In[35]:
+# In[38]:
 
 
 null_p_vals = get_moa_p_vals(null_distribution_medns, data_moa_vals)
 
 
-# In[36]:
+# In[39]:
 
 
 df_null_p_vals = pd.DataFrame.from_dict(null_p_vals, orient='index', 
@@ -426,25 +461,25 @@ df_null_p_vals = pd.DataFrame.from_dict(null_p_vals, orient='index',
                                                    for x in range(1,7)]).reset_index().rename(columns={"index": "moa"})
 
 
-# In[37]:
+# In[40]:
 
 
 df_null_p_vals['moa_size'] = data_moa_vals['moa_size']
 
 
-# In[38]:
+# In[41]:
 
 
 df_null_p_vals.shape
 
 
-# In[39]:
+# In[42]:
 
 
 df_null_p_vals.head(10)
 
 
-# In[40]:
+# In[43]:
 
 
 def save_to_csv(df, path, file_name):
@@ -456,13 +491,13 @@ def save_to_csv(df, path, file_name):
     df.to_csv(os.path.join(path, file_name), index=False)
 
 
-# In[41]:
+# In[44]:
 
 
-save_to_csv(df_null_p_vals, 'moa_sizes_consensus_datasets', 'modz_dmso_null_p_values.csv')
+save_to_csv(df_null_p_vals, 'moa_sizes_consensus_datasets', 'modz_null_p_values.csv')
 
 
-# In[42]:
+# In[45]:
 
 
 # Output files for visualization

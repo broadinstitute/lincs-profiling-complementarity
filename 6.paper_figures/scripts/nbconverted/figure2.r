@@ -19,9 +19,9 @@ pr_df <- dplyr::bind_rows(cell_painting_pr_df, l1000_pr_df)
 pr_df$dose <- factor(pr_df$dose, levels = dose_order)
 
 threshold_df <- pr_df %>%
-    dplyr::filter(type == 'non replicate') %>%
+    dplyr::filter(type == 'non_replicate') %>%
     dplyr::group_by(assay, dose) %>%
-    dplyr::summarise(threshold = quantile(correlation_values, 0.95))
+    dplyr::summarise(threshold = quantile(replicate_correlation, 0.95))
 
 threshold_plot_ready_df <- threshold_df %>% reshape2::dcast(dose ~ assay, value.var = "threshold")
 
@@ -62,11 +62,13 @@ significant_compounds_df <- significant_compounds_df %>%
     dplyr::mutate(total_reproducible = cell_painting_num_reproducible + l1000_num_reproducible)
 
 significant_compounds_df$dose <- factor(significant_compounds_df$dose, levels = dose_order)
+significant_compounds_df$compound <- tolower(significant_compounds_df$compound)
 
 # Output file for further use
 output_file <- file.path("data", "significant_compounds_by_threshold_both_assays.tsv.gz")
 significant_compounds_df %>% readr::write_tsv(output_file)
 
+print(dim(significant_compounds_df))
 head(significant_compounds_df, 3)
 
 panel_a_gg <- (
@@ -197,7 +199,7 @@ panel_b_gg <- (
 
 panel_b_gg
 
-moa_count_filter <- 3
+moa_count_filter <- 2
 
 moa_match_df <- pm_df %>% dplyr::filter(pass_thresh)
 
@@ -252,8 +254,6 @@ moa_colors <- unique(plot_ready_pm_df$moa_color_passing)
 names(moa_colors) <- moa_labels
 names(moa_labels) <- moa_labels
 
-moa_colors
-
 panel_c_gg <- (
     ggplot(plot_ready_moa_text_df, aes(y = y_axis_location, x = 0))
     + geom_text(aes(label = moa, color = x_axis_location, size = replicate_count))
@@ -272,10 +272,8 @@ panel_c_gg <- (
         guide = "none"
     )
     + xlim(-100, 100)
-    + ylim(0, 40)
+    + ylim(0, 47)
 )
-
-panel_c_gg
 
 figure_2_gg <- cowplot::plot_grid(
     panel_a_gg,

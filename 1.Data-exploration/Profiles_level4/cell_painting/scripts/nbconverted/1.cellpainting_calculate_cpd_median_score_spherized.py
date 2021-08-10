@@ -211,7 +211,7 @@ def get_median_score(cpds_list, df):
     cpds_median_score = {}
     for cpd in cpds_list:
         cpd_replicates = df[df['pert_iname'] == cpd].copy()
-        cpd_replicates.drop(['Metadata_broad_sample', 'Metadaxta_pert_id', 'Metadata_dose_recode', 'Metadata_Plate',
+        cpd_replicates.drop(['Metadata_broad_sample', 'Metadata_pert_id', 'Metadata_dose_recode', 'Metadata_Plate',
                              'Metadata_Well', 'Metadata_broad_id', 'Metadata_moa', 'broad_id', 
                              'pert_iname', 'moa', 'replicate_name'], axis = 1, inplace = True)
         cpd_replicates_corr = cpd_replicates.astype('float64').T.corr(method = 'spearman').values

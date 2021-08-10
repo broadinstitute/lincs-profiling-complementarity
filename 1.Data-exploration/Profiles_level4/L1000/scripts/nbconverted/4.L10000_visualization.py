@@ -34,23 +34,52 @@ np.warnings.filterwarnings('ignore', category=np.VisibleDeprecationWarning)
 # In[2]:
 
 
-results_dir = pathlib.Path("../results")
+dose_recode_info = {
+    1: '0.04 uM', 2:'0.12 uM', 3:'0.37 uM',
+    4: '1.11 uM', 5:'3.33 uM', 6:'10 uM'
+}
 
 
 # In[3]:
 
 
-L1000_level4_path = 'L1000_lvl4_cpd_replicate_datasets'
+results_dir = pathlib.Path("../results")
 
 
 # In[4]:
+
+
+L1000_level4_path = 'L1000_lvl4_cpd_replicate_datasets'
+
+
+# In[5]:
 
 
 df_cpd_median_scrs = pd.read_csv(os.path.join(L1000_level4_path, 'cpd_replicate_median_scores.csv'))
 df_null_p_vals = pd.read_csv(os.path.join(L1000_level4_path, 'cpd_replicate_p_values.csv'))
 
 
-# In[5]:
+# In[6]:
+
+
+# Common compounds
+common_file = pathlib.Path(
+    "..", "..", "..", "6.paper_figures", "data", "significant_compounds_by_threshold_both_assays.tsv.gz"
+)
+common_df = pd.read_csv(common_file, sep="\t")
+
+common_compounds = common_df.compound.unique()
+print(len(common_compounds))
+
+
+# In[7]:
+
+
+# Subset to common compound measurements
+df_cpd_median_scrs = df_cpd_median_scrs.loc[df_cpd_median_scrs.cpd.isin(common_compounds), :]
+
+
+# In[8]:
 
 
 df_level4 = pd.read_csv(os.path.join(L1000_level4_path, 'L1000_level4_cpd_replicates.csv.gz'), 
@@ -63,7 +92,7 @@ with open(os.path.join(L1000_level4_path, 'null_dist_medians_per_dose.pickle'), 
     null_dist_med_L1000 = pickle.load(handle)
 
 
-# In[6]:
+# In[9]:
 
 
 df_all_scores = pd.read_csv(os.path.join(L1000_level4_path, 'L1000_all_scores.csv'))
@@ -72,7 +101,7 @@ with open(os.path.join(L1000_level4_path, 'L1000_dmso_95_percentile_TAS.pickle')
     dmso_95_pctile = pickle.load(handle)
 
 
-# In[7]:
+# In[10]:
 
 
 def rename_cols(df):
@@ -83,14 +112,14 @@ def rename_cols(df):
     return df
 
 
-# In[8]:
+# In[11]:
 
 
 df_cpd_median_scores = rename_cols(df_cpd_median_scrs.copy())
 df_null_p_vals = rename_cols(df_null_p_vals)
 
 
-# In[9]:
+# In[12]:
 
 
 def melt_df(df, col_name):
@@ -102,7 +131,7 @@ def melt_df(df, col_name):
     return df
 
 
-# In[10]:
+# In[13]:
 
 
 def merge_p_median_vals(df_cpd_vals, df_null):
@@ -116,7 +145,7 @@ def merge_p_median_vals(df_cpd_vals, df_null):
     return df_cpd_vals
 
 
-# In[11]:
+# In[14]:
 
 
 def plot_p_vs_median(df, path, file_name):
@@ -139,7 +168,7 @@ def plot_p_vs_median(df, path, file_name):
     plt.show()
 
 
-# In[12]:
+# In[15]:
 
 
 df_medians_p_vals = merge_p_median_vals(df_cpd_median_scores, df_null_p_vals)
@@ -154,13 +183,13 @@ df_medians_p_vals = merge_p_median_vals(df_cpd_median_scores, df_null_p_vals)
 # | ~3.33 | 5 |
 # | ~10 | 6 |
 
-# In[13]:
+# In[16]:
 
 
 plot_p_vs_median(df_medians_p_vals, 'L1000_figures', 'p_vs_median.png')
 
 
-# In[14]:
+# In[17]:
 
 
 def plot_p_value_dist(df, path, file_name):
@@ -178,7 +207,7 @@ def plot_p_value_dist(df, path, file_name):
 plot_p_value_dist(df_medians_p_vals, 'L1000_figures', 'p_value_distribution.png')
 
 
-# In[15]:
+# In[18]:
 
 
 def plot_median_score_distribution(df, title, path, file_name):
@@ -199,7 +228,7 @@ plot_median_score_distribution(df_medians_p_vals, "Median score distribution acr
 
 # ### - Replicate versus Non-replicate distribution across all doses (1-6)
 
-# In[16]:
+# In[19]:
 
 
 def get_replicate_score(cpds_list, df):
@@ -218,7 +247,7 @@ def get_replicate_score(cpds_list, df):
     return rep_corr_list
 
 
-# In[17]:
+# In[20]:
 
 
 def get_true_replicate_score(df, df_lvl4):
@@ -240,13 +269,13 @@ def get_true_replicate_score(df, df_lvl4):
     return true_replicates
 
 
-# In[18]:
+# In[21]:
 
 
 true_replicates = get_true_replicate_score(df_cpd_median_scores, df_level4)
 
 
-# In[19]:
+# In[22]:
 
 
 def get_random_replicate_score(random_rep_list, df):
@@ -264,7 +293,7 @@ def get_random_replicate_score(random_rep_list, df):
     return rep_corr_list
 
 
-# In[20]:
+# In[23]:
 
 
 def get_rand_replicate_corr(df_lvl4, null_dist):
@@ -288,13 +317,13 @@ def get_rand_replicate_corr(df_lvl4, null_dist):
     return random_replicates
 
 
-# In[21]:
+# In[24]:
 
 
 random_replicates = get_rand_replicate_corr(df_level4, null_distribution_replicates)
 
 
-# In[22]:
+# In[25]:
 
 
 def transform_dataframe(rep, rep_name):
@@ -308,20 +337,27 @@ def transform_dataframe(rep, rep_name):
     return rep_melt
 
 
-# In[23]:
+# In[26]:
 
 
 df_true_rep = transform_dataframe(true_replicates, 'true replicate')
 df_rand_rep = transform_dataframe(random_replicates, 'non replicate')
 
 
-# In[24]:
+# In[27]:
 
 
-df_true_rep.shape
+null_percent_replicating_score_df = transform_dataframe(null_dist_med_L1000, "non_replicate").assign(assay="L1000")
+null_percent_replicating_score_df.dose = null_percent_replicating_score_df.dose.replace(dose_recode_info)
+
+output_file = pathlib.Path(f"{results_dir}/l1000_percent_replicating_data_null_distribution.tsv.gz")
+null_percent_replicating_score_df.to_csv(output_file, sep="\t", index=False)
+
+print(null_percent_replicating_score_df.shape)
+null_percent_replicating_score_df.head()
 
 
-# In[25]:
+# In[28]:
 
 
 def plot_replicate_vs_non_replicate(df_true, df_rand, title, path, file_name):
@@ -350,7 +386,7 @@ def plot_replicate_vs_non_replicate(df_true, df_rand, title, path, file_name):
     plt.show()
 
 
-# In[26]:
+# In[29]:
 
 
 plot_replicate_vs_non_replicate(df_true_rep, df_rand_rep, 
@@ -358,25 +394,22 @@ plot_replicate_vs_non_replicate(df_true_rep, df_rand_rep,
                                 'L1000_figures', 'replicate_non_replicate_dist.png')
 
 
-# In[27]:
+# In[30]:
 
-
-dose_recode_info = {
-    1: '0.04 uM', 2:'0.12 uM', 3:'0.37 uM',
-    4: '1.11 uM', 5:'3.33 uM', 6:'10 uM'
-}
 
 full_cor_df = pd.concat([df_true_rep, df_rand_rep], axis="rows").reset_index(drop=True).dropna()
 
 full_cor_df.dose = full_cor_df.dose.replace(dose_recode_info)
 
-output_file = pathlib.Path(f"{results_dir}/l1000_percent_replicating_data.tsv.gz")
+print(full_cor_df.shape)
+
+output_file = pathlib.Path(f"{results_dir}/l1000_pairwise_correlation_distribution.tsv.gz")
 full_cor_df.to_csv(output_file, sep="\t", index=False)
 
 
 # ### - Compounds with statistically significant p-values i.e. their replicate median correlation values can be reproducible
 
-# In[28]:
+# In[31]:
 
 
 def reproducible_dose(df):
@@ -391,33 +424,39 @@ def reproducible_dose(df):
     return df
 
 
-# In[29]:
+# In[32]:
 
 
 df_L1_pvals = reproducible_dose(df_null_p_vals)
 df_all_scores = df_all_scores.merge(df_L1_pvals[['cpd', 'no_of_replicates', 'No_of_reproducible_doses']], on=['cpd'])
 
+output_file = pathlib.Path(f"{results_dir}/l1000_percent_replicating_data.tsv.gz")
+df_all_scores.to_csv(output_file, sep="\t", index=False)
 
-# In[30]:
+print(df_all_scores.shape)
+df_all_scores.head()
+
+
+# In[33]:
 
 
 stat_cpds = df_L1_pvals[df_L1_pvals['No_of_reproducible_doses'] == 6]['cpd'].values.tolist()
 
 
-# In[31]:
+# In[34]:
 
 
 df_stat_vals = df_all_scores.loc[df_all_scores['cpd'].isin(stat_cpds)].reset_index(drop=True)
 
 
-# In[32]:
+# In[35]:
 
 
 df_stat_p = df_stat_vals[['cpd', 'dose', 'replicate_correlation']].rename({'replicate_correlation':'median_scores'}, 
                                                                                axis = 1)
 
 
-# In[33]:
+# In[36]:
 
 
 plot_median_score_distribution(df_stat_p, 
@@ -429,19 +468,19 @@ plot_median_score_distribution(df_stat_p,
 
 # ### Visualizing TAS (Transcriptional activity score) and signature strength scores for L1000 compounds
 
-# In[34]:
+# In[37]:
 
 
 L1000_95pct = [np.percentile(null_dist_med_L1000[keys],95) for keys in null_dist_med_L1000]
 
 
-# In[35]:
+# In[38]:
 
 
 L1000_95pct
 
 
-# In[36]:
+# In[39]:
 
 
 def plot_tas_vs_corr(df, title, L1000_95pct, dmso_95pct, path, file_name, alp = 0.3, size =(50,300)):
@@ -468,7 +507,7 @@ def plot_tas_vs_corr(df, title, L1000_95pct, dmso_95pct, path, file_name, alp = 
     plt.show()
 
 
-# In[37]:
+# In[40]:
 
 
 plot_tas_vs_corr(df_all_scores,
@@ -476,7 +515,7 @@ plot_tas_vs_corr(df_all_scores,
                  L1000_95pct, dmso_95_pctile, 'L1000_figures', 'TAS_vs_median_corr.png')
 
 
-# In[38]:
+# In[41]:
 
 
 def plot_ss_vs_corr(df, title, L1000_95pct, path, file_name, alp = 0.3, size =(50,300)):
@@ -502,7 +541,7 @@ def plot_ss_vs_corr(df, title, L1000_95pct, path, file_name, alp = 0.3, size =(5
     plt.show()
 
 
-# In[39]:
+# In[42]:
 
 
 plot_ss_vs_corr(df_all_scores, "Signature strength vs replicate correlation (median) for compound replicates", 
@@ -511,7 +550,7 @@ plot_ss_vs_corr(df_all_scores, "Signature strength vs replicate correlation (med
 
 # ### Visualization based on reproducible median scores (compounds with p-values < 0.05 across all doses)
 
-# In[40]:
+# In[43]:
 
 
 plot_tas_vs_corr(df_stat_vals,
@@ -519,7 +558,7 @@ plot_tas_vs_corr(df_stat_vals,
                  L1000_95pct, dmso_95_pctile, 'L1000_figures', 'stat_TAS_vs_median_corr.png', alp = 0.9, size = (300,300))
 
 
-# In[41]:
+# In[44]:
 
 
 plot_ss_vs_corr(df_stat_vals, "Signature strength vs reproducible median correlation scores for compound", 

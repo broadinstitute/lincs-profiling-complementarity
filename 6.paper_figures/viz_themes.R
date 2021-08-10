@@ -5,8 +5,8 @@ dose_rename <- c("1" = '0.04 uM', "2" = '0.12 uM', "3" = '0.37 uM', "4" = '1.11 
 
 assay_colors <- c("Cell Painting" = "#F0C178", "L1000" = "#8AA7F0")
 
-replicate_labels <- c("non replicate" = "non-replicates", "true replicate" = "replicates")
-replicate_colors <- c("non replicate" = "black", "true replicate" = "red")
+replicate_labels <- c("non_replicate" = "non-replicates", "replicate" = "replicates")
+replicate_colors <- c("non_replicate" = "black", "replicate" = "red")
 
 figure_theme <- (
     theme_bw()

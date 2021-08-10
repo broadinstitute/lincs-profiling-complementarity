@@ -6,22 +6,59 @@ default_umap_dir <- file.path("../1.Data-exploration/Profiles_level4/")
 default_model_directory <- file.path("../2.MOA-prediction/L1000_CP_model_predictions/")
 
 
-load_percent_replicating <- function(assay, results_dir = default_results_dir) {
-    cell_painting_pr_file <- file.path(results_dir, "cell_painting_percent_replicating_data.tsv.gz")
+load_percent_replicating <- function(
+    assay,
+    load_null = TRUE,
+    results_dir = default_results_dir,
+    cp_file_indicator = ""
+    ) {
+    cell_painting_pr_file <- file.path(
+        results_dir, paste0("cell_painting_percent_replicating_data", cp_file_indicator, ".tsv.gz")
+    )
     l1000_pr_file <- file.path(results_dir, "l1000_percent_replicating_data.tsv.gz")
 
     pr_col_types <- readr::cols(
-        dose = readr::col_character(),
-        correlation_values = readr::col_double(),
-        type = readr::col_character()
+        .default = readr::col_double(),
+        cpd = readr::col_character(),
+        dose = readr::col_character()
     )
-
+    
     if (assay == "cellpainting") {
         pr_df <- readr::read_tsv(cell_painting_pr_file, col_types = pr_col_types) %>%
-            dplyr::mutate(assay = "Cell Painting")
+            dplyr::mutate(assay = "Cell Painting") %>%
+            dplyr::rename(activity_score = MAS)
     } else if (assay == "l1000") {
         pr_df <- readr::read_tsv(l1000_pr_file, col_types = pr_col_types) %>%
-            dplyr::mutate(assay = "L1000")
+            dplyr::mutate(assay = "L1000") %>%
+            dplyr::rename(activity_score = TAS)
+    }
+    
+    if (load_null) {
+        cell_painting_null_file <- file.path(
+            results_dir, paste0("cell_paintint_percent_replicating_data_null_distribution", cp_file_indicator, ".tsv.gz")
+        )
+        l1000_null_file <- file.path(results_dir, "l1000_percent_replicating_data_null_distribution.tsv.gz")
+        
+        null_col_types <- readr::cols(
+            dose = readr::col_character(),
+            correlation_values = readr::col_double(),
+            type = readr::col_character(),
+            assay = readr::col_character()
+        )
+
+        if (assay == "cellpainting") {
+            null_df <- readr::read_tsv(cell_painting_null_file, col_types = null_col_types) %>%
+                dplyr::rename(replicate_correlation = correlation_values)
+        } else if (assay == "l1000") {
+            null_df <- readr::read_tsv(l1000_null_file, col_types = null_col_types) %>%
+                dplyr::rename(replicate_correlation = correlation_values)
+        }
+        
+        pr_df <- pr_df %>%
+            dplyr::mutate(type = "replicate") %>%
+            dplyr::select(dose, replicate_correlation, type, assay) %>%
+            dplyr::bind_rows(null_df)
+
     }
     
     return(pr_df)

@@ -44,41 +44,57 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 np.warnings.filterwarnings('ignore', category=np.VisibleDeprecationWarning)
 
 
-# ### - Load in Level 4 Datasets generated from `calculate_median_scores_notebook`
+# In[ ]:
+
+
+np.random.seed(42)
+
 
 # In[2]:
+
+
+# Load common compounds
+common_file = pathlib.Path(
+    "..", "..", "..", "6.paper_figures", "data", "significant_compounds_by_threshold_both_assays.tsv.gz"
+)
+common_df = pd.read_csv(common_file, sep="\t")
+
+common_compounds = common_df.compound.unique()
+print(len(common_compounds))
+
+
+# ### - Load in Level 4 Datasets generated from `calculate_median_scores_notebook`
+
+# In[3]:
 
 
 cp_level4_path = "cellpainting_lvl4_cpd_replicate_datasets"
 
 
-# In[3]:
+# In[4]:
 
 
 df_level4 = pd.read_csv(os.path.join(cp_level4_path, 'cp_level4_cpd_replicates.csv.gz'), 
                         compression='gzip',low_memory = False)
-df_cpd_med_scores = pd.read_csv(os.path.join(cp_level4_path, 'cpd_replicate_median_scores.csv'))
 
-
-# In[4]:
-
-
-df_cpd_med_scores = df_cpd_med_scores.set_index('cpd').rename_axis(None, axis=0).copy()
+print(df_level4.shape)
+df_level4.head()
 
 
 # In[5]:
 
 
-df_cpd_med_scores.shape
+df_cpd_med_scores = pd.read_csv(os.path.join(cp_level4_path, 'cpd_replicate_median_scores.csv'))
+df_cpd_med_scores = df_cpd_med_scores.set_index('cpd').rename_axis(None, axis=0).copy()
+
+# Subset to common compound measurements
+df_cpd_med_scores = df_cpd_med_scores.loc[df_cpd_med_scores.index.isin(common_compounds), :]
+
+print(df_cpd_med_scores.shape)
+df_cpd_med_scores.head()
 
 
 # In[6]:
-
-
-df_level4.shape
-
-
-# In[7]:
 
 
 def get_cpds_replicates(df, df_lvl4):
@@ -105,13 +121,13 @@ def get_cpds_replicates(df, df_lvl4):
     return replicates_in_all, cpds_replicates
 
 
-# In[8]:
+# In[7]:
 
 
 replicates_in_all, cpds_replicates = get_cpds_replicates(df_cpd_med_scores, df_level4)
 
 
-# In[9]:
+# In[8]:
 
 
 def get_replicates_classes_per_dose(df, df_lvl4, cpds_replicates):
@@ -141,19 +157,19 @@ def get_replicates_classes_per_dose(df, df_lvl4, cpds_replicates):
     return replicate_class_dict
 
 
-# In[10]:
+# In[9]:
 
 
 cpd_replicate_class_dict = get_replicates_classes_per_dose(df_cpd_med_scores, df_level4, cpds_replicates)
 
 
-# In[11]:
+# In[10]:
 
 
 cpd_replicate_class_dict.keys()
 
 
-# In[12]:
+# In[11]:
 
 
 def check_similar_replicates(replicates, dose, cpd_dict):
@@ -167,7 +183,7 @@ def check_similar_replicates(replicates, dose, cpd_dict):
     return False
 
 
-# In[13]:
+# In[12]:
 
 
 def get_random_replicates(all_replicates, no_of_replicates, dose, replicates_ids, cpd_replicate_dict):
@@ -183,11 +199,16 @@ def get_random_replicates(all_replicates, no_of_replicates, dose, replicates_ids
     return random_replicates
 
 
-# In[14]:
+# In[13]:
 
 
-def get_null_distribution_replicates(cpd_replicate_class_dict, dose_list, replicates_lists, 
-                                     cpd_replicate_dict, rand_num = 1000):
+def get_null_distribution_replicates(
+    cpd_replicate_class_dict,
+    dose_list,
+    replicates_lists,
+    cpd_replicate_dict,
+    rand_num = 1000
+):
     
     """
     This function returns a null distribution dictionary, with no_of_replicates(replicate class) 
@@ -216,12 +237,20 @@ def get_null_distribution_replicates(cpd_replicate_class_dict, dose_list, replic
     return null_distribution_reps
 
 
+# In[14]:
+
+
+len(cpds_replicates.keys())
+
+
 # In[15]:
 
 
 dose_list = list(set(df_level4['Metadata_dose_recode'].unique().tolist()))[1:7]
-null_distribution_replicates = get_null_distribution_replicates(cpd_replicate_class_dict, dose_list, 
-                                                                replicates_in_all, cpds_replicates)
+
+null_distribution_replicates = get_null_distribution_replicates(
+    cpd_replicate_class_dict, dose_list, replicates_in_all, cpds_replicates
+)
 
 
 # In[16]:
@@ -435,12 +464,6 @@ df_null_p_vals.head(10)
 # In[34]:
 
 
-df_null_p_vals.head(10)
-
-
-# In[35]:
-
-
 def save_to_csv(df, path, file_name):
     """saves dataframes to csv"""
     
@@ -450,7 +473,7 @@ def save_to_csv(df, path, file_name):
     df.to_csv(os.path.join(path, file_name), index = False)
 
 
-# In[36]:
+# In[35]:
 
 
 save_to_csv(df_null_p_vals.reset_index().rename({'index':'cpd'}, axis = 1), cp_level4_path, 
