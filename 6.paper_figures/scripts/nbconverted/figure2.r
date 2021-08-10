@@ -9,79 +9,71 @@ source("data_functions.R")
 output_figure_base <- file.path("figures", "figure2")
 extensions <- c(".png", ".pdf")
 
-results_dir <- file.path("../1.Data-exploration/Profiles_level4/results")
+results_dir <- file.path("../1.Data-exploration/Consensus/")
 
-# First, obtain the threshold to consider strong phenotype
-cell_painting_pr_df <- load_percent_replicating(assay = "cellpainting", results_dir = results_dir)
-l1000_pr_df <- load_percent_replicating(assay = "l1000", results_dir = results_dir)
+pm_cellpainting_list <- load_percent_matching(assay = "cellpainting", results_dir = results_dir)
+pm_l1000_list <- load_percent_matching(assay = "l1000", results_dir = results_dir)
 
-pr_df <- dplyr::bind_rows(cell_painting_pr_df, l1000_pr_df)
-pr_df$dose <- factor(pr_df$dose, levels = dose_order)
+print(dim(pm_cellpainting_list[["percent_matching"]]))
+print(dim(pm_l1000_list[["percent_matching"]]))
 
-threshold_df <- pr_df %>%
-    dplyr::filter(type == 'non_replicate') %>%
+print(dim(pm_cellpainting_list[["percent_matching_pvals"]]))
+print(dim(pm_l1000_list[["percent_matching_pvals"]]))
+
+p_val_alpha_thresh <- 0.05
+no_replicates_thresh <- 3
+
+cell_painting_pm_df <- pm_cellpainting_list[["percent_matching"]] %>%
+    dplyr::filter(no_of_replicates >= no_replicates_thresh)
+l1000_pm_df <- pm_l1000_list[["percent_matching"]] %>%
+    dplyr::filter(no_of_replicates >= no_replicates_thresh)
+
+pm_df <- dplyr::bind_rows(cell_painting_pm_df, l1000_pm_df)
+
+cell_painting_pm_pval_df <- pm_cellpainting_list[["percent_matching_pvals"]] %>%
+    dplyr::filter(no_of_replicates >= no_replicates_thresh)
+l1000_pm_pval_df <- pm_l1000_list[["percent_matching_pvals"]] %>%
+    dplyr::filter(no_of_replicates >= no_replicates_thresh)
+
+pm_pval_df <- dplyr::bind_rows(cell_painting_pm_pval_df, l1000_pm_pval_df)
+
+pm_df <- pm_df %>%
+    dplyr::left_join(pm_pval_df, by = c("moa", "dose", "assay", "no_of_replicates")) %>%
+    dplyr::mutate(pass_thresh = p_value < p_val_alpha_thresh) %>%
+    dplyr::mutate(neg_log_10_p_val = -log10(p_value))
+
+pm_df$dose <- factor(pm_df$dose, levels = dose_order)
+
+pm_df$neg_log_10_p_val[pm_df$neg_log_10_p_val == Inf] = 3.5
+
+print(dim(pm_df))
+head(pm_df)
+
+percent_matching_df <- pm_df %>%
     dplyr::group_by(assay, dose) %>%
-    dplyr::summarise(threshold = quantile(replicate_correlation, 0.95))
+    dplyr::mutate(percent_matching = paste0(100 * round((sum(pass_thresh) / length(pass_thresh)), 4), "%")) %>%
+    dplyr::select(dose, assay, percent_matching) %>%
+    dplyr::distinct()
 
-threshold_plot_ready_df <- threshold_df %>% reshape2::dcast(dose ~ assay, value.var = "threshold")
+percent_matching_df
 
-# Next, get the median scores and determine if they pass the threshold
-cell_painting_comp_df <- load_median_correlation_scores(assay = "cellpainting", results_dir = results_dir)
-l1000_comp_df <- load_median_correlation_scores(assay = "l1000", results_dir = results_dir)
-
-significant_compounds_df <- cell_painting_comp_df %>%
-    dplyr::left_join(l1000_comp_df, by = c("dose", "compound"), suffix = c("_cellpainting", "_l1000")) %>%
-    tidyr::drop_na() %>%
-    dplyr::left_join(threshold_df %>% dplyr::filter(assay == "Cell Painting"), by = "dose") %>%
-    dplyr::left_join(threshold_df %>% dplyr::filter(assay == "L1000"), by = "dose", suffix = c("_cellpainting", "_l1000")) %>%
-    dplyr::mutate(
-        pass_cellpainting_thresh = median_replicate_score_cellpainting > threshold_cellpainting,
-        pass_l1000_thresh = median_replicate_score_l1000 > threshold_l1000
-    ) %>%
-    dplyr::mutate(pass_both = pass_cellpainting_thresh + pass_l1000_thresh) %>%
-    dplyr::mutate(pass_both = ifelse(pass_both == 2, TRUE, FALSE)) %>%
-    dplyr::select(compound, dose, median_replicate_score_cellpainting, median_replicate_score_l1000, pass_cellpainting_thresh, pass_l1000_thresh, pass_both)
-
-# Count in how many doses the particular compound was reproducible
-cp_reprod_count_df <- significant_compounds_df %>%
-    dplyr::filter(pass_cellpainting_thresh) %>%
-    dplyr::group_by(compound) %>%
-    dplyr::count() %>%
-    dplyr::rename(cell_painting_num_reproducible = n)
-
-l1000_reprod_count_df <- significant_compounds_df %>%
-    dplyr::filter(pass_l1000_thresh) %>%
-    dplyr::group_by(compound) %>%
-    dplyr::count() %>%
-    dplyr::rename(l1000_num_reproducible = n)
-
-significant_compounds_df <- significant_compounds_df %>%
-    dplyr::left_join(cp_reprod_count_df, by = "compound") %>%
-    dplyr::left_join(l1000_reprod_count_df, by = "compound") %>%
-    tidyr::replace_na(list(l1000_num_reproducible = 0, cell_painting_num_reproducible = 0)) %>%
-    dplyr::mutate(total_reproducible = cell_painting_num_reproducible + l1000_num_reproducible)
-
-significant_compounds_df$dose <- factor(significant_compounds_df$dose, levels = dose_order)
-significant_compounds_df$compound <- tolower(significant_compounds_df$compound)
-
-# Output file for further use
-output_file <- file.path("data", "significant_compounds_by_threshold_both_assays.tsv.gz")
-significant_compounds_df %>% readr::write_tsv(output_file)
-
-print(dim(significant_compounds_df))
-head(significant_compounds_df, 3)
+# How many compounds per assay per dose with greater than 3 compounds?
+for (dose in unique(pm_df$dose)) {
+    pm_sub_df <- pm_df %>% dplyr::filter(dose == !!dose)
+    print(table(pm_sub_df %>% dplyr::pull(assay)))
+}
 
 panel_a_gg <- (
-    ggplot(significant_compounds_df, aes(x = median_replicate_score_cellpainting, y = median_replicate_score_l1000))
-    + geom_point(aes(color = total_reproducible), size = 0.5, alpha = 0.5)
-    + facet_grid("~dose")
-    + geom_hline(data = threshold_plot_ready_df, aes(yintercept = `Cell Painting`), linetype = "dashed", color = "blue")
-    + geom_vline(data = threshold_plot_ready_df, aes(xintercept = L1000), linetype = "dashed", color = "blue")
-    + geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "black")
+    ggplot(pm_df, aes(x = matching_score, y = neg_log_10_p_val))
+    + geom_point(aes(color = no_of_replicates), alpha = 0.6)
+    + geom_text(data = percent_matching_df, aes(label = percent_matching, x = -0.25, y = 3))
+    + facet_grid("assay~dose")
+    + geom_hline(linetype = "dashed", color = "blue", yintercept = 2)
+    + theme_bw()
     + figure_theme
-    + scale_color_gradient("How many times\nis the compound\nreproducible?", low = "blue", high = "red")
-    + xlab("Cell Painting\nMedian pairwise replicate correlation")
-    + ylab("L1000\nMedian pairwise\nreplicate correlation")
+    + scale_color_continuous("Number of\ncompounds\nper MOA", values = scales::rescale(c(0, 2, 4, 6, 8, 15, 30)), type = "viridis")
+    + xlab("Median pairwise Pearson correlation between\ncompound profiles of the same mechanism of action (MOA)")
+    + ylab("Non-parametric -log10 p value")
 )
 
 panel_a_gg
@@ -90,9 +82,6 @@ results_dir <- file.path("../1.Data-exploration/Consensus/")
 
 pm_cellpainting_list <- load_percent_matching(assay = "cellpainting", results_dir = results_dir)
 pm_l1000_list <- load_percent_matching(assay = "l1000", results_dir = results_dir)
-
-p_val_alpha_thresh <- 0.05
-no_replicates_thresh <- 3
 
 cell_painting_pm_df <- pm_cellpainting_list[["percent_matching"]] %>%
     dplyr::filter(no_of_replicates >= no_replicates_thresh)
@@ -193,11 +182,184 @@ panel_b_gg <- (
     + xlim(c(-0.65, 1))
     + ylim(c(-0.3, 1))
     + xlab("Cell Painting\nMedian MOA correlation")
-    + ylab("L1000\nMedian MOA\ncorrelation")
+    + ylab("L1000\nMedian MOA correlation")
     + theme(legend.key.size = unit(0.3, 'cm'))
 )
 
 panel_b_gg
+
+pass_thresh_summary_df
+
+level4_results_dir <- file.path("../1.Data-exploration/Profiles_level4/results")
+
+# Next, get the median scores and determine if they pass the threshold
+cell_painting_comp_df <- load_median_correlation_scores(assay = "cellpainting", results_dir = level4_results_dir)
+l1000_comp_df <- load_median_correlation_scores(assay = "l1000", results_dir = level4_results_dir)
+
+cell_painting_pr_df <- load_percent_replicating(assay = "cellpainting", results_dir = level4_results_dir)
+l1000_pr_df <- load_percent_replicating(assay = "l1000", results_dir = level4_results_dir)
+
+pr_df <- dplyr::bind_rows(cell_painting_pr_df, l1000_pr_df)
+pr_df$dose <- factor(pr_df$dose, levels = dose_order)
+
+threshold_df <- pr_df %>%
+    dplyr::filter(type == 'non_replicate') %>%
+    dplyr::group_by(assay, dose) %>%
+    dplyr::summarise(threshold = quantile(replicate_correlation, 0.95))
+
+significant_compounds_df <- cell_painting_comp_df %>%
+    dplyr::left_join(l1000_comp_df, by = c("dose", "compound"), suffix = c("_cellpainting", "_l1000")) %>%
+    tidyr::drop_na() %>%
+    dplyr::left_join(threshold_df %>% dplyr::filter(assay == "Cell Painting"), by = "dose") %>%
+    dplyr::left_join(threshold_df %>% dplyr::filter(assay == "L1000"), by = "dose", suffix = c("_cellpainting", "_l1000")) %>%
+    dplyr::mutate(
+        pass_cellpainting_thresh = median_replicate_score_cellpainting > threshold_cellpainting,
+        pass_l1000_thresh = median_replicate_score_l1000 > threshold_l1000
+    ) %>%
+    dplyr::mutate(pass_both = pass_cellpainting_thresh + pass_l1000_thresh) %>%
+    dplyr::mutate(pass_both = ifelse(pass_both == 2, TRUE, FALSE)) %>%
+    dplyr::select(compound, dose, median_replicate_score_cellpainting, median_replicate_score_l1000, pass_cellpainting_thresh, pass_l1000_thresh, pass_both)
+
+pm_cellpainting_list <- load_percent_matching(assay = "cellpainting", results_dir = results_dir)
+pm_l1000_list <- load_percent_matching(assay = "l1000", results_dir = results_dir)
+
+cell_painting_pm_pval_df <- pm_cellpainting_list[["percent_matching_pvals"]] %>%
+    dplyr::filter(no_of_replicates >= no_replicates_thresh)
+l1000_pm_pval_df <- pm_l1000_list[["percent_matching_pvals"]] %>%
+    dplyr::filter(no_of_replicates >= no_replicates_thresh)
+
+pass_thresh_summary_df <- significant_compounds_df %>%
+    dplyr::group_by(dose) %>%
+    dplyr::mutate(
+        num_pass_cellpainting = sum(pass_cellpainting_thresh),
+        num_pass_l1000 = sum(pass_l1000_thresh),
+        num_pass_both = sum(pass_both)
+    ) %>%
+    dplyr::ungroup() %>%
+    dplyr::select(dose, num_pass_cellpainting, num_pass_l1000, num_pass_both) %>%
+    dplyr::distinct() %>%
+    dplyr::mutate(
+        unique_pass_cellpainting = num_pass_cellpainting - num_pass_both,
+        unique_pass_l1000 = num_pass_l1000 - num_pass_both
+    )
+
+significant_moa_df <- cell_painting_pm_pval_df %>%
+    dplyr::left_join(l1000_pm_pval_df, by = c("dose", "moa"), suffix = c("_cellpainting", "_l1000")) %>%
+    tidyr::drop_na() %>%
+    dplyr::mutate(
+        pass_cellpainting_thresh = p_value_cellpainting < p_val_alpha_thresh,
+        pass_l1000_thresh = p_value_l1000 < p_val_alpha_thresh
+    ) %>%
+    dplyr::select(moa, dose, pass_cellpainting_thresh, pass_l1000_thresh) %>%
+    dplyr::mutate(pass_both = pass_cellpainting_thresh + pass_l1000_thresh) %>%
+    dplyr::mutate(pass_both = ifelse(pass_both == 2, TRUE, FALSE))
+
+pass_thresh_summary_moa_df <- significant_moa_df %>%
+    dplyr::group_by(dose) %>%
+    dplyr::mutate(
+        num_pass_cellpainting = sum(pass_cellpainting_thresh),
+        num_pass_l1000 = sum(pass_l1000_thresh),
+        num_pass_both = sum(pass_both)
+    ) %>%
+    dplyr::ungroup() %>%
+    dplyr::select(dose, num_pass_cellpainting, num_pass_l1000, num_pass_both) %>%
+    dplyr::distinct() %>%
+    dplyr::mutate(
+        unique_pass_cellpainting = num_pass_cellpainting - num_pass_both,
+        unique_pass_l1000 = num_pass_l1000 - num_pass_both
+    )
+
+cell_painting_moa_rect <- pass_thresh_summary_moa_df %>%
+    dplyr::select(dose, num_pass_cellpainting, unique_pass_cellpainting, num_pass_both) %>%
+    dplyr::rename(c(ymax_bar = num_pass_cellpainting, unique_pass = unique_pass_cellpainting)) %>%
+    dplyr::mutate(
+        ymin_bar = 0,
+        xmin_bar = seq(0, (length(unique(pass_thresh_summary_df$dose)) - 1) * 2, 2),
+        xmax_bar = seq(1, (length(unique(pass_thresh_summary_df$dose))) * 2, 2),
+        assay = "Cell Painting",
+        label_text_y = 2
+    )
+
+l1000_moa_rect <- pass_thresh_summary_moa_df %>%
+    dplyr::mutate(ymax_bar = num_pass_cellpainting + unique_pass_l1000) %>%
+    dplyr::select(dose, ymax_bar, unique_pass_cellpainting, unique_pass_l1000, num_pass_both) %>%
+    dplyr::rename(c(ymin_bar = unique_pass_cellpainting, unique_pass = unique_pass_l1000)) %>%
+    dplyr::mutate(
+        xmin_bar = seq(0, (length(unique(pass_thresh_summary_df$dose)) - 1) * 2, 2),
+        xmax_bar = seq(1, (length(unique(pass_thresh_summary_df$dose))) * 2, 2),
+        assay = "L1000",
+        label_text_y = ymax_bar - 1.5
+    )
+
+full_moa_rect <- dplyr::bind_rows(cell_painting_moa_rect, l1000_moa_rect)
+
+num_pass_both_moa_text <- full_moa_rect %>%
+    dplyr::filter(assay == "Cell Painting") %>%
+    dplyr::select(dose, xmin_bar, ymax_bar, num_pass_both) %>%
+    dplyr::left_join(
+        full_moa_rect %>%
+            dplyr::filter(assay == "L1000") %>%
+            dplyr::select(dose, ymin_bar) %>%
+            dplyr::rename(c(ymin_l1000_bar = ymin_bar)),
+        by = "dose"
+    ) %>%
+    dplyr::mutate(label_text_y = ymin_l1000_bar + num_pass_both / 2)
+
+total_moas <- length(unique(significant_moa_df$moa))
+total_moas
+
+percentile_pass_moa_df <- pass_thresh_summary_moa_df %>%
+    dplyr::mutate(
+        num_pass_total = unique_pass_l1000 + unique_pass_cellpainting + num_pass_both,
+        num_pass_percentile = paste("Total:\n", round(num_pass_total / total_moas, 4) * 100, "%")
+    ) %>%
+    dplyr::select(dose, num_pass_total, num_pass_percentile)
+
+percentile_pass_moa_df
+
+# Prep legend order
+full_moa_rect <- full_moa_rect %>%
+    dplyr::add_row(
+        dose = NA,
+        ymax_bar = NA,
+        unique_pass = NA,
+        num_pass_both = NA,
+        ymin_bar = NA,
+        xmin_bar = NA,
+        xmax_bar = NA,
+        assay = "Both",
+        label_text_y = NA
+    ) %>%
+    dplyr::left_join(percentile_pass_moa_df, by = "dose")
+
+full_moa_rect$assay <- factor(full_moa_rect$assay, levels = c("L1000", "Both", "Cell Painting"))
+
+updated_assay_colors <- c(assay_colors, "Both" = "#BDB4B4") 
+
+panel_c_gg <- (
+    ggplot(full_moa_rect)
+    + geom_rect(aes(fill = assay, ymin = ymin_bar, ymax = ymax_bar, xmin = xmin_bar, xmax = xmax_bar), alpha = 0.5)
+    + geom_text(aes(x = xmin_bar + 0.5, y = label_text_y, label = unique_pass))
+    + geom_text(data = num_pass_both_moa_text, aes(x = xmin_bar + 0.5, y = label_text_y, label = num_pass_both))
+    # Select only L1000 below to not duplicate text
+    + geom_text(
+        data = full_moa_rect %>% dplyr::filter(assay == "L1000"),
+        aes(x = xmin_bar + 0.5, y = ymax_bar + 4, label = num_pass_percentile),
+        size = 3
+    )
+    + scale_fill_manual("MOA\nconsistent\nin assay", values = updated_assay_colors)
+    + theme_bw()
+    + figure_theme
+    + scale_x_continuous(
+        labels = num_pass_both_moa_text$dose,
+        breaks = seq(0.5, length(num_pass_both_moa_text$dose) * 2, 2),
+    )
+    + ylab("Number of MOAs over 95% threshold\nof scores from matched null MOA median scores")
+    + xlab("")
+    + ylim(0, max(full_moa_rect$num_pass_total, na.rm = TRUE) + 5)
+)
+
+panel_c_gg
 
 moa_count_filter <- 2
 
@@ -254,7 +416,9 @@ moa_colors <- unique(plot_ready_pm_df$moa_color_passing)
 names(moa_colors) <- moa_labels
 names(moa_labels) <- moa_labels
 
-panel_c_gg <- (
+moa_colors
+
+panel_d_gg <- (
     ggplot(plot_ready_moa_text_df, aes(y = y_axis_location, x = 0))
     + geom_text(aes(label = moa, color = x_axis_location, size = replicate_count))
     + facet_wrap("~x_axis_location", strip.position = "bottom")
@@ -262,31 +426,31 @@ panel_c_gg <- (
     + theme(strip.text = element_text(size = 14))
     + scale_color_manual(
         "Pass null\nthreshold",
-        values = moa_colors,
-        labels = moa_labels,
-        guide = "none"
+        values = moa_colors
     )
     + scale_size(
         "Number of\npassing doses",
-        range = c(4, 7),
-        guide = "none"
+        range = c(4, 7)
     )
     + xlim(-100, 100)
-    + ylim(0, 47)
+    + ylim(0, 50)
+    + guides(color = guide_legend(order = 1))
 )
 
-figure_2_gg <- cowplot::plot_grid(
-    panel_a_gg,
-    panel_b_gg,
-    panel_c_gg,
-    nrow = 3,
-    labels = c("a", "b", "c"),
-    rel_heights = c(0.55, 0.55, 1)
-)
+panel_d_gg
 
-figure_2_gg
+left_panel <- (panel_a_gg / panel_b_gg) + plot_layout(heights = c(2, 1))
+top_panel <- (left_panel | panel_c_gg) + plot_layout(widths = c(2, 1))
+
+figure_2_gg <- (
+    top_panel / panel_d_gg
+    + plot_layout(widths = c(2, 1))
+    + plot_annotation(tag_levels = "a")
+)
 
 for (extension in extensions) {
     output_file <- paste0(output_figure_base, extension)
-    cowplot::save_plot(output_file, figure_2_gg, base_width = 12, base_height = 10, dpi = 500)
+    ggplot2::ggsave(output_file, figure_2_gg, width = 16, height = 12, dpi = 500)
 }
+
+figure_2_gg
