@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>1.cellpainting_moa_median_scores_calculation</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>5.cellpainting_calculate_cpd_median_score_normalized</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
 
@@ -13971,27 +13971,13 @@ a.anchor-link {
 
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Consensus-Signatures">Consensus Signatures<a class="anchor-link" href="#Consensus-Signatures">&#182;</a></h2><p>A consensus signature can be defined as a perturbation-specific summary profile acquired by aggregating replicate level information.</p>
-<h3 id="--Consensus-Datasets">- Consensus Datasets<a class="anchor-link" href="#--Consensus-Datasets">&#182;</a></h3><ol>
-<li>Median Aggregation<ul>
-<li>consensus_median (whole plate normalization)</li>
-<li>consensus_median_dmso (dmso normalization).</li>
-</ul>
-</li>
-</ol>
-<ol>
-<li>Modified Z Score Aggregation (MODZ)<ul>
-<li>consensus_modz (whole plate normalization)</li>
-<li>consensus_modz_dmso (dmso normalization)</li>
-</ul>
-</li>
-</ol>
-<p>The first approach weights each replicate equally.
-The second approach weights replicates by average similarity to other replicates.</p>
-<h3 id="The-goal-here:">The goal here:<a class="anchor-link" href="#The-goal-here:">&#182;</a></h3><ul>
-<li>is to determine the median score of each MOA (Mechanism of action) per dose based on taking the median of the correlation values between compounds of the same MOA.</li>
-</ul>
-<h3 id="Note:">Note:<a class="anchor-link" href="#Note:">&#182;</a></h3><p>To calculate the median score for each of the four consensus data, this notebook will have to be ran four times for each.</p>
+<h2 id="Level-4---Normalized-DMSO-Profiles-Cell-painting-data">Level 4 - Normalized DMSO Profiles Cell painting data<a class="anchor-link" href="#Level-4---Normalized-DMSO-Profiles-Cell-painting-data">&#182;</a></h2><p>The goal here:</p>
+<p>-- is to determine the median score of each compound per dose based on taking the median of the correlation values between replicates of the same compound.</p>
+
+<pre><code>Level 4 data - are replicate level data i.e. where you have multiple profiles been perturbed by the same compound (pertubagen)
+
+</code></pre>
+<p>Note: This script is modified from @adeboyeML's work at <a href="https://github.com/broadinstitute/lincs-profiling-comparison/blob/b5478f3fdfc5731aac3b4b9259cffd17b65f1b3b/1.Data-exploration/Profiles_level4/cell_painting/Cellpainting_calculate_cpd_median_score.ipynb">https://github.com/broadinstitute/lincs-profiling-comparison/blob/b5478f3fdfc5731aac3b4b9259cffd17b65f1b3b/1.Data-exploration/Profiles_level4/cell_painting/Cellpainting_calculate_cpd_median_score.ipynb</a></p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14014,73 +14000,10 @@ The second approach weights replicates by average similarity to other replicates
 <span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;darkgrid&quot;</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
 <span class="kn">import</span> <span class="nn">pickle</span>
-<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
-<span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span>
-<span class="kn">from</span> <span class="nn">zipfile</span> <span class="kn">import</span> <span class="n">ZipFile</span>
-</pre></div>
 
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">feature_selection</span><span class="p">(</span><span class="n">dataset_link</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Perform feature selection by dropping columns with null or </span>
-<span class="sd">    only zeros values, and highly correlated values from the data.</span>
-<span class="sd">    </span>
-<span class="sd">    params: </span>
-<span class="sd">    dataset_link: string of github link to the consensus dataset</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">    data: returned consensus dataframe</span>
-<span class="sd">    </span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">dataset_link</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s1">&#39;gzip&#39;</span><span class="p">,</span> <span class="n">error_bad_lines</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="n">cols</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-    <span class="n">drop_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">cols</span> <span class="k">if</span> <span class="p">((</span><span class="n">data</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span> <span class="o">|</span> <span class="nb">all</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="mf">0.0</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">))]</span>
-    <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">drop_cols</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">feature_select</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">operation</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;correlation_threshold&quot;</span><span class="p">,</span> <span class="s2">&quot;variance_threshold&quot;</span><span class="p">])</span>
-    <span class="k">return</span> <span class="n">data</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">commit</span> <span class="o">=</span> <span class="s2">&quot;94bfaeeab0d107beac262b4307aa6e9b783625fa&quot;</span>
-
-<span class="n">consensus_median_link</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://github.com/broadinstitute/lincs-cell-painting/blob/</span><span class="si">{</span><span class="n">commit</span><span class="si">}</span><span class="s1">/consensus/2016_04_01_a549_48hr_batch1/2016_04_01_a549_48hr_batch1_consensus_median.csv.gz?raw=true&#39;</span>
-<span class="n">consensus_median_dmso_link</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://github.com/broadinstitute/lincs-cell-painting/blob/</span><span class="si">{</span><span class="n">commit</span><span class="si">}</span><span class="s1">/consensus/2016_04_01_a549_48hr_batch1/2016_04_01_a549_48hr_batch1_consensus_median_dmso.csv.gz?raw=true&#39;</span>
-<span class="n">consensus_modz_link</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://github.com/broadinstitute/lincs-cell-painting/blob/</span><span class="si">{</span><span class="n">commit</span><span class="si">}</span><span class="s1">/consensus/2016_04_01_a549_48hr_batch1/2016_04_01_a549_48hr_batch1_consensus_modz.csv.gz?raw=true&#39;</span>
-<span class="n">consensus_modz_dmso_link</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://github.com/broadinstitute/lincs-cell-painting/blob/</span><span class="si">{</span><span class="n">commit</span><span class="si">}</span><span class="s1">/consensus/2016_04_01_a549_48hr_batch1/2016_04_01_a549_48hr_batch1_consensus_modz_dmso.csv.gz?raw=true&#39;</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">feature_selection</span><span class="p">(</span><span class="n">consensus_modz_link</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">VisibleDeprecationWarning</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14091,10 +14014,21 @@ The second approach weights replicates by average similarity to other replicates
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Load dvc data pulled from https://github.com/broadinstitute/lincs-cell-painting</span>
+<span class="n">lincs_dir</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;../../../../lincs-cell-painting/profiles/2016_04_01_a549_48hr_batch1/&quot;</span><span class="p">)</span>
+<span class="n">plates</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">lincs_dir</span><span class="o">.</span><span class="n">iterdir</span><span class="p">()]</span>
+
+<span class="n">normalized_dmso_lvl4_files</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">plate</span> <span class="ow">in</span> <span class="n">plates</span><span class="p">:</span>
+    <span class="n">plate_dir</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">lincs_dir</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">plate</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">plate_dir</span><span class="o">.</span><span class="n">iterdir</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;normalized_dmso.csv.gz&#39;</span><span class="p">):</span>
+                <span class="n">normalized_dmso_lvl4_files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">normalized_dmso_lvl4_files</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -14110,13 +14044,62 @@ The second approach weights replicates by average similarity to other replicates
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[5]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>136
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_level4</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">,</span> <span class="n">normalized_dmso_lvl4_files</span><span class="p">))</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_level4</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df_level4</span><span class="p">[</span><span class="s1">&#39;Metadata_Plate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>(52223, 1810)
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[3]:</div>
 
 
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>(10752, 477)</pre>
+<pre>136</pre>
 </div>
 
 </div>
@@ -14128,11 +14111,164 @@ The second approach weights replicates by average similarity to other replicates
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dose_liter</span> <span class="o">=</span> <span class="n">df_level4</span><span class="p">[</span><span class="s1">&#39;Metadata_mmoles_per_liter&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">dose_liter</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>[0.0,
+ 1.0,
+ 0.33333,
+ 0.11111,
+ 0.037037,
+ 0.012346,
+ 0.0041152,
+ 10.0,
+ 3.3333,
+ 1.1111,
+ 0.37037,
+ 0.12346,
+ 0.041152,
+ 20.0,
+ 19.999,
+ 11.2,
+ 3.7333,
+ 1.2444,
+ 0.41481,
+ 0.13827,
+ 0.04609,
+ 9.5837,
+ 3.1946,
+ 1.0649,
+ 0.35495,
+ 0.11832,
+ 0.039439,
+ 11.547,
+ 3.8489,
+ 1.283,
+ 0.42766,
+ 0.14255,
+ 0.047517,
+ 6.7937,
+ 2.2646,
+ 0.75485,
+ 0.25162,
+ 0.083873,
+ 0.027958,
+ 10.05,
+ 3.3499,
+ 1.1166,
+ 0.37221,
+ 0.12407,
+ 0.041356,
+ 10.716,
+ 3.5721,
+ 1.1907,
+ 0.3969,
+ 0.1323,
+ 0.0441,
+ 4.5176,
+ 1.5059,
+ 0.50195,
+ 0.16732,
+ 0.055772,
+ 0.018591,
+ 2.0,
+ 0.66667,
+ 0.22222,
+ 0.074074,
+ 0.024691,
+ 0.0082305,
+ 4.1701,
+ 1.39,
+ 0.46334,
+ 0.15445,
+ 0.051482,
+ 0.017161,
+ 4.8003,
+ 1.6001,
+ 0.53337,
+ 0.17779,
+ 0.059264,
+ 0.019755,
+ 5.7741,
+ 1.9247,
+ 0.64157,
+ 0.21386,
+ 0.071285,
+ 0.023762,
+ 10.072,
+ 3.3574,
+ 1.1191,
+ 0.37305,
+ 0.12435,
+ 0.04145,
+ 8.106,
+ 2.702,
+ 0.90067,
+ 0.30022,
+ 0.10007,
+ 0.033358]</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">recode_dose</span><span class="p">(</span><span class="n">dose_value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This function recode the doses in Level-4 data to 8 distinct dose classes&quot;&quot;&quot;</span>
+    
+    <span class="n">doses</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.04</span><span class="p">,</span><span class="mf">0.12</span><span class="p">,</span><span class="mf">0.37</span><span class="p">,</span><span class="mf">1.11</span><span class="p">,</span><span class="mf">3.33</span><span class="p">,</span><span class="mf">10.0</span><span class="p">,</span><span class="mf">20.0</span><span class="p">,</span><span class="mf">25.0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">doses</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">dose_value</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">dose_value</span> <span class="o">&lt;=</span> <span class="mf">0.04</span><span class="p">):</span>
+            <span class="n">dose_value</span> <span class="o">=</span> <span class="mf">0.04</span>
+        <span class="k">elif</span> <span class="n">doses</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="nb">round</span><span class="p">(</span><span class="n">dose_value</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">doses</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="n">dose_value</span> <span class="o">=</span> <span class="n">doses</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">dose_value</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_dir</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;../../Profiles_level4/L1000/L1000_figshare_data&quot;</span><span class="p">)</span>
-<span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">data_dir</span><span class="p">)</span> <span class="c1">##files in L1000 downloaded dataset</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_level4</span><span class="p">[</span><span class="s1">&#39;Metadata_dose_recode&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_level4</span><span class="p">[</span><span class="s1">&#39;Metadata_mmoles_per_liter&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">recode_dose</span><span class="p">)</span>
+<span class="n">df_level4</span><span class="p">[</span><span class="s1">&#39;Metadata_dose_recode&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -14154,19 +14290,7 @@ The second approach weights replicates by average similarity to other replicates
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>[&#39;level_4_zspc_n27837x978.gctx&#39;,
- &#39;level_4W_zspc_n27837x978.gctx&#39;,
- &#39;level_3_q2norm_n27837x978.gctx&#39;,
- &#39;level_5_rank_n9482x978.gctx&#39;,
- &#39;level_5_modz_n9482x978.gctx&#39;,
- &#39;col_meta_level_5_n169494.txt&#39;,
- &#39;level_5_modz_cid_n9482.grp&#39;,
- &#39;set_size_3_level_3_REP.A_A549_only_all_compounds_and_random_well_DMSO.gmt&#39;,
- &#39;col_meta_level_3_REP.A_A549_only_n27837.txt&#39;,
- &#39;REP.A_A549_pert_info.txt&#39;,
- &#39;level_5_modz_common_sigs_n8370x978.gctx&#39;,
- &#39;col_meta_level_3_n421176.txt&#39;,
- &#39;col_meta_level_5_REP.A_A549_only_n9482.txt&#39;]</pre>
+<pre>array([ 0.  ,  0.37,  0.12,  0.04, 10.  ,  3.33,  1.11, 20.  ])</pre>
 </div>
 
 </div>
@@ -14175,67 +14299,34 @@ The second approach weights replicates by average similarity to other replicates
 
 </div>
 
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Mechanism-of-actions-(MOAs)---Alignment-of-L1000-and-Cell-Painting-MOAs">Mechanism of actions (MOAs) - Alignment of L1000 and Cell Painting MOAs<a class="anchor-link" href="#Mechanism-of-actions-(MOAs)---Alignment-of-L1000-and-Cell-Painting-MOAs">&#182;</a></h3><ul>
-<li>Align the <strong>L1000 pert_info meta_data</strong> with the <strong>Cell-painting meta_data</strong> based on <strong>broad id</strong> and then further fill in some null values in cell painting MOA column with corresponding L1000 MOAs of the same broad sample id and do the same thing for the L1000 data, then take the L1000 moas as the one that will be used for further analysis (because it has the most distinct MOAs).</li>
-</ul>
-
-</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">merge_align_moa</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">cp_moa_link</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-    
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">feature_selection</span><span class="p">(</span><span class="n">df_lvl4</span><span class="p">):</span> 
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This function aligns L1000 MOAs with the cell painting MOAs </span>
-<span class="sd">    and further fill null MOAs in one of the them (cell painting or L1000)</span>
-<span class="sd">    with another, so far they are of the same broad sample ID.</span>
-<span class="sd">    </span>
-<span class="sd">    It also merge the aligned MOA metadata dataframe with the consensus data</span>
-<span class="sd">    based on &#39;broad_sample_id&#39; and outputs the dataframe with MOAs and another one</span>
-<span class="sd">    where the broad samples has no MOAs (null moa values).</span>
-<span class="sd">    </span>
-<span class="sd">    params: </span>
-<span class="sd">    data_dir: directory that contains L1000 files</span>
-<span class="sd">    cp_moa_link: github link to cell painting MOA metadata information .csv file</span>
-<span class="sd">    data: consensus dataframe</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">    data_moa: merged consensus dataframe with moas</span>
-<span class="sd">    no_moa_data: merged consensus dataframe without moas</span>
+<span class="sd">    Perform feature selection by dropping columns with null values </span>
+<span class="sd">    (greater than 384 i.e. equivalent to one plate worth of cell profiles) </span>
+<span class="sd">    and highly correlated values from the data.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">metadata_columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df_lvl4</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;Metadata_&quot;</span><span class="p">))]</span>
+    <span class="n">df_lvl4_metadata</span> <span class="o">=</span> <span class="n">df_lvl4</span><span class="p">[</span><span class="n">metadata_columns</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">df_lvl4_features</span> <span class="o">=</span> <span class="n">df_lvl4</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">metadata_columns</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">null_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df_lvl4_features</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">df_lvl4_features</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">384</span><span class="p">]</span>
+    <span class="n">df_lvl4_features</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">null_cols</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">df_lvl4_features</span> <span class="o">=</span> <span class="n">feature_select</span><span class="p">(</span><span class="n">df_lvl4_features</span><span class="p">,</span> <span class="n">operation</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;correlation_threshold&quot;</span><span class="p">,</span> <span class="s2">&quot;variance_threshold&quot;</span><span class="p">])</span>
     
-    <span class="n">df_pertinfo_cp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">cp_moa_link</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">df_pertinfo_L1000</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s1">&#39;REP.A_A549_pert_info.txt&#39;</span><span class="p">),</span> <span class="n">delimiter</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">df_pertinfo_L1000</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pert_id&quot;</span><span class="p">:</span> <span class="s2">&quot;broad_id&quot;</span><span class="p">,</span> <span class="s2">&quot;pert_iname&quot;</span><span class="p">:</span> <span class="s2">&quot;pert_iname_L1000&quot;</span><span class="p">,</span> <span class="s2">&quot;moa&quot;</span><span class="p">:</span> <span class="s2">&quot;moa_L1000&quot;</span><span class="p">},</span> 
-                             <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-    <span class="n">df_pertinfo_cp</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pert_iname&quot;</span><span class="p">:</span> <span class="s2">&quot;pert_iname_cell_painting&quot;</span><span class="p">,</span> <span class="s2">&quot;moa&quot;</span><span class="p">:</span> <span class="s2">&quot;moa_cell_painting&quot;</span><span class="p">},</span>
-                          <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-    <span class="n">df_pertinfo</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_pertinfo_L1000</span><span class="p">,</span> <span class="n">df_pertinfo_cp</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;broad_id&#39;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df_lvl4_features</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">df_lvl4_features</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">():</span>
+            <span class="n">df_lvl4_features</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">df_lvl4_features</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+            
+    <span class="n">df_meta_info</span> <span class="o">=</span> <span class="n">df_lvl4_metadata</span><span class="p">[[</span><span class="s1">&#39;Metadata_broad_sample&#39;</span><span class="p">,</span> <span class="s1">&#39;Metadata_pert_id&#39;</span><span class="p">,</span> <span class="s1">&#39;Metadata_Plate&#39;</span><span class="p">,</span> <span class="s1">&#39;Metadata_Well&#39;</span><span class="p">,</span>
+                                     <span class="s1">&#39;Metadata_broad_id&#39;</span><span class="p">,</span> <span class="s1">&#39;Metadata_moa&#39;</span><span class="p">,</span> <span class="s1">&#39;Metadata_dose_recode&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">df_lvl4_new</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_meta_info</span><span class="p">,</span> <span class="n">df_lvl4_features</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     
-    <span class="c1">##fill NaNs moa_L1000, pert_iname_L1000, with corresponding values in cell_painting and VICE VERSA for Cell_Painting</span>
-    <span class="n">df_pertinfo</span><span class="p">[</span><span class="s1">&#39;moa_L1000&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">df_pertinfo</span><span class="p">[</span><span class="s1">&#39;moa_cell_painting&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">df_pertinfo</span><span class="p">[</span><span class="s1">&#39;pert_iname_L1000&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">df_pertinfo</span><span class="p">[</span><span class="s1">&#39;pert_iname_cell_painting&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">df_pertinfo</span><span class="p">[</span><span class="s1">&#39;moa_cell_painting&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">df_pertinfo</span><span class="p">[</span><span class="s1">&#39;moa_L1000&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">df_pertinfo</span><span class="p">[</span><span class="s1">&#39;pert_iname_cell_painting&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">df_pertinfo</span><span class="p">[</span><span class="s1">&#39;moa_L1000&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    
-    <span class="n">df_pertinfo</span> <span class="o">=</span> <span class="n">df_pertinfo</span><span class="p">[[</span><span class="s1">&#39;broad_sample&#39;</span><span class="p">,</span> <span class="s1">&#39;broad_id&#39;</span><span class="p">,</span> <span class="s1">&#39;pert_iname_L1000&#39;</span><span class="p">,</span> <span class="s1">&#39;moa_L1000&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">df_pertinfo</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pert_iname_L1000&quot;</span><span class="p">:</span> <span class="s2">&quot;pert_iname&quot;</span><span class="p">,</span> <span class="s2">&quot;moa_L1000&quot;</span><span class="p">:</span><span class="s2">&quot;moa&quot;</span><span class="p">,</span> <span class="s2">&quot;broad_sample&quot;</span><span class="p">:</span><span class="s1">&#39;Metadata_broad_sample&#39;</span><span class="p">},</span>
-                       <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-    <span class="n">df_pertinfo</span><span class="p">[</span><span class="s1">&#39;Metadata_broad_sample&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;DMSO&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">data_moa</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_pertinfo</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;Metadata_broad_sample&#39;</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;outer&#39;</span><span class="p">)</span>
-    <span class="n">no_moa_data</span> <span class="o">=</span> <span class="n">data_moa</span><span class="p">[</span><span class="n">data_moa</span><span class="p">[</span><span class="s1">&#39;moa&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-    <span class="n">data_moa</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">data_moa</span><span class="p">[</span><span class="n">data_moa</span><span class="p">[</span><span class="s1">&#39;moa&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()]</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-    <span class="n">data_moa</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;pert_iname&#39;</span><span class="p">,</span> <span class="s1">&#39;moa&#39;</span><span class="p">]:</span>
-        <span class="n">data_moa</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_moa</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
-        
-    <span class="k">return</span> <span class="n">data_moa</span><span class="p">,</span> <span class="n">no_moa_data</span>
+    <span class="k">return</span> <span class="n">df_lvl4_new</span>
 </pre></div>
 
      </div>
@@ -14249,13 +14340,8 @@ The second approach weights replicates by average similarity to other replicates
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">moa_dataset</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/broadinstitute/lincs-cell-painting/blob/master/metadata/moa/repurposing_info_external_moa_map_resolved.tsv?raw=true&quot;</span>
-<span class="n">df_moa</span><span class="p">,</span> <span class="n">df_no_moa</span> <span class="o">=</span> <span class="n">merge_align_moa</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">moa_dataset</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
-
-<span class="n">df_moa</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_moa</span><span class="o">.</span><span class="n">Metadata_broad_sample</span> <span class="o">==</span> <span class="s1">&#39;DMSO&#39;</span><span class="p">,</span> <span class="s2">&quot;Metadata_dose_recode&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">df_moa</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="n">df_moa</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_level4_new</span> <span class="o">=</span> <span class="n">feature_selection</span><span class="p">(</span><span class="n">df_level4</span><span class="p">)</span>
+<span class="n">df_level4_new</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 
      </div>
@@ -14267,18 +14353,6 @@ The second approach weights replicates by average similarity to other replicates
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>(10674, 480)
-</pre>
-</div>
-</div>
 
 <div class="jp-OutputArea-child">
 
@@ -14287,173 +14361,9 @@ The second approach weights replicates by average similarity to other replicates
 
 
 
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Metadata_Plate_Map_Name</th>
-      <th>Metadata_cell_id</th>
-      <th>Metadata_broad_sample</th>
-      <th>Metadata_pert_well</th>
-      <th>Metadata_mmoles_per_liter</th>
-      <th>Metadata_dose_recode</th>
-      <th>Metadata_time_point</th>
-      <th>Metadata_moa</th>
-      <th>Metadata_target</th>
-      <th>Cells_AreaShape_Area</th>
-      <th>...</th>
-      <th>Nuclei_Texture_InverseDifferenceMoment_RNA_20_0</th>
-      <th>Nuclei_Texture_SumAverage_Mito_5_0</th>
-      <th>Nuclei_Texture_SumAverage_RNA_20_0</th>
-      <th>Nuclei_Texture_SumEntropy_DNA_10_0</th>
-      <th>Nuclei_Texture_SumEntropy_DNA_20_0</th>
-      <th>Nuclei_Texture_SumEntropy_DNA_5_0</th>
-      <th>Nuclei_Texture_Variance_RNA_10_0</th>
-      <th>broad_id</th>
-      <th>pert_iname</th>
-      <th>moa</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>C-7161-01-LM6-001</td>
-      <td>A549</td>
-      <td>BRD-A25234499-001-18-3</td>
-      <td>B13</td>
-      <td>10.00000</td>
-      <td>6</td>
-      <td>48H</td>
-      <td>glucocorticoid receptor antagonist</td>
-      <td>CYP11A1|CYP19A1</td>
-      <td>0.590872</td>
-      <td>...</td>
-      <td>-0.336837</td>
-      <td>-0.232499</td>
-      <td>-0.261614</td>
-      <td>-0.743750</td>
-      <td>-0.696430</td>
-      <td>-0.798071</td>
-      <td>0.822303</td>
-      <td>BRD-A25234499</td>
-      <td>aminoglutethimide</td>
-      <td>glucocorticoid receptor antagonist</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>C-7161-01-LM6-001</td>
-      <td>A549</td>
-      <td>BRD-A25234499-001-18-3</td>
-      <td>B14</td>
-      <td>3.33330</td>
-      <td>5</td>
-      <td>48H</td>
-      <td>glucocorticoid receptor antagonist</td>
-      <td>CYP11A1|CYP19A1</td>
-      <td>0.954197</td>
-      <td>...</td>
-      <td>0.017264</td>
-      <td>-1.249730</td>
-      <td>-0.021410</td>
-      <td>-0.109637</td>
-      <td>-0.054270</td>
-      <td>-0.021149</td>
-      <td>-0.673055</td>
-      <td>BRD-A25234499</td>
-      <td>aminoglutethimide</td>
-      <td>glucocorticoid receptor antagonist</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>C-7161-01-LM6-001</td>
-      <td>A549</td>
-      <td>BRD-A25234499-001-18-3</td>
-      <td>B15</td>
-      <td>1.11110</td>
-      <td>4</td>
-      <td>48H</td>
-      <td>glucocorticoid receptor antagonist</td>
-      <td>CYP11A1|CYP19A1</td>
-      <td>1.099970</td>
-      <td>...</td>
-      <td>-0.218530</td>
-      <td>-0.799267</td>
-      <td>0.004256</td>
-      <td>-0.112864</td>
-      <td>-0.023578</td>
-      <td>-0.116579</td>
-      <td>-0.420039</td>
-      <td>BRD-A25234499</td>
-      <td>aminoglutethimide</td>
-      <td>glucocorticoid receptor antagonist</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>C-7161-01-LM6-001</td>
-      <td>A549</td>
-      <td>BRD-A25234499-001-18-3</td>
-      <td>B16</td>
-      <td>0.37037</td>
-      <td>3</td>
-      <td>48H</td>
-      <td>glucocorticoid receptor antagonist</td>
-      <td>CYP11A1|CYP19A1</td>
-      <td>0.616731</td>
-      <td>...</td>
-      <td>0.166335</td>
-      <td>-0.769702</td>
-      <td>-0.266455</td>
-      <td>-0.557198</td>
-      <td>-0.452475</td>
-      <td>-0.441623</td>
-      <td>-0.470540</td>
-      <td>BRD-A25234499</td>
-      <td>aminoglutethimide</td>
-      <td>glucocorticoid receptor antagonist</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>C-7161-01-LM6-001</td>
-      <td>A549</td>
-      <td>BRD-A25234499-001-18-3</td>
-      <td>B17</td>
-      <td>0.12346</td>
-      <td>2</td>
-      <td>48H</td>
-      <td>glucocorticoid receptor antagonist</td>
-      <td>CYP11A1|CYP19A1</td>
-      <td>1.145610</td>
-      <td>...</td>
-      <td>0.450380</td>
-      <td>-0.514840</td>
-      <td>-0.331505</td>
-      <td>-0.131503</td>
-      <td>-0.141870</td>
-      <td>-0.079350</td>
-      <td>-0.399996</td>
-      <td>BRD-A25234499</td>
-      <td>aminoglutethimide</td>
-      <td>glucocorticoid receptor antagonist</td>
-    </tr>
-  </tbody>
-</table>
-<p>5 rows × 480 columns</p>
-</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>(52223, 752)</pre>
 </div>
 
 </div>
@@ -14462,18 +14372,28 @@ The second approach weights replicates by average similarity to other replicates
 
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Load common compounds</span>
-<span class="n">common_file</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="s2">&quot;6.paper_figures&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="s2">&quot;significant_compounds_by_threshold_both_assays.tsv.gz&quot;</span><span class="p">)</span>
-<span class="n">common_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">common_file</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
-
-<span class="n">common_compounds</span> <span class="o">=</span> <span class="n">common_df</span><span class="o">.</span><span class="n">compound</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">common_compounds</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">merge_dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">pertinfo_file</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function merge aligned L1000 and Cell painting Metadata information dataframe </span>
+<span class="sd">    with the Level-4 data, change the values of the Metadata_dose_recode column </span>
+<span class="sd">    and create a new column &#39;replicate_name&#39; that represents each replicate in the dataset</span>
+<span class="sd">    &quot;&quot;&quot;</span> 
+    <span class="n">df_pertinfo</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">pertinfo_file</span><span class="p">)</span>
+    <span class="n">df_lvl4_new</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_pertinfo</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;Metadata_broad_sample&#39;</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;outer&#39;</span><span class="p">)</span>
+    <span class="n">no_cpds_df</span> <span class="o">=</span> <span class="n">df_lvl4_new</span><span class="p">[</span><span class="n">df_lvl4_new</span><span class="p">[</span><span class="s1">&#39;pert_iname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="n">df_lvl4_new</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">df_lvl4_new</span><span class="p">[</span><span class="n">df_lvl4_new</span><span class="p">[</span><span class="s1">&#39;pert_iname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()]</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="n">df_lvl4_new</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="n">df_lvl4_new</span><span class="p">[</span><span class="s1">&#39;Metadata_dose_recode&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_lvl4_new</span><span class="p">[</span><span class="s1">&#39;Metadata_dose_recode&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">({</span><span class="mf">0.0</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.04</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.12</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.37</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="mf">1.11</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span>
+                                                                                   <span class="mf">3.33</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="mf">10.0</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="mf">20.0</span><span class="p">:</span><span class="mi">7</span><span class="p">})</span>
+    <span class="n">df_lvl4_new</span><span class="p">[</span><span class="s1">&#39;replicate_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;replicate_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">df_lvl4_new</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
+    
+    <span class="k">return</span> <span class="n">df_lvl4_new</span><span class="p">,</span> <span class="n">no_cpds_df</span>
 </pre></div>
 
      </div>
@@ -14481,37 +14401,13 @@ The second approach weights replicates by average similarity to other replicates
 </div>
 </div>
 
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>1327
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Only calculate using common compounds</span>
-<span class="n">df_moa</span> <span class="o">=</span> <span class="n">df_moa</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;pert_iname in @common_compounds&quot;</span><span class="p">)</span>
-
-<span class="n">df_moa</span><span class="o">.</span><span class="n">shape</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pertinfo_file</span> <span class="o">=</span> <span class="s1">&#39;../aligned_moa_CP_L1000.csv&#39;</span>
 </pre></div>
 
      </div>
@@ -14519,65 +14415,18 @@ The second approach weights replicates by average similarity to other replicates
 </div>
 </div>
 
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[10]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>(8322, 480)</pre>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># How many total MOAs</span>
-<span class="n">df_moa</span><span class="o">.</span><span class="n">moa</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_level4_new</span><span class="p">,</span> <span class="n">df_level4_no_cpds</span> <span class="o">=</span> <span class="n">merge_dataframe</span><span class="p">(</span><span class="n">df_level4_new</span><span class="p">,</span> <span class="n">pertinfo_file</span><span class="p">)</span>
 </pre></div>
 
      </div>
 </div>
 </div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>583</pre>
-</div>
-
-</div>
-
-</div>
-
 </div>
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -14586,7 +14435,8 @@ The second approach weights replicates by average similarity to other replicates
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_no_moa</span><span class="o">.</span><span class="n">shape</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">##list of &quot;Broad samples&quot; WITHOUT Compounds after aligning L1000 and Cell painting MOAs</span>
+<span class="n">df_level4_no_cpds</span><span class="p">[</span><span class="s1">&#39;Metadata_broad_sample&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -14608,7 +14458,19 @@ The second approach weights replicates by average similarity to other replicates
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>(78, 480)</pre>
+<pre>[&#39;BRD-A20131130-001-01-7&#39;,
+ &#39;BRD-M98279124-300-01-1&#39;,
+ &#39;BRD-K87278688-001-01-0&#39;,
+ &#39;BRD-K21547160-001-01-4&#39;,
+ &#39;BRD-A44448661-001-04-8&#39;,
+ &#39;BRD-K41438959-001-01-7&#39;,
+ &#39;BRD-A37288617-003-02-2&#39;,
+ &#39;BRD-K52080565-001-09-2&#39;,
+ &#39;BRD-K73395020-001-02-3&#39;,
+ &#39;BRD-K01192156-001-02-7&#39;,
+ &#39;BRD-A84045418-001-03-1&#39;,
+ &#39;BRD-K60623809-001-02-0&#39;,
+ &#39;BRD-K51033547-003-02-6&#39;]</pre>
 </div>
 
 </div>
@@ -14617,14 +14479,32 @@ The second approach weights replicates by average similarity to other replicates
 
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">##list of &quot;Broad samples&quot; WITHOUT Mechanism of Actions (MOA) after aligning L1000 and Cell painting MOAs</span>
-<span class="n">df_no_moa</span><span class="p">[</span><span class="s1">&#39;Metadata_broad_sample&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_median_score</span><span class="p">(</span><span class="n">cpds_list</span><span class="p">,</span> <span class="n">df</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function calculates the median score for each compound based on its replicates</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">cpds_median_score</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">cpd</span> <span class="ow">in</span> <span class="n">cpds_list</span><span class="p">:</span>
+        <span class="n">cpd_replicates</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;pert_iname&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">cpd</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">cpd_replicates</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Metadata_broad_sample&#39;</span><span class="p">,</span> <span class="s1">&#39;Metadata_pert_id&#39;</span><span class="p">,</span> <span class="s1">&#39;Metadata_dose_recode&#39;</span><span class="p">,</span> <span class="s1">&#39;Metadata_Plate&#39;</span><span class="p">,</span>
+                             <span class="s1">&#39;Metadata_Well&#39;</span><span class="p">,</span> <span class="s1">&#39;Metadata_broad_id&#39;</span><span class="p">,</span> <span class="s1">&#39;Metadata_moa&#39;</span><span class="p">,</span> <span class="s1">&#39;broad_id&#39;</span><span class="p">,</span> 
+                             <span class="s1">&#39;pert_iname&#39;</span><span class="p">,</span> <span class="s1">&#39;moa&#39;</span><span class="p">,</span> <span class="s1">&#39;replicate_name&#39;</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="n">cpd_replicates_corr</span> <span class="o">=</span> <span class="n">cpd_replicates</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">method</span> <span class="o">=</span> <span class="s1">&#39;spearman&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cpd_replicates_corr</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">median_val</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">median_val</span> <span class="o">=</span> <span class="n">median</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">cpd_replicates_corr</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">triu_indices</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cpd_replicates_corr</span><span class="p">),</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)]))</span>
+        
+        <span class="n">cpds_median_score</span><span class="p">[</span><span class="n">cpd</span><span class="p">]</span> <span class="o">=</span> <span class="n">median_val</span>
+        
+    <span class="k">return</span> <span class="n">cpds_median_score</span>
 </pre></div>
 
      </div>
@@ -14632,133 +14512,25 @@ The second approach weights replicates by average similarity to other replicates
 </div>
 </div>
 
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[13]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>[&#39;BRD-K21547160-001-01-4&#39;,
- &#39;BRD-A37288617-003-02-2&#39;,
- &#39;BRD-A44448661-001-04-8&#39;,
- &#39;BRD-A84045418-001-03-1&#39;,
- &#39;BRD-K01192156-001-02-7&#39;,
- &#39;BRD-K41438959-001-01-7&#39;,
- &#39;BRD-K51033547-003-02-6&#39;,
- &#39;BRD-K52080565-001-09-2&#39;,
- &#39;BRD-K60623809-001-02-0&#39;,
- &#39;BRD-K73395020-001-02-3&#39;,
- &#39;BRD-A20131130-001-01-7&#39;,
- &#39;BRD-K87278688-001-01-0&#39;,
- &#39;BRD-M98279124-300-01-1&#39;]</pre>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Next:">Next:<a class="anchor-link" href="#Next:">&#182;</a></h3><h3 id="--Get-Correlation-(using-Spearman-coefficient)--between-compounds-for-all-DOSES-(1---6).">- Get Correlation (using Spearman coefficient)  between compounds for all DOSES (1 - 6).<a class="anchor-link" href="#--Get-Correlation-(using-Spearman-coefficient)--between-compounds-for-all-DOSES-(1---6).">&#182;</a></h3><h3 id="--Then,-Get-the-correlation-values-btw-compounds-of-each-particular-MOA,-and-calculate-the-median-from-the-correlation-values.">- Then, Get the correlation values btw compounds of each particular MOA, and calculate the median from the correlation values.<a class="anchor-link" href="#--Then,-Get-the-correlation-values-btw-compounds-of-each-particular-MOA,-and-calculate-the-median-from-the-correlation-values.">&#182;</a></h3><h2 id="Recoding-Dose-Information">Recoding Dose Information<a class="anchor-link" href="#Recoding-Dose-Information">&#182;</a></h2><p>The Drug Repurposing Hub collected data on 6 to 7 dose points per compound.
-In general, most doses are very near the following 7 dose points (mmoles per liter):</p>
-<blockquote><p>[0.04, 0.12, 0.37, 1.11, 3.33, 10, 20]</p>
-</blockquote>
-<p>Therefore, to make it easier to filter by dose when comparing compounds, we first align the doses collected in the dataset to their nearest dose point above.
-We then recode the dose points into ascending numerical levels and add a new metadata annotation <code>dose_recode</code> to the consensus signatures.</p>
-<table>
-<thead><tr>
-<th style="text-align:center">Dose</th>
-<th style="text-align:center">Dose Recode</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">0 (DMSO)</td>
-<td style="text-align:center">0</td>
-</tr>
-<tr>
-<td style="text-align:center">~0.04</td>
-<td style="text-align:center">1</td>
-</tr>
-<tr>
-<td style="text-align:center">~0.12</td>
-<td style="text-align:center">2</td>
-</tr>
-<tr>
-<td style="text-align:center">~0.37</td>
-<td style="text-align:center">3</td>
-</tr>
-<tr>
-<td style="text-align:center">~1.11</td>
-<td style="text-align:center">4</td>
-</tr>
-<tr>
-<td style="text-align:center">~3.33</td>
-<td style="text-align:center">5</td>
-</tr>
-<tr>
-<td style="text-align:center">~10</td>
-<td style="text-align:center">6</td>
-</tr>
-<tr>
-<td style="text-align:center">~20</td>
-<td style="text-align:center">7</td>
-</tr>
-</tbody>
-</table>
-
-</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_median_score</span><span class="p">(</span><span class="n">moa_list</span><span class="p">,</span> <span class="n">df_dose</span><span class="p">,</span> <span class="n">df_cpd_agg</span><span class="p">):</span>
-    
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">check_compounds</span><span class="p">(</span><span class="n">cpd_med_score</span><span class="p">,</span> <span class="n">df</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Get the correlation values between compounds of each MOA, </span>
-<span class="sd">    then calculate the median of these correlation values </span>
-<span class="sd">    and assign it as the &quot;median score&quot; of the MOA.</span>
-<span class="sd">    </span>
-<span class="sd">    params: </span>
-<span class="sd">    moa_list: list of distinct moas for a particular dose</span>
-<span class="sd">    df_dose: merged consensus and moa dataframe of a partcular dose</span>
-<span class="sd">    df_dose_corr: merged consensus and moa dataframe of compound correlations of a particular dose</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">    moa_median_score: Dict with moa as the keys, and their median scores as the values</span>
-<span class="sd">    moa_cpds: Dict with moa as the keys, and the list of moa for each moa as the values</span>
-<span class="sd">    </span>
+<span class="sd">    Check if all distinct compounds in the Level-4 dataframe are present </span>
+<span class="sd">    in the cpd_med_score dictionary, if not add the compounds as keys to the dictionary </span>
+<span class="sd">    and give them a null value.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    
-    <span class="n">moa_cpds</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">moa_median_score</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">for</span> <span class="n">moa</span> <span class="ow">in</span> <span class="n">moa_list</span><span class="p">:</span>
-        <span class="n">cpds</span> <span class="o">=</span> <span class="n">df_dose</span><span class="p">[</span><span class="s1">&#39;pert_iname&#39;</span><span class="p">][</span><span class="n">df_dose</span><span class="p">[</span><span class="s1">&#39;moa&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">moa</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-        <span class="n">moa_cpds</span><span class="p">[</span><span class="n">moa</span><span class="p">]</span> <span class="o">=</span> <span class="n">cpds</span>
-        <span class="c1">##taking correlation btw cpds for each MOA</span>
-        <span class="n">df_cpds</span> <span class="o">=</span> <span class="n">df_cpd_agg</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">cpds</span><span class="p">]</span>
-        <span class="n">cpds_corr</span> <span class="o">=</span> <span class="n">df_cpds</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">method</span> <span class="o">=</span> <span class="s1">&#39;spearman&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cpds_corr</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">median_val</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">median_val</span> <span class="o">=</span> <span class="n">median</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">cpds_corr</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">triu_indices</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cpds_corr</span><span class="p">),</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)]))</span>
-
-        <span class="n">moa_median_score</span><span class="p">[</span><span class="n">moa</span><span class="p">]</span> <span class="o">=</span> <span class="n">median_val</span>
-        
-    <span class="k">return</span> <span class="n">moa_median_score</span><span class="p">,</span> <span class="n">moa_cpds</span>
+    <span class="n">cpd_list</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;pert_iname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="n">cpd_keys</span> <span class="o">=</span> <span class="n">cpd_med_score</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">cpd</span> <span class="ow">in</span> <span class="n">cpd_list</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">cpd</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cpd_keys</span><span class="p">:</span>
+            <span class="n">cpd_med_score</span><span class="p">[</span><span class="n">cpd</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+            
+    <span class="k">return</span> <span class="n">cpd_med_score</span>
 </pre></div>
 
      </div>
@@ -14772,29 +14544,24 @@ We then recode the dose points into ascending numerical levels and add a new met
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">check_moa</span><span class="p">(</span><span class="n">moa_med_score</span><span class="p">,</span> <span class="n">moa_cpds</span><span class="p">,</span> <span class="n">df_moa</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Check if all distinct moas in the moa_consensus dataframe (df_moa) </span>
-<span class="sd">    are in moa_med_score &amp; moa_cpd, if not add them as keys and give them</span>
-<span class="sd">    a null value as the median score for moa_med_score and also as values for moa_cpds.</span>
-<span class="sd">    </span>
-<span class="sd">    params: </span>
-<span class="sd">    moa_med_score: Dict with moa as the keys, and their size as the values</span>
-<span class="sd">    moa_cpds: Dict with moa as the keys, and the list of moa for each moa as the values</span>
-<span class="sd">    data_moa: merged consensus and moa df with moas</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">    moa_med_score: Dict with moa as the keys, and their size as the values</span>
-<span class="sd">    moa_cpds: Dict with moa as the keys, and the list of moa for each moa as the values</span>
-<span class="sd">    </span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">moa_list</span> <span class="o">=</span> <span class="n">df_moa</span><span class="p">[</span><span class="s1">&#39;moa&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-    <span class="n">moa_keys</span> <span class="o">=</span> <span class="n">moa_med_score</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">moa</span> <span class="ow">in</span> <span class="n">moa_list</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">moa</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">moa_keys</span><span class="p">:</span>
-            <span class="n">moa_med_score</span><span class="p">[</span><span class="n">moa</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
-            <span class="n">moa_cpds</span><span class="p">[</span><span class="n">moa</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
-    <span class="k">return</span> <span class="n">moa_med_score</span><span class="p">,</span> <span class="n">moa_cpds</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_cpd_medianscores</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    
+    <span class="sd">&quot;&quot;&quot;This function computes median scores for all compounds found in the Level-4 dataframe PER DOSE (1-6)&quot;&quot;&quot;</span>
+    
+    <span class="n">dose_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Metadata_dose_recode&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()))[</span><span class="mi">1</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span>
+    
+    <span class="k">for</span> <span class="n">dose</span> <span class="ow">in</span> <span class="n">dose_list</span><span class="p">:</span>
+        <span class="n">df_dose</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Metadata_dose_recode&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">dose</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">cpds_list</span> <span class="o">=</span> <span class="n">df_dose</span><span class="p">[</span><span class="s1">&#39;pert_iname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="n">cpds_median_score</span> <span class="o">=</span> <span class="n">get_median_score</span><span class="p">(</span><span class="n">cpds_list</span><span class="p">,</span> <span class="n">df_dose</span><span class="p">)</span>
+        <span class="n">cpds_median_score</span> <span class="o">=</span> <span class="n">check_compounds</span><span class="p">(</span><span class="n">cpds_median_score</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
+        <span class="n">sorted_med_score</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span><span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">cpds_median_score</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">item</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">])}</span>
+        <span class="k">if</span> <span class="n">dose</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">df_cpd_med_score</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">sorted_med_score</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;dose_1&#39;</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">df_cpd_med_score</span><span class="p">[</span><span class="s1">&#39;dose_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">dose</span><span class="p">)]</span> <span class="o">=</span> <span class="n">sorted_med_score</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+            
+    <span class="k">return</span> <span class="n">df_cpd_med_score</span>
 </pre></div>
 
      </div>
@@ -14808,42 +14575,7 @@ We then recode the dose points into ascending numerical levels and add a new met
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_moa_medianscores</span><span class="p">(</span><span class="n">df_moa</span><span class="p">):</span>
-    
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Generate a dataframe of distinct moas with their median scores and</span>
-<span class="sd">    corresponding list of compounds for different doses.</span>
-<span class="sd">    </span>
-<span class="sd">    params: </span>
-<span class="sd">    df_moa: merged consensus and moa dataframe</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">    df_moa_med_score: dataframe of distinct moas with their corresponding median scores </span>
-<span class="sd">    and list of compounds for all doses.</span>
-<span class="sd">    </span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">dose_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">df_moa</span><span class="p">[</span><span class="s1">&#39;Metadata_dose_recode&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">dose_list</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">dose</span> <span class="ow">in</span> <span class="n">dose_list</span><span class="p">:</span>
-        <span class="n">df_dose</span> <span class="o">=</span> <span class="n">df_moa</span><span class="p">[</span><span class="n">df_moa</span><span class="p">[</span><span class="s1">&#39;Metadata_dose_recode&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">dose</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-        <span class="n">df_cpd_agg</span> <span class="o">=</span> <span class="n">df_dose</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;pert_iname&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;mean&#39;</span><span class="p">])</span>
-        <span class="n">df_cpd_agg</span><span class="o">.</span><span class="n">columns</span>  <span class="o">=</span> <span class="n">df_cpd_agg</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">droplevel</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">df_cpd_agg</span><span class="o">.</span><span class="n">rename_axis</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-        <span class="n">df_cpd_agg</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Metadata_mmoles_per_liter&#39;</span><span class="p">,</span> <span class="s1">&#39;Metadata_dose_recode&#39;</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-        <span class="n">dose_moa_list</span> <span class="o">=</span> <span class="n">df_dose</span><span class="p">[</span><span class="s1">&#39;moa&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-        <span class="c1">#get the median of the corr values of the cpds for each MOA</span>
-        <span class="n">dose_moa_med_score</span><span class="p">,</span> <span class="n">dose_moa_cpds</span> <span class="o">=</span> <span class="n">get_median_score</span><span class="p">(</span><span class="n">dose_moa_list</span><span class="p">,</span> <span class="n">df_dose</span><span class="p">,</span> <span class="n">df_cpd_agg</span><span class="p">)</span>
-        <span class="c1">#check if all moa in the df_moa is present in the dose_moa</span>
-        <span class="n">dose_moa_med_score</span><span class="p">,</span> <span class="n">dose_moa_cpds</span> <span class="o">=</span> <span class="n">check_moa</span><span class="p">(</span><span class="n">dose_moa_med_score</span><span class="p">,</span> <span class="n">dose_moa_cpds</span><span class="p">,</span> <span class="n">df_moa</span><span class="p">)</span>
-        <span class="n">sorted_moa_med_score</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span><span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">dose_moa_med_score</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">item</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">])}</span>
-        <span class="n">sorted_dose_cpds</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span><span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">dose_moa_cpds</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">item</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">])}</span>
-        <span class="k">if</span> <span class="n">dose</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">df_moa_med_score</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">sorted_moa_med_score</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;dose_1&#39;</span><span class="p">])</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">df_moa_med_score</span><span class="p">[</span><span class="s1">&#39;dose_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">dose</span><span class="p">)]</span> <span class="o">=</span> <span class="n">sorted_moa_med_score</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
-        <span class="n">df_moa_med_score</span><span class="p">[</span><span class="s1">&#39;moa_cpds_dose_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">dose</span><span class="p">)]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">sorted_dose_cpds</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
-            
-    <span class="k">return</span> <span class="n">df_moa_med_score</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_cpd_med_score</span> <span class="o">=</span> <span class="n">get_cpd_medianscores</span><span class="p">(</span><span class="n">df_level4_new</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14857,7 +14589,7 @@ We then recode the dose points into ascending numerical levels and add a new met
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_moa_med_score</span> <span class="o">=</span> <span class="n">get_moa_medianscores</span><span class="p">(</span><span class="n">df_moa</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_cpd_med_score</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14873,12 +14605,130 @@ We then recode the dose points into ascending numerical levels and add a new met
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[17]:</div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>[1, 2, 3, 4, 5, 6, 7]
-</pre>
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>dose_1</th>
+      <th>dose_2</th>
+      <th>dose_3</th>
+      <th>dose_4</th>
+      <th>dose_5</th>
+      <th>dose_6</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>10-DEBC</th>
+      <td>0.060405</td>
+      <td>0.206655</td>
+      <td>0.055344</td>
+      <td>0.030245</td>
+      <td>0.398169</td>
+      <td>0.618065</td>
+    </tr>
+    <tr>
+      <th>16,16-dimethylprostaglandin-e2</th>
+      <td>0.363895</td>
+      <td>0.432220</td>
+      <td>0.277582</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>17-hydroxyprogesterone-caproate</th>
+      <td>0.511133</td>
+      <td>0.329249</td>
+      <td>0.224179</td>
+      <td>0.287033</td>
+      <td>0.325092</td>
+      <td>0.883269</td>
+    </tr>
+    <tr>
+      <th>2-iminobiotin</th>
+      <td>0.123800</td>
+      <td>0.184254</td>
+      <td>0.105822</td>
+      <td>0.155813</td>
+      <td>0.029073</td>
+      <td>0.053605</td>
+    </tr>
+    <tr>
+      <th>2-methoxyestradiol</th>
+      <td>0.306166</td>
+      <td>0.289920</td>
+      <td>0.486824</td>
+      <td>0.812630</td>
+      <td>0.851861</td>
+      <td>0.909993</td>
+    </tr>
+    <tr>
+      <th>3,3'-diindolylmethane</th>
+      <td>0.187089</td>
+      <td>0.309078</td>
+      <td>0.234536</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3-amino-benzamide</th>
+      <td>0.421004</td>
+      <td>0.293440</td>
+      <td>0.459122</td>
+      <td>0.286109</td>
+      <td>0.488442</td>
+      <td>0.447365</td>
+    </tr>
+    <tr>
+      <th>3-deazaadenosine</th>
+      <td>0.077982</td>
+      <td>-0.008292</td>
+      <td>-0.014438</td>
+      <td>-0.105783</td>
+      <td>-0.018326</td>
+      <td>0.300607</td>
+    </tr>
+    <tr>
+      <th>ABT-737</th>
+      <td>0.265878</td>
+      <td>0.329012</td>
+      <td>0.531166</td>
+      <td>0.633499</td>
+      <td>0.719174</td>
+      <td>0.872330</td>
+    </tr>
+    <tr>
+      <th>AEE788</th>
+      <td>0.829277</td>
+      <td>0.291022</td>
+      <td>0.486297</td>
+      <td>0.527541</td>
+      <td>0.891382</td>
+      <td>0.901936</td>
+    </tr>
+  </tbody>
+</table>
 </div>
 </div>
 
@@ -14887,57 +14737,29 @@ We then recode the dose points into ascending numerical levels and add a new met
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="--Exclude-MOAs-with-median-score-1-and-only-null-values-and--also-columns-with-only-null-values">- Exclude MOAs with median score 1 and only null values and  also columns with only null values<a class="anchor-link" href="#--Exclude-MOAs-with-median-score-1-and-only-null-values-and--also-columns-with-only-null-values">&#182;</a></h3><h4 id="The-reason-why-we-are-excluding-MOAs-with-median-value-==-1,-is-because-they-have-only-ONE-compound-and-as-a-result-the-medain-correlation-value-will-be-just-1,-and-there-will-not-be-differences-in-values-btw-different-doses.">The reason why we are excluding MOAs with median value == 1, is because they have only ONE compound and as a result the medain correlation value will be just 1, and there will not be differences in values btw different doses.<a class="anchor-link" href="#The-reason-why-we-are-excluding-MOAs-with-median-value-==-1,-is-because-they-have-only-ONE-compound-and-as-a-result-the-medain-correlation-value-will-be-just-1,-and-there-will-not-be-differences-in-values-btw-different-doses.">&#182;</a></h4>
-</div>
+
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">exclude_moa</span><span class="p">(</span><span class="n">df_moa_med_score</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Exclude MOAs with median score 1, with only null values, and also columns with only null values.</span>
-<span class="sd">    </span>
-<span class="sd">    params: </span>
-<span class="sd">    df_moa_med_score: dataframe of distinct moas with their corresponding median scores</span>
-<span class="sd">    and list of compounds for all doses.</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">    df_moa_medians: dataframe of distinct moas with NO median values of 1 </span>
-<span class="sd">    and their corresponding list of compounds for all doses.</span>
-<span class="sd">    </span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">moa_with_med_index</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">moa</span> <span class="ow">in</span> <span class="n">df_moa_med_score</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">():</span>
-        <span class="n">moa_values</span> <span class="o">=</span> <span class="n">df_moa_med_score</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">moa</span><span class="p">]</span>
-        <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">y</span> <span class="o">!=</span> <span class="mf">1.0</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">moa_values</span><span class="p">):</span>
-            <span class="n">moa_with_med_index</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">moa</span><span class="p">)</span>
-    <span class="n">df_moa_medians</span> <span class="o">=</span> <span class="n">df_moa_med_score</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">moa_with_med_index</span><span class="p">]</span>
-    <span class="n">null_columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df_moa_medians</span><span class="o">.</span><span class="n">columns</span> 
-                 <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">df_moa_medians</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">())]</span>
-    <span class="n">null_moas</span> <span class="o">=</span> <span class="p">[</span><span class="n">moa</span> <span class="k">for</span> <span class="n">moa</span> <span class="ow">in</span> <span class="n">df_moa_medians</span><span class="o">.</span><span class="n">index</span> 
-                 <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">df_moa_medians</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">moa</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">())]</span>
-    <span class="n">df_moa_medians</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">null_columns</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-    <span class="n">df_moa_medians</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">null_moas</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">no_of_replicates_per_cpd</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">df_lvl4</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This function computes the numbers of replicates for each compound (cpd_size)&quot;&quot;&quot;</span>
     
-    <span class="k">return</span> <span class="n">df_moa_medians</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_moa_medians</span> <span class="o">=</span> <span class="n">exclude_moa</span><span class="p">(</span><span class="n">data_moa_med_score</span><span class="p">)</span>
+    <span class="n">dose_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">df_lvl4</span><span class="p">[</span><span class="s1">&#39;Metadata_dose_recode&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()))[</span><span class="mi">1</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span>
+    <span class="n">cpds_size</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">cpd</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+        <span class="n">num_of_replicates</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">dose</span> <span class="ow">in</span> <span class="n">dose_list</span><span class="p">:</span>
+            <span class="n">df_dose</span> <span class="o">=</span> <span class="n">df_lvl4</span><span class="p">[</span><span class="n">df_lvl4</span><span class="p">[</span><span class="s1">&#39;Metadata_dose_recode&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">dose</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">cpd_replicates</span> <span class="o">=</span> <span class="n">df_dose</span><span class="p">[</span><span class="n">df_dose</span><span class="p">[</span><span class="s1">&#39;pert_iname&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">cpd</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">num_of_replicates</span> <span class="o">+=</span> <span class="n">cpd_replicates</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">cpd_replicate_length</span> <span class="o">=</span> <span class="n">num_of_replicates</span> <span class="o">//</span> <span class="nb">len</span><span class="p">(</span><span class="n">dose_list</span><span class="p">)</span>
+        <span class="n">cpds_size</span><span class="p">[</span><span class="n">cpd</span><span class="p">]</span> <span class="o">=</span> <span class="n">cpd_replicate_length</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;cpd_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cpds_size</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+    
+    <span class="k">return</span> <span class="n">df</span>
 </pre></div>
 
      </div>
@@ -14948,11 +14770,11 @@ We then recode the dose points into ascending numerical levels and add a new met
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">##228 MOAs with median values corresponding to correlation btw their cpds</span>
-<span class="n">data_moa_medians</span><span class="o">.</span><span class="n">shape</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_cpd_med_score</span> <span class="o">=</span> <span class="n">no_of_replicates_per_cpd</span><span class="p">(</span><span class="n">df_cpd_med_score</span><span class="p">,</span> <span class="n">df_level4_new</span><span class="p">)</span>
+<span class="n">df_cpd_med_score</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 
      </div>
@@ -14968,19 +14790,39 @@ We then recode the dose points into ascending numerical levels and add a new met
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[20]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[19]:</div>
 
 
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>(211, 12)</pre>
+<pre>(1553, 7)</pre>
 </div>
 
 </div>
 
 </div>
 
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">save_to_csv</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">compress</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;saves dataframes to csv&quot;&quot;&quot;</span>
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    
+    <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">file_name</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="n">compress</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
 </div>
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14989,29 +14831,8 @@ We then recode the dose points into ascending numerical levels and add a new met
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">seperate_cpds_values</span><span class="p">(</span><span class="n">df_moa_medians</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Seperate the list of compunds columns from the values columns in</span>
-<span class="sd">    moa_median_dataframe</span>
-<span class="sd">    </span>
-<span class="sd">    params: </span>
-<span class="sd">    df_moa_medians: dataframe of distinct moas with NO median values of 1 </span>
-<span class="sd">    and their corresponding list of compounds for all doses.</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">    df_moa_cpds: dataframe of distinct moas with only their corresponding </span>
-<span class="sd">    list of compounds for all doses.</span>
-<span class="sd">    </span>
-<span class="sd">    df_moa_values: dataframe of distinct moas with only their sizes for all doses.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">dose_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df_moa_medians</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> 
-                 <span class="k">if</span> <span class="p">(</span><span class="n">col</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;dose_&quot;</span><span class="p">))]</span>
-    <span class="n">df_moa_cpds</span> <span class="o">=</span> <span class="n">df_moa_medians</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">dose_cols</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">df_moa_values</span> <span class="o">=</span> <span class="n">df_moa_medians</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">dose_cols</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">df_moa_values</span> <span class="o">=</span> <span class="n">df_moa_values</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="s2">&quot;moa&quot;</span><span class="p">})</span>
-    <span class="n">df_moa_cpds</span> <span class="o">=</span> <span class="n">df_moa_cpds</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="s2">&quot;moa&quot;</span><span class="p">})</span>
-    
-    <span class="k">return</span> <span class="n">df_moa_cpds</span><span class="p">,</span> <span class="n">df_moa_values</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">save_to_csv</span><span class="p">(</span><span class="n">df_cpd_med_score</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s1">&#39;index&#39;</span><span class="p">:</span><span class="s1">&#39;cpd&#39;</span><span class="p">},</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">),</span> 
+            <span class="s1">&#39;cellpainting_lvl4_cpd_replicate_datasets&#39;</span><span class="p">,</span> <span class="s1">&#39;cpd_replicate_median_scores_nonspherized.csv&#39;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15019,14 +14840,14 @@ We then recode the dose points into ascending numerical levels and add a new met
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_moa_cpds</span><span class="p">,</span> <span class="n">data_moa_values</span> <span class="o">=</span> <span class="n">seperate_cpds_values</span><span class="p">(</span><span class="n">data_moa_medians</span><span class="p">)</span>
-<span class="n">data_moa_cpds</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">save_to_csv</span><span class="p">(</span><span class="n">df_level4_new</span><span class="p">,</span> <span class="s1">&#39;cellpainting_lvl4_cpd_replicate_datasets&#39;</span><span class="p">,</span> 
+            <span class="s1">&#39;cp_level4_cpd_replicates_nonspherized.csv.gz&#39;</span><span class="p">,</span> <span class="n">compress</span><span class="o">=</span><span class="s2">&quot;gzip&quot;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15034,272 +14855,25 @@ We then recode the dose points into ascending numerical levels and add a new met
 </div>
 </div>
 
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[22]:</div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>moa</th>
-      <th>moa_cpds_dose_1</th>
-      <th>moa_cpds_dose_2</th>
-      <th>moa_cpds_dose_3</th>
-      <th>moa_cpds_dose_4</th>
-      <th>moa_cpds_dose_5</th>
-      <th>moa_cpds_dose_6</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>5 alpha reductase inhibitor</td>
-      <td>[dutasteride, finasteride]</td>
-      <td>[dutasteride, finasteride]</td>
-      <td>[dutasteride, finasteride]</td>
-      <td>[dutasteride, finasteride]</td>
-      <td>[dutasteride, finasteride]</td>
-      <td>[dutasteride, finasteride]</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>acat inhibitor</td>
-      <td>[avasimibe, kd-023, ci-976]</td>
-      <td>[avasimibe, kd-023, ci-976]</td>
-      <td>[avasimibe, kd-023, ci-976]</td>
-      <td>[avasimibe, kd-023, ci-976]</td>
-      <td>[avasimibe, kd-023, ci-976]</td>
-      <td>[avasimibe, kd-023, ci-976]</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>acetylcholine receptor agonist</td>
-      <td>[abt-202, nicotine, diphenidol, cytisine, vare...</td>
-      <td>[abt-202, nicotine, diphenidol, cytisine, vare...</td>
-      <td>[abt-202, nicotine, diphenidol, cytisine, vare...</td>
-      <td>[abt-202, nicotine, diphenidol, cytisine, vare...</td>
-      <td>[abt-202, nicotine, diphenidol, cytisine, vare...</td>
-      <td>[abt-202, nicotine, diphenidol, cytisine, vare...</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>acetylcholine receptor antagonist</td>
-      <td>[atracurium, metixene, mecamylamine, solifenac...</td>
-      <td>[atracurium, metixene, mecamylamine, solifenac...</td>
-      <td>[atracurium, metixene, mecamylamine, solifenac...</td>
-      <td>[atracurium, metixene, mecamylamine, solifenac...</td>
-      <td>[atracurium, metixene, mecamylamine, solifenac...</td>
-      <td>[atracurium, metixene, mecamylamine, solifenac...</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>acetylcholine release stimulant</td>
-      <td>[bifemelane, dmp-543]</td>
-      <td>[bifemelane, dmp-543]</td>
-      <td>[bifemelane, dmp-543]</td>
-      <td>[bifemelane, dmp-543]</td>
-      <td>[bifemelane, dmp-543]</td>
-      <td>[bifemelane, dmp-543]</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_moa_values</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Output files for visualization</span>
+<span class="n">results_dir</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;../results&quot;</span><span class="p">)</span>
+<span class="n">cpd_summary_file</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">results_dir</span><span class="si">}</span><span class="s2">/median_score_per_compound_CellPainting_nonspherized.tsv.gz&quot;</span><span class="p">)</span>
+
+<span class="n">dose_recode_info</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;dose_1&#39;</span><span class="p">:</span> <span class="s1">&#39;0.04 uM&#39;</span><span class="p">,</span> <span class="s1">&#39;dose_2&#39;</span><span class="p">:</span><span class="s1">&#39;0.12 uM&#39;</span><span class="p">,</span> <span class="s1">&#39;dose_3&#39;</span><span class="p">:</span><span class="s1">&#39;0.37 uM&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;dose_4&#39;</span><span class="p">:</span> <span class="s1">&#39;1.11 uM&#39;</span><span class="p">,</span> <span class="s1">&#39;dose_5&#39;</span><span class="p">:</span><span class="s1">&#39;3.33 uM&#39;</span><span class="p">,</span> <span class="s1">&#39;dose_6&#39;</span><span class="p">:</span><span class="s1">&#39;10 uM&#39;</span>
+<span class="p">}</span>
 </pre></div>
 
      </div>
 </div>
 </div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[23]:</div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>moa</th>
-      <th>dose_1</th>
-      <th>dose_2</th>
-      <th>dose_3</th>
-      <th>dose_4</th>
-      <th>dose_5</th>
-      <th>dose_6</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>5 alpha reductase inhibitor</td>
-      <td>-0.644853</td>
-      <td>-0.715953</td>
-      <td>-0.711423</td>
-      <td>-0.176032</td>
-      <td>0.071030</td>
-      <td>0.488932</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>acat inhibitor</td>
-      <td>-0.307784</td>
-      <td>-0.062884</td>
-      <td>-0.143476</td>
-      <td>-0.443443</td>
-      <td>-0.378433</td>
-      <td>0.162559</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>acetylcholine receptor agonist</td>
-      <td>0.180002</td>
-      <td>0.182136</td>
-      <td>0.191768</td>
-      <td>0.147619</td>
-      <td>0.002856</td>
-      <td>0.046127</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>acetylcholine receptor antagonist</td>
-      <td>0.032422</td>
-      <td>0.086924</td>
-      <td>0.151103</td>
-      <td>0.090944</td>
-      <td>0.044925</td>
-      <td>0.061454</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>acetylcholine release stimulant</td>
-      <td>0.119016</td>
-      <td>-0.657309</td>
-      <td>-0.280996</td>
-      <td>-0.511634</td>
-      <td>-0.260091</td>
-      <td>-0.354088</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>acetylcholinesterase inhibitor</td>
-      <td>-0.001417</td>
-      <td>0.335549</td>
-      <td>0.420650</td>
-      <td>0.259726</td>
-      <td>0.310264</td>
-      <td>-0.301292</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>adenosine receptor agonist</td>
-      <td>-0.285657</td>
-      <td>-0.148433</td>
-      <td>-0.278964</td>
-      <td>0.283393</td>
-      <td>0.193140</td>
-      <td>0.287586</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>adenosine receptor antagonist</td>
-      <td>0.180487</td>
-      <td>0.080203</td>
-      <td>0.360094</td>
-      <td>0.061304</td>
-      <td>-0.165320</td>
-      <td>0.058974</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>adrenergic inhibitor</td>
-      <td>-0.442974</td>
-      <td>-0.204907</td>
-      <td>-0.000403</td>
-      <td>0.053270</td>
-      <td>-0.195116</td>
-      <td>-0.121392</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>adrenergic receptor agonist</td>
-      <td>0.009038</td>
-      <td>0.074782</td>
-      <td>0.113132</td>
-      <td>0.030216</td>
-      <td>0.075180</td>
-      <td>-0.022377</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-
 </div>
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -15308,463 +14882,15 @@ We then recode the dose points into ascending numerical levels and add a new met
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Output analytical file</span>
-<span class="n">output_file</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;moa_sizes_consensus_datasets/cell_painting_moa_analytical_set_profiles.tsv.gz&quot;</span><span class="p">)</span>
-<span class="n">analytical_set_df</span> <span class="o">=</span> <span class="n">df_moa</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;moa in @data_moa_cpds.moa&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Metadata_moa != &#39;unknown&#39;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">analytical_set_df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="n">analytical_set_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>(5574, 480)
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[25]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_moa_size</span><span class="p">(</span><span class="n">df_moa_cpds</span><span class="p">,</span> <span class="n">df_moa_values</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This function computes the number of compunds in each MOA</span>
-<span class="sd">    i.e. moa_size and returns dataframe including the moa_size column</span>
-<span class="sd">    </span>
-<span class="sd">    params:</span>
-<span class="sd">    df_moa_cpds: dataframe of distinct moas with only their corresponding </span>
-<span class="sd">    list of compounds for all doses.</span>
-<span class="sd">    </span>
-<span class="sd">    df_moa_values: dataframe of distinct moas with only their median scores for all doses.</span>
-<span class="sd">    </span>
-<span class="sd">    Returns:</span>
-<span class="sd">    df_moa_cpds: dataframe of distinct moas with only their corresponding </span>
-<span class="sd">    list of compounds for all doses including moa_size column.</span>
-<span class="sd">    </span>
-<span class="sd">    df_moa_values: dataframe of distinct moas with only their median scores </span>
-<span class="sd">    including moa_size column for all doses.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    
-    <span class="n">df_moa_cpd_copy</span> <span class="o">=</span> <span class="n">df_moa_cpds</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;moa&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">rename_axis</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">num_col</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_moa_cpd_copy</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
-    
-    <span class="n">moa_count</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">for</span> <span class="n">moa</span> <span class="ow">in</span> <span class="n">df_moa_cpd_copy</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
-        <span class="n">col_sum</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df_moa_cpd_copy</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
-            <span class="n">col_sum</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_moa_cpd_copy</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">moa</span><span class="p">,</span> <span class="n">col</span><span class="p">])</span>
-        <span class="n">moa_count</span><span class="p">[</span><span class="n">moa</span><span class="p">]</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">col_sum</span><span class="o">/</span><span class="n">num_col</span><span class="p">)</span>
-    <span class="n">df_moa_cpds</span><span class="p">[</span><span class="s1">&#39;moa_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">moa_count</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
-    <span class="n">df_moa_values</span><span class="p">[</span><span class="s1">&#39;moa_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">moa_count</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">df_moa_cpds</span><span class="p">,</span> <span class="n">df_moa_values</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[26]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_moa_cpds</span><span class="p">,</span> <span class="n">data_moa_values</span> <span class="o">=</span> <span class="n">get_moa_size</span><span class="p">(</span><span class="n">data_moa_cpds</span><span class="p">,</span> <span class="n">data_moa_values</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="--Check-if-the-MOAs-have-the-same-compounds-in-all-the-Doses">- Check if the MOAs have the same compounds in all the Doses<a class="anchor-link" href="#--Check-if-the-MOAs-have-the-same-compounds-in-all-the-Doses">&#182;</a></h3>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[27]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">check_moas_cpds_doses</span><span class="p">(</span><span class="n">df_moa_cpds</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    check if moas have the same compounds in all doses,</span>
-<span class="sd">    and return the moas that don&#39;t have the same numbers of compounds.</span>
-<span class="sd">    </span>
-<span class="sd">    params: </span>
-<span class="sd">    df_moa_cpds: dataframe of distinct moas with only their corresponding </span>
-<span class="sd">    list of compounds for all doses.</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">    df_moa_not_equals_cpds: dataframe of moas that don&#39;t have the same numbers of </span>
-<span class="sd">    compounds in all doses.</span>
-<span class="sd">    </span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">df_moa_cpds</span> <span class="o">=</span> <span class="n">df_moa_cpds</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;moa&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">rename_axis</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">df_moa_cpds</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;moa_size&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-    <span class="n">moas_with_no_equal_cpds</span> <span class="o">=</span> <span class="p">[</span><span class="n">moa</span> <span class="k">for</span> <span class="n">moa</span> <span class="ow">in</span> <span class="n">df_moa_cpds</span><span class="o">.</span><span class="n">index</span> 
-                               <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_moa_cpds</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> 
-                               <span class="k">if</span> <span class="ow">not</span> <span class="p">((</span><span class="n">df_moa_cpds</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">moa</span><span class="p">,</span> <span class="n">df_moa_cpds</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">num</span><span class="p">]])</span> 
-                                       <span class="o">==</span> <span class="p">(</span><span class="n">df_moa_cpds</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">moa</span><span class="p">,</span> <span class="n">df_moa_cpds</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">num</span><span class="o">+</span><span class="mi">1</span><span class="p">]]))]</span>
-    <span class="n">df_moa_not_equals_cpds</span> <span class="o">=</span> <span class="n">df_moa_cpds</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="nb">set</span><span class="p">(</span><span class="n">moas_with_no_equal_cpds</span><span class="p">)]</span>
-    
-    <span class="k">return</span> <span class="n">df_moa_not_equals_cpds</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[28]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_moa_not_equals_cpds</span> <span class="o">=</span> <span class="n">check_moas_cpds_doses</span><span class="p">(</span><span class="n">data_moa_cpds</span><span class="p">)</span> <span class="c1">##MOAs with not the same cpds in all doses</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="--MOAS-that-do-not-have-the-same-number-of-compounds-in-all-Doses">- MOAS that do not have the same number of compounds in all Doses<a class="anchor-link" href="#--MOAS-that-do-not-have-the-same-number-of-compounds-in-all-Doses">&#182;</a></h3>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[29]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">moa</span> <span class="ow">in</span> <span class="n">data_moa_not_equals_cpds</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">moa</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">cols</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data_moa_not_equals_cpds</span><span class="o">.</span><span class="n">columns</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Dose &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">data_moa_not_equals_cpds</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">moa</span><span class="p">,</span> <span class="n">cols</span><span class="p">])</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="--MOAS-with-their-median-scores-for-all-doses">- MOAS with their median scores for all doses<a class="anchor-link" href="#--MOAS-with-their-median-scores-for-all-doses">&#182;</a></h3>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[30]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_moa_values</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[30]:</div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>moa</th>
-      <th>dose_1</th>
-      <th>dose_2</th>
-      <th>dose_3</th>
-      <th>dose_4</th>
-      <th>dose_5</th>
-      <th>dose_6</th>
-      <th>moa_size</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>5 alpha reductase inhibitor</td>
-      <td>-0.644853</td>
-      <td>-0.715953</td>
-      <td>-0.711423</td>
-      <td>-0.176032</td>
-      <td>0.071030</td>
-      <td>0.488932</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>acat inhibitor</td>
-      <td>-0.307784</td>
-      <td>-0.062884</td>
-      <td>-0.143476</td>
-      <td>-0.443443</td>
-      <td>-0.378433</td>
-      <td>0.162559</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>acetylcholine receptor agonist</td>
-      <td>0.180002</td>
-      <td>0.182136</td>
-      <td>0.191768</td>
-      <td>0.147619</td>
-      <td>0.002856</td>
-      <td>0.046127</td>
-      <td>8</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>acetylcholine receptor antagonist</td>
-      <td>0.032422</td>
-      <td>0.086924</td>
-      <td>0.151103</td>
-      <td>0.090944</td>
-      <td>0.044925</td>
-      <td>0.061454</td>
-      <td>21</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>acetylcholine release stimulant</td>
-      <td>0.119016</td>
-      <td>-0.657309</td>
-      <td>-0.280996</td>
-      <td>-0.511634</td>
-      <td>-0.260091</td>
-      <td>-0.354088</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>acetylcholinesterase inhibitor</td>
-      <td>-0.001417</td>
-      <td>0.335549</td>
-      <td>0.420650</td>
-      <td>0.259726</td>
-      <td>0.310264</td>
-      <td>-0.301292</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>adenosine receptor agonist</td>
-      <td>-0.285657</td>
-      <td>-0.148433</td>
-      <td>-0.278964</td>
-      <td>0.283393</td>
-      <td>0.193140</td>
-      <td>0.287586</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>adenosine receptor antagonist</td>
-      <td>0.180487</td>
-      <td>0.080203</td>
-      <td>0.360094</td>
-      <td>0.061304</td>
-      <td>-0.165320</td>
-      <td>0.058974</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>adrenergic inhibitor</td>
-      <td>-0.442974</td>
-      <td>-0.204907</td>
-      <td>-0.000403</td>
-      <td>0.053270</td>
-      <td>-0.195116</td>
-      <td>-0.121392</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>adrenergic receptor agonist</td>
-      <td>0.009038</td>
-      <td>0.074782</td>
-      <td>0.113132</td>
-      <td>0.030216</td>
-      <td>0.075180</td>
-      <td>-0.022377</td>
-      <td>20</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[31]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">conv_list_to_str_cols</span><span class="p">(</span><span class="n">df_moa_cpds</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This function convert columns values that are lists to strings&quot;&quot;&quot;</span>
-    
-    <span class="n">moa_cpd_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df_moa_cpds</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> 
-                 <span class="k">if</span> <span class="p">(</span><span class="n">col</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;moa_cpds_&quot;</span><span class="p">))]</span>
-    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">moa_cpd_cols</span><span class="p">:</span>
-        <span class="n">df_moa_cpds</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_moa_cpds</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="s1">&#39;;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">row</span><span class="p">)))</span>
-    <span class="k">return</span> <span class="n">df_moa_cpds</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[32]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">save_to_csv</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">file_name</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;saves moa dataframes to csv&quot;&quot;&quot;</span>
-    
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-    
-    <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">file_name</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[33]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">save_to_csv</span><span class="p">(</span><span class="n">df_moa</span><span class="p">,</span> <span class="s1">&#39;moa_sizes_consensus_datasets&#39;</span><span class="p">,</span> <span class="s1">&#39;modz_consensus_data.csv&#39;</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[34]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">save_to_csv</span><span class="p">(</span><span class="n">conv_list_to_str_cols</span><span class="p">(</span><span class="n">data_moa_cpds</span><span class="p">),</span> <span class="s1">&#39;moa_sizes_consensus_datasets&#39;</span><span class="p">,</span> <span class="s1">&#39;cellpainting_moa_compounds.csv&#39;</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[35]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">save_to_csv</span><span class="p">(</span><span class="n">data_moa_values</span><span class="p">,</span> <span class="s1">&#39;moa_sizes_consensus_datasets&#39;</span><span class="p">,</span> <span class="s1">&#39;modz_moa_median_scores.csv&#39;</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[36]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Output files for visualization</span>
-<span class="n">cpd_summary_file</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;moa_sizes_consensus_datasets/matching_score_per_MOA_CellPainting.tsv.gz&quot;</span><span class="p">)</span>
-
-<span class="n">dose_recode_info</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;dose_1&#39;</span><span class="p">:</span> <span class="s1">&#39;0.04 uM&#39;</span><span class="p">,</span> <span class="s1">&#39;dose_2&#39;</span><span class="p">:</span><span class="s1">&#39;0.12 uM&#39;</span><span class="p">,</span> <span class="s1">&#39;dose_3&#39;</span><span class="p">:</span><span class="s1">&#39;0.37 uM&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;dose_4&#39;</span><span class="p">:</span> <span class="s1">&#39;1.11 uM&#39;</span><span class="p">,</span> <span class="s1">&#39;dose_5&#39;</span><span class="p">:</span><span class="s1">&#39;3.33 uM&#39;</span><span class="p">,</span> <span class="s1">&#39;dose_6&#39;</span><span class="p">:</span><span class="s1">&#39;10 uM&#39;</span>
-<span class="p">}</span>
-
-<span class="n">cpd_score_summary_df</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="n">data_moa_values</span>
-    <span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;moa_size&quot;</span><span class="p">:</span> <span class="s2">&quot;no_of_replicates&quot;</span><span class="p">})</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cpd_score_summary_df</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_cpd_med_score</span>
+    <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="s2">&quot;compound&quot;</span><span class="p">,</span> <span class="s2">&quot;cpd_size&quot;</span><span class="p">:</span> <span class="s2">&quot;no_of_replicates&quot;</span><span class="p">})</span>
     <span class="o">.</span><span class="n">melt</span><span class="p">(</span>
-        <span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;moa&quot;</span><span class="p">,</span> <span class="s2">&quot;no_of_replicates&quot;</span><span class="p">],</span>
+        <span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;compound&quot;</span><span class="p">,</span> <span class="s2">&quot;no_of_replicates&quot;</span><span class="p">],</span>
         <span class="n">value_vars</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;dose_1&quot;</span><span class="p">,</span> <span class="s2">&quot;dose_2&quot;</span><span class="p">,</span> <span class="s2">&quot;dose_3&quot;</span><span class="p">,</span> <span class="s2">&quot;dose_4&quot;</span><span class="p">,</span> <span class="s2">&quot;dose_5&quot;</span><span class="p">,</span> <span class="s2">&quot;dose_6&quot;</span><span class="p">],</span>
         <span class="n">var_name</span><span class="o">=</span><span class="s2">&quot;dose&quot;</span><span class="p">,</span>
-        <span class="n">value_name</span><span class="o">=</span><span class="s2">&quot;matching_score&quot;</span>
+        <span class="n">value_name</span><span class="o">=</span><span class="s2">&quot;median_replicate_score&quot;</span>
     <span class="p">)</span>
 <span class="p">)</span>
 
@@ -15787,7 +14913,7 @@ We then recode the dose points into ascending numerical levels and add a new met
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[36]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[24]:</div>
 
 
 
@@ -15810,47 +14936,47 @@ We then recode the dose points into ascending numerical levels and add a new met
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>moa</th>
+      <th>compound</th>
       <th>no_of_replicates</th>
       <th>dose</th>
-      <th>matching_score</th>
+      <th>median_replicate_score</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>5 alpha reductase inhibitor</td>
-      <td>2</td>
+      <td>10-DEBC</td>
+      <td>5</td>
       <td>0.04 uM</td>
-      <td>-0.644853</td>
+      <td>0.060405</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>acat inhibitor</td>
-      <td>3</td>
+      <td>16,16-dimethylprostaglandin-e2</td>
+      <td>5</td>
       <td>0.04 uM</td>
-      <td>-0.307784</td>
+      <td>0.363895</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>acetylcholine receptor agonist</td>
-      <td>8</td>
+      <td>17-hydroxyprogesterone-caproate</td>
+      <td>5</td>
       <td>0.04 uM</td>
-      <td>0.180002</td>
+      <td>0.511133</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>acetylcholine receptor antagonist</td>
-      <td>21</td>
+      <td>2-iminobiotin</td>
+      <td>5</td>
       <td>0.04 uM</td>
-      <td>0.032422</td>
+      <td>0.123800</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>acetylcholine release stimulant</td>
-      <td>2</td>
+      <td>2-methoxyestradiol</td>
+      <td>5</td>
       <td>0.04 uM</td>
-      <td>0.119016</td>
+      <td>0.306166</td>
     </tr>
   </tbody>
 </table>
