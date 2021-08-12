@@ -311,19 +311,19 @@ dose_bic_score_all = {idx+2:score for idx, score in enumerate(bics_dose_all)}
 df_bics_dose_all = create_df(dose_bic_score, 'BIC_score', "common_compounds")
 
 
-# In[21]:
+# In[ ]:
 
 
 plot_score(doseall_thresh_silh_score, 'Average Silhouette')
 
 
-# In[22]:
+# In[ ]:
 
 
 plot_score(doseall_thresh_davie_score, 'Davies Bouldin score')
 
 
-# In[23]:
+# In[ ]:
 
 
 # Output to file
@@ -339,7 +339,7 @@ df_bics_dose_all.to_csv(output_file, index=False)
 
 # ## Perform the same analysis within each dose separately
 
-# In[24]:
+# In[ ]:
 
 
 silh_list = []
@@ -366,14 +366,14 @@ for dose in [1, 2, 3, 4, 5, 6]:
     df_db = create_df(dose_davie_score, 'davies_bouldin_score', dose)
     db_list.append(df_db)
     df_bic = create_df(dose_bic_score, 'BIC_score', 1)
-    bic_list.append(dfbic)
+    bic_list.append(df_bic)
     
 df_silh = pd.concat(silh_list, ignore_index=True)
 df_db = pd.concat(db_list, ignore_index=True)
 df_bic = pd.concat(bic_list, ignore_index=True)
 
 
-# In[25]:
+# In[ ]:
 
 
 save_to_csv(df_silh, output_path, 'L1000_silhouette_scores.csv')
