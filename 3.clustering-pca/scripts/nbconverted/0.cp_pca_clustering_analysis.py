@@ -71,7 +71,7 @@ print(common_df.shape)
 common_df.head(2)
 
 
-# In[5]:
+# In[ ]:
 
 
 df_level4 = pd.read_csv(os.path.join(cp_level4_path, 'cp_level4_cpd_replicates.csv.gz'), 
@@ -86,7 +86,7 @@ print(df_level4.shape)
 df_level4.head(2)
 
 
-# In[6]:
+# In[ ]:
 
 
 def save_to_csv(df, path, file_name, compress=None):
@@ -98,7 +98,7 @@ def save_to_csv(df, path, file_name, compress=None):
     df.to_csv(os.path.join(path, file_name), index=False, compression=compress)
 
 
-# In[7]:
+# In[ ]:
 
 
 def extract_dose_df(df, dose_num):
@@ -111,7 +111,7 @@ def extract_dose_df(df, dose_num):
     return df_dose
 
 
-# In[8]:
+# In[ ]:
 
 
 def transform_pca(df, dose_num, no_of_pcs =150):
@@ -137,7 +137,7 @@ def transform_pca(df, dose_num, no_of_pcs =150):
     return pca, df_pc, df_scaled
 
 
-# In[9]:
+# In[ ]:
 
 
 def SelBest(arr:list, X:int)->list:
@@ -148,7 +148,7 @@ def SelBest(arr:list, X:int)->list:
     return arr[dx]
 
 
-# In[10]:
+# In[ ]:
 
 
 def calc_bic(pc_data, no_of_clusters=40):
@@ -174,7 +174,7 @@ def calc_bic(pc_data, no_of_clusters=40):
     return bics, bics_err
 
 
-# In[11]:
+# In[ ]:
 
 
 def plot_bics(bics):
@@ -186,7 +186,7 @@ def plot_bics(bics):
     plt.legend()
 
 
-# In[12]:
+# In[ ]:
 
 
 def calculate_score(df, no_of_clusters=40):
@@ -210,7 +210,7 @@ def calculate_score(df, no_of_clusters=40):
     return silh_score, davie_score
 
 
-# In[13]:
+# In[ ]:
 
 
 def plot_score(score, score_name):
@@ -226,7 +226,7 @@ def plot_score(score, score_name):
     plt.show()
 
 
-# In[14]:
+# In[ ]:
 
 
 def create_df(data_dict, col_name, dose_num):
@@ -237,7 +237,7 @@ def create_df(data_dict, col_name, dose_num):
 
 # ## Calculate Silhouette scores in only the common compounds
 
-# In[15]:
+# In[ ]:
 
 
 metadata_cols = [
@@ -253,7 +253,7 @@ df_common_alldose = df_common_alldose.loc[:, infer_cp_features(df_common_alldose
 print(df_common_alldose.shape)
 
 
-# In[16]:
+# In[ ]:
 
 
 pca_all_thresh, df_pc_all_thresh, df_scaled_all_thresh = transform_pca(
@@ -263,7 +263,7 @@ pca_all_thresh, df_pc_all_thresh, df_scaled_all_thresh = transform_pca(
 print(np.sum(pca_all_thresh.explained_variance_ratio_))
 
 
-# In[17]:
+# In[ ]:
 
 
 def plot_pca_var(pca, pc_num):
@@ -285,14 +285,14 @@ def plot_pca_var(pca, pc_num):
     return df_var
 
 
-# In[18]:
+# In[ ]:
 
 
 df_var_full = plot_pca_var(pca_all_thresh, number_of_pcs)
 save_to_csv(df_var_full, output_path, 'cp_pca_explained_variance.csv')
 
 
-# In[19]:
+# In[ ]:
 
 
 doseall_thresh_silh_score, doseall_thresh_davie_score = calculate_score(df_pc_all_thresh.drop(['dose'], axis = 1))
@@ -301,19 +301,28 @@ df_silhall_thresh = create_df(doseall_thresh_silh_score, 'Average_silhouette_sco
 df_dball_thresh = create_df(doseall_thresh_davie_score, 'davies_bouldin_score', "common_compounds")
 
 
-# In[20]:
+# In[ ]:
+
+
+bics_dose_all, _ = calc_bic(df_pc_all_thresh.drop(['dose'], axis = 1))
+dose_bic_score_all = {idx+2:score for idx, score in enumerate(bics_dose_all)}
+
+df_bics_dose_all = create_df(dose_bic_score, 'BIC_score', "common_compounds")
+
+
+# In[ ]:
 
 
 plot_score(doseall_thresh_silh_score, 'Average Silhouette')
 
 
-# In[21]:
+# In[ ]:
 
 
 plot_score(doseall_thresh_davie_score, 'Davies Bouldin score')
 
 
-# In[22]:
+# In[ ]:
 
 
 # Output to file
@@ -323,15 +332,18 @@ df_silhall_thresh.to_csv(output_file, index=False)
 output_file = pathlib.Path("results/cell_painting/cp_davies_compounds_common_compounds.csv")
 df_dball_thresh.to_csv(output_file, index=False)
 
+output_file = pathlib.Path("results/cell_painting/cp_bic_compounds_common_compounds.csv")
+df_bics_dose_all.to_csv(output_file, index=False)
+
 
 # ## Perform the same analysis within each dose separately
 
-# In[23]:
+# In[ ]:
 
 
 silh_list = []
 db_list = []
-#bic_list = []
+bic_list = []
 
 for dose in [1, 2, 3, 4, 5, 6]:
     print(f"Now analyzing dose {dose}")
@@ -340,9 +352,9 @@ for dose in [1, 2, 3, 4, 5, 6]:
     
     print(np.sum(pca_dose.explained_variance_ratio_)) 
         
-    # Do not calculate BIC
-    #bics_dose, _ = calc_bic(df_pc_dose.drop(['dose'], axis = 1))
-    #dose_bic_score = {idx+2:score for idx, score in enumerate(bics_dose)}
+    # Calculate BIC
+    bics_dose, _ = calc_bic(df_pc_dose.drop(['dose'], axis = 1))
+    dose_bic_score = {idx+2:score for idx, score in enumerate(bics_dose)}
     
     # Calculate Silhouette and Davies Boulding index
     dose_silh_score, dose_davie_score = calculate_score(df_pc_dose.drop(['dose'], axis = 1))
@@ -352,18 +364,18 @@ for dose in [1, 2, 3, 4, 5, 6]:
     silh_list.append(df_silh)
     df_db = create_df(dose_davie_score, 'davies_bouldin_score', dose)
     db_list.append(df_db)
-    #df_bic = create_df(dose_bic_score, 'BIC_score', 1)
-    #bic_list.append(dfbic)
+    df_bic = create_df(dose_bic_score, 'BIC_score', dose)
+    bic_list.append(dfbic)
     
 df_silh = pd.concat(silh_list, ignore_index=True)
 df_db = pd.concat(db_list, ignore_index=True)
-#df_bic = pd.concat(bic_list, ignore_index=True)
+df_bic = pd.concat(bic_list, ignore_index=True)
 
 
-# In[24]:
+# In[ ]:
 
 
 save_to_csv(df_silh, output_path, 'cp_silhouette_scores.csv')
 save_to_csv(df_db, output_path, 'cp_db_scores.csv')
-#save_to_csv(df_bic, output_path, 'cp_bic_scores.csv')
+save_to_csv(df_bic, output_path, 'cp_bic_scores.csv')
 

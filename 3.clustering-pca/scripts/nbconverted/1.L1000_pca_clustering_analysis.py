@@ -302,6 +302,15 @@ df_silhall_thresh = create_df(doseall_thresh_silh_score, 'Average_silhouette_sco
 df_dball_thresh = create_df(doseall_thresh_davie_score, 'davies_bouldin_score', "common_compounds")
 
 
+# In[ ]:
+
+
+bics_dose_all, _ = calc_bic(df_pc_all_thresh.drop(['dose'], axis = 1))
+dose_bic_score_all = {idx+2:score for idx, score in enumerate(bics_dose_all)}
+
+df_bics_dose_all = create_df(dose_bic_score, 'BIC_score', "common_compounds")
+
+
 # In[21]:
 
 
@@ -324,6 +333,9 @@ df_silhall_thresh.to_csv(output_file, index=False)
 output_file = pathlib.Path("results/L1000/L1000_davies_compounds_common_compounds.csv")
 df_dball_thresh.to_csv(output_file, index=False)
 
+output_file = pathlib.Path("results/L1000/L1000_bic_compounds_common_compounds.csv")
+df_bics_dose_all.to_csv(output_file, index=False)
+
 
 # ## Perform the same analysis within each dose separately
 
@@ -332,7 +344,7 @@ df_dball_thresh.to_csv(output_file, index=False)
 
 silh_list = []
 db_list = []
-#bic_list = []
+bic_list = []
 
 for dose in [1, 2, 3, 4, 5, 6]:
     print(f"Now analyzing dose {dose}")
@@ -341,9 +353,9 @@ for dose in [1, 2, 3, 4, 5, 6]:
     
     print(np.sum(pca_dose.explained_variance_ratio_)) 
         
-    # Do not calculate BIC
-    #bics_dose, _ = calc_bic(df_pc_dose.drop(['dose'], axis = 1))
-    #dose_bic_score = {idx+2:score for idx, score in enumerate(bics_dose)}
+    # Calculate BIC
+    bics_dose, _ = calc_bic(df_pc_dose.drop(['dose'], axis = 1))
+    dose_bic_score = {idx+2:score for idx, score in enumerate(bics_dose)}
     
     # Calculate Silhouette and Davies Boulding index
     dose_silh_score, dose_davie_score = calculate_score(df_pc_dose.drop(['dose'], axis = 1))
@@ -353,12 +365,12 @@ for dose in [1, 2, 3, 4, 5, 6]:
     silh_list.append(df_silh)
     df_db = create_df(dose_davie_score, 'davies_bouldin_score', dose)
     db_list.append(df_db)
-    #df_bic = create_df(dose_bic_score, 'BIC_score', 1)
-    #bic_list.append(dfbic)
+    df_bic = create_df(dose_bic_score, 'BIC_score', 1)
+    bic_list.append(dfbic)
     
 df_silh = pd.concat(silh_list, ignore_index=True)
 df_db = pd.concat(db_list, ignore_index=True)
-#df_bic = pd.concat(bic_list, ignore_index=True)
+df_bic = pd.concat(bic_list, ignore_index=True)
 
 
 # In[25]:
@@ -366,5 +378,5 @@ df_db = pd.concat(db_list, ignore_index=True)
 
 save_to_csv(df_silh, output_path, 'L1000_silhouette_scores.csv')
 save_to_csv(df_db, output_path, 'L1000_db_scores.csv')
-#save_to_csv(df_bic, output_path, 'L1000_bic_scores.csv')
+save_to_csv(df_bic, output_path, 'L1000_bic_scores.csv')
 
