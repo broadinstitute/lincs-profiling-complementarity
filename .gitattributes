@@ -1,3 +1,6 @@
 *.csv[[:space:]]*.csv.gz filter=lfs diff=lfs merge=lfs -text
 *.csv.gz filter=lfs diff=lfs merge=lfs -text
 1.Data-exploration/Consensus/L1000/moa_sizes_consensus_datasets/modz_level5_data.csv filter=lfs diff=lfs merge=lfs -text
+1.Data-exploration/Consensus/L1000/moa_sizes_consensus_datasets/modz_level5_data_all_compounds.csv filter=lfs diff=lfs merge=lfs -text
+1.Data-exploration/Consensus/cell_painting/moa_sizes_consensus_datasets/modz_consensus_data.csv filter=lfs diff=lfs merge=lfs -text
+1.Data-exploration/Consensus/cell_painting/moa_sizes_consensus_datasets/modz_consensus_data_all_compounds.csv filter=lfs diff=lfs merge=lfs -text

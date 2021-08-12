@@ -618,6 +618,7 @@ def save_to_csv(df, path, file_name):
 
 
 save_to_csv(df_lvl5_common, 'moa_sizes_consensus_datasets', 'modz_level5_data.csv')
+save_to_csv(df_lvl5, 'moa_sizes_consensus_datasets', 'modz_level5_data_all_compounds.csv')
 
 
 # In[38]:
