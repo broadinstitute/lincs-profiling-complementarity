@@ -76,18 +76,22 @@ def feature_selection(dataset_link):
     cols = data.columns.tolist()
     drop_cols = [x for x in cols if ((data[x].isnull().sum()) | all(y == 0.0 for y in data[x].values))]
     data.drop(drop_cols, axis = 1, inplace = True)
-    data = feature_select(data, operation=["correlation_threshold", "variance_threshold"])
+    data = feature_select(
+        data,
+        operation=["correlation_threshold", "variance_threshold", "blocklist"],
+        blocklist_file="https://raw.githubusercontent.com/broadinstitute/lincs-cell-painting/1769b32c7cef3385ccc4cea7057386e8a1bde39a/utils/consensus_blocklist.txt"
+    )
     return data
 
 
 # In[3]:
 
 
-commit = "94bfaeeab0d107beac262b4307aa6e9b783625fa"
+commit = "e9737c3e4e4443eb03c2c278a145f12efe255756"
 
 consensus_median_link = f'https://github.com/broadinstitute/lincs-cell-painting/blob/{commit}/consensus/2016_04_01_a549_48hr_batch1/2016_04_01_a549_48hr_batch1_consensus_median.csv.gz?raw=true'
 consensus_median_dmso_link = f'https://github.com/broadinstitute/lincs-cell-painting/blob/{commit}/consensus/2016_04_01_a549_48hr_batch1/2016_04_01_a549_48hr_batch1_consensus_median_dmso.csv.gz?raw=true'
-consensus_modz_link = f'https://github.com/broadinstitute/lincs-cell-painting/blob/{commit}/consensus/2016_04_01_a549_48hr_batch1/2016_04_01_a549_48hr_batch1_consensus_modz.csv.gz?raw=true'
+consensus_modz_link = f'https://github.com/broadinstitute/lincs-cell-painting/blob/{commit}/spherized_profiles/consensus/2016_04_01_a549_48hr_batch1_dmso_spherized_profiles_with_input_normalized_by_dmso_consensus_modz.csv.gz?raw=true'
 consensus_modz_dmso_link = f'https://github.com/broadinstitute/lincs-cell-painting/blob/{commit}/consensus/2016_04_01_a549_48hr_batch1/2016_04_01_a549_48hr_batch1_consensus_modz_dmso.csv.gz?raw=true'
 
 
@@ -170,12 +174,12 @@ def merge_align_moa(data_dir, cp_moa_link, data):
 
 
 moa_dataset = "https://github.com/broadinstitute/lincs-cell-painting/blob/master/metadata/moa/repurposing_info_external_moa_map_resolved.tsv?raw=true"
-df_moa, df_no_moa = merge_align_moa(data_dir, moa_dataset, data)
+df_all_moa, df_no_moa = merge_align_moa(data_dir, moa_dataset, data)
 
-df_moa.loc[df_moa.Metadata_broad_sample == 'DMSO', "Metadata_dose_recode"] = 0
+df_all_moa.loc[df_all_moa.Metadata_broad_sample == 'DMSO', "Metadata_dose_recode"] = 0
 
-print(df_moa.shape)
-df_moa.head()
+print(df_all_moa.shape)
+df_all_moa.head()
 
 
 # In[9]:
@@ -193,7 +197,7 @@ print(len(common_compounds))
 
 
 # Only calculate using common compounds
-df_moa = df_moa.query("pert_iname in @common_compounds")
+df_moa = df_all_moa.query("pert_iname in @common_compounds")
 
 df_moa.shape
 
@@ -587,6 +591,7 @@ def save_to_csv(df, path, file_name):
 
 
 save_to_csv(df_moa, 'moa_sizes_consensus_datasets', 'modz_consensus_data.csv')
+save_to_csv(df_all_moa, 'moa_sizes_consensus_datasets', 'modz_consensus_data_all_compounds.csv')
 
 
 # In[34]:
