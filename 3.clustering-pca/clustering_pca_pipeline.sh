@@ -14,7 +14,7 @@ jupyter nbconvert --to=html \
         --FilesWriter.build_directory=scripts/html \
         --ExecutePreprocessor.kernel_name=python3 \
         --ExecutePreprocessor.timeout=10000000 \
-        --execute 1.cp_pca_clustering_analysis.ipynb
+        --execute 1.L1000_pca_clustering_analysis.ipynb
 
 # Step 2 - Visualize clustering metrics
 jupyter nbconvert --to=html \
