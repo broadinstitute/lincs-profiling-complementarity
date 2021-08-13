@@ -365,7 +365,7 @@ for dose in [1, 2, 3, 4, 5, 6]:
     silh_list.append(df_silh)
     df_db = create_df(dose_davie_score, 'davies_bouldin_score', dose)
     db_list.append(df_db)
-    df_bic = create_df(dose_bic_score, 'BIC_score', 1)
+    df_bic = create_df(dose_bic_score, 'BIC_score', dose)
     bic_list.append(df_bic)
     
 df_silh = pd.concat(silh_list, ignore_index=True)
