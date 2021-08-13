@@ -168,11 +168,16 @@ load_embeddings_data <- function(assay, cell_painting_batch = "batch1", results_
 }
 
 
-load_consensus_signatures<- function(assay, data_dir = default_consensus_dir, cell_painting_feature_select = TRUE) {
+load_consensus_signatures<- function(assay, data_dir = default_consensus_dir, cell_painting_feature_select = TRUE, all_compounds = FALSE) {
     
     if (cell_painting_feature_select) {
+        if (all_compounds) {
+            file_name <- "modz_consensus_data_all_compounds.csv"
+        } else {
+            file_name <- "modz_consensus_data.csv"
+        }
         cp_file <- file.path(
-            data_dir, "cell_painting", "moa_sizes_consensus_datasets", "modz_consensus_data.csv"
+            data_dir, "cell_painting", "moa_sizes_consensus_datasets", file_name
         )
     } else {
         commit <- "94bfaeeab0d107beac262b4307aa6e9b783625fa"
@@ -183,9 +188,12 @@ load_consensus_signatures<- function(assay, data_dir = default_consensus_dir, ce
         )
     }
 
-    l1000_file <- file.path(
-        data_dir, "L1000", "moa_sizes_consensus_datasets", "modz_level5_data.csv"
-    )
+    if (all_compounds) {
+        file_name <- "modz_level5_data_all_compounds.csv"
+    } else {
+        file_name <- "modz_level5_data.csv"
+    }
+    l1000_file <- file.path(data_dir, "L1000", "moa_sizes_consensus_datasets", file_name)
 
     cp_5_cols <- readr::cols(
         .default = readr::col_double(),
@@ -245,4 +253,84 @@ load_model_predictions <- function(model, assay, train_or_test = "train", shuffl
     
     df <- readr::read_csv(file_name)
     return(df)
+}
+
+
+load_clustering_metrics <- function(results_dir, file_suffix = "_compounds_common_compounds", clustering = "kmeans") {
+    
+    if (clustering == "kmeans") {
+        l1000_sil_file <- file.path(
+            results_dir, "L1000", paste0("L1000_silhouette_scores", file_suffix, ".csv")
+        )
+        cp_sil_file <- file.path(
+            results_dir, "cell_painting", paste0("cp_silhouette_scores", file_suffix, ".csv")
+        )
+
+        sil_cols <- readr::cols(
+          cluster = readr::col_double(),
+          Average_silhouette_score = readr::col_double(),
+          dose = readr::col_character()
+        )
+
+        l1000_sil_df <- readr::read_csv(l1000_sil_file, col_types = sil_cols) %>% dplyr::mutate(assay = "L1000")
+        cp_sil_df <- readr::read_csv(cp_sil_file, col_types = sil_cols)  %>% dplyr::mutate(assay = "Cell Painting")
+
+        # Combine data
+        sil_df <- dplyr::bind_rows(l1000_sil_df, cp_sil_df) %>%
+            dplyr::rename("metric_value" = "Average_silhouette_score") %>%
+            dplyr::mutate("metric" = "Avg. silhouette width")
+
+        # Load Davies Bouldin scores
+        if (file_suffix == "_compounds_common_compounds") {
+            db_file_id = "_davies"
+        } else {
+            db_file_id = "_db_scores" 
+        }
+
+        l1000_db_file <- file.path(
+            results_dir, "L1000", paste0("L1000", db_file_id, file_suffix, ".csv")
+        )
+        cp_db_file <- file.path(
+            results_dir, "cell_painting", paste0("cp", db_file_id, file_suffix, ".csv")
+        )
+        db_cols <- readr::cols(
+          cluster = readr::col_double(),
+          davies_bouldin_score = readr::col_double(),
+          dose = readr::col_character()
+        )
+
+        l1000_db_df <- readr::read_csv(l1000_db_file, col_types = db_cols) %>% dplyr::mutate(assay = "L1000")
+        cp_db_df <- readr::read_csv(cp_db_file, col_types = db_cols)  %>% dplyr::mutate(assay = "Cell Painting")
+
+        # Combine data
+        db_df <- dplyr::bind_rows(l1000_db_df, cp_db_df) %>%
+            dplyr::rename("metric_value" = "davies_bouldin_score") %>%
+            dplyr::mutate("metric" = "Avg. Davies Bouldin score")
+
+        # Combine both scores
+        metric_df <- dplyr::bind_rows(db_df, sil_df)
+        metric_df$metric <- factor(metric_df$metric, levels = c("Avg. silhouette width", "Avg. Davies Bouldin score"))
+    } else {
+        l1000_bic_file <- file.path(
+            results_dir, "L1000", paste0("L1000_bic_scores.csv")
+        )
+        cp_bic_file <- file.path(
+            results_dir, "cell_painting", paste0("cp_bic_scores.csv")
+        )
+
+        bic_cols <- readr::cols(
+          cluster = readr::col_double(),
+          BIC_score = readr::col_double(),
+          dose = readr::col_double()
+        )
+
+        l1000_bic_df <- readr::read_csv(l1000_bic_file, col_types = bic_cols) %>% dplyr::mutate(assay = "L1000")
+        cp_bic_df <- readr::read_csv(cp_bic_file, col_types = bic_cols)  %>% dplyr::mutate(assay = "Cell Painting")
+
+        metric_df <- dplyr::bind_rows(l1000_bic_df, cp_bic_df) %>%
+            dplyr::rename("metric_value" = "BIC_score") %>%
+            dplyr::mutate("metric" = "BIC Score")
+    
+    }
+    return(metric_df)
 }
