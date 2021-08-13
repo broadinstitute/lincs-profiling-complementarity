@@ -292,7 +292,7 @@ df_var_full = plot_pca_var(pca_all_thresh, number_of_pcs)
 save_to_csv(df_var_full, output_path, 'cp_pca_explained_variance.csv')
 
 
-# In[ ]:
+# In[19]:
 
 
 doseall_thresh_silh_score, doseall_thresh_davie_score = calculate_score(df_pc_all_thresh.drop(['dose'], axis = 1))
@@ -301,28 +301,28 @@ df_silhall_thresh = create_df(doseall_thresh_silh_score, 'Average_silhouette_sco
 df_dball_thresh = create_df(doseall_thresh_davie_score, 'davies_bouldin_score', "common_compounds")
 
 
-# In[18]:
+# In[20]:
 
 
-bics_dose_all, _ = calc_bic(df_pc_all_thresh.drop(['dose'], axis = 1))
-dose_bic_score_all = {idx+2:score for idx, score in enumerate(bics_dose_all)}
+# bics_dose_all, _ = calc_bic(df_pc_all_thresh.drop(['dose'], axis = 1))
+# dose_bic_score_all = {idx+2:score for idx, score in enumerate(bics_dose_all)}
 
-df_bics_dose_all = create_df(dose_bic_score, 'BIC_score', "common_compounds")
+# df_bics_dose_all = create_df(dose_bic_score_all, 'BIC_score', "common_compounds")
 
 
-# In[ ]:
+# In[21]:
 
 
 plot_score(doseall_thresh_silh_score, 'Average Silhouette')
 
 
-# In[ ]:
+# In[22]:
 
 
 plot_score(doseall_thresh_davie_score, 'Davies Bouldin score')
 
 
-# In[ ]:
+# In[23]:
 
 
 # Output to file
@@ -332,13 +332,13 @@ df_silhall_thresh.to_csv(output_file, index=False)
 output_file = pathlib.Path("results/cell_painting/cp_davies_compounds_common_compounds.csv")
 df_dball_thresh.to_csv(output_file, index=False)
 
-output_file = pathlib.Path("results/cell_painting/cp_bic_compounds_common_compounds.csv")
-df_bics_dose_all.to_csv(output_file, index=False)
+# output_file = pathlib.Path("results/cell_painting/cp_bic_compounds_common_compounds.csv")
+# df_bics_dose_all.to_csv(output_file, index=False)
 
 
 # ## Perform the same analysis within each dose separately
 
-# In[ ]:
+# In[24]:
 
 
 silh_list = []
@@ -372,7 +372,7 @@ df_db = pd.concat(db_list, ignore_index=True)
 df_bic = pd.concat(bic_list, ignore_index=True)
 
 
-# In[ ]:
+# In[25]:
 
 
 save_to_csv(df_silh, output_path, 'cp_silhouette_scores.csv')

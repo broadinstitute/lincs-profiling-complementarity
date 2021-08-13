@@ -302,28 +302,28 @@ df_silhall_thresh = create_df(doseall_thresh_silh_score, 'Average_silhouette_sco
 df_dball_thresh = create_df(doseall_thresh_davie_score, 'davies_bouldin_score', "common_compounds")
 
 
-# In[ ]:
+# In[21]:
 
 
-bics_dose_all, _ = calc_bic(df_pc_all_thresh.drop(['dose'], axis = 1))
-dose_bic_score_all = {idx+2:score for idx, score in enumerate(bics_dose_all)}
+# bics_dose_all, _ = calc_bic(df_pc_all_thresh.drop(['dose'], axis = 1))
+# dose_bic_score_all = {idx+2:score for idx, score in enumerate(bics_dose_all)}
 
-df_bics_dose_all = create_df(dose_bic_score, 'BIC_score', "common_compounds")
+# df_bics_dose_all = create_df(dose_bic_score_all, 'BIC_score', "common_compounds")
 
 
-# In[ ]:
+# In[22]:
 
 
 plot_score(doseall_thresh_silh_score, 'Average Silhouette')
 
 
-# In[ ]:
+# In[23]:
 
 
 plot_score(doseall_thresh_davie_score, 'Davies Bouldin score')
 
 
-# In[ ]:
+# In[24]:
 
 
 # Output to file
@@ -333,13 +333,13 @@ df_silhall_thresh.to_csv(output_file, index=False)
 output_file = pathlib.Path("results/L1000/L1000_davies_compounds_common_compounds.csv")
 df_dball_thresh.to_csv(output_file, index=False)
 
-output_file = pathlib.Path("results/L1000/L1000_bic_compounds_common_compounds.csv")
-df_bics_dose_all.to_csv(output_file, index=False)
+# output_file = pathlib.Path("results/L1000/L1000_bic_compounds_common_compounds.csv")
+# df_bics_dose_all.to_csv(output_file, index=False)
 
 
 # ## Perform the same analysis within each dose separately
 
-# In[ ]:
+# In[25]:
 
 
 silh_list = []
@@ -373,7 +373,7 @@ df_db = pd.concat(db_list, ignore_index=True)
 df_bic = pd.concat(bic_list, ignore_index=True)
 
 
-# In[ ]:
+# In[26]:
 
 
 save_to_csv(df_silh, output_path, 'L1000_silhouette_scores.csv')
