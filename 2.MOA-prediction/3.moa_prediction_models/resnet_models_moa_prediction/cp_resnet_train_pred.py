@@ -53,11 +53,16 @@ class cp_resnet_moa_train_prediction:
 
     """
     
-    def __init__(self, data_dir=None, model_pred_dir=None, shuffle=None, Epochs=None, Batch_size=None, learning_rate=None):
+    def __init__(self, data_dir=None, model_pred_dir=None, shuffle=None, subsample=None, Epochs=None, Batch_size=None, learning_rate=None):
 
         self.data_dir = data_dir
         self.model_pred_dir = model_pred_dir
         self.shuffle = shuffle
+        self.subsample = subsample
+        if self.subsample:
+            self.output_file_indicator = "_subsample"
+        else:
+            self.output_file_indicator = ""
         self.EPOCHS = Epochs
         self.BATCH_SIZE = Batch_size
         self.LEARNING_RATE = learning_rate
@@ -85,15 +90,30 @@ class cp_resnet_moa_train_prediction:
         model_dir = os.path.join(self.data_dir, model_dir_name)
         os.makedirs(model_dir, exist_ok=True)
         
+        # Setup file names
         if self.shuffle:
-            df_train = pd.read_csv(os.path.join(self.data_dir, 'train_shuffle_lvl4_data.csv.gz'),
-                                   compression='gzip',low_memory = False)
+            if self.subsample:
+                input_train_file = os.path.join(self.data_dir, "train_shuffle_lvl4_data_subsample.csv.gz")
+                input_test_file = os.path.join(self.data_dir, "test_lvl4_data_subsample.csv.gz")
+            else:
+                input_train_file = os.path.join(self.data_dir, "train_shuffle_lvl4_data.csv.gz")
+                input_test_file = os.path.join(self.data_dir, "test_lvl4_data.csv.gz")
         else:
-            df_train = pd.read_csv(os.path.join(self.data_dir, 'train_lvl4_data.csv.gz'),
-                                   compression='gzip',low_memory = False)
-        df_test = pd.read_csv(os.path.join(self.data_dir, 'test_lvl4_data.csv.gz'),
-                              compression='gzip',low_memory = False)
-        df_targets = pd.read_csv(os.path.join(self.data_dir, 'target_labels.csv'))
+            if self.subsample:
+                input_train_file = os.path.join(self.data_dir, "train_lvl4_data_subsample.csv.gz")
+                input_test_file = os.path.join(self.data_dir, "test_lvl4_data_subsample.csv.gz")
+            else:
+                input_train_file = os.path.join(self.data_dir, "train_lvl4_data.csv.gz")
+                input_test_file = os.path.join(self.data_dir, "test_lvl4_data.csv.gz")
+        
+        if self.subsample:
+            input_target_file = os.path.join(self.data_dir, 'target_labels_subsample.csv')
+        else:
+            input_target_file = os.path.join(self.data_dir, 'target_labels.csv')
+
+        df_train = pd.read_csv(input_train_file, compression='gzip',low_memory = False)
+        df_test = pd.read_csv(input_test_file, compression='gzip',low_memory = False)
+        df_targets = pd.read_csv(input_target_file)
         
         metadata_cols = ['Metadata_broad_sample', 'Metadata_pert_id', 'Metadata_Plate', 'Metadata_Well', 
                          'Metadata_broad_id', 'Metadata_moa', 'broad_id', 'pert_iname', 'moa', 'replicate_name', 
@@ -148,8 +168,8 @@ class cp_resnet_moa_train_prediction:
         df_preds = pd.DataFrame(y_pred, columns=df_test_y.columns)
         
         model_eval_results(df_train_y, oof_preds, df_test, df_test_y, df_preds, target_cols)
-        save_to_csv(df_preds, self.model_pred_dir, f"{tst_pred_name}.csv")
-        save_to_csv(df_oofs, self.model_pred_dir, f"{trn_pred_name}.csv.gz", compress="gzip")
+        save_to_csv(df_preds, self.model_pred_dir, f"{tst_pred_name}{self.output_file_indicator}.csv")
+        save_to_csv(df_oofs, self.model_pred_dir, f"{trn_pred_name}{self.output_file_indicator}.csv.gz", compress="gzip")
         print("\n All is set, Train and Test predictions have been read as csv files into the model predictions directory!!")
     
 def parse_args():
@@ -161,6 +181,7 @@ def parse_args():
     parser.add_argument('--model_pred_dir', type=str, help='directory where model predictions for train & test will be stored')
     parser.add_argument('--shuffle', action="store_true", help='True or False argument, to check if the train data is shuffled \
     i.e. given to the wrong target labels OR NOT')
+    parser.add_argument('--subsample', action="store_true", help='Whether or not to use subsampled cell painting profiles to match L1000 count')
     ##model hyperparameters
     parser.add_argument('--batch_size', type=int, default = 128, nargs='?', help='Batch size for the model inputs')
     parser.add_argument('--learning_rate', type=float, default = 1e-3, nargs='?', help='learning rate')
@@ -169,6 +190,15 @@ def parse_args():
     
 if __name__ == '__main__':
     args = parse_args()
-    cp_resnet = cp_resnet_moa_train_prediction(args.data_dir, args.model_pred_dir, args.shuffle, args.epochs,
-                                               args.batch_size, args.learning_rate)
+        
+    cp_resnet = cp_resnet_moa_train_prediction(
+        data_dir=args.data_dir,
+        model_pred_dir=args.model_pred_dir,
+        shuffle=args.shuffle,
+        subsample=args.subsample,
+        Epochs=args.epochs,
+        Batch_size=args.batch_size, 
+        learning_rate=args.learning_rate
+    )
+    
     cp_resnet.cp_resnet_moa_train_pred()

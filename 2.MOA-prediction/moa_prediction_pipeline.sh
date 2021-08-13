@@ -33,3 +33,25 @@ jupyter nbconvert --to=html \
         
 jupyter nbconvert --to=script --FilesWriter.build_directory=scripts/nbconverted *.ipynb
 cd ..
+
+# Step 3 - Perform MOA predictions
+cd 3.moa_prediction_models
+./run_models.sh
+cd ..
+
+# Step 4 - Blend predictions, acquire performance metrics, and visualize results
+cd 4.model_viz
+jupyter nbconvert --to=html \
+        --FilesWriter.build_directory=scripts/html \
+        --ExecutePreprocessor.kernel_name=python3 \
+        --ExecutePreprocessor.timeout=10000000 \
+        --execute 0.blend_test_predictions.ipynb
+
+jupyter nbconvert --to=html \
+        --FilesWriter.build_directory=scripts/html \
+        --ExecutePreprocessor.kernel_name=python3 \
+        --ExecutePreprocessor.timeout=10000000 \
+        --execute 1.moa_predictions_visualization.ipynb
+        
+jupyter nbconvert --to=script --FilesWriter.build_directory=scripts/nbconverted *.ipynb
+cd ..

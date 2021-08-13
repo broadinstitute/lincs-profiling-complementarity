@@ -9,8 +9,8 @@ from iterstrat.ml_stratifiers import MultilabelStratifiedKFold
 from skmultilearn.adapt import MLkNN
 
 ##custom modules required
-from mlknn_helpers import mlknn_train_pred,model_eval_results,save_to_csv
-from mlknn_helpers import split_data,check_if_shuffle_data
+from mlknn_helpers import mlknn_train_pred,model_eval_results, save_to_csv
+from mlknn_helpers import split_data, check_if_shuffle_data
 
 class cp_mlknn_moa_train_prediction:
     
@@ -36,11 +36,16 @@ class cp_mlknn_moa_train_prediction:
 
     """
     
-    def __init__(self, data_dir=None, model_pred_dir=None, shuffle=None, k_list=None):
+    def __init__(self, data_dir=None, model_pred_dir=None, shuffle=None, subsample=None, k_list=None):
 
         self.data_dir = data_dir
         self.model_pred_dir = model_pred_dir
         self.shuffle = shuffle
+        self.subsample = subsample
+        if self.subsample:
+            self.output_file_indicator = "_subsample"
+        else:
+            self.output_file_indicator = ""
         self.k_list = k_list
     
     def cp_mlknn_moa_train_pred(self):
@@ -51,17 +56,38 @@ class cp_mlknn_moa_train_prediction:
         model_dir_name = None
         trn_pred_name = 'cp_train_preds_mlknn'
         tst_pred_name = 'cp_test_preds_mlknn'
-        _,_,trn_pred_name,tst_pred_name = check_if_shuffle_data(self.shuffle, model_file_name, 
-                                                                model_dir_name, trn_pred_name, tst_pred_name)
+        _,_,trn_pred_name,tst_pred_name = check_if_shuffle_data(
+            self.shuffle,
+            model_file_name, 
+            model_dir_name,
+            trn_pred_name,
+            tst_pred_name
+        )
+        
+        # Setup file names
         if self.shuffle:
-            df_train = pd.read_csv(os.path.join(self.data_dir, 'train_shuffle_lvl4_data.csv.gz'),
-                                   compression='gzip',low_memory = False)
+            if self.subsample:
+                input_train_file = os.path.join(self.data_dir, "train_shuffle_lvl4_data_subsample.csv.gz")
+                input_test_file = os.path.join(self.data_dir, "test_lvl4_data_subsample.csv.gz")
+            else:
+                input_train_file = os.path.join(self.data_dir, "train_shuffle_lvl4_data.csv.gz")
+                input_test_file = os.path.join(self.data_dir, "test_lvl4_data.csv.gz")
         else:
-            df_train = pd.read_csv(os.path.join(self.data_dir, 'train_lvl4_data.csv.gz'),
-                                   compression='gzip',low_memory = False)
-        df_test = pd.read_csv(os.path.join(self.data_dir, 'test_lvl4_data.csv.gz'),
-                              compression='gzip',low_memory = False)
-        df_targets = pd.read_csv(os.path.join(self.data_dir, 'target_labels.csv'))
+            if self.subsample:
+                input_train_file = os.path.join(self.data_dir, "train_lvl4_data_subsample.csv.gz")
+                input_test_file = os.path.join(self.data_dir, "test_lvl4_data_subsample.csv.gz")
+            else:
+                input_train_file = os.path.join(self.data_dir, "train_lvl4_data.csv.gz")
+                input_test_file = os.path.join(self.data_dir, "test_lvl4_data.csv.gz")
+        
+        if self.subsample:
+            input_target_file = os.path.join(self.data_dir, 'target_labels_subsample.csv')
+        else:
+            input_target_file = os.path.join(self.data_dir, 'target_labels.csv')
+
+        df_train = pd.read_csv(input_train_file, compression='gzip',low_memory = False)
+        df_test = pd.read_csv(input_test_file, compression='gzip',low_memory = False)
+        df_targets = pd.read_csv(input_target_file)
         
         metadata_cols = ['Metadata_broad_sample', 'Metadata_pert_id', 'Metadata_Plate', 'Metadata_Well', 
                          'Metadata_broad_id', 'Metadata_moa', 'broad_id', 'pert_iname', 'moa', 'replicate_name', 
@@ -74,8 +100,8 @@ class cp_mlknn_moa_train_prediction:
                                             NFOLDS = NFOLDS)
         
         model_eval_results(df_train_y, df_oofs.values, df_test, df_test_y, df_preds, target_cols)
-        save_to_csv(df_preds, self.model_pred_dir, f"{tst_pred_name}.csv")
-        save_to_csv(df_oofs, self.model_pred_dir, f"{trn_pred_name}.csv.gz", compress="gzip")
+        save_to_csv(df_preds, self.model_pred_dir, f"{tst_pred_name}{self.output_file_indicator}.csv")
+        save_to_csv(df_oofs, self.model_pred_dir, f"{trn_pred_name}{self.output_file_indicator}.csv.gz", compress="gzip")
         print("\n All is set, Train and Test predictions have been read as csv files into the model predictions directory!!")
     
 def parse_args():
@@ -87,6 +113,7 @@ def parse_args():
     parser.add_argument('--model_pred_dir', type=str, help='directory where model predictions for train & test will be stored')
     parser.add_argument('--shuffle', action="store_true", help='True or False argument, to check if the train data is shuffled \
     i.e. given to the wrong target labels OR NOT')
+    parser.add_argument('--subsample', action="store_true", help='Whether or not to use subsampled cell painting profiles to match L1000 count')
     ##model hyperparameters
     parser.add_argument('--k_list', type=list, default = [9], nargs='?', help='A list of "K" nearest neighbours to\
     perform gridsearch on')
@@ -94,5 +121,12 @@ def parse_args():
     
 if __name__ == '__main__':
     args = parse_args()
-    cp_mlknn = cp_mlknn_moa_train_prediction(args.data_dir, args.model_pred_dir, args.shuffle, args.k_list)
+
+    cp_mlknn = cp_mlknn_moa_train_prediction(
+        data_dir=args.data_dir,
+        model_pred_dir=args.model_pred_dir,
+        shuffle=args.shuffle,
+        subsample=args.subsample,
+        k_list=args.k_list
+    )
     cp_mlknn.cp_mlknn_moa_train_pred()

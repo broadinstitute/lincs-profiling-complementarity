@@ -34,13 +34,14 @@ from scipy.optimize import minimize, fsolve
 # In[4]:
 
 
+file_indicator = "_subsample"
 data_dir = pathlib.Path("../2.data_split/model_data")
 
 
 # In[5]:
 
 
-cp_test = pathlib.Path(f"{data_dir}/cp/test_lvl4_data.csv.gz")
+cp_test = pathlib.Path(f"{data_dir}/cp/test_lvl4_data{file_indicator}.csv.gz")
 L1000_test = pathlib.Path(f"{data_dir}/L1/test_lvl4_data.csv.gz")
 cp_L1000_test = pathlib.Path(f"{data_dir}/merged/test_lvl4_data.csv.gz")
 
@@ -69,7 +70,7 @@ df_cp_L1000_test.shape
 
 
 ##resnet
-df_cp_resnet_test = pd.read_csv(os.path.join(model_preds_dir, 'cp_test_preds_resnet.csv'))
+df_cp_resnet_test = pd.read_csv(os.path.join(model_preds_dir, f'cp_test_preds_resnet{file_indicator}.csv'))
 df_L1000_resnet_test = pd.read_csv(os.path.join(model_preds_dir, 'L1000_test_preds_resnet.csv'))
 df_cp_L1000_resnet_test = pd.read_csv(os.path.join(model_preds_dir, 'cp_L1000_test_preds_resnet.csv'))
 
@@ -85,7 +86,7 @@ df_cp_L1000_resnet_test.head()
 
 
 ##1-d cnn
-df_cp_cnn_test = pd.read_csv(os.path.join(model_preds_dir, 'cp_test_preds_1dcnn.csv'))
+df_cp_cnn_test = pd.read_csv(os.path.join(model_preds_dir, f'cp_test_preds_1dcnn{file_indicator}.csv'))
 df_L1000_cnn_test = pd.read_csv(os.path.join(model_preds_dir, 'L1000_test_preds_1dcnn.csv'))
 df_cp_L1000_cnn_test = pd.read_csv(os.path.join(model_preds_dir, 'cp_L1000_test_preds_1dcnn.csv'))
 
@@ -101,7 +102,7 @@ df_cp_L1000_cnn_test.head()
 
 
 ##tabnet
-df_cp_tabnet_test = pd.read_csv(os.path.join(model_preds_dir, 'cp_test_preds_tabnet.csv'))
+df_cp_tabnet_test = pd.read_csv(os.path.join(model_preds_dir, f'cp_test_preds_tabnet{file_indicator}.csv'))
 df_L1000_tabnet_test = pd.read_csv(os.path.join(model_preds_dir, 'L1000_test_preds_tabnet.csv'))
 df_cp_L1000_tabnet_test = pd.read_csv(os.path.join(model_preds_dir, 'cp_L1000_test_preds_tabnet.csv'))
 
@@ -116,7 +117,7 @@ df_cp_L1000_tabnet_test.shape
 
 
 ##stagedNN
-df_cp_simplenn_test = pd.read_csv(os.path.join(model_preds_dir, 'cp_test_preds_simplenn.csv'))
+df_cp_simplenn_test = pd.read_csv(os.path.join(model_preds_dir, f'cp_test_preds_simplenn{file_indicator}.csv'))
 df_L1000_simplenn_test = pd.read_csv(os.path.join(model_preds_dir, 'L1000_test_preds_simplenn.csv'))
 df_cp_L1000_simplenn_test = pd.read_csv(os.path.join(model_preds_dir, 'cp_L1000_test_preds_simplenn.csv'))
 
@@ -353,7 +354,7 @@ def save_to_csv(df, path, file_name, compress=None):
 # In[38]:
 
 
-save_to_csv(df_cp_blend, model_preds_dir, 'cp_test_preds_blend.csv')
+save_to_csv(df_cp_blend, model_preds_dir, f'cp_test_preds_blend{file_indicator}.csv')
 save_to_csv(df_L1000_blend, model_preds_dir, 'L1000_test_preds_blend.csv')
 save_to_csv(df_cp_L1000_blend, model_preds_dir, 'cp_L1000_test_preds_blend.csv')
 

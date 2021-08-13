@@ -22,82 +22,96 @@ import shutil
 # In[2]:
 
 
-data_path = '../0.download_cellpainting_L1000_data/data/'
-cpd_split_path = '../1.compound_split_train_test/data'
+file_indicator="_subsample"
 
 
 # In[3]:
 
 
-df_level4_cp = pd.read_csv(os.path.join(data_path, 'cp_level4_cpd_replicates.csv.gz'), 
-                        compression='gzip',low_memory = False)
-df_level4_L1 = pd.read_csv(os.path.join(data_path, 'L1000_level4_cpd_replicates.csv.gz'), 
-                        compression='gzip',low_memory = False)
+cp_data_path = '../../1.Data-exploration/Profiles_level4/cell_painting/cellpainting_lvl4_cpd_replicate_datasets/'
+l1000_data_path = "../../1.Data-exploration/Profiles_level4/L1000/L1000_lvl4_cpd_replicate_datasets/"
+
+cpd_split_path = '../1.compound_split_train_test/data'
 
 
 # In[4]:
 
 
-df_cpds_moas_lincs = pd.read_csv(os.path.join(cpd_split_path, 'split_moas_cpds.csv'))
+df_level4_cp = pd.read_csv(
+    os.path.join(cp_data_path, f'cp_level4_cpd_replicates{file_indicator}.csv.gz'),
+    low_memory = False
+)
+
+df_level4_L1 = pd.read_csv(
+    os.path.join(l1000_data_path, 'L1000_level4_cpd_replicates.csv.gz'), 
+    compression='gzip',
+    low_memory = False
+)
 
 
 # In[5]:
 
 
-df_cpds_moas_lincs.head()
+df_cpds_moas_lincs = pd.read_csv(os.path.join(cpd_split_path, 'split_moas_cpds.csv'))
 
 
 # In[6]:
 
 
-all_cpds = df_cpds_moas_lincs['pert_iname'].unique()
+df_cpds_moas_lincs.head()
 
 
 # In[7]:
+
+
+all_cpds = df_cpds_moas_lincs['pert_iname'].unique()
+
+
+# In[8]:
 
 
 df_level4_cp = df_level4_cp.loc[df_level4_cp['pert_iname'].isin(all_cpds)].reset_index(drop=True)
 df_level4_L1 = df_level4_L1.loc[df_level4_L1['pert_iname'].isin(all_cpds)].reset_index(drop=True)
 
 
-# In[8]:
+# In[9]:
 
 
 df_level4_cp.shape
 
 
-# In[9]:
+# In[10]:
 
 
 df_level4_L1.shape
 
 
-# In[10]:
+# In[11]:
 
 
 df_level4_cp['moa'] = df_level4_cp['moa'].apply(lambda x: x.lower())
 df_level4_L1['moa'] = df_level4_L1['moa'].apply(lambda x: x.lower())
 
 
-# In[11]:
+# In[12]:
 
 
 df_cpds_moas = df_cpds_moas_lincs.copy()
 
 
-# In[12]:
+# In[13]:
 
 
 len(df_cpds_moas['pert_iname'].unique()) ##no of compounds in the whole data
 
 
-# In[13]:
+# In[14]:
 
 
 len(df_cpds_moas['moa'].unique()) ##no of MOA
 
 
-# In[14]:
+# In[15]:
 
 
 def create_moa_targets(df):
@@ -110,32 +124,32 @@ def create_moa_targets(df):
     return df_moas_targets
 
 
-# In[15]:
+# In[16]:
 
 
 df_moa_targets = create_moa_targets(df_cpds_moas)
 
 
-# In[16]:
+# In[17]:
 
 
 df_moa_targets
 
 
-# In[17]:
+# In[18]:
 
 
 df_level4_cp = df_level4_cp.merge(df_moa_targets, on='pert_iname')
 df_level4_L1 = df_level4_L1.merge(df_moa_targets, on='pert_iname')
 
 
-# In[18]:
+# In[19]:
 
 
 df_level4_cp.shape
 
 
-# In[19]:
+# In[20]:
 
 
 df_level4_L1.shape
@@ -143,26 +157,26 @@ df_level4_L1.shape
 
 # ### - compounds split (80/20) based on MOAs -- based on split_moas_cpds
 
-# In[20]:
+# In[21]:
 
 
 train_cpds = df_cpds_moas_lincs[df_cpds_moas_lincs['train']]['pert_iname'].unique()
 test_cpds = df_cpds_moas_lincs[df_cpds_moas_lincs['test']]['pert_iname'].unique()
 
 
-# In[21]:
+# In[22]:
 
 
 len(train_cpds)
 
 
-# In[22]:
+# In[24]:
 
 
 len(test_cpds)
 
 
-# In[23]:
+# In[25]:
 
 
 def train_test_split(train_cpds, test_cpds, df):
@@ -171,32 +185,32 @@ def train_test_split(train_cpds, test_cpds, df):
     return df_trn, df_tst
 
 
-# In[24]:
+# In[26]:
 
 
 df_level4_cp_trn, df_level4_cp_tst = train_test_split(train_cpds, test_cpds, df_level4_cp)
 df_level4_L1_trn, df_level4_L1_tst = train_test_split(train_cpds, test_cpds, df_level4_L1)
 
 
-# In[25]:
+# In[27]:
 
 
 df_level4_cp_trn.shape
 
 
-# In[26]:
+# In[28]:
 
 
 df_level4_cp_tst.shape
 
 
-# In[27]:
+# In[29]:
 
 
 df_level4_L1_trn.shape
 
 
-# In[28]:
+# In[30]:
 
 
 df_level4_L1_tst.shape
@@ -205,7 +219,7 @@ df_level4_L1_tst.shape
 # ### - Shuffle train data - 2nd train data
 # #### - Shuffle the target labels in the train data so that replicates of the same compound/MOA have different MOA labels
 
-# In[29]:
+# In[31]:
 
 
 def create_shuffle_data(df_trn, target_cols):
@@ -218,26 +232,26 @@ def create_shuffle_data(df_trn, target_cols):
     return df_trn_cpy
 
 
-# In[30]:
+# In[32]:
 
 
 target_cols = df_moa_targets.columns[1:]
 
 
-# In[31]:
+# In[33]:
 
 
 df_lvl4_cp_trn_shuf = create_shuffle_data(df_level4_cp_trn, target_cols)
 df_lvl4_L1_trn_shuf = create_shuffle_data(df_level4_L1_trn, target_cols)
 
 
-# In[32]:
+# In[34]:
 
 
 df_lvl4_cp_trn_shuf.shape
 
 
-# In[33]:
+# In[35]:
 
 
 df_lvl4_L1_trn_shuf.shape
@@ -245,7 +259,7 @@ df_lvl4_L1_trn_shuf.shape
 
 # #### - Save to CSV
 
-# In[34]:
+# In[36]:
 
 
 def save_to_csv(df, path, file_name, compress=None):
@@ -257,30 +271,30 @@ def save_to_csv(df, path, file_name, compress=None):
     df.to_csv(os.path.join(path, file_name), index=False, compression=compress)
 
 
-# In[35]:
-
-
-save_to_csv(df_level4_cp_trn, "model_data/cp/", 'train_lvl4_data.csv.gz', compress="gzip") ##"D:\cell_painting_profiles\profiles"
-save_to_csv(df_level4_cp_tst, "model_data/cp/", 'test_lvl4_data.csv.gz', compress="gzip")
-
-
-# In[36]:
-
-
-save_to_csv(df_level4_L1_trn, "model_data/L1/", 'train_lvl4_data.csv.gz', compress="gzip") ##"D:\Documents\L1000"
-save_to_csv(df_level4_L1_tst, "model_data/L1/", 'test_lvl4_data.csv.gz', compress="gzip")
-
-
 # In[37]:
 
 
-save_to_csv(df_lvl4_cp_trn_shuf, "model_data/cp/", 'train_shuffle_lvl4_data.csv.gz', compress="gzip")
-save_to_csv(df_lvl4_L1_trn_shuf, "model_data/L1/", 'train_shuffle_lvl4_data.csv.gz', compress="gzip")
+save_to_csv(df_level4_cp_trn, "model_data/cp/", f'train_lvl4_data{file_indicator}.csv.gz', compress="gzip")
+save_to_csv(df_level4_cp_tst, "model_data/cp/", f'test_lvl4_data{file_indicator}.csv.gz', compress="gzip")
 
 
 # In[38]:
 
 
-save_to_csv(df_moa_targets, "model_data/cp/", 'target_labels.csv')
+save_to_csv(df_level4_L1_trn, "model_data/L1/", 'train_lvl4_data.csv.gz', compress="gzip")
+save_to_csv(df_level4_L1_tst, "model_data/L1/", 'test_lvl4_data.csv.gz', compress="gzip")
+
+
+# In[39]:
+
+
+save_to_csv(df_lvl4_cp_trn_shuf, "model_data/cp/", f'train_shuffle_lvl4_data{file_indicator}.csv.gz', compress="gzip")
+save_to_csv(df_lvl4_L1_trn_shuf, "model_data/L1/", 'train_shuffle_lvl4_data.csv.gz', compress="gzip")
+
+
+# In[40]:
+
+
+save_to_csv(df_moa_targets, "model_data/cp/", f'target_labels{file_indicator}.csv')
 save_to_csv(df_moa_targets, "model_data/L1/", 'target_labels.csv')
 
