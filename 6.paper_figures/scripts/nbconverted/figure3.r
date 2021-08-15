@@ -64,77 +64,21 @@ l1000_umap_gg <- (
 
 l1000_umap_gg
 
-# Load silhouette scores
-silhouette_dir <- file.path("..", "3.clustering-pca", "results")
-
-l1000_sil_file <- file.path(silhouette_dir, "L1000", "L1000_silhouette_scores_compounds_pass_threshold.csv")
-cp_sil_file <- file.path(silhouette_dir, "cell_painting", "cp_silhouette_scores_compounds_pass_threshold.csv")
-
-sil_cols <- readr::cols(
-  cluster = readr::col_double(),
-  Average_silhouette_score = readr::col_double(),
-  dose = readr::col_character()
-)
-
-l1000_sil_df <- readr::read_csv(l1000_sil_file, col_types = sil_cols) %>% dplyr::mutate(assay = "L1000")
-cp_sil_df <- readr::read_csv(cp_sil_file, col_types = sil_cols)  %>% dplyr::mutate(assay = "Cell Painting")
-
-# Combine data
-sil_df <- dplyr::bind_rows(l1000_sil_df, cp_sil_df) %>%
-    dplyr::rename("metric_value" = "Average_silhouette_score") %>%
-    dplyr::mutate("metric" = "Avg. silhouette width")
-
-# Load Davies Bouldin scores
-l1000_db_file <- file.path(silhouette_dir, "L1000", "L1000_davies_compounds_pass_threshold.csv")
-cp_db_file <- file.path(silhouette_dir, "cell_painting", "cp_davies_compounds_pass_threshold.csv")
-
-db_cols <- readr::cols(
-  cluster = readr::col_double(),
-  davies_bouldin_score = readr::col_double(),
-  dose = readr::col_character()
-)
-
-l1000_db_df <- readr::read_csv(l1000_db_file, col_types = db_cols) %>% dplyr::mutate(assay = "L1000")
-cp_db_df <- readr::read_csv(cp_db_file, col_types = db_cols)  %>% dplyr::mutate(assay = "Cell Painting")
-
-# Combine data
-db_df <- dplyr::bind_rows(l1000_db_df, cp_db_df) %>%
-    dplyr::rename("metric_value" = "davies_bouldin_score") %>%
-    dplyr::mutate("metric" = "Avg. Davies Bouldin score")
-
-metric_df <- dplyr::bind_rows(db_df, sil_df)
-
-metric_df$metric <- factor(metric_df$metric, levels = c("Avg. silhouette width", "Avg. Davies Bouldin score"))
-
-head(metric_df)
-
-panel_b_gg <- (
-    ggplot(metric_df, aes(x = cluster, y = metric_value, color = assay, group = assay))
-    + geom_point()
-    + geom_line()
-    + facet_wrap("~metric", scales = "free_y")
-    + scale_color_manual("Assay", values = assay_colors)
-    + figure_theme
-    + ylab("Metric")
-    + xlab("Cluster (k)")
-)
-
-panel_b_gg
-
 # Load level 5 consensus signatures
 consensus_dir <- file.path("..", "1.Data-exploration", "Consensus")
 
-cp_df <- load_consensus_signatures(assay = "cellpainting", data_dir = consensus_dir)
-l1000_df <- load_consensus_signatures(assay = "l1000", data_dir = consensus_dir)
+cp_df <- load_consensus_signatures(assay = "cellpainting", data_dir = consensus_dir, all_compounds = TRUE)
+l1000_df <- load_consensus_signatures(assay = "l1000", data_dir = consensus_dir, all_compounds = TRUE)
 
+# Select DMSO samples and compound treatments with >=10uM
 cp_subset_df <- cp_df %>%
-    dplyr::filter((Metadata_dose_recode >= 6) | (pert_iname == "dmso"))
+    dplyr::filter((Metadata_dose_recode >= 4) | (pert_iname == "dmso"))
 
 cp_corr_df <- cp_subset_df %>%
     dplyr::select(starts_with(c("Cells", "Cytoplasm", "Nuclei"))) %>%
     as.matrix() %>%
     t() %>%
-    Hmisc::rcorr(type = "spearman")
+    Hmisc::rcorr(type = "pearson")
 
 cp_corr_df <- cp_corr_df$r
 
@@ -155,8 +99,8 @@ cp_heat_gg <- grid::grid.grabExpr(
     draw(
         Heatmap(
             cp_corr_df,
-
-            column_title = "Cell Painting consensus signatures (10 uM)",
+            col = legend_scale_cols,
+            column_title = "Cell Painting consensus signatures",
 
             top_annotation = HeatmapAnnotation(
                 Perturbation = cp_subset_metadata_df$highlight_moa,
@@ -171,7 +115,7 @@ cp_heat_gg <- grid::grid.grabExpr(
             ),
 
             heatmap_legend_param = list(
-                    title = "Spearman\ncorrelation",
+                    title = "Pearson\ncorrelation",
                     color_bar = "continuous",
                     col_fun = legend_scale_cols,
                     title_gp = gpar(fontsize = lgd_title_fontsize),
@@ -185,13 +129,13 @@ cp_heat_gg <- grid::grid.grabExpr(
 )
 
 l1000_subset_df <- l1000_df %>%
-    dplyr::filter((dose >= 6) | (pert_iname == "dmso"))
+    dplyr::filter((dose >= 4) | (pert_iname == "dmso"))
 
 l1000_corr_df <- l1000_subset_df %>%
     dplyr::select(ends_with("at")) %>%
     as.matrix() %>%
     t() %>%
-    Hmisc::rcorr(type = "spearman")
+    Hmisc::rcorr(type = "pearson")
 
 l1000_corr_df <- l1000_corr_df$r
 
@@ -212,8 +156,8 @@ l1000_heat_gg <- grid::grid.grabExpr(
     draw(
         Heatmap(
             l1000_corr_df,
-            
-            column_title = "L1000 consensus signatures (10 uM)",
+            col = legend_scale_cols,
+            column_title = "L1000 consensus signatures",
             
             top_annotation = HeatmapAnnotation(
                 Perturbation = l1000_subset_metadata_df$highlight_moa,
@@ -228,7 +172,7 @@ l1000_heat_gg <- grid::grid.grabExpr(
             ),
 
             heatmap_legend_param = list(
-                title = "Spearman\ncorrelation",
+                title = "Pearson\ncorrelation",
                 color_bar = "continuous",
                 col_fun = legend_scale_cols,
                 title_gp = gpar(fontsize = lgd_title_fontsize),
@@ -250,26 +194,20 @@ heatmap_panels <- cowplot::plot_grid(
 
 figure3_gg <- cowplot::plot_grid(
     cowplot::plot_grid(
-        cowplot::plot_grid(
-            cp_umap_gg,
-            l1000_umap_gg,
-            ncol = 2,
-            labels = c("a", "")
-        ),
-        panel_b_gg,
-        nrow = 2,
-        labels = c("", "b"),
-        rel_heights = c(1, 0.4)
+        cp_umap_gg,
+        l1000_umap_gg,
+        ncol = 2,
+        labels = c("a", "")
     ),
     heatmap_panels,
-    rel_heights = c(1, 0.8),
+    rel_heights = c(1, 1),
     ncol = 1,
-    labels = c("", "", "c")
+    labels = c("", "b")
 )
 
 figure3_gg
 
 for (extension in extensions) {
     output_file <- paste0(output_figure_base, extension)
-    cowplot::save_plot(output_file, figure3_gg, base_width = 11, base_height = 11, dpi = 500)
+    cowplot::save_plot(output_file, figure3_gg, base_width = 12, base_height = 11, dpi = 500)
 }

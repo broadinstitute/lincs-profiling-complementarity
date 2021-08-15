@@ -54,7 +54,7 @@ moa_colors <- c(
 )
 
 # Set heatmap legend info
-legend_scale_cols = circlize::colorRamp2(c(-1, 0, 1), c("blue", "white", "red"))
+legend_scale_cols = circlize::colorRamp2(c(-1, -0.25, 0, 0.25, 1), c("#29732d", "#a1d76a", "white", "#e9a3c9", "#a11b9a"))
 lgd_title_fontsize = 9
 lgd_label_fontsize = 6.5
 heatmap_pert_colors <- c("DMSO" = "red", "proteasome inhibitor" = "#117733", "other" = "grey")
