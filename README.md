@@ -1,4 +1,4 @@
-# LINCS profiling complimentarity
+# LINCS profiling complementarity
 
 Assessing information contained in different profiling data modalities.
 
