@@ -27,7 +27,26 @@ aligned_df.head()
 # In[3]:
 
 
-aligned_df.moa.nunique()
+moa_list = (
+    pd.DataFrame(
+        pd.concat([
+            pd.Series(x) for x in aligned_df.moa.str.split("|")
+        ])
+        .dropna(), columns=['moa']
+    )
+)
+
+moa_list.moa = moa_list.moa.str.lower()
+moa_list = (
+    pd.DataFrame(
+        moa_list.moa.value_counts()
+    )
+    .reset_index()
+    .rename(columns={"moa": "compound_count", "index": "moa"})
+)
+
+print(moa_list.moa.nunique())
+moa_list.head()
 
 
 # ## How many perturbations and compounds in common?
