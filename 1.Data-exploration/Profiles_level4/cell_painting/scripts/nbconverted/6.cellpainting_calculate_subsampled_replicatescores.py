@@ -37,34 +37,60 @@ np.random.seed(42)
 # In[3]:
 
 
+dose_recode_info = {
+    'dose_1': '0.04 uM', 'dose_2':'0.12 uM', 'dose_3':'0.37 uM',
+    'dose_4': '1.11 uM', 'dose_5':'3.33 uM', 'dose_6':'10 uM'
+}
+
+inv_dose_recode_info = {v: k.replace("dose_", "") for k, v in dose_recode_info.items()}
+
+
+# In[4]:
+
+
 results_dir = pathlib.Path("../results")
 l1000_summary_file = pathlib.Path(f"{results_dir}/median_score_per_compound_l1000.tsv.gz")
 
 l1000_df = pd.read_csv(l1000_summary_file, sep="\t")
+l1000_df = l1000_df.assign(dose_id = l1000_df.dose.replace(inv_dose_recode_info))
+
 print(l1000_df.shape)
 l1000_df.head()
 
 
-# In[4]:
+# In[5]:
+
+
+# Load L1000 data to identify how many DMSOs
+l1000_data_path = pathlib.Path("../L1000/L1000_lvl4_cpd_replicate_datasets/L1000_level4_cpd_replicates.csv.gz")
+l1000_profile_df = pd.read_csv(l1000_data_path).query("pert_iname == 'DMSO'")
+
+n_dmso_l1000 = l1000_profile_df.shape[0]
+
+print(l1000_profile_df.shape)
+l1000_profile_df.head()
+
+
+# In[6]:
 
 
 commit = "94bfaeeab0d107beac262b4307aa6e9b783625fa"
 spherized_profile_link = f"https://github.com/broadinstitute/lincs-cell-painting/blob/{commit}/spherized_profiles/profiles/2016_04_01_a549_48hr_batch1_dmso_spherized_profiles_with_input_normalized_by_whole_plate.csv.gz?raw=true"
 
 
-# In[5]:
+# In[7]:
 
 
 pertinfo_file = '../aligned_moa_CP_L1000.csv'
 
 
-# In[6]:
+# In[8]:
 
 
 df_level4 = pd.read_csv(spherized_profile_link, compression='gzip',low_memory = False)
 
 
-# In[7]:
+# In[9]:
 
 
 def recode_dose(dose_value):
@@ -79,13 +105,13 @@ def recode_dose(dose_value):
     return dose_value
 
 
-# In[8]:
+# In[10]:
 
 
 df_level4['Metadata_dose_recode'] = df_level4['Metadata_mmoles_per_liter'].apply(recode_dose)
 
 
-# In[9]:
+# In[11]:
 
 
 def feature_selection(df_lvl4): 
@@ -113,13 +139,13 @@ def feature_selection(df_lvl4):
     return df_lvl4_new
 
 
-# In[10]:
+# In[12]:
 
 
 df_level4_new = feature_selection(df_level4)
 
 
-# In[11]:
+# In[13]:
 
 
 def merge_dataframe(df, pertinfo_file):
@@ -140,20 +166,20 @@ def merge_dataframe(df, pertinfo_file):
     return df_lvl4_new, no_cpds_df
 
 
-# In[12]:
+# In[14]:
 
 
 df_level4_new, df_level4_no_cpds = merge_dataframe(df_level4_new, pertinfo_file)
 
 
-# In[13]:
+# In[15]:
 
 
 ##list of "Broad samples" WITHOUT Compounds after aligning L1000 and Cell painting MOAs
 df_level4_no_cpds['Metadata_broad_sample'].unique().tolist()
 
 
-# In[14]:
+# In[16]:
 
 
 def get_median_score(cpds_list, df):
@@ -167,7 +193,7 @@ def get_median_score(cpds_list, df):
         cpd_replicates.drop(['Metadata_broad_sample', 'Metadata_pert_id', 'Metadata_dose_recode', 'Metadata_Plate',
                              'Metadata_Well', 'Metadata_broad_id', 'Metadata_moa', 'broad_id', 
                              'pert_iname', 'moa', 'replicate_name'], axis = 1, inplace = True)
-        cpd_replicates_corr = cpd_replicates.astype('float64').T.corr(method = 'spearman').values
+        cpd_replicates_corr = cpd_replicates.astype('float64').T.corr(method = 'pearson').values
         if len(cpd_replicates_corr) == 1:
             median_val = 1
         else:
@@ -178,7 +204,7 @@ def get_median_score(cpds_list, df):
     return cpds_median_score
 
 
-# In[15]:
+# In[17]:
 
 
 def check_compounds(cpd_med_score, df):
@@ -196,7 +222,7 @@ def check_compounds(cpd_med_score, df):
     return cpd_med_score
 
 
-# In[16]:
+# In[18]:
 
 
 def get_cpd_medianscores(df):
@@ -219,44 +245,54 @@ def get_cpd_medianscores(df):
     return df_cpd_med_score
 
 
-# In[17]:
-
-
-# Randomly subset the profiles to match replicate sample size
-print(df_level4_new.shape)
-df_level4_new.head()
-
-
-# In[18]:
-
-
-file = "https://raw.githubusercontent.com/broadinstitute/lincs-cell-painting/94bfaeeab0d107beac262b4307aa6e9b783625fa/metadata/platemaps/2016_04_01_a549_48hr_batch1/barcode_platemap.csv"
-barcode_platemap_df = pd.read_csv(file)
-barcode_platemap_df.head(2)
-
-
 # In[19]:
 
 
-# Randomly select 3 of 5 plates to make sure the sample sizes are aligned to L1000
-use_plates = barcode_platemap_df.groupby("Plate_Map_Name").sample(n=3).Assay_Plate_Barcode.tolist()
+# Randomly subset Cell Painting profiles to match replicate sample size of L1000
+build_subsample_df = []
+for idx, l1000_pert in l1000_df.iterrows():
+    compound = l1000_pert.compound
+    dose = int(l1000_pert.dose_id)
+    n_replicates = l1000_pert.no_of_replicates
+    
+    random_sample_df = (
+        df_level4_new
+        .query("pert_iname == @compound")
+        .query("Metadata_dose_recode == @dose")
+    )
+    
+    if n_replicates <= random_sample_df.shape[0]:
+        random_sample_df = random_sample_df.sample(n=n_replicates, replace=False)
+    
+    build_subsample_df.append(random_sample_df)
+
+# Combine results
+build_subsample_df = pd.concat(build_subsample_df).reset_index(drop=True)
+print(build_subsample_df.shape)
+build_subsample_df.head()
 
 
 # In[20]:
 
 
-df_level4_new_subsample = df_level4_new.query("Metadata_Plate in @use_plates")
-df_level4_new_subsample.shape
+# Randomly sample DMSO
+random_dmso_df = df_level4_new.query("Metadata_broad_sample == 'DMSO'").sample(n=n_dmso_l1000, replace=False)
 
 
 # In[21]:
+
+
+df_level4_new_subsample = pd.concat([random_dmso_df, build_subsample_df]).reset_index(drop=True)
+
+
+# In[22]:
 
 
 df_cpd_med_score = get_cpd_medianscores(df_level4_new_subsample)
 df_cpd_med_score.head(10)
 
 
-# In[22]:
+# In[23]:
 
 
 def drop_cpds_with_null(df):
@@ -273,14 +309,14 @@ def drop_cpds_with_null(df):
     return df
 
 
-# In[23]:
+# In[24]:
 
 
 df_cpd_med_score = drop_cpds_with_null(df_cpd_med_score)
 df_cpd_med_score.head(10)
 
 
-# In[24]:
+# In[25]:
 
 
 def no_of_replicates_per_cpd(df, df_lvl4):
@@ -299,25 +335,25 @@ def no_of_replicates_per_cpd(df, df_lvl4):
     return df
 
 
-# In[25]:
+# In[26]:
 
 
 df_cpd_med_score = no_of_replicates_per_cpd(df_cpd_med_score, df_level4_new_subsample)
 
 
-# In[26]:
+# In[27]:
 
 
 df_cpd_med_score["no_of_replicates"].unique()
 
 
-# In[27]:
+# In[28]:
 
 
 df_cpd_med_score.shape
 
 
-# In[28]:
+# In[29]:
 
 
 def save_to_csv(df, path, file_name, compress=None):
@@ -329,34 +365,29 @@ def save_to_csv(df, path, file_name, compress=None):
     df.to_csv(os.path.join(path, file_name), index=False, compression=compress)
 
 
-# In[29]:
+# In[30]:
 
 
 save_to_csv(df_cpd_med_score.reset_index().rename({'index':'cpd'}, axis = 1), 
             'cellpainting_lvl4_cpd_replicate_datasets', 'cpd_replicate_median_scores_subsample.csv')
 
 
-# In[30]:
+# In[31]:
 
 
 save_to_csv(df_level4_new_subsample, 'cellpainting_lvl4_cpd_replicate_datasets', 
             'cp_level4_cpd_replicates_subsample.csv.gz', compress="gzip")
 
 
-# In[31]:
+# In[32]:
 
 
 # Output files for visualization
 results_dir = pathlib.Path("../results")
 cpd_summary_file = pathlib.Path(f"{results_dir}/median_score_per_compound_CellPainting_subsample.tsv.gz")
 
-dose_recode_info = {
-    'dose_1': '0.04 uM', 'dose_2':'0.12 uM', 'dose_3':'0.37 uM',
-    'dose_4': '1.11 uM', 'dose_5':'3.33 uM', 'dose_6':'10 uM'
-}
 
-
-# In[32]:
+# In[33]:
 
 
 cpd_score_summary_df = (

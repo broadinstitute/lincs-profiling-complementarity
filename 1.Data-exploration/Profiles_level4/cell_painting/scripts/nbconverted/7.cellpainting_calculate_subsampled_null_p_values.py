@@ -456,3 +456,60 @@ def save_to_csv(df, path, file_name):
 save_to_csv(df_null_p_vals.reset_index().rename({'index':'cpd'}, axis = 1), cp_level4_path, 
             'cpd_replicate_p_values_subsample.csv')
 
+
+# In[37]:
+
+
+cpd_summary_file = pathlib.Path(cp_level4_path, 'cpd_replicate_p_values_melted_subsample.csv')
+
+dose_recode_info = {
+    'dose_1': '0.04 uM', 'dose_2':'0.12 uM', 'dose_3':'0.37 uM',
+    'dose_4': '1.11 uM', 'dose_5':'3.33 uM', 'dose_6':'10 uM'
+}
+
+# Melt the p values
+cpd_score_summary_pval_df = (
+    df_null_p_vals
+    .reset_index()
+    .rename(columns={"index": "compound"})
+    .melt(
+        id_vars=["compound", "no_of_replicates"],
+        value_vars=["dose_1", "dose_2", "dose_3", "dose_4", "dose_5", "dose_6"],
+        var_name="dose",
+        value_name="p_value"
+    )
+)
+
+cpd_score_summary_pval_df.dose = cpd_score_summary_pval_df.dose.replace(dose_recode_info)
+
+# Melt the median matching scores
+cpd_score_summary_df = (
+    df_cpd_med_scores
+    .reset_index()
+    .rename(columns={"index": "compound"})
+    .melt(
+        id_vars=["compound", "no_of_replicates"],
+        value_vars=["dose_1", "dose_2", "dose_3", "dose_4", "dose_5", "dose_6"],
+        var_name="dose",
+        value_name="matching_score"
+    )
+
+)
+
+cpd_score_summary_df.dose = cpd_score_summary_df.dose.replace(dose_recode_info)
+
+summary_df = (
+    cpd_score_summary_pval_df
+    .merge(cpd_score_summary_df, on=["compound", "no_of_replicates", "dose"], how="inner")
+    .assign(
+        assay="Cell Painting",
+        normalization="spherized",
+        category="subsampled"
+    )
+)
+
+summary_df.to_csv(cpd_summary_file, sep="\t", index=False)
+
+print(summary_df.shape)
+summary_df.head()
+
