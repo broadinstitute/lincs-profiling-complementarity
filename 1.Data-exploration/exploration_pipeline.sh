@@ -63,19 +63,19 @@ jupyter nbconvert --to=html \
         --ExecutePreprocessor.kernel_name=python3 \
         --ExecutePreprocessor.timeout=10000000 \
         --execute 7.cellpainting_calculate_subsampled_null_p_values.ipynb
-        
+
 jupyter nbconvert --to=html \
         --FilesWriter.build_directory=scripts/html \
         --ExecutePreprocessor.kernel_name=python3 \
         --ExecutePreprocessor.timeout=10000000 \
         --execute 8.cellpainting_calculate_nonspherized_null_p_values.ipynb
-        
+
 jupyter nbconvert --to=html \
         --FilesWriter.build_directory=scripts/html \
         --ExecutePreprocessor.kernel_name=python3 \
         --ExecutePreprocessor.timeout=10000000 \
         --execute 9.cellpainting-percent-replicating-subsampled-and-nonspherized.ipynb
-    
+
 jupyter nbconvert --to=script --FilesWriter.build_directory=scripts/nbconverted *.ipynb
 
 # L1000
@@ -114,6 +114,25 @@ jupyter nbconvert --to=html \
         --ExecutePreprocessor.kernel_name=python3 \
         --ExecutePreprocessor.timeout=10000000 \
         --execute L1000_CP_comparison_visualization.ipynb
+
+jupyter nbconvert --to=script --FilesWriter.build_directory=scripts/nbconverted *.ipynb
+
+# Analyze plate position effects
+cd ../plate_position_effects
+jupyter nbconvert --to=html \
+        --FilesWriter.build_directory=scripts/html \
+        --ExecutePreprocessor.kernel_name=python3 \
+        --ExecutePreprocessor.timeout=10000000 \
+        --execute gather-platemap-metadata.ipynb
+
+jupyter nbconvert --to=html \
+        --FilesWriter.build_directory=scripts/html \
+        --ExecutePreprocessor.kernel_name=python3 \
+        --ExecutePreprocessor.timeout=10000000 \
+        --execute inspect-plate-position-effects.ipynb
+
+# Uncomment to run diffusion analysis (takes days)
+#bash diffusion.sh
 
 jupyter nbconvert --to=script --FilesWriter.build_directory=scripts/nbconverted *.ipynb
 

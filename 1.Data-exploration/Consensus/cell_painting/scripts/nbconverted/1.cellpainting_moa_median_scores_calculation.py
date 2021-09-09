@@ -205,17 +205,45 @@ df_moa.shape
 # In[11]:
 
 
-# How many total MOAs
-df_moa.moa.nunique()
+# How many total MOAs in common
+moa_list = (
+    pd.DataFrame(
+        pd.concat([
+            pd.Series(x) for x in df_moa.moa.str.split("|")
+        ])
+        .dropna(), columns=['moa']
+    )
+)
+
+moa_list.moa = moa_list.moa.str.lower()
+moa_list = (
+    pd.DataFrame(
+        moa_list.moa.value_counts()
+    )
+    .reset_index()
+    .rename(columns={"moa": "compound_count", "index": "moa"})
+)
+
+print(moa_list.moa.nunique())
 
 
 # In[12]:
 
 
-df_no_moa.shape
+# How many MOAs with greater than 3 compounds?
+moa_list = moa_list.assign(num_unique_cpd=moa_list.compound_count / 6)
+moa_list_subset = moa_list.query("num_unique_cpd > 3")
+
+print(moa_list_subset.moa.nunique())
 
 
 # In[13]:
+
+
+df_no_moa.shape
+
+
+# In[14]:
 
 
 ##list of "Broad samples" WITHOUT Mechanism of Actions (MOA) after aligning L1000 and Cell painting MOAs
@@ -249,7 +277,7 @@ df_no_moa['Metadata_broad_sample'].unique().tolist()
 # | ~10 | 6 |
 # | ~20 | 7 |
 
-# In[14]:
+# In[15]:
 
 
 def get_median_score(moa_list, df_dose, df_cpd_agg):
@@ -288,7 +316,7 @@ def get_median_score(moa_list, df_dose, df_cpd_agg):
     return moa_median_score, moa_cpds
 
 
-# In[15]:
+# In[16]:
 
 
 def check_moa(moa_med_score, moa_cpds, df_moa):
@@ -316,7 +344,7 @@ def check_moa(moa_med_score, moa_cpds, df_moa):
     return moa_med_score, moa_cpds
 
 
-# In[16]:
+# In[17]:
 
 
 def get_moa_medianscores(df_moa):
@@ -357,7 +385,7 @@ def get_moa_medianscores(df_moa):
     return df_moa_med_score
 
 
-# In[17]:
+# In[18]:
 
 
 data_moa_med_score = get_moa_medianscores(df_moa)
@@ -367,7 +395,7 @@ data_moa_med_score = get_moa_medianscores(df_moa)
 # 
 # #### The reason why we are excluding MOAs with median value == 1, is because they have only ONE compound and as a result the medain correlation value will be just 1, and there will not be differences in values btw different doses.
 
-# In[18]:
+# In[19]:
 
 
 def exclude_moa(df_moa_med_score):
@@ -399,20 +427,20 @@ def exclude_moa(df_moa_med_score):
     return df_moa_medians
 
 
-# In[19]:
+# In[20]:
 
 
 data_moa_medians = exclude_moa(data_moa_med_score)
 
 
-# In[20]:
+# In[21]:
 
 
 ##228 MOAs with median values corresponding to correlation btw their cpds
 data_moa_medians.shape
 
 
-# In[21]:
+# In[22]:
 
 
 def seperate_cpds_values(df_moa_medians):
@@ -440,20 +468,20 @@ def seperate_cpds_values(df_moa_medians):
     return df_moa_cpds, df_moa_values
 
 
-# In[22]:
+# In[23]:
 
 
 data_moa_cpds, data_moa_values = seperate_cpds_values(data_moa_medians)
 data_moa_cpds.head()
 
 
-# In[23]:
+# In[24]:
 
 
 data_moa_values.head(10)
 
 
-# In[24]:
+# In[25]:
 
 
 # Output analytical file
@@ -464,7 +492,7 @@ print(analytical_set_df.shape)
 analytical_set_df.to_csv(output_file, index=False, sep="\t")
 
 
-# In[25]:
+# In[26]:
 
 
 def get_moa_size(df_moa_cpds, df_moa_values):
@@ -500,7 +528,7 @@ def get_moa_size(df_moa_cpds, df_moa_values):
     return df_moa_cpds, df_moa_values
 
 
-# In[26]:
+# In[27]:
 
 
 data_moa_cpds, data_moa_values = get_moa_size(data_moa_cpds, data_moa_values)
@@ -508,7 +536,7 @@ data_moa_cpds, data_moa_values = get_moa_size(data_moa_cpds, data_moa_values)
 
 # ### - Check if the MOAs have the same compounds in all the Doses
 
-# In[27]:
+# In[28]:
 
 
 def check_moas_cpds_doses(df_moa_cpds):
@@ -536,7 +564,7 @@ def check_moas_cpds_doses(df_moa_cpds):
     return df_moa_not_equals_cpds
 
 
-# In[28]:
+# In[29]:
 
 
 data_moa_not_equals_cpds = check_moas_cpds_doses(data_moa_cpds) ##MOAs with not the same cpds in all doses
@@ -544,7 +572,7 @@ data_moa_not_equals_cpds = check_moas_cpds_doses(data_moa_cpds) ##MOAs with not 
 
 # ### - MOAS that do not have the same number of compounds in all Doses
 
-# In[29]:
+# In[30]:
 
 
 for moa in data_moa_not_equals_cpds.index:
@@ -556,13 +584,13 @@ for moa in data_moa_not_equals_cpds.index:
 
 # ### - MOAS with their median scores for all doses
 
-# In[30]:
+# In[31]:
 
 
 data_moa_values.head(10)
 
 
-# In[31]:
+# In[32]:
 
 
 def conv_list_to_str_cols(df_moa_cpds):
@@ -575,7 +603,7 @@ def conv_list_to_str_cols(df_moa_cpds):
     return df_moa_cpds
 
 
-# In[32]:
+# In[33]:
 
 
 def save_to_csv(df, path, file_name):
@@ -587,26 +615,26 @@ def save_to_csv(df, path, file_name):
     df.to_csv(os.path.join(path, file_name), index=False)
 
 
-# In[33]:
+# In[34]:
 
 
 save_to_csv(df_moa, 'moa_sizes_consensus_datasets', 'modz_consensus_data.csv')
 save_to_csv(df_all_moa, 'moa_sizes_consensus_datasets', 'modz_consensus_data_all_compounds.csv')
 
 
-# In[34]:
+# In[35]:
 
 
 save_to_csv(conv_list_to_str_cols(data_moa_cpds), 'moa_sizes_consensus_datasets', 'cellpainting_moa_compounds.csv')
 
 
-# In[35]:
+# In[36]:
 
 
 save_to_csv(data_moa_values, 'moa_sizes_consensus_datasets', 'modz_moa_median_scores.csv')
 
 
-# In[36]:
+# In[37]:
 
 
 # Output files for visualization

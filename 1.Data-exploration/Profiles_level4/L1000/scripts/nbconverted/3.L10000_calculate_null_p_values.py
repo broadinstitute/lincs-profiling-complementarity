@@ -50,6 +50,12 @@ np.warnings.filterwarnings('ignore', category=np.VisibleDeprecationWarning)
 # In[2]:
 
 
+np.random.seed(42)
+
+
+# In[3]:
+
+
 # Load common compounds
 common_file = pathlib.Path(
     "..", "..", "..", "6.paper_figures", "data", "significant_compounds_by_threshold_both_assays.tsv.gz"
@@ -62,27 +68,42 @@ print(len(common_compounds))
 
 # ### - Load in Level 4 Datasets generated from `calculate_median_scores_notebook`
 
-# In[3]:
-
-
-L1000_level4_path = "L1000_lvl4_cpd_replicate_datasets"
-
-
 # In[4]:
 
 
-df_level4 = pd.read_csv(os.path.join(L1000_level4_path, 'L1000_level4W_cpd_replicates.csv.gz'), 
-                        compression='gzip',low_memory = False)
-print(df_level4.shape)
-df_level4.head()
+# Run either using "W" or ""
+# Representing "whitened" (aka "spherized") L1000 data or not
+l1000_file_indicator = ""
 
 
 # In[5]:
 
 
-# Load compound median scores
-df_cpd_med_scores = pd.read_csv(os.path.join(L1000_level4_path, 'cpd_replicate_median_scores_w.csv'))
+L1000_level4_path = "L1000_lvl4_cpd_replicate_datasets"
 
+
+# In[6]:
+
+
+df_level4 = pd.read_csv(
+    os.path.join(L1000_level4_path, f'L1000_level4{l1000_file_indicator}_cpd_replicates.csv.gz'), 
+    compression='gzip',
+    low_memory = False
+)
+print(df_level4.shape)
+df_level4.head()
+
+
+# In[7]:
+
+
+# Load compound median scores
+if l1000_file_indicator == "W":
+    file = os.path.join(L1000_level4_path, 'cpd_replicate_median_scores_w.csv')
+else:
+    file = os.path.join(L1000_level4_path, 'cpd_replicate_median_scores.csv')
+
+df_cpd_med_scores = pd.read_csv(file)
 df_cpd_med_scores = df_cpd_med_scores.set_index('cpd').rename_axis(None, axis=0).copy()
 
 # Subset to common compound measurements
@@ -92,7 +113,7 @@ print(df_cpd_med_scores.shape)
 df_cpd_med_scores.head()
 
 
-# In[6]:
+# In[8]:
 
 
 def get_cpds_replicates(df, df_lvl4):
@@ -119,13 +140,13 @@ def get_cpds_replicates(df, df_lvl4):
     return replicates_in_all, cpds_replicates
 
 
-# In[7]:
+# In[9]:
 
 
 replicates_in_all, cpds_replicates = get_cpds_replicates(df_cpd_med_scores, df_level4)
 
 
-# In[8]:
+# In[10]:
 
 
 def get_replicates_classes_per_dose(df, df_lvl4, cpds_replicates):
@@ -155,19 +176,19 @@ def get_replicates_classes_per_dose(df, df_lvl4, cpds_replicates):
     return replicate_class_dict
 
 
-# In[9]:
+# In[11]:
 
 
 cpd_replicate_class_dict = get_replicates_classes_per_dose(df_cpd_med_scores, df_level4, cpds_replicates)
 
 
-# In[10]:
+# In[12]:
 
 
 cpd_replicate_class_dict.keys()
 
 
-# In[11]:
+# In[13]:
 
 
 def check_similar_replicates(replicates, dose, cpd_dict):
@@ -181,7 +202,7 @@ def check_similar_replicates(replicates, dose, cpd_dict):
     return False
 
 
-# In[12]:
+# In[14]:
 
 
 def get_random_replicates(all_replicates, no_of_replicates, dose, replicates_ids, cpd_replicate_dict):
@@ -197,7 +218,7 @@ def get_random_replicates(all_replicates, no_of_replicates, dose, replicates_ids
     return random_replicates
 
 
-# In[13]:
+# In[15]:
 
 
 def get_null_distribution_replicates(cpd_replicate_class_dict, dose_list, replicates_lists, 
@@ -230,15 +251,19 @@ def get_null_distribution_replicates(cpd_replicate_class_dict, dose_list, replic
     return null_distribution_reps
 
 
-# In[14]:
+# In[16]:
 
 
 dose_list = list(set(df_level4['dose'].unique().tolist()))[1:7]
-null_distribution_replicates = get_null_distribution_replicates(cpd_replicate_class_dict, dose_list, 
-                                                                replicates_in_all, cpds_replicates)
+null_distribution_replicates = get_null_distribution_replicates(
+    cpd_replicate_class_dict,
+    dose_list,
+    replicates_in_all,
+    cpds_replicates
+)
 
 
-# In[15]:
+# In[17]:
 
 
 def save_to_pickle(null_distribution, path, file_name):
@@ -251,21 +276,27 @@ def save_to_pickle(null_distribution, path, file_name):
         pickle.dump(null_distribution, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
 
-# In[16]:
+# In[18]:
 
 
-save_to_pickle(null_distribution_replicates, L1000_level4_path, 'null_distribution_w.pickle')
+# Save results
+if l1000_file_indicator == "W":
+    file = 'null_distribution_w.pickle'
+else:
+    file = 'null_distribution.pickle'
+
+save_to_pickle(null_distribution_replicates, L1000_level4_path, file)
 
 
-# In[17]:
+# In[19]:
 
 
 ##load the null_distribution_moa from pickle
-with open(os.path.join(L1000_level4_path, 'null_distribution_w.pickle'), 'rb') as handle:
+with open(os.path.join(L1000_level4_path, file), 'rb') as handle:
     null_distribution_replicates = pickle.load(handle)
 
 
-# In[18]:
+# In[20]:
 
 
 def assert_null_distribution(null_distribution_reps, dose_list):
@@ -292,19 +323,19 @@ def assert_null_distribution(null_distribution_reps, dose_list):
     return duplicates_reps
 
 
-# In[19]:
+# In[21]:
 
 
 duplicate_replicates = assert_null_distribution(null_distribution_replicates, dose_list)
 
 
-# In[20]:
+# In[22]:
 
 
 duplicate_replicates ##no duplicates
 
 
-# In[21]:
+# In[23]:
 
 
 def calc_null_dist_median_scores(df, dose_num, replicate_lists):
@@ -326,7 +357,7 @@ def calc_null_dist_median_scores(df, dose_num, replicate_lists):
     return median_corr_list
 
 
-# In[22]:
+# In[24]:
 
 
 def get_null_dist_median_scores(null_distribution_cpds, dose_list, df):
@@ -345,13 +376,13 @@ def get_null_dist_median_scores(null_distribution_cpds, dose_list, df):
     return null_distribution_medians
 
 
-# In[23]:
+# In[25]:
 
 
 null_distribution_medians = get_null_dist_median_scores(null_distribution_replicates, dose_list, df_level4)
 
 
-# In[24]:
+# In[26]:
 
 
 def compute_dose_median_scores(null_dist_medians, dose_list):
@@ -369,22 +400,27 @@ def compute_dose_median_scores(null_dist_medians, dose_list):
     return median_scores_per_dose
 
 
-# In[25]:
+# In[27]:
 
 
 dose_null_medians = compute_dose_median_scores(null_distribution_medians, dose_list)
 
 
-# In[26]:
+# In[28]:
 
 
-#save the null_distribution_medians_per_dose to pickle
-save_to_pickle(dose_null_medians, L1000_level4_path, 'null_dist_medians_per_dose_w.pickle')
+# Save the null_distribution_medians_per_dose to pickle
+if l1000_file_indicator == "W":
+    file = 'null_dist_medians_per_dose_w.pickle'
+else:
+    file = 'null_dist_medians_per_dose.pickle'
+    
+save_to_pickle(dose_null_medians, L1000_level4_path, file)
 
 
 # **A P value can be computed nonparametrically by evaluating the probability of random replicates of different compounds having median similarity value greater than replicates of the same compounds.**
 
-# In[27]:
+# In[29]:
 
 
 def get_p_value(median_scores_list, df, dose_name, cpd_name):
@@ -397,7 +433,7 @@ def get_p_value(median_scores_list, df, dose_name, cpd_name):
     return p_value
 
 
-# In[28]:
+# In[30]:
 
 
 def get_moa_p_vals(null_dist_median, dose_list, df_med_values):
@@ -419,31 +455,31 @@ def get_moa_p_vals(null_dist_median, dose_list, df_med_values):
     return sorted_null_p_vals
 
 
-# In[29]:
+# In[31]:
 
 
 null_p_vals = get_moa_p_vals(null_distribution_medians, dose_list, df_cpd_med_scores)
 
 
-# In[30]:
+# In[32]:
 
 
 df_null_p_vals = pd.DataFrame.from_dict(null_p_vals, orient='index', columns = ['dose_' + str(x) for x in dose_list])
 
 
-# In[31]:
+# In[33]:
 
 
 df_null_p_vals['no_of_replicates'] = df_cpd_med_scores['no_of_replicates']
 
 
-# In[32]:
+# In[34]:
 
 
 df_null_p_vals.head(10)
 
 
-# In[33]:
+# In[35]:
 
 
 def save_to_csv(df, path, file_name):
@@ -455,9 +491,77 @@ def save_to_csv(df, path, file_name):
     df.to_csv(os.path.join(path, file_name), index = False)
 
 
-# In[34]:
+# In[36]:
 
 
-save_to_csv(df_null_p_vals.reset_index().rename({'index':'cpd'}, axis = 1), L1000_level4_path, 
-            'cpd_replicate_p_values_w.csv')
+# Save the null_distribution_medians_per_dose to pickle
+if l1000_file_indicator == "W":
+    file = 'cpd_replicate_p_values_w.csv'
+else:
+    file = 'cpd_replicate_p_values.csv'
+
+save_to_csv(df_null_p_vals.reset_index().rename({'index':'cpd'}, axis = 1), L1000_level4_path, file)
+
+
+# In[37]:
+
+
+if l1000_file_indicator == "W":
+    cpd_summary_file = pathlib.Path(L1000_level4_path, 'cpd_replicate_p_values_melted_w.csv')
+    input_data = "spherized"
+else:
+    cpd_summary_file = pathlib.Path(L1000_level4_path, 'cpd_replicate_p_values_melted.csv')
+    input_data = "non_spherized"
+
+
+dose_recode_info = {
+    'dose_1': '0.04 uM', 'dose_2':'0.12 uM', 'dose_3':'0.37 uM',
+    'dose_4': '1.11 uM', 'dose_5':'3.33 uM', 'dose_6':'10 uM'
+}
+
+# Melt the p values
+cpd_score_summary_pval_df = (
+    df_null_p_vals
+    .reset_index()
+    .rename(columns={"index": "compound"})
+    .melt(
+        id_vars=["compound", "no_of_replicates"],
+        value_vars=["dose_1", "dose_2", "dose_3", "dose_4", "dose_5", "dose_6"],
+        var_name="dose",
+        value_name="p_value"
+    )
+)
+
+cpd_score_summary_pval_df.dose = cpd_score_summary_pval_df.dose.replace(dose_recode_info)
+
+# Melt the median matching scores
+cpd_score_summary_df = (
+    df_cpd_med_scores
+    .reset_index()
+    .rename(columns={"index": "compound"})
+    .melt(
+        id_vars=["compound", "no_of_replicates"],
+        value_vars=["dose_1", "dose_2", "dose_3", "dose_4", "dose_5", "dose_6"],
+        var_name="dose",
+        value_name="matching_score"
+    )
+
+)
+
+cpd_score_summary_df.dose = cpd_score_summary_df.dose.replace(dose_recode_info)
+
+summary_df = (
+    cpd_score_summary_pval_df
+    .merge(cpd_score_summary_df, on=["compound", "no_of_replicates", "dose"], how="inner")
+    .assign(
+        assay="L1000",
+        normalization=input_data,
+        category="all_data"
+    )
+)
+
+summary_df.to_csv(cpd_summary_file, sep="\t", index=False)
+
+print(summary_df.shape)
+summary_df.head()
 

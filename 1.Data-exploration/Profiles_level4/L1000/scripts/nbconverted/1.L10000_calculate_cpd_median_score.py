@@ -71,6 +71,14 @@ pertinfo_file = '../aligned_moa_CP_L1000.csv'
 # In[4]:
 
 
+# Run either using "W" or ""
+# Representing "whitened" (aka "spherized") L1000 data or not
+l1000_file_indicator = ""
+
+
+# In[5]:
+
+
 def construct_lvl4_data(data_dir, level4_dir, pertinfo_file):
     """
     This function returns L1000 Level-4 Data that is aligned with 
@@ -94,31 +102,28 @@ def construct_lvl4_data(data_dir, level4_dir, pertinfo_file):
     return lvl4_data
 
 
-# In[5]:
-
-
-df_level4 = construct_lvl4_data(data_dir, 'level_4_zspc_n27837x978.gctx', pertinfo_file)
-
-
 # In[6]:
 
 
+# Load compound median scores
+if l1000_file_indicator == "W":
+    file = 'level_4W_zspc_n27837x978.gctx'
+else:
+    file = 'level_4_zspc_n27837x978.gctx'
+
+df_level4 = construct_lvl4_data(data_dir, file, pertinfo_file)
+
+print(df_level4.shape)
 df_level4.head()
 
 
 # In[7]:
 
 
-df_level4.shape
-
-
-# In[8]:
-
-
 len(df_level4['det_plate'].unique())
 
 
-# In[9]:
+# In[8]:
 
 
 len(df_level4['det_well'].unique())
@@ -126,7 +131,7 @@ len(df_level4['det_well'].unique())
 
 # ### - Remove highly correlated landmark genes and samples with Null compound values
 
-# In[10]:
+# In[9]:
 
 
 def feature_selection(df_data):
@@ -153,19 +158,19 @@ def feature_selection(df_data):
     return df_data
 
 
-# In[11]:
+# In[10]:
 
 
 df_level4 = feature_selection(df_level4)
 
 
-# In[12]:
+# In[11]:
 
 
 df_level4.shape
 
 
-# In[13]:
+# In[12]:
 
 
 def get_median_score(cpds_list, df):
@@ -178,7 +183,7 @@ def get_median_score(cpds_list, df):
         cpd_replicates = df[df['pert_iname'] == cpd].copy()
         cpd_replicates.drop(['replicate_id', 'Metadata_broad_sample', 'pert_id', 'dose', 'pert_idose', 
                              'pert_iname', 'moa', 'sig_id', 'det_plate', 'det_well'], axis = 1, inplace = True)
-        cpd_replicates_corr = cpd_replicates.astype('float64').T.corr(method = 'spearman').values
+        cpd_replicates_corr = cpd_replicates.astype('float64').T.corr(method = 'pearson').values
         if len(cpd_replicates_corr) == 1:
             median_val = 1
         else:
@@ -189,7 +194,7 @@ def get_median_score(cpds_list, df):
     return cpds_median_score
 
 
-# In[14]:
+# In[13]:
 
 
 def check_compounds(cpd_med_score, df):
@@ -207,7 +212,7 @@ def check_compounds(cpd_med_score, df):
     return cpd_med_score
 
 
-# In[15]:
+# In[14]:
 
 
 def get_cpd_medianscores(df):
@@ -230,19 +235,19 @@ def get_cpd_medianscores(df):
     return df_cpd_med_score
 
 
-# In[16]:
+# In[15]:
 
 
 df_cpd_med_score = get_cpd_medianscores(df_level4)
 
 
-# In[17]:
+# In[16]:
 
 
 df_cpd_med_score.head(10)
 
 
-# In[18]:
+# In[17]:
 
 
 def drop_cpds_with_null(df):
@@ -259,25 +264,25 @@ def drop_cpds_with_null(df):
     return df
 
 
-# In[19]:
+# In[18]:
 
 
 df_cpd_med_score = drop_cpds_with_null(df_cpd_med_score)
 
 
-# In[20]:
+# In[19]:
 
 
 df_cpd_med_score.shape
 
 
-# In[21]:
+# In[20]:
 
 
 df_cpd_med_score.head(10)
 
 
-# In[22]:
+# In[21]:
 
 
 def no_of_replicates_per_cpd(df, df_lvl4):
@@ -296,19 +301,14 @@ def no_of_replicates_per_cpd(df, df_lvl4):
     return df
 
 
-# In[23]:
+# In[22]:
 
 
 df_cpd_med_score = no_of_replicates_per_cpd(df_cpd_med_score, df_level4)
-
-
-# In[24]:
-
-
 df_cpd_med_score.head(10)
 
 
-# In[25]:
+# In[23]:
 
 
 def save_to_csv(df, path, file_name, compress=None):
@@ -320,26 +320,42 @@ def save_to_csv(df, path, file_name, compress=None):
     df.to_csv(os.path.join(path, file_name), index=False, compression=compress)
 
 
+# In[24]:
+
+
+# Load compound median scores
+if l1000_file_indicator == "W":
+    file = 'cpd_replicate_median_scores_W.csv'
+else:
+    file = 'cpd_replicate_median_scores.csv'
+
+save_to_csv(df_cpd_med_score.reset_index().rename({'index':'cpd'}, axis = 1), 'L1000_lvl4_cpd_replicate_datasets', file)
+
+
+# In[25]:
+
+
+# Load compound median scores
+if l1000_file_indicator == "W":
+    file = 'L1000_level4W_cpd_replicates.csv.gz'
+else:
+    file = 'L1000_level4_cpd_replicates.csv.gz'
+
+
+save_to_csv(df_level4, 'L1000_lvl4_cpd_replicate_datasets', file, compress="gzip")
+
+
 # In[26]:
-
-
-save_to_csv(df_cpd_med_score.reset_index().rename({'index':'cpd'}, axis = 1), 
-            'L1000_lvl4_cpd_replicate_datasets', 'cpd_replicate_median_scores.csv')
-
-
-# In[27]:
-
-
-save_to_csv(df_level4, 'L1000_lvl4_cpd_replicate_datasets', 
-            'L1000_level4_cpd_replicates.csv.gz', compress="gzip")
-
-
-# In[28]:
 
 
 # Output files for visualization
 results_dir = pathlib.Path("../results")
-cpd_summary_file = pathlib.Path(f"{results_dir}/median_score_per_compound_L1000.tsv.gz")
+if l1000_file_indicator == "W":
+    file = 'median_score_per_compound_L1000W'
+else:
+    file = 'median_score_per_compound_L1000'
+    
+cpd_summary_file = pathlib.Path(f"{results_dir}/{file}.tsv.gz")
 
 dose_recode_info = {
     'dose_1': '0.04 uM', 'dose_2':'0.12 uM', 'dose_3':'0.37 uM',
@@ -347,7 +363,7 @@ dose_recode_info = {
 }
 
 
-# In[29]:
+# In[27]:
 
 
 cpd_score_summary_df = (

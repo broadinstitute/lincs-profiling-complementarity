@@ -43,13 +43,26 @@ np.warnings.filterwarnings('ignore', category=np.VisibleDeprecationWarning)
 
 L1000_level4_path = "L1000_lvl4_cpd_replicate_datasets"
 
+# Run alt_indicatorher using "_W" or ""
+# Representing "whitened" (aka "spherized") L1000 data or not
+l1000_file_indicator = "W"
+if l1000_file_indicator == "W":
+    alt_indicator = "_W"
+else:
+    alt_indicator = l1000_file_indicator
+
 
 # In[3]:
 
 
-df_level4 = pd.read_csv(os.path.join(L1000_level4_path, 'L1000_level4_cpd_replicates.csv.gz'), 
-                        compression='gzip',low_memory = False)
-df_cpd_med_scores = pd.read_csv(os.path.join(L1000_level4_path, 'cpd_replicate_median_scores.csv'))
+df_level4 = pd.read_csv(
+    os.path.join(L1000_level4_path, f'L1000_level4{l1000_file_indicator}_cpd_replicates.csv.gz'), 
+    compression='gzip',low_memory = False
+)
+
+df_cpd_med_scores = pd.read_csv(
+    os.path.join(L1000_level4_path, f'cpd_replicate_median_scores{alt_indicator}.csv')
+)
 
 
 # In[4]:
@@ -230,7 +243,7 @@ def save_to_csv(df, path, file_name, compress=None):
 # In[21]:
 
 
-save_to_csv(df_all_vals, L1000_level4_path, 'L1000_all_scores.csv')
+save_to_csv(df_all_vals, L1000_level4_path, f'L1000_all_scores{alt_indicator}.csv')
 
 
 # ### - DMSO MAS and replicate correlation
@@ -339,5 +352,5 @@ def save_to_pickle(value, path, file_name):
 # In[32]:
 
 
-save_to_pickle(dmso_95pct, L1000_level4_path, 'L1000_dmso_95_percentile_TAS.pickle')
+save_to_pickle(dmso_95pct, L1000_level4_path, f'L1000_dmso_95_percentile_TAS{alt_indicator}.pickle')
 

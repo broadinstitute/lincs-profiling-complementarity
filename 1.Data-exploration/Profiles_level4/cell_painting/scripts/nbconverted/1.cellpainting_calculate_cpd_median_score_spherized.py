@@ -214,7 +214,7 @@ def get_median_score(cpds_list, df):
         cpd_replicates.drop(['Metadata_broad_sample', 'Metadata_pert_id', 'Metadata_dose_recode', 'Metadata_Plate',
                              'Metadata_Well', 'Metadata_broad_id', 'Metadata_moa', 'broad_id', 
                              'pert_iname', 'moa', 'replicate_name'], axis = 1, inplace = True)
-        cpd_replicates_corr = cpd_replicates.astype('float64').T.corr(method = 'spearman').values
+        cpd_replicates_corr = cpd_replicates.astype('float64').T.corr(method = 'pearson').values
         if len(cpd_replicates_corr) == 1:
             median_val = 1
         else:
