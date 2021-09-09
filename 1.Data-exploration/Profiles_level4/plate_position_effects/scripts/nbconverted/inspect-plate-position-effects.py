@@ -106,6 +106,19 @@ def get_full_results(df, features, assay, normalization, well_column, plate_colu
 # In[3]:
 
 
+# Load common compounds
+common_file = pathlib.Path(
+    "..", "..", "..", "6.paper_figures", "data", "significant_compounds_by_threshold_both_assays.tsv.gz"
+)
+common_df = pd.read_csv(common_file, sep="\t")
+
+common_compounds = common_df.compound.unique()
+print(len(common_compounds))
+
+
+# In[4]:
+
+
 # Load platemap metadata
 # L1000
 l1000_meta_file = pathlib.Path("../L1000/L1000_figshare_data/col_meta_level_3_REP.A_A549_only_n27837.txt")
@@ -116,7 +129,7 @@ print(l1000_meta_df.shape)
 l1000_meta_df.head()
 
 
-# In[4]:
+# In[5]:
 
 
 # Load platemap metadata
@@ -130,24 +143,39 @@ print(cp_meta_df.shape)
 cp_meta_df.head()
 
 
-# In[5]:
+# In[6]:
 
 
 # Load datasets
 cp_dir = pathlib.Path("../cell_painting/cellpainting_lvl4_cpd_replicate_datasets")
 cp_spherized_df = pd.read_csv(pathlib.Path(cp_dir, "cp_level4_cpd_replicates.csv.gz"), low_memory=False)
+cp_spherized_df.pert_iname = cp_spherized_df.pert_iname.str.lower()
+cp_spherized_df = cp_spherized_df.query("pert_iname in @common_compounds")
 print(cp_spherized_df.shape)
+
 cp_nonspherized_df = pd.read_csv(pathlib.Path(cp_dir, "cp_level4_cpd_replicates_nonspherized.csv.gz"), low_memory=False)
+cp_nonspherized_df.pert_iname = cp_nonspherized_df.pert_iname.str.lower()
+cp_nonspherized_df = cp_nonspherized_df.query("pert_iname in @common_compounds")
 print(cp_nonspherized_df.shape)
+
+cp_subsampled_df = pd.read_csv(pathlib.Path(cp_dir, "cp_level4_cpd_replicates_subsample.csv.gz"), low_memory=False)
+cp_subsampled_df.pert_iname = cp_subsampled_df.pert_iname.str.lower()
+cp_subsampled_df = cp_subsampled_df.query("pert_iname in @common_compounds")
+print(cp_subsampled_df.shape)
 
 l1000_dir = pathlib.Path("../L1000/L1000_lvl4_cpd_replicate_datasets")
 l1000_spherized_df = pd.read_csv(pathlib.Path(l1000_dir, "l1000_level4W_cpd_replicates.csv.gz"), low_memory=False)
+l1000_spherized_df.pert_iname = l1000_spherized_df.pert_iname.str.lower()
+l1000_spherized_df = l1000_spherized_df.query("pert_iname in @common_compounds")
+
 print(l1000_spherized_df.shape)
 l1000_nonspherized_df = pd.read_csv(pathlib.Path(l1000_dir, "l1000_level4_cpd_replicates.csv.gz"), low_memory=False)
+l1000_nonspherized_df.pert_iname = l1000_nonspherized_df.pert_iname.str.lower()
+l1000_nonspherized_df = l1000_nonspherized_df.query("pert_iname in @common_compounds")
 print(l1000_nonspherized_df.shape)
 
 
-# In[6]:
+# In[7]:
 
 
 # Merge with metadata
@@ -156,14 +184,16 @@ l1000_nonspherized_df = l1000_meta_df.merge(l1000_nonspherized_df, left_on="Meta
 
 cp_spherized_df = cp_meta_df.merge(cp_spherized_df, left_on="Metadata_Assay_Plate_Barcode", right_on="Metadata_Plate")
 cp_nonspherized_df = cp_meta_df.merge(cp_nonspherized_df, left_on="Metadata_Assay_Plate_Barcode", right_on="Metadata_Plate")
+cp_subsampled_df = cp_meta_df.merge(cp_subsampled_df, left_on="Metadata_Assay_Plate_Barcode", right_on="Metadata_Plate")
 
 
-# In[7]:
+# In[8]:
 
 
 # Get measured features
 cp_spherize_features = infer_cp_features(cp_spherized_df)
 cp_nonspherize_features = infer_cp_features(cp_nonspherized_df)
+cp_subsample_features = infer_cp_features(cp_subsampled_df)
 
 l1000_spherize_features = l1000_spherized_df.columns[l1000_spherized_df.columns.str.endswith("at")].tolist()
 l1000_nonspherize_features = l1000_nonspherized_df.columns[l1000_nonspherized_df.columns.str.endswith("at")].tolist()
@@ -175,7 +205,7 @@ l1000_nonspherize_features = l1000_nonspherized_df.columns[l1000_nonspherized_df
 # 
 # This gives us a distribution of median scores for replicates in the same well and non-replicates in the same well. This is especially important considering the plate map layout, where we collected multiple replicate plates.
 
-# In[8]:
+# In[9]:
 
 
 cp_spherized_results = (
@@ -194,7 +224,7 @@ cp_spherized_results = (
 cp_spherized_results_df = cp_spherized_results.reset_index().assign(assay="Cell Painting", normalization="spherized")
 
 
-# In[9]:
+# In[10]:
 
 
 cp_nonspherized_results = (
@@ -213,7 +243,26 @@ cp_nonspherized_results = (
 cp_nonspherized_results_df = cp_nonspherized_results.reset_index().assign(assay="Cell Painting", normalization="nonspherized")
 
 
-# In[10]:
+# In[11]:
+
+
+cp_subsampled_results = (
+    cp_subsampled_df
+    .groupby("Metadata_Well")
+    .apply(
+        lambda x: get_sample_replicate_cor(
+            group=x, 
+            features=cp_subsample_features,
+            meta_features=["Metadata_Well", "Metadata_Plate_Map_Name", "Metadata_broad_sample"],
+            sample_id="Metadata_broad_sample"
+        )
+    )
+)
+
+cp_subsampled_results_df = cp_subsampled_results.reset_index().assign(assay="Cell Painting (subsampled)", normalization="spherized")
+
+
+# In[12]:
 
 
 l1000_spherized_results = (
@@ -233,7 +282,7 @@ l1000_spherized_results = (
 l1000_spherized_results_df = l1000_spherized_results.reset_index().assign(assay="L1000", normalization="spherized")
 
 
-# In[11]:
+# In[13]:
 
 
 l1000_nonspherized_results = (
@@ -253,12 +302,13 @@ l1000_nonspherized_results = (
 l1000_nonspherized_results_df = l1000_nonspherized_results.reset_index().assign(assay="L1000", normalization="nonspherized")
 
 
-# In[12]:
+# In[14]:
 
 
 replicate_result_full_df = pd.concat([
     cp_spherized_results_df,
     cp_nonspherized_results_df,
+    cp_subsampled_results_df,
     l1000_spherized_results_df,
     l1000_nonspherized_results_df
 ], axis="rows").reset_index(drop=True)
@@ -276,7 +326,7 @@ replicate_result_full_df.head()
 # 
 # We perform this analysis for all profiles per well regardless of platemap, _and_, all profiles per well per platemap.
 
-# In[13]:
+# In[15]:
 
 
 cp_spherize_results = get_full_results(
@@ -289,7 +339,7 @@ cp_spherize_results = get_full_results(
 )
 
 
-# In[14]:
+# In[16]:
 
 
 cp_nonspherize_results = get_full_results(
@@ -302,7 +352,20 @@ cp_nonspherize_results = get_full_results(
 )
 
 
-# In[15]:
+# In[17]:
+
+
+cp_subsample_results = get_full_results(
+    df=cp_subsampled_df,
+    features=cp_subsample_features,
+    assay="Cell Painting (subsampled)",
+    normalization="spherized",
+    well_column="Metadata_Well",
+    plate_column="Metadata_Plate_Map_Name"
+)
+
+
+# In[18]:
 
 
 l1000_spherize_results = get_full_results(
@@ -315,7 +378,7 @@ l1000_spherize_results = get_full_results(
 )
 
 
-# In[16]:
+# In[19]:
 
 
 l1000_nonspherize_results = get_full_results(
@@ -330,7 +393,7 @@ l1000_nonspherize_results = get_full_results(
 
 # ## Combine datasets and output for figure generation
 
-# In[17]:
+# In[20]:
 
 
 for include_platemap in [True, False]:
@@ -339,6 +402,7 @@ for include_platemap in [True, False]:
     well_result_full_df = pd.concat([
         cp_spherize_results[dictkey],
         cp_nonspherize_results[dictkey],
+        cp_subsample_results[dictkey],
         l1000_spherize_results[dictkey],
         l1000_nonspherize_results[dictkey]
     ], axis="rows").reset_index(drop=True)
