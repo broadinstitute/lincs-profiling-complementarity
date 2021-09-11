@@ -2,7 +2,6 @@
 __pycache__/
 .ipynb_checkpoints/
 1.Data-exploration/Profiles_level4/L1000/L1000_figshare_data/
-2.MOA-prediction/2.data_split/model_data/
 2.MOA-prediction/pytorch_env/
 2.MOA-prediction/tensorflow_env/
 2.MOA-prediction/0.download_cellpainting_L1000_data/data/
