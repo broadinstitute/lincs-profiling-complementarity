@@ -7,6 +7,7 @@
 
 
 import os
+import pathlib
 import requests
 import pickle
 import argparse
@@ -23,27 +24,47 @@ from split_compounds import split_cpds_moas
 # In[2]:
 
 
-data_path = '../0.download_cellpainting_L1000_data/data/'
+# Load common compounds
+common_file = pathlib.Path(
+    "..", "..", "6.paper_figures", "data", "significant_compounds_by_threshold_both_assays.tsv.gz"
+)
+common_df = pd.read_csv(common_file, sep="\t")
+
+common_compounds = common_df.compound.unique()
+print(len(common_compounds))
+print(common_df.shape)
+common_df.head(2)
 
 
 # In[3]:
 
 
-df_level4_cp = pd.read_csv(os.path.join(data_path, 'cp_level4_cpd_replicates.csv.gz'), 
-                        compression='gzip',low_memory = False)
-df_level4_L1 = pd.read_csv(os.path.join(data_path, 'L1000_level4_cpd_replicates.csv.gz'), 
-                        compression='gzip',low_memory = False)
+data_path = '../../1.Data-exploration/Profiles_level4/cell_painting/cellpainting_lvl4_cpd_replicate_datasets/'
+
+df_level4_cp = pd.read_csv(
+    os.path.join(data_path, 'cp_level4_cpd_replicates.csv.gz'), 
+    compression='gzip',
+    low_memory = False
+)
+
+data_path = '../../1.Data-exploration/Profiles_level4/L1000/L1000_lvl4_cpd_replicate_datasets/'
+
+df_level4_L1 = pd.read_csv(
+    os.path.join(data_path, 'L1000_level4_cpd_replicates.csv.gz'),
+    compression='gzip',
+    low_memory = False
+)
 
 
 # In[4]:
 
 
-###We are interested in compounds found both in L1000 and Cell painting
+### We are interested in compounds found both in L1000 and Cell painting
 cp_cpd = df_level4_cp['pert_iname'].unique().tolist()
 L1_cpd = df_level4_L1['pert_iname'].unique().tolist()
-all_cpds = [x for x in cp_cpd if x in L1_cpd]
-df_level4_cp = df_level4_cp.loc[df_level4_cp['pert_iname'].isin(all_cpds)].reset_index(drop=True)
-df_level4_L1 = df_level4_L1.loc[df_level4_L1['pert_iname'].isin(all_cpds)].reset_index(drop=True)
+
+df_level4_cp = df_level4_cp.loc[df_level4_cp['pert_iname'].isin(common_df.compound)].reset_index(drop=True)
+df_level4_L1 = df_level4_L1.loc[df_level4_L1['pert_iname'].isin(common_df.compound)].reset_index(drop=True)
 
 
 # In[5]:
