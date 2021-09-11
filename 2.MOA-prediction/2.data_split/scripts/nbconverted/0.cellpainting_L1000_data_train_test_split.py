@@ -22,7 +22,8 @@ import shutil
 # In[2]:
 
 
-file_indicator="_subsample"
+# Run with both "" and "_subsample" for the two Cell Painting input data types
+file_indicator=""
 
 
 # In[3]:
@@ -170,13 +171,13 @@ test_cpds = df_cpds_moas_lincs[df_cpds_moas_lincs['test']]['pert_iname'].unique(
 len(train_cpds)
 
 
-# In[24]:
+# In[23]:
 
 
 len(test_cpds)
 
 
-# In[25]:
+# In[24]:
 
 
 def train_test_split(train_cpds, test_cpds, df):
@@ -185,32 +186,32 @@ def train_test_split(train_cpds, test_cpds, df):
     return df_trn, df_tst
 
 
-# In[26]:
+# In[25]:
 
 
 df_level4_cp_trn, df_level4_cp_tst = train_test_split(train_cpds, test_cpds, df_level4_cp)
 df_level4_L1_trn, df_level4_L1_tst = train_test_split(train_cpds, test_cpds, df_level4_L1)
 
 
-# In[27]:
+# In[26]:
 
 
 df_level4_cp_trn.shape
 
 
-# In[28]:
+# In[27]:
 
 
 df_level4_cp_tst.shape
 
 
-# In[29]:
+# In[28]:
 
 
 df_level4_L1_trn.shape
 
 
-# In[30]:
+# In[29]:
 
 
 df_level4_L1_tst.shape
@@ -219,7 +220,7 @@ df_level4_L1_tst.shape
 # ### - Shuffle train data - 2nd train data
 # #### - Shuffle the target labels in the train data so that replicates of the same compound/MOA have different MOA labels
 
-# In[31]:
+# In[30]:
 
 
 def create_shuffle_data(df_trn, target_cols):
@@ -232,26 +233,26 @@ def create_shuffle_data(df_trn, target_cols):
     return df_trn_cpy
 
 
-# In[32]:
+# In[31]:
 
 
 target_cols = df_moa_targets.columns[1:]
 
 
-# In[33]:
+# In[32]:
 
 
 df_lvl4_cp_trn_shuf = create_shuffle_data(df_level4_cp_trn, target_cols)
 df_lvl4_L1_trn_shuf = create_shuffle_data(df_level4_L1_trn, target_cols)
 
 
-# In[34]:
+# In[33]:
 
 
 df_lvl4_cp_trn_shuf.shape
 
 
-# In[35]:
+# In[34]:
 
 
 df_lvl4_L1_trn_shuf.shape
@@ -259,7 +260,7 @@ df_lvl4_L1_trn_shuf.shape
 
 # #### - Save to CSV
 
-# In[36]:
+# In[35]:
 
 
 def save_to_csv(df, path, file_name, compress=None):
@@ -271,28 +272,23 @@ def save_to_csv(df, path, file_name, compress=None):
     df.to_csv(os.path.join(path, file_name), index=False, compression=compress)
 
 
-# In[37]:
+# In[36]:
 
 
 save_to_csv(df_level4_cp_trn, "model_data/cp/", f'train_lvl4_data{file_indicator}.csv.gz', compress="gzip")
 save_to_csv(df_level4_cp_tst, "model_data/cp/", f'test_lvl4_data{file_indicator}.csv.gz', compress="gzip")
+save_to_csv(df_lvl4_cp_trn_shuf, "model_data/cp/", f'train_shuffle_lvl4_data{file_indicator}.csv.gz', compress="gzip")
 
 
-# In[38]:
+# In[37]:
 
 
 save_to_csv(df_level4_L1_trn, "model_data/L1/", 'train_lvl4_data.csv.gz', compress="gzip")
 save_to_csv(df_level4_L1_tst, "model_data/L1/", 'test_lvl4_data.csv.gz', compress="gzip")
-
-
-# In[39]:
-
-
-save_to_csv(df_lvl4_cp_trn_shuf, "model_data/cp/", f'train_shuffle_lvl4_data{file_indicator}.csv.gz', compress="gzip")
 save_to_csv(df_lvl4_L1_trn_shuf, "model_data/L1/", 'train_shuffle_lvl4_data.csv.gz', compress="gzip")
 
 
-# In[40]:
+# In[38]:
 
 
 save_to_csv(df_moa_targets, "model_data/cp/", f'target_labels{file_indicator}.csv')
