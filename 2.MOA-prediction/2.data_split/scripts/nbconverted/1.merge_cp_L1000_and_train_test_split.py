@@ -174,19 +174,19 @@ def merge_cp_L1000_df(df_cp, df_L1000, all_cpds):
     return df_lvl4
 
 
-# In[ ]:
+# In[17]:
 
 
 df_level4 = merge_cp_L1000_df(df_level4_cp, df_level4_L1, all_cpds)
 
 
-# In[ ]:
+# In[18]:
 
 
 df_level4.shape
 
 
-# In[ ]:
+# In[19]:
 
 
 def create_moa_targets(df):
@@ -199,25 +199,25 @@ def create_moa_targets(df):
     return df_moas_targets
 
 
-# In[ ]:
+# In[20]:
 
 
 df_cpds_moas = df_cpds_moas_lincs.copy()
 
 
-# In[ ]:
+# In[21]:
 
 
 df_moa_targets = create_moa_targets(df_cpds_moas)
 
 
-# In[ ]:
+# In[22]:
 
 
 df_level4 = df_level4.merge(df_moa_targets, on='pert_iname')
 
 
-# In[ ]:
+# In[23]:
 
 
 df_level4.shape
@@ -225,14 +225,14 @@ df_level4.shape
 
 # ### - compounds split (80/20) based on MOAs -- based on split_moas_cpds
 
-# In[ ]:
+# In[24]:
 
 
 train_cpds = df_cpds_moas_lincs[df_cpds_moas_lincs['train']]['pert_iname'].unique()
 test_cpds = df_cpds_moas_lincs[df_cpds_moas_lincs['test']]['pert_iname'].unique()
 
 
-# In[ ]:
+# In[25]:
 
 
 def train_test_split(train_cpds, test_cpds, df):
@@ -241,19 +241,19 @@ def train_test_split(train_cpds, test_cpds, df):
     return df_trn, df_tst
 
 
-# In[ ]:
+# In[26]:
 
 
 df_level4_trn, df_level4_tst = train_test_split(train_cpds, test_cpds, df_level4)
 
 
-# In[ ]:
+# In[27]:
 
 
 df_level4_trn.shape
 
 
-# In[ ]:
+# In[28]:
 
 
 df_level4_tst.shape
@@ -262,7 +262,7 @@ df_level4_tst.shape
 # ### - Shuffle train data - 2nd train data
 # #### - Shuffle the target labels in the train data so that replicates of the same compound/MOA have different MOA labels
 
-# In[ ]:
+# In[29]:
 
 
 def create_shuffle_data(df_trn, target_cols):
@@ -275,25 +275,25 @@ def create_shuffle_data(df_trn, target_cols):
     return df_trn_cpy
 
 
-# In[ ]:
+# In[30]:
 
 
 target_cols = df_moa_targets.columns[1:]
 
 
-# In[ ]:
+# In[31]:
 
 
 df_lvl4_trn_shuf = create_shuffle_data(df_level4_trn, target_cols)
 
 
-# In[ ]:
+# In[32]:
 
 
 df_lvl4_trn_shuf.shape
 
 
-# In[ ]:
+# In[33]:
 
 
 def save_to_csv(df, path, file_name, compress=None):
@@ -305,32 +305,32 @@ def save_to_csv(df, path, file_name, compress=None):
     df.to_csv(os.path.join(path, file_name), index=False, compression=compress)
 
 
-# In[ ]:
+# In[34]:
 
 
 L1_cp_level4_path = 'model_data/merged/'
 
 
-# In[ ]:
+# In[35]:
 
 
 save_to_csv(df_level4, L1_cp_level4_path, 'cp_L1000_lvl4_data.csv.gz', compress="gzip")
 
 
-# In[ ]:
+# In[36]:
 
 
 save_to_csv(df_level4_trn, L1_cp_level4_path, 'train_lvl4_data.csv.gz', compress="gzip")
 save_to_csv(df_level4_tst, L1_cp_level4_path, 'test_lvl4_data.csv.gz', compress="gzip")
 
 
-# In[ ]:
+# In[37]:
 
 
 save_to_csv(df_lvl4_trn_shuf, L1_cp_level4_path, 'train_shuffle_lvl4_data.csv.gz', compress="gzip")
 
 
-# In[ ]:
+# In[38]:
 
 
 save_to_csv(df_moa_targets, L1_cp_level4_path, 'target_labels.csv')
