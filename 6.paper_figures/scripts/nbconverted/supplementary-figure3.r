@@ -5,139 +5,104 @@ source("viz_themes.R")
 source("plotting_functions.R")
 source("data_functions.R")
 
-get_scores <- function(file_indicator) {
-    pr_df <- load_percent_replicating(
-        assay = "cellpainting",
-        results_dir = results_dir,
-        cp_file_indicator = file_indicator
-    )
-    
-    pr_df$dose <- factor(pr_df$dose, levels = dose_order)
-    
-    threshold_df <- pr_df %>%
-        dplyr::filter(type == 'non_replicate') %>%
-        dplyr::group_by(assay, dose) %>%
-        dplyr::summarise(threshold = quantile(replicate_correlation, 0.95))
+# The threshold indicats above the 95% percentile of carefully-controlled null distribution
+threshold <- 0.05
+plot_thresh <- -log10(threshold)
 
-    percent_replicating_df <- pr_df %>%
-        dplyr::left_join(threshold_df, by = c("assay", "dose")) %>%
-        dplyr::filter(type == "replicate") %>%
-        dplyr::mutate(pass_threshold = threshold < replicate_correlation) %>%
-        dplyr::group_by(dose, assay) %>%
-        dplyr::summarize(percent_replicating = 100 * (sum(pass_threshold) / length(pass_threshold))) %>%
-        dplyr::ungroup()
-    
-    return(list("threshold" = threshold_df, "percent_replicating" = percent_replicating_df, "median_cor_distrib" = pr_df))
-}
+results_dir <- file.path("../1.Data-exploration/Profiles_level4/")
 
-output_figure_base <- file.path("figures", "supplementary", "supfigure3")
+output_figure_base <- file.path("figures", "supplementary", "percent_replicating_all")
 extensions <- c(".png", ".pdf")
 
-results_dir <- file.path("../1.Data-exploration/Profiles_level4/results")
-
-cp_labels = c(
-    "full non-spherized" = "All replicates (non-spherized)",
-    "full spherized" = "All replicates (spherized)",
-    "subsampled spherized" = "n=3 subsampled (spherized)"
-)
-cp_values = c(
-    "full non-spherized" = "#1e81b0",
-    "full spherized" = "#2d1d16",
-    "subsampled spherized" = "#e28743"
+# Load percent replicating with different input data
+cell_painting_pr_spherized_pval <- load_percent_replicating_nonparametric_pvals(
+    assay="cellpainting",
+    results_dir=results_dir,
+    cp_file_indicator=""
 )
 
-# Get percent replicating scores
-cp_file_indicator <- "_nonspherized"
-non_spherized_info <- get_scores(cp_file_indicator)
+cell_painting_pr_nonspherized_pval <- load_percent_replicating_nonparametric_pvals(
+    assay="cellpainting",
+    results_dir=results_dir,
+    cp_file_indicator="_nonspherized"
+)
 
-cp_file_indicator <- "_subsample"
-subsample_info <- get_scores(cp_file_indicator)
+cell_painting_pr_subsample_pval <- load_percent_replicating_nonparametric_pvals(
+    assay="cellpainting",
+    results_dir=results_dir,
+    cp_file_indicator="_subsample"
+)
 
-cp_file_indicator <- ""
-standard_info <- get_scores(cp_file_indicator)
+l1000_pval <- load_percent_replicating_nonparametric_pvals(
+    assay="l1000",
+    results_dir=results_dir,
+    l1000_file_indicator=""
+)
 
-# Extract and combine percent replicating results
-non_spherized_df <- non_spherized_info[["percent_replicating"]] %>%
-    dplyr::mutate(sample_type = "full non-spherized")
+l1000_w_pval <- load_percent_replicating_nonparametric_pvals(
+    assay="l1000",
+    results_dir=results_dir,
+    l1000_file_indicator="_w"
+)
 
-subsampled_df <- subsample_info[["percent_replicating"]] %>%
-    dplyr::mutate(sample_type = "subsampled spherized")
+pr_pval_df <- dplyr::bind_rows(
+    cell_painting_pr_nonspherized_pval,
+    cell_painting_pr_spherized_pval,
+    cell_painting_pr_subsample_pval,
+    l1000_pval,
+    l1000_w_pval,
+)  %>%
+    dplyr::mutate(
+        pass_thresh = p_value < threshold,
+        neg_log_10_p_val = -log10(p_value),
+        assay_norm_group = paste0(assay, " (", normalization, ")\n", category)
+    )
 
-original_df <- standard_info[["percent_replicating"]] %>%
-    dplyr::mutate(sample_type = "full spherized")
+pr_pval_df$dose <- factor(pr_pval_df$dose, levels = dose_order)
+pr_pval_df$neg_log_10_p_val[pr_pval_df$neg_log_10_p_val == Inf] = 3.5
 
-pr_df <- dplyr::bind_rows(non_spherized_df, subsampled_df, original_df) %>%
-    dplyr::mutate(percent_replicating_round = paste0(round(percent_replicating, 2), "%"))
+recode_dataset_name <- c(
+    "Cell Painting (spherized)\nall_data" = "Cell Painting spherized",
+    "Cell Painting (spherized)\nsubsampled" = "Cell Painting subsampled",
+    "Cell Painting (non_spherized)\nall_data" = "Cell Painting nonspherized",
+    "L1000 (spherized)\nall_data" = "L1000 spherized",
+    "L1000 (non_spherized)\nall_data" = "L1000 nonspherized"
+)
 
-print(dim(pr_df))
-head(pr_df)
+pr_pval_df$assay_norm_group <- dplyr::recode(pr_pval_df$assay_norm_group, !!!recode_dataset_name)
+pr_pval_df$assay_norm_group <- factor(pr_pval_df$assay_norm_group, levels = paste(recode_dataset_name))
 
-non_spherized_pr_df <- non_spherized_info[["median_cor_distrib"]] %>%
-    dplyr::mutate(sample_type = "full non-spherized")
+print(dim(pr_pval_df))
+head(pr_pval_df, 2)
 
-subsampled_pr_df <- subsample_info[["median_cor_distrib"]] %>%
-    dplyr::mutate(sample_type = "subsampled spherized")
+percent_replicating_df <- pr_pval_df %>%
+    dplyr::group_by(assay_norm_group, dose) %>%
+    dplyr::mutate(percent_replicating = paste0(100 * round((sum(pass_thresh) / length(pass_thresh)), 2), "%")) %>%
+    dplyr::select(assay_norm_group, dose, percent_replicating) %>%
+    dplyr::distinct()
 
-original_pr_df <- standard_info[["median_cor_distrib"]] %>%
-    dplyr::mutate(sample_type = "full spherized")
+head(percent_replicating_df, 2)
 
-pr_distrib_df <- dplyr::bind_rows(non_spherized_pr_df, subsampled_pr_df, original_pr_df)
-
-print(dim(pr_distrib_df))
-head(pr_distrib_df)
-
-non_spherized_thresh_df <- non_spherized_info[["threshold"]] %>%
-    dplyr::mutate(sample_type = "full non-spherized")
-
-subsampled_thresh_df <- subsample_info[["threshold"]] %>%
-    dplyr::mutate(sample_type = "subsampled spherized")
-
-original_threshr_df <- subsample_info[["threshold"]] %>%
-    dplyr::mutate(sample_type = "full spherized")
-
-threshold_df <- dplyr::bind_rows(non_spherized_thresh_df, subsampled_thresh_df, original_threshr_df)
-
-print(dim(threshold_df))
-head(threshold_df)
-
-sup_fig3_top_gg <- (
-    ggplot(pr_distrib_df, aes(x = replicate_correlation))
-    + geom_density(aes(fill = type), alpha = 0.4)
-    + facet_grid("sample_type~dose", labeller = labeller(sample_type = cp_labels))
-    + geom_vline(data = threshold_df, linetype = "dashed", color = "blue", aes(xintercept=threshold))
-    + geom_text(data = pr_df, aes(label = percent_replicating_round, x = 0.55, y = 8.5))
+percent_replicating_all_gg <- (
+    ggplot(pr_pval_df, aes(x = matching_score, y = neg_log_10_p_val))
+    + geom_point(aes(color = no_of_replicates), alpha = 0.05)
+    + geom_text(data = percent_replicating_df, aes(label = percent_replicating, x = 0.65, y = 2.5))
+    + facet_grid("assay_norm_group~dose")
+    + geom_hline(linetype = "dashed", color = "blue", yintercept = 2)
     + theme_bw()
     + figure_theme
-    + theme(strip.text.y = element_text(size = 6))
-    + scale_fill_manual("Correlations\nbetween", labels = replicate_labels, values = replicate_colors)
-    + xlab("Median pairwise Pearson correlation\nof level 4 Cell Painting profiles")
-    + ylab("Density")
-)
-
-sup_fig3_bottom_gg <- (
-    ggplot(pr_df, aes(x = dose, y = percent_replicating, fill = sample_type))
-    + geom_bar(stat = "identity", position = "dodge")
-    + xlab("Dose")
-    + ylab("Percent replicating")
-    + scale_fill_manual(
-        "Input data",
-        labels = cp_labels,
-        values = cp_values
+    + scale_color_continuous(
+        "Number of\nreplicates\nper compound",
+        values = scales::rescale(c(0, 0.5, 1, 1.5, 2, 3, 6)),
+        type = "viridis"
     )
-    + figure_theme
+    + xlab("Median pairwise Pearson correlation between replicate profiles")
+    + ylab("Non-parametric -log10 p value")
 )
 
-sup_fig3_gg <- cowplot::plot_grid(
-    sup_fig3_top_gg,
-    sup_fig3_bottom_gg,
-    labels = c("a", "b"),
-    rel_heights = c(1, 0.75),
-    nrow = 2
-)
-
-sup_fig3_gg
+percent_replicating_all_gg
 
 for (extension in extensions) {
     output_file <- paste0(output_figure_base, extension)
-    cowplot::save_plot(output_file, sup_fig3_gg, base_width = 10, base_height = 8, dpi = 500)
+    cowplot::save_plot(output_file, percent_replicating_all_gg, base_width = 10, base_height = 8.5, dpi = 500)
 }

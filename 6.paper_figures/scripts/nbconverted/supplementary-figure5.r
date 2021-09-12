@@ -1,6 +1,5 @@
 suppressPackageStartupMessages(library(dplyr))
 suppressPackageStartupMessages(library(ggplot2))
-suppressPackageStartupMessages(library(patchwork))
 
 source("viz_themes.R")
 source("plotting_functions.R")
@@ -9,86 +8,159 @@ source("data_functions.R")
 output_figure_base <- file.path("figures", "supplementary", "supfigure5")
 extensions <- c(".png", ".pdf")
 
-results_dir <- file.path("../1.Data-exploration/Profiles_level4/")
+# Setup directories and options
+base_dir <- file.path("..", "1.Data-exploration", "Profiles_level4")
+data_dir <- file.path(base_dir, "plate_position_effects", "results", "diffusion")
+platemap_dir <- file.path(base_dir, "plate_position_effects", "data")
 
-cp_df <- load_embeddings_data(assay="cellpainting", results_dir = results_dir)
-l1000_df <- load_embeddings_data(assay="l1000", results_dir = results_dir)
-
-# Create compounds to highlight
-moa_targets_size_values <- c(rep(1, length(moa_targets) -1), 0.1)
-names(moa_targets_size_values) <- names(moa_targets)
-
-moa_targets_alpha_values <- c(rep(0.5, length(moa_targets) - 1), 0.1)
-names(moa_targets_alpha_values) <- names(moa_targets)
-
-cp_df <- cp_df %>% dplyr::mutate(assay = "Cell Painting", highlight_moa = tolower(moa), dose = Metadata_dose_recode)
-cp_df$highlight_moa[!(cp_df$highlight_moa %in% names(moa_targets))] <- "other"
-
-l1000_df <- l1000_df %>% dplyr::mutate(assay = "L1000", highlight_moa = tolower(moa))
-l1000_df$highlight_moa[!(l1000_df$highlight_moa %in% names(moa_targets))] <- "other"
-
-embedding_df <- dplyr::bind_rows(cp_df, l1000_df) %>%
-    dplyr::filter(!is.na(dose))
-embedding_df$dose <- dplyr::recode_factor(paste(embedding_df$dose), !!!recode_dose_factor_controls)
-
-print(dim(embedding_df))
-tail(embedding_df, 3)
-
-panel_a_gg <- (
-    ggplot(data = NULL, aes(x = UMAP_0, y = UMAP_1, color = highlight_moa, size = highlight_moa, alpha = highlight_moa))
-    + geom_point(data = embedding_df %>% dplyr::filter(highlight_moa == "other"), size = 0.05, alpha = 0.3)
-    + geom_point(data = embedding_df %>% dplyr::filter(dmso_label == "DMSO"), size = 0.4, color = "red", alpha = 0.1, aes(shape = dmso_label))
-    + geom_point(data = embedding_df %>% dplyr::filter(highlight_moa != "other"), size = 0.4)
-    + figure_theme
-    + facet_grid("assay~dose")
-    + scale_size_manual("MOA", labels = moa_targets, values = moa_targets_size_values)
-    + scale_alpha_manual("MOA", values = moa_targets_alpha_values)
-    + scale_color_manual("MOA", labels = moa_targets, values = moa_colors)
-    + scale_shape_manual("Control", values = c("DMSO" = 3))
-    + xlab("UMAP X")
-    + ylab("UMAP Y")
-    + guides(alpha = FALSE, shape = guide_legend(override.aes = list(alpha = 0.8)))
+input_data_types <- list(
+    "CellPainting" = c("", "nonspherized", "subsample"),
+    "L1000" = c("", "W")
 )
 
-panel_a_gg
+# Load diffusion files
+diffusion_results <- list()
+for (assay in c("CellPainting", "L1000")) {
+    for (diffusion in c(0, 1, 2, 3, 4)) {
+        for (input_data_type in input_data_types[[assay]]) {
+            list_id <- paste0(assay, diffusion, input_data_type)
+            
+            diffusion_results[[list_id]] <- load_plate_diffusion_results(
+                assay,
+                data_dir,
+                platemap_metadata_dir=platemap_dir,
+                diffusion=diffusion,
+                input_data_type=input_data_type
+            )
+        }
+    }
+}
 
-panel_b_gg <- (
-    ggplot(data = NULL, aes(x = TSNE_0, y = TSNE_1, color = highlight_moa, size = highlight_moa, alpha = highlight_moa))
-    + geom_point(data = embedding_df %>% dplyr::filter(highlight_moa == "other"))
-    + geom_point(data = embedding_df %>% dplyr::filter(dmso_label == "DMSO"), size = 2, color = "red", alpha = 0.1, aes(shape = dmso_label))
-    + geom_point(data = embedding_df %>% dplyr::filter(highlight_moa != "other"))
-    + figure_theme
-    + facet_grid("~assay")
-    + scale_size_manual("MOA", labels = moa_targets, values = moa_targets_size_values)
-    + scale_alpha_manual("MOA", values = moa_targets_alpha_values)
-    + scale_color_manual("MOA", labels = moa_targets, values = moa_colors)
-    + scale_shape_manual("Control", values = c("DMSO" = 3))
-    + xlab("TSNE X")
-    + ylab("TSNE Y")
-    + guides(alpha = FALSE, shape = guide_legend(override.aes = list(alpha = 0.8)))
+# Merge files together
+diffusion_results <- dplyr::bind_rows(diffusion_results) %>%
+    dplyr::mutate(dataset = paste(assay, input_data_type))
+
+print(dim(diffusion_results))
+head(diffusion_results)
+
+# Summarize diffusion results
+diffuse_summary_df <- diffusion_results %>%
+    dplyr::mutate(med_cor_weight = num_observations * median) %>%
+    dplyr::group_by(assay, input_data_type, well, cor_category, diffusion) %>%
+    dplyr::mutate(
+        total_well_observations = sum(num_observations),
+        median_cor = sum(med_cor_weight / total_well_observations),
+        med_count = median(`num_observations`),
+        col = substring(well, 1, 1),
+        row = substring(well, 2),
+        per_well_median_var = median(variance),
+        per_well_median_skew = median(skewness),
+        per_well_median_mean = median(mean)
+    ) %>%
+    dplyr::select(
+        median_cor,
+        per_well_median_var,
+        per_well_median_skew,
+        per_well_median_mean,
+        assay,
+        input_data_type,
+        well,
+        col,
+        row,
+        compound_type,
+        cor_category,
+        dose,
+        diffusion,
+        dataset
+    ) %>%
+    dplyr::distinct() %>%
+    dplyr::rename(Metadata_Well = well) %>%
+    dplyr::ungroup()
+
+# Recode data for downstream figures
+diffuse_summary_df$col <- factor(diffuse_summary_df$col, levels = rev(LETTERS[0:16]))
+
+recode_dataset_name <- c(
+    "CellPainting full_standard" = "Cell Painting spherized",
+    "CellPainting subsample" = "Cell Painting subsampled",
+    "CellPainting nonspherized" = "Cell Painting nonspherized",
+    "L1000 W" = "L1000 spherized",
+    "L1000 full_standard" = "L1000 nonspherized"
 )
 
-panel_b_gg
+diffuse_summary_df$dataset <- dplyr::recode(diffuse_summary_df$dataset, !!!recode_dataset_name)
+diffuse_summary_df$dataset <- factor(diffuse_summary_df$dataset, levels = paste(recode_dataset_name))
 
-combined_legend <- cowplot::get_legend(panel_b_gg)
+print(dim(diffuse_summary_df))
+head(diffuse_summary_df, 3)
 
-panel_a_gg <- panel_a_gg + theme(legend.position = "none") + labs(tag = "a")
-panel_b_gg <- panel_b_gg + theme(legend.position = "none") + labs(tag = "b")
+append_diffusion <- function(string) paste("Diffusion:", string)
 
-supfig5_gg <- (
-    (
-        (
-            panel_a_gg /
-            panel_b_gg
+platemap_diffusion_gg <- (
+    ggplot(diffuse_summary_df %>%
+        dplyr::filter(cor_category == 'nonreplicate', compound_type == "compound"), aes(x = row, y = col))
+    + geom_point(aes(fill = per_well_median_mean), size = 2.35, pch = 22, stroke = 0.8)
+    + figure_theme
+    + coord_fixed()
+    + facet_grid(
+        "dataset~diffusion",
+        labeller = labeller(diffusion = as_labeller(append_diffusion))
         )
-    ) + plot_layout(heights = c(1, 2)) | (
-        combined_legend
+    + xlab("Plate row")
+    + ylab("Plate column")
+    + scale_fill_gradient(
+        name = "Mean pairwise\nPearson correlation\nof non-replicate\nneighboring well\nprofiles across\nplatemaps",
+        low = "white",
+        high = "red",
+        na.value = "grey"
     )
-) + plot_layout(widths = c(1, 0.2))
+    + theme(
+        plot.margin = unit(c(t = -2.75, r = 0.25, b = -2.75, l = 0.25), "cm"),
+        axis.text = element_text(size = 6),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.background = element_rect(fill = "grey")
+    )
+)
 
-supfig5_gg
+platemap_diffusion_gg
+
+diffusion_results_viz <- diffusion_results %>%
+    dplyr::filter((diffusion == 1  & cor_category == 'replicate') | cor_category == 'nonreplicate')
+
+diffusion_results_viz$diffusion[(diffusion_results_viz$diffusion == 1  & diffusion_results_viz$cor_category == 'replicate')] <- "All"
+
+diffusion_results_viz$dataset <- dplyr::recode(diffusion_results_viz$dataset, !!!recode_dataset_name)
+diffusion_results_viz$dataset <- factor(diffusion_results_viz$dataset, levels = paste(recode_dataset_name))
+
+diffusion_results_viz$cor_category[diffusion_results_viz$cor_category == 'nonreplicate'] <- "non_replicate"
+
+boxplot_diffusion_gg = (
+    ggplot(diffusion_results_viz, aes(x = dataset, y = mean, color = cor_category))
+    + geom_boxplot(outlier.size = 0.4, lwd = 0.5)
+    + facet_grid(
+        "~diffusion",
+        labeller = labeller(diffusion = as_labeller(append_diffusion)),
+        scales = "free_x"
+    )
+    + figure_theme
+    + theme(axis.text.x = element_text(angle = 90))
+    + scale_color_manual(name = "Correlation\nbetween", values = replicate_colors)
+    + xlab("")
+    + ylab("Mean pairwise Pearson correlation\nof non-replicate neighboring\nwell profiles across platemaps")
+)
+
+boxplot_diffusion_gg
+
+diffusion_gg <- cowplot::plot_grid(
+    platemap_diffusion_gg,
+    boxplot_diffusion_gg,
+    rel_heights = c(1, 0.5),
+    labels = c("a", "b"),
+    nrow = 2
+)
 
 for (extension in extensions) {
     output_file <- paste0(output_figure_base, extension)
-    ggplot2::ggsave(output_file, supfig5_gg, height = 8, width = 10, dpi = 500)
+    cowplot::save_plot(output_file, diffusion_gg, base_width = 13, base_height = 13, dpi = 500)
 }
