@@ -57,7 +57,7 @@ get_subset_correlation_data <- function(cp_df, l1000_df, target_moa) {
 plot_correlation_data <- function(plot_ready_df, target_moa, fix_coords = TRUE) {
     corr_gg <- (
         ggplot(plot_ready_df, aes(x = compare_left, y = compare_right))
-            + geom_point(aes(fill = pairwise_pearson_cor), shape = 22, size = 5)
+            + geom_point(aes(fill = pairwise_pearson_cor), shape = 22, size = 4)
             + theme_bw()
             + figure_theme
             + theme(axis.text.x = element_text(angle = 90))

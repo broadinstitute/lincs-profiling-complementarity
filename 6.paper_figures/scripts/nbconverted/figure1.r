@@ -9,151 +9,137 @@ source("data_functions.R")
 output_figure_base <- file.path("figures", "figure1")
 extensions <- c(".png", ".pdf")
 
-results_dir <- file.path("../1.Data-exploration/Profiles_level4/results")
+# The threshold indicats above the 95% percentile of carefully-controlled null distribution
+threshold <- 0.05
+plot_thresh <- -log10(threshold)
 
-cell_painting_pr_df <- load_percent_replicating(assay = "cellpainting", results_dir = results_dir)
-l1000_pr_df <- load_percent_replicating(assay = "l1000", results_dir = results_dir)
+results_dir <- file.path("../1.Data-exploration/Profiles_level4/")
 
-pr_df <- dplyr::bind_rows(cell_painting_pr_df, l1000_pr_df)
-pr_df$dose <- factor(pr_df$dose, levels = dose_order)
+cell_painting_pr_pval <- load_percent_replicating_nonparametric_pvals(
+    assay="cellpainting",
+    results_dir=results_dir,
+    cp_file_indicator=""
+)
 
-print(dim(pr_df))
-head(pr_df)
+l1000_pr_pval <- load_percent_replicating_nonparametric_pvals(
+    assay="l1000",
+    results_dir=results_dir,
+    l1000_file_indicator=""
+)
 
-print(dim(cell_painting_pr_df))
-print(dim(l1000_pr_df))
+pr_pval_df <- dplyr::bind_rows(
+    cell_painting_pr_pval,
+    l1000_pr_pval
+) %>%
+    dplyr::mutate(pass_thresh = p_value < threshold) %>%
+    dplyr::mutate(neg_log_10_p_val = -log10(p_value))
 
-threshold_df <- pr_df %>%
-    dplyr::filter(type == 'non_replicate') %>%
+pr_pval_df$dose <- factor(pr_pval_df$dose, levels = dose_order)
+pr_pval_df$neg_log_10_p_val[pr_pval_df$neg_log_10_p_val == Inf] = 3.5
+
+# Note, this number of compounds represents:
+# "how many compounds were measured in both assays at ALL doses".
+print(length(unique(pr_pval_df$compound)))
+
+print(dim(pr_pval_df))
+head(pr_pval_df)
+
+percent_replicating_df <- pr_pval_df %>%
     dplyr::group_by(assay, dose) %>%
-    dplyr::summarise(threshold = quantile(replicate_correlation, 0.95))
-
-percent_replicating_df <- pr_df %>%
-    dplyr::left_join(threshold_df, by = c("assay", "dose")) %>%
-    dplyr::filter(type == "replicate") %>%
-    dplyr::mutate(pass_threshold = threshold < replicate_correlation) %>%
-    dplyr::group_by(dose, assay) %>%
-    dplyr::summarize(percent_replicating = paste0(100 * round((sum(pass_threshold) / length(pass_threshold)), 4), "%")) %>%
-    dplyr::ungroup()
+    dplyr::mutate(percent_replicating = paste0(100 * round((sum(pass_thresh) / length(pass_thresh)), 2), "%")) %>%
+    dplyr::select(dose, assay, percent_replicating) %>%
+    dplyr::distinct()
 
 percent_replicating_df
 
 panel_a_gg <- (
-    ggplot(pr_df, aes(x = replicate_correlation))
-    + geom_density(aes(fill = type), alpha = 0.4)
+    ggplot(pr_pval_df, aes(x = matching_score, y = neg_log_10_p_val))
+    + geom_point(aes(color = no_of_replicates), alpha = 0.05)
+    + geom_text(data = percent_replicating_df, aes(label = percent_replicating, x = 0.65, y = 2.5))
     + facet_grid("assay~dose")
-    + geom_vline(data = threshold_df, linetype = "dashed", color = "blue", aes(xintercept=threshold))
-    + geom_text(data = percent_replicating_df, aes(label = percent_replicating, x = 0.55, y = 8.5))
+    + geom_hline(linetype = "dashed", color = "blue", yintercept = plot_thresh)
     + theme_bw()
     + figure_theme
-    + scale_fill_manual("Correlations\nbetween", labels = replicate_labels, values = replicate_colors)
-    + xlab("Median pairwise Pearson correlation")
-    + ylab("Density")
+    + scale_color_continuous(
+        "Number of\nreplicates\nper compound",
+        values = scales::rescale(c(0, 0.5, 1, 1.5, 2, 3, 6)),
+        type = "viridis"
+    )
+    + xlab("Median pairwise Pearson correlation between replicate profiles")
+    + ylab("Non-parametric -log10 p value")
 )
 
 panel_a_gg
 
-# First, obtain the threshold to consider strong phenotype
-cell_painting_pr_df <- load_percent_replicating(assay = "cellpainting", results_dir = results_dir)
-l1000_pr_df <- load_percent_replicating(assay = "l1000", results_dir = results_dir)
-
-pr_df <- dplyr::bind_rows(cell_painting_pr_df, l1000_pr_df)
-pr_df$dose <- factor(pr_df$dose, levels = dose_order)
-
-threshold_df <- pr_df %>%
-    dplyr::filter(type == 'non_replicate') %>%
-    dplyr::group_by(assay, dose) %>%
-    dplyr::summarise(threshold = quantile(replicate_correlation, 0.95))
-
-threshold_plot_ready_df <- threshold_df %>% reshape2::dcast(dose ~ assay, value.var = "threshold")
-
-# Next, get the median scores and determine if they pass the threshold
-cell_painting_comp_df <- load_median_correlation_scores(assay = "cellpainting", results_dir = results_dir)
-l1000_comp_df <- load_median_correlation_scores(assay = "l1000", results_dir = results_dir)
-
-significant_compounds_df <- cell_painting_comp_df %>%
-    dplyr::left_join(l1000_comp_df, by = c("dose", "compound"), suffix = c("_cellpainting", "_l1000")) %>%
-    tidyr::drop_na() %>%
-    dplyr::left_join(threshold_df %>% dplyr::filter(assay == "Cell Painting"), by = "dose") %>%
-    dplyr::left_join(threshold_df %>% dplyr::filter(assay == "L1000"), by = "dose", suffix = c("_cellpainting", "_l1000")) %>%
-    dplyr::mutate(
-        pass_cellpainting_thresh = median_replicate_score_cellpainting > threshold_cellpainting,
-        pass_l1000_thresh = median_replicate_score_l1000 > threshold_l1000
+pr_summary_df <- pr_pval_df %>%
+    reshape2::dcast(compound + dose ~ assay + normalization + category, value.var = "matching_score") %>%
+    dplyr::left_join(
+        pr_pval_df %>%
+            dplyr::filter(assay == "Cell Painting") %>%
+            dplyr::select(compound, dose, no_of_replicates, pass_thresh, p_value, neg_log_10_p_val),
+        by = c("compound", "dose")
     ) %>%
-    dplyr::mutate(pass_both = pass_cellpainting_thresh + pass_l1000_thresh) %>%
+    dplyr::left_join(
+        pr_pval_df %>%
+            dplyr::filter(assay == "L1000") %>%
+            dplyr::select(compound, dose, no_of_replicates, pass_thresh, p_value, neg_log_10_p_val),
+        by = c("compound", "dose"),
+        suffix = c("_cp", "_l1000")
+    ) %>%
+    dplyr::rename(
+        `median_pairwise_correlation_cp` = `Cell Painting_spherized_all_data`,
+        `median_pairwise_correlation_l1000` = `L1000_non_spherized_all_data`
+    ) %>%
+    dplyr::mutate(pass_both = pass_thresh_cp + pass_thresh_l1000) %>%
     dplyr::mutate(pass_both = ifelse(pass_both == 2, TRUE, FALSE)) %>%
-    dplyr::select(compound, dose, median_replicate_score_cellpainting, median_replicate_score_l1000, pass_cellpainting_thresh, pass_l1000_thresh, pass_both)
-
-# Count in how many doses the particular compound was reproducible
-cp_reprod_count_df <- significant_compounds_df %>%
-    dplyr::filter(pass_cellpainting_thresh) %>%
+    dplyr::select(
+        compound,
+        dose,
+        median_pairwise_correlation_cp,
+        median_pairwise_correlation_l1000,
+        pass_thresh_cp,
+        pass_thresh_l1000,
+        pass_both
+    ) %>%
     dplyr::group_by(compound) %>%
-    dplyr::count() %>%
-    dplyr::rename(cell_painting_num_reproducible = n)
+    dplyr::mutate(
+        total_reproducible_cp = sum(pass_thresh_cp),
+        total_reproducible_l1000 = sum(pass_thresh_l1000),
+        total_reproducible = total_reproducible_cp + total_reproducible_l1000
+    ) %>%
+    dplyr::ungroup()
 
-l1000_reprod_count_df <- significant_compounds_df %>%
-    dplyr::filter(pass_l1000_thresh) %>%
-    dplyr::group_by(compound) %>%
-    dplyr::count() %>%
-    dplyr::rename(l1000_num_reproducible = n)
-
-significant_compounds_df <- significant_compounds_df %>%
-    dplyr::left_join(cp_reprod_count_df, by = "compound") %>%
-    dplyr::left_join(l1000_reprod_count_df, by = "compound") %>%
-    tidyr::replace_na(list(l1000_num_reproducible = 0, cell_painting_num_reproducible = 0)) %>%
-    dplyr::mutate(total_reproducible = cell_painting_num_reproducible + l1000_num_reproducible)
-
-significant_compounds_df$dose <- factor(significant_compounds_df$dose, levels = dose_order)
-significant_compounds_df$compound <- tolower(significant_compounds_df$compound)
-
-# Output file for further use
-output_file <- file.path("data", "significant_compounds_by_threshold_both_assays.tsv.gz")
-significant_compounds_df %>% readr::write_tsv(output_file)
-
-print(dim(significant_compounds_df))
-head(significant_compounds_df, 3)
+print(length(unique(pr_summary_df$compound)))
+head(pr_summary_df, 2)
 
 panel_b_gg <- (
-    ggplot(significant_compounds_df, aes(x = median_replicate_score_cellpainting, y = median_replicate_score_l1000))
+    ggplot(pr_summary_df, aes(x = median_pairwise_correlation_cp, y = median_pairwise_correlation_l1000))
     + geom_point(aes(color = total_reproducible), size = 0.5, alpha = 0.5)
     + facet_grid("~dose")
-    + geom_hline(data = threshold_plot_ready_df, aes(yintercept = `Cell Painting`), linetype = "dashed", color = "blue")
-    + geom_vline(data = threshold_plot_ready_df, aes(xintercept = L1000), linetype = "dashed", color = "blue")
+    #+ geom_hline(data = threshold_plot_ready_df, aes(yintercept = `Cell Painting`), linetype = "dashed", color = "blue")
+    #+ geom_vline(data = threshold_plot_ready_df, aes(xintercept = L1000), linetype = "dashed", color = "blue")
     + geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "black")
     + figure_theme
-    + scale_color_gradient("How many\ntimes is the \ncompound\nreproducible?", low = "blue", high = "red")
+    + scale_color_gradient("How many times\nis the compound\nreproducible in\nboth assays?", low = "blue", high = "red")
     + xlab("Cell Painting\nMedian pairwise replicate correlation")
     + ylab("L1000\nMedian pairwise replicate correlation")
 )
 
 panel_b_gg
 
-cell_painting_comp_df <- load_median_correlation_scores(assay = "cellpainting", results_dir = results_dir)
-l1000_comp_df <- load_median_correlation_scores(assay = "l1000", results_dir = results_dir)
-
-significant_compounds_df <- cell_painting_comp_df %>%
-    dplyr::left_join(l1000_comp_df, by = c("dose", "compound"), suffix = c("_cellpainting", "_l1000")) %>%
-    tidyr::drop_na() %>%
-    dplyr::left_join(threshold_df %>% dplyr::filter(assay == "Cell Painting"), by = "dose") %>%
-    dplyr::left_join(threshold_df %>% dplyr::filter(assay == "L1000"), by = "dose", suffix = c("_cellpainting", "_l1000")) %>%
-    dplyr::mutate(
-        pass_cellpainting_thresh = median_replicate_score_cellpainting > threshold_cellpainting,
-        pass_l1000_thresh = median_replicate_score_l1000 > threshold_l1000
-    ) %>%
-    dplyr::select(compound, dose, pass_cellpainting_thresh, pass_l1000_thresh) %>%
-    dplyr::mutate(pass_both = pass_cellpainting_thresh + pass_l1000_thresh) %>%
-    dplyr::mutate(pass_both = ifelse(pass_both == 2, TRUE, FALSE))
+significant_compounds_df <- pr_summary_df %>%
+    dplyr::select(compound, dose, pass_thresh_cp, pass_thresh_l1000, pass_both)
 
 total_compounds <- length(unique(significant_compounds_df$compound))
-total_compounds
+print(total_compounds)
 
 head(significant_compounds_df, 3)
 
 pass_thresh_summary_df <- significant_compounds_df %>%
     dplyr::group_by(dose) %>%
     dplyr::mutate(
-        num_pass_cellpainting = sum(pass_cellpainting_thresh),
-        num_pass_l1000 = sum(pass_l1000_thresh),
+        num_pass_cellpainting = sum(pass_thresh_cp),
+        num_pass_l1000 = sum(pass_thresh_l1000),
         num_pass_both = sum(pass_both)
     ) %>%
     dplyr::ungroup() %>%
@@ -175,7 +161,7 @@ cell_painting_rect <- pass_thresh_summary_df %>%
         xmin_bar = seq(0, (length(unique(pass_thresh_summary_df$dose)) - 1) * 2, 2),
         xmax_bar = seq(1, (length(unique(pass_thresh_summary_df$dose))) * 2, 2),
         assay = "Cell Painting",
-        label_text_y = ymax_bar / 4
+        label_text_y = 300
     )
 
 l1000_rect <- pass_thresh_summary_df %>%
@@ -207,7 +193,7 @@ num_pass_both_text <- full_rect %>%
 percentile_pass_df <- pass_thresh_summary_df %>%
     dplyr::mutate(
         num_pass_total = unique_pass_l1000 + unique_pass_cellpainting + num_pass_both,
-        num_pass_percentile = paste("Total:\n", round(num_pass_total / total_compounds, 4) * 100, "%")
+        num_pass_percentile = paste("Total:\n", round(num_pass_total / total_compounds, 2) * 100, "%")
     ) %>%
     dplyr::select(dose, num_pass_percentile, num_pass_total)
 
@@ -238,7 +224,7 @@ panel_c_gg <- (
     # Select only L1000 below to not duplicate text
     + geom_text(
         data = full_rect %>% dplyr::filter(assay == "L1000"),
-        aes(x = xmin_bar + 0.5, y = ymax_bar + 100, label = num_pass_percentile),
+        aes(x = xmin_bar + 0.5, y = ymax_bar + 70, label = num_pass_percentile),
         size = 3
     )
     + scale_fill_manual("Compounds\nreproducible\nin assay", values = updated_assay_colors)

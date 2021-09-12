@@ -8,7 +8,7 @@ gene_sets <- c(
 )
 
 # Load data
-background_file <- file.path("misc", "background_gene_list.tsv")
+background_file <- file.path("results", "background_gene_list.tsv")
 
 background_cols <- readr::cols(
     probe = readr::col_character(),
@@ -18,7 +18,7 @@ background_cols <- readr::cols(
 background_df <- readr::read_tsv(background_file, col_types = background_cols)
 reference_genes <- background_df %>% dplyr::pull(gene_symbol)
 
-cpd_gene_file <- file.path("misc", "differential_mas_vs_tas_genes.tsv")
+cpd_gene_file <- file.path("results", "differential_mas_vs_tas_genes.tsv")
 
 cpd_gene_cols <- readr::cols(
     pert_iname = readr::col_character(),

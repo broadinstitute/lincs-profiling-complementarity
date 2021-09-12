@@ -17,6 +17,7 @@ import numpy as np
 
 
 top_n_cpds = 6
+bottom_n_cpds = 2 
 gene_cut = 2
 
 
@@ -39,7 +40,7 @@ map_df.head()
 
 
 # Load activity scores
-file = pathlib.Path("../5.paper_figures/data/highmas_lowtas_compounds.tsv")
+file = pathlib.Path("../6.paper_figures/data/highmas_lowtas_compounds.tsv")
 activity_df = pd.read_csv(file, sep="\t")
 
 print(activity_df.shape)
@@ -57,18 +58,34 @@ top_cpds
 # In[6]:
 
 
+# What are the top compounds that change lots of TAS but not MAS
+bottom_cpds = activity_df.sort_values(by="mas_tas_dff").head(bottom_n_cpds).cpd.tolist()
+bottom_cpds
+
+
+# In[7]:
+
+
+focus_cps = top_cpds + bottom_cpds
+
+
+# In[8]:
+
+
 # Load L1000 data to obtain high differential genes
-file = pathlib.Path("Consensus/L1000/moa_sizes_consensus_datasets/modz_level5_data.csv")
+data_dir = pathlib.Path("../1.Data-exploration/")
+
+file = pathlib.Path(f"{data_dir}/Consensus/L1000/moa_sizes_consensus_datasets/modz_level5_data.csv")
 df = pd.read_csv(file)
 
-df = df.query("pert_iname in @top_cpds").reset_index(drop=True)
+df = df.query("pert_iname in @focus_cps").reset_index(drop=True)
 
 print(df.pert_iname.value_counts())
 print(df.shape)
 df.head(2)
 
 
-# In[15]:
+# In[9]:
 
 
 # Obtain background gene lists
@@ -85,7 +102,7 @@ background_df.to_csv(output_file, sep="\t", index=False)
 background_df.head()
 
 
-# In[7]:
+# In[10]:
 
 
 expression_df = (
@@ -118,7 +135,7 @@ print(expression_df.shape)
 expression_df.head()
 
 
-# In[8]:
+# In[11]:
 
 
 # Which genes are consistently implicated?

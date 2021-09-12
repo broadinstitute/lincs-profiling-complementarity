@@ -43,11 +43,17 @@ def get_sample_replicate_cor(group, features, meta_features, sample_id):
     output = (
         metric_result
         .groupby(sample_id_string)
-        .agg({'similarity_metric': 'median', sample_id_string: 'count'})
-        .rename(columns={"similarity_metric": "median_cor", sample_id_string: "sample_counts"})
+        .agg({'similarity_metric': [np.mean, np.median], sample_id_string: 'count'})
+        #.rename()
     )
+    output.columns = ['_'.join(col) for col in output.columns.values]
+    output = output.rename(columns={
+        "similarity_metric_mean": "mean_cor",
+        "similarity_metric_median": "median_cor",
+        f"{sample_id_string}_count": "sample_counts"
+    })
     return output
-
+ 	 	
 def process_well_cor_per_dataset(
     df,
     features,
@@ -222,6 +228,7 @@ cp_spherized_results = (
 )
 
 cp_spherized_results_df = cp_spherized_results.reset_index().assign(assay="Cell Painting", normalization="spherized")
+cp_spherized_results_df.head()
 
 
 # In[10]:

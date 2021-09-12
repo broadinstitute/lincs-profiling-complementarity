@@ -51,18 +51,6 @@ print(len(common_compounds))
 # In[4]:
 
 
-df_cp_med = pd.read_csv(os.path.join(cp_level4_path, 'cpd_replicate_median_scores.csv'))
-df_cp_med.cpd = df_cp_med.cpd.str.lower()
-df_cp_med = df_cp_med.query("cpd in @common_compounds")
-
-df_L1_med = pd.read_csv(os.path.join(L1000_level4_path, 'cpd_replicate_median_scores.csv'))
-df_L1_med.cpd = df_L1_med.cpd.str.lower()
-df_L1_med = df_L1_med.query("cpd in @common_compounds")
-
-
-# In[5]:
-
-
 df_cp_pvals = pd.read_csv(os.path.join(cp_level4_path, 'cpd_replicate_p_values.csv'))
 df_cp_pvals.cpd = df_cp_pvals.cpd.str.lower()
 df_cp_pvals = df_cp_pvals.query("cpd in @common_compounds")
@@ -70,6 +58,18 @@ df_cp_pvals = df_cp_pvals.query("cpd in @common_compounds")
 df_L1_pvals = pd.read_csv(os.path.join(L1000_level4_path, 'cpd_replicate_p_values.csv'))
 df_L1_pvals.cpd = df_L1_pvals.cpd.str.lower()
 df_L1_pvals = df_L1_pvals.query("cpd in @common_compounds")
+
+
+# In[5]:
+
+
+df_cp_med = pd.read_csv(os.path.join(cp_level4_path, 'cpd_replicate_median_scores.csv'))
+df_cp_med.cpd = df_cp_med.cpd.str.lower()
+df_cp_med = df_cp_med.query("cpd in @df_cp_pvals.cpd")
+
+df_L1_med = pd.read_csv(os.path.join(L1000_level4_path, 'cpd_replicate_median_scores.csv'))
+df_L1_med.cpd = df_L1_med.cpd.str.lower()
+df_L1_med = df_L1_med.query("cpd in @df_L1_pvals.cpd")
 
 
 # In[6]:

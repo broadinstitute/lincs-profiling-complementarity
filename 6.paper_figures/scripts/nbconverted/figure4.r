@@ -1,4 +1,5 @@
 suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(patchwork))
 suppressPackageStartupMessages(library(ggplot2))
 suppressPackageStartupMessages(library(ComplexHeatmap))
 suppressPackageStartupMessages(library(ggrepel))
@@ -43,11 +44,12 @@ cp_heat_gg <- grid::grid.grabExpr(
     draw(
         Heatmap(
             cp_corr_df,
-
+            col = feature_legend_scale_cols,
+            
             show_row_names = FALSE,
             show_column_names = FALSE,
 
-            column_title = "Cell Painting features",
+            column_title = paste0("Cell Painting features\n(n=", dim(cp_corr_df)[1], ")"),
 
             heatmap_legend_param = list(
                     title = "Pearson\ncorrelation",
@@ -66,11 +68,12 @@ l1000_heat_gg <- grid::grid.grabExpr(
     draw(
         Heatmap(
             l1000_corr_df,
+            col = feature_legend_scale_cols,
 
             show_row_names = FALSE,
             show_column_names = FALSE,
 
-            column_title = "L1000 features",
+            column_title = paste0("L1000 features\n(n=", dim(l1000_corr_df)[1], ")"),
 
             heatmap_legend_param = list(
                     title = "Pearson\ncorrelation",
@@ -85,15 +88,39 @@ l1000_heat_gg <- grid::grid.grabExpr(
     )
 )
 
-
 panel_a_gg <- cowplot::plot_grid(
     cp_heat_gg,
     l1000_heat_gg,
     ncol = 2,
-    labels = c("a", "")
+    labels = c("a", ""),
+    rel_widths = c(1, 1)
 )
 
 panel_a_gg
+
+l1000_all_cors <- l1000_corr_df[lower.tri(l1000_corr_df, diag=FALSE)] %>%
+    dplyr::as_tibble() %>%
+    dplyr::mutate(assay="L1000")
+
+cp_all_cors <- cp_corr_df[lower.tri(cp_corr_df, diag=FALSE)] %>%
+    dplyr::as_tibble() %>%
+    dplyr::mutate(assay="Cell Painting")
+
+all_cors <- dplyr::bind_rows(l1000_all_cors, cp_all_cors)
+
+head(all_cors, 2)
+
+panel_b_gg <- (
+    ggplot(all_cors, aes(x = value))
+    + geom_density(aes(fill = assay), alpha = 0.5)
+    + figure_theme
+    + scale_fill_manual("Assay", values = assay_colors)
+    + ylab("Pairwise Pearson\ncorrelations\namong features")
+    + xlab("Density")
+    + theme(legend.position = "right")
+)
+
+panel_b_gg
 
 # Load PCA explained variance
 pca_dir <- file.path("..", "3.clustering-pca", "results")
@@ -106,26 +133,38 @@ pc_cols <- readr::cols(
     PC = readr::col_character()
 )
 
-cp_pca_df <- readr::read_csv(cp_file, col_types = pc_cols) %>% dplyr::mutate(assay = "Cell Painting")
-l1000_pca_df <- readr::read_csv(l1000_file, col_types = pc_cols) %>% dplyr::mutate(assay = "L1000")
+cp_pca_df <- readr::read_csv(cp_file, col_types = pc_cols) %>%
+    dplyr::mutate(assay = "Cell Painting", prop_var = cumsum(var))
+l1000_pca_df <- readr::read_csv(l1000_file, col_types = pc_cols) %>%
+    dplyr::mutate(assay = "L1000", prop_var = cumsum(var))
 
 pca_df <- dplyr::bind_rows(cp_pca_df, l1000_pca_df) %>%
-    dplyr::mutate(PC_num = as.numeric(paste(gsub("PC", "", PC)))) %>%
-    dplyr::filter(PC_num <= 25)
+    dplyr::mutate(PC_num = as.numeric(paste(gsub("PC", "", PC))))
 
 head(pca_df)
 
-panel_b_gg <- (
-    ggplot(pca_df, aes(x = PC_num, y = var, fill = assay))
+pca_var_gg <- (
+    ggplot(pca_df, aes(x = PC_num, y = prop_var, color = assay))
+    + geom_line()
+    + figure_theme
+    + scale_color_manual("Assay", values = assay_colors)
+    + ylab("Cumulative\nvariance\nexplained (%)")
+    + xlab("Principal\ncomponent\nnumber")
+    + theme(legend.position = "none")
+)
+
+panel_c_gg <- (
+    ggplot(pca_df %>% dplyr::filter(PC_num <= 25), aes(x = PC_num, y = var, fill = assay))
     + geom_bar(stat = "identity", position = "dodge")
     + figure_theme
     + scale_fill_manual("Assay", values = assay_colors)
     + ylab("Variance explained (%)")
     + xlab("Principal component number")
-    + theme(legend.position = c(0.7, 0.7))
+    + theme(legend.position = "right")
 )
 
-panel_b_gg
+panel_c_gg <- cowplot::ggdraw(panel_c_gg + cowplot::draw_plot(pca_var_gg, 5, 5, 20, 18))
+panel_c_gg
 
 # Load Signature Strength and MAS scores
 results_dir <- file.path("..", "1.Data-exploration", "Profiles_level4")
@@ -187,7 +226,7 @@ ss_df$dose <- factor(ss_df$dose, levels = dose_order)
 print(dim(ss_df))
 head(ss_df, 2)
 
-panel_c_gg <- (
+panel_d_gg <- (
     ggplot(ss_df, aes(x = MAS, y = TAS))
     + geom_point(aes(color = total_reproducible), size = 0.6, alpha = 0.5)
     + facet_grid("~dose")
@@ -198,7 +237,7 @@ panel_c_gg <- (
     + ylab("Transcriptional activity score\n(L1000)")
 )
 
-panel_c_gg
+panel_d_gg
 
 top_diff_activity_df <- ss_df %>%
     dplyr::filter(
@@ -215,9 +254,15 @@ top_diff_activity_df %>% readr::write_tsv(output_file)
 
 head(top_diff_activity_df)
 
-color_logic <- top_diff_activity_df$mas_tas_dff > 0.40
+tail(top_diff_activity_df) %>% dplyr::arrange(mas_tas_dff)
 
-panel_d_gg <- (
+color_logic <- (
+    top_diff_activity_df$mas_tas_dff > 0.40 |
+    top_diff_activity_df$mas_tas_dff < 0 | 
+    top_diff_activity_df$tas_mean > 0.71
+    )
+
+panel_e_gg <- (
     ggplot(top_diff_activity_df, aes(x = mas_mean, y = tas_mean))
     + geom_point(color = ifelse(color_logic, "red", "grey50"), alpha = 0.5)
     + geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "black")
@@ -227,12 +272,12 @@ panel_d_gg <- (
     + geom_text_repel(
         data = subset(top_diff_activity_df, color_logic),
         arrow = arrow(length = unit(0.015, "npc")),
-        segment.size = 0.3,
+        segment.size = 0.7,
         segment.alpha = 0.6,
-        size = 4,
+        size = 6,
         fontface = "italic",
         box.padding = 0.5,
-        point.padding = 0.5,
+        point.padding = 0.25,
         aes(
             x = mas_mean,
             y = tas_mean,
@@ -241,7 +286,7 @@ panel_d_gg <- (
     )
 )
 
-panel_d_gg
+panel_e_gg
 
 # Load Signature Strength and MAS scores
 ora_results_dir <- file.path("..", "5.Gene-analysis", "results")
@@ -269,72 +314,121 @@ ora_df <- readr::read_tsv(ora_results_file, col_types = ora_cols)
 moa_targets <- c(
     "alisertib" = "Alisertib",
     "dasatinib" = "Dasatinib",
+    "brequinar" = "Brequinar",
     "aphidicolin" = "Aphidicolin",
     "at13387" = "at13387",
     "sta-5326" = "sta-5326",
-    "combretastatin-a-4" = "Combretastatin-a-4"
+    "l-ergothioneine" = "l-Ergothioneine",
+    "lasalocid" = "Lasalocid"
 )
 
 moa_colors <- c(
-    "alisertib" = "#E6898F",
+    "alisertib" = "#F0700A",
     "dasatinib" = "#9C55DF",
-    "aphidicolin" = "#F0700A",
+    "brequinar" = "#E6898F",
+    "aphidicolin" = "black",
     "at13387" = "#D3EB5A",
-    "sta-5326" = "#34EB62",
-    "combretastatin-a-4" = "#01E3E6"
+    "sta-5326" = "brown",
+    "l-ergothioneine" = "#01E3E6",
+    "lasalocid" = "#34EB62"
+)
+
+moa_colors <- c(
+    "alisertib" = "#1b9e77",
+    "dasatinib" = "#d95f02",
+    "brequinar" = "#7570b3",
+    "aphidicolin" = "#e7298a",
+    "at13387" = "#a6761d",
+    "sta-5326" = "#666666",
+    "l-ergothioneine" = "#66a61e",
+    "lasalocid" = "#e6ab02" 
 )
 
 # Obtained by taking the top enrichment score for the top three compounds
 top_geneSet_selections <- c(
-    "GO:0006695",
+    "GO:0016125", # sta-5326
+    "GO:0006695", # sta-5326
     "GO:0009267",
-    "GO:0044272"
+    "GO:0052548",
+    "GO:0044272",
+    "GO:0008380",
+    "GO:0034644" # brequinar
 )
 
-panel_e_gg <- (
+
+
+panel_f_gg <- (
     ggplot(ora_df, aes(x = enrichmentRatio, y = -log10(pValue), color = compound))
     + geom_point()
     + ggrepel::geom_text_repel(
         data = ora_df %>% dplyr::filter(geneSet %in% !!top_geneSet_selections),
         aes(label = description),
         arrow = arrow(length = unit(0.015, "npc")),
-        segment.size = 0.3,
+        segment.size = 0.7,
         segment.alpha = 0.6,
-        size = 4,
+        size = 6,
         fontface = "italic",
-        box.padding = 1.5,
-        point.padding = 0.5,
+        box.padding = 3,
+        point.padding = 0.25,
         show.legend = FALSE
     )
     + figure_theme
     + ylim(c(0, 9))
-    + scale_color_manual("", labels = moa_targets, values = moa_colors)
+    + scale_color_manual("Compounds", labels = moa_targets, values = moa_colors)
     + xlab("Overrepresentation enrichment")
     + ylab("-log10 p value")
-    + theme(legend.position = c(0.5, .1), legend.key.size = unit(0.2, "cm"))
-    + guides(color = guide_legend(nrow = 2))
+    + theme(legend.position = "right", legend.key.size = unit(0.5, "cm"))
+    + guides(color = guide_legend(ncol = 1))
 )
 
-panel_e_gg
+panel_f_gg
+
+top_right_gg <- cowplot::plot_grid(
+    cowplot::ggdraw(),
+    panel_b_gg + theme(plot.margin = margin(t = 10)),
+    cowplot::ggdraw(),
+    panel_c_gg + theme(plot.margin = margin(b = -15)),
+    nrow = 4,
+    labels = c("b", "", "", "c"),
+    rel_heights = c(0.2, 0.75, 0.1, 1.5),
+    align = "h"
+)
+
+top_gg <- cowplot::plot_grid(
+    cowplot::plot_grid(
+        panel_a_gg,
+        cowplot::ggdraw(),
+        nrow = 2,
+        rel_heights = c(1, 0.1)
+    ),
+    top_right_gg,
+    ncol = 2,
+    rel_widths = c(1, 0.5),
+    align = "h"
+)
+
+bottom_gg <- cowplot::plot_grid(
+    panel_e_gg,
+    panel_f_gg,
+    ncol = 2,
+    align = "h",
+    labels = c("e", "f")
+)
 
 figure_4_gg <- cowplot::plot_grid(
-    panel_a_gg,
-    panel_c_gg,
-    cowplot::plot_grid(
-        panel_b_gg,
-        panel_d_gg,
-        panel_e_gg,
-        ncol = 3,
-        labels = c("c", "d", "e")
-    ),
+    top_gg,
+    panel_d_gg,
+    bottom_gg,
     nrow = 3,
-    labels = c("a", "b", ""),
-    rel_heights = c(1, 0.5, 0.75)
+    rel_heights = c(0.75, 0.4, 0.75),
+    labels = c("", "d", "")
 )
 
 figure_4_gg
 
 for (extension in extensions) {
     output_file <- paste0(output_figure_base, extension)
-    cowplot::save_plot(output_file, figure_4_gg, base_width = 11, base_height = 11, dpi = 500)
+    cowplot::save_plot(output_file, figure_4_gg, base_width = 13, base_height = 13, dpi = 500)
 }
+
+

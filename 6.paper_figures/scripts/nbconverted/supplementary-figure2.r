@@ -55,7 +55,7 @@ for (assay in unique(plate_df$assay)) {
             
             plate_subset_gg <- (
                 ggplot(plate_subset_df, aes(x = row, y = col))
-                + geom_point(aes(fill = median_cor), size = 3, pch = 22, stroke = 0.2)
+                + geom_point(aes(fill = mean_cor), size = 3, pch = 22, stroke = 0.2)
                  + facet_grid(
                     "Metadata_broad_sample_replicate~normalization",
                     labeller = labeller(
@@ -68,7 +68,7 @@ for (assay in unique(plate_df$assay)) {
                 + xlab("Plate row")
                 + ylab("Plate column")
                 + ggtitle(assay)
-                + scale_fill_gradient(name = "Same-well\nmedian\npairwise\nPearson\ncorrelation", low = "white", high = "red", na.value = "grey")
+                + scale_fill_gradient(name = "Same-well\nmean\npairwise\nPearson\ncorrelation", low = "white", high = "red", na.value = "grey")
                 + theme(
                     plot.margin = unit(c(t = -2.75, r = 0.25, b = -2.75, l = 0.25), "cm"),
                     axis.text = element_text(size = 6),

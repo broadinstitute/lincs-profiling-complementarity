@@ -189,7 +189,7 @@ heatmap_panels <- cowplot::plot_grid(
     cp_heat_gg,
     l1000_heat_gg,
     ncol = 2,
-    labels = c("c", "")
+    labels = c("", "")
 )
 
 figure3_gg <- cowplot::plot_grid(

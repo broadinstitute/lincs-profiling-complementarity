@@ -96,13 +96,20 @@ l1000_meta_df.head()
 # In[8]:
 
 
+# L1000 plates
+len(l1000_meta_df.det_plate.unique())
+
+
+# In[9]:
+
+
 # L1000 plate maps
 len(l1000_meta_df.pert_plate.unique())
 
 
 # ### Cell Painting
 
-# In[9]:
+# In[10]:
 
 
 cp_platemap_file = "https://github.com/broadinstitute/lincs-cell-painting/raw/94bfaeeab0d107beac262b4307aa6e9b783625fa/metadata/platemaps/broad_sample_info.tsv"
@@ -112,14 +119,22 @@ print(cp_meta_df.shape)
 cp_meta_df.head()
 
 
-# In[10]:
+# In[11]:
+
+
+# Cell Painting plates
+url = "https://raw.githubusercontent.com/broadinstitute/lincs-cell-painting/e9737c3e4e4443eb03c2c278a145f12efe255756/metadata/platemaps/2016_04_01_a549_48hr_batch1/barcode_platemap.csv"
+pd.read_csv(url).Assay_Plate_Barcode.nunique()
+
+
+# In[12]:
 
 
 # Cell Painting plate maps
 len(cp_meta_df.plate_map_name.unique())
 
 
-# In[11]:
+# In[13]:
 
 
 # Example platemap
@@ -132,13 +147,13 @@ print(eg_plate_df.shape)
 eg_plate_df.head(2)
 
 
-# In[12]:
+# In[14]:
 
 
 eg_plate_df.broad_sample.value_counts().head(5)
 
 
-# In[13]:
+# In[15]:
 
 
 eg_plate_df.query("broad_sample not in ['DMSO', 'BRD-K50691590-001-02-2', 'BRD-K60230970-001-10-0']").broad_sample.nunique()

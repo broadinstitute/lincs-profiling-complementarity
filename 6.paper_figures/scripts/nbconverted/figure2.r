@@ -21,6 +21,8 @@ print(dim(pm_cellpainting_list[["percent_matching_pvals"]]))
 print(dim(pm_l1000_list[["percent_matching_pvals"]]))
 
 p_val_alpha_thresh <- 0.05
+plot_thresh <- -log10(p_val_alpha_thresh)
+
 no_replicates_thresh <- 3
 
 cell_painting_pm_df <- pm_cellpainting_list[["percent_matching"]] %>%
@@ -51,7 +53,7 @@ head(pm_df)
 
 percent_matching_df <- pm_df %>%
     dplyr::group_by(assay, dose) %>%
-    dplyr::mutate(percent_matching = paste0(100 * round((sum(pass_thresh) / length(pass_thresh)), 4), "%")) %>%
+    dplyr::mutate(percent_matching = paste0(100 * round((sum(pass_thresh) / length(pass_thresh)), 2), "%")) %>%
     dplyr::select(dose, assay, percent_matching) %>%
     dplyr::distinct()
 
@@ -66,9 +68,9 @@ for (dose in unique(pm_df$dose)) {
 panel_a_gg <- (
     ggplot(pm_df, aes(x = matching_score, y = neg_log_10_p_val))
     + geom_point(aes(color = no_of_replicates), alpha = 0.6)
-    + geom_text(data = percent_matching_df, aes(label = percent_matching, x = -0.25, y = 3))
+    + geom_text(data = percent_matching_df, aes(label = percent_matching, x = 0.5, y = 2))
     + facet_grid("assay~dose")
-    + geom_hline(linetype = "dashed", color = "blue", yintercept = 2)
+    + geom_hline(linetype = "dashed", color = "blue", yintercept = plot_thresh)
     + theme_bw()
     + figure_theme
     + scale_color_continuous("Number of\ncompounds\nper MOA", values = scales::rescale(c(0, 2, 4, 6, 8, 15, 30)), type = "viridis")
@@ -188,16 +190,14 @@ panel_b_gg <- (
 
 panel_b_gg
 
-pass_thresh_summary_df
-
 level4_results_dir <- file.path("../1.Data-exploration/Profiles_level4/results")
 
 # Next, get the median scores and determine if they pass the threshold
 cell_painting_comp_df <- load_median_correlation_scores(assay = "cellpainting", results_dir = level4_results_dir)
 l1000_comp_df <- load_median_correlation_scores(assay = "l1000", results_dir = level4_results_dir)
 
-cell_painting_pr_df <- load_percent_replicating(assay = "cellpainting", results_dir = level4_results_dir)
-l1000_pr_df <- load_percent_replicating(assay = "l1000", results_dir = level4_results_dir)
+cell_painting_pr_df <- load_percent_strong(assay = "cellpainting", results_dir = level4_results_dir)
+l1000_pr_df <- load_percent_strong(assay = "l1000", results_dir = level4_results_dir)
 
 pr_df <- dplyr::bind_rows(cell_painting_pr_df, l1000_pr_df)
 pr_df$dose <- factor(pr_df$dose, levels = dose_order)
@@ -311,7 +311,7 @@ total_moas
 percentile_pass_moa_df <- pass_thresh_summary_moa_df %>%
     dplyr::mutate(
         num_pass_total = unique_pass_l1000 + unique_pass_cellpainting + num_pass_both,
-        num_pass_percentile = paste("Total:\n", round(num_pass_total / total_moas, 4) * 100, "%")
+        num_pass_percentile = paste("Total:\n", round(num_pass_total / total_moas, 2) * 100, "%")
     ) %>%
     dplyr::select(dose, num_pass_total, num_pass_percentile)
 
@@ -344,7 +344,7 @@ panel_c_gg <- (
     # Select only L1000 below to not duplicate text
     + geom_text(
         data = full_moa_rect %>% dplyr::filter(assay == "L1000"),
-        aes(x = xmin_bar + 0.5, y = ymax_bar + 4, label = num_pass_percentile),
+        aes(x = xmin_bar + 0.5, y = ymax_bar + 2, label = num_pass_percentile),
         size = 3
     )
     + scale_fill_manual("MOA\nconsistent\nin assay", values = updated_assay_colors)
@@ -408,6 +408,7 @@ plot_ready_moa_text_df <- consistent_match_moa_df %>% dplyr::left_join(full_moa_
 
 plot_ready_moa_text_df$x_axis_location <- factor(plot_ready_moa_text_df$x_axis_location, levels = c("Cell Painting", "Both", "L1000"))
 
+print(length(unique(plot_ready_moa_text_df$moa)))
 head(plot_ready_moa_text_df)
 
 moa_labels <- c("None", "L1000", "Cell Painting", "Both")
@@ -415,8 +416,6 @@ moa_labels <- c("None", "L1000", "Cell Painting", "Both")
 moa_colors <- unique(plot_ready_pm_df$moa_color_passing)
 names(moa_colors) <- moa_labels
 names(moa_labels) <- moa_labels
-
-moa_colors
 
 panel_d_gg <- (
     ggplot(plot_ready_moa_text_df, aes(y = y_axis_location, x = 0))
@@ -432,8 +431,8 @@ panel_d_gg <- (
         "Number of\npassing doses",
         range = c(4, 7)
     )
-    + xlim(-100, 100)
-    + ylim(0, 50)
+    + xlim(-100, 120)
+    + ylim(0, 60)
     + guides(color = guide_legend(order = 1))
 )
 
@@ -444,13 +443,13 @@ top_panel <- (left_panel | panel_c_gg) + plot_layout(widths = c(2, 1))
 
 figure_2_gg <- (
     top_panel / panel_d_gg
-    + plot_layout(widths = c(2, 1))
+    + plot_layout(heights = c(2, 1.75))
     + plot_annotation(tag_levels = "a")
 )
 
 for (extension in extensions) {
     output_file <- paste0(output_figure_base, extension)
-    ggplot2::ggsave(output_file, figure_2_gg, width = 16, height = 12, dpi = 500)
+    ggplot2::ggsave(output_file, figure_2_gg, width = 16, height = 11, dpi = 500)
 }
 
 figure_2_gg

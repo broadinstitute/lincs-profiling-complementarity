@@ -1,331 +1,703 @@
 pert_iname	moa	L1000_probe	L1000_readout	L1000_abs_readout	gene_symbol
-alisertib	aurora kinase inhibitor	208708_x_at	-3.419625	3.419625	EIF5
-alisertib	aurora kinase inhibitor	208728_s_at	-2.298975	2.298975	CDC42
+alisertib	aurora kinase inhibitor	205450_at	-2.12744995	2.12744995	PHKA1
 alisertib	aurora kinase inhibitor	215903_s_at	2.36095015	2.36095015	MAST2
 alisertib	aurora kinase inhibitor	205039_s_at	4.63955	4.63955	IKZF1
-alisertib	aurora kinase inhibitor	202705_at	-2.406725	2.406725	CCNB2
-alisertib	aurora kinase inhibitor	209806_at	2.107325	2.107325	HIST1H2BK
-alisertib	aurora kinase inhibitor	206173_x_at	2.090375	2.090375	GABPB1
 alisertib	aurora kinase inhibitor	218346_s_at	3.9227252	3.9227252	SESN1
-alisertib	aurora kinase inhibitor	204252_at	-2.02177495	2.02177495	CDK2
-alisertib	aurora kinase inhibitor	205450_at	-2.12744995	2.12744995	PHKA1
-alisertib	aurora kinase inhibitor	200981_x_at	-2.674375	2.674375	GNAS
-alisertib	aurora kinase inhibitor	219384_s_at	2.0732749999999998	2.0732749999999998	ADAT1
 alisertib	aurora kinase inhibitor	40829_at	2.3881249999999996	2.3881249999999996	WDTC1
-alisertib	aurora kinase inhibitor	209095_at	-4.63015	4.63015	DLD
-alisertib	aurora kinase inhibitor	202284_s_at	2.580275	2.580275	CDKN1A
-alisertib	aurora kinase inhibitor	219363_s_at	-2.24755005	2.24755005	MTERFD1
-alisertib	aurora kinase inhibitor	203409_at	5.4466748	5.4466748	DDB2
-alisertib	aurora kinase inhibitor	201351_s_at	-2.3082502000000003	2.3082502000000003	YME1L1
-alisertib	aurora kinase inhibitor	219352_at	2.0011499969999997	2.0011499969999997	HERC6
-alisertib	aurora kinase inhibitor	205963_s_at	-2.5698	2.5698	DNAJA3
-alisertib	aurora kinase inhibitor	202076_at	-4.25817535	4.25817535	BIRC2
-alisertib	aurora kinase inhibitor	203665_at	2.007625	2.007625	HMOX1
-alisertib	aurora kinase inhibitor	217140_s_at	-3.1301750999999998	3.1301750999999998	VDAC1
-alisertib	aurora kinase inhibitor	210058_at	3.3427249999999997	3.3427249999999997	MAPK13
+alisertib	aurora kinase inhibitor	204252_at	-2.02177495	2.02177495	CDK2
 alisertib	aurora kinase inhibitor	217900_at	-5.013225	5.013225	IARS2
+alisertib	aurora kinase inhibitor	202284_s_at	2.580275	2.580275	CDKN1A
+alisertib	aurora kinase inhibitor	210058_at	3.3427249999999997	3.3427249999999997	MAPK13
+alisertib	aurora kinase inhibitor	209095_at	-4.63015	4.63015	DLD
 alisertib	aurora kinase inhibitor	202599_s_at	-2.059325	2.059325	NRIP1
-alisertib	aurora kinase inhibitor	217761_at	-2.7235001	2.7235001	ADI1
-alisertib	aurora kinase inhibitor	219016_at	-2.922275	2.922275	FASTKD5
-alisertib	aurora kinase inhibitor	214086_s_at	-3.05860005	3.05860005	PARP2
+alisertib	aurora kinase inhibitor	208728_s_at	-2.298975	2.298975	CDC42
+alisertib	aurora kinase inhibitor	219363_s_at	-2.24755005	2.24755005	MTERFD1
+alisertib	aurora kinase inhibitor	203665_at	2.007625	2.007625	HMOX1
+alisertib	aurora kinase inhibitor	219384_s_at	2.0732749999999998	2.0732749999999998	ADAT1
+alisertib	aurora kinase inhibitor	202076_at	-4.25817535	4.25817535	BIRC2
+alisertib	aurora kinase inhibitor	219352_at	2.0011499969999997	2.0011499969999997	HERC6
 alisertib	aurora kinase inhibitor	204126_s_at	-3.5385999999999997	3.5385999999999997	CDC45
-aphidicolin	rna synthesis inhibitor	204781_s_at	2.8432423	2.8432423	FAS
-aphidicolin	rna synthesis inhibitor	201608_s_at	-2.21581165	2.21581165	PWP1
-aphidicolin	rna synthesis inhibitor	202431_s_at	-2.8583058	2.8583058	MYC
-aphidicolin	rna synthesis inhibitor	203379_at	2.2807468	2.2807468	RPS6KA1
-aphidicolin	rna synthesis inhibitor	217761_at	2.93699125	2.93699125	ADI1
+alisertib	aurora kinase inhibitor	217140_s_at	-3.1301750999999998	3.1301750999999998	VDAC1
+alisertib	aurora kinase inhibitor	205963_s_at	-2.5698	2.5698	DNAJA3
+alisertib	aurora kinase inhibitor	217761_at	-2.7235001	2.7235001	ADI1
+alisertib	aurora kinase inhibitor	209806_at	2.107325	2.107325	HIST1H2BK
+alisertib	aurora kinase inhibitor	201351_s_at	-2.3082502000000003	2.3082502000000003	YME1L1
+alisertib	aurora kinase inhibitor	219016_at	-2.922275	2.922275	FASTKD5
+alisertib	aurora kinase inhibitor	200981_x_at	-2.674375	2.674375	GNAS
+alisertib	aurora kinase inhibitor	202705_at	-2.406725	2.406725	CCNB2
+alisertib	aurora kinase inhibitor	208708_x_at	-3.419625	3.419625	EIF5
+alisertib	aurora kinase inhibitor	203409_at	5.4466748	5.4466748	DDB2
+alisertib	aurora kinase inhibitor	206173_x_at	2.090375	2.090375	GABPB1
+alisertib	aurora kinase inhibitor	214086_s_at	-3.05860005	3.05860005	PARP2
 aphidicolin	rna synthesis inhibitor	209040_s_at	2.8620818999999997	2.8620818999999997	PSMB8
 aphidicolin	rna synthesis inhibitor	202284_s_at	4.12179365	4.12179365	CDKN1A
+aphidicolin	rna synthesis inhibitor	204781_s_at	2.8432423	2.8432423	FAS
+aphidicolin	rna synthesis inhibitor	203379_at	2.2807468	2.2807468	RPS6KA1
 aphidicolin	rna synthesis inhibitor	208708_x_at	-2.19966155	2.19966155	EIF5
+aphidicolin	rna synthesis inhibitor	202431_s_at	-2.8583058	2.8583058	MYC
+aphidicolin	rna synthesis inhibitor	217761_at	2.93699125	2.93699125	ADI1
 aphidicolin	rna synthesis inhibitor	218346_s_at	3.7658731999999997	3.7658731999999997	SESN1
 aphidicolin	rna synthesis inhibitor	201589_at	-2.24498115	2.24498115	SMC1A
 aphidicolin	rna synthesis inhibitor	201762_s_at	2.0407626	2.0407626	PSME2
 aphidicolin	rna synthesis inhibitor	218852_at	-2.9094764	2.9094764	PPP2R3C
-at13387	hsp antagonist	202868_s_at	-2.43677825	2.43677825	POP4
-at13387	hsp antagonist	202651_at	-2.4216383500000003	2.4216383500000003	LPGAT1
-at13387	hsp antagonist	209515_s_at	-2.66564915	2.66564915	RAB27A
-at13387	hsp antagonist	201519_at	2.91201445	2.91201445	TOMM70A
-at13387	hsp antagonist	200981_x_at	-2.16777615	2.16777615	GNAS
-at13387	hsp antagonist	201719_s_at	-3.2637076	3.2637076	EPB41L2
-at13387	hsp antagonist	209095_at	-2.43596745	2.43596745	DLD
-at13387	hsp antagonist	218168_s_at	2.03154795	2.03154795	ADCK3
-at13387	hsp antagonist	208398_s_at	-2.12974355	2.12974355	TBPL1
-at13387	hsp antagonist	202889_x_at	2.13065205	2.13065205	MAP7
-at13387	hsp antagonist	211015_s_at	2.2058997	2.2058997	HSPA4
-at13387	hsp antagonist	202153_s_at	-2.32250995	2.32250995	NUP62
-at13387	hsp antagonist	200807_s_at	3.09291175	3.09291175	HSPD1
-at13387	hsp antagonist	203405_at	-2.18779255	2.18779255	PSMG1
-at13387	hsp antagonist	220643_s_at	2.0803083	2.0803083	FAIM
-at13387	hsp antagonist	218102_at	-3.33341955	3.33341955	DERA
-at13387	hsp antagonist	204748_at	-6.04384665	6.04384665	PTGS2
-at13387	hsp antagonist	221750_at	-2.64797935	2.64797935	HMGCS1
-at13387	hsp antagonist	203218_at	-2.4260611499999998	2.4260611499999998	MAPK9
-at13387	hsp antagonist	201146_at	2.40714965	2.40714965	NFE2L2
-at13387	hsp antagonist	218742_at	2.38094475	2.38094475	NARFL
-at13387	hsp antagonist	203696_s_at	4.849891899999999	4.849891899999999	RFC2
-at13387	hsp antagonist	216321_s_at	2.59680275	2.59680275	NR3C1
-at13387	hsp antagonist	201774_s_at	2.1140181499999997	2.1140181499999997	NCAPD2
-at13387	hsp antagonist	202148_s_at	-3.1619014500000002	3.1619014500000002	PYCR1
-at13387	hsp antagonist	203228_at	-2.2439654	2.2439654	PAFAH1B3
-at13387	hsp antagonist	218581_at	3.7911652	3.7911652	ABHD4
-at13387	hsp antagonist	201984_s_at	4.7833693	4.7833693	EGFR
-at13387	hsp antagonist	201579_at	2.3793136	2.3793136	FAT1
-at13387	hsp antagonist	201841_s_at	2.3418669000000003	2.3418669000000003	HSPB1
-at13387	hsp antagonist	201631_s_at	-6.0170496	6.0170496	IER3
-at13387	hsp antagonist	208510_s_at	-2.4691021500000003	2.4691021500000003	PPARG
-at13387	hsp antagonist	201976_s_at	3.6424960000000004	3.6424960000000004	MYO10
-at13387	hsp antagonist	218290_at	-4.5756912	4.5756912	PLEKHJ1
-at13387	hsp antagonist	218995_s_at	-2.715395	2.715395	EDN1
-at13387	hsp antagonist	202006_at	-5.5174769	5.5174769	PTPN12
-at13387	hsp antagonist	203138_at	-3.3169223	3.3169223	HAT1
-at13387	hsp antagonist	202382_s_at	2.2291548	2.2291548	GNPDA1
-at13387	hsp antagonist	217911_s_at	4.1020224	4.1020224	BAG3
-at13387	hsp antagonist	201494_at	2.10934185	2.10934185	PRCP
-at13387	hsp antagonist	212665_at	-2.44772885	2.44772885	TIPARP
-at13387	hsp antagonist	202241_at	-2.0461519	2.0461519	TRIB1
-at13387	hsp antagonist	201432_at	2.2813619	2.2813619	CAT
-at13387	hsp antagonist	202491_s_at	2.3592849	2.3592849	IKBKAP
-at13387	hsp antagonist	212723_at	2.82634235	2.82634235	JMJD6
-at13387	hsp antagonist	202599_s_at	-3.02585595	3.02585595	NRIP1
-at13387	hsp antagonist	202733_at	6.71394225	6.71394225	P4HA2
-at13387	hsp antagonist	217934_x_at	-2.71573235	2.71573235	STUB1
-at13387	hsp antagonist	202119_s_at	2.45603645	2.45603645	CPNE3
-at13387	hsp antagonist	209263_x_at	-3.8717439	3.8717439	TSPAN4
-at13387	hsp antagonist	202756_s_at	2.07036275	2.07036275	GPC1
-at13387	hsp antagonist	211297_s_at	3.38050245	3.38050245	CDK7
-at13387	hsp antagonist	201361_at	-3.14227715	3.14227715	TMEM109
-at13387	hsp antagonist	219363_s_at	-2.6098219	2.6098219	MTERFD1
-at13387	hsp antagonist	205909_at	-2.9802294999999996	2.9802294999999996	POLE2
-at13387	hsp antagonist	203123_s_at	2.83564065	2.83564065	SLC11A2
-at13387	hsp antagonist	209586_s_at	4.2878104	4.2878104	PRUNE
-at13387	hsp antagonist	200799_at	6.7119788	6.7119788	HSPA1A
-at13387	hsp antagonist	201460_at	2.4045360000000002	2.4045360000000002	MAPKAPK2
-at13387	hsp antagonist	203659_s_at	2.1235828999999997	2.1235828999999997	TRIM13
+aphidicolin	rna synthesis inhibitor	201608_s_at	-2.21581165	2.21581165	PWP1
+at13387	hsp antagonist	201695_s_at	-3.4176314000000003	3.4176314000000003	PNP
+at13387	hsp antagonist	218175_at	2.1258920999999997	2.1258920999999997	CCDC92
 at13387	hsp antagonist	217752_s_at	-2.31269275	2.31269275	CNDP2
 at13387	hsp antagonist	205055_at	-2.7397538	2.7397538	ITGAE
-at13387	hsp antagonist	208891_at	-2.7255620499999997	2.7255620499999997	DUSP6
+at13387	hsp antagonist	203696_s_at	4.849891899999999	4.849891899999999	RFC2
+at13387	hsp antagonist	203659_s_at	2.1235828999999997	2.1235828999999997	TRIM13
+at13387	hsp antagonist	218407_x_at	-3.5698244499999996	3.5698244499999996	NENF
+at13387	hsp antagonist	212973_at	-2.93098665	2.93098665	RPIA
+at13387	hsp antagonist	203458_at	2.071177825	2.071177825	SPR
+at13387	hsp antagonist	209586_s_at	4.2878104	4.2878104	PRUNE
+at13387	hsp antagonist	201170_s_at	-2.75372885	2.75372885	BHLHE40
+at13387	hsp antagonist	203931_s_at	-2.22635535	2.22635535	MRPL12
+at13387	hsp antagonist	218852_at	-2.4903645	2.4903645	PPP2R3C
+at13387	hsp antagonist	202109_at	2.0051065	2.0051065	ARFIP2
 at13387	hsp antagonist	213844_at	4.12109325	4.12109325	HOXA5
-at13387	hsp antagonist	202705_at	-2.9711939999999997	2.9711939999999997	CCNB2
-at13387	hsp antagonist	202732_at	-2.4557523000000003	2.4557523000000003	PKIG
-at13387	hsp antagonist	212943_at	-2.24557875	2.24557875	KIAA0528
-at13387	hsp antagonist	218175_at	2.1258920999999997	2.1258920999999997	CCDC92
-at13387	hsp antagonist	213384_x_at	-2.1663210999999998	2.1663210999999998	PLCB3
-at13387	hsp antagonist	221060_s_at	-2.01669775	2.01669775	TLR4
-at13387	hsp antagonist	201746_at	2.49959275	2.49959275	TP53
+at13387	hsp antagonist	204256_at	-2.3234036	2.3234036	ELOVL6
+at13387	hsp antagonist	202148_s_at	-3.1619014500000002	3.1619014500000002	PYCR1
 at13387	hsp antagonist	203221_at	-2.3525594	2.3525594	TLE1
+at13387	hsp antagonist	202630_at	-2.72992095	2.72992095	APPBP2
+at13387	hsp antagonist	212943_at	-2.24557875	2.24557875	KIAA0528
+at13387	hsp antagonist	203575_at	2.11072065	2.11072065	CSNK2A2
+at13387	hsp antagonist	205451_at	2.00995468	2.00995468	FOXO4
+at13387	hsp antagonist	209603_at	2.0723538	2.0723538	GATA3
+at13387	hsp antagonist	204252_at	-2.7675709	2.7675709	CDK2
+at13387	hsp antagonist	202900_s_at	-3.2667152	3.2667152	NUP88
+at13387	hsp antagonist	203218_at	-2.4260611499999998	2.4260611499999998	MAPK9
+at13387	hsp antagonist	203123_s_at	2.83564065	2.83564065	SLC11A2
+at13387	hsp antagonist	201432_at	2.2813619	2.2813619	CAT
+at13387	hsp antagonist	209095_at	-2.43596745	2.43596745	DLD
+at13387	hsp antagonist	202241_at	-2.0461519	2.0461519	TRIB1
+at13387	hsp antagonist	219363_s_at	-2.6098219	2.6098219	MTERFD1
+at13387	hsp antagonist	212665_at	-2.44772885	2.44772885	TIPARP
+at13387	hsp antagonist	201494_at	2.10934185	2.10934185	PRCP
+at13387	hsp antagonist	217934_x_at	-2.71573235	2.71573235	STUB1
+at13387	hsp antagonist	212723_at	2.82634235	2.82634235	JMJD6
+at13387	hsp antagonist	202491_s_at	2.3592849	2.3592849	IKBKAP
+at13387	hsp antagonist	202382_s_at	2.2291548	2.2291548	GNPDA1
+at13387	hsp antagonist	202006_at	-5.5174769	5.5174769	PTPN12
+at13387	hsp antagonist	201976_s_at	3.6424960000000004	3.6424960000000004	MYO10
+at13387	hsp antagonist	203138_at	-3.3169223	3.3169223	HAT1
+at13387	hsp antagonist	218290_at	-4.5756912	4.5756912	PLEKHJ1
+at13387	hsp antagonist	201631_s_at	-6.0170496	6.0170496	IER3
+at13387	hsp antagonist	201579_at	2.3793136	2.3793136	FAT1
+at13387	hsp antagonist	201984_s_at	4.7833693	4.7833693	EGFR
+at13387	hsp antagonist	203228_at	-2.2439654	2.2439654	PAFAH1B3
+at13387	hsp antagonist	202733_at	6.71394225	6.71394225	P4HA2
+at13387	hsp antagonist	201519_at	2.91201445	2.91201445	TOMM70A
+at13387	hsp antagonist	218742_at	2.38094475	2.38094475	NARFL
+at13387	hsp antagonist	220643_s_at	2.0803083	2.0803083	FAIM
+at13387	hsp antagonist	202868_s_at	-2.43677825	2.43677825	POP4
+at13387	hsp antagonist	209100_at	-3.2114020500000002	3.2114020500000002	IFRD2
+at13387	hsp antagonist	201146_at	2.40714965	2.40714965	NFE2L2
+at13387	hsp antagonist	203582_s_at	-3.0762067	3.0762067	RAB4A
+at13387	hsp antagonist	210115_at	-2.6733394500000003	2.6733394500000003	RPL39L
+at13387	hsp antagonist	203405_at	-2.18779255	2.18779255	PSMG1
+at13387	hsp antagonist	202153_s_at	-2.32250995	2.32250995	NUP62
+at13387	hsp antagonist	211015_s_at	2.2058997	2.2058997	HSPA4
+at13387	hsp antagonist	204542_at	-2.8544675500000003	2.8544675500000003	ST6GALNAC2
+at13387	hsp antagonist	208398_s_at	-2.12974355	2.12974355	TBPL1
+at13387	hsp antagonist	201719_s_at	-3.2637076	3.2637076	EPB41L2
+at13387	hsp antagonist	209515_s_at	-2.66564915	2.66564915	RAB27A
+at13387	hsp antagonist	202651_at	-2.4216383500000003	2.4216383500000003	LPGAT1
+at13387	hsp antagonist	200981_x_at	-2.16777615	2.16777615	GNAS
+at13387	hsp antagonist	201774_s_at	2.1140181499999997	2.1140181499999997	NCAPD2
+at13387	hsp antagonist	201361_at	-3.14227715	3.14227715	TMEM109
+at13387	hsp antagonist	202889_x_at	2.13065205	2.13065205	MAP7
+at13387	hsp antagonist	221750_at	-2.64797935	2.64797935	HMGCS1
+at13387	hsp antagonist	202756_s_at	2.07036275	2.07036275	GPC1
+at13387	hsp antagonist	202119_s_at	2.45603645	2.45603645	CPNE3
+at13387	hsp antagonist	209112_at	4.9837666	4.9837666	CDKN1B
+at13387	hsp antagonist	202996_at	-5.323923349999999	5.323923349999999	POLD4
+at13387	hsp antagonist	218168_s_at	2.03154795	2.03154795	ADCK3
+at13387	hsp antagonist	211518_s_at	2.09026715	2.09026715	BMP4
+at13387	hsp antagonist	202599_s_at	-3.02585595	3.02585595	NRIP1
 at13387	hsp antagonist	201202_at	-3.813382	3.813382	PCNA
+at13387	hsp antagonist	202705_at	-2.9711939999999997	2.9711939999999997	CCNB2
 at13387	hsp antagonist	204420_at	-2.3522095	2.3522095	FOSL1
 at13387	hsp antagonist	204014_at	-2.734198325	2.734198325	DUSP4
-at13387	hsp antagonist	218852_at	-2.4903645	2.4903645	PPP2R3C
-at13387	hsp antagonist	209603_at	2.0723538	2.0723538	GATA3
 at13387	hsp antagonist	217871_s_at	-2.4087301500000002	2.4087301500000002	MIF
-at13387	hsp antagonist	203458_at	2.071177825	2.071177825	SPR
-at13387	hsp antagonist	212973_at	-2.93098665	2.93098665	RPIA
 at13387	hsp antagonist	203665_at	5.0485796999999994	5.0485796999999994	HMOX1
-at13387	hsp antagonist	211518_s_at	2.09026715	2.09026715	BMP4
-at13387	hsp antagonist	209112_at	4.9837666	4.9837666	CDKN1B
-at13387	hsp antagonist	205393_s_at	-2.07267765	2.07267765	CHEK1
-at13387	hsp antagonist	204252_at	-2.7675709	2.7675709	CDK2
-at13387	hsp antagonist	201695_s_at	-3.4176314000000003	3.4176314000000003	PNP
-at13387	hsp antagonist	209100_at	-3.2114020500000002	3.2114020500000002	IFRD2
-at13387	hsp antagonist	203575_at	2.11072065	2.11072065	CSNK2A2
-at13387	hsp antagonist	204256_at	-2.3234036	2.3234036	ELOVL6
-at13387	hsp antagonist	202109_at	2.0051065	2.0051065	ARFIP2
-at13387	hsp antagonist	204542_at	-2.8544675500000003	2.8544675500000003	ST6GALNAC2
-at13387	hsp antagonist	210115_at	-2.6733394500000003	2.6733394500000003	RPL39L
-at13387	hsp antagonist	203931_s_at	-2.22635535	2.22635535	MRPL12
-at13387	hsp antagonist	205451_at	2.00995468	2.00995468	FOXO4
-at13387	hsp antagonist	202900_s_at	-3.2667152	3.2667152	NUP88
-at13387	hsp antagonist	202630_at	-2.72992095	2.72992095	APPBP2
+at13387	hsp antagonist	211297_s_at	3.38050245	3.38050245	CDK7
+at13387	hsp antagonist	218581_at	3.7911652	3.7911652	ABHD4
+at13387	hsp antagonist	208510_s_at	-2.4691021500000003	2.4691021500000003	PPARG
+at13387	hsp antagonist	217911_s_at	4.1020224	4.1020224	BAG3
+at13387	hsp antagonist	201746_at	2.49959275	2.49959275	TP53
+at13387	hsp antagonist	209263_x_at	-3.8717439	3.8717439	TSPAN4
+at13387	hsp antagonist	216321_s_at	2.59680275	2.59680275	NR3C1
 at13387	hsp antagonist	202246_s_at	-2.76399615	2.76399615	CDK4
-at13387	hsp antagonist	202996_at	-5.323923349999999	5.323923349999999	POLD4
+at13387	hsp antagonist	200807_s_at	3.09291175	3.09291175	HSPD1
+at13387	hsp antagonist	205909_at	-2.9802294999999996	2.9802294999999996	POLE2
 at13387	hsp antagonist	209380_s_at	2.23137185	2.23137185	ABCC5
-at13387	hsp antagonist	218407_x_at	-3.5698244499999996	3.5698244499999996	NENF
-at13387	hsp antagonist	201170_s_at	-2.75372885	2.75372885	BHLHE40
-at13387	hsp antagonist	203582_s_at	-3.0762067	3.0762067	RAB4A
-combretastatin-a-4	tubulin polymerization inhibitor	217900_at	-2.8316958	2.8316958	IARS2
-combretastatin-a-4	tubulin polymerization inhibitor	218102_at	-3.29460285	3.29460285	DERA
-combretastatin-a-4	tubulin polymerization inhibitor	209806_at	3.9922097	3.9922097	HIST1H2BK
-combretastatin-a-4	tubulin polymerization inhibitor	205205_at	5.6727805	5.6727805	RELB
-combretastatin-a-4	tubulin polymerization inhibitor	203336_s_at	-2.21580315	2.21580315	ITGB1BP1
-combretastatin-a-4	tubulin polymerization inhibitor	212973_at	2.4031203	2.4031203	RPIA
-combretastatin-a-4	tubulin polymerization inhibitor	202388_at	-2.4337592	2.4337592	RGS2
-combretastatin-a-4	tubulin polymerization inhibitor	212070_at	2.09955865	2.09955865	GPR56
-combretastatin-a-4	tubulin polymerization inhibitor	219888_at	-2.2655274	2.2655274	SPAG4
-combretastatin-a-4	tubulin polymerization inhibitor	212485_at	2.5006915	2.5006915	GPATCH8
-combretastatin-a-4	tubulin polymerization inhibitor	209507_at	-2.60634555	2.60634555	RPA3
-combretastatin-a-4	tubulin polymerization inhibitor	204542_at	-4.12271	4.12271	ST6GALNAC2
-combretastatin-a-4	tubulin polymerization inhibitor	218206_x_at	-2.759693	2.759693	SCAND1
-combretastatin-a-4	tubulin polymerization inhibitor	221779_at	2.1060692	2.1060692	MICALL1
-combretastatin-a-4	tubulin polymerization inhibitor	210058_at	2.31145599	2.31145599	MAPK13
-combretastatin-a-4	tubulin polymerization inhibitor	212694_s_at	-3.2021416499999997	3.2021416499999997	PCCB
-combretastatin-a-4	tubulin polymerization inhibitor	211783_s_at	2.0942615	2.0942615	MTA1
-combretastatin-a-4	tubulin polymerization inhibitor	201498_at	2.0633841	2.0633841	USP7
-combretastatin-a-4	tubulin polymerization inhibitor	217989_at	-2.2855633500000003	2.2855633500000003	HSD17B11
-combretastatin-a-4	tubulin polymerization inhibitor	209095_at	-2.9226045999999997	2.9226045999999997	DLD
-combretastatin-a-4	tubulin polymerization inhibitor	213851_at	2.43293153	2.43293153	TMEM110
-combretastatin-a-4	tubulin polymerization inhibitor	203221_at	2.34212015	2.34212015	TLE1
-combretastatin-a-4	tubulin polymerization inhibitor	205398_s_at	2.02985705	2.02985705	SMAD3
-combretastatin-a-4	tubulin polymerization inhibitor	200887_s_at	-4.236190199999999	4.236190199999999	STAT1
-combretastatin-a-4	tubulin polymerization inhibitor	218742_at	2.81890455	2.81890455	NARFL
-combretastatin-a-4	tubulin polymerization inhibitor	203464_s_at	2.80209185	2.80209185	EPN2
-combretastatin-a-4	tubulin polymerization inhibitor	212723_at	2.79905375	2.79905375	JMJD6
-combretastatin-a-4	tubulin polymerization inhibitor	218039_at	-2.16857515	2.16857515	NUSAP1
-combretastatin-a-4	tubulin polymerization inhibitor	202761_s_at	-2.1669485	2.1669485	SYNE2
-combretastatin-a-4	tubulin polymerization inhibitor	204656_at	2.0620399	2.0620399	SHB
-combretastatin-a-4	tubulin polymerization inhibitor	205130_at	3.6152444	3.6152444	MOK
-combretastatin-a-4	tubulin polymerization inhibitor	210416_s_at	-2.1485525	2.1485525	CHEK2
-combretastatin-a-4	tubulin polymerization inhibitor	201631_s_at	2.3947785	2.3947785	IER3
-combretastatin-a-4	tubulin polymerization inhibitor	201087_at	2.83899545	2.83899545	PXN
-combretastatin-a-4	tubulin polymerization inhibitor	212849_at	3.1610669	3.1610669	AXIN1
-combretastatin-a-4	tubulin polymerization inhibitor	201853_s_at	-3.0792017	3.0792017	CDC25B
-combretastatin-a-4	tubulin polymerization inhibitor	209588_at	3.27694625	3.27694625	EPHB2
-combretastatin-a-4	tubulin polymerization inhibitor	209774_x_at	5.9299837	5.9299837	CXCL2
-combretastatin-a-4	tubulin polymerization inhibitor	200799_at	-5.164763199999999	5.164763199999999	HSPA1A
-combretastatin-a-4	tubulin polymerization inhibitor	202240_at	2.14376315	2.14376315	PLK1
-combretastatin-a-4	tubulin polymerization inhibitor	218113_at	-2.127586	2.127586	TMEM2
-combretastatin-a-4	tubulin polymerization inhibitor	203154_s_at	2.4389807	2.4389807	PAK4
-combretastatin-a-4	tubulin polymerization inhibitor	209260_at	2.1736972	2.1736972	SFN
-combretastatin-a-4	tubulin polymerization inhibitor	202830_s_at	-2.66509705	2.66509705	SLC37A4
-combretastatin-a-4	tubulin polymerization inhibitor	209380_s_at	3.6363761500000003	3.6363761500000003	ABCC5
-combretastatin-a-4	tubulin polymerization inhibitor	204285_s_at	2.9852942000000002	2.9852942000000002	PMAIP1
-combretastatin-a-4	tubulin polymerization inhibitor	201243_s_at	-4.76794375	4.76794375	ATP1B1
-combretastatin-a-4	tubulin polymerization inhibitor	200929_at	-3.0452512499999997	3.0452512499999997	TMED10
-combretastatin-a-4	tubulin polymerization inhibitor	202954_at	-6.2199865	6.2199865	UBE2C
-combretastatin-a-4	tubulin polymerization inhibitor	217906_at	-2.7557321	2.7557321	KLHDC2
-combretastatin-a-4	tubulin polymerization inhibitor	210986_s_at	3.2759852499999997	3.2759852499999997	TPM1
-combretastatin-a-4	tubulin polymerization inhibitor	217763_s_at	-2.2000643	2.2000643	RAB31
-combretastatin-a-4	tubulin polymerization inhibitor	203395_s_at	-2.2858532	2.2858532	HES1
-combretastatin-a-4	tubulin polymerization inhibitor	209875_s_at	-2.49448475	2.49448475	SPP1
-combretastatin-a-4	tubulin polymerization inhibitor	216598_s_at	2.6497863500000003	2.6497863500000003	CCL2
-combretastatin-a-4	tubulin polymerization inhibitor	201763_s_at	2.11292965	2.11292965	DAXX
-combretastatin-a-4	tubulin polymerization inhibitor	202627_s_at	3.64434215	3.64434215	SERPINE1
-combretastatin-a-4	tubulin polymerization inhibitor	214062_x_at	2.09126545	2.09126545	NFKBIB
-combretastatin-a-4	tubulin polymerization inhibitor	203343_at	-4.4038485000000005	4.4038485000000005	UGDH
-combretastatin-a-4	tubulin polymerization inhibitor	204039_at	-2.30546635	2.30546635	CEBPA
-combretastatin-a-4	tubulin polymerization inhibitor	204126_s_at	-4.5824076	4.5824076	CDC45
-combretastatin-a-4	tubulin polymerization inhibitor	207808_s_at	-2.2607114499999996	2.2607114499999996	PROS1
-combretastatin-a-4	tubulin polymerization inhibitor	207805_s_at	3.19941415	3.19941415	PSMD9
-combretastatin-a-4	tubulin polymerization inhibitor	218292_s_at	3.1901935999999997	3.1901935999999997	PRKAG2
-combretastatin-a-4	tubulin polymerization inhibitor	221478_at	-2.7635252	2.7635252	BNIP3L
-combretastatin-a-4	tubulin polymerization inhibitor	202732_at	-2.115318505	2.115318505	PKIG
-combretastatin-a-4	tubulin polymerization inhibitor	205500_at	-3.5525932	3.5525932	C5
-combretastatin-a-4	tubulin polymerization inhibitor	203927_at	2.65262425	2.65262425	NFKBIE
-combretastatin-a-4	tubulin polymerization inhibitor	208025_s_at	-2.1205596	2.1205596	HMGA2
-combretastatin-a-4	tubulin polymerization inhibitor	212143_s_at	-3.9758825499999997	3.9758825499999997	IGFBP3
-combretastatin-a-4	tubulin polymerization inhibitor	207540_s_at	2.0477992499999997	2.0477992499999997	SYK
-combretastatin-a-4	tubulin polymerization inhibitor	206687_s_at	-3.14878885	3.14878885	PTPN6
-combretastatin-a-4	tubulin polymerization inhibitor	204420_at	6.148684	6.148684	FOSL1
-combretastatin-a-4	tubulin polymerization inhibitor	201202_at	-3.1914019500000004	3.1914019500000004	PCNA
-combretastatin-a-4	tubulin polymerization inhibitor	202507_s_at	-2.8496058	2.8496058	SNAP25
-combretastatin-a-4	tubulin polymerization inhibitor	202887_s_at	-2.43804605	2.43804605	DDIT4
-combretastatin-a-4	tubulin polymerization inhibitor	202623_at	-3.6094062	3.6094062	EAPP
-combretastatin-a-4	tubulin polymerization inhibitor	202599_s_at	-2.3290309000000002	2.3290309000000002	NRIP1
-combretastatin-a-4	tubulin polymerization inhibitor	201519_at	-3.6604305000000004	3.6604305000000004	TOMM70A
-combretastatin-a-4	tubulin polymerization inhibitor	203911_at	-4.6785629	4.6785629	RAP1GAP
-combretastatin-a-4	tubulin polymerization inhibitor	202431_s_at	2.05804975	2.05804975	MYC
-combretastatin-a-4	tubulin polymerization inhibitor	201968_s_at	-2.72534645	2.72534645	PGM1
-combretastatin-a-4	tubulin polymerization inhibitor	206662_at	-4.8161815	4.8161815	GLRX
-combretastatin-a-4	tubulin polymerization inhibitor	203213_at	-5.156022549999999	5.156022549999999	CDK1
-combretastatin-a-4	tubulin polymerization inhibitor	202651_at	-2.11272555	2.11272555	LPGAT1
-combretastatin-a-4	tubulin polymerization inhibitor	203258_at	3.40014135	3.40014135	DRAP1
-combretastatin-a-4	tubulin polymerization inhibitor	203192_at	-3.61205	3.61205	ABCB6
-combretastatin-a-4	tubulin polymerization inhibitor	205562_at	2.1244204	2.1244204	RPP38
-combretastatin-a-4	tubulin polymerization inhibitor	201849_at	-2.21240855	2.21240855	BNIP3
-combretastatin-a-4	tubulin polymerization inhibitor	205895_s_at	2.47782635	2.47782635	NOLC1
-combretastatin-a-4	tubulin polymerization inhibitor	201767_s_at	2.4035727	2.4035727	ELAC2
-combretastatin-a-4	tubulin polymerization inhibitor	217911_s_at	2.46816585	2.46816585	BAG3
-combretastatin-a-4	tubulin polymerization inhibitor	202716_at	2.4209451499999997	2.4209451499999997	PTPN1
-combretastatin-a-4	tubulin polymerization inhibitor	202776_at	2.1029465	2.1029465	DNTTIP2
-combretastatin-a-4	tubulin polymerization inhibitor	201292_at	-8.633685	8.633685	TOP2A
-combretastatin-a-4	tubulin polymerization inhibitor	201847_at	-2.5804376500000004	2.5804376500000004	LIPA
-combretastatin-a-4	tubulin polymerization inhibitor	201397_at	-3.0373747	3.0373747	PHGDH
-combretastatin-a-4	tubulin polymerization inhibitor	212281_s_at	-2.8333835499999998	2.8333835499999998	TMEM97
-combretastatin-a-4	tubulin polymerization inhibitor	209213_at	-2.2867335	2.2867335	CBR1
-combretastatin-a-4	tubulin polymerization inhibitor	201899_s_at	-4.6035188	4.6035188	UBE2A
-combretastatin-a-4	tubulin polymerization inhibitor	202679_at	2.46440975	2.46440975	NPC1
-combretastatin-a-4	tubulin polymerization inhibitor	201829_at	-3.6634173	3.6634173	NET1
-combretastatin-a-4	tubulin polymerization inhibitor	202678_at	-2.0407194	2.0407194	GTF2A2
-combretastatin-a-4	tubulin polymerization inhibitor	204826_at	-2.34543655	2.34543655	CCNF
-combretastatin-a-4	tubulin polymerization inhibitor	202447_at	-2.26741195	2.26741195	DECR1
-combretastatin-a-4	tubulin polymerization inhibitor	201466_s_at	4.5145464	4.5145464	JUN
-dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	217956_s_at	-2.45742505	2.45742505	ENOPH1
-dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	202454_s_at	2.15496185	2.15496185	ERBB3
-dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	217900_at	-3.9727691	3.9727691	IARS2
-dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	202491_s_at	3.39626175	3.39626175	IKBKAP
-dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	205811_at	-3.40208175	3.40208175	POLG2
-dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	202599_s_at	-2.64419495	2.64419495	NRIP1
-dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	218168_s_at	2.6807714999999996	2.6807714999999996	ADCK3
-dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	202732_at	-3.2091685	3.2091685	PKIG
+at13387	hsp antagonist	204748_at	-6.04384665	6.04384665	PTGS2
+at13387	hsp antagonist	218995_s_at	-2.715395	2.715395	EDN1
+at13387	hsp antagonist	201841_s_at	2.3418669000000003	2.3418669000000003	HSPB1
+at13387	hsp antagonist	202732_at	-2.4557523000000003	2.4557523000000003	PKIG
+at13387	hsp antagonist	221060_s_at	-2.01669775	2.01669775	TLR4
+at13387	hsp antagonist	208891_at	-2.7255620499999997	2.7255620499999997	DUSP6
+at13387	hsp antagonist	218102_at	-3.33341955	3.33341955	DERA
+at13387	hsp antagonist	213384_x_at	-2.1663210999999998	2.1663210999999998	PLCB3
+at13387	hsp antagonist	200799_at	6.7119788	6.7119788	HSPA1A
+at13387	hsp antagonist	205393_s_at	-2.07267765	2.07267765	CHEK1
+at13387	hsp antagonist	201460_at	2.4045360000000002	2.4045360000000002	MAPKAPK2
+brequinar	dihydroorotate dehydrogenase inhibitor	201853_s_at	-2.0592017499999997	2.0592017499999997	CDC25B
+brequinar	dihydroorotate dehydrogenase inhibitor	209380_s_at	3.2408246999999997	3.2408246999999997	ABCC5
+brequinar	dihydroorotate dehydrogenase inhibitor	209050_s_at	2.29401385	2.29401385	RALGDS
+brequinar	dihydroorotate dehydrogenase inhibitor	208708_x_at	-2.60818415	2.60818415	EIF5
+brequinar	dihydroorotate dehydrogenase inhibitor	212281_s_at	-2.0799717500000003	2.0799717500000003	TMEM97
+brequinar	dihydroorotate dehydrogenase inhibitor	221081_s_at	3.21758225	3.21758225	DENND2D
+brequinar	dihydroorotate dehydrogenase inhibitor	205450_at	-2.07137445	2.07137445	PHKA1
+brequinar	dihydroorotate dehydrogenase inhibitor	203291_at	-2.9970454	2.9970454	CNOT4
+brequinar	dihydroorotate dehydrogenase inhibitor	218193_s_at	-3.4070413	3.4070413	GOLT1B
+brequinar	dihydroorotate dehydrogenase inhibitor	205500_at	-2.4979051500000002	2.4979051500000002	C5
+brequinar	dihydroorotate dehydrogenase inhibitor	203727_at	2.39026335	2.39026335	SKIV2L
+brequinar	dihydroorotate dehydrogenase inhibitor	208025_s_at	-2.1919387500000003	2.1919387500000003	HMGA2
+brequinar	dihydroorotate dehydrogenase inhibitor	217168_s_at	-3.16129625	3.16129625	HERPUD1
+brequinar	dihydroorotate dehydrogenase inhibitor	201611_s_at	2.3840624000000004	2.3840624000000004	ICMT
+brequinar	dihydroorotate dehydrogenase inhibitor	202382_s_at	2.0923484	2.0923484	GNPDA1
+brequinar	dihydroorotate dehydrogenase inhibitor	214259_s_at	2.4177435	2.4177435	AKR7A2
+brequinar	dihydroorotate dehydrogenase inhibitor	208992_s_at	2.12869785	2.12869785	STAT3
+brequinar	dihydroorotate dehydrogenase inhibitor	203521_s_at	2.16276485	2.16276485	ZNF318
+brequinar	dihydroorotate dehydrogenase inhibitor	201032_at	2.67246495	2.67246495	BLCAP
+brequinar	dihydroorotate dehydrogenase inhibitor	218346_s_at	3.1680061	3.1680061	SESN1
+brequinar	dihydroorotate dehydrogenase inhibitor	206687_s_at	2.47341285	2.47341285	PTPN6
+brequinar	dihydroorotate dehydrogenase inhibitor	202847_at	-2.4320685	2.4320685	PCK2
+brequinar	dihydroorotate dehydrogenase inhibitor	202722_s_at	-3.7129061000000005	3.7129061000000005	GFPT1
+brequinar	dihydroorotate dehydrogenase inhibitor	212500_at	-3.70558645	3.70558645	ADO
+brequinar	dihydroorotate dehydrogenase inhibitor	210788_s_at	2.48136735	2.48136735	DHRS7
+brequinar	dihydroorotate dehydrogenase inhibitor	201614_s_at	-2.20176835	2.20176835	RUVBL1
+brequinar	dihydroorotate dehydrogenase inhibitor	212871_at	-3.3828895	3.3828895	MAPKAPK5
+brequinar	dihydroorotate dehydrogenase inhibitor	203188_at	2.26344935	2.26344935	B3GNT1
+brequinar	dihydroorotate dehydrogenase inhibitor	202812_at	3.089129	3.089129	GAA
+brequinar	dihydroorotate dehydrogenase inhibitor	218175_at	3.3470863499999997	3.3470863499999997	CCDC92
+brequinar	dihydroorotate dehydrogenase inhibitor	202431_s_at	-3.8886891500000003	3.8886891500000003	MYC
+brequinar	dihydroorotate dehydrogenase inhibitor	202733_at	3.6617800000000003	3.6617800000000003	P4HA2
+brequinar	dihydroorotate dehydrogenase inhibitor	204826_at	2.33272815	2.33272815	CCNF
+brequinar	dihydroorotate dehydrogenase inhibitor	202677_at	-2.98796125	2.98796125	RASA1
+brequinar	dihydroorotate dehydrogenase inhibitor	200810_s_at	-2.89360915	2.89360915	CIRBP
+brequinar	dihydroorotate dehydrogenase inhibitor	201152_s_at	-5.084171850000001	5.084171850000001	MBNL1
+brequinar	dihydroorotate dehydrogenase inhibitor	209166_s_at	2.1539512	2.1539512	MAN2B1
+brequinar	dihydroorotate dehydrogenase inhibitor	209191_at	3.7583798	3.7583798	TUBB6
+brequinar	dihydroorotate dehydrogenase inhibitor	217496_s_at	-2.4071790999999996	2.4071790999999996	IDE
+brequinar	dihydroorotate dehydrogenase inhibitor	203952_at	-2.41402145	2.41402145	ATF6
+brequinar	dihydroorotate dehydrogenase inhibitor	203367_at	2.3250829	2.3250829	DUSP14
+brequinar	dihydroorotate dehydrogenase inhibitor	201000_at	-2.1993537	2.1993537	AARS
+brequinar	dihydroorotate dehydrogenase inhibitor	204039_at	2.7602688499999997	2.7602688499999997	CEBPA
+brequinar	dihydroorotate dehydrogenase inhibitor	218316_at	-3.68211745	3.68211745	TIMM9
+brequinar	dihydroorotate dehydrogenase inhibitor	201985_at	-2.260043	2.260043	KIAA0196
+brequinar	dihydroorotate dehydrogenase inhibitor	204458_at	2.2141014	2.2141014	PLA2G15
+brequinar	dihydroorotate dehydrogenase inhibitor	201746_at	2.1510656	2.1510656	TP53
+brequinar	dihydroorotate dehydrogenase inhibitor	201761_at	-5.00455215	5.00455215	MTHFD2
+brequinar	dihydroorotate dehydrogenase inhibitor	203192_at	2.3390367999999997	2.3390367999999997	ABCB6
+brequinar	dihydroorotate dehydrogenase inhibitor	202284_s_at	5.7524915	5.7524915	CDKN1A
+brequinar	dihydroorotate dehydrogenase inhibitor	200981_x_at	-8.01773	8.01773	GNAS
+brequinar	dihydroorotate dehydrogenase inhibitor	218104_at	-2.1415907	2.1415907	TEX10
+brequinar	dihydroorotate dehydrogenase inhibitor	202794_at	2.8863838	2.8863838	INPP1
+brequinar	dihydroorotate dehydrogenase inhibitor	201709_s_at	-2.06140065	2.06140065	NIPSNAP1
+brequinar	dihydroorotate dehydrogenase inhibitor	218595_s_at	-4.3084069	4.3084069	HEATR1
+brequinar	dihydroorotate dehydrogenase inhibitor	218743_at	2.308669015	2.308669015	CHMP6
+brequinar	dihydroorotate dehydrogenase inhibitor	204748_at	-4.0192775	4.0192775	PTGS2
+brequinar	dihydroorotate dehydrogenase inhibitor	202950_at	-2.2077548	2.2077548	CRYZ
+brequinar	dihydroorotate dehydrogenase inhibitor	201664_at	-5.00313605	5.00313605	SMC4
+brequinar	dihydroorotate dehydrogenase inhibitor	202813_at	-3.5785545	3.5785545	TARBP1
+brequinar	dihydroorotate dehydrogenase inhibitor	207042_at	4.13231825	4.13231825	E2F2
+brequinar	dihydroorotate dehydrogenase inhibitor	204825_at	-2.18159425	2.18159425	MELK
+brequinar	dihydroorotate dehydrogenase inhibitor	217989_at	-2.22898845	2.22898845	HSD17B11
+brequinar	dihydroorotate dehydrogenase inhibitor	203931_s_at	-3.9493239	3.9493239	MRPL12
+brequinar	dihydroorotate dehydrogenase inhibitor	202220_at	2.5713424	2.5713424	KIAA0907
+brequinar	dihydroorotate dehydrogenase inhibitor	203379_at	3.61675685	3.61675685	RPS6KA1
+brequinar	dihydroorotate dehydrogenase inhibitor	207334_s_at	3.6173347499999995	3.6173347499999995	TGFBR2
+brequinar	dihydroorotate dehydrogenase inhibitor	202732_at	-2.4437025	2.4437025	PKIG
+brequinar	dihydroorotate dehydrogenase inhibitor	209608_s_at	2.96403595	2.96403595	ACAT2
+brequinar	dihydroorotate dehydrogenase inhibitor	203409_at	3.07775965	3.07775965	DDB2
+brequinar	dihydroorotate dehydrogenase inhibitor	217900_at	-4.43549715	4.43549715	IARS2
+brequinar	dihydroorotate dehydrogenase inhibitor	208905_at	2.2885168499999997	2.2885168499999997	CYCS
+brequinar	dihydroorotate dehydrogenase inhibitor	204126_s_at	-2.80134695	2.80134695	CDC45
+brequinar	dihydroorotate dehydrogenase inhibitor	213384_x_at	2.0211905	2.0211905	PLCB3
+brequinar	dihydroorotate dehydrogenase inhibitor	202630_at	-3.1701740999999997	3.1701740999999997	APPBP2
+brequinar	dihydroorotate dehydrogenase inhibitor	213150_at	2.9808521	2.9808521	HOXA10
+brequinar	dihydroorotate dehydrogenase inhibitor	202809_s_at	-4.20178615	4.20178615	INTS3
+brequinar	dihydroorotate dehydrogenase inhibitor	221779_at	2.93471835	2.93471835	MICALL1
+brequinar	dihydroorotate dehydrogenase inhibitor	210058_at	3.8797833500000003	3.8797833500000003	MAPK13
+brequinar	dihydroorotate dehydrogenase inhibitor	203221_at	-3.01743305	3.01743305	TLE1
+brequinar	dihydroorotate dehydrogenase inhibitor	204256_at	-5.748861	5.748861	ELOVL6
+brequinar	dihydroorotate dehydrogenase inhibitor	203073_at	-2.836894	2.836894	COG2
+brequinar	dihydroorotate dehydrogenase inhibitor	200757_s_at	-2.55260195	2.55260195	CALU
+brequinar	dihydroorotate dehydrogenase inhibitor	222103_at	2.4146324000000003	2.4146324000000003	ATF1
+brequinar	dihydroorotate dehydrogenase inhibitor	219888_at	-3.8140016	3.8140016	SPAG4
+brequinar	dihydroorotate dehydrogenase inhibitor	218571_s_at	-2.59720755	2.59720755	CHMP4A
+brequinar	dihydroorotate dehydrogenase inhibitor	200678_x_at	2.40164065	2.40164065	GRN
+brequinar	dihydroorotate dehydrogenase inhibitor	202911_at	-2.45117735	2.45117735	MSH6
+brequinar	dihydroorotate dehydrogenase inhibitor	213844_at	2.2221394	2.2221394	HOXA5
+brequinar	dihydroorotate dehydrogenase inhibitor	201976_s_at	-3.076225	3.076225	MYO10
+brequinar	dihydroorotate dehydrogenase inhibitor	201855_s_at	-3.331684	3.331684	ATMIN
+brequinar	dihydroorotate dehydrogenase inhibitor	202705_at	-3.33388615	3.33388615	CCNB2
+brequinar	dihydroorotate dehydrogenase inhibitor	204781_s_at	3.6278555	3.6278555	FAS
+brequinar	dihydroorotate dehydrogenase inhibitor	207871_s_at	-2.9680501	2.9680501	ST7
+brequinar	dihydroorotate dehydrogenase inhibitor	201397_at	-2.15368345	2.15368345	PHGDH
+brequinar	dihydroorotate dehydrogenase inhibitor	205055_at	-2.6827212	2.6827212	ITGAE
+brequinar	dihydroorotate dehydrogenase inhibitor	218290_at	-4.68548965	4.68548965	PLEKHJ1
+brequinar	dihydroorotate dehydrogenase inhibitor	205393_s_at	-5.6760665	5.6760665	CHEK1
 dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	203343_at	2.0800482	2.0800482	UGDH
-dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	209464_at	-2.8196157	2.8196157	AURKB
-dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	212851_at	2.0237219	2.0237219	DCUN1D4
-dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	218852_at	-2.031749	2.031749	PPP2R3C
-dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	203973_s_at	3.08031965	3.08031965	CEBPD
-dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	209364_at	2.22714745	2.22714745	BAD
-dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	219270_at	-2.4950232	2.4950232	CHAC1
-dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	202889_x_at	2.7098589000000004	2.7098589000000004	MAP7
-dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	205451_at	2.0394347	2.0394347	FOXO4
-dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	203418_at	-2.0098652	2.0098652	CCNA2
-dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	204826_at	3.1569190000000003	3.1569190000000003	CCNF
-dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	208708_x_at	-4.02720615	4.02720615	EIF5
-dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	202678_at	-2.12375005	2.12375005	GTF2A2
-dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	209191_at	-3.03915645	3.03915645	TUBB6
-dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	201788_at	-2.6386094	2.6386094	DDX42
-dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	203911_at	2.93431555	2.93431555	RAP1GAP
+dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	218168_s_at	2.6807714999999996	2.6807714999999996	ADCK3
+dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	208905_at	3.2410889000000003	3.2410889000000003	CYCS
 dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	205376_at	2.1972312499999997	2.1972312499999997	INPP4B
+dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	202705_at	-4.4685281	4.4685281	CCNB2
+dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	200981_x_at	-3.9187585	3.9187585	GNAS
+dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	209464_at	-2.8196157	2.8196157	AURKB
+dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	205811_at	-3.40208175	3.40208175	POLG2
 dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	209095_at	-2.1337121	2.1337121	DLD
 dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	217752_s_at	-2.32861065	2.32861065	CNDP2
 dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	208872_s_at	-2.2811983	2.2811983	REEP5
-dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	202705_at	-4.4685281	4.4685281	CCNB2
-dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	208905_at	3.2410889000000003	3.2410889000000003	CYCS
+dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	204826_at	3.1569190000000003	3.1569190000000003	CCNF
+dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	219270_at	-2.4950232	2.4950232	CHAC1
+dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	208708_x_at	-4.02720615	4.02720615	EIF5
 dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	207334_s_at	2.4575235500000003	2.4575235500000003	TGFBR2
+dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	202454_s_at	2.15496185	2.15496185	ERBB3
+dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	202889_x_at	2.7098589000000004	2.7098589000000004	MAP7
 dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	205039_s_at	2.29993895	2.29993895	IKZF1
-dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	200981_x_at	-3.9187585	3.9187585	GNAS
-sta-5326	interleukin synthesis inhibitor	208626_s_at	4.390658999999999	4.390658999999999	VAT1
-sta-5326	interleukin synthesis inhibitor	204126_s_at	-2.40059575	2.40059575	CDC45
-sta-5326	interleukin synthesis inhibitor	202599_s_at	-2.37506335	2.37506335	NRIP1
-sta-5326	interleukin synthesis inhibitor	208898_at	2.2758677	2.2758677	ATP6V1D
-sta-5326	interleukin synthesis inhibitor	218145_at	2.4322574	2.4322574	TRIB3
-sta-5326	interleukin synthesis inhibitor	213702_x_at	4.3152908	4.3152908	ASAH1
-sta-5326	interleukin synthesis inhibitor	219952_s_at	2.2548006999999997	2.2548006999999997	MCOLN1
-sta-5326	interleukin synthesis inhibitor	201626_at	8.1292615	8.1292615	INSIG1
-sta-5326	interleukin synthesis inhibitor	202900_s_at	-2.7690655	2.7690655	NUP88
-sta-5326	interleukin synthesis inhibitor	200789_at	3.27266335	3.27266335	ECH1
-sta-5326	interleukin synthesis inhibitor	204256_at	7.9390525	7.9390525	ELOVL6
-sta-5326	interleukin synthesis inhibitor	201170_s_at	2.49849285	2.49849285	BHLHE40
-sta-5326	interleukin synthesis inhibitor	202735_at	6.4460669	6.4460669	EBP
-sta-5326	interleukin synthesis inhibitor	220091_at	4.9133475	4.9133475	SLC2A6
-sta-5326	interleukin synthesis inhibitor	201102_s_at	2.6991568	2.6991568	PFKL
-sta-5326	interleukin synthesis inhibitor	209875_s_at	4.6900385	4.6900385	SPP1
-sta-5326	interleukin synthesis inhibitor	201536_at	3.4039972	3.4039972	DUSP3
-sta-5326	interleukin synthesis inhibitor	203665_at	3.1222626499999997	3.1222626499999997	HMOX1
-sta-5326	interleukin synthesis inhibitor	221478_at	2.20305815	2.20305815	BNIP3L
-sta-5326	interleukin synthesis inhibitor	202246_s_at	2.3578934499999997	2.3578934499999997	CDK4
-sta-5326	interleukin synthesis inhibitor	218498_s_at	2.42098335	2.42098335	ERO1L
-sta-5326	interleukin synthesis inhibitor	208992_s_at	2.729972	2.729972	STAT3
-sta-5326	interleukin synthesis inhibitor	204748_at	2.1763538	2.1763538	PTGS2
-sta-5326	interleukin synthesis inhibitor	201471_s_at	3.01338425	3.01338425	SQSTM1
-sta-5326	interleukin synthesis inhibitor	202887_s_at	2.0211075999999997	2.0211075999999997	DDIT4
-sta-5326	interleukin synthesis inhibitor	215093_at	3.7606959499999997	3.7606959499999997	NSDHL
-sta-5326	interleukin synthesis inhibitor	208763_s_at	4.1704819	4.1704819	TSC22D3
-sta-5326	interleukin synthesis inhibitor	205691_at	2.07440575	2.07440575	SYNGR3
-sta-5326	interleukin synthesis inhibitor	209608_s_at	9.264952000000001	9.264952000000001	ACAT2
-sta-5326	interleukin synthesis inhibitor	200678_x_at	3.36759055	3.36759055	GRN
-sta-5326	interleukin synthesis inhibitor	219082_at	4.91610525	4.91610525	AMDHD2
-sta-5326	interleukin synthesis inhibitor	203119_at	-2.0329951	2.0329951	CCDC86
-sta-5326	interleukin synthesis inhibitor	211747_s_at	-2.0017944500000002	2.0017944500000002	LSM5
-sta-5326	interleukin synthesis inhibitor	221750_at	4.66704585	4.66704585	HMGCS1
-sta-5326	interleukin synthesis inhibitor	218290_at	2.07842365	2.07842365	PLEKHJ1
-sta-5326	interleukin synthesis inhibitor	210337_s_at	2.1619725499999998	2.1619725499999998	ACLY
+dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	202491_s_at	3.39626175	3.39626175	IKBKAP
+dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	217956_s_at	-2.45742505	2.45742505	ENOPH1
+dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	203911_at	2.93431555	2.93431555	RAP1GAP
+dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	217900_at	-3.9727691	3.9727691	IARS2
+dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	212851_at	2.0237219	2.0237219	DCUN1D4
+dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	218852_at	-2.031749	2.031749	PPP2R3C
+dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	202678_at	-2.12375005	2.12375005	GTF2A2
+dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	205451_at	2.0394347	2.0394347	FOXO4
+dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	203418_at	-2.0098652	2.0098652	CCNA2
+dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	202732_at	-3.2091685	3.2091685	PKIG
+dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	203973_s_at	3.08031965	3.08031965	CEBPD
+dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	209364_at	2.22714745	2.22714745	BAD
+dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	202599_s_at	-2.64419495	2.64419495	NRIP1
+dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	209191_at	-3.03915645	3.03915645	TUBB6
+dasatinib	kit inhibitor|src inhibitor|bcr-abl kinase inhibitor|ephrin inhibitor|pdgfr tyrosine kinase receptor inhibitor|tyrosine kinase inhibitor	201788_at	-2.6386094	2.6386094	DDX42
+l-ergothioneine	free radical scavenger	209161_at	-3.45453145	3.45453145	PRPF4
+l-ergothioneine	free radical scavenger	219581_at	3.25758085	3.25758085	TSEN2
+l-ergothioneine	free radical scavenger	218755_at	3.63045315	3.63045315	KIF20A
+l-ergothioneine	free radical scavenger	217995_at	-2.03114615	2.03114615	SQRDL
+l-ergothioneine	free radical scavenger	201503_at	-3.9855315000000004	3.9855315000000004	G3BP1
+l-ergothioneine	free radical scavenger	201817_at	3.6605765999999997	3.6605765999999997	UBE3C
+l-ergothioneine	free radical scavenger	217777_s_at	-2.4239117	2.4239117	PTPLAD1
+l-ergothioneine	free radical scavenger	202491_s_at	2.75804935	2.75804935	IKBKAP
+l-ergothioneine	free radical scavenger	212955_s_at	-2.01691815	2.01691815	POLR2I
+l-ergothioneine	free radical scavenger	205120_s_at	2.1894187499999997	2.1894187499999997	SGCB
+l-ergothioneine	free radical scavenger	217956_s_at	-2.3146597	2.3146597	ENOPH1
+l-ergothioneine	free radical scavenger	218086_at	-2.12811168	2.12811168	NPDC1
+l-ergothioneine	free radical scavenger	215093_at	-2.4263686	2.4263686	NSDHL
+l-ergothioneine	free radical scavenger	218826_at	-3.36711645	3.36711645	SLC35F2
+l-ergothioneine	free radical scavenger	206050_s_at	2.04751235	2.04751235	RNH1
+l-ergothioneine	free radical scavenger	205811_at	-2.38156985	2.38156985	POLG2
+l-ergothioneine	free radical scavenger	221492_s_at	-3.0988624	3.0988624	ATG3
+l-ergothioneine	free radical scavenger	203494_s_at	-2.00073445	2.00073445	CEP57
+l-ergothioneine	free radical scavenger	202623_at	-2.5035472	2.5035472	EAPP
+l-ergothioneine	free radical scavenger	202963_at	-2.42818725	2.42818725	RFX5
+l-ergothioneine	free radical scavenger	218051_s_at	3.1456131999999997	3.1456131999999997	NT5DC2
+l-ergothioneine	free radical scavenger	203138_at	-4.53960535	4.53960535	HAT1
+l-ergothioneine	free radical scavenger	204662_at	-2.50598	2.50598	CCP110
+l-ergothioneine	free radical scavenger	203336_s_at	-2.4048763500000003	2.4048763500000003	ITGB1BP1
+l-ergothioneine	free radical scavenger	212591_at	-3.4924383	3.4924383	RBM34
+l-ergothioneine	free radical scavenger	212880_at	2.5931897	2.5931897	WDR7
+l-ergothioneine	free radical scavenger	208626_s_at	-2.6803732	2.6803732	VAT1
+l-ergothioneine	free radical scavenger	211758_x_at	-4.0525312499999995	4.0525312499999995	TXNDC9
+l-ergothioneine	free radical scavenger	218742_at	2.7290896	2.7290896	NARFL
+l-ergothioneine	free radical scavenger	217900_at	-5.2682258	5.2682258	IARS2
+l-ergothioneine	free radical scavenger	209045_at	-4.0654383	4.0654383	XPNPEP1
+l-ergothioneine	free radical scavenger	217722_s_at	-2.88566285	2.88566285	NGRN
+l-ergothioneine	free radical scavenger	213995_at	-2.02851085	2.02851085	ATP5S
+l-ergothioneine	free radical scavenger	203566_s_at	-2.8868253499999996	2.8868253499999996	AGL
+l-ergothioneine	free radical scavenger	219082_at	3.04216335	3.04216335	AMDHD2
+l-ergothioneine	free radical scavenger	209409_at	2.43433145	2.43433145	GRB10
+l-ergothioneine	free radical scavenger	204605_at	-2.34101925	2.34101925	CGRRF1
+l-ergothioneine	free radical scavenger	221610_s_at	3.28369965	3.28369965	STAP2
+l-ergothioneine	free radical scavenger	208634_s_at	2.0006258	2.0006258	MACF1
+l-ergothioneine	free radical scavenger	211783_s_at	2.09938455	2.09938455	MTA1
+l-ergothioneine	free radical scavenger	202500_at	2.2070265	2.2070265	DNAJB2
+l-ergothioneine	free radical scavenger	205130_at	2.57470335	2.57470335	MOK
+l-ergothioneine	free radical scavenger	209507_at	-4.39848245	4.39848245	RPA3
+l-ergothioneine	free radical scavenger	217989_at	-2.6275413	2.6275413	HSD17B11
+l-ergothioneine	free radical scavenger	209100_at	-3.4237652	3.4237652	IFRD2
+l-ergothioneine	free radical scavenger	218215_s_at	3.05333675	3.05333675	NR1H2
+l-ergothioneine	free radical scavenger	209262_s_at	-4.0993553	4.0993553	NR2F6
+l-ergothioneine	free radical scavenger	203346_s_at	-3.1579427	3.1579427	MTF2
+l-ergothioneine	free radical scavenger	212231_at	-5.13633825	5.13633825	FBXO21
+l-ergothioneine	free radical scavenger	201185_at	-2.1496385	2.1496385	HTRA1
+l-ergothioneine	free radical scavenger	218852_at	-5.6537085000000005	5.6537085000000005	PPP2R3C
+l-ergothioneine	free radical scavenger	210719_s_at	3.6697702999999997	3.6697702999999997	HMG20B
+l-ergothioneine	free radical scavenger	218001_at	3.1599095	3.1599095	MRPS2
+l-ergothioneine	free radical scavenger	218679_s_at	-2.1424567000000003	2.1424567000000003	VPS28
+l-ergothioneine	free radical scavenger	212899_at	2.73797155	2.73797155	CDK19
+l-ergothioneine	free radical scavenger	204679_at	-2.0627417	2.0627417	KCNK1
+l-ergothioneine	free radical scavenger	201565_s_at	3.12610675	3.12610675	ID2
+l-ergothioneine	free radical scavenger	219952_s_at	3.1210183000000002	3.1210183000000002	MCOLN1
+l-ergothioneine	free radical scavenger	218050_at	-2.79982805	2.79982805	UFM1
+l-ergothioneine	free radical scavenger	203303_at	-3.09782555	3.09782555	DYNLT3
+l-ergothioneine	free radical scavenger	209608_s_at	-3.17022235	3.17022235	ACAT2
+l-ergothioneine	free radical scavenger	202052_s_at	2.06139795	2.06139795	RAI14
+l-ergothioneine	free radical scavenger	204825_at	-4.0112561	4.0112561	MELK
+l-ergothioneine	free radical scavenger	218346_s_at	2.9736119	2.9736119	SESN1
+l-ergothioneine	free radical scavenger	218961_s_at	3.02600335	3.02600335	PNKP
+l-ergothioneine	free radical scavenger	219711_at	3.16836025	3.16836025	ZNF586
+l-ergothioneine	free radical scavenger	218104_at	-2.4990226499999997	2.4990226499999997	TEX10
+l-ergothioneine	free radical scavenger	205205_at	3.5106078500000004	3.5106078500000004	RELB
+l-ergothioneine	free radical scavenger	200981_x_at	-4.107696499999999	4.107696499999999	GNAS
+l-ergothioneine	free radical scavenger	202813_at	3.3223637000000004	3.3223637000000004	TARBP1
+l-ergothioneine	free radical scavenger	208908_s_at	-2.96780225	2.96780225	CAST
+l-ergothioneine	free radical scavenger	211747_s_at	-7.280612	7.280612	LSM5
+l-ergothioneine	free radical scavenger	217911_s_at	-2.33679855	2.33679855	BAG3
+l-ergothioneine	free radical scavenger	218375_at	-2.9950474	2.9950474	NUDT9
+l-ergothioneine	free radical scavenger	218034_at	2.4240499	2.4240499	FIS1
+l-ergothioneine	free radical scavenger	219390_at	-2.4023421000000003	2.4023421000000003	FKBP14
+l-ergothioneine	free radical scavenger	219076_s_at	-2.9060857	2.9060857	PXMP2
+l-ergothioneine	free radical scavenger	208424_s_at	-3.31018	3.31018	CIAPIN1
+l-ergothioneine	free radical scavenger	201788_at	-2.6021938000000002	2.6021938000000002	DDX42
+l-ergothioneine	free radical scavenger	218168_s_at	2.57346535	2.57346535	ADCK3
+l-ergothioneine	free radical scavenger	221856_s_at	2.4592718000000002	2.4592718000000002	FAM63A
+l-ergothioneine	free radical scavenger	212689_s_at	-2.438605	2.438605	KDM3A
+l-ergothioneine	free radical scavenger	215884_s_at	-2.7160375500000002	2.7160375500000002	UBQLN2
+l-ergothioneine	free radical scavenger	203067_at	4.526904	4.526904	PDHX
+l-ergothioneine	free radical scavenger	217168_s_at	-2.56962775	2.56962775	HERPUD1
+l-ergothioneine	free radical scavenger	203119_at	3.4268675	3.4268675	CCDC86
+l-ergothioneine	free radical scavenger	217758_s_at	-3.34054965	3.34054965	TM9SF3
+l-ergothioneine	free radical scavenger	208708_x_at	-6.23424435	6.23424435	EIF5
+l-ergothioneine	free radical scavenger	204517_at	4.6843725	4.6843725	PPIC
+l-ergothioneine	free radical scavenger	212485_at	6.3413312	6.3413312	GPATCH8
+l-ergothioneine	free radical scavenger	218108_at	-3.06045385	3.06045385	UBR7
+l-ergothioneine	free radical scavenger	218193_s_at	-3.7157815999999997	3.7157815999999997	GOLT1B
+l-ergothioneine	free radical scavenger	217761_at	-3.3752732500000002	3.3752732500000002	ADI1
+l-ergothioneine	free radical scavenger	218794_s_at	-3.909277	3.909277	TXNL4B
+l-ergothioneine	free radical scavenger	203458_at	-2.3718767	2.3718767	SPR
+l-ergothioneine	free radical scavenger	204809_at	2.9844811	2.9844811	CLPX
+l-ergothioneine	free radical scavenger	203301_s_at	-2.5724781	2.5724781	DMTF1
+l-ergothioneine	free radical scavenger	221552_at	2.15620955	2.15620955	ABHD6
+l-ergothioneine	free radical scavenger	200814_at	-3.8882954	3.8882954	PSME1
+l-ergothioneine	free radical scavenger	201976_s_at	2.15159475	2.15159475	MYO10
+l-ergothioneine	free radical scavenger	202148_s_at	2.06208885	2.06208885	PYCR1
+l-ergothioneine	free radical scavenger	203405_at	-2.9101925	2.9101925	PSMG1
+l-ergothioneine	free radical scavenger	212281_s_at	-2.6211226	2.6211226	TMEM97
+l-ergothioneine	free radical scavenger	203627_at	-2.83467565	2.83467565	IGF1R
+l-ergothioneine	free radical scavenger	218597_s_at	-2.75073975	2.75073975	CISD1
+l-ergothioneine	free radical scavenger	201932_at	-2.13827195	2.13827195	LRRC41
+l-ergothioneine	free radical scavenger	202784_s_at	4.0340793	4.0340793	NNT
+l-ergothioneine	free radical scavenger	213384_x_at	2.62273375	2.62273375	PLCB3
+l-ergothioneine	free radical scavenger	200799_at	-6.224838699999999	6.224838699999999	HSPA1A
+l-ergothioneine	free radical scavenger	201292_at	2.1560039	2.1560039	TOP2A
+l-ergothioneine	free radical scavenger	201339_s_at	2.83960085	2.83960085	SCP2
+l-ergothioneine	free radical scavenger	201875_s_at	-3.8716942	3.8716942	MPZL1
+l-ergothioneine	free radical scavenger	201460_at	3.02774745	3.02774745	MAPKAPK2
+l-ergothioneine	free radical scavenger	201102_s_at	2.038164	2.038164	PFKL
+l-ergothioneine	free radical scavenger	201323_at	-2.6294139999999997	2.6294139999999997	EBNA1BP2
+l-ergothioneine	free radical scavenger	208398_s_at	-2.0147989	2.0147989	TBPL1
+l-ergothioneine	free radical scavenger	212255_s_at	2.0826948	2.0826948	ATP2C1
+l-ergothioneine	free radical scavenger	208905_at	-3.58915695	3.58915695	CYCS
+l-ergothioneine	free radical scavenger	202446_s_at	-2.2236187000000003	2.2236187000000003	PLSCR1
+l-ergothioneine	free radical scavenger	202224_at	-3.5665105	3.5665105	CRK
+l-ergothioneine	free radical scavenger	208687_x_at	2.6876895000000003	2.6876895000000003	HSPA8
+l-ergothioneine	free radical scavenger	201202_at	2.67742065	2.67742065	PCNA
+l-ergothioneine	free radical scavenger	208728_s_at	-4.0752245	4.0752245	CDC42
+l-ergothioneine	free radical scavenger	201959_s_at	2.2568738	2.2568738	MYCBP2
+l-ergothioneine	free radical scavenger	218245_at	2.09069955	2.09069955	TSKU
+l-ergothioneine	free radical scavenger	204458_at	3.44918205	3.44918205	PLA2G15
+l-ergothioneine	free radical scavenger	216598_s_at	2.03545535	2.03545535	CCL2
+l-ergothioneine	free radical scavenger	202776_at	2.0097578	2.0097578	DNTTIP2
+l-ergothioneine	free radical scavenger	202651_at	-2.9080243	2.9080243	LPGAT1
+l-ergothioneine	free radical scavenger	1007_s_at	6.299925200000001	6.299925200000001	DDR1
+l-ergothioneine	free radical scavenger	209515_s_at	2.26971875	2.26971875	RAB27A
+l-ergothioneine	free radical scavenger	221562_s_at	3.1627275	3.1627275	SIRT3
+l-ergothioneine	free radical scavenger	202188_at	-4.50099365	4.50099365	NUP93
+l-ergothioneine	free radical scavenger	207042_at	3.2674918	3.2674918	E2F2
+l-ergothioneine	free radical scavenger	201074_at	-3.00495115	3.00495115	SMARCC1
+l-ergothioneine	free radical scavenger	203208_s_at	-4.374573	4.374573	MTFR1
+l-ergothioneine	free radical scavenger	200053_at	2.66179455	2.66179455	SPAG7
+l-ergothioneine	free radical scavenger	200617_at	2.3204105	2.3204105	MLEC
+l-ergothioneine	free radical scavenger	202675_at	-2.3327643	2.3327643	SDHB
+l-ergothioneine	free radical scavenger	207842_s_at	2.51457835	2.51457835	CASC3
+l-ergothioneine	free radical scavenger	201870_at	-2.8843366	2.8843366	TOMM34
+l-ergothioneine	free radical scavenger	201087_at	2.3082155999999996	2.3082155999999996	PXN
+l-ergothioneine	free radical scavenger	204256_at	-2.1580700999999998	2.1580700999999998	ELOVL6
+l-ergothioneine	free radical scavenger	201528_at	2.70143545	2.70143545	RPA1
+l-ergothioneine	free radical scavenger	202811_at	-3.28039445	3.28039445	STAMBP
+l-ergothioneine	free radical scavenger	201819_at	3.0115166	3.0115166	SCARB1
+l-ergothioneine	free radical scavenger	202900_s_at	3.6029022	3.6029022	NUP88
+l-ergothioneine	free radical scavenger	209586_s_at	3.185561	3.185561	PRUNE
+l-ergothioneine	free radical scavenger	201260_s_at	2.5302138000000003	2.5302138000000003	SYPL1
+l-ergothioneine	free radical scavenger	204000_at	3.9176145	3.9176145	GNB5
+l-ergothioneine	free radical scavenger	203442_x_at	2.0441075	2.0441075	EML3
+l-ergothioneine	free radical scavenger	201811_x_at	-2.5287783499999996	2.5287783499999996	SH3BP5
+l-ergothioneine	free radical scavenger	201913_s_at	-3.21731365	3.21731365	COASY
+l-ergothioneine	free radical scavenger	201391_at	2.57452635	2.57452635	TRAP1
+l-ergothioneine	free radical scavenger	201555_at	3.58030355	3.58030355	MCM3
+l-ergothioneine	free radical scavenger	203154_s_at	3.3929057499999997	3.3929057499999997	PAK4
+l-ergothioneine	free radical scavenger	208647_at	-3.28447125	3.28447125	FDFT1
+l-ergothioneine	free radical scavenger	202868_s_at	2.1096051	2.1096051	POP4
+l-ergothioneine	free radical scavenger	201011_at	-6.2721269	6.2721269	RPN1
+l-ergothioneine	free radical scavenger	212189_s_at	2.08559085	2.08559085	COG4
+l-ergothioneine	free radical scavenger	202261_at	4.0094025	4.0094025	VPS72
+l-ergothioneine	free radical scavenger	202887_s_at	-3.382849	3.382849	DDIT4
+l-ergothioneine	free radical scavenger	207163_s_at	3.51791365	3.51791365	AKT1
+l-ergothioneine	free radical scavenger	200071_at	-4.0991596	4.0991596	SMNDC1
+l-ergothioneine	free radical scavenger	201098_at	2.9866125500000003	2.9866125500000003	COPB2
+l-ergothioneine	free radical scavenger	206688_s_at	4.33305295	4.33305295	CPSF4
+l-ergothioneine	free radical scavenger	201170_s_at	2.51111415	2.51111415	BHLHE40
+l-ergothioneine	free radical scavenger	202635_s_at	-5.22514785	5.22514785	POLR2K
+l-ergothioneine	free radical scavenger	204420_at	2.0748505	2.0748505	FOSL1
+l-ergothioneine	free radical scavenger	211318_s_at	-3.09340265	3.09340265	RAE1
+l-ergothioneine	free radical scavenger	201152_s_at	-4.69835475	4.69835475	MBNL1
+l-ergothioneine	free radical scavenger	202647_s_at	-2.63123585	2.63123585	NRAS
+l-ergothioneine	free radical scavenger	201334_s_at	3.0316149	3.0316149	ARHGEF12
+l-ergothioneine	free radical scavenger	205379_at	-2.9496693499999997	2.9496693499999997	CBR3
+l-ergothioneine	free radical scavenger	201693_s_at	4.2941255	4.2941255	EGR1
+l-ergothioneine	free radical scavenger	201746_at	-2.6712526	2.6712526	TP53
+l-ergothioneine	free radical scavenger	202950_at	-3.0328987	3.0328987	CRYZ
+l-ergothioneine	free radical scavenger	201829_at	-3.6246649	3.6246649	NET1
+l-ergothioneine	free radical scavenger	218292_s_at	2.6388149	2.6388149	PRKAG2
+l-ergothioneine	free radical scavenger	202246_s_at	-2.53177915	2.53177915	CDK4
+l-ergothioneine	free radical scavenger	205581_s_at	3.4087406	3.4087406	NOS3
+l-ergothioneine	free radical scavenger	201849_at	3.00672985	3.00672985	BNIP3
+l-ergothioneine	free radical scavenger	202677_at	4.8026672999999995	4.8026672999999995	RASA1
+l-ergothioneine	free radical scavenger	204531_s_at	-2.29653385	2.29653385	BRCA1
+l-ergothioneine	free radical scavenger	203557_s_at	2.9916625000000003	2.9916625000000003	PCBD1
+l-ergothioneine	free radical scavenger	202174_s_at	-2.0696719999999997	2.0696719999999997	PCM1
+l-ergothioneine	free radical scavenger	202659_at	-2.6762225500000003	2.6762225500000003	PSMB10
+l-ergothioneine	free radical scavenger	202598_at	-2.07135925	2.07135925	S100A13
+l-ergothioneine	free radical scavenger	205504_at	2.5535531000000002	2.5535531000000002	BTK
+l-ergothioneine	free radical scavenger	204748_at	-3.839917	3.839917	PTGS2
+l-ergothioneine	free radical scavenger	209341_s_at	-2.30128845	2.30128845	IKBKB
+l-ergothioneine	free radical scavenger	203409_at	-2.3806633	2.3806633	DDB2
+l-ergothioneine	free radical scavenger	207034_s_at	2.671978	2.671978	GLI2
+l-ergothioneine	free radical scavenger	209682_at	3.4270451	3.4270451	CBLB
+l-ergothioneine	free radical scavenger	213702_x_at	-2.3452802999999998	2.3452802999999998	ASAH1
+l-ergothioneine	free radical scavenger	202990_at	2.6313896000000003	2.6313896000000003	PYGL
+l-ergothioneine	free radical scavenger	209860_s_at	-4.0617621	4.0617621	ANXA7
+l-ergothioneine	free radical scavenger	200059_s_at	4.89531835	4.89531835	RHOA
+l-ergothioneine	free radical scavenger	205895_s_at	-2.449409	2.449409	NOLC1
+l-ergothioneine	free radical scavenger	202447_at	-2.15285425	2.15285425	DECR1
+l-ergothioneine	free radical scavenger	201412_at	2.13745245	2.13745245	LRP10
+l-ergothioneine	free radical scavenger	203367_at	2.02423465	2.02423465	DUSP14
+l-ergothioneine	free radical scavenger	204093_at	-3.0667778500000002	3.0667778500000002	CCNH
+l-ergothioneine	free radical scavenger	201727_s_at	2.6700225	2.6700225	ELAVL1
+l-ergothioneine	free radical scavenger	200078_s_at	-4.6097458499999995	4.6097458499999995	ATP6V0B
+l-ergothioneine	free radical scavenger	217871_s_at	-2.4206996	2.4206996	MIF
+l-ergothioneine	free radical scavenger	208025_s_at	-2.3789263	2.3789263	HMGA2
+l-ergothioneine	free radical scavenger	201494_at	-3.3270070499999997	3.3270070499999997	PRCP
+l-ergothioneine	free radical scavenger	200810_s_at	-3.37308595	3.37308595	CIRBP
+l-ergothioneine	free radical scavenger	208936_x_at	3.1947826	3.1947826	LGALS8
+l-ergothioneine	free radical scavenger	218847_at	-2.6724099	2.6724099	IGF2BP2
+l-ergothioneine	free radical scavenger	212665_at	-3.1333961	3.1333961	TIPARP
+lasalocid	bacterial permeability inducer	202230_s_at	2.19835565	2.19835565	CHERP
+lasalocid	bacterial permeability inducer	218852_at	-3.4385719999999997	3.4385719999999997	PPP2R3C
+lasalocid	bacterial permeability inducer	200083_at	-2.1676395	2.1676395	USP22
+lasalocid	bacterial permeability inducer	209045_at	-5.7517038	5.7517038	XPNPEP1
+lasalocid	bacterial permeability inducer	203341_at	-3.8403944999999995	3.8403944999999995	CEBPZ
+lasalocid	bacterial permeability inducer	202735_at	-3.07848945	3.07848945	EBP
+lasalocid	bacterial permeability inducer	207163_s_at	3.5238204	3.5238204	AKT1
+lasalocid	bacterial permeability inducer	200617_at	2.1550318	2.1550318	MLEC
+lasalocid	bacterial permeability inducer	203566_s_at	-3.14975815	3.14975815	AGL
+lasalocid	bacterial permeability inducer	218001_at	3.12228145	3.12228145	MRPS2
+lasalocid	bacterial permeability inducer	201811_x_at	-2.0820718	2.0820718	SH3BP5
+lasalocid	bacterial permeability inducer	204531_s_at	-3.2178429	3.2178429	BRCA1
+lasalocid	bacterial permeability inducer	217995_at	2.3612921	2.3612921	SQRDL
+lasalocid	bacterial permeability inducer	200814_at	-3.059585	3.059585	PSME1
+lasalocid	bacterial permeability inducer	212231_at	-3.1195221	3.1195221	FBXO21
+lasalocid	bacterial permeability inducer	203442_x_at	2.8748895	2.8748895	EML3
+lasalocid	bacterial permeability inducer	202927_at	2.8142025999999998	2.8142025999999998	PIN1
+lasalocid	bacterial permeability inducer	208898_at	2.26868465	2.26868465	ATP6V1D
+lasalocid	bacterial permeability inducer	202738_s_at	2.1801576	2.1801576	PHKB
+lasalocid	bacterial permeability inducer	204662_at	-2.47593405	2.47593405	CCP110
+lasalocid	bacterial permeability inducer	210719_s_at	3.9266371500000004	3.9266371500000004	HMG20B
+lasalocid	bacterial permeability inducer	202109_at	4.05380765	4.05380765	ARFIP2
+lasalocid	bacterial permeability inducer	200059_s_at	3.22075725	3.22075725	RHOA
+lasalocid	bacterial permeability inducer	202811_at	-2.72240355	2.72240355	STAMBP
+lasalocid	bacterial permeability inducer	218051_s_at	2.26820735	2.26820735	NT5DC2
+lasalocid	bacterial permeability inducer	202963_at	-4.5152459	4.5152459	RFX5
+lasalocid	bacterial permeability inducer	218755_at	2.45597625	2.45597625	KIF20A
+lasalocid	bacterial permeability inducer	200614_at	2.22721385	2.22721385	CLTC
+lasalocid	bacterial permeability inducer	209507_at	-4.6238621	4.6238621	RPA3
+lasalocid	bacterial permeability inducer	202813_at	2.1189413	2.1189413	TARBP1
+lasalocid	bacterial permeability inducer	202647_s_at	-3.74378465	3.74378465	NRAS
+lasalocid	bacterial permeability inducer	208891_at	-2.87058975	2.87058975	DUSP6
+lasalocid	bacterial permeability inducer	212899_at	2.35261605	2.35261605	CDK19
+lasalocid	bacterial permeability inducer	201536_at	-4.2494355	4.2494355	DUSP3
+lasalocid	bacterial permeability inducer	208905_at	-4.9171431000000005	4.9171431000000005	CYCS
+lasalocid	bacterial permeability inducer	221641_s_at	-2.1009725	2.1009725	ACOT9
+lasalocid	bacterial permeability inducer	218050_at	-3.3020992	3.3020992	UFM1
+lasalocid	bacterial permeability inducer	211980_at	2.12125705	2.12125705	COL4A1
+lasalocid	bacterial permeability inducer	205039_s_at	2.8243907999999998	2.8243907999999998	IKZF1
+lasalocid	bacterial permeability inducer	218108_at	-5.21133055	5.21133055	UBR7
+lasalocid	bacterial permeability inducer	204093_at	-3.0944541	3.0944541	CCNH
+lasalocid	bacterial permeability inducer	217900_at	-2.8941819	2.8941819	IARS2
+lasalocid	bacterial permeability inducer	208728_s_at	-2.6549336500000003	2.6549336500000003	CDC42
+lasalocid	bacterial permeability inducer	203067_at	2.79174445	2.79174445	PDHX
+lasalocid	bacterial permeability inducer	208687_x_at	-3.3143723	3.3143723	HSPA8
+lasalocid	bacterial permeability inducer	218847_at	-2.05496825	2.05496825	IGF2BP2
+lasalocid	bacterial permeability inducer	208510_s_at	-2.779444	2.779444	PPARG
+lasalocid	bacterial permeability inducer	207515_s_at	-2.3428006000000003	2.3428006000000003	POLR1C
+lasalocid	bacterial permeability inducer	218168_s_at	-2.0086513	2.0086513	ADCK3
+lasalocid	bacterial permeability inducer	218292_s_at	2.6086017	2.6086017	PRKAG2
+lasalocid	bacterial permeability inducer	202635_s_at	-6.063218	6.063218	POLR2K
+lasalocid	bacterial permeability inducer	209682_at	2.5809919	2.5809919	CBLB
+lasalocid	bacterial permeability inducer	201011_at	-2.83161885	2.83161885	RPN1
+lasalocid	bacterial permeability inducer	205205_at	2.32785025	2.32785025	RELB
+lasalocid	bacterial permeability inducer	200989_at	-2.58259215	2.58259215	HIF1A
+lasalocid	bacterial permeability inducer	202623_at	-2.7264804500000004	2.7264804500000004	EAPP
+lasalocid	bacterial permeability inducer	200807_s_at	-3.6268081	3.6268081	HSPD1
+lasalocid	bacterial permeability inducer	203709_at	-2.01399785	2.01399785	PHKG2
+lasalocid	bacterial permeability inducer	203358_s_at	3.345751	3.345751	EZH2
+lasalocid	bacterial permeability inducer	217777_s_at	-2.0350085499999997	2.0350085499999997	PTPLAD1
+lasalocid	bacterial permeability inducer	218245_at	2.59563255	2.59563255	TSKU
+lasalocid	bacterial permeability inducer	202677_at	2.49489065	2.49489065	RASA1
+lasalocid	bacterial permeability inducer	204999_s_at	-2.01588665	2.01588665	ATF5
+lasalocid	bacterial permeability inducer	219390_at	-2.26566015	2.26566015	FKBP14
+lasalocid	bacterial permeability inducer	209112_at	-3.7760628499999997	3.7760628499999997	CDKN1B
+lasalocid	bacterial permeability inducer	213384_x_at	2.87783005	2.87783005	PLCB3
+lasalocid	bacterial permeability inducer	217761_at	-2.8447708499999997	2.8447708499999997	ADI1
+lasalocid	bacterial permeability inducer	201460_at	2.8024819	2.8024819	MAPKAPK2
+lasalocid	bacterial permeability inducer	203303_at	-2.86016575	2.86016575	DYNLT3
+lasalocid	bacterial permeability inducer	201819_at	2.71207655	2.71207655	SCARB1
+lasalocid	bacterial permeability inducer	203288_at	-2.2245336	2.2245336	KIAA0355
+lasalocid	bacterial permeability inducer	201393_s_at	2.2232841	2.2232841	IGF2R
+lasalocid	bacterial permeability inducer	203367_at	2.20255665	2.20255665	DUSP14
+lasalocid	bacterial permeability inducer	205895_s_at	-2.3216422999999997	2.3216422999999997	NOLC1
+lasalocid	bacterial permeability inducer	217496_s_at	-2.37228775	2.37228775	IDE
+lasalocid	bacterial permeability inducer	200078_s_at	-3.8348380000000004	3.8348380000000004	ATP6V0B
+lasalocid	bacterial permeability inducer	205398_s_at	-2.40104615	2.40104615	SMAD3
+lasalocid	bacterial permeability inducer	200810_s_at	-2.654814	2.654814	CIRBP
+lasalocid	bacterial permeability inducer	201152_s_at	-2.42250505	2.42250505	MBNL1
+lasalocid	bacterial permeability inducer	202446_s_at	-2.8934251	2.8934251	PLSCR1
+lasalocid	bacterial permeability inducer	202854_at	-2.85334975	2.85334975	HPRT1
+lasalocid	bacterial permeability inducer	218206_x_at	-3.15077835	3.15077835	SCAND1
+lasalocid	bacterial permeability inducer	218034_at	3.4280367	3.4280367	FIS1
+lasalocid	bacterial permeability inducer	201959_s_at	2.1847447	2.1847447	MYCBP2
+lasalocid	bacterial permeability inducer	203054_s_at	2.4493324999999997	2.4493324999999997	TCTA
+lasalocid	bacterial permeability inducer	202188_at	-5.2866907	5.2866907	NUP93
+lasalocid	bacterial permeability inducer	201361_at	2.06557435	2.06557435	TMEM109
+lasalocid	bacterial permeability inducer	202423_at	2.10492425	2.10492425	KAT6A
+lasalocid	bacterial permeability inducer	211318_s_at	-2.7599171499999997	2.7599171499999997	RAE1
+lasalocid	bacterial permeability inducer	211758_x_at	-4.4441466	4.4441466	TXNDC9
+lasalocid	bacterial permeability inducer	211747_s_at	-5.8834602	5.8834602	LSM5
+lasalocid	bacterial permeability inducer	201323_at	-2.1156943	2.1156943	EBNA1BP2
+lasalocid	bacterial permeability inducer	204617_s_at	-2.05517125	2.05517125	ACD
+lasalocid	bacterial permeability inducer	212485_at	2.0614605	2.0614605	GPATCH8
+lasalocid	bacterial permeability inducer	201875_s_at	-2.4933887	2.4933887	MPZL1
+lasalocid	bacterial permeability inducer	215884_s_at	-3.5391626499999997	3.5391626499999997	UBQLN2
+lasalocid	bacterial permeability inducer	201494_at	-2.21848905	2.21848905	PRCP
+lasalocid	bacterial permeability inducer	203301_s_at	-2.29680615	2.29680615	DMTF1
+lasalocid	bacterial permeability inducer	221492_s_at	-3.0420925499999996	3.0420925499999996	ATG3
+lasalocid	bacterial permeability inducer	202990_at	3.2229229999999998	3.2229229999999998	PYGL
+lasalocid	bacterial permeability inducer	202801_at	2.6411851	2.6411851	PRKACA
+lasalocid	bacterial permeability inducer	203897_at	-2.0923865	2.0923865	LYRM1
+lasalocid	bacterial permeability inducer	201412_at	2.6466645	2.6466645	LRP10
+lasalocid	bacterial permeability inducer	208936_x_at	2.913968	2.913968	LGALS8
+lasalocid	bacterial permeability inducer	202447_at	-3.51943015	3.51943015	DECR1
+lasalocid	bacterial permeability inducer	201829_at	-5.112367	5.112367	NET1
+lasalocid	bacterial permeability inducer	203336_s_at	-2.816193	2.816193	ITGB1BP1
+lasalocid	bacterial permeability inducer	201589_at	-2.01828455	2.01828455	SMC1A
+lasalocid	bacterial permeability inducer	201984_s_at	3.49602835	3.49602835	EGFR
+lasalocid	bacterial permeability inducer	212403_at	2.6297753999999998	2.6297753999999998	UBE3B
+lasalocid	bacterial permeability inducer	202174_s_at	-2.910589	2.910589	PCM1
+lasalocid	bacterial permeability inducer	201968_s_at	2.0393562000000003	2.0393562000000003	PGM1
+lasalocid	bacterial permeability inducer	203138_at	-4.1891785	4.1891785	HAT1
+lasalocid	bacterial permeability inducer	201503_at	-4.41238785	4.41238785	G3BP1
+lasalocid	bacterial permeability inducer	202598_at	-2.13012175	2.13012175	S100A13
+lasalocid	bacterial permeability inducer	203007_x_at	-2.72153585	2.72153585	LYPLA1
+lasalocid	bacterial permeability inducer	211729_x_at	2.5798569000000002	2.5798569000000002	BLVRA
+lasalocid	bacterial permeability inducer	203557_s_at	2.6754663499999998	2.6754663499999998	PCBD1
+lasalocid	bacterial permeability inducer	201967_at	2.3064406	2.3064406	RBM6
+lasalocid	bacterial permeability inducer	201174_s_at	2.32276485	2.32276485	TERF2IP
+lasalocid	bacterial permeability inducer	217956_s_at	-3.0744594999999997	3.0744594999999997	ENOPH1
+lasalocid	bacterial permeability inducer	209257_s_at	-2.2018983	2.2018983	SMC3
+lasalocid	bacterial permeability inducer	202950_at	-3.71216235	3.71216235	CRYZ
+lasalocid	bacterial permeability inducer	218826_at	-3.44547595	3.44547595	SLC35F2
+lasalocid	bacterial permeability inducer	209860_s_at	-2.64158515	2.64158515	ANXA7
+lasalocid	bacterial permeability inducer	206050_s_at	3.0725909	3.0725909	RNH1
+lasalocid	bacterial permeability inducer	201827_at	2.83657895	2.83657895	SMARCD2
+lasalocid	bacterial permeability inducer	36936_at	-2.37900825	2.37900825	TSTA3
+lasalocid	bacterial permeability inducer	202784_s_at	2.32462085	2.32462085	NNT
+lasalocid	bacterial permeability inducer	211783_s_at	3.0385563500000004	3.0385563500000004	MTA1
+lasalocid	bacterial permeability inducer	215116_s_at	2.2130752	2.2130752	DNM1
+lasalocid	bacterial permeability inducer	208634_s_at	2.1857636	2.1857636	MACF1
+lasalocid	bacterial permeability inducer	202797_at	2.7579034	2.7579034	SACM1L
+lasalocid	bacterial permeability inducer	200071_at	-2.7538514999999997	2.7538514999999997	SMNDC1
+lasalocid	bacterial permeability inducer	201098_at	2.6855254000000004	2.6855254000000004	COPB2
+lasalocid	bacterial permeability inducer	206688_s_at	2.15049585	2.15049585	CPSF4
+lasalocid	bacterial permeability inducer	219968_at	2.1037791	2.1037791	ZNF589
+lasalocid	bacterial permeability inducer	208847_s_at	-2.2056024	2.2056024	ADH5
+lasalocid	bacterial permeability inducer	208872_s_at	-2.0577904	2.0577904	REEP5
+lasalocid	bacterial permeability inducer	204000_at	2.3763712999999997	2.3763712999999997	GNB5
+lasalocid	bacterial permeability inducer	202500_at	2.1382723	2.1382723	DNAJB2
+lasalocid	bacterial permeability inducer	219082_at	2.5822773999999997	2.5822773999999997	AMDHD2
+lasalocid	bacterial permeability inducer	217722_s_at	-3.6705744	3.6705744	NGRN
+lasalocid	bacterial permeability inducer	202148_s_at	2.5796268500000004	2.5796268500000004	PYCR1
+lasalocid	bacterial permeability inducer	201528_at	2.7819691	2.7819691	RPA1
+lasalocid	bacterial permeability inducer	201695_s_at	-2.17503585	2.17503585	PNP
+lasalocid	bacterial permeability inducer	201870_at	-2.48779795	2.48779795	TOMM34
+lasalocid	bacterial permeability inducer	203302_at	-2.3465859499999997	2.3465859499999997	DCK
+lasalocid	bacterial permeability inducer	202675_at	-2.0690049999999998	2.0690049999999998	SDHB
+lasalocid	bacterial permeability inducer	204729_s_at	2.0985868	2.0985868	STX1A
+lasalocid	bacterial permeability inducer	209608_s_at	-3.60253355	3.60253355	ACAT2
+lasalocid	bacterial permeability inducer	200666_s_at	-2.5408949	2.5408949	DNAJB1
+lasalocid	bacterial permeability inducer	215903_s_at	2.1517295	2.1517295	MAST2
+lasalocid	bacterial permeability inducer	205161_s_at	-2.4027165	2.4027165	PEX11A
+lasalocid	bacterial permeability inducer	209100_at	-2.9860272500000002	2.9860272500000002	IFRD2
+lasalocid	bacterial permeability inducer	201913_s_at	-3.1706693	3.1706693	COASY
+lasalocid	bacterial permeability inducer	205379_at	-3.50614155	3.50614155	CBR3
+lasalocid	bacterial permeability inducer	201074_at	-2.5497278999999997	2.5497278999999997	SMARCC1
+lasalocid	bacterial permeability inducer	208708_x_at	-2.7696671	2.7696671	EIF5
+lasalocid	bacterial permeability inducer	203405_at	-2.41672985	2.41672985	PSMG1
+lasalocid	bacterial permeability inducer	202184_s_at	2.5432870000000003	2.5432870000000003	NUP133
+lasalocid	bacterial permeability inducer	203119_at	3.173517	3.173517	CCDC86
+lasalocid	bacterial permeability inducer	221732_at	2.07497755	2.07497755	CANT1
+lasalocid	bacterial permeability inducer	212281_s_at	-2.60227775	2.60227775	TMEM97
+lasalocid	bacterial permeability inducer	218193_s_at	-2.40268395	2.40268395	GOLT1B
+lasalocid	bacterial permeability inducer	208647_at	-3.4088163500000004	3.4088163500000004	FDFT1
+lasalocid	bacterial permeability inducer	203218_at	2.73126545	2.73126545	MAPK9
+lasalocid	bacterial permeability inducer	203208_s_at	-4.36742335	4.36742335	MTFR1
 sta-5326	interleukin synthesis inhibitor	202388_at	-2.8790543	2.8790543	RGS2
-sta-5326	interleukin synthesis inhibitor	202679_at	5.28823035	5.28823035	NPC1
+sta-5326	interleukin synthesis inhibitor	201471_s_at	3.01338425	3.01338425	SQSTM1
+sta-5326	interleukin synthesis inhibitor	200678_x_at	3.36759055	3.36759055	GRN
+sta-5326	interleukin synthesis inhibitor	208626_s_at	4.390658999999999	4.390658999999999	VAT1
+sta-5326	interleukin synthesis inhibitor	211747_s_at	-2.0017944500000002	2.0017944500000002	LSM5
+sta-5326	interleukin synthesis inhibitor	218290_at	2.07842365	2.07842365	PLEKHJ1
 sta-5326	interleukin synthesis inhibitor	201847_at	2.2005148500000002	2.2005148500000002	LIPA
-sta-5326	interleukin synthesis inhibitor	202382_s_at	8.553263999999999	8.553263999999999	GNPDA1
-sta-5326	interleukin synthesis inhibitor	202022_at	9.9879485	9.9879485	ALDOC
+sta-5326	interleukin synthesis inhibitor	201536_at	3.4039972	3.4039972	DUSP3
+sta-5326	interleukin synthesis inhibitor	204256_at	7.9390525	7.9390525	ELOVL6
+sta-5326	interleukin synthesis inhibitor	215093_at	3.7606959499999997	3.7606959499999997	NSDHL
+sta-5326	interleukin synthesis inhibitor	210337_s_at	2.1619725499999998	2.1619725499999998	ACLY
+sta-5326	interleukin synthesis inhibitor	208898_at	2.2758677	2.2758677	ATP6V1D
+sta-5326	interleukin synthesis inhibitor	218529_at	-2.1830284	2.1830284	CD320
+sta-5326	interleukin synthesis inhibitor	213702_x_at	4.3152908	4.3152908	ASAH1
+sta-5326	interleukin synthesis inhibitor	204126_s_at	-2.40059575	2.40059575	CDC45
+sta-5326	interleukin synthesis inhibitor	201102_s_at	2.6991568	2.6991568	PFKL
+sta-5326	interleukin synthesis inhibitor	219952_s_at	2.2548006999999997	2.2548006999999997	MCOLN1
+sta-5326	interleukin synthesis inhibitor	202679_at	5.28823035	5.28823035	NPC1
+sta-5326	interleukin synthesis inhibitor	209608_s_at	9.264952000000001	9.264952000000001	ACAT2
+sta-5326	interleukin synthesis inhibitor	209875_s_at	4.6900385	4.6900385	SPP1
+sta-5326	interleukin synthesis inhibitor	212281_s_at	4.890698	4.890698	TMEM97
 sta-5326	interleukin synthesis inhibitor	203360_s_at	-5.013287050000001	5.013287050000001	MYCBP
 sta-5326	interleukin synthesis inhibitor	202087_s_at	3.5582260999999997	3.5582260999999997	CTSL1
-sta-5326	interleukin synthesis inhibitor	201000_at	2.00953305	2.00953305	AARS
-sta-5326	interleukin synthesis inhibitor	212281_s_at	4.890698	4.890698	TMEM97
+sta-5326	interleukin synthesis inhibitor	208763_s_at	4.1704819	4.1704819	TSC22D3
+sta-5326	interleukin synthesis inhibitor	202887_s_at	2.0211075999999997	2.0211075999999997	DDIT4
 sta-5326	interleukin synthesis inhibitor	208647_at	7.314949	7.314949	FDFT1
-sta-5326	interleukin synthesis inhibitor	218529_at	-2.1830284	2.1830284	CD320
+sta-5326	interleukin synthesis inhibitor	201000_at	2.00953305	2.00953305	AARS
+sta-5326	interleukin synthesis inhibitor	203665_at	3.1222626499999997	3.1222626499999997	HMOX1
+sta-5326	interleukin synthesis inhibitor	202599_s_at	-2.37506335	2.37506335	NRIP1
+sta-5326	interleukin synthesis inhibitor	221478_at	2.20305815	2.20305815	BNIP3L
+sta-5326	interleukin synthesis inhibitor	203119_at	-2.0329951	2.0329951	CCDC86
+sta-5326	interleukin synthesis inhibitor	202735_at	6.4460669	6.4460669	EBP
+sta-5326	interleukin synthesis inhibitor	221750_at	4.66704585	4.66704585	HMGCS1
+sta-5326	interleukin synthesis inhibitor	204748_at	2.1763538	2.1763538	PTGS2
+sta-5326	interleukin synthesis inhibitor	205691_at	2.07440575	2.07440575	SYNGR3
+sta-5326	interleukin synthesis inhibitor	220091_at	4.9133475	4.9133475	SLC2A6
+sta-5326	interleukin synthesis inhibitor	202246_s_at	2.3578934499999997	2.3578934499999997	CDK4
+sta-5326	interleukin synthesis inhibitor	218145_at	2.4322574	2.4322574	TRIB3
+sta-5326	interleukin synthesis inhibitor	201626_at	8.1292615	8.1292615	INSIG1
+sta-5326	interleukin synthesis inhibitor	200789_at	3.27266335	3.27266335	ECH1
+sta-5326	interleukin synthesis inhibitor	218498_s_at	2.42098335	2.42098335	ERO1L
+sta-5326	interleukin synthesis inhibitor	202022_at	9.9879485	9.9879485	ALDOC
+sta-5326	interleukin synthesis inhibitor	208992_s_at	2.729972	2.729972	STAT3
+sta-5326	interleukin synthesis inhibitor	219082_at	4.91610525	4.91610525	AMDHD2
+sta-5326	interleukin synthesis inhibitor	202382_s_at	8.553263999999999	8.553263999999999	GNPDA1
+sta-5326	interleukin synthesis inhibitor	201170_s_at	2.49849285	2.49849285	BHLHE40
+sta-5326	interleukin synthesis inhibitor	202900_s_at	-2.7690655	2.7690655	NUP88
