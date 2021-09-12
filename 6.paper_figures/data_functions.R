@@ -6,16 +6,19 @@ default_umap_dir <- file.path("../1.Data-exploration/Profiles_level4/")
 default_model_directory <- file.path("../2.MOA-prediction/L1000_CP_model_predictions/")
 
 
-load_percent_replicating <- function(
+load_percent_strong <- function(
     assay,
     load_null = TRUE,
     results_dir = default_results_dir,
-    cp_file_indicator = ""
+    cp_file_indicator = "",
+    l1000_file_indicator = ""
     ) {
     cell_painting_pr_file <- file.path(
         results_dir, paste0("cell_painting_percent_replicating_data", cp_file_indicator, ".tsv.gz")
     )
-    l1000_pr_file <- file.path(results_dir, "l1000_percent_replicating_data.tsv.gz")
+    l1000_pr_file <- file.path(
+        results_dir,  paste0("l1000_percent_replicating_data", l1000_file_indicator, ".tsv.gz")
+    )
 
     pr_col_types <- readr::cols(
         .default = readr::col_double(),
@@ -37,7 +40,9 @@ load_percent_replicating <- function(
         cell_painting_null_file <- file.path(
             results_dir, paste0("cell_paintint_percent_replicating_data_null_distribution", cp_file_indicator, ".tsv.gz")
         )
-        l1000_null_file <- file.path(results_dir, "l1000_percent_replicating_data_null_distribution.tsv.gz")
+        l1000_null_file <- file.path(
+            results_dir, paste0("l1000_percent_replicating_data_null_distribution", l1000_file_indicator, ".tsv.gz")
+        )
         
         null_col_types <- readr::cols(
             dose = readr::col_character(),
@@ -64,6 +69,41 @@ load_percent_replicating <- function(
     return(pr_df)
 }
 
+
+load_percent_replicating_nonparametric_pvals <- function(
+    assay,
+    results_dir = default_umap_dir,
+    cp_file_indicator = "",
+    l1000_file_indicator = ""
+    ) {
+    cell_painting_pr_pval_file <- file.path(
+        results_dir, "cell_painting", "cellpainting_lvl4_cpd_replicate_datasets",
+        paste0("cpd_replicate_p_values_melted", cp_file_indicator, ".csv")
+    )
+    l1000_pr_pval_file <- file.path(
+        results_dir, "L1000", "L1000_lvl4_cpd_replicate_datasets",
+        paste0("cpd_replicate_p_values_melted", l1000_file_indicator, ".csv")
+    )
+
+    pr_pval_col_types <- readr::cols(
+        compound = readr::col_character(),
+        no_of_replicates = readr::col_double(),
+        dose = readr::col_character(),
+        p_value = readr::col_double(),
+        matching_score = readr::col_double(),
+        assay = readr::col_character(),
+        normalization = readr::col_character(),
+        category = readr::col_character()
+    )
+    
+    if (assay == "cellpainting") {
+        pr_pval_df <- readr::read_tsv(cell_painting_pr_pval_file, col_types = pr_pval_col_types)
+    } else if (assay == "l1000") {
+        pr_pval_df <- readr::read_tsv(l1000_pr_pval_file, col_types = pr_pval_col_types)
+    }
+    
+    return(pr_pval_df)
+}
 
 load_median_correlation_scores <- function(assay, results_dir = default_results_dir) {
     cell_painting_compound_score_file <- file.path(results_dir, "median_score_per_compound_CellPainting.tsv.gz")
@@ -108,15 +148,15 @@ load_percent_matching <- function(assay, results_dir = default_consensus_dir) {
         "matching_score_per_MOA_L1000.tsv.gz"
     )
     
-    pm_col_types <- readr::cols(
-        dose = readr::col_character(),
-        matching_score = readr::col_double(),
-        no_of_replicates = readr::col_double()
-    )
-
     pm_pval_col_types <- readr::cols(
         dose = readr::col_character(),
         p_value = readr::col_double(),
+        no_of_replicates = readr::col_double()
+    )
+    
+    pm_col_types <- readr::cols(
+        dose = readr::col_character(),
+        matching_score = readr::col_double(),
         no_of_replicates = readr::col_double()
     )
     
@@ -140,7 +180,7 @@ load_percent_matching <- function(assay, results_dir = default_consensus_dir) {
 }
 
 
-load_embeddings_data <- function(assay, cell_painting_batch = "batch1", results_dir = default_embeddings_dir) {
+load_embeddings_data <- function(assay, cell_painting_batch = "batch1", results_dir = default_umap_dir) {
     cell_painting_embeddings_file <- file.path(
         results_dir, "cell_painting", "embeddings",
         paste0("cellpainting_embeddings_", cell_painting_batch, ".tsv.gz") 
@@ -333,4 +373,147 @@ load_clustering_metrics <- function(results_dir, file_suffix = "_compounds_commo
     
     }
     return(metric_df)
+}
+
+
+load_plate_diffusion_results <- function(
+    assay,
+    data_dir,
+    platemap_metadata_dir,
+    diffusion=1,
+    drop_same_well=FALSE,
+    input_data_type=""
+) {
+    # Build file names
+    if (assay == "CellPainting") {
+        if (input_data_type == "") {
+            file_indicator <- "cp_level4_cpd_replicates"
+        } else {
+            file_indicator <- paste0("cp_level4_cpd_replicates_", input_data_type)
+        }
+    } else {
+        file_indicator <- paste0("L1000_level4", input_data_type, "_cpd_replicates")
+    }
+        
+    if (drop_same_well) {
+        dropsameposition = "True" 
+    } else {
+        dropsameposition = "False" 
+    }
+    
+    diffuse_file <- paste0(
+        file_indicator,
+        "__non_replicate_correlation_diffusion",
+        diffusion,
+        "_mirrorTrue_dropsameposition",
+        dropsameposition,
+        "_assay",
+        assay,
+        ".tsv.gz"
+    )
+    
+    # Extract details from file
+    file_components = strsplit(diffuse_file, "__")[[1]]
+    file_base <- file_components[1]
+    parameters <- strsplit(file_components[2], "_")[[1]]
+    diffusion <- gsub("diffusion", "", parameters[4])
+    mirror <- gsub("mirror", "", parameters[5])
+
+    diffuse_col_types <- readr::cols(
+        num_observations = readr::col_double(),
+        min_max = readr::col_character(),
+        mean = readr::col_double(),
+        variance = readr::col_double(),
+        skewness = readr::col_double(),
+        kurtosis = readr::col_double(),
+        median = readr::col_double(),
+        well = readr::col_character(),
+        plate_map = readr::col_character(),
+        assay = readr::col_character()
+    )
+
+    # Load data
+    diffuse_df <- readr::read_tsv(file.path(data_dir, diffuse_file), col_types = diffuse_col_types) %>%
+        dplyr::mutate(diffusion = diffusion)
+    
+    # Modify some information to append to results
+    if (input_data_type == "") {
+        input_data_type = "full_standard"
+    }
+    
+    diffuse_df <- diffuse_df %>%
+        dplyr::mutate(input_data_type = input_data_type)
+    
+    # Append metadata information
+    metadata_file <- file.path(platemap_metadata_dir, paste0(assay, "_platemap_metadata.tsv.gz"))
+    
+    if (assay == "CellPainting") {
+        well_id <- "Metadata_Well"
+        platemap_id <- "Metadata_Plate_Map_Name"
+        
+        meta_cols <- readr::cols(
+          Metadata_Assay_Plate_Barcode = readr::col_character(),
+          Metadata_Well = readr::col_character(),
+          Metadata_Plate_Map_Name = readr::col_character(),
+          replicate_name = readr::col_character(),
+          Metadata_dose_recode = readr::col_double(),
+          Metadata_broad_sample = readr::col_character(),
+          pert_iname = readr::col_character(),
+          moa = readr::col_character()
+        )
+    } else {
+        well_id <- "well_position"
+        platemap_id <- "plate_map"
+        
+        meta_cols <- readr::cols(
+          plate = readr::col_character(),
+          well_position = readr::col_character(),
+          plate_map = readr::col_character(),
+          replicate_id = readr::col_character(),
+          dose = readr::col_double(),
+          Metadata_broad_sample = readr::col_character(),
+          pert_iname = readr::col_character(),
+          moa = readr::col_character()
+        )
+    }
+    
+    metadata_df <- readr::read_tsv(metadata_file, col_types = meta_cols)
+    
+    # Merge diffusion with metadata and standardize column names
+    diffuse_df <- diffuse_df %>%
+        dplyr::left_join(metadata_df, by = c("well" = well_id, "plate_map" = platemap_id)) %>%
+        dplyr::mutate(compound_type = "dmso")
+
+
+    diffuse_df$compound_type[diffuse_df$pert_iname != "dmso"] <- "compound"
+    diffuse_df$compound_type[diffuse_df$pert_iname %in% c("bortezomib", "mg-132")] <- "proteasome control"
+    
+    if (assay == "CellPainting") {
+        diffuse_df <- diffuse_df %>%
+            dplyr::rename("dose" = Metadata_dose_recode, "replicate_id" = replicate_name)
+    }
+    
+    diffuse_df <- diffuse_df %>%
+        dplyr::select(
+            "num_observations",
+            "min_max",
+            "mean",
+            "variance",
+            "skewness",
+            "kurtosis",
+            "median",
+            "cor_category",
+            "well",
+            "plate_map",
+            "assay",
+            "compound_type",
+            "pert_iname",
+            "moa",
+            "dose",
+            "replicate_id",
+            "input_data_type",
+            "diffusion"
+        )
+    
+    return(diffuse_df)
 }
