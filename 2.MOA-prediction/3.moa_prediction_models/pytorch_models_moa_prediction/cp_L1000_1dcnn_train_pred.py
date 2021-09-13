@@ -105,7 +105,7 @@ class cp_L1000_1dcnn_moa_train_prediction:
         features = df_train_x.columns.tolist()
         num_features=len(features) + no_of_components
         num_targets=len(target_cols)
-        df_train = drug_stratification(df_train,NFOLDS,target_cols,col_name='replicate_id',cpd_freq_num=36)
+        df_train = drug_stratification(df_train,NFOLDS,target_cols,col_name='replicate_id',cpd_freq_num=24)
         pos_weight = initialize_weights(df_train, target_cols, DEVICE)
         
         def model_train_pred(fold, Model = CNN_Model, df_train_y = df_train_y, df_test_y = df_test_y, features=features,
