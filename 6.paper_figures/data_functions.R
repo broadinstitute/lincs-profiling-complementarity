@@ -74,32 +74,60 @@ load_percent_replicating_nonparametric_pvals <- function(
     assay,
     results_dir = default_umap_dir,
     cp_file_indicator = "",
-    l1000_file_indicator = ""
+    l1000_file_indicator = "",
+    well_specific_null=FALSE
     ) {
-    cell_painting_pr_pval_file <- file.path(
-        results_dir, "cell_painting", "cellpainting_lvl4_cpd_replicate_datasets",
-        paste0("cpd_replicate_p_values_melted", cp_file_indicator, ".csv")
-    )
-    l1000_pr_pval_file <- file.path(
-        results_dir, "L1000", "L1000_lvl4_cpd_replicate_datasets",
-        paste0("cpd_replicate_p_values_melted", l1000_file_indicator, ".csv")
-    )
-
-    pr_pval_col_types <- readr::cols(
-        compound = readr::col_character(),
-        no_of_replicates = readr::col_double(),
-        dose = readr::col_character(),
-        p_value = readr::col_double(),
-        matching_score = readr::col_double(),
-        assay = readr::col_character(),
-        normalization = readr::col_character(),
-        category = readr::col_character()
-    )
     
-    if (assay == "cellpainting") {
-        pr_pval_df <- readr::read_tsv(cell_painting_pr_pval_file, col_types = pr_pval_col_types)
-    } else if (assay == "l1000") {
-        pr_pval_df <- readr::read_tsv(l1000_pr_pval_file, col_types = pr_pval_col_types)
+    if (well_specific_null) {
+        cell_painting_pr_pval_file <- file.path(
+            results_dir, "cell_painting", "results",
+            paste0("well_controlled_percent_replicating_non_parametric_p_values", cp_file_indicator, ".tsv")
+        )
+        l1000_pr_pval_file <- file.path(
+            results_dir, "L1000", "results",
+            paste0("well_controlled_percent_replicating_non_parametric_p_values", l1000_file_indicator, ".tsv")
+        )
+
+        pr_pval_col_types <- readr::cols(
+          compound = readr::col_character(),
+          no_of_compounds = readr::col_double(),
+          well = readr::col_character(),
+          dose_recode = readr::col_character(),
+          median_score = readr::col_double(),
+          p_value = readr::col_double()
+        )
+
+        if (assay == "cellpainting") {
+            pr_pval_df <- readr::read_tsv(cell_painting_pr_pval_file, col_types = pr_pval_col_types)
+        } else if (assay == "l1000") {
+            pr_pval_df <- readr::read_tsv(l1000_pr_pval_file, col_types = pr_pval_col_types)
+        }
+    } else {
+        cell_painting_pr_pval_file <- file.path(
+            results_dir, "cell_painting", "cellpainting_lvl4_cpd_replicate_datasets",
+            paste0("cpd_replicate_p_values_melted", cp_file_indicator, ".csv")
+        )
+        l1000_pr_pval_file <- file.path(
+            results_dir, "L1000", "L1000_lvl4_cpd_replicate_datasets",
+            paste0("cpd_replicate_p_values_melted", l1000_file_indicator, ".csv")
+        )
+
+        pr_pval_col_types <- readr::cols(
+            compound = readr::col_character(),
+            no_of_replicates = readr::col_double(),
+            dose = readr::col_character(),
+            p_value = readr::col_double(),
+            matching_score = readr::col_double(),
+            assay = readr::col_character(),
+            normalization = readr::col_character(),
+            category = readr::col_character()
+        )
+
+        if (assay == "cellpainting") {
+            pr_pval_df <- readr::read_tsv(cell_painting_pr_pval_file, col_types = pr_pval_col_types)
+        } else if (assay == "l1000") {
+            pr_pval_df <- readr::read_tsv(l1000_pr_pval_file, col_types = pr_pval_col_types)
+        }
     }
     
     return(pr_pval_df)
