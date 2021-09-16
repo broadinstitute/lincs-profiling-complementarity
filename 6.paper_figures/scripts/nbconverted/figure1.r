@@ -14,28 +14,57 @@ threshold <- 0.05
 plot_thresh <- -log10(threshold)
 
 results_dir <- file.path("../1.Data-exploration/Profiles_level4/")
+well_specific_null <- TRUE
 
 cell_painting_pr_pval <- load_percent_replicating_nonparametric_pvals(
     assay="cellpainting",
     results_dir=results_dir,
-    cp_file_indicator=""
+    cp_file_indicator="",
+    well_specific_null=well_specific_null
 )
 
 l1000_pr_pval <- load_percent_replicating_nonparametric_pvals(
     assay="l1000",
     results_dir=results_dir,
-    l1000_file_indicator=""
+    l1000_file_indicator="",
+    well_specific_null=well_specific_null
 )
 
-pr_pval_df <- dplyr::bind_rows(
-    cell_painting_pr_pval,
-    l1000_pr_pval
-) %>%
-    dplyr::mutate(pass_thresh = p_value < threshold) %>%
-    dplyr::mutate(neg_log_10_p_val = -log10(p_value))
+if (well_specific_null) {
+    pr_pval_df <- dplyr::bind_rows(
+        cell_painting_pr_pval %>%
+            dplyr::mutate(
+                assay="Cell Painting",
+                normalization="spherized",
+                category="all_data"
+            ),
+        l1000_pr_pval %>%
+            dplyr::mutate(
+                assay="L1000",
+                normalization="non_spherized",
+                category="all_data"
+            )
+    ) %>%
+        dplyr::mutate(pass_thresh = p_value < threshold) %>%
+        dplyr::mutate(neg_log_10_p_val = -log10(p_value)) %>%
+        dplyr::mutate(dose = dose_recode)
+    
+    pr_pval_df$dose <- dplyr::recode_factor(pr_pval_df$dose_recode, !!!dose_rename)
+    pr_pval_df$dose <- factor(pr_pval_df$dose, levels = dose_order)
+    pr_pval_df$neg_log_10_p_val[pr_pval_df$neg_log_10_p_val == Inf] = 3.5
+    
+} else {
+    pr_pval_df <- dplyr::bind_rows(
+        cell_painting_pr_pval,
+        l1000_pr_pval
+    ) %>%
+        dplyr::mutate(pass_thresh = p_value < threshold) %>%
+        dplyr::mutate(neg_log_10_p_val = -log10(p_value))
 
-pr_pval_df$dose <- factor(pr_pval_df$dose, levels = dose_order)
-pr_pval_df$neg_log_10_p_val[pr_pval_df$neg_log_10_p_val == Inf] = 3.5
+    pr_pval_df$dose <- factor(pr_pval_df$dose, levels = dose_order)
+    pr_pval_df$neg_log_10_p_val[pr_pval_df$neg_log_10_p_val == Inf] = 3.5
+}
+
 
 # Note, this number of compounds represents:
 # "how many compounds were measured in both assays at ALL doses".
@@ -43,6 +72,8 @@ print(length(unique(pr_pval_df$compound)))
 
 print(dim(pr_pval_df))
 head(pr_pval_df)
+
+table(pr_pval_df$no_of_compounds, pr_pval_df$assay)
 
 percent_replicating_df <- pr_pval_df %>%
     dplyr::group_by(assay, dose) %>%
@@ -53,8 +84,8 @@ percent_replicating_df <- pr_pval_df %>%
 percent_replicating_df
 
 panel_a_gg <- (
-    ggplot(pr_pval_df, aes(x = matching_score, y = neg_log_10_p_val))
-    + geom_point(aes(color = no_of_replicates), alpha = 0.05)
+    ggplot(pr_pval_df, aes(x = median_score, y = neg_log_10_p_val))
+    + geom_point(aes(color = no_of_compounds), alpha = 0.05)
     + geom_text(data = percent_replicating_df, aes(label = percent_replicating, x = 0.65, y = 2.5))
     + facet_grid("assay~dose")
     + geom_hline(linetype = "dashed", color = "blue", yintercept = plot_thresh)
@@ -63,6 +94,7 @@ panel_a_gg <- (
     + scale_color_continuous(
         "Number of\nreplicates\nper compound",
         values = scales::rescale(c(0, 0.5, 1, 1.5, 2, 3, 6)),
+        limits = c(2, 10),
         type = "viridis"
     )
     + xlab("Median pairwise Pearson correlation between replicate profiles")
@@ -72,18 +104,20 @@ panel_a_gg <- (
 panel_a_gg
 
 pr_summary_df <- pr_pval_df %>%
-    reshape2::dcast(compound + dose ~ assay + normalization + category, value.var = "matching_score") %>%
+    dplyr::select(compound, dose, well, assay, normalization, category, median_score) %>%
+    dplyr::distinct() %>%
+    reshape2::dcast(compound + dose + well ~ assay + normalization + category, value.var = "median_score")  %>%
     dplyr::left_join(
         pr_pval_df %>%
             dplyr::filter(assay == "Cell Painting") %>%
-            dplyr::select(compound, dose, no_of_replicates, pass_thresh, p_value, neg_log_10_p_val),
-        by = c("compound", "dose")
+            dplyr::select(compound, dose, well, no_of_compounds, pass_thresh, p_value, neg_log_10_p_val),
+        by = c("compound", "dose", "well")
     ) %>%
     dplyr::left_join(
         pr_pval_df %>%
             dplyr::filter(assay == "L1000") %>%
-            dplyr::select(compound, dose, no_of_replicates, pass_thresh, p_value, neg_log_10_p_val),
-        by = c("compound", "dose"),
+            dplyr::select(compound, dose, well, no_of_compounds, pass_thresh, p_value, neg_log_10_p_val),
+        by = c("compound", "dose", "well"),
         suffix = c("_cp", "_l1000")
     ) %>%
     dplyr::rename(
@@ -94,6 +128,7 @@ pr_summary_df <- pr_pval_df %>%
     dplyr::mutate(pass_both = ifelse(pass_both == 2, TRUE, FALSE)) %>%
     dplyr::select(
         compound,
+        well,
         dose,
         median_pairwise_correlation_cp,
         median_pairwise_correlation_l1000,
@@ -113,11 +148,13 @@ print(length(unique(pr_summary_df$compound)))
 head(pr_summary_df, 2)
 
 panel_b_gg <- (
-    ggplot(pr_summary_df, aes(x = median_pairwise_correlation_cp, y = median_pairwise_correlation_l1000))
+    ggplot(
+        pr_summary_df %>%
+            # Remove compounds measured in different wells inconsistently
+            dplyr::filter(!(compound %in% c("dexamethasone", "temsirolimus"))),
+        aes(x = median_pairwise_correlation_cp, y = median_pairwise_correlation_l1000))
     + geom_point(aes(color = total_reproducible), size = 0.5, alpha = 0.5)
     + facet_grid("~dose")
-    #+ geom_hline(data = threshold_plot_ready_df, aes(yintercept = `Cell Painting`), linetype = "dashed", color = "blue")
-    #+ geom_vline(data = threshold_plot_ready_df, aes(xintercept = L1000), linetype = "dashed", color = "blue")
     + geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "black")
     + figure_theme
     + scale_color_gradient("How many times\nis the compound\nreproducible in\nboth assays?", low = "blue", high = "red")
@@ -128,7 +165,7 @@ panel_b_gg <- (
 panel_b_gg
 
 significant_compounds_df <- pr_summary_df %>%
-    dplyr::select(compound, dose, pass_thresh_cp, pass_thresh_l1000, pass_both)
+    dplyr::select(compound, well, dose, pass_thresh_cp, pass_thresh_l1000, pass_both)
 
 total_compounds <- length(unique(significant_compounds_df$compound))
 print(total_compounds)
@@ -253,3 +290,5 @@ for (extension in extensions) {
 }
 
 figure_1_gg
+
+
