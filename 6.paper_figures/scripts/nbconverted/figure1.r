@@ -290,5 +290,3 @@ for (extension in extensions) {
 }
 
 figure_1_gg
-
-
