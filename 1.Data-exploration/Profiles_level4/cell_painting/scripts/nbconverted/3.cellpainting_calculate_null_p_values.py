@@ -74,8 +74,10 @@ cp_level4_path = "cellpainting_lvl4_cpd_replicate_datasets"
 # In[5]:
 
 
-df_level4 = pd.read_csv(os.path.join(cp_level4_path, 'cp_level4_cpd_replicates.csv.gz'), 
-                        compression='gzip',low_memory = False)
+df_level4 = pd.read_csv(
+    os.path.join(cp_level4_path, 'cp_level4_cpd_replicates.csv.gz'), 
+    compression='gzip',low_memory = False
+)
 
 print(df_level4.shape)
 df_level4.head()
@@ -104,6 +106,7 @@ def get_cpds_replicates(df, df_lvl4):
     """
     
     dose_list = list(set(df_lvl4['Metadata_dose_recode'].unique().tolist()))[1:7]
+    
     replicates_in_all = []
     cpds_replicates = {}
     for dose in dose_list:
@@ -224,8 +227,13 @@ def get_null_distribution_replicates(
             for idx in range(rand_num):
                 start_again = True
                 while (start_again):
-                    rand_cpds = get_random_replicates(replicates_lists[dose-1], replicate_class, dose, 
-                                                      replicates_ids, cpd_replicate_dict)
+                    rand_cpds = get_random_replicates(
+                        replicates_lists[dose-1],
+                        replicate_class,
+                        dose, 
+                        replicates_ids,
+                        cpd_replicate_dict
+                    )
                     if rand_cpds not in replicate_list:
                         start_again = False
                 replicate_list.append(rand_cpds)
@@ -337,7 +345,7 @@ def calc_null_dist_median_scores(df, dose_num, replicate_lists):
     median_corr_list = []
     for rep_list in replicate_lists:
         df_reps = df_dose.loc[rep_list].copy()
-        reps_corr = df_reps.astype('float64').T.corr(method = 'spearman').values
+        reps_corr = df_reps.astype('float64').T.corr(method = 'pearson').values
         median_corr_val = median(list(reps_corr[np.triu_indices(len(reps_corr), k = 1)]))
         median_corr_list.append(median_corr_val)
     return median_corr_list

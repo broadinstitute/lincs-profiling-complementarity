@@ -18,6 +18,12 @@ from cytominer_eval.utils.operation_utils import assign_replicates
 # In[2]:
 
 
+np.random.seed(42)
+
+
+# In[3]:
+
+
 def get_well_specific_correlation(df_group, features):
     if df_group.shape[0] <= 1:
         return np.nan
@@ -53,7 +59,7 @@ def get_sample_replicate_cor(group, features, meta_features, sample_id):
         f"{sample_id_string}_count": "sample_counts"
     })
     return output
- 	 	
+
 def process_well_cor_per_dataset(
     df,
     features,
@@ -109,7 +115,7 @@ def get_full_results(df, features, assay, normalization, well_column, plate_colu
     return plate_position_effects
 
 
-# In[3]:
+# In[4]:
 
 
 # Load common compounds
@@ -122,7 +128,7 @@ common_compounds = common_df.compound.unique()
 print(len(common_compounds))
 
 
-# In[4]:
+# In[5]:
 
 
 # Load platemap metadata
@@ -135,7 +141,7 @@ print(l1000_meta_df.shape)
 l1000_meta_df.head()
 
 
-# In[5]:
+# In[6]:
 
 
 # Load platemap metadata
@@ -149,7 +155,7 @@ print(cp_meta_df.shape)
 cp_meta_df.head()
 
 
-# In[6]:
+# In[7]:
 
 
 # Load datasets
@@ -181,7 +187,7 @@ l1000_nonspherized_df = l1000_nonspherized_df.query("pert_iname in @common_compo
 print(l1000_nonspherized_df.shape)
 
 
-# In[7]:
+# In[8]:
 
 
 # Merge with metadata
@@ -193,7 +199,7 @@ cp_nonspherized_df = cp_meta_df.merge(cp_nonspherized_df, left_on="Metadata_Assa
 cp_subsampled_df = cp_meta_df.merge(cp_subsampled_df, left_on="Metadata_Assay_Plate_Barcode", right_on="Metadata_Plate")
 
 
-# In[8]:
+# In[9]:
 
 
 # Get measured features
@@ -211,7 +217,7 @@ l1000_nonspherize_features = l1000_nonspherized_df.columns[l1000_nonspherized_df
 # 
 # This gives us a distribution of median scores for replicates in the same well and non-replicates in the same well. This is especially important considering the plate map layout, where we collected multiple replicate plates.
 
-# In[9]:
+# In[10]:
 
 
 cp_spherized_results = (
@@ -231,7 +237,7 @@ cp_spherized_results_df = cp_spherized_results.reset_index().assign(assay="Cell 
 cp_spherized_results_df.head()
 
 
-# In[10]:
+# In[11]:
 
 
 cp_nonspherized_results = (
@@ -250,7 +256,7 @@ cp_nonspherized_results = (
 cp_nonspherized_results_df = cp_nonspherized_results.reset_index().assign(assay="Cell Painting", normalization="nonspherized")
 
 
-# In[11]:
+# In[12]:
 
 
 cp_subsampled_results = (
@@ -269,7 +275,7 @@ cp_subsampled_results = (
 cp_subsampled_results_df = cp_subsampled_results.reset_index().assign(assay="Cell Painting (subsampled)", normalization="spherized")
 
 
-# In[12]:
+# In[13]:
 
 
 l1000_spherized_results = (
@@ -289,7 +295,7 @@ l1000_spherized_results = (
 l1000_spherized_results_df = l1000_spherized_results.reset_index().assign(assay="L1000", normalization="spherized")
 
 
-# In[13]:
+# In[14]:
 
 
 l1000_nonspherized_results = (
@@ -309,7 +315,7 @@ l1000_nonspherized_results = (
 l1000_nonspherized_results_df = l1000_nonspherized_results.reset_index().assign(assay="L1000", normalization="nonspherized")
 
 
-# In[14]:
+# In[15]:
 
 
 replicate_result_full_df = pd.concat([
@@ -333,7 +339,7 @@ replicate_result_full_df.head()
 # 
 # We perform this analysis for all profiles per well regardless of platemap, _and_, all profiles per well per platemap.
 
-# In[15]:
+# In[16]:
 
 
 cp_spherize_results = get_full_results(
@@ -346,7 +352,7 @@ cp_spherize_results = get_full_results(
 )
 
 
-# In[16]:
+# In[17]:
 
 
 cp_nonspherize_results = get_full_results(
@@ -359,7 +365,7 @@ cp_nonspherize_results = get_full_results(
 )
 
 
-# In[17]:
+# In[18]:
 
 
 cp_subsample_results = get_full_results(
@@ -372,7 +378,7 @@ cp_subsample_results = get_full_results(
 )
 
 
-# In[18]:
+# In[19]:
 
 
 l1000_spherize_results = get_full_results(
@@ -385,7 +391,7 @@ l1000_spherize_results = get_full_results(
 )
 
 
-# In[19]:
+# In[20]:
 
 
 l1000_nonspherize_results = get_full_results(
@@ -400,7 +406,7 @@ l1000_nonspherize_results = get_full_results(
 
 # ## Combine datasets and output for figure generation
 
-# In[20]:
+# In[21]:
 
 
 for include_platemap in [True, False]:

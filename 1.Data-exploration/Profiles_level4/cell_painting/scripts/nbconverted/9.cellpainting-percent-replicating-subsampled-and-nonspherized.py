@@ -43,7 +43,7 @@ dose_recode_info = {
 results_dir = pathlib.Path("../results")
 cp_level4_path = 'cellpainting_lvl4_cpd_replicate_datasets'
 
-file_indicator = "nonspherized"
+file_indicator = "subsample"
 
 
 # In[4]:

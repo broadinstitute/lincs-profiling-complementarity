@@ -316,7 +316,7 @@ def calc_null_dist_median_scores(df, dose_num, replicate_lists):
     median_corr_list = []
     for rep_list in replicate_lists:
         df_reps = df_dose.loc[rep_list].copy()
-        reps_corr = df_reps.astype('float64').T.corr(method = 'spearman').values
+        reps_corr = df_reps.astype('float64').T.corr(method = 'pearson').values
         median_corr_val = median(list(reps_corr[np.triu_indices(len(reps_corr), k = 1)]))
         median_corr_list.append(median_corr_val)
     return median_corr_list
