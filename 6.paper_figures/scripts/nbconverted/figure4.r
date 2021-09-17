@@ -348,14 +348,17 @@ moa_colors <- c(
 top_geneSet_selections <- c(
     "GO:0016125", # sta-5326
     "GO:0006695", # sta-5326
-    "GO:0009267",
-    "GO:0052548",
-    "GO:0044272",
-    "GO:0008380",
+    "GO:0009267", # aphidicolin
+    "GO:0052548", # aphidicolin
+    "GO:0044272", # dasatinib
+    "GO:0008380", # l-ergothioneine
     "GO:0034644" # brequinar
 )
 
-
+# Added to plot
+ora_df %>%
+    dplyr::filter(geneSet %in% !!top_geneSet_selections) %>%
+    dplyr::select(geneSet, description, enrichmentRatio, pValue, compound)
 
 panel_f_gg <- (
     ggplot(ora_df, aes(x = enrichmentRatio, y = -log10(pValue), color = compound))
@@ -430,5 +433,3 @@ for (extension in extensions) {
     output_file <- paste0(output_figure_base, extension)
     cowplot::save_plot(output_file, figure_4_gg, base_width = 13, base_height = 13, dpi = 500)
 }
-
-

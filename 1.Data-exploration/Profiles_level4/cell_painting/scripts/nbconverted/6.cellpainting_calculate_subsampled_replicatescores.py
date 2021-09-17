@@ -48,27 +48,34 @@ inv_dose_recode_info = {v: k.replace("dose_", "") for k, v in dose_recode_info.i
 # In[4]:
 
 
-results_dir = pathlib.Path("../results")
-l1000_summary_file = pathlib.Path(f"{results_dir}/median_score_per_compound_l1000.tsv.gz")
+# Load L1000 data to identify how many DMSOs
+l1000_data_path = pathlib.Path("../L1000/L1000_lvl4_cpd_replicate_datasets/L1000_level4_cpd_replicates.csv.gz")
+l1000_profile_df = pd.read_csv(l1000_data_path)
 
-l1000_df = pd.read_csv(l1000_summary_file, sep="\t")
-l1000_df = l1000_df.assign(dose_id = l1000_df.dose.replace(inv_dose_recode_info))
+# Count how many DMSO samples
+n_dmso_l1000 = l1000_profile_df.query("pert_iname == 'DMSO'").shape[0]
 
-print(l1000_df.shape)
-l1000_df.head()
+print(l1000_profile_df.shape)
+l1000_profile_df.head()
 
 
 # In[5]:
 
 
-# Load L1000 data to identify how many DMSOs
-l1000_data_path = pathlib.Path("../L1000/L1000_lvl4_cpd_replicate_datasets/L1000_level4_cpd_replicates.csv.gz")
-l1000_profile_df = pd.read_csv(l1000_data_path).query("pert_iname == 'DMSO'")
+# Get treatment replicate counts per well
+cardinality_df = (
+    l1000_profile_df
+    .groupby(["pert_iname", "det_well", "dose"])
+    ["Metadata_broad_sample"]
+    .count()
+    .reset_index()
+    .rename(columns={"Metadata_broad_sample": "no_of_replicates"})
+)
 
-n_dmso_l1000 = l1000_profile_df.shape[0]
+cardinality_df = cardinality_df.assign(dose_real = cardinality_df.dose.replace({int(x[-1]): dose_recode_info[x] for x in dose_recode_info}))
 
-print(l1000_profile_df.shape)
-l1000_profile_df.head()
+print(cardinality_df.shape)
+cardinality_df.head()
 
 
 # In[6]:
@@ -250,9 +257,9 @@ def get_cpd_medianscores(df):
 
 # Randomly subset Cell Painting profiles to match replicate sample size of L1000
 build_subsample_df = []
-for idx, l1000_pert in l1000_df.iterrows():
-    compound = l1000_pert.compound
-    dose = int(l1000_pert.dose_id)
+for idx, l1000_pert in cardinality_df.iterrows():
+    compound = l1000_pert.pert_iname
+    dose = int(l1000_pert.dose)
     n_replicates = l1000_pert.no_of_replicates
     
     random_sample_df = (
