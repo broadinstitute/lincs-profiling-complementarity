@@ -104,11 +104,12 @@ class L1000_1dcnn_moa_train_prediction:
         features = df_train_x.columns.tolist()
         num_features=len(features) + no_of_components
         num_targets=len(target_cols)
-        df_train = drug_stratification(df_train,NFOLDS,target_cols,col_name='replicate_id',cpd_freq_num=24)
+        
+        df_train = drug_stratification(df_train, NFOLDS, target_cols, col_name='replicate_id', cpd_freq_num=24)
         pos_weight = initialize_weights(df_train, target_cols, DEVICE)
         
-        def model_train_pred(fold, Model = CNN_Model, df_train_y = df_train_y, df_test_y = df_test_y, features=features,
-                           file_name = model_file_name):
+        def model_train_pred(fold, Model=CNN_Model, df_train_y=df_train_y, df_test_y=df_test_y, features=features,
+                             file_name=model_file_name):
             
             model_path = os.path.join(model_dir, file_name + f"_FOLD{fold}.pth")
             x_fold_train, y_fold_train, x_fold_val, y_fold_val, df_test_x_copy, val_idx = \
@@ -133,7 +134,7 @@ class L1000_1dcnn_moa_train_prediction:
             best_loss_epoch = -1
             
             for epoch in range(self.EPOCHS):
-                train_loss = train_fn(model, optimizer,scheduler, loss_train, trainloader, DEVICE)
+                train_loss = train_fn(model, optimizer, scheduler, loss_train, trainloader, DEVICE)
                 valid_loss, valid_preds = valid_fn(model, loss_val, validloader, DEVICE)
                 if valid_loss < best_loss:
                     best_loss = valid_loss
@@ -186,13 +187,22 @@ def parse_args():
     parser.add_argument('--shuffle', action="store_true", help='True or False argument, to check if the train data is shuffled \
     i.e. given to the wrong target labels OR NOT')
     ##model hyperparameters
-    parser.add_argument('--batch_size', type=int, default = 128, nargs='?', help='Batch size for the model inputs')
+    parser.add_argument('--batch_size', type=int, default = 256, nargs='?', help='Batch size for the model inputs')
     parser.add_argument('--learning_rate', type=float, default = 5e-3, nargs='?', help='learning rate')
     parser.add_argument('--epochs', type=int, default = 30, nargs='?', help='Number of epochs')
     return parser.parse_args()
     
 if __name__ == '__main__':
     args = parse_args()
-    L1000_1dcnn = L1000_1dcnn_moa_train_prediction(args.data_dir, args.model_pred_dir, args.shuffle, args.epochs,
-                                                   args.batch_size, args.learning_rate)
+    
+    L1000_1dcnn = L1000_1dcnn_moa_train_prediction(
+        args.data_dir,
+        args.model_pred_dir,
+        args.shuffle,
+        args.epochs,
+        args.batch_size,
+        args.learning_rate
+    )
+
     L1000_1dcnn.L1000_cnn_moa_train_prediction()
+
