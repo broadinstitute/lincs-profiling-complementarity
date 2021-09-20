@@ -127,7 +127,7 @@ class cp_tabnet_moa_train_prediction:
         df_train_x = add_stat_feats(df_train_x)
         df_test_x = add_stat_feats(df_test_x)
         
-        df_train = drug_stratification(df_train,NFOLDS,target_cols,col_name='replicate_name',cpd_freq_num=50)
+        df_train = drug_stratification(df_train,NFOLDS,target_cols,col_name='replicate_name',cpd_freq_num=24)
         pos_weight = initialize_weights(df_train, target_cols, DEVICE)
         wgt_bce = dp(F.binary_cross_entropy_with_logits)
         wgt_bce.__defaults__ = (None, None, None, 'mean', pos_weight)

@@ -34,7 +34,8 @@ from scipy.optimize import minimize, fsolve
 # In[4]:
 
 
-file_indicator = "_subsample"
+# The two options here are "" and "_subsample"
+file_indicator = ""
 data_dir = pathlib.Path("../2.data_split/model_data")
 
 

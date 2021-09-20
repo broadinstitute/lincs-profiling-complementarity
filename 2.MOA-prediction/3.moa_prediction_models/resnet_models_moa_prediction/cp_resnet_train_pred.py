@@ -121,7 +121,7 @@ class cp_resnet_moa_train_prediction:
         
         target_cols = df_targets.columns[1:]
         df_train_x, df_train_y, df_test_x, df_test_y = split_data(df_train, df_test, metadata_cols, target_cols)
-        df_train = drug_stratification(df_train,NFOLDS,target_cols,col_name='replicate_name',cpd_freq_num=60)
+        df_train = drug_stratification(df_train,NFOLDS,target_cols,col_name='replicate_name',cpd_freq_num=24)
         
         oof_preds = np.zeros(df_train_y.shape)
         y_pred = np.zeros(df_test_y.shape)

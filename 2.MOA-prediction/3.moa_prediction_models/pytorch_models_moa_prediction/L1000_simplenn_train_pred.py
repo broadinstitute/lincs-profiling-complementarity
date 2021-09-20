@@ -110,7 +110,7 @@ class L1000_simplenn_moa_train_prediction:
         features = df_train_x.columns.tolist()
         num_features=len(features)
         num_targets=len(target_cols)
-        df_train = drug_stratification(df_train,NFOLDS,target_cols,col_name='replicate_id',cpd_freq_num=36)
+        df_train = drug_stratification(df_train,NFOLDS,target_cols,col_name='replicate_id',cpd_freq_num=24)
         pos_weight = initialize_weights(df_train, target_cols, DEVICE)
         
         def model_train_pred(fold, seed):
