@@ -45,6 +45,10 @@ all_metrics_df$model <- dplyr::recode(
     all_metrics_df$model, `Models Ensemble` = "Ensemble"
 )
 
+head(all_metrics_df)
+
+table(all_metrics_df$profile_tech)
+
 # Panel A
 panel_a_df <- all_metrics_df %>%
     dplyr::filter(profile_tech %in% c("Cell Painting", "L1000"))
@@ -93,61 +97,40 @@ panel_a_gg <- (
 
 panel_a_gg
 
-# Load and process dose results
-metrics_dose_file <- file.path(performance_dir, "all_performance_metrics_by_dose.csv")
+sup_panel_a_df <- all_metrics_df %>%
+    dplyr::filter(metrics == "Precision-recall")
 
-metrics_dose_cols <- readr::cols(
-    id_name = readr::col_character(),
-    metrics = readr::col_character(),
-    values = readr::col_double(),
-    class = readr::col_character(),
-    model = readr::col_character(),
-    profile_tech = readr::col_character()
-)
+ensemble_df <- sup_panel_a_df %>%
+    dplyr::filter(model == "Ensemble")
 
-all_dose_metrics_df <- readr::read_csv(metrics_dose_file, col_types = metrics_dose_cols) %>%
-    dplyr::filter(profile_tech != "CP_L1000") %>%
-    dplyr::mutate(performance = values * 100)
+sup_panel_a_df <- sup_panel_a_df %>%
+    dplyr::filter(model != "Ensemble")
 
-# Process data
-all_dose_metrics_df$profile_tech <- dplyr::recode(
-    all_dose_metrics_df$profile_tech,
-    cp = "Cell Painting",
-    cpsubsample = "Cell Painting (subsample)"
-)
-
-all_dose_metrics_df$metrics <- dplyr::recode(all_dose_metrics_df$metrics, pr_auc_score = "Precision-recall")
-all_dose_metrics_df$model <- dplyr::recode(
-    all_dose_metrics_df$model,
-    mlknn = "Ml-KNN", simplenn = "Simple NN", cnn = "1D-CNN", resnet = "ResNet", tabnet = "TabNet"
-)
-
-all_dose_metrics_df$model <- factor(
-    all_dose_metrics_df$model,
-    levels = c("Ml-KNN", "Simple NN", "1D-CNN", "ResNet", "TabNet", "Models Ensemble")
-)
-
-all_dose_metrics_df$class <- dplyr::recode(
-    all_dose_metrics_df$class,
-    dose_1 = dose_order[1], dose_2 = dose_order[2], dose_3 = dose_order[3], dose_4 = dose_order[4], dose_5 = dose_order[5], dose_6 = dose_order[6]
-)
-all_dose_metrics_df$class <- factor(all_dose_metrics_df$class, levels = dose_order)
-
-head(all_dose_metrics_df)
-
-sup_fig_gg <- (
-    ggplot(
-        all_dose_metrics_df %>% dplyr::filter(profile_tech != "Cell Painting (subsample)"),
-        aes(x = model, y = performance))
-    + geom_bar(aes(fill = profile_tech), position = "dodge", stat = "identity")
-    + facet_grid("~class")
+sup_panel_a_gg <- (
+    ggplot(data = NULL, aes(x = model, y = values))
+    + geom_bar(
+        data = sup_panel_a_df %>% dplyr::filter(!shuffle),
+        stat = "identity",
+        aes(fill = profile_tech),
+        position = "dodge"
+    )
+    + geom_bar(
+        data = sup_panel_a_df %>% dplyr::filter(shuffle),
+        stat = "identity",
+        aes(color = profile_tech),
+        alpha = 0,
+        position = "dodge",
+        linetype = "dashed"
+    )
     + figure_theme
-    + scale_fill_manual("Assay", values = assay_colors)
-    + xlab("Model")
-    + ylab("Area under the precision-recall curve")
-)
+    + theme(
+        legend.spacing.y = unit(0.01, "cm"),
+        legend.box.spacing = unit(0.01, "cm"),
+        legend.justification = "top"
+    )
+    )
 
-sup_fig_gg
+sup_panel_a_gg
 
 metrics_moa_file <- file.path(performance_dir, "moa_precision_recall.csv")
 
@@ -166,6 +149,8 @@ color_logic <- moa_metrics_df$cp_values > 0.2 | moa_metrics_df$L1_values > 0.3
 # Baselines derived from 1.moa_predictions_visualization.ipynb
 cp_baseline <- 0.01187097486689307
 l1000_baseline <- 0.010994768416209987
+
+cor.test(moa_metrics_df$cp_values, moa_metrics_df$L1_values, method = "spearman")
 
 panel_b_gg <- (
     ggplot(moa_metrics_df, aes(x = cp_values, y = L1_values))
@@ -214,54 +199,3 @@ for (extension in extensions) {
     output_file <- paste0(output_figure_base, extension)
     cowplot::save_plot(output_file, figure5_gg, base_width = 8, base_height = 11, dpi = 500)
 }
-
-
-
-# Load median scores
-results_dir <- file.path("../1.Data-exploration/Profiles_level4/results")
-cell_painting_comp_df <- load_median_correlation_scores(assay = "cellpainting", results_dir = results_dir)
-l1000_comp_df <- load_median_correlation_scores(assay = "l1000", results_dir = results_dir)
-
-comp_df <- dplyr::bind_rows(cell_painting_comp_df, l1000_comp_df)
-comp_df$dose <- factor(comp_df$dose, levels = dose_order)
-
-# Load MOA info
-file <- file.path("..", "2.MOA-prediction", "1.compound_split_train_test", "data", "split_moas_cpds.csv")
-
-align_cols <- readr::cols(
-    pert_iname = readr::col_character(),
-    moa = readr::col_character(),
-    train = readr::col_logical(),
-    test = readr::col_logical(),
-    marked = readr::col_logical()
-)
-
-align_df <- readr::read_csv(file, col_types = align_cols)
-
-moa_metrics_melt_df <- moa_metrics_df %>%
-    reshape2::melt(
-        id.vars = "moa",
-        value.vars = c("cp_values", "L1_values", "cp_L1_values"),
-        variable.name = "assay",
-        value.name = "aupr"
-    )
-
-moa_metrics_melt_df$assay <- dplyr::recode(
-    moa_metrics_melt_df$assay,
-    cp_values = "Cell Painting", L1_values = "L1000", cp_L1_values = "both"
-)
-
-prediction_by_replicate_score_df <- moa_metrics_melt_df %>%
-    dplyr::left_join(align_df, by = c("moa" = "moa")) %>%
-    dplyr::left_join(comp_df, by = c("pert_iname" = "compound", "assay" = "assay")) %>%
-    tidyr::drop_na()
-
-head(prediction_by_replicate_score_df, 3)
-
-(
-    ggplot(prediction_by_replicate_score_df, aes(x = median_replicate_score, y = aupr))
-    + geom_point()
-    + facet_wrap("~assay")
-)
-
-
