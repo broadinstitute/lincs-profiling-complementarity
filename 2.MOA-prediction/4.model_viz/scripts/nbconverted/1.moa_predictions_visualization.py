@@ -738,6 +738,7 @@ df_best_doses['values'] = df_best_doses['values'].apply(lambda x:x*100)
 
 
 dose_baseline = np.mean(list(dose_no_skill_scrs.values()))*100
+dose_baseline
 
 
 # In[78]:
