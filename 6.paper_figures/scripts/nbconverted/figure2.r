@@ -80,6 +80,8 @@ panel_a_gg <- (
 
 panel_a_gg
 
+sum(pm_df %>% dplyr::filter(dose == "0.12 uM", assay == "L1000") %>% dplyr::pull(pass_thresh))
+
 results_dir <- file.path("../1.Data-exploration/Consensus/")
 
 pm_cellpainting_list <- load_percent_matching(assay = "cellpainting", results_dir = results_dir)
@@ -190,71 +192,33 @@ panel_b_gg <- (
 
 panel_b_gg
 
-level4_results_dir <- file.path("../1.Data-exploration/Profiles_level4/results")
-
-# Next, get the median scores and determine if they pass the threshold
-cell_painting_comp_df <- load_median_correlation_scores(assay = "cellpainting", results_dir = level4_results_dir)
-l1000_comp_df <- load_median_correlation_scores(assay = "l1000", results_dir = level4_results_dir)
-
-cell_painting_pr_df <- load_percent_strong(assay = "cellpainting", results_dir = level4_results_dir)
-l1000_pr_df <- load_percent_strong(assay = "l1000", results_dir = level4_results_dir)
-
-pr_df <- dplyr::bind_rows(cell_painting_pr_df, l1000_pr_df)
-pr_df$dose <- factor(pr_df$dose, levels = dose_order)
-
-threshold_df <- pr_df %>%
-    dplyr::filter(type == 'non_replicate') %>%
-    dplyr::group_by(assay, dose) %>%
-    dplyr::summarise(threshold = quantile(replicate_correlation, 0.95))
-
-significant_compounds_df <- cell_painting_comp_df %>%
-    dplyr::left_join(l1000_comp_df, by = c("dose", "compound"), suffix = c("_cellpainting", "_l1000")) %>%
-    tidyr::drop_na() %>%
-    dplyr::left_join(threshold_df %>% dplyr::filter(assay == "Cell Painting"), by = "dose") %>%
-    dplyr::left_join(threshold_df %>% dplyr::filter(assay == "L1000"), by = "dose", suffix = c("_cellpainting", "_l1000")) %>%
-    dplyr::mutate(
-        pass_cellpainting_thresh = median_replicate_score_cellpainting > threshold_cellpainting,
-        pass_l1000_thresh = median_replicate_score_l1000 > threshold_l1000
+summary_df <- pm_df %>%
+    dplyr::select(moa, dose, assay, p_value) %>%
+    reshape2::dcast(moa + dose ~ assay, value.var = "p_value") %>%
+    dplyr::rename(
+        "Cell_Painting_p_value" = `Cell Painting`,
+        "L1000_p_value" = `L1000`
     ) %>%
-    dplyr::mutate(pass_both = pass_cellpainting_thresh + pass_l1000_thresh) %>%
-    dplyr::mutate(pass_both = ifelse(pass_both == 2, TRUE, FALSE)) %>%
-    dplyr::select(compound, dose, median_replicate_score_cellpainting, median_replicate_score_l1000, pass_cellpainting_thresh, pass_l1000_thresh, pass_both)
-
-pm_cellpainting_list <- load_percent_matching(assay = "cellpainting", results_dir = results_dir)
-pm_l1000_list <- load_percent_matching(assay = "l1000", results_dir = results_dir)
-
-cell_painting_pm_pval_df <- pm_cellpainting_list[["percent_matching_pvals"]] %>%
-    dplyr::filter(no_of_replicates >= no_replicates_thresh)
-l1000_pm_pval_df <- pm_l1000_list[["percent_matching_pvals"]] %>%
-    dplyr::filter(no_of_replicates >= no_replicates_thresh)
-
-pass_thresh_summary_df <- significant_compounds_df %>%
-    dplyr::group_by(dose) %>%
-    dplyr::mutate(
-        num_pass_cellpainting = sum(pass_cellpainting_thresh),
-        num_pass_l1000 = sum(pass_l1000_thresh),
-        num_pass_both = sum(pass_both)
+    dplyr::left_join(
+        pm_df %>%
+        dplyr::select(moa, dose, assay, matching_score) %>%
+        reshape2::dcast(moa + dose ~ assay, value.var = "matching_score") %>%
+        dplyr::rename(
+            "Cell_Painting_matching_score" = `Cell Painting`,
+            "L1000_matching_score" = `L1000`
+        ),
+        by = c("moa", "dose")
     ) %>%
-    dplyr::ungroup() %>%
-    dplyr::select(dose, num_pass_cellpainting, num_pass_l1000, num_pass_both) %>%
-    dplyr::distinct() %>%
     dplyr::mutate(
-        unique_pass_cellpainting = num_pass_cellpainting - num_pass_both,
-        unique_pass_l1000 = num_pass_l1000 - num_pass_both
-    )
-
-significant_moa_df <- cell_painting_pm_pval_df %>%
-    dplyr::left_join(l1000_pm_pval_df, by = c("dose", "moa"), suffix = c("_cellpainting", "_l1000")) %>%
-    tidyr::drop_na() %>%
-    dplyr::mutate(
-        pass_cellpainting_thresh = p_value_cellpainting < p_val_alpha_thresh,
-        pass_l1000_thresh = p_value_l1000 < p_val_alpha_thresh
+        pass_cellpainting_thresh = Cell_Painting_p_value < p_val_alpha_thresh,
+        pass_l1000_thresh = L1000_p_value < p_val_alpha_thresh
     ) %>%
-    dplyr::select(moa, dose, pass_cellpainting_thresh, pass_l1000_thresh) %>%
     dplyr::mutate(pass_both = pass_cellpainting_thresh + pass_l1000_thresh) %>%
     dplyr::mutate(pass_both = ifelse(pass_both == 2, TRUE, FALSE))
 
-pass_thresh_summary_moa_df <- significant_moa_df %>%
+head(summary_df, 3)
+
+pass_thresh_summary_moa_df <- summary_df %>%
     dplyr::group_by(dose) %>%
     dplyr::mutate(
         num_pass_cellpainting = sum(pass_cellpainting_thresh),
@@ -274,8 +238,8 @@ cell_painting_moa_rect <- pass_thresh_summary_moa_df %>%
     dplyr::rename(c(ymax_bar = num_pass_cellpainting, unique_pass = unique_pass_cellpainting)) %>%
     dplyr::mutate(
         ymin_bar = 0,
-        xmin_bar = seq(0, (length(unique(pass_thresh_summary_df$dose)) - 1) * 2, 2),
-        xmax_bar = seq(1, (length(unique(pass_thresh_summary_df$dose))) * 2, 2),
+        xmin_bar = seq(0, (length(unique(pass_thresh_summary_moa_df$dose)) - 1) * 2, 2),
+        xmax_bar = seq(1, (length(unique(pass_thresh_summary_moa_df$dose))) * 2, 2),
         assay = "Cell Painting",
         label_text_y = 2
     )
@@ -285,8 +249,8 @@ l1000_moa_rect <- pass_thresh_summary_moa_df %>%
     dplyr::select(dose, ymax_bar, unique_pass_cellpainting, unique_pass_l1000, num_pass_both) %>%
     dplyr::rename(c(ymin_bar = unique_pass_cellpainting, unique_pass = unique_pass_l1000)) %>%
     dplyr::mutate(
-        xmin_bar = seq(0, (length(unique(pass_thresh_summary_df$dose)) - 1) * 2, 2),
-        xmax_bar = seq(1, (length(unique(pass_thresh_summary_df$dose))) * 2, 2),
+        xmin_bar = seq(0, (length(unique(pass_thresh_summary_moa_df$dose)) - 1) * 2, 2),
+        xmax_bar = seq(1, (length(unique(pass_thresh_summary_moa_df$dose))) * 2, 2),
         assay = "L1000",
         label_text_y = ymax_bar - 1.5
     )
@@ -305,7 +269,7 @@ num_pass_both_moa_text <- full_moa_rect %>%
     ) %>%
     dplyr::mutate(label_text_y = ymin_l1000_bar + num_pass_both / 2)
 
-total_moas <- length(unique(significant_moa_df$moa))
+total_moas <- length(unique(summary_df$moa))
 total_moas
 
 percentile_pass_moa_df <- pass_thresh_summary_moa_df %>%
