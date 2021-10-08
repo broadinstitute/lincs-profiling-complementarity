@@ -70,6 +70,9 @@ if (well_specific_null) {
 # "how many compounds were measured in both assays at ALL doses".
 print(length(unique(pr_pval_df$compound)))
 
+output_file <- file.path("results", "compound_scores.tsv")
+readr::write_tsv(pr_pval_df, output_file)
+
 print(dim(pr_pval_df))
 head(pr_pval_df)
 
@@ -157,7 +160,7 @@ panel_b_gg <- (
     + facet_grid("~dose")
     + geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "black")
     + figure_theme
-    + scale_color_gradient("How many times\nis the compound\nreproducible in\nboth assays?", low = "blue", high = "red")
+    + scale_color_gradient("How many total\ndoses is the\ncompound\nreproducible in\nboth assays?", low = "blue", high = "red")
     + xlab("Cell Painting\nMedian pairwise replicate correlation")
     + ylab("L1000\nMedian pairwise replicate correlation")
 )
@@ -165,7 +168,8 @@ panel_b_gg <- (
 panel_b_gg
 
 significant_compounds_df <- pr_summary_df %>%
-    dplyr::select(compound, well, dose, pass_thresh_cp, pass_thresh_l1000, pass_both)
+    dplyr::select(compound, well, dose, pass_thresh_cp, pass_thresh_l1000, pass_both) %>%
+    tidyr::drop_na()
 
 total_compounds <- length(unique(significant_compounds_df$compound))
 print(total_compounds)
@@ -198,7 +202,9 @@ cell_painting_rect <- pass_thresh_summary_df %>%
         xmin_bar = seq(0, (length(unique(pass_thresh_summary_df$dose)) - 1) * 2, 2),
         xmax_bar = seq(1, (length(unique(pass_thresh_summary_df$dose))) * 2, 2),
         assay = "Cell Painting",
-        label_text_y = 300
+        label_text_y = 300,
+        updated_ymin_bar = ymin_bar,
+        updated_ymax_bar = ymax_bar - num_pass_both
     )
 
 l1000_rect <- pass_thresh_summary_df %>%
@@ -209,10 +215,27 @@ l1000_rect <- pass_thresh_summary_df %>%
         xmin_bar = seq(0, (length(unique(pass_thresh_summary_df$dose)) - 1) * 2, 2),
         xmax_bar = seq(1, (length(unique(pass_thresh_summary_df$dose))) * 2, 2),
         assay = "L1000",
-        label_text_y = ymax_bar - 25
+        label_text_y = ymax_bar - 25,
+        updated_ymin_bar = ymin_bar + num_pass_both,
+        updated_ymax_bar = ymax_bar
     )
 
-full_rect <- dplyr::bind_rows(cell_painting_rect, l1000_rect)
+both_rect <- cell_painting_rect %>%
+    dplyr::select(dose, xmin_bar, xmax_bar, updated_ymin_bar, updated_ymax_bar) %>%
+    dplyr::left_join(
+        l1000_rect %>%
+        dplyr::select(dose, xmin_bar, xmax_bar, updated_ymin_bar, updated_ymax_bar),
+        by = c("dose", "xmin_bar", "xmax_bar"),
+        suffix = c("_cp", "_l1000")
+    ) %>%
+    dplyr::mutate(
+        updated_ymin_bar = updated_ymax_bar_cp,
+        updated_ymax_bar = updated_ymin_bar_l1000,
+        assay = "Both"
+    ) %>%
+    dplyr::select(dose, xmin_bar, xmax_bar, assay, updated_ymin_bar, updated_ymax_bar)
+
+full_rect <- dplyr::bind_rows(cell_painting_rect, l1000_rect, both_rect)
 
 num_pass_both_text <- full_rect %>%
     dplyr::filter(assay == "Cell Painting") %>%
@@ -236,26 +259,24 @@ percentile_pass_df <- pass_thresh_summary_df %>%
 
 # Prep legend order
 full_rect <- full_rect %>%
-    dplyr::add_row(
-        dose = NA,
-        ymax_bar = NA,
-        unique_pass = NA,
-        num_pass_both = NA,
-        ymin_bar = NA,
-        xmin_bar = NA,
-        xmax_bar = NA,
-        assay = "Both",
-        label_text_y = NA
-    ) %>%
     dplyr::left_join(percentile_pass_df, by = "dose")
 
 full_rect$assay <- factor(full_rect$assay, levels = c("L1000", "Both", "Cell Painting"))
 
-updated_assay_colors <- c(assay_colors, "Both" = "#BDB4B4")
+updated_assay_colors <- c(assay_colors, "Both" = "#DF74F0")
 
 panel_c_gg <- (
     ggplot(full_rect)
-    + geom_rect(aes(fill = assay, ymin = ymin_bar, ymax = ymax_bar, xmin = xmin_bar, xmax = xmax_bar), alpha = 0.5)
+    + geom_rect(
+        aes(
+            fill = assay,
+            ymin = updated_ymin_bar,
+            ymax = updated_ymax_bar,
+            xmin = xmin_bar,
+            xmax = xmax_bar
+        ),
+        alpha = 0.5
+    )
     + geom_text(aes(x = xmin_bar + 0.5, y = label_text_y, label = unique_pass))
     + geom_text(data = num_pass_both_text, aes(x = xmin_bar + 0.5, y = label_text_y, label = num_pass_both))
     # Select only L1000 below to not duplicate text
