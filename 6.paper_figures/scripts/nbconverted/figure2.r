@@ -48,6 +48,10 @@ pm_df$dose <- factor(pm_df$dose, levels = dose_order)
 
 pm_df$neg_log_10_p_val[pm_df$neg_log_10_p_val == Inf] = 3.5
 
+# Output percent matching (MOA)
+output_file <- file.path("results", "moa_scores.tsv")
+readr::write_tsv(pm_df, output_file)
+
 print(dim(pm_df))
 head(pm_df)
 
@@ -79,8 +83,6 @@ panel_a_gg <- (
 )
 
 panel_a_gg
-
-sum(pm_df %>% dplyr::filter(dose == "0.12 uM", assay == "L1000") %>% dplyr::pull(pass_thresh))
 
 results_dir <- file.path("../1.Data-exploration/Consensus/")
 
@@ -241,7 +243,9 @@ cell_painting_moa_rect <- pass_thresh_summary_moa_df %>%
         xmin_bar = seq(0, (length(unique(pass_thresh_summary_moa_df$dose)) - 1) * 2, 2),
         xmax_bar = seq(1, (length(unique(pass_thresh_summary_moa_df$dose))) * 2, 2),
         assay = "Cell Painting",
-        label_text_y = 2
+        label_text_y = 2,
+        updated_ymin_bar = ymin_bar,
+        updated_ymax_bar = ymax_bar - num_pass_both
     )
 
 l1000_moa_rect <- pass_thresh_summary_moa_df %>%
@@ -252,10 +256,27 @@ l1000_moa_rect <- pass_thresh_summary_moa_df %>%
         xmin_bar = seq(0, (length(unique(pass_thresh_summary_moa_df$dose)) - 1) * 2, 2),
         xmax_bar = seq(1, (length(unique(pass_thresh_summary_moa_df$dose))) * 2, 2),
         assay = "L1000",
-        label_text_y = ymax_bar - 1.5
+        label_text_y = ymax_bar - 1.5,
+        updated_ymin_bar = ymin_bar + num_pass_both,
+        updated_ymax_bar = ymax_bar
     )
 
-full_moa_rect <- dplyr::bind_rows(cell_painting_moa_rect, l1000_moa_rect)
+both_moa_rect <- cell_painting_moa_rect %>%
+    dplyr::select(dose, xmin_bar, xmax_bar, updated_ymin_bar, updated_ymax_bar) %>%
+    dplyr::left_join(
+        l1000_moa_rect %>%
+        dplyr::select(dose, xmin_bar, xmax_bar, updated_ymin_bar, updated_ymax_bar),
+        by = c("dose", "xmin_bar", "xmax_bar"),
+        suffix = c("_cp", "_l1000")
+    ) %>%
+    dplyr::mutate(
+        updated_ymin_bar = updated_ymax_bar_cp,
+        updated_ymax_bar = updated_ymin_bar_l1000,
+        assay = "Both"
+    ) %>%
+    dplyr::select(dose, xmin_bar, xmax_bar, assay, updated_ymin_bar, updated_ymax_bar)
+
+full_moa_rect <- dplyr::bind_rows(cell_painting_moa_rect, l1000_moa_rect, both_moa_rect)
 
 num_pass_both_moa_text <- full_moa_rect %>%
     dplyr::filter(assay == "Cell Painting") %>%
@@ -283,32 +304,47 @@ percentile_pass_moa_df
 
 # Prep legend order
 full_moa_rect <- full_moa_rect %>%
-    dplyr::add_row(
-        dose = NA,
-        ymax_bar = NA,
-        unique_pass = NA,
-        num_pass_both = NA,
-        ymin_bar = NA,
-        xmin_bar = NA,
-        xmax_bar = NA,
-        assay = "Both",
-        label_text_y = NA
-    ) %>%
     dplyr::left_join(percentile_pass_moa_df, by = "dose")
 
 full_moa_rect$assay <- factor(full_moa_rect$assay, levels = c("L1000", "Both", "Cell Painting"))
 
-updated_assay_colors <- c(assay_colors, "Both" = "#BDB4B4") 
+updated_assay_colors <- c(assay_colors, "Both" = "#DF74F0") 
 
 panel_c_gg <- (
     ggplot(full_moa_rect)
-    + geom_rect(aes(fill = assay, ymin = ymin_bar, ymax = ymax_bar, xmin = xmin_bar, xmax = xmax_bar), alpha = 0.5)
-    + geom_text(aes(x = xmin_bar + 0.5, y = label_text_y, label = unique_pass))
-    + geom_text(data = num_pass_both_moa_text, aes(x = xmin_bar + 0.5, y = label_text_y, label = num_pass_both))
+    + geom_rect(
+        aes(
+            fill = assay,
+            ymin = updated_ymin_bar,
+            ymax = updated_ymax_bar,
+            xmin = xmin_bar,
+            xmax = xmax_bar
+        ),
+        alpha = 0.5
+    )
+    + geom_text(
+        aes(
+            x = xmin_bar + 0.5,
+            y = label_text_y,
+            label = unique_pass
+        )
+    )
+    + geom_text(
+        data = num_pass_both_moa_text,
+        aes(
+            x = xmin_bar + 0.5,
+            y = label_text_y,
+            label = num_pass_both
+        )
+    )
     # Select only L1000 below to not duplicate text
     + geom_text(
         data = full_moa_rect %>% dplyr::filter(assay == "L1000"),
-        aes(x = xmin_bar + 0.5, y = ymax_bar + 2, label = num_pass_percentile),
+        aes(
+            x = xmin_bar + 0.5,
+            y = ymax_bar + 2,
+            label = num_pass_percentile
+        ),
         size = 3
     )
     + scale_fill_manual("MOA\nconsistent\nin assay", values = updated_assay_colors)
@@ -372,6 +408,9 @@ plot_ready_moa_text_df <- consistent_match_moa_df %>% dplyr::left_join(full_moa_
 
 plot_ready_moa_text_df$x_axis_location <- factor(plot_ready_moa_text_df$x_axis_location, levels = c("Cell Painting", "Both", "L1000"))
 
+plot_ready_moa_text_df <- plot_ready_moa_text_df %>%
+    dplyr::mutate(moa_with_replicate_count = paste0(moa, " (", replicate_count, ")"))
+
 print(length(unique(plot_ready_moa_text_df$moa)))
 head(plot_ready_moa_text_df)
 
@@ -383,19 +422,35 @@ names(moa_labels) <- moa_labels
 
 panel_d_gg <- (
     ggplot(plot_ready_moa_text_df, aes(y = y_axis_location, x = 0))
-    + geom_text(aes(label = moa, color = x_axis_location, size = replicate_count))
+    + geom_text(
+        aes(
+            label = moa_with_replicate_count,
+        ),
+        color = "black",
+        size = 3.9
+    )
+    + geom_text(
+        aes(
+            label = moa_with_replicate_count,
+        ),
+        color = "black",
+        size = 3.9
+    )
+    + geom_text(
+        aes(
+            label = moa_with_replicate_count,
+            color = x_axis_location
+        ),
+        size = 3.9
+    )
     + facet_wrap("~x_axis_location", strip.position = "bottom")
     + theme_void()
-    + theme(strip.text = element_text(size = 14))
+    + theme(strip.text = element_text(size = 14.5))
     + scale_color_manual(
         "Pass null\nthreshold",
         values = moa_colors
     )
-    + scale_size(
-        "Number of\npassing doses",
-        range = c(4, 7)
-    )
-    + xlim(-100, 120)
+    + xlim(-110, 120)
     + ylim(0, 60)
     + guides(color = guide_legend(order = 1))
 )
