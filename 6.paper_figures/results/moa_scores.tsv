@@ -1,0 +1,1525 @@
+moa	no_of_replicates	dose	matching_score	assay	p_value	pass_thresh	neg_log_10_p_val
+acat inhibitor	3	0.04 uM	0.004444607026614167	Cell Painting	0.513	FALSE	0.2898826348881837
+acetylcholine receptor agonist	8	0.04 uM	0.0051423427356670276	Cell Painting	0.576	FALSE	0.239577516576788
+acetylcholine receptor antagonist	21	0.04 uM	0.01926218300767919	Cell Painting	0.017	TRUE	1.7695510786217261
+adenosine receptor agonist	3	0.04 uM	0.009583710050606715	Cell Painting	0.442	FALSE	0.3545777306509081
+adenosine receptor antagonist	4	0.04 uM	0.0017039192367026192	Cell Painting	0.612	FALSE	0.21324857785443882
+adrenergic receptor agonist	20	0.04 uM	0.0050159376071951586	Cell Painting	0.683	FALSE	0.1655792963184674
+adrenergic receptor antagonist	31	0.04 uM	0.011885553217579345	Cell Painting	0.134	FALSE	0.8728952016351923
+akt inhibitor	6	0.04 uM	0.02062407844320813	Cell Painting	0.184	FALSE	0.7351821769904635
+alk tyrosine kinase receptor inhibitor	3	0.04 uM	0.006649767814332792	Cell Painting	0.48	FALSE	0.3187587626244128
+androgen receptor agonist	3	0.04 uM	0.22021968670113634	Cell Painting	0.001	TRUE	3
+androgen receptor antagonist	5	0.04 uM	0.029894772440498492	Cell Painting	0.099	FALSE	1.00436480540245
+androgen receptor modulator	3	0.04 uM	0.020145941860348158	Cell Painting	0.311	FALSE	0.5072396109731625
+angiotensin converting enzyme inhibitor	8	0.04 uM	0.019951211623272454	Cell Painting	0.139	FALSE	0.8569851997459049
+angiotensin receptor antagonist	4	0.04 uM	-0.0012266702480597455	Cell Painting	0.669	FALSE	0.17457388223217687
+aromatase inhibitor	3	0.04 uM	0.07616831167092399	Cell Painting	0.018	TRUE	1.744727494896694
+atp channel blocker	3	0.04 uM	0.05068545266452767	Cell Painting	0.072	FALSE	1.1426675035687315
+atpase inhibitor	3	0.04 uM	-0.016961038081374096	Cell Painting	0.794	FALSE	0.10017949757290372
+bacterial 30s ribosomal subunit inhibitor	5	0.04 uM	-0.016825354842652844	Cell Painting	0.94	FALSE	0.026872146400301365
+bacterial 50s ribosomal subunit inhibitor	5	0.04 uM	0.01884359357283811	Cell Painting	0.239	FALSE	0.6216020990518624
+bacterial cell wall synthesis inhibitor	14	0.04 uM	0.008101778622211226	Cell Painting	0.431	FALSE	0.3655227298392684
+bacterial dna gyrase inhibitor	11	0.04 uM	0.01103833297440241	Cell Painting	0.312	FALSE	0.5058454059815573
+bcl inhibitor	3	0.04 uM	-0.025009036479412442	Cell Painting	0.87	FALSE	0.060480747381381476
+benzodiazepine receptor agonist	7	0.04 uM	0.03129204446054435	Cell Painting	0.047	TRUE	1.3279021420642825
+benzodiazepine receptor antagonist	3	0.04 uM	0.04068250297604291	Cell Painting	0.122	FALSE	0.9136401693252518
+calcineurin inhibitor	3	0.04 uM	0.02680199106869802	Cell Painting	0.234	FALSE	0.6307841425898572
+calcitonin antagonist	3	0.04 uM	0.03451345561258935	Cell Painting	0.166	FALSE	0.7798919119599449
+calcium channel blocker	15	0.04 uM	-5.641048459745336e-4	Cell Painting	0.904	FALSE	0.04383156952463668
+cannabinoid receptor agonist	3	0.04 uM	0.00494214238960245	Cell Painting	0.509	FALSE	0.29328221766324125
+carbonic anhydrase inhibitor	5	0.04 uM	0.018438412485437802	Cell Painting	0.247	FALSE	0.6073030467403343
+cc chemokine receptor antagonist	7	0.04 uM	3.7888178986534746e-4	Cell Painting	0.701	FALSE	0.15428198203334137
+cck receptor antagonist	4	0.04 uM	0.015832766196091173	Cell Painting	0.344	FALSE	0.46344155742846993
+cdk inhibitor	7	0.04 uM	0.06292101865817265	Cell Painting	0.001	TRUE	3
+chelating agent	4	0.04 uM	0.006284257572448308	Cell Painting	0.518	FALSE	0.28567024025476695
+cholesterol inhibitor	3	0.04 uM	0.015164442284388291	Cell Painting	0.368	FALSE	0.43415218132648237
+coagulation factor inhibitor	4	0.04 uM	0.02913683354879461	Cell Painting	0.144	FALSE	0.8416375079047503
+cyclooxygenase inhibitor	27	0.04 uM	0.0017630000888233886	Cell Painting	0.93	FALSE	0.03151705144606486
+cyclooxygenase inhibitor|prostanoid receptor antagonist	4	0.04 uM	0.0017120524339023706	Cell Painting	0.612	FALSE	0.21324857785443882
+dipeptidyl peptidase inhibitor	3	0.04 uM	0.06256219686757054	Cell Painting	0.039	TRUE	1.408935392973501
+dna inhibitor	5	0.04 uM	0.019653161377477427	Cell Painting	0.229	FALSE	0.640164517660112
+dna methyltransferase inhibitor	3	0.04 uM	0.0786813181345641	Cell Painting	0.014	TRUE	1.853871964321762
+dna polymerase inhibitor	3	0.04 uM	4.253345563181275e-4	Cell Painting	0.568	FALSE	0.24565166428898116
+dna synthesis inhibitor	7	0.04 uM	0.003188081188048955	Cell Painting	0.625	FALSE	0.2041199826559248
+dopamine receptor agonist	9	0.04 uM	0.0012615748154992347	Cell Painting	0.734	FALSE	0.13430394008392949
+dopamine receptor antagonist	19	0.04 uM	0.013710181290233398	Cell Painting	0.108	FALSE	0.9665762445130504
+dopamine receptor antagonist|serotonin receptor antagonist	9	0.04 uM	-0.004271014123936502	Cell Painting	0.894	FALSE	0.04866248120408232
+egfr inhibitor	13	0.04 uM	0.06073401259360432	Cell Painting	0	TRUE	3.5
+endothelin receptor antagonist	4	0.04 uM	0.011250236983128853	Cell Painting	0.419	FALSE	0.3777859770337047
+estrogen receptor agonist	6	0.04 uM	0.021242291489639468	Cell Painting	0.177	FALSE	0.7520267336381934
+farnesyltransferase inhibitor	3	0.04 uM	0.019493822025181178	Cell Painting	0.315	FALSE	0.5016894462103995
+fgfr inhibitor|vegfr inhibitor	3	0.04 uM	-0.01766182125941162	Cell Painting	0.797	FALSE	0.09854167860388763
+free radical scavenger	4	0.04 uM	0.021772639580065534	Cell Painting	0.245	FALSE	0.6108339156354675
+fungal squalene epoxidase inhibitor	3	0.04 uM	0.019639060421558857	Cell Painting	0.315	FALSE	0.5016894462103995
+gaba receptor agonist	3	0.04 uM	0.018943625870233155	Cell Painting	0.321	FALSE	0.4934949675951279
+gaba receptor modulator	4	0.04 uM	0.04518767218772253	Cell Painting	0.058	FALSE	1.2365720064370627
+gamma secretase inhibitor	7	0.04 uM	0.024607742402900517	Cell Painting	0.105	FALSE	0.978810700930062
+glucocorticoid receptor agonist	14	0.04 uM	0.32076217116691647	Cell Painting	0	TRUE	3.5
+glucosidase inhibitor	3	0.04 uM	0.025710809098836145	Cell Painting	0.242	FALSE	0.6161846340195687
+glutamate receptor agonist	4	0.04 uM	-0.03952809846765237	Cell Painting	0.991	FALSE	0.003926345514724675
+glutamate receptor antagonist	5	0.04 uM	0.011282716042554295	Cell Painting	0.407	FALSE	0.39040559077478
+glutamate receptor modulator	3	0.04 uM	-0.007278163607475038	Cell Painting	0.687	FALSE	0.16304326294044955
+hcv inhibitor	7	0.04 uM	0.004548277673074514	Cell Painting	0.583	FALSE	0.23433144524098595
+hdac inhibitor	13	0.04 uM	0.011561508952758679	Cell Painting	0.251	FALSE	0.6003262785189618
+histamine receptor antagonist	24	0.04 uM	0.004609950831646434	Cell Painting	0.727	FALSE	0.1384655891409622
+hiv integrase inhibitor	3	0.04 uM	0.03366942422485762	Cell Painting	0.173	FALSE	0.7619538968712046
+hiv protease inhibitor	5	0.04 uM	-0.012832000030757431	Cell Painting	0.9	FALSE	0.045757490560675115
+hmgcr inhibitor	5	0.04 uM	0.040273443337700866	Cell Painting	0.045	TRUE	1.3467874862246563
+hsp inhibitor	5	0.04 uM	0.02379169236146562	Cell Painting	0.167	FALSE	0.7772835288524167
+insulin secretagogue	4	0.04 uM	-0.03611663019841692	Cell Painting	0.987	FALSE	0.005682847330363273
+integrin antagonist	5	0.04 uM	-0.00843796183850958	Cell Painting	0.838	FALSE	0.07675598136972352
+jak inhibitor	5	0.04 uM	0.023890698580018275	Cell Painting	0.165	FALSE	0.7825160557860937
+leukotriene receptor antagonist	4	0.04 uM	0.018417063182151326	Cell Painting	0.299	FALSE	0.5243288116755703
+lipoxygenase inhibitor	3	0.04 uM	0.00812330882366598	Cell Painting	0.462	FALSE	0.33535802444387447
+matrix metalloprotease inhibitor	3	0.04 uM	-0.016643512842329778	Cell Painting	0.79	FALSE	0.10237290870955855
+mdm inhibitor	3	0.04 uM	0.07607910968342606	Cell Painting	0.018	TRUE	1.744727494896694
+mek inhibitor	8	0.04 uM	0.16943328012062248	Cell Painting	0	TRUE	3.5
+microtubule inhibitor	3	0.04 uM	0.018612372866224455	Cell Painting	0.324	FALSE	0.48945498979338786
+mineralocorticoid receptor antagonist	3	0.04 uM	0.0459448675486799	Cell Painting	0.094	FALSE	1.0268721464003014
+monoamine oxidase inhibitor	6	0.04 uM	-0.001965959558518809	Cell Painting	0.733	FALSE	0.13489602535887207
+mtor inhibitor	6	0.04 uM	0.2106155766144697	Cell Painting	0	TRUE	3.5
+mtor inhibitor|pi3k inhibitor	4	0.04 uM	0.0779713813717694	Cell Painting	0.006	TRUE	2.221848749616356
+mucolytic agent	3	0.04 uM	0.04277973004695011	Cell Painting	0.111	FALSE	0.9546770212133425
+nfkb pathway inhibitor	4	0.04 uM	-0.003903807719018207	Cell Painting	0.724	FALSE	0.1402614338028531
+nitric oxide synthase inhibitor	4	0.04 uM	-0.0012199731205503423	Cell Painting	0.669	FALSE	0.17457388223217687
+non-nucleoside reverse transcriptase inhibitor	4	0.04 uM	0.011741697211373218	Cell Painting	0.407	FALSE	0.39040559077478
+nucleoside reverse transcriptase inhibitor	4	0.04 uM	0.03496877866370612	Cell Painting	0.1	FALSE	1
+opioid receptor agonist	3	0.04 uM	0.007614872642469804	Cell Painting	0.47	FALSE	0.3279021420642826
+opioid receptor antagonist	4	0.04 uM	-0.014102737134859164	Cell Painting	0.866	FALSE	0.062482107982653363
+p38 mapk inhibitor	6	0.04 uM	0.04250240997049155	Cell Painting	0.02	TRUE	1.6989700043360187
+parp inhibitor	5	0.04 uM	0.032174059013445236	Cell Painting	0.092	FALSE	1.0362121726544447
+phosphodiesterase inhibitor	28	0.04 uM	0.007999917226326574	Cell Painting	0.426	FALSE	0.37059040089728107
+pi3k inhibitor	7	0.04 uM	0.01211031430707503	Cell Painting	0.343	FALSE	0.46470587995722945
+pkc inhibitor	4	0.04 uM	0.01902741725275874	Cell Painting	0.292	FALSE	0.5346171485515817
+plk inhibitor	4	0.04 uM	0.6104446984996958	Cell Painting	0	TRUE	3.5
+potassium channel activator	6	0.04 uM	-0.00153885531359773	Cell Painting	0.724	FALSE	0.1402614338028531
+potassium channel blocker	4	0.04 uM	-0.010366752422887622	Cell Painting	0.815	FALSE	0.08884239126002341
+ppar receptor agonist	3	0.04 uM	-0.014673691648730015	Cell Painting	0.775	FALSE	0.1106982974936897
+ppar receptor agonist|insulin sensitizer	3	0.04 uM	0.028111454751268222	Cell Painting	0.217	FALSE	0.6635402661514705
+progesterone receptor agonist	7	0.04 uM	0.010186804462971022	Cell Painting	0.404	FALSE	0.393618634889395
+prostanoid receptor agonist	3	0.04 uM	-0.011154419659018828	Cell Painting	0.73	FALSE	0.1366771398795441
+prostanoid receptor antagonist	3	0.04 uM	-0.04396586988148156	Cell Painting	0.97	FALSE	0.01322826573375516
+proteasome inhibitor	4	0.04 uM	0.06797949632785114	Cell Painting	0.012	TRUE	1.9208187539523751
+protein synthesis inhibitor	6	0.04 uM	0.007533874306028405	Cell Painting	0.484	FALSE	0.31515463835558755
+protein synthesis stimulant	3	0.04 uM	0.014608060760987628	Cell Painting	0.379	FALSE	0.42136079003192767
+purinergic receptor antagonist	3	0.04 uM	-0.003932049157645144	Cell Painting	0.631	FALSE	0.19997064075586568
+raf inhibitor	5	0.04 uM	0.02975626497412295	Cell Painting	0.1	FALSE	1
+retinoid receptor agonist	6	0.04 uM	0.11777264412640784	Cell Painting	0	TRUE	3.5
+reverse transcriptase inhibitor	3	0.04 uM	-0.016963328022757605	Cell Painting	0.794	FALSE	0.10017949757290372
+rho associated kinase inhibitor	6	0.04 uM	0.033773123223632934	Cell Painting	0.056	FALSE	1.2518119729937995
+rna polymerase inhibitor	7	0.04 uM	0.014843349451517976	Cell Painting	0.273	FALSE	0.563837352959244
+selective serotonin reuptake inhibitor (ssri)	4	0.04 uM	-0.0045885902484357945	Cell Painting	0.737	FALSE	0.13253251214094852
+serotonin receptor agonist	12	0.04 uM	0.0044449632247989925	Cell Painting	0.638	FALSE	0.19517932127883766
+serotonin receptor agonist|serotonin receptor antagonist	3	0.04 uM	0.007557213768043629	Cell Painting	0.471	FALSE	0.3269790928711038
+serotonin receptor antagonist	12	0.04 uM	0.005230060789545676	Cell Painting	0.593	FALSE	0.22694530663573742
+serotonin reuptake inhibitor	4	0.04 uM	0.012625668027435142	Cell Painting	0.392	FALSE	0.4067139329795427
+sigma receptor antagonist	3	0.04 uM	0.019860174685243776	Cell Painting	0.313	FALSE	0.5044556624535516
+sodium channel blocker	11	0.04 uM	0.007823638702414114	Cell Painting	0.468	FALSE	0.32975414692587596
+sterol demethylase inhibitor	7	0.04 uM	0.02059483632663678	Cell Painting	0.148	FALSE	0.8297382846050426
+t-type calcium channel blocker	3	0.04 uM	-0.008397728429182764	Cell Painting	0.696	FALSE	0.15739076038943792
+tachykinin antagonist	6	0.04 uM	0.027084427959567323	Cell Painting	0.108	FALSE	0.9665762445130504
+topoisomerase inhibitor	15	0.04 uM	0.006913620207003219	Cell Painting	0.513	FALSE	0.2898826348881837
+tubulin inhibitor	8	0.04 uM	0.024847294200385166	Cell Painting	0.07	FALSE	1.154901959985743
+tyrosine kinase inhibitor	4	0.04 uM	0.02362863281476522	Cell Painting	0.218	FALSE	0.6615435063953952
+vasopressin receptor antagonist	4	0.04 uM	-0.014859813681210428	Cell Painting	0.877	FALSE	0.05700040663395948
+vegfr inhibitor	4	0.04 uM	0.007791479094869881	Cell Painting	0.488	FALSE	0.3115801779972894
+vitamin d receptor agonist	5	0.04 uM	0.038206611727519726	Cell Painting	0.049	TRUE	1.3098039199714864
+xanthine oxidase inhibitor	3	0.04 uM	-0.0021678447686048954	Cell Painting	0.602	FALSE	0.22040350874217546
+xiap inhibitor	3	0.04 uM	0.07731236370118862	Cell Painting	0.016	TRUE	1.7958800173440752
+acat inhibitor	3	0.12 uM	0.02324071030893521	Cell Painting	0.247	FALSE	0.6073030467403343
+acetylcholine receptor agonist	8	0.12 uM	-0.008460580434801697	Cell Painting	0.93	FALSE	0.03151705144606486
+acetylcholine receptor antagonist	21	0.12 uM	0.013668237501608511	Cell Painting	0.095	FALSE	1.0222763947111522
+adenosine receptor agonist	3	0.12 uM	-0.018228040678737338	Cell Painting	0.814	FALSE	0.0893755951107988
+adenosine receptor antagonist	4	0.12 uM	0.010194253557004271	Cell Painting	0.451	FALSE	0.34582345812203946
+adrenergic receptor agonist	20	0.12 uM	0.002574939720989639	Cell Painting	0.838	FALSE	0.07675598136972352
+adrenergic receptor antagonist	31	0.12 uM	0.009110430087823206	Cell Painting	0.307	FALSE	0.5128616245228135
+akt inhibitor	6	0.12 uM	0.04214911802869475	Cell Painting	0.024	TRUE	1.6197887582883939
+alk tyrosine kinase receptor inhibitor	3	0.12 uM	0.022172913022602565	Cell Painting	0.255	FALSE	0.5934598195660449
+androgen receptor agonist	3	0.12 uM	0.20121404780055255	Cell Painting	0.001	TRUE	3
+androgen receptor antagonist	5	0.12 uM	0.019625191308108435	Cell Painting	0.27	FALSE	0.5686362358410126
+androgen receptor modulator	3	0.12 uM	0.027854223122429897	Cell Painting	0.204	FALSE	0.6903698325741012
+angiotensin converting enzyme inhibitor	8	0.12 uM	0.021701572298365397	Cell Painting	0.106	FALSE	0.9746941347352298
+angiotensin receptor antagonist	4	0.12 uM	-0.01192826869646108	Cell Painting	0.835	FALSE	0.07831352451639793
+aromatase inhibitor	3	0.12 uM	0.08440498195743115	Cell Painting	0.006	TRUE	2.221848749616356
+atp channel blocker	3	0.12 uM	0.007274754261416562	Cell Painting	0.475	FALSE	0.3233063903751334
+atpase inhibitor	3	0.12 uM	-0.019006712526523337	Cell Painting	0.82	FALSE	0.08618614761628333
+bacterial 30s ribosomal subunit inhibitor	5	0.12 uM	-0.01454523414461522	Cell Painting	0.898	FALSE	0.04672366333269562
+bacterial 50s ribosomal subunit inhibitor	5	0.12 uM	-0.020298779064869918	Cell Painting	0.958	FALSE	0.018634490921455603
+bacterial cell wall synthesis inhibitor	14	0.12 uM	7.836360066157877e-4	Cell Painting	0.836	FALSE	0.07779372256098363
+bacterial dna gyrase inhibitor	11	0.12 uM	0.002880721731251867	Cell Painting	0.7	FALSE	0.1549019599857432
+bcl inhibitor	3	0.12 uM	0.013295509986185729	Cell Painting	0.375	FALSE	0.42596873227228116
+benzodiazepine receptor agonist	7	0.12 uM	0.003899358079700978	Cell Painting	0.617	FALSE	0.20971483596675833
+benzodiazepine receptor antagonist	3	0.12 uM	0.008617892807301361	Cell Painting	0.449	FALSE	0.3477536589966768
+calcineurin inhibitor	3	0.12 uM	0.009993185335041385	Cell Painting	0.426	FALSE	0.37059040089728107
+calcitonin antagonist	3	0.12 uM	0.012761190093189927	Cell Painting	0.385	FALSE	0.4145392704914993
+calcium channel blocker	15	0.12 uM	-0.003119600673337827	Cell Painting	0.967	FALSE	0.014573525916998339
+cannabinoid receptor agonist	3	0.12 uM	0.0026348997515119052	Cell Painting	0.549	FALSE	0.26042765554990804
+carbonic anhydrase inhibitor	5	0.12 uM	0.014596549338035518	Cell Painting	0.367	FALSE	0.4353339357479107
+cc chemokine receptor antagonist	7	0.12 uM	-0.006995494884513481	Cell Painting	0.912	FALSE	0.04000516167158381
+cck receptor antagonist	4	0.12 uM	-0.014075143003676814	Cell Painting	0.859	FALSE	0.0660068361687577
+cdk inhibitor	7	0.12 uM	0.10220626357604508	Cell Painting	0	TRUE	3.5
+chelating agent	4	0.12 uM	-0.04564397606958824	Cell Painting	0.999	FALSE	4.345117740176917e-4
+cholesterol inhibitor	3	0.12 uM	0.013346451980555198	Cell Painting	0.375	FALSE	0.42596873227228116
+coagulation factor inhibitor	4	0.12 uM	-0.03484726712270758	Cell Painting	0.983	FALSE	0.007446482167864384
+cyclooxygenase inhibitor	27	0.12 uM	0.010191237151493292	Cell Painting	0.241	FALSE	0.6179829574251317
+cyclooxygenase inhibitor|prostanoid receptor antagonist	4	0.12 uM	0.02264842068430893	Cell Painting	0.225	FALSE	0.6478174818886375
+dipeptidyl peptidase inhibitor	3	0.12 uM	0.016353499672608636	Cell Painting	0.339	FALSE	0.4698003017969178
+dna inhibitor	5	0.12 uM	-0.004901128726747902	Cell Painting	0.771	FALSE	0.11294562194904302
+dna methyltransferase inhibitor	3	0.12 uM	0.13647024447577608	Cell Painting	0.001	TRUE	3
+dna polymerase inhibitor	3	0.12 uM	0.02320528844393378	Cell Painting	0.248	FALSE	0.6055483191737837
+dna synthesis inhibitor	7	0.12 uM	0.005972606793368265	Cell Painting	0.545	FALSE	0.2636034977233575
+dopamine receptor agonist	9	0.12 uM	-0.005176413370368144	Cell Painting	0.902	FALSE	0.04479346245805826
+dopamine receptor antagonist	19	0.12 uM	-0.001498395727189042	Cell Painting	0.965	FALSE	0.015472686656207449
+dopamine receptor antagonist|serotonin receptor antagonist	9	0.12 uM	0.01801473453050567	Cell Painting	0.155	FALSE	0.8096683018297085
+egfr inhibitor	13	0.12 uM	0.10843464893653823	Cell Painting	0	TRUE	3.5
+endothelin receptor antagonist	4	0.12 uM	-0.030542727866339513	Cell Painting	0.971	FALSE	0.012780770091995148
+estrogen receptor agonist	6	0.12 uM	0.020177965716484354	Cell Painting	0.191	FALSE	0.7189666327522725
+farnesyltransferase inhibitor	3	0.12 uM	0.017165625928597716	Cell Painting	0.326	FALSE	0.48678239993206096
+fgfr inhibitor|vegfr inhibitor	3	0.12 uM	0.026947958975625803	Cell Painting	0.21	FALSE	0.6777807052660807
+free radical scavenger	4	0.12 uM	-0.007935682820329734	Cell Painting	0.787	FALSE	0.10402526764093542
+fungal squalene epoxidase inhibitor	3	0.12 uM	-0.04492375490174643	Cell Painting	0.974	FALSE	0.011441043121384482
+gaba receptor agonist	3	0.12 uM	0.014258805572500099	Cell Painting	0.364	FALSE	0.438898616350944
+gaba receptor modulator	4	0.12 uM	0.032117700545090645	Cell Painting	0.127	FALSE	0.8961962790440431
+gamma secretase inhibitor	7	0.12 uM	0.010392630474405662	Cell Painting	0.405	FALSE	0.3925449767853314
+glucocorticoid receptor agonist	14	0.12 uM	0.3459664919953673	Cell Painting	0	TRUE	3.5
+glucosidase inhibitor	3	0.12 uM	0.022107581689671887	Cell Painting	0.256	FALSE	0.5917600346881504
+glutamate receptor agonist	4	0.12 uM	-0.00924319022719056	Cell Painting	0.807	FALSE	0.09312646527792956
+glutamate receptor antagonist	5	0.12 uM	0.01849846297765298	Cell Painting	0.291	FALSE	0.5361070110140927
+glutamate receptor modulator	3	0.12 uM	-0.031378555565353836	Cell Painting	0.923	FALSE	0.03479829897408793
+hcv inhibitor	7	0.12 uM	0.006637583574801544	Cell Painting	0.53	FALSE	0.27572413039921095
+hdac inhibitor	13	0.12 uM	0.04439865079986818	Cell Painting	0	TRUE	3.5
+histamine receptor antagonist	24	0.12 uM	0.007805857062870054	Cell Painting	0.446	FALSE	0.35066514128785814
+hiv integrase inhibitor	3	0.12 uM	0.03145376974433395	Cell Painting	0.169	FALSE	0.7721132953863264
+hiv protease inhibitor	5	0.12 uM	0.02086456316240371	Cell Painting	0.253	FALSE	0.5968794788241821
+hmgcr inhibitor	5	0.12 uM	-0.007048726724356826	Cell Painting	0.81	FALSE	0.09151498112135022
+hsp inhibitor	5	0.12 uM	0.06179563575806861	Cell Painting	0.004	TRUE	2.3979400086720375
+insulin secretagogue	4	0.12 uM	-0.017247053964666876	Cell Painting	0.888	FALSE	0.05158703422139897
+integrin antagonist	5	0.12 uM	0.001875080956462331	Cell Painting	0.651	FALSE	0.18641901143180803
+jak inhibitor	5	0.12 uM	-0.0027960426662788124	Cell Painting	0.736	FALSE	0.13312218566250114
+leukotriene receptor antagonist	4	0.12 uM	0.0029621101835569648	Cell Painting	0.596	FALSE	0.22475374025976358
+lipoxygenase inhibitor	3	0.12 uM	0.010601628375837563	Cell Painting	0.411	FALSE	0.38615817812393083
+matrix metalloprotease inhibitor	3	0.12 uM	-0.010173642091950808	Cell Painting	0.741	FALSE	0.13018179202067184
+mdm inhibitor	3	0.12 uM	0.005024147127264466	Cell Painting	0.513	FALSE	0.2898826348881837
+mek inhibitor	8	0.12 uM	0.22201471573434242	Cell Painting	0	TRUE	3.5
+microtubule inhibitor	3	0.12 uM	0.07395537108133231	Cell Painting	0.012	TRUE	1.9208187539523751
+mineralocorticoid receptor antagonist	3	0.12 uM	0.021848676494758825	Cell Painting	0.261	FALSE	0.583359492661719
+monoamine oxidase inhibitor	6	0.12 uM	-0.004178001166181549	Cell Painting	0.774	FALSE	0.11125903931710739
+mtor inhibitor	6	0.12 uM	0.24749596986488717	Cell Painting	0	TRUE	3.5
+mtor inhibitor|pi3k inhibitor	4	0.12 uM	0.05596414572970215	Cell Painting	0.022	TRUE	1.6575773191777938
+mucolytic agent	3	0.12 uM	0.023319186988385622	Cell Painting	0.247	FALSE	0.6073030467403343
+nfkb pathway inhibitor	4	0.12 uM	0.01717390890135306	Cell Painting	0.314	FALSE	0.5030703519267851
+nitric oxide synthase inhibitor	4	0.12 uM	-0.026674686968229326	Cell Painting	0.958	FALSE	0.018634490921455603
+non-nucleoside reverse transcriptase inhibitor	4	0.12 uM	0.0021657386916383607	Cell Painting	0.614	FALSE	0.21183162885883233
+nucleoside reverse transcriptase inhibitor	4	0.12 uM	-0.011467483939843669	Cell Painting	0.83	FALSE	0.08092190762392612
+opioid receptor agonist	3	0.12 uM	0.04021711579771177	Cell Painting	0.106	FALSE	0.9746941347352298
+opioid receptor antagonist	4	0.12 uM	0.016070799878540102	Cell Painting	0.332	FALSE	0.4788619162959637
+p38 mapk inhibitor	6	0.12 uM	0.07387812151559196	Cell Painting	0	TRUE	3.5
+parp inhibitor	5	0.12 uM	0.01382737047651994	Cell Painting	0.379	FALSE	0.42136079003192767
+phosphodiesterase inhibitor	28	0.12 uM	0.013802077576337054	Cell Painting	0.076	FALSE	1.1191864077192086
+pi3k inhibitor	7	0.12 uM	-0.022786382351160185	Cell Painting	0.998	FALSE	8.694587126288914e-4
+pkc inhibitor	4	0.12 uM	0.019838237544547208	Cell Painting	0.275	FALSE	0.5606673061697374
+plk inhibitor	4	0.12 uM	0.5872633027724714	Cell Painting	0	TRUE	3.5
+potassium channel activator	6	0.12 uM	0.011649252438953992	Cell Painting	0.37	FALSE	0.431798275933005
+potassium channel blocker	4	0.12 uM	-0.006436368341822162	Cell Painting	0.768	FALSE	0.114638779968488
+ppar receptor agonist	3	0.12 uM	0.008318505405985928	Cell Painting	0.456	FALSE	0.341035157335565
+ppar receptor agonist|insulin sensitizer	3	0.12 uM	0.052359911918408227	Cell Painting	0.052	FALSE	1.2839966563652008
+progesterone receptor agonist	7	0.12 uM	0.012013501901467903	Cell Painting	0.357	FALSE	0.4473317838878068
+prostanoid receptor agonist	3	0.12 uM	0.07192470219146127	Cell Painting	0.018	TRUE	1.744727494896694
+prostanoid receptor antagonist	3	0.12 uM	-0.018765832090550327	Cell Painting	0.82	FALSE	0.08618614761628333
+proteasome inhibitor	4	0.12 uM	0.20090386137490351	Cell Painting	0	TRUE	3.5
+protein synthesis inhibitor	6	0.12 uM	0.010323748559372693	Cell Painting	0.408	FALSE	0.3893398369101201
+protein synthesis stimulant	3	0.12 uM	0.016091925818279108	Cell Painting	0.34	FALSE	0.46852108295774486
+purinergic receptor antagonist	3	0.12 uM	-0.002210057080476421	Cell Painting	0.635	FALSE	0.1972262747080243
+raf inhibitor	5	0.12 uM	0.06145731262250253	Cell Painting	0.004	TRUE	2.3979400086720375
+retinoid receptor agonist	6	0.12 uM	0.13268630630196093	Cell Painting	0	TRUE	3.5
+reverse transcriptase inhibitor	3	0.12 uM	-0.04806221685424647	Cell Painting	0.98	FALSE	0.00877392430750515
+rho associated kinase inhibitor	6	0.12 uM	-0.0012029208477313258	Cell Painting	0.706	FALSE	0.15119529894819625
+rna polymerase inhibitor	7	0.12 uM	0.021337385157429094	Cell Painting	0.139	FALSE	0.8569851997459049
+selective serotonin reuptake inhibitor (ssri)	4	0.12 uM	0.009244456736093844	Cell Painting	0.473	FALSE	0.32513885926218844
+serotonin receptor agonist	12	0.12 uM	0.004452638454201262	Cell Painting	0.625	FALSE	0.2041199826559248
+serotonin receptor agonist|serotonin receptor antagonist	3	0.12 uM	0.04960464545757134	Cell Painting	0.06	FALSE	1.2218487496163564
+serotonin receptor antagonist	12	0.12 uM	0.0035545129942511308	Cell Painting	0.668	FALSE	0.1752235375244543
+serotonin reuptake inhibitor	4	0.12 uM	-0.007370365238253591	Cell Painting	0.786	FALSE	0.10457745396059209
+sigma receptor antagonist	3	0.12 uM	-0.010967947113299086	Cell Painting	0.744	FALSE	0.1284270644541213
+sodium channel blocker	11	0.12 uM	0.008714371629934058	Cell Painting	0.42	FALSE	0.37675070960209955
+sterol demethylase inhibitor	7	0.12 uM	0.013239739527533073	Cell Painting	0.33	FALSE	0.4814860601221125
+t-type calcium channel blocker	3	0.12 uM	0.04097331889015657	Cell Painting	0.101	FALSE	0.9956786262173574
+tachykinin antagonist	6	0.12 uM	0.004840835102686566	Cell Painting	0.554	FALSE	0.2564902352715702
+topoisomerase inhibitor	15	0.12 uM	0.009568127793505467	Cell Painting	0.376	FALSE	0.42481215507233894
+tubulin inhibitor	8	0.12 uM	0.03941576045631294	Cell Painting	0.006	TRUE	2.221848749616356
+tyrosine kinase inhibitor	4	0.12 uM	0.01972969029961438	Cell Painting	0.278	FALSE	0.5559552040819237
+vasopressin receptor antagonist	4	0.12 uM	0.0032419292982788337	Cell Painting	0.589	FALSE	0.2298847052128984
+vegfr inhibitor	4	0.12 uM	-0.005843555608727715	Cell Painting	0.754	FALSE	0.12262865413022594
+vitamin d receptor agonist	5	0.12 uM	0.07749228640813959	Cell Painting	0.002	TRUE	2.6989700043360187
+xanthine oxidase inhibitor	3	0.12 uM	0.00411616968444742	Cell Painting	0.532	FALSE	0.2740883677049518
+xiap inhibitor	3	0.12 uM	0.19114526420984887	Cell Painting	0.001	TRUE	3
+acat inhibitor	3	0.37 uM	-0.017092616560060697	Cell Painting	0.797	FALSE	0.09854167860388763
+acetylcholine receptor agonist	8	0.37 uM	0.00870744555411801	Cell Painting	0.388	FALSE	0.41116827440579273
+acetylcholine receptor antagonist	21	0.37 uM	0.00583613483125941	Cell Painting	0.524	FALSE	0.28066871301627333
+adenosine receptor agonist	3	0.37 uM	0.004757343392400255	Cell Painting	0.501	FALSE	0.30016227413275426
+adenosine receptor antagonist	4	0.37 uM	-0.010265247218784784	Cell Painting	0.796	FALSE	0.09908693226233094
+adrenergic receptor agonist	20	0.37 uM	0.007998582908235224	Cell Painting	0.362	FALSE	0.4412914294668343
+adrenergic receptor antagonist	31	0.37 uM	0.009023008927191614	Cell Painting	0.224	FALSE	0.6497519816658371
+akt inhibitor	6	0.37 uM	0.06074509457567888	Cell Painting	0.002	TRUE	2.6989700043360187
+alk tyrosine kinase receptor inhibitor	3	0.37 uM	-0.050049101637081206	Cell Painting	0.974	FALSE	0.011441043121384482
+androgen receptor agonist	3	0.37 uM	0.1849513956268927	Cell Painting	0	TRUE	3.5
+androgen receptor antagonist	5	0.37 uM	0.02263277047046939	Cell Painting	0.176	FALSE	0.7544873321858502
+androgen receptor modulator	3	0.37 uM	0.048813761238586356	Cell Painting	0.077	FALSE	1.1135092748275182
+angiotensin converting enzyme inhibitor	8	0.37 uM	0.02087433034281681	Cell Painting	0.089	FALSE	1.0506099933550872
+angiotensin receptor antagonist	4	0.37 uM	0.0029736922987490307	Cell Painting	0.581	FALSE	0.2358238676096693
+aromatase inhibitor	3	0.37 uM	0.22193795219854284	Cell Painting	0	TRUE	3.5
+atp channel blocker	3	0.37 uM	0.025387284957360534	Cell Painting	0.244	FALSE	0.6126101736612706
+atpase inhibitor	3	0.37 uM	0.013349799112704668	Cell Painting	0.398	FALSE	0.40011692792631215
+bacterial 30s ribosomal subunit inhibitor	5	0.37 uM	-0.004841677539663375	Cell Painting	0.76	FALSE	0.11918640771920865
+bacterial 50s ribosomal subunit inhibitor	5	0.37 uM	-0.00954360100420749	Cell Painting	0.838	FALSE	0.07675598136972352
+bacterial cell wall synthesis inhibitor	14	0.37 uM	-0.0012579902178932144	Cell Painting	0.867	FALSE	0.06198090252378971
+bacterial dna gyrase inhibitor	11	0.37 uM	0.009629354330941229	Cell Painting	0.342	FALSE	0.46597389394386496
+bcl inhibitor	3	0.37 uM	0.026211357938863162	Cell Painting	0.232	FALSE	0.6345120151091003
+benzodiazepine receptor agonist	7	0.37 uM	0.0014631942959892705	Cell Painting	0.634	FALSE	0.1979107421182673
+benzodiazepine receptor antagonist	3	0.37 uM	-0.02433059780569421	Cell Painting	0.867	FALSE	0.06198090252378971
+calcineurin inhibitor	3	0.37 uM	0.057217703347233084	Cell Painting	0.045	TRUE	1.3467874862246563
+calcitonin antagonist	3	0.37 uM	-0.005134432884528613	Cell Painting	0.642	FALSE	0.19246497193114673
+calcium channel blocker	15	0.37 uM	0.016355981798261397	Cell Painting	0.058	FALSE	1.2365720064370627
+cannabinoid receptor agonist	3	0.37 uM	0.03589192572751055	Cell Painting	0.155	FALSE	0.8096683018297085
+carbonic anhydrase inhibitor	5	0.37 uM	8.972066881806594e-4	Cell Painting	0.65	FALSE	0.18708664335714442
+cc chemokine receptor antagonist	7	0.37 uM	0.01795213974186261	Cell Painting	0.174	FALSE	0.7594507517174003
+cck receptor antagonist	4	0.37 uM	-0.0013694321930797066	Cell Painting	0.658	FALSE	0.1817741063860445
+cdk inhibitor	7	0.37 uM	0.14559085895485752	Cell Painting	0	TRUE	3.5
+chelating agent	4	0.37 uM	1.2207420648514735e-4	Cell Painting	0.637	FALSE	0.19586056766464957
+cholesterol inhibitor	3	0.37 uM	0.043201576123825275	Cell Painting	0.102	FALSE	0.9913998282380825
+coagulation factor inhibitor	4	0.37 uM	0.002758099092294226	Cell Painting	0.586	FALSE	0.23210238398190938
+cyclooxygenase inhibitor	27	0.37 uM	0.00400335097682829	Cell Painting	0.744	FALSE	0.1284270644541213
+cyclooxygenase inhibitor|prostanoid receptor antagonist	4	0.37 uM	0.0044748442947482306	Cell Painting	0.552	FALSE	0.2580609222708011
+dipeptidyl peptidase inhibitor	3	0.37 uM	0.01840943036390507	Cell Painting	0.321	FALSE	0.4934949675951279
+dna inhibitor	5	0.37 uM	4.87533544115965e-4	Cell Painting	0.658	FALSE	0.1817741063860445
+dna methyltransferase inhibitor	3	0.37 uM	0.15350532132809375	Cell Painting	0	TRUE	3.5
+dna polymerase inhibitor	3	0.37 uM	-0.009080803445148843	Cell Painting	0.699	FALSE	0.15552282425431863
+dna synthesis inhibitor	7	0.37 uM	0.0010548328658750434	Cell Painting	0.651	FALSE	0.18641901143180803
+dopamine receptor agonist	9	0.37 uM	0.005416440061485461	Cell Painting	0.515	FALSE	0.28819277095880896
+dopamine receptor antagonist	19	0.37 uM	0.006587048682550403	Cell Painting	0.433	FALSE	0.36351210364663455
+dopamine receptor antagonist|serotonin receptor antagonist	9	0.37 uM	0.008475057341957762	Cell Painting	0.386	FALSE	0.41341269532824504
+egfr inhibitor	13	0.37 uM	0.12803826486715608	Cell Painting	0	TRUE	3.5
+endothelin receptor antagonist	4	0.37 uM	-0.0017471747123261475	Cell Painting	0.666	FALSE	0.17652577082969892
+estrogen receptor agonist	6	0.37 uM	-0.01899675028522711	Cell Painting	0.967	FALSE	0.014573525916998339
+farnesyltransferase inhibitor	3	0.37 uM	-0.004862467074990404	Cell Painting	0.639	FALSE	0.19449914184159983
+fgfr inhibitor|vegfr inhibitor	3	0.37 uM	-0.01654321195663451	Cell Painting	0.788	FALSE	0.10347378251044466
+free radical scavenger	4	0.37 uM	0.027541158841605056	Cell Painting	0.155	FALSE	0.8096683018297085
+fungal squalene epoxidase inhibitor	3	0.37 uM	-0.027465582633088223	Cell Painting	0.885	FALSE	0.05305672930217456
+gaba receptor agonist	3	0.37 uM	0.02241356158437631	Cell Painting	0.271	FALSE	0.5670307091255943
+gaba receptor modulator	4	0.37 uM	0.032922001700365744	Cell Painting	0.105	FALSE	0.978810700930062
+gamma secretase inhibitor	7	0.37 uM	0.03137577930367552	Cell Painting	0.025	TRUE	1.6020599913279623
+glucocorticoid receptor agonist	14	0.37 uM	0.3651532862994547	Cell Painting	0	TRUE	3.5
+glucosidase inhibitor	3	0.37 uM	-0.015682354489457904	Cell Painting	0.78	FALSE	0.10790539730951958
+glutamate receptor agonist	4	0.37 uM	-0.021774293303897907	Cell Painting	0.92	FALSE	0.036212172654444715
+glutamate receptor antagonist	5	0.37 uM	0.0032588628561193485	Cell Painting	0.585	FALSE	0.23284413391781958
+glutamate receptor modulator	3	0.37 uM	-0.030184466078948518	Cell Painting	0.902	FALSE	0.04479346245805826
+hcv inhibitor	7	0.37 uM	0.017852313787080444	Cell Painting	0.177	FALSE	0.7520267336381934
+hdac inhibitor	13	0.37 uM	0.04522495137420972	Cell Painting	0	TRUE	3.5
+histamine receptor antagonist	24	0.37 uM	0.007205776210441034	Cell Painting	0.395	FALSE	0.40340290437353976
+hiv integrase inhibitor	3	0.37 uM	0.0754282055573029	Cell Painting	0.017	TRUE	1.7695510786217261
+hiv protease inhibitor	5	0.37 uM	0.01691885123390328	Cell Painting	0.256	FALSE	0.5917600346881504
+hmgcr inhibitor	5	0.37 uM	-0.0012859941835832841	Cell Painting	0.694	FALSE	0.15864052954514513
+hsp inhibitor	5	0.37 uM	0.29158124824503484	Cell Painting	0.001	TRUE	3
+insulin secretagogue	4	0.37 uM	-0.015615920656684712	Cell Painting	0.86	FALSE	0.06550154875643228
+integrin antagonist	5	0.37 uM	0.012903171856926078	Cell Painting	0.348	FALSE	0.4584207560534191
+jak inhibitor	5	0.37 uM	0.0019921259846971606	Cell Painting	0.622	FALSE	0.2062096153091813
+leukotriene receptor antagonist	4	0.37 uM	-0.010007611352813823	Cell Painting	0.793	FALSE	0.10072681268239618
+lipoxygenase inhibitor	3	0.37 uM	0.01273664637807974	Cell Painting	0.407	FALSE	0.39040559077478
+matrix metalloprotease inhibitor	3	0.37 uM	-0.023084763416514928	Cell Painting	0.855	FALSE	0.06803388527182737
+mdm inhibitor	3	0.37 uM	0.02200121990528871	Cell Painting	0.276	FALSE	0.5590909179347823
+mek inhibitor	8	0.37 uM	0.3323275691232261	Cell Painting	0	TRUE	3.5
+microtubule inhibitor	3	0.37 uM	0.026294844082993624	Cell Painting	0.232	FALSE	0.6345120151091003
+mineralocorticoid receptor antagonist	3	0.37 uM	0.026462274266961235	Cell Painting	0.232	FALSE	0.6345120151091003
+monoamine oxidase inhibitor	6	0.37 uM	0.006636729811181604	Cell Painting	0.478	FALSE	0.3205721033878811
+mtor inhibitor	6	0.37 uM	0.3663088656832304	Cell Painting	0	TRUE	3.5
+mtor inhibitor|pi3k inhibitor	4	0.37 uM	0.15742047366097622	Cell Painting	0.001	TRUE	3
+mucolytic agent	3	0.37 uM	-0.0024267047388626434	Cell Painting	0.607	FALSE	0.21681130892474243
+nfkb pathway inhibitor	4	0.37 uM	0.022569452066465257	Cell Painting	0.213	FALSE	0.6716203965612623
+nitric oxide synthase inhibitor	4	0.37 uM	-0.004821959343298019	Cell Painting	0.711	FALSE	0.14813039927023372
+non-nucleoside reverse transcriptase inhibitor	4	0.37 uM	-0.025254191222903566	Cell Painting	0.939	FALSE	0.027334407733889104
+nucleoside reverse transcriptase inhibitor	4	0.37 uM	0.01506375132967923	Cell Painting	0.342	FALSE	0.46597389394386496
+opioid receptor agonist	3	0.37 uM	0.020704194765096627	Cell Painting	0.29	FALSE	0.5376020021010439
+opioid receptor antagonist	4	0.37 uM	-0.014602073197822352	Cell Painting	0.847	FALSE	0.0721165896692931
+p38 mapk inhibitor	6	0.37 uM	0.11037639801426861	Cell Painting	0	TRUE	3.5
+parp inhibitor	5	0.37 uM	-0.008928537214647017	Cell Painting	0.829	FALSE	0.08144546944972647
+phosphodiesterase inhibitor	28	0.37 uM	0.0075949142362407	Cell Painting	0.363	FALSE	0.4400933749638875
+pi3k inhibitor	7	0.37 uM	-0.003100818295225414	Cell Painting	0.773	FALSE	0.11182050608167508
+pkc inhibitor	4	0.37 uM	0.022774387609364857	Cell Painting	0.209	FALSE	0.679853713888946
+plk inhibitor	4	0.37 uM	0.5851894216596509	Cell Painting	0	TRUE	3.5
+potassium channel activator	6	0.37 uM	0.019180740782538012	Cell Painting	0.171	FALSE	0.7670038896078462
+potassium channel blocker	4	0.37 uM	0.02964356491511204	Cell Painting	0.134	FALSE	0.8728952016351923
+ppar receptor agonist	3	0.37 uM	8.502394132386879e-5	Cell Painting	0.574	FALSE	0.2410881076020265
+ppar receptor agonist|insulin sensitizer	3	0.37 uM	-0.012326616999824106	Cell Painting	0.746	FALSE	0.1272611725273312
+progesterone receptor agonist	7	0.37 uM	0.038365348968111807	Cell Painting	0.007	TRUE	2.154901959985743
+prostanoid receptor agonist	3	0.37 uM	0.012317864701568397	Cell Painting	0.41	FALSE	0.38721614328026455
+prostanoid receptor antagonist	3	0.37 uM	-0.01659676607102603	Cell Painting	0.789	FALSE	0.10292299679057967
+proteasome inhibitor	4	0.37 uM	0.4191919257385207	Cell Painting	0	TRUE	3.5
+protein synthesis inhibitor	6	0.37 uM	0.03975504194290166	Cell Painting	0.02	TRUE	1.6989700043360187
+protein synthesis stimulant	3	0.37 uM	0.013393017825796811	Cell Painting	0.398	FALSE	0.40011692792631215
+purinergic receptor antagonist	3	0.37 uM	-0.008489627537127583	Cell Painting	0.69	FALSE	0.16115090926274472
+raf inhibitor	5	0.37 uM	0.053439415826873	Cell Painting	0.006	TRUE	2.221848749616356
+retinoid receptor agonist	6	0.37 uM	0.10382753042201061	Cell Painting	0	TRUE	3.5
+reverse transcriptase inhibitor	3	0.37 uM	-0.02992370639116143	Cell Painting	0.9	FALSE	0.045757490560675115
+rho associated kinase inhibitor	6	0.37 uM	0.01915057136167725	Cell Painting	0.171	FALSE	0.7670038896078462
+rna polymerase inhibitor	7	0.37 uM	0.011246103941004986	Cell Painting	0.35	FALSE	0.4559319556497244
+selective serotonin reuptake inhibitor (ssri)	4	0.37 uM	-0.014045391974334734	Cell Painting	0.838	FALSE	0.07675598136972352
+serotonin receptor agonist	12	0.37 uM	6.136390055224718e-4	Cell Painting	0.79	FALSE	0.10237290870955855
+serotonin receptor agonist|serotonin receptor antagonist	3	0.37 uM	0.026709040304276926	Cell Painting	0.23	FALSE	0.638272163982407
+serotonin receptor antagonist	12	0.37 uM	0.00201953063253399	Cell Painting	0.724	FALSE	0.1402614338028531
+serotonin reuptake inhibitor	4	0.37 uM	-0.014117377931306106	Cell Painting	0.838	FALSE	0.07675598136972352
+sigma receptor antagonist	3	0.37 uM	0.029907055454912294	Cell Painting	0.203	FALSE	0.6925039620867871
+sodium channel blocker	11	0.37 uM	0.008503174400068047	Cell Painting	0.391	FALSE	0.40782324260413316
+sterol demethylase inhibitor	7	0.37 uM	0.010594040789085388	Cell Painting	0.363	FALSE	0.4400933749638875
+t-type calcium channel blocker	3	0.37 uM	-0.01608635103398962	Cell Painting	0.783	FALSE	0.10623823794205658
+tachykinin antagonist	6	0.37 uM	0.012061961782597665	Cell Painting	0.334	FALSE	0.4762535331884355
+topoisomerase inhibitor	15	0.37 uM	0.006252420239452251	Cell Painting	0.492	FALSE	0.30803489723263966
+tubulin inhibitor	8	0.37 uM	0.036374622327798735	Cell Painting	0.007	TRUE	2.154901959985743
+tyrosine kinase inhibitor	4	0.37 uM	0.019406016345652005	Cell Painting	0.258	FALSE	0.5883802940367698
+vasopressin receptor antagonist	4	0.37 uM	0.02449743978909769	Cell Painting	0.178	FALSE	0.7495799976911061
+vegfr inhibitor	4	0.37 uM	-0.00950428073609701	Cell Painting	0.785	FALSE	0.10513034325474745
+vitamin d receptor agonist	5	0.37 uM	0.07001542913047432	Cell Painting	0.004	TRUE	2.3979400086720375
+xanthine oxidase inhibitor	3	0.37 uM	-0.007911071221940135	Cell Painting	0.682	FALSE	0.16621562534352105
+xiap inhibitor	3	0.37 uM	0.26485652250770975	Cell Painting	0	TRUE	3.5
+acat inhibitor	3	1.11 uM	-0.0804719433714995	Cell Painting	0.997	FALSE	0.0013048416883442813
+acetylcholine receptor agonist	8	1.11 uM	2.75850052199572e-4	Cell Painting	0.732	FALSE	0.13548891894160814
+acetylcholine receptor antagonist	21	1.11 uM	0.004113574532043903	Cell Painting	0.663	FALSE	0.17848647159522685
+adenosine receptor agonist	3	1.11 uM	-0.01488758017780848	Cell Painting	0.771	FALSE	0.11294562194904302
+adenosine receptor antagonist	4	1.11 uM	8.94583260279724e-4	Cell Painting	0.6	FALSE	0.2218487496163564
+adrenergic receptor agonist	20	1.11 uM	0.003154966055726471	Cell Painting	0.749	FALSE	0.12551818230053352
+adrenergic receptor antagonist	31	1.11 uM	0.006356362262147955	Cell Painting	0.523	FALSE	0.2814983111327257
+akt inhibitor	6	1.11 uM	0.0688066115178018	Cell Painting	0	TRUE	3.5
+alk tyrosine kinase receptor inhibitor	3	1.11 uM	0.02212142824990115	Cell Painting	0.278	FALSE	0.5559552040819237
+androgen receptor agonist	3	1.11 uM	0.19284008855652268	Cell Painting	0	TRUE	3.5
+androgen receptor antagonist	5	1.11 uM	0.0251904374216161	Cell Painting	0.15	FALSE	0.8239087409443188
+androgen receptor modulator	3	1.11 uM	0.08175828267288145	Cell Painting	0.02	TRUE	1.6989700043360187
+angiotensin converting enzyme inhibitor	8	1.11 uM	0.010031615133175999	Cell Painting	0.371	FALSE	0.43062609038495414
+angiotensin receptor antagonist	4	1.11 uM	0.011832349613833108	Cell Painting	0.392	FALSE	0.4067139329795427
+aromatase inhibitor	3	1.11 uM	0.11443770187037405	Cell Painting	0.001	TRUE	3
+atp channel blocker	3	1.11 uM	0.0036123245250422307	Cell Painting	0.511	FALSE	0.29157909986528724
+atpase inhibitor	3	1.11 uM	-0.0020185807673447453	Cell Painting	0.603	FALSE	0.2196826878598487
+bacterial 30s ribosomal subunit inhibitor	5	1.11 uM	-0.0060072258476852455	Cell Painting	0.773	FALSE	0.11182050608167508
+bacterial 50s ribosomal subunit inhibitor	5	1.11 uM	0.01540788960886782	Cell Painting	0.303	FALSE	0.518557371497695
+bacterial cell wall synthesis inhibitor	14	1.11 uM	0.010413335200641066	Cell Painting	0.259	FALSE	0.5867002359187482
+bacterial dna gyrase inhibitor	11	1.11 uM	0.020449032478093952	Cell Painting	0.066	FALSE	1.1804560644581312
+bcl inhibitor	3	1.11 uM	0.11745734653950354	Cell Painting	0.001	TRUE	3
+benzodiazepine receptor agonist	7	1.11 uM	0.0014760343966340132	Cell Painting	0.66	FALSE	0.1804560644581313
+benzodiazepine receptor antagonist	3	1.11 uM	0.014677378017245985	Cell Painting	0.366	FALSE	0.43651891460558934
+calcineurin inhibitor	3	1.11 uM	0.10379610582659379	Cell Painting	0.006	TRUE	2.221848749616356
+calcitonin antagonist	3	1.11 uM	-0.061623914309346134	Cell Painting	0.983	FALSE	0.007446482167864384
+calcium channel blocker	15	1.11 uM	0.014952917101996446	Cell Painting	0.1	FALSE	1
+cannabinoid receptor agonist	3	1.11 uM	0.029442810487356575	Cell Painting	0.198	FALSE	0.7033348097384688
+carbonic anhydrase inhibitor	5	1.11 uM	0.017522313180193122	Cell Painting	0.273	FALSE	0.563837352959244
+cc chemokine receptor antagonist	7	1.11 uM	0.03176031503298254	Cell Painting	0.02	TRUE	1.6989700043360187
+cck receptor antagonist	4	1.11 uM	0.0083402504570786	Cell Painting	0.455	FALSE	0.34198860334288755
+cdk inhibitor	7	1.11 uM	0.14310591134634262	Cell Painting	0	TRUE	3.5
+chelating agent	4	1.11 uM	0.009633083087950585	Cell Painting	0.428	FALSE	0.368556230986828
+cholesterol inhibitor	3	1.11 uM	-0.011939435226858383	Cell Painting	0.738	FALSE	0.13194363817695845
+coagulation factor inhibitor	4	1.11 uM	0.006844995516835921	Cell Painting	0.482	FALSE	0.31695296176115045
+cyclooxygenase inhibitor	27	1.11 uM	0.0026671893922145143	Cell Painting	0.833	FALSE	0.07935499859321243
+cyclooxygenase inhibitor|prostanoid receptor antagonist	4	1.11 uM	-0.00984756247037	Cell Painting	0.793	FALSE	0.10072681268239618
+dipeptidyl peptidase inhibitor	3	1.11 uM	0.01692700136593523	Cell Painting	0.336	FALSE	0.4736607226101559
+dna inhibitor	5	1.11 uM	-7.255926643075794e-4	Cell Painting	0.652	FALSE	0.1857524042680798
+dna methyltransferase inhibitor	3	1.11 uM	0.06528981009517053	Cell Painting	0.038	TRUE	1.4202164033831899
+dna polymerase inhibitor	3	1.11 uM	-0.015392838822074088	Cell Painting	0.774	FALSE	0.11125903931710739
+dna synthesis inhibitor	7	1.11 uM	0.007031278726871462	Cell Painting	0.472	FALSE	0.32605800136591223
+dopamine receptor agonist	9	1.11 uM	-0.013812924600250933	Cell Painting	0.983	FALSE	0.007446482167864384
+dopamine receptor antagonist	19	1.11 uM	0.005111161255271804	Cell Painting	0.583	FALSE	0.23433144524098595
+dopamine receptor antagonist|serotonin receptor antagonist	9	1.11 uM	0.011427841375754543	Cell Painting	0.305	FALSE	0.5157001606532142
+egfr inhibitor	13	1.11 uM	0.13165772448661728	Cell Painting	0	TRUE	3.5
+endothelin receptor antagonist	4	1.11 uM	-0.0014256238651733247	Cell Painting	0.645	FALSE	0.19044028536473223
+estrogen receptor agonist	6	1.11 uM	0.00787765083044017	Cell Painting	0.479	FALSE	0.3196644865854368
+farnesyltransferase inhibitor	3	1.11 uM	0.03364358572160918	Cell Painting	0.165	FALSE	0.7825160557860937
+fgfr inhibitor|vegfr inhibitor	3	1.11 uM	0.051453133110752815	Cell Painting	0.064	FALSE	1.193820026016113
+free radical scavenger	4	1.11 uM	0.02181169981356171	Cell Painting	0.241	FALSE	0.6179829574251317
+fungal squalene epoxidase inhibitor	3	1.11 uM	0.034699413680825957	Cell Painting	0.157	FALSE	0.8041003475907662
+gaba receptor agonist	3	1.11 uM	0.004900552011069509	Cell Painting	0.497	FALSE	0.3036436112666679
+gaba receptor modulator	4	1.11 uM	0.01122217646928783	Cell Painting	0.399	FALSE	0.3990271043132517
+gamma secretase inhibitor	7	1.11 uM	0.050055473909842586	Cell Painting	0	TRUE	3.5
+glucocorticoid receptor agonist	14	1.11 uM	0.3683398183171005	Cell Painting	0	TRUE	3.5
+glucosidase inhibitor	3	1.11 uM	-0.008011609573091952	Cell Painting	0.683	FALSE	0.1655792963184674
+glutamate receptor agonist	4	1.11 uM	0.0015532530874868798	Cell Painting	0.59	FALSE	0.22914798835785583
+glutamate receptor antagonist	5	1.11 uM	0.021435302907926508	Cell Painting	0.196	FALSE	0.707743928643524
+glutamate receptor modulator	3	1.11 uM	-0.023641325908847658	Cell Painting	0.856	FALSE	0.06752623532284678
+hcv inhibitor	7	1.11 uM	-0.013347124837080674	Cell Painting	0.958	FALSE	0.018634490921455603
+hdac inhibitor	13	1.11 uM	0.04205311389866659	Cell Painting	0	TRUE	3.5
+histamine receptor antagonist	24	1.11 uM	0.004465699060325722	Cell Painting	0.692	FALSE	0.15989390554324223
+hiv integrase inhibitor	3	1.11 uM	0.01628247488534235	Cell Painting	0.347	FALSE	0.4596705252091263
+hiv protease inhibitor	5	1.11 uM	-0.003463948192274423	Cell Painting	0.72	FALSE	0.14266750356873156
+hmgcr inhibitor	5	1.11 uM	0.01131766587019979	Cell Painting	0.393	FALSE	0.4056074496245733
+hsp inhibitor	5	1.11 uM	0.35699523197632943	Cell Painting	0	TRUE	3.5
+insulin secretagogue	4	1.11 uM	-0.002066890858747153	Cell Painting	0.66	FALSE	0.1804560644581313
+integrin antagonist	5	1.11 uM	0.00362809336330135	Cell Painting	0.554	FALSE	0.2564902352715702
+jak inhibitor	5	1.11 uM	0.02474339171798512	Cell Painting	0.153	FALSE	0.8153085691824012
+leukotriene receptor antagonist	4	1.11 uM	-0.0275349537209083	Cell Painting	0.948	FALSE	0.023191662661933767
+lipoxygenase inhibitor	3	1.11 uM	-0.015270074878145095	Cell Painting	0.774	FALSE	0.11125903931710739
+matrix metalloprotease inhibitor	3	1.11 uM	0.0089867332007183	Cell Painting	0.443	FALSE	0.3535962737769304
+mdm inhibitor	3	1.11 uM	0.07533133661257488	Cell Painting	0.027	TRUE	1.5686362358410126
+mek inhibitor	8	1.11 uM	0.37847732277633084	Cell Painting	0	TRUE	3.5
+microtubule inhibitor	3	1.11 uM	0.029150626204889833	Cell Painting	0.2	FALSE	0.6989700043360187
+mineralocorticoid receptor antagonist	3	1.11 uM	0.03840157930359636	Cell Painting	0.139	FALSE	0.8569851997459049
+monoamine oxidase inhibitor	6	1.11 uM	0.002809951363116741	Cell Painting	0.621	FALSE	0.20690839982341983
+mtor inhibitor	6	1.11 uM	0.3099254511122797	Cell Painting	0	TRUE	3.5
+mtor inhibitor|pi3k inhibitor	4	1.11 uM	0.2153633513097417	Cell Painting	0.001	TRUE	3
+mucolytic agent	3	1.11 uM	9.370047679105917e-4	Cell Painting	0.556	FALSE	0.2549252084179425
+nfkb pathway inhibitor	4	1.11 uM	0.024314916432848437	Cell Painting	0.202	FALSE	0.6946486305533762
+nitric oxide synthase inhibitor	4	1.11 uM	-0.002163270731596582	Cell Painting	0.662	FALSE	0.17914201056030005
+non-nucleoside reverse transcriptase inhibitor	4	1.11 uM	0.023152893355922334	Cell Painting	0.219	FALSE	0.6595558851598816
+nucleoside reverse transcriptase inhibitor	4	1.11 uM	0.0012041081750140768	Cell Painting	0.597	FALSE	0.22402566887063094
+opioid receptor agonist	3	1.11 uM	0.009531637295294564	Cell Painting	0.433	FALSE	0.36351210364663455
+opioid receptor antagonist	4	1.11 uM	-0.028819952793276187	Cell Painting	0.955	FALSE	0.019996628416253676
+p38 mapk inhibitor	6	1.11 uM	0.11025151411155866	Cell Painting	0	TRUE	3.5
+parp inhibitor	5	1.11 uM	0.022095759302299352	Cell Painting	0.19	FALSE	0.721246399047171
+phosphodiesterase inhibitor	28	1.11 uM	0.010289807960808386	Cell Painting	0.135	FALSE	0.8696662315049939
+pi3k inhibitor	7	1.11 uM	0.011255625206844075	Cell Painting	0.337	FALSE	0.47237009912866135
+pkc inhibitor	4	1.11 uM	0.05700080974872822	Cell Painting	0.015	TRUE	1.8239087409443189
+plk inhibitor	4	1.11 uM	0.6029968875628768	Cell Painting	0	TRUE	3.5
+potassium channel activator	6	1.11 uM	0.015888497077167735	Cell Painting	0.262	FALSE	0.5816987086802545
+potassium channel blocker	4	1.11 uM	-0.020060383606818145	Cell Painting	0.906	FALSE	0.042871802323186915
+ppar receptor agonist	3	1.11 uM	-8.532812326583077e-4	Cell Painting	0.58	FALSE	0.23657200643706275
+ppar receptor agonist|insulin sensitizer	3	1.11 uM	-0.013523821753011336	Cell Painting	0.756	FALSE	0.12147820449879346
+progesterone receptor agonist	7	1.11 uM	0.021806628208777788	Cell Painting	0.108	FALSE	0.9665762445130504
+prostanoid receptor agonist	3	1.11 uM	0.06496448788906382	Cell Painting	0.038	TRUE	1.4202164033831899
+prostanoid receptor antagonist	3	1.11 uM	-0.045819123935141634	Cell Painting	0.96	FALSE	0.017728766960431602
+proteasome inhibitor	4	1.11 uM	0.5107888402056746	Cell Painting	0	TRUE	3.5
+protein synthesis inhibitor	6	1.11 uM	0.008003162587566094	Cell Painting	0.476	FALSE	0.32239304727950685
+protein synthesis stimulant	3	1.11 uM	0.03463372621239261	Cell Painting	0.157	FALSE	0.8041003475907662
+purinergic receptor antagonist	3	1.11 uM	0.00788956365860757	Cell Painting	0.457	FALSE	0.34008379993014975
+raf inhibitor	5	1.11 uM	0.04073641046180193	Cell Painting	0.032	TRUE	1.494850021680094
+retinoid receptor agonist	6	1.11 uM	0.12693366566435513	Cell Painting	0	TRUE	3.5
+reverse transcriptase inhibitor	3	1.11 uM	-0.007472958762483828	Cell Painting	0.677	FALSE	0.16941133131485567
+rho associated kinase inhibitor	6	1.11 uM	0.027524734303150177	Cell Painting	0.09	FALSE	1.0457574905606752
+rna polymerase inhibitor	7	1.11 uM	0.008818291036871996	Cell Painting	0.424	FALSE	0.37263414340726736
+selective serotonin reuptake inhibitor (ssri)	4	1.11 uM	0.01538381513472518	Cell Painting	0.324	FALSE	0.48945498979338786
+serotonin receptor agonist	12	1.11 uM	0.013444101206658388	Cell Painting	0.162	FALSE	0.790484985457369
+serotonin receptor agonist|serotonin receptor antagonist	3	1.11 uM	0.03455800309914472	Cell Painting	0.157	FALSE	0.8041003475907662
+serotonin receptor antagonist	12	1.11 uM	0.01045527046947995	Cell Painting	0.282	FALSE	0.549750891680639
+serotonin reuptake inhibitor	4	1.11 uM	0.007258923230979879	Cell Painting	0.476	FALSE	0.32239304727950685
+sigma receptor antagonist	3	1.11 uM	0.008739271579235184	Cell Painting	0.444	FALSE	0.3526170298853802
+sodium channel blocker	11	1.11 uM	0.004393529337698099	Cell Painting	0.624	FALSE	0.20481541031757602
+sterol demethylase inhibitor	7	1.11 uM	0.00469317682022785	Cell Painting	0.561	FALSE	0.25103713874383854
+t-type calcium channel blocker	3	1.11 uM	0.012534195732485664	Cell Painting	0.402	FALSE	0.3957739469155299
+tachykinin antagonist	6	1.11 uM	0.02140880000619672	Cell Painting	0.162	FALSE	0.790484985457369
+topoisomerase inhibitor	15	1.11 uM	0.019936129707703205	Cell Painting	0.025	TRUE	1.6020599913279623
+tubulin inhibitor	8	1.11 uM	0.10136753869467127	Cell Painting	0	TRUE	3.5
+tyrosine kinase inhibitor	4	1.11 uM	-0.019902358772729556	Cell Painting	0.904	FALSE	0.04383156952463668
+vasopressin receptor antagonist	4	1.11 uM	-0.03859208890218218	Cell Painting	0.986	FALSE	0.0061230850587887945
+vegfr inhibitor	4	1.11 uM	0.04213713709270929	Cell Painting	0.053	FALSE	1.275724130399211
+vitamin d receptor agonist	5	1.11 uM	0.0851189560168148	Cell Painting	0.002	TRUE	2.6989700043360187
+xanthine oxidase inhibitor	3	1.11 uM	-0.045013341318203545	Cell Painting	0.959	FALSE	0.018181392829336417
+xiap inhibitor	3	1.11 uM	0.23679435655426992	Cell Painting	0	TRUE	3.5
+acat inhibitor	3	3.33 uM	-0.10149004542821634	Cell Painting	0.999	FALSE	4.345117740176917e-4
+acetylcholine receptor agonist	8	3.33 uM	0.005321060941408855	Cell Painting	0.522	FALSE	0.28232949699773785
+acetylcholine receptor antagonist	21	3.33 uM	0.0018287949872760776	Cell Painting	0.842	FALSE	0.07468790850035051
+adenosine receptor agonist	3	3.33 uM	0.0034734524644758746	Cell Painting	0.538	FALSE	0.2692177243336108
+adenosine receptor antagonist	4	3.33 uM	-0.010807228199724055	Cell Painting	0.822	FALSE	0.08512818245994963
+adrenergic receptor agonist	20	3.33 uM	0.0060439453744752375	Cell Painting	0.528	FALSE	0.27736607746618774
+adrenergic receptor antagonist	31	3.33 uM	0.005774187425717837	Cell Painting	0.597	FALSE	0.22402566887063094
+akt inhibitor	6	3.33 uM	0.013857602029719028	Cell Painting	0.327	FALSE	0.4854522473397139
+alk tyrosine kinase receptor inhibitor	3	3.33 uM	0.10646183680339674	Cell Painting	0.008	TRUE	2.0969100130080562
+androgen receptor agonist	3	3.33 uM	0.22081544230178954	Cell Painting	0.001	TRUE	3
+androgen receptor antagonist	5	3.33 uM	0.03690189171063647	Cell Painting	0.046	TRUE	1.337242168318426
+androgen receptor modulator	3	3.33 uM	0.04113667274108962	Cell Painting	0.125	FALSE	0.9030899869919435
+angiotensin converting enzyme inhibitor	8	3.33 uM	0.003309041572445763	Cell Painting	0.59	FALSE	0.22914798835785583
+angiotensin receptor antagonist	4	3.33 uM	0.04350531128244181	Cell Painting	0.059	FALSE	1.2291479883578558
+aromatase inhibitor	3	3.33 uM	0.13972026456139594	Cell Painting	0.005	TRUE	2.3010299956639813
+atp channel blocker	3	3.33 uM	0.0141452179291169	Cell Painting	0.384	FALSE	0.4156687756324692
+atpase inhibitor	3	3.33 uM	-0.0022050476901310997	Cell Painting	0.601	FALSE	0.22112552799726048
+bacterial 30s ribosomal subunit inhibitor	5	3.33 uM	0.010244582070125472	Cell Painting	0.404	FALSE	0.393618634889395
+bacterial 50s ribosomal subunit inhibitor	5	3.33 uM	0.009046288985084337	Cell Painting	0.427	FALSE	0.36957212497497616
+bacterial cell wall synthesis inhibitor	14	3.33 uM	-5.288581874951482e-4	Cell Painting	0.87	FALSE	0.060480747381381476
+bacterial dna gyrase inhibitor	11	3.33 uM	0.004686199872204572	Cell Painting	0.606	FALSE	0.21752737583371382
+bcl inhibitor	3	3.33 uM	0.15299246944170816	Cell Painting	0.002	TRUE	2.6989700043360187
+benzodiazepine receptor agonist	7	3.33 uM	0.004733828658195865	Cell Painting	0.561	FALSE	0.25103713874383854
+benzodiazepine receptor antagonist	3	3.33 uM	-0.01472185194651241	Cell Painting	0.748	FALSE	0.12609840213553863
+calcineurin inhibitor	3	3.33 uM	0.14888710965696814	Cell Painting	0.003	TRUE	2.5228787452803374
+calcitonin antagonist	3	3.33 uM	-0.01498437562104991	Cell Painting	0.753	FALSE	0.12320502379929942
+calcium channel blocker	15	3.33 uM	0.023505009428523575	Cell Painting	0.006	TRUE	2.221848749616356
+cannabinoid receptor agonist	3	3.33 uM	-0.015451549372917475	Cell Painting	0.756	FALSE	0.12147820449879346
+carbonic anhydrase inhibitor	5	3.33 uM	0.011184119802905932	Cell Painting	0.38	FALSE	0.42021640338318983
+cc chemokine receptor antagonist	7	3.33 uM	-0.001241706872301198	Cell Painting	0.744	FALSE	0.1284270644541213
+cck receptor antagonist	4	3.33 uM	-0.024375456015390057	Cell Painting	0.947	FALSE	0.0236500209967266
+cdk inhibitor	7	3.33 uM	0.21741848197441696	Cell Painting	0	TRUE	3.5
+chelating agent	4	3.33 uM	-0.010760410784596641	Cell Painting	0.821	FALSE	0.08565684288055925
+cholesterol inhibitor	3	3.33 uM	0.0013226939046029284	Cell Painting	0.561	FALSE	0.25103713874383854
+coagulation factor inhibitor	4	3.33 uM	0.015410694006396455	Cell Painting	0.331	FALSE	0.48017200622428124
+cyclooxygenase inhibitor	27	3.33 uM	4.176112750408031e-4	Cell Painting	0.963	FALSE	0.0163737128754655
+cyclooxygenase inhibitor|prostanoid receptor antagonist	4	3.33 uM	8.78788985418032e-4	Cell Painting	0.616	FALSE	0.21041928783557454
+dipeptidyl peptidase inhibitor	3	3.33 uM	0.008056479236501064	Cell Painting	0.459	FALSE	0.33818731446273875
+dna inhibitor	5	3.33 uM	0.021875809816109582	Cell Painting	0.186	FALSE	0.7304870557820837
+dna methyltransferase inhibitor	3	3.33 uM	0.029543620227601593	Cell Painting	0.219	FALSE	0.6595558851598816
+dna polymerase inhibitor	3	3.33 uM	-0.03605647222561616	Cell Painting	0.931	FALSE	0.031050319018657353
+dna synthesis inhibitor	7	3.33 uM	-0.012074530455877702	Cell Painting	0.941	FALSE	0.026410376572743116
+dopamine receptor agonist	9	3.33 uM	1.2691680461350292e-4	Cell Painting	0.775	FALSE	0.1106982974936897
+dopamine receptor antagonist	19	3.33 uM	0.01808917997718743	Cell Painting	0.022	TRUE	1.6575773191777938
+dopamine receptor antagonist|serotonin receptor antagonist	9	3.33 uM	0.02764991523683695	Cell Painting	0.024	TRUE	1.6197887582883939
+egfr inhibitor	13	3.33 uM	0.1302955749488086	Cell Painting	0	TRUE	3.5
+endothelin receptor antagonist	4	3.33 uM	-0.036255818822450644	Cell Painting	0.989	FALSE	0.004803708402820599
+estrogen receptor agonist	6	3.33 uM	0.00544858836115081	Cell Painting	0.563	FALSE	0.24949160514865382
+farnesyltransferase inhibitor	3	3.33 uM	0.09395082192165755	Cell Painting	0.011	TRUE	1.958607314841775
+fgfr inhibitor|vegfr inhibitor	3	3.33 uM	0.02022394920609347	Cell Painting	0.311	FALSE	0.5072396109731625
+free radical scavenger	4	3.33 uM	0.013513441117425282	Cell Painting	0.358	FALSE	0.44611697335612566
+fungal squalene epoxidase inhibitor	3	3.33 uM	0.02492551083180449	Cell Painting	0.267	FALSE	0.5734887386354247
+gaba receptor agonist	3	3.33 uM	0.009067494071703147	Cell Painting	0.445	FALSE	0.3516399890190684
+gaba receptor modulator	4	3.33 uM	0.02631463279670475	Cell Painting	0.177	FALSE	0.7520267336381934
+gamma secretase inhibitor	7	3.33 uM	0.0751515696075187	Cell Painting	0	TRUE	3.5
+glucocorticoid receptor agonist	14	3.33 uM	0.3672822242462069	Cell Painting	0	TRUE	3.5
+glucosidase inhibitor	3	3.33 uM	-0.014969403989408362	Cell Painting	0.752	FALSE	0.12378215940835775
+glutamate receptor agonist	4	3.33 uM	-0.018242051237622306	Cell Painting	0.905	FALSE	0.043351420794796675
+glutamate receptor antagonist	5	3.33 uM	-0.008956854984722463	Cell Painting	0.82	FALSE	0.08618614761628333
+glutamate receptor modulator	3	3.33 uM	-0.04610520748742154	Cell Painting	0.97	FALSE	0.01322826573375516
+hcv inhibitor	7	3.33 uM	0.02748984934117188	Cell Painting	0.057	FALSE	1.2441251443275085
+hdac inhibitor	13	3.33 uM	0.07193794099318841	Cell Painting	0	TRUE	3.5
+histamine receptor antagonist	24	3.33 uM	0.005990784191788863	Cell Painting	0.566	FALSE	0.24718356881172862
+hiv integrase inhibitor	3	3.33 uM	0.02501632999059241	Cell Painting	0.266	FALSE	0.575118363368933
+hiv protease inhibitor	5	3.33 uM	0.0015803608784162623	Cell Painting	0.596	FALSE	0.22475374025976358
+hmgcr inhibitor	5	3.33 uM	0.004007489660499595	Cell Painting	0.547	FALSE	0.2620126736665692
+hsp inhibitor	5	3.33 uM	0.3674167692548067	Cell Painting	0	TRUE	3.5
+insulin secretagogue	4	3.33 uM	0.009312162647102076	Cell Painting	0.444	FALSE	0.3526170298853802
+integrin antagonist	5	3.33 uM	-0.009659201450031924	Cell Painting	0.827	FALSE	0.08249449044745336
+jak inhibitor	5	3.33 uM	0.04918339869946954	Cell Painting	0.012	TRUE	1.9208187539523751
+leukotriene receptor antagonist	4	3.33 uM	-0.009904449582223205	Cell Painting	0.806	FALSE	0.09366495819490933
+lipoxygenase inhibitor	3	3.33 uM	0.052240127705078215	Cell Painting	0.071	FALSE	1.1487416512809248
+matrix metalloprotease inhibitor	3	3.33 uM	0.08360263141126342	Cell Painting	0.016	TRUE	1.7958800173440752
+mdm inhibitor	3	3.33 uM	0.21144117110341992	Cell Painting	0.001	TRUE	3
+mek inhibitor	8	3.33 uM	0.4099457923183255	Cell Painting	0	TRUE	3.5
+microtubule inhibitor	3	3.33 uM	0.056338532564118644	Cell Painting	0.056	FALSE	1.2518119729937995
+mineralocorticoid receptor antagonist	3	3.33 uM	0.041880810094181625	Cell Painting	0.123	FALSE	0.91009488856060206
+monoamine oxidase inhibitor	6	3.33 uM	-0.013080581132249997	Cell Painting	0.932	FALSE	0.030584087646018613
+mtor inhibitor	6	3.33 uM	0.3046217619111401	Cell Painting	0	TRUE	3.5
+mtor inhibitor|pi3k inhibitor	4	3.33 uM	0.22968911305125414	Cell Painting	0	TRUE	3.5
+mucolytic agent	3	3.33 uM	0.010239425706301214	Cell Painting	0.431	FALSE	0.3655227298392684
+nfkb pathway inhibitor	4	3.33 uM	0.014628949203964113	Cell Painting	0.349	FALSE	0.45717457304082015
+nitric oxide synthase inhibitor	4	3.33 uM	-0.0022686884324865635	Cell Painting	0.672	FALSE	0.17263072694617473
+non-nucleoside reverse transcriptase inhibitor	4	3.33 uM	-0.006747004244242167	Cell Painting	0.744	FALSE	0.1284270644541213
+nucleoside reverse transcriptase inhibitor	4	3.33 uM	0.006697956327044831	Cell Painting	0.496	FALSE	0.30451832350980257
+opioid receptor agonist	3	3.33 uM	0.016749207633601902	Cell Painting	0.354	FALSE	0.4509967379742122
+opioid receptor antagonist	4	3.33 uM	-0.02065729824332577	Cell Painting	0.923	FALSE	0.03479829897408793
+p38 mapk inhibitor	6	3.33 uM	0.06569451324189368	Cell Painting	0.001	TRUE	3
+parp inhibitor	5	3.33 uM	-0.010562503084930707	Cell Painting	0.841	FALSE	0.07520400420208784
+phosphodiesterase inhibitor	28	3.33 uM	0.010500959998663968	Cell Painting	0.146	FALSE	0.835647144215563
+pi3k inhibitor	7	3.33 uM	0.03010766296535572	Cell Painting	0.043	TRUE	1.3665315444204136
+pkc inhibitor	4	3.33 uM	-0.014270667559646968	Cell Painting	0.87	FALSE	0.060480747381381476
+plk inhibitor	4	3.33 uM	0.6414705469931521	Cell Painting	0	TRUE	3.5
+potassium channel activator	6	3.33 uM	0.021867736048255558	Cell Painting	0.157	FALSE	0.8041003475907662
+potassium channel blocker	4	3.33 uM	0.010520926873968038	Cell Painting	0.419	FALSE	0.3777859770337047
+ppar receptor agonist	3	3.33 uM	-0.0021674942243595117	Cell Painting	0.601	FALSE	0.22112552799726048
+ppar receptor agonist|insulin sensitizer	3	3.33 uM	0.12200646098275758	Cell Painting	0.006	TRUE	2.221848749616356
+progesterone receptor agonist	7	3.33 uM	0.06676430643153139	Cell Painting	0	TRUE	3.5
+prostanoid receptor agonist	3	3.33 uM	0.03672559334278031	Cell Painting	0.156	FALSE	0.8068754016455384
+prostanoid receptor antagonist	3	3.33 uM	-0.018354926387687348	Cell Painting	0.794	FALSE	0.10017949757290372
+proteasome inhibitor	4	3.33 uM	0.5364523492969862	Cell Painting	0	TRUE	3.5
+protein synthesis inhibitor	6	3.33 uM	0.017966851343081586	Cell Painting	0.223	FALSE	0.6516951369518393
+protein synthesis stimulant	3	3.33 uM	0.01425113883061719	Cell Painting	0.384	FALSE	0.4156687756324692
+purinergic receptor antagonist	3	3.33 uM	0.009184553233903532	Cell Painting	0.444	FALSE	0.3526170298853802
+raf inhibitor	5	3.33 uM	0.035704381679682456	Cell Painting	0.052	FALSE	1.2839966563652008
+retinoid receptor agonist	6	3.33 uM	0.12030154946775792	Cell Painting	0	TRUE	3.5
+reverse transcriptase inhibitor	3	3.33 uM	-0.059695954883372516	Cell Painting	0.99	FALSE	0.004364805402450088
+rho associated kinase inhibitor	6	3.33 uM	0.06131058446669071	Cell Painting	0.002	TRUE	2.6989700043360187
+rna polymerase inhibitor	7	3.33 uM	-0.009631519816981527	Cell Painting	0.907	FALSE	0.04239271293990473
+selective serotonin reuptake inhibitor (ssri)	4	3.33 uM	0.021773968227500638	Cell Painting	0.234	FALSE	0.6307841425898572
+serotonin receptor agonist	12	3.33 uM	-0.005574086033830939	Cell Painting	0.968	FALSE	0.014124642691606345
+serotonin receptor agonist|serotonin receptor antagonist	3	3.33 uM	0.06493828753369112	Cell Painting	0.037	TRUE	1.431798275933005
+serotonin receptor antagonist	12	3.33 uM	0.006649004513709474	Cell Painting	0.482	FALSE	0.31695296176115045
+serotonin reuptake inhibitor	4	3.33 uM	0.019422729390641588	Cell Painting	0.264	FALSE	0.5783960731301689
+sigma receptor antagonist	3	3.33 uM	0.06613251280951576	Cell Painting	0.033	TRUE	1.4814860601221125
+sodium channel blocker	11	3.33 uM	0.011900570047136327	Cell Painting	0.266	FALSE	0.575118363368933
+sterol demethylase inhibitor	7	3.33 uM	0.003776430138688478	Cell Painting	0.591	FALSE	0.22841251911874466
+t-type calcium channel blocker	3	3.33 uM	0.008830413083034942	Cell Painting	0.45	FALSE	0.3467874862246563
+tachykinin antagonist	6	3.33 uM	0.037902263163981056	Cell Painting	0.025	TRUE	1.6020599913279623
+topoisomerase inhibitor	15	3.33 uM	0.014873162632232215	Cell Painting	0.069	FALSE	1.1611509092627446
+tubulin inhibitor	8	3.33 uM	0.3050076376240948	Cell Painting	0	TRUE	3.5
+tyrosine kinase inhibitor	4	3.33 uM	-0.0015461630212602654	Cell Painting	0.66	FALSE	0.1804560644581313
+vasopressin receptor antagonist	4	3.33 uM	-0.010551282846903532	Cell Painting	0.818	FALSE	0.08724669632867703
+vegfr inhibitor	4	3.33 uM	0.022516870429509058	Cell Painting	0.227	FALSE	0.6439741428068773
+vitamin d receptor agonist	5	3.33 uM	0.11928249473066979	Cell Painting	0	TRUE	3.5
+xanthine oxidase inhibitor	3	3.33 uM	-0.008808068739261597	Cell Painting	0.69	FALSE	0.16115090926274472
+xiap inhibitor	3	3.33 uM	0.26595047838829705	Cell Painting	0.001	TRUE	3
+acat inhibitor	3	10 uM	0.03819405732627611	Cell Painting	0.279	FALSE	0.5543957967264024
+acetylcholine receptor agonist	8	10 uM	0.017490439047055648	Cell Painting	0.449	FALSE	0.3477536589966768
+acetylcholine receptor antagonist	21	10 uM	0.02600397434062479	Cell Painting	0.104	FALSE	0.9829666607012196
+adenosine receptor agonist	3	10 uM	0.010341219232296849	Cell Painting	0.544	FALSE	0.26440110030182007
+adenosine receptor antagonist	4	10 uM	0.04162152620298877	Cell Painting	0.19	FALSE	0.721246399047171
+adrenergic receptor agonist	20	10 uM	0.008378001810730645	Cell Painting	0.886	FALSE	0.05256627811294924
+adrenergic receptor antagonist	31	10 uM	0.017612812912331202	Cell Painting	0.419	FALSE	0.3777859770337047
+akt inhibitor	6	10 uM	0.1139619401503426	Cell Painting	0	TRUE	3.5
+alk tyrosine kinase receptor inhibitor	3	10 uM	0.1249325894935218	Cell Painting	0.024	TRUE	1.6197887582883939
+androgen receptor agonist	3	10 uM	0.15547618806653532	Cell Painting	0.009	TRUE	2.0457574905606752
+androgen receptor antagonist	5	10 uM	0.03546440864910255	Cell Painting	0.185	FALSE	0.7328282715969862
+androgen receptor modulator	3	10 uM	0.06186349451413379	Cell Painting	0.137	FALSE	0.8632794328435932
+angiotensin converting enzyme inhibitor	8	10 uM	0.0019817849294583418	Cell Painting	0.834	FALSE	0.0788339493622613
+angiotensin receptor antagonist	4	10 uM	0.031275328715616293	Cell Painting	0.285	FALSE	0.5451551399914898
+aromatase inhibitor	3	10 uM	0.0819360649135572	Cell Painting	0.081	FALSE	1.0915149811213503
+atp channel blocker	3	10 uM	0.006994234075790476	Cell Painting	0.577	FALSE	0.2388241868442686
+atpase inhibitor	3	10 uM	-0.005679608326737542	Cell Painting	0.731	FALSE	0.13608262304213956
+bacterial 30s ribosomal subunit inhibitor	5	10 uM	0.022206992135046837	Cell Painting	0.376	FALSE	0.42481215507233894
+bacterial 50s ribosomal subunit inhibitor	5	10 uM	-0.006487361224977778	Cell Painting	0.855	FALSE	0.06803388527182737
+bacterial cell wall synthesis inhibitor	14	10 uM	0.026447421218431865	Cell Painting	0.165	FALSE	0.7825160557860937
+bacterial dna gyrase inhibitor	11	10 uM	0.04159872374755771	Cell Painting	0.032	TRUE	1.494850021680094
+bcl inhibitor	3	10 uM	0.1814500466252116	Cell Painting	0.005	TRUE	2.3010299956639813
+benzodiazepine receptor agonist	7	10 uM	-0.006662438311491911	Cell Painting	0.943	FALSE	0.02548830726267165
+benzodiazepine receptor antagonist	3	10 uM	-0.0016056396508218585	Cell Painting	0.687	FALSE	0.16304326294044955
+calcineurin inhibitor	3	10 uM	0.24558281810090285	Cell Painting	0.002	TRUE	2.6989700043360187
+calcitonin antagonist	3	10 uM	0.0934762076291658	Cell Painting	0.061	FALSE	1.214670164989233
+calcium channel blocker	15	10 uM	0.03409558425633424	Cell Painting	0.051	FALSE	1.2924298239020637
+cannabinoid receptor agonist	3	10 uM	-0.024013931759099435	Cell Painting	0.882	FALSE	0.054531414868180264
+carbonic anhydrase inhibitor	5	10 uM	0.009036682943391347	Cell Painting	0.603	FALSE	0.2196826878598487
+cc chemokine receptor antagonist	7	10 uM	0.039382255211086875	Cell Painting	0.12	FALSE	0.9208187539523752
+cck receptor antagonist	4	10 uM	0.003661881304248489	Cell Painting	0.674	FALSE	0.17134010346468015
+cdk inhibitor	7	10 uM	0.26606586473658284	Cell Painting	0	TRUE	3.5
+chelating agent	4	10 uM	0.009894917041201337	Cell Painting	0.574	FALSE	0.2410881076020265
+cholesterol inhibitor	3	10 uM	0.04214527888464872	Cell Painting	0.242	FALSE	0.6161846340195687
+coagulation factor inhibitor	4	10 uM	0.03098009689571763	Cell Painting	0.29	FALSE	0.5376020021010439
+cyclooxygenase inhibitor	27	10 uM	0.008501636504501696	Cell Painting	0.922	FALSE	0.03526907894637064
+cyclooxygenase inhibitor|prostanoid receptor antagonist	4	10 uM	-0.04395359517895368	Cell Painting	0.995	FALSE	0.002176919254274547
+dipeptidyl peptidase inhibitor	3	10 uM	0.021159732785548016	Cell Painting	0.439	FALSE	0.35753547975787864
+dna inhibitor	5	10 uM	0.024848374065538092	Cell Painting	0.324	FALSE	0.48945498979338786
+dna methyltransferase inhibitor	3	10 uM	0.09624379967798553	Cell Painting	0.055	FALSE	1.2596373105057561
+dna polymerase inhibitor	3	10 uM	0.02592736056070796	Cell Painting	0.384	FALSE	0.4156687756324692
+dna synthesis inhibitor	7	10 uM	-0.00634772304268108	Cell Painting	0.941	FALSE	0.026410376572743116
+dopamine receptor agonist	9	10 uM	9.92079786201259e-4	Cell Painting	0.872	FALSE	0.05948351506743278
+dopamine receptor antagonist	19	10 uM	0.04939263403638751	Cell Painting	0.003	TRUE	2.5228787452803374
+dopamine receptor antagonist|serotonin receptor antagonist	9	10 uM	0.04975950410698836	Cell Painting	0.033	TRUE	1.4814860601221125
+egfr inhibitor	13	10 uM	0.12122376088002812	Cell Painting	0	TRUE	3.5
+endothelin receptor antagonist	4	10 uM	0.017011508024096386	Cell Painting	0.468	FALSE	0.32975414692587596
+estrogen receptor agonist	6	10 uM	0.02550192423347988	Cell Painting	0.286	FALSE	0.543633966870957
+farnesyltransferase inhibitor	3	10 uM	0.07678394652096993	Cell Painting	0.089	FALSE	1.0506099933550872
+fgfr inhibitor|vegfr inhibitor	3	10 uM	0.09326568884799458	Cell Painting	0.061	FALSE	1.214670164989233
+free radical scavenger	4	10 uM	0.022718444614829053	Cell Painting	0.389	FALSE	0.41005039867429227
+fungal squalene epoxidase inhibitor	3	10 uM	-0.02199970452512478	Cell Painting	0.871	FALSE	0.059981844992336796
+gaba receptor agonist	3	10 uM	0.02249609785594163	Cell Painting	0.422	FALSE	0.37468754903832613
+gaba receptor modulator	4	10 uM	0.0446328934483664	Cell Painting	0.165	FALSE	0.7825160557860937
+gamma secretase inhibitor	7	10 uM	0.06947029335258507	Cell Painting	0.008	TRUE	2.0969100130080562
+glucocorticoid receptor agonist	14	10 uM	0.35110486839552696	Cell Painting	0	TRUE	3.5
+glucosidase inhibitor	3	10 uM	0.005791810771330804	Cell Painting	0.602	FALSE	0.22040350874217546
+glutamate receptor agonist	4	10 uM	0.019497157849451763	Cell Painting	0.426	FALSE	0.37059040089728107
+glutamate receptor antagonist	5	10 uM	-0.0033991088147573246	Cell Painting	0.815	FALSE	0.08884239126002341
+glutamate receptor modulator	3	10 uM	0.03832803307604347	Cell Painting	0.277	FALSE	0.5575202309355514
+hcv inhibitor	7	10 uM	0.05479664673898017	Cell Painting	0.03	TRUE	1.5228787452803376
+hdac inhibitor	13	10 uM	0.07651824844125704	Cell Painting	0.001	TRUE	3
+histamine receptor antagonist	24	10 uM	0.016887986405726328	Cell Painting	0.432	FALSE	0.3645162531850879
+hiv integrase inhibitor	3	10 uM	0.015298598959460293	Cell Painting	0.486	FALSE	0.3133637307377066
+hiv protease inhibitor	5	10 uM	0.027878308928575884	Cell Painting	0.282	FALSE	0.549750891680639
+hmgcr inhibitor	5	10 uM	0.0495621730644855	Cell Painting	0.102	FALSE	0.9913998282380825
+hsp inhibitor	5	10 uM	0.3227394150762182	Cell Painting	0	TRUE	3.5
+insulin secretagogue	4	10 uM	0.044075957832730675	Cell Painting	0.171	FALSE	0.7670038896078462
+integrin antagonist	5	10 uM	0.03716653570399585	Cell Painting	0.168	FALSE	0.7746907182741372
+jak inhibitor	5	10 uM	0.06202464867430396	Cell Painting	0.05	FALSE	1.3010299956639813
+leukotriene receptor antagonist	4	10 uM	0.010656437659679791	Cell Painting	0.567	FALSE	0.24641694110709345
+lipoxygenase inhibitor	3	10 uM	-0.031665634252610084	Cell Painting	0.921	FALSE	0.03574036980315106
+matrix metalloprotease inhibitor	3	10 uM	0.11287040724138471	Cell Painting	0.035	TRUE	1.4559319556497243
+mdm inhibitor	3	10 uM	0.22218662439118134	Cell Painting	0.003	TRUE	2.5228787452803374
+mek inhibitor	8	10 uM	0.4296945634488759	Cell Painting	0	TRUE	3.5
+microtubule inhibitor	3	10 uM	0.02853102228935584	Cell Painting	0.362	FALSE	0.4412914294668343
+mineralocorticoid receptor antagonist	3	10 uM	0.08695683098503555	Cell Painting	0.075	FALSE	1.1249387366083
+monoamine oxidase inhibitor	6	10 uM	-0.004994073837492306	Cell Painting	0.888	FALSE	0.05158703422139897
+mtor inhibitor	6	10 uM	0.330449092975246	Cell Painting	0	TRUE	3.5
+mtor inhibitor|pi3k inhibitor	4	10 uM	0.20918226338842966	Cell Painting	0.001	TRUE	3
+mucolytic agent	3	10 uM	-0.04789285875221062	Cell Painting	0.968	FALSE	0.014124642691606345
+nfkb pathway inhibitor	4	10 uM	0.069735180219037	Cell Painting	0.05	FALSE	1.3010299956639813
+nitric oxide synthase inhibitor	4	10 uM	-0.004449834098443051	Cell Painting	0.785	FALSE	0.10513034325474745
+non-nucleoside reverse transcriptase inhibitor	4	10 uM	0.09223350566352287	Cell Painting	0.021	TRUE	1.6777807052660807
+nucleoside reverse transcriptase inhibitor	4	10 uM	8.433189943690916e-4	Cell Painting	0.715	FALSE	0.1456939581989194
+opioid receptor agonist	3	10 uM	0.04285626165029559	Cell Painting	0.23	FALSE	0.638272163982407
+opioid receptor antagonist	4	10 uM	0.00835965477724242	Cell Painting	0.6	FALSE	0.2218487496163564
+p38 mapk inhibitor	6	10 uM	0.048266623999777825	Cell Painting	0.081	FALSE	1.0915149811213503
+parp inhibitor	5	10 uM	0.01566758072046506	Cell Painting	0.497	FALSE	0.3036436112666679
+phosphodiesterase inhibitor	28	10 uM	0.01871649584188156	Cell Painting	0.329	FALSE	0.48280410205002566
+pi3k inhibitor	7	10 uM	0.04761859745777398	Cell Painting	0.06	FALSE	1.2218487496163564
+pkc inhibitor	4	10 uM	0.021522625115036467	Cell Painting	0.402	FALSE	0.3957739469155299
+plk inhibitor	4	10 uM	0.6289110187942608	Cell Painting	0	TRUE	3.5
+potassium channel activator	6	10 uM	-0.0013382309264494284	Cell Painting	0.829	FALSE	0.08144546944972647
+potassium channel blocker	4	10 uM	0.05590497173593273	Cell Painting	0.097	FALSE	1.0132282657337552
+ppar receptor agonist	3	10 uM	0.053403527519401146	Cell Painting	0.171	FALSE	0.7670038896078462
+ppar receptor agonist|insulin sensitizer	3	10 uM	0.1861853684363781	Cell Painting	0.004	TRUE	2.3979400086720375
+progesterone receptor agonist	7	10 uM	0.07049064284468985	Cell Painting	0.008	TRUE	2.0969100130080562
+prostanoid receptor agonist	3	10 uM	0.04836067714620764	Cell Painting	0.2	FALSE	0.6989700043360187
+prostanoid receptor antagonist	3	10 uM	0.058654612317005306	Cell Painting	0.15	FALSE	0.8239087409443188
+proteasome inhibitor	4	10 uM	0.5921636286259633	Cell Painting	0	TRUE	3.5
+protein synthesis inhibitor	6	10 uM	0.0011002792311072059	Cell Painting	0.786	FALSE	0.10457745396059209
+protein synthesis stimulant	3	10 uM	0.029064607252388994	Cell Painting	0.356	FALSE	0.44855000202712486
+purinergic receptor antagonist	3	10 uM	0.008145483574218905	Cell Painting	0.562	FALSE	0.2502636844309389
+raf inhibitor	5	10 uM	0.012392739838761144	Cell Painting	0.558	FALSE	0.25336580106242124
+retinoid receptor agonist	6	10 uM	0.07952019312952502	Cell Painting	0.006	TRUE	2.221848749616356
+reverse transcriptase inhibitor	3	10 uM	-0.039092049806604315	Cell Painting	0.955	FALSE	0.019996628416253676
+rho associated kinase inhibitor	6	10 uM	0.06518040052846241	Cell Painting	0.016	TRUE	1.7958800173440752
+rna polymerase inhibitor	7	10 uM	0.01568597296636703	Cell Painting	0.503	FALSE	0.2984320149440726
+selective serotonin reuptake inhibitor (ssri)	4	10 uM	0.1554796030459581	Cell Painting	0.002	TRUE	2.6989700043360187
+serotonin receptor agonist	12	10 uM	0.006519054388011246	Cell Painting	0.844	FALSE	0.07365755337434496
+serotonin receptor agonist|serotonin receptor antagonist	3	10 uM	0.10465151294048217	Cell Painting	0.041	TRUE	1.3872161432802645
+serotonin receptor antagonist	12	10 uM	0.04626586417665666	Cell Painting	0.015	TRUE	1.8239087409443189
+serotonin reuptake inhibitor	4	10 uM	0.02367792379202029	Cell Painting	0.381	FALSE	0.4190750243243807
+sigma receptor antagonist	3	10 uM	0.03723491151556504	Cell Painting	0.282	FALSE	0.549750891680639
+sodium channel blocker	11	10 uM	0.018871193305394184	Cell Painting	0.386	FALSE	0.41341269532824504
+sterol demethylase inhibitor	7	10 uM	0.02089809096430934	Cell Painting	0.382	FALSE	0.41793663708829126
+t-type calcium channel blocker	3	10 uM	0.05786675847156603	Cell Painting	0.154	FALSE	0.8124792791635369
+tachykinin antagonist	6	10 uM	0.10246776929416729	Cell Painting	0.001	TRUE	3
+topoisomerase inhibitor	15	10 uM	0.039545755832323365	Cell Painting	0.017	TRUE	1.7695510786217261
+tubulin inhibitor	8	10 uM	0.29320251172867334	Cell Painting	0	TRUE	3.5
+tyrosine kinase inhibitor	4	10 uM	0.007402773606152045	Cell Painting	0.609	FALSE	0.21538270736712464
+vasopressin receptor antagonist	4	10 uM	-0.0026555309545747904	Cell Painting	0.764	FALSE	0.11690664142431006
+vegfr inhibitor	4	10 uM	0.06232541889323869	Cell Painting	0.064	FALSE	1.193820026016113
+vitamin d receptor agonist	5	10 uM	0.1618853015836741	Cell Painting	0.001	TRUE	3
+xanthine oxidase inhibitor	3	10 uM	-0.005502413895745845	Cell Painting	0.73	FALSE	0.1366771398795441
+xiap inhibitor	3	10 uM	0.21445113623673434	Cell Painting	0.003	TRUE	2.5228787452803374
+acat inhibitor	3	0.04 uM	-0.06868249113082911	L1000	0.9	FALSE	0.045757490560675115
+acetylcholine receptor agonist	8	0.04 uM	0.015122660302234282	L1000	0.688	FALSE	0.16241156176448873
+acetylcholine receptor antagonist	21	0.04 uM	0.024049673768068394	L1000	0.598	FALSE	0.22329881601158919
+adenosine receptor agonist	3	0.04 uM	0.02931698664294796	L1000	0.402	FALSE	0.3957739469155299
+adenosine receptor antagonist	4	0.04 uM	0.012554783865449313	L1000	0.593	FALSE	0.22694530663573742
+adrenergic receptor agonist	20	0.04 uM	0.023120714874278935	L1000	0.659	FALSE	0.18111458540599013
+adrenergic receptor antagonist	31	0.04 uM	0.02824026971230739	L1000	0.436	FALSE	0.36051351073141397
+akt inhibitor	6	0.04 uM	0.00418091178612946	L1000	0.764	FALSE	0.11690664142431006
+alk tyrosine kinase receptor inhibitor	3	0.04 uM	0.0623671511082742	L1000	0.212	FALSE	0.6736641390712486
+androgen receptor agonist	3	0.04 uM	0.04766271383912794	L1000	0.284	FALSE	0.5466816599529624
+androgen receptor antagonist	5	0.04 uM	0.008591733521444852	L1000	0.654	FALSE	0.18442225167573273
+androgen receptor modulator	3	0.04 uM	-0.019090720958234397	L1000	0.698	FALSE	0.15614457737683893
+angiotensin converting enzyme inhibitor	8	0.04 uM	-0.0014904296295823525	L1000	0.918	FALSE	0.03715731879875755
+angiotensin receptor antagonist	4	0.04 uM	0.08968765630080197	L1000	0.087	FALSE	1.0604807473813815
+aromatase inhibitor	3	0.04 uM	0.005931244726920643	L1000	0.559	FALSE	0.25258819211357664
+atp channel blocker	3	0.04 uM	0.03442879096807153	L1000	0.37	FALSE	0.431798275933005
+atpase inhibitor	3	0.04 uM	-0.010243564100703399	L1000	0.65	FALSE	0.18708664335714442
+bacterial 30s ribosomal subunit inhibitor	5	0.04 uM	0.012782180961460946	L1000	0.613	FALSE	0.21253952548158497
+bacterial 50s ribosomal subunit inhibitor	5	0.04 uM	0.037527804504596786	L1000	0.354	FALSE	0.4509967379742122
+bacterial cell wall synthesis inhibitor	14	0.04 uM	0.018874742089081693	L1000	0.725	FALSE	0.13966199342900631
+bacterial dna gyrase inhibitor	11	0.04 uM	0.04141624525593326	L1000	0.208	FALSE	0.6819366650372385
+bcl inhibitor	3	0.04 uM	0.05338847346204089	L1000	0.257	FALSE	0.5900668766687055
+benzodiazepine receptor agonist	7	0.04 uM	0.04971988127303205	L1000	0.199	FALSE	0.7011469235902933
+benzodiazepine receptor antagonist	3	0.04 uM	0.029630119042613687	L1000	0.4	FALSE	0.3979400086720376
+calcineurin inhibitor	3	0.04 uM	0.043873505981589817	L1000	0.307	FALSE	0.5128616245228135
+calcitonin antagonist	3	0.04 uM	0.11285356659501697	L1000	0.064	FALSE	1.193820026016113
+calcium channel blocker	15	0.04 uM	0.037350027101995545	L1000	0.218	FALSE	0.6615435063953952
+cannabinoid receptor agonist	3	0.04 uM	-0.09476375191215983	L1000	0.94	FALSE	0.026872146400301365
+carbonic anhydrase inhibitor	5	0.04 uM	0.042010282343125316	L1000	0.305	FALSE	0.5157001606532142
+cc chemokine receptor antagonist	7	0.04 uM	0.0353250036195248	L1000	0.375	FALSE	0.42596873227228116
+cck receptor antagonist	4	0.04 uM	-0.017906961248914402	L1000	0.844	FALSE	0.07365755337434496
+cdk inhibitor	7	0.04 uM	4.1074255380421453e-4	L1000	0.86	FALSE	0.06550154875643228
+chelating agent	4	0.04 uM	0.06310984206233572	L1000	0.195	FALSE	0.7099653886374819
+cholesterol inhibitor	3	0.04 uM	-0.032309247486592266	L1000	0.768	FALSE	0.114638779968488
+coagulation factor inhibitor	4	0.04 uM	0.05859160855984752	L1000	0.215	FALSE	0.6675615400843947
+cyclooxygenase inhibitor	27	0.04 uM	0.021509994297136247	L1000	0.8	FALSE	0.09691001300805639
+cyclooxygenase inhibitor|prostanoid receptor antagonist	4	0.04 uM	0.03326156242233237	L1000	0.387	FALSE	0.4122890349810886
+dipeptidyl peptidase inhibitor	3	0.04 uM	-0.019673493918381905	L1000	0.701	FALSE	0.15428198203334137
+dna inhibitor	5	0.04 uM	-0.022767868239682652	L1000	0.895	FALSE	0.04817696468408802
+dna methyltransferase inhibitor	3	0.04 uM	0.05475926534854291	L1000	0.248	FALSE	0.6055483191737837
+dna polymerase inhibitor	3	0.04 uM	-0.01668693972772681	L1000	0.685	FALSE	0.1643094285075744
+dna synthesis inhibitor	7	0.04 uM	0.03550126678899226	L1000	0.374	FALSE	0.42712839779951983
+dopamine receptor agonist	9	0.04 uM	0.02980641594087593	L1000	0.427	FALSE	0.36957212497497616
+dopamine receptor antagonist	19	0.04 uM	0.04508661046189499	L1000	0.071	FALSE	1.1487416512809248
+dopamine receptor antagonist|serotonin receptor antagonist	9	0.04 uM	0.007341301553054408	L1000	0.825	FALSE	0.08354605145007493
+egfr inhibitor	13	0.04 uM	0.03209830980265936	L1000	0.311	FALSE	0.5072396109731625
+endothelin receptor antagonist	4	0.04 uM	0.058533275657778966	L1000	0.215	FALSE	0.6675615400843947
+estrogen receptor agonist	6	0.04 uM	0.03895864701383736	L1000	0.32	FALSE	0.494850021680094
+farnesyltransferase inhibitor	3	0.04 uM	-0.002476279869215623	L1000	0.603	FALSE	0.2196826878598487
+fgfr inhibitor|vegfr inhibitor	3	0.04 uM	0.061428586238253036	L1000	0.214	FALSE	0.6695862266508091
+free radical scavenger	4	0.04 uM	0.07836164013257657	L1000	0.133	FALSE	0.8761483590329142
+fungal squalene epoxidase inhibitor	3	0.04 uM	0.055555321430965886	L1000	0.245	FALSE	0.6108339156354675
+gaba receptor agonist	3	0.04 uM	0.01845145414908906	L1000	0.468	FALSE	0.32975414692587596
+gaba receptor modulator	4	0.04 uM	-0.041958248021850456	L1000	0.935	FALSE	0.0291883891274822
+gamma secretase inhibitor	7	0.04 uM	0.03031974874698196	L1000	0.441	FALSE	0.35556141053216145
+glucocorticoid receptor agonist	14	0.04 uM	0.3021105579944646	L1000	0	TRUE	3.5
+glucosidase inhibitor	3	0.04 uM	0.07088006172508382	L1000	0.18	FALSE	0.744727494896694
+glutamate receptor agonist	4	0.04 uM	0.017566385278851848	L1000	0.54	FALSE	0.26760624017703144
+glutamate receptor antagonist	5	0.04 uM	0.05008712791722887	L1000	0.239	FALSE	0.6216020990518624
+glutamate receptor modulator	3	0.04 uM	-0.04301517695517075	L1000	0.806	FALSE	0.09366495819490933
+hcv inhibitor	7	0.04 uM	0.04830205826337853	L1000	0.212	FALSE	0.6736641390712486
+hdac inhibitor	13	0.04 uM	0.041945695794801355	L1000	0.148	FALSE	0.8297382846050426
+histamine receptor antagonist	24	0.04 uM	0.03057111591228856	L1000	0.338	FALSE	0.47108329972234525
+hiv integrase inhibitor	3	0.04 uM	0.16876177849231633	L1000	0.017	TRUE	1.7695510786217261
+hiv protease inhibitor	5	0.04 uM	-0.04680464503202203	L1000	0.966	FALSE	0.015022873584506671
+hmgcr inhibitor	5	0.04 uM	0.011244771424168918	L1000	0.626	FALSE	0.20342566678957033
+hsp inhibitor	5	0.04 uM	0.1202837558186641	L1000	0.015	TRUE	1.8239087409443189
+insulin secretagogue	4	0.04 uM	0.037919438672735645	L1000	0.352	FALSE	0.453457336521869
+integrin antagonist	5	0.04 uM	0.031415297388940146	L1000	0.422	FALSE	0.37468754903832613
+jak inhibitor	5	0.04 uM	-0.04061491369470634	L1000	0.956	FALSE	0.019542107723899943
+leukotriene receptor antagonist	4	0.04 uM	0.06655194146439868	L1000	0.181	FALSE	0.7423214251308154
+lipoxygenase inhibitor	3	0.04 uM	0.024555196919252287	L1000	0.426	FALSE	0.37059040089728107
+matrix metalloprotease inhibitor	3	0.04 uM	-0.051065089790967744	L1000	0.832	FALSE	0.07987667370927608
+mdm inhibitor	3	0.04 uM	-0.08151158870132201	L1000	0.918	FALSE	0.03715731879875755
+mek inhibitor	8	0.04 uM	0.17654681413958412	L1000	0.001	TRUE	3
+microtubule inhibitor	3	0.04 uM	0.08993461917516103	L1000	0.116	FALSE	0.9355420107730815
+mineralocorticoid receptor antagonist	3	0.04 uM	-0.08148227081925062	L1000	0.918	FALSE	0.03715731879875755
+monoamine oxidase inhibitor	6	0.04 uM	0.012034169170134036	L1000	0.673	FALSE	0.1719849357760231
+mtor inhibitor	6	0.04 uM	0.3847240198679786	L1000	0	TRUE	3.5
+mtor inhibitor|pi3k inhibitor	4	0.04 uM	0.052582572954741356	L1000	0.253	FALSE	0.5968794788241821
+mucolytic agent	3	0.04 uM	-0.01917099224472217	L1000	0.698	FALSE	0.15614457737683893
+nfkb pathway inhibitor	4	0.04 uM	0.04729726379384144	L1000	0.285	FALSE	0.5451551399914898
+nitric oxide synthase inhibitor	4	0.04 uM	0.027122592739717108	L1000	0.442	FALSE	0.3545777306509081
+non-nucleoside reverse transcriptase inhibitor	4	0.04 uM	8.136442945324103e-4	L1000	0.716	FALSE	0.14508697769214446
+nucleoside reverse transcriptase inhibitor	4	0.04 uM	0.06901797296356074	L1000	0.169	FALSE	0.7721132953863264
+opioid receptor agonist	3	0.04 uM	0.001796559548173452	L1000	0.585	FALSE	0.23284413391781958
+opioid receptor antagonist	4	0.04 uM	0.07450035494766855	L1000	0.143	FALSE	0.8446639625349383
+p38 mapk inhibitor	6	0.04 uM	0.06408942916359599	L1000	0.127	FALSE	0.8961962790440431
+parp inhibitor	5	0.04 uM	0.01347797746280138	L1000	0.606	FALSE	0.21752737583371382
+phosphodiesterase inhibitor	28	0.04 uM	0.03431174021657605	L1000	0.199	FALSE	0.7011469235902933
+pi3k inhibitor	7	0.04 uM	0.024469015982466414	L1000	0.523	FALSE	0.2814983111327257
+pkc inhibitor	4	0.04 uM	-0.03270483459588233	L1000	0.905	FALSE	0.043351420794796675
+plk inhibitor	4	0.04 uM	0.22994070028179908	L1000	0	TRUE	3.5
+potassium channel activator	6	0.04 uM	-0.00863491818184327	L1000	0.875	FALSE	0.057991946977686754
+potassium channel blocker	4	0.04 uM	0.19284139319325985	L1000	0.006	TRUE	2.221848749616356
+ppar receptor agonist	3	0.04 uM	0.09154583646303617	L1000	0.112	FALSE	0.9507819773298184
+ppar receptor agonist|insulin sensitizer	3	0.04 uM	-0.02102779143654862	L1000	0.703	FALSE	0.15304467498017607
+progesterone receptor agonist	7	0.04 uM	0.019877764301689006	L1000	0.605	FALSE	0.2182446253475311
+prostanoid receptor agonist	3	0.04 uM	-0.010228395424619506	L1000	0.65	FALSE	0.18708664335714442
+prostanoid receptor antagonist	3	0.04 uM	0.18378554192661814	L1000	0.012	TRUE	1.9208187539523751
+proteasome inhibitor	4	0.04 uM	0.06035202811011936	L1000	0.206	FALSE	0.6861327796308466
+protein synthesis inhibitor	6	0.04 uM	0.03385420571185717	L1000	0.388	FALSE	0.41116827440579273
+protein synthesis stimulant	3	0.04 uM	0.04660779635927617	L1000	0.288	FALSE	0.5406075122407692
+purinergic receptor antagonist	3	0.04 uM	-0.013521348989866159	L1000	0.668	FALSE	0.1752235375244543
+raf inhibitor	5	0.04 uM	0.06372803005423808	L1000	0.162	FALSE	0.790484985457369
+retinoid receptor agonist	6	0.04 uM	0.062418277215671336	L1000	0.135	FALSE	0.8696662315049939
+reverse transcriptase inhibitor	3	0.04 uM	0.047825043503045485	L1000	0.282	FALSE	0.549750891680639
+rho associated kinase inhibitor	6	0.04 uM	-0.01842980189280403	L1000	0.927	FALSE	0.0329202658555029
+rna polymerase inhibitor	7	0.04 uM	0.04118885161138401	L1000	0.29	FALSE	0.5376020021010439
+selective serotonin reuptake inhibitor (ssri)	4	0.04 uM	-0.04730784603349876	L1000	0.95	FALSE	0.022276394711152253
+serotonin receptor agonist	12	0.04 uM	0.006808932132952777	L1000	0.906	FALSE	0.042871802323186915
+serotonin receptor agonist|serotonin receptor antagonist	3	0.04 uM	0.10637700945590979	L1000	0.071	FALSE	1.1487416512809248
+serotonin receptor antagonist	12	0.04 uM	0.05453724129534295	L1000	0.077	FALSE	1.1135092748275182
+serotonin reuptake inhibitor	4	0.04 uM	0.06021187199172311	L1000	0.206	FALSE	0.6861327796308466
+sigma receptor antagonist	3	0.04 uM	-0.21283924807703106	L1000	0.998	FALSE	8.694587126288914e-4
+sodium channel blocker	11	0.04 uM	0.05456462501098568	L1000	0.073	FALSE	1.136677139879544
+sterol demethylase inhibitor	7	0.04 uM	0.05313029804854559	L1000	0.164	FALSE	0.7851561519523022
+t-type calcium channel blocker	3	0.04 uM	-0.019600579651240974	L1000	0.701	FALSE	0.15428198203334137
+tachykinin antagonist	6	0.04 uM	0.01979742096727719	L1000	0.579	FALSE	0.23732143627256383
+topoisomerase inhibitor	15	0.04 uM	0.012178375448432914	L1000	0.889	FALSE	0.0510982390297863
+tubulin inhibitor	8	0.04 uM	0.08910115071583247	L1000	0.026	TRUE	1.585026652029182
+tyrosine kinase inhibitor	4	0.04 uM	0.042087530807561446	L1000	0.328	FALSE	0.4841261562883209
+vasopressin receptor antagonist	4	0.04 uM	0.03587227640400114	L1000	0.366	FALSE	0.43651891460558934
+vegfr inhibitor	4	0.04 uM	-0.008459023876866194	L1000	0.782	FALSE	0.10679324694015198
+vitamin d receptor agonist	5	0.04 uM	0.03285022338570093	L1000	0.403	FALSE	0.39469495385889053
+xanthine oxidase inhibitor	3	0.04 uM	-0.09722087970347627	L1000	0.945	FALSE	0.024568191490737076
+xiap inhibitor	3	0.04 uM	0.051281267906777145	L1000	0.27	FALSE	0.5686362358410126
+acat inhibitor	3	0.12 uM	-0.12401277105124663	L1000	0.972	FALSE	0.012333735073725434
+acetylcholine receptor agonist	8	0.12 uM	0.10347940180786444	L1000	0.012	TRUE	1.9208187539523751
+acetylcholine receptor antagonist	21	0.12 uM	0.030580856270988502	L1000	0.248	FALSE	0.6055483191737837
+adenosine receptor agonist	3	0.12 uM	0.01198816999073451	L1000	0.498	FALSE	0.30277065724028246
+adenosine receptor antagonist	4	0.12 uM	0.07159006676259663	L1000	0.118	FALSE	0.9281179926938746
+adrenergic receptor agonist	20	0.12 uM	0.028389297501136643	L1000	0.341	FALSE	0.4672456210075022
+adrenergic receptor antagonist	31	0.12 uM	0.03289347538456498	L1000	0.131	FALSE	0.8827287043442357
+akt inhibitor	6	0.12 uM	0.03934795472059296	L1000	0.279	FALSE	0.5543957967264024
+alk tyrosine kinase receptor inhibitor	3	0.12 uM	-0.020494667018827566	L1000	0.709	FALSE	0.1493537648169335
+androgen receptor agonist	3	0.12 uM	0.21559648984109417	L1000	0.003	TRUE	2.5228787452803374
+androgen receptor antagonist	5	0.12 uM	0.01691883669769226	L1000	0.568	FALSE	0.24565166428898116
+androgen receptor modulator	3	0.12 uM	-0.011560810335868319	L1000	0.653	FALSE	0.18508681872492605
+angiotensin converting enzyme inhibitor	8	0.12 uM	0.028162796521666502	L1000	0.395	FALSE	0.40340290437353976
+angiotensin receptor antagonist	4	0.12 uM	0.03755299043815272	L1000	0.326	FALSE	0.48678239993206096
+aromatase inhibitor	3	0.12 uM	0.11643434392994378	L1000	0.065	FALSE	1.1870866433571443
+atp channel blocker	3	0.12 uM	0.03756488866287533	L1000	0.328	FALSE	0.4841261562883209
+atpase inhibitor	3	0.12 uM	0.024422958091249905	L1000	0.415	FALSE	0.3819519032879073
+bacterial 30s ribosomal subunit inhibitor	5	0.12 uM	0.0028731373603143135	L1000	0.717	FALSE	0.1444808443321999
+bacterial 50s ribosomal subunit inhibitor	5	0.12 uM	0.02267963198731035	L1000	0.495	FALSE	0.3053948010664313
+bacterial cell wall synthesis inhibitor	14	0.12 uM	0.02122689985874138	L1000	0.598	FALSE	0.22329881601158919
+bacterial dna gyrase inhibitor	11	0.12 uM	0.053698094543807334	L1000	0.052	FALSE	1.2839966563652008
+bcl inhibitor	3	0.12 uM	-0.002329774881619798	L1000	0.586	FALSE	0.23210238398190938
+benzodiazepine receptor agonist	7	0.12 uM	0.0451692983681407	L1000	0.2	FALSE	0.6989700043360187
+benzodiazepine receptor antagonist	3	0.12 uM	0.025944871439543254	L1000	0.406	FALSE	0.39147396642280585
+calcineurin inhibitor	3	0.12 uM	0.007618694808803092	L1000	0.519	FALSE	0.28483264215154214
+calcitonin antagonist	3	0.12 uM	-0.0287980821910363	L1000	0.763	FALSE	0.11747546204511952
+calcium channel blocker	15	0.12 uM	0.00879050100623971	L1000	0.891	FALSE	0.0501222959631252
+cannabinoid receptor agonist	3	0.12 uM	-0.11862502897494764	L1000	0.97	FALSE	0.01322826573375516
+carbonic anhydrase inhibitor	5	0.12 uM	0.0022608145550512358	L1000	0.724	FALSE	0.1402614338028531
+cc chemokine receptor antagonist	7	0.12 uM	0.029103631015149133	L1000	0.414	FALSE	0.3829996588791011
+cck receptor antagonist	4	0.12 uM	-0.010582388629420764	L1000	0.774	FALSE	0.11125903931710739
+cdk inhibitor	7	0.12 uM	-0.020038867136224662	L1000	0.942	FALSE	0.025949097207122653
+chelating agent	4	0.12 uM	0.05005287770595852	L1000	0.23	FALSE	0.638272163982407
+cholesterol inhibitor	3	0.12 uM	0.026175141390599413	L1000	0.405	FALSE	0.3925449767853314
+coagulation factor inhibitor	4	0.12 uM	0.13684259420354622	L1000	0.016	TRUE	1.7958800173440752
+cyclooxygenase inhibitor	27	0.12 uM	0.023633699926879644	L1000	0.562	FALSE	0.2502636844309389
+cyclooxygenase inhibitor|prostanoid receptor antagonist	4	0.12 uM	0.01047400330438999	L1000	0.61	FALSE	0.21467016498923297
+dipeptidyl peptidase inhibitor	3	0.12 uM	0.010373166739104779	L1000	0.504	FALSE	0.2975694635544747
+dna inhibitor	5	0.12 uM	0.014235847926825692	L1000	0.593	FALSE	0.22694530663573742
+dna methyltransferase inhibitor	3	0.12 uM	0.033396625976065505	L1000	0.353	FALSE	0.4522252946121775
+dna polymerase inhibitor	3	0.12 uM	-0.0587086658042296	L1000	0.874	FALSE	0.05848856736559697
+dna synthesis inhibitor	7	0.12 uM	0.032541985366058755	L1000	0.354	FALSE	0.4509967379742122
+dopamine receptor agonist	9	0.12 uM	0.02713017067237842	L1000	0.402	FALSE	0.3957739469155299
+dopamine receptor antagonist	19	0.12 uM	0.04456242087134499	L1000	0.042	TRUE	1.3767507096020994
+dopamine receptor antagonist|serotonin receptor antagonist	9	0.12 uM	0.03965044531996562	L1000	0.187	FALSE	0.7281583934635011
+egfr inhibitor	13	0.12 uM	0.10566933659063288	L1000	0	TRUE	3.5
+endothelin receptor antagonist	4	0.12 uM	0.04230885691062783	L1000	0.283	FALSE	0.5482135644757098
+estrogen receptor agonist	6	0.12 uM	0.02519210607161682	L1000	0.434	FALSE	0.3625102704874893
+farnesyltransferase inhibitor	3	0.12 uM	-0.1533846850377494	L1000	0.984	FALSE	0.007004901568658489
+fgfr inhibitor|vegfr inhibitor	3	0.12 uM	0.0635991419685128	L1000	0.195	FALSE	0.7099653886374819
+free radical scavenger	4	0.12 uM	0.014605652620688673	L1000	0.567	FALSE	0.24641694110709345
+fungal squalene epoxidase inhibitor	3	0.12 uM	-0.026862264233336576	L1000	0.755	FALSE	0.12205304837081175
+gaba receptor agonist	3	0.12 uM	0.04711406375913384	L1000	0.283	FALSE	0.5482135644757098
+gaba receptor modulator	4	0.12 uM	-0.0307470821057774	L1000	0.882	FALSE	0.054531414868180264
+gamma secretase inhibitor	7	0.12 uM	0.011757649346355542	L1000	0.694	FALSE	0.15864052954514513
+glucocorticoid receptor agonist	14	0.12 uM	0.337704900138569	L1000	0	TRUE	3.5
+glucosidase inhibitor	3	0.12 uM	0.02398300804385607	L1000	0.419	FALSE	0.3777859770337047
+glutamate receptor agonist	4	0.12 uM	-0.012455586901941136	L1000	0.787	FALSE	0.10402526764093542
+glutamate receptor antagonist	5	0.12 uM	0.036803974245068594	L1000	0.349	FALSE	0.45717457304082015
+glutamate receptor modulator	3	0.12 uM	1.1253131664400186e-5	L1000	0.57	FALSE	0.24412514432750865
+hcv inhibitor	7	0.12 uM	0.08584312345252189	L1000	0.03	TRUE	1.5228787452803376
+hdac inhibitor	13	0.12 uM	0.07554743514798468	L1000	0.009	TRUE	2.0457574905606752
+histamine receptor antagonist	24	0.12 uM	0.033598124623743564	L1000	0.148	FALSE	0.8297382846050426
+hiv integrase inhibitor	3	0.12 uM	-0.005624026897127513	L1000	0.614	FALSE	0.21183162885883233
+hiv protease inhibitor	5	0.12 uM	0.006317779738567545	L1000	0.677	FALSE	0.16941133131485567
+hmgcr inhibitor	5	0.12 uM	-0.0015304421800900435	L1000	0.772	FALSE	0.11238269966426384
+hsp inhibitor	5	0.12 uM	0.02972171550842905	L1000	0.417	FALSE	0.3798639450262425
+insulin secretagogue	4	0.12 uM	0.05470968722235471	L1000	0.186	FALSE	0.7304870557820837
+integrin antagonist	5	0.12 uM	0.04665596133809101	L1000	0.241	FALSE	0.6179829574251317
+jak inhibitor	5	0.12 uM	-0.015677592907734874	L1000	0.869	FALSE	0.060980223551333534
+leukotriene receptor antagonist	4	0.12 uM	0.009081338971427403	L1000	0.632	FALSE	0.19928292171761497
+lipoxygenase inhibitor	3	0.12 uM	0.04887007890779817	L1000	0.272	FALSE	0.5654310959658012
+matrix metalloprotease inhibitor	3	0.12 uM	-0.06039730535868392	L1000	0.88	FALSE	0.05551732784983137
+mdm inhibitor	3	0.12 uM	-0.006790807171939637	L1000	0.621	FALSE	0.20690839982341983
+mek inhibitor	8	0.12 uM	0.28515164909042734	L1000	0	TRUE	3.5
+microtubule inhibitor	3	0.12 uM	0.11872533771164354	L1000	0.062	FALSE	1.207608310501746
+mineralocorticoid receptor antagonist	3	0.12 uM	-0.07979273588598039	L1000	0.922	FALSE	0.03526907894637064
+monoamine oxidase inhibitor	6	0.12 uM	0.057334238488581164	L1000	0.125	FALSE	0.9030899869919435
+mtor inhibitor	6	0.12 uM	0.3904233043126125	L1000	0	TRUE	3.5
+mtor inhibitor|pi3k inhibitor	4	0.12 uM	0.09878628689399996	L1000	0.049	TRUE	1.3098039199714864
+mucolytic agent	3	0.12 uM	-0.14629569258072747	L1000	0.982	FALSE	0.00788851221305034
+nfkb pathway inhibitor	4	0.12 uM	0.014201043258175035	L1000	0.57	FALSE	0.24412514432750865
+nitric oxide synthase inhibitor	4	0.12 uM	-0.02260542317769121	L1000	0.848	FALSE	0.07160414774328619
+non-nucleoside reverse transcriptase inhibitor	4	0.12 uM	0.0025095782381108055	L1000	0.69	FALSE	0.16115090926274472
+nucleoside reverse transcriptase inhibitor	4	0.12 uM	-0.09818617114792495	L1000	0.988	FALSE	0.005243055412371883
+opioid receptor agonist	3	0.12 uM	0.056881424936340505	L1000	0.226	FALSE	0.645891560852599
+opioid receptor antagonist	4	0.12 uM	0.07004623243517319	L1000	0.126	FALSE	0.8996294548824371
+p38 mapk inhibitor	6	0.12 uM	0.1053813340644428	L1000	0.023	TRUE	1.6382721639824072
+parp inhibitor	5	0.12 uM	0.07697220629074734	L1000	0.084	FALSE	1.0757207139381184
+phosphodiesterase inhibitor	28	0.12 uM	0.027456917331712086	L1000	0.348	FALSE	0.4584207560534191
+pi3k inhibitor	7	0.12 uM	0.03467500251214963	L1000	0.318	FALSE	0.4975728800155673
+pkc inhibitor	4	0.12 uM	0.08826077379285766	L1000	0.072	FALSE	1.1426675035687315
+plk inhibitor	4	0.12 uM	0.4120128901279094	L1000	0	TRUE	3.5
+potassium channel activator	6	0.12 uM	-0.005177096403072501	L1000	0.813	FALSE	0.08990945440593186
+potassium channel blocker	4	0.12 uM	0.021162108292219765	L1000	0.498	FALSE	0.30277065724028246
+ppar receptor agonist	3	0.12 uM	-0.02081975460315909	L1000	0.712	FALSE	0.14752000636314366
+ppar receptor agonist|insulin sensitizer	3	0.12 uM	-0.009472130398666376	L1000	0.642	FALSE	0.19246497193114673
+progesterone receptor agonist	7	0.12 uM	0.01287752414220439	L1000	0.679	FALSE	0.1681302257194983
+prostanoid receptor agonist	3	0.12 uM	0.06656520991043777	L1000	0.184	FALSE	0.7351821769904635
+prostanoid receptor antagonist	3	0.12 uM	0.06398913127998854	L1000	0.192	FALSE	0.7166987712964504
+proteasome inhibitor	4	0.12 uM	0.06801762776302017	L1000	0.14	FALSE	0.8538719643217619
+protein synthesis inhibitor	6	0.12 uM	0.06393943048959078	L1000	0.1	FALSE	1
+protein synthesis stimulant	3	0.12 uM	-0.010723585132165044	L1000	0.648	FALSE	0.18842499412940666
+purinergic receptor antagonist	3	0.12 uM	0.01664252508385946	L1000	0.468	FALSE	0.32975414692587596
+raf inhibitor	5	0.12 uM	0.05544394458991879	L1000	0.181	FALSE	0.7423214251308154
+retinoid receptor agonist	6	0.12 uM	0.003666709252811213	L1000	0.716	FALSE	0.14508697769214446
+reverse transcriptase inhibitor	3	0.12 uM	0.07791686596657772	L1000	0.151	FALSE	0.8210230527068306
+rho associated kinase inhibitor	6	0.12 uM	-0.01007363074046483	L1000	0.856	FALSE	0.06752623532284678
+rna polymerase inhibitor	7	0.12 uM	0.04169591785569699	L1000	0.234	FALSE	0.6307841425898572
+selective serotonin reuptake inhibitor (ssri)	4	0.12 uM	-0.028072469364049023	L1000	0.873	FALSE	0.05898575629443027
+serotonin receptor agonist	12	0.12 uM	-0.005439137818789814	L1000	0.978	FALSE	0.009661145212398569
+serotonin receptor agonist|serotonin receptor antagonist	3	0.12 uM	0.06183805607779679	L1000	0.206	FALSE	0.6861327796308466
+serotonin receptor antagonist	12	0.12 uM	0.03370916504178709	L1000	0.255	FALSE	0.5934598195660449
+serotonin reuptake inhibitor	4	0.12 uM	-0.06919825377888669	L1000	0.968	FALSE	0.014124642691606345
+sigma receptor antagonist	3	0.12 uM	-0.05340025273572771	L1000	0.853	FALSE	0.06905096883247698
+sodium channel blocker	11	0.12 uM	0.01999062119935892	L1000	0.578	FALSE	0.23807216157947098
+sterol demethylase inhibitor	7	0.12 uM	0.009273612948439001	L1000	0.729	FALSE	0.1372724716820254
+t-type calcium channel blocker	3	0.12 uM	-0.08606036037638044	L1000	0.931	FALSE	0.031050319018657353
+tachykinin antagonist	6	0.12 uM	0.005904452600565936	L1000	0.695	FALSE	0.15801519540988615
+topoisomerase inhibitor	15	0.12 uM	0.01684000309737092	L1000	0.713	FALSE	0.14691047014813446
+tubulin inhibitor	8	0.12 uM	0.022460737863476875	L1000	0.506	FALSE	0.2958494831602009
+tyrosine kinase inhibitor	4	0.12 uM	0.006546472029738891	L1000	0.657	FALSE	0.1824346304402192
+vasopressin receptor antagonist	4	0.12 uM	0.01142009747064112	L1000	0.604	FALSE	0.21896306137886817
+vegfr inhibitor	4	0.12 uM	-0.006830478924389545	L1000	0.755	FALSE	0.12205304837081175
+vitamin d receptor agonist	5	0.12 uM	0.0637653511663383	L1000	0.135	FALSE	0.8696662315049939
+xanthine oxidase inhibitor	3	0.12 uM	-0.07552644210140852	L1000	0.917	FALSE	0.03763066432997889
+xiap inhibitor	3	0.12 uM	0.04332418042907737	L1000	0.296	FALSE	0.5287082889410615
+acat inhibitor	3	0.37 uM	0.0046466733318583486	L1000	0.593	FALSE	0.22694530663573742
+acetylcholine receptor agonist	8	0.37 uM	0.11547448476683238	L1000	0.003	TRUE	2.5228787452803374
+acetylcholine receptor antagonist	21	0.37 uM	0.032626033261054524	L1000	0.276	FALSE	0.5590909179347823
+adenosine receptor agonist	3	0.37 uM	0.022152702297397967	L1000	0.48	FALSE	0.3187587626244128
+adenosine receptor antagonist	4	0.37 uM	0.05386339085773438	L1000	0.243	FALSE	0.6143937264016879
+adrenergic receptor agonist	20	0.37 uM	0.029667212868663632	L1000	0.392	FALSE	0.4067139329795427
+adrenergic receptor antagonist	31	0.37 uM	0.03005516674116861	L1000	0.355	FALSE	0.44977164694490596
+akt inhibitor	6	0.37 uM	0.027831247920130843	L1000	0.443	FALSE	0.3535962737769304
+alk tyrosine kinase receptor inhibitor	3	0.37 uM	0.09783219188446131	L1000	0.106	FALSE	0.9746941347352298
+androgen receptor agonist	3	0.37 uM	0.1831937822713826	L1000	0.01	TRUE	2
+androgen receptor antagonist	5	0.37 uM	0.0013651873365580838	L1000	0.726	FALSE	0.1390633792999063
+androgen receptor modulator	3	0.37 uM	-0.018042497292641325	L1000	0.731	FALSE	0.13608262304213956
+angiotensin converting enzyme inhibitor	8	0.37 uM	0.07376114822202305	L1000	0.044	TRUE	1.3565473235138126
+angiotensin receptor antagonist	4	0.37 uM	0.061035841192708065	L1000	0.194	FALSE	0.712198270069774
+aromatase inhibitor	3	0.37 uM	0.12145687531515117	L1000	0.076	FALSE	1.1191864077192086
+atp channel blocker	3	0.37 uM	0.09114480160349009	L1000	0.127	FALSE	0.8961962790440431
+atpase inhibitor	3	0.37 uM	-0.0663813275935652	L1000	0.908	FALSE	0.04191415147891488
+bacterial 30s ribosomal subunit inhibitor	5	0.37 uM	0.06575595101850996	L1000	0.135	FALSE	0.8696662315049939
+bacterial 50s ribosomal subunit inhibitor	5	0.37 uM	0.06572889292115647	L1000	0.135	FALSE	0.8696662315049939
+bacterial cell wall synthesis inhibitor	14	0.37 uM	0.040584903108945476	L1000	0.184	FALSE	0.7351821769904635
+bacterial dna gyrase inhibitor	11	0.37 uM	0.0804900896662264	L1000	0.01	TRUE	2
+bcl inhibitor	3	0.37 uM	-0.00268827121634396	L1000	0.637	FALSE	0.19586056766464957
+benzodiazepine receptor agonist	7	0.37 uM	0.01324778684726673	L1000	0.706	FALSE	0.15119529894819625
+benzodiazepine receptor antagonist	3	0.37 uM	0.07865705918916738	L1000	0.166	FALSE	0.7798919119599449
+calcineurin inhibitor	3	0.37 uM	0.11719200654902422	L1000	0.079	FALSE	1.1023729087095586
+calcitonin antagonist	3	0.37 uM	0.06527484561529596	L1000	0.216	FALSE	0.6655462488490691
+calcium channel blocker	15	0.37 uM	0.004864839856345625	L1000	0.957	FALSE	0.01908806222315645
+cannabinoid receptor agonist	3	0.37 uM	-0.16740047626136292	L1000	0.996	FALSE	0.00174066157630127
+carbonic anhydrase inhibitor	5	0.37 uM	-0.011617751496939487	L1000	0.826	FALSE	0.0830199526796178
+cc chemokine receptor antagonist	7	0.37 uM	0.011877482421851854	L1000	0.726	FALSE	0.1390633792999063
+cck receptor antagonist	4	0.37 uM	0.041580626912347526	L1000	0.344	FALSE	0.46344155742846993
+cdk inhibitor	7	0.37 uM	0.05664369991021196	L1000	0.134	FALSE	0.8728952016351923
+chelating agent	4	0.37 uM	0.01093597257639961	L1000	0.634	FALSE	0.1979107421182673
+cholesterol inhibitor	3	0.37 uM	0.04679252499068613	L1000	0.32	FALSE	0.494850021680094
+coagulation factor inhibitor	4	0.37 uM	0.04707096664433465	L1000	0.291	FALSE	0.5361070110140927
+cyclooxygenase inhibitor	27	0.37 uM	0.025800282090626975	L1000	0.577	FALSE	0.2388241868442686
+cyclooxygenase inhibitor|prostanoid receptor antagonist	4	0.37 uM	0.05273080822634311	L1000	0.25	FALSE	0.6020599913279624
+dipeptidyl peptidase inhibitor	3	0.37 uM	0.07227280794339168	L1000	0.182	FALSE	0.7399286120149252
+dna inhibitor	5	0.37 uM	-0.026013610655534335	L1000	0.916	FALSE	0.0381045263321496
+dna methyltransferase inhibitor	3	0.37 uM	0.10738676571128174	L1000	0.09	FALSE	1.0457574905606752
+dna polymerase inhibitor	3	0.37 uM	-0.007137375056066797	L1000	0.663	FALSE	0.17848647159522685
+dna synthesis inhibitor	7	0.37 uM	0.03976645056963363	L1000	0.309	FALSE	0.5100415205751654
+dopamine receptor agonist	9	0.37 uM	0.04468421692716075	L1000	0.202	FALSE	0.6946486305533762
+dopamine receptor antagonist	19	0.37 uM	0.032462492672558706	L1000	0.318	FALSE	0.4975728800155673
+dopamine receptor antagonist|serotonin receptor antagonist	9	0.37 uM	-0.006103297984102565	L1000	0.937	FALSE	0.02826040911222171
+egfr inhibitor	13	0.37 uM	0.10937881659740453	L1000	0	TRUE	3.5
+endothelin receptor antagonist	4	0.37 uM	0.04065315243845549	L1000	0.353	FALSE	0.4522252946121775
+estrogen receptor agonist	6	0.37 uM	0.0031918312102602125	L1000	0.753	FALSE	0.12320502379929942
+farnesyltransferase inhibitor	3	0.37 uM	-0.01036000169283992	L1000	0.685	FALSE	0.1643094285075744
+fgfr inhibitor|vegfr inhibitor	3	0.37 uM	-0.2148182900077483	L1000	0.998	FALSE	8.694587126288914e-4
+free radical scavenger	4	0.37 uM	0.053303104205265434	L1000	0.246	FALSE	0.6090648928966209
+fungal squalene epoxidase inhibitor	3	0.37 uM	0.03735784520385587	L1000	0.377	FALSE	0.42365864979420714
+gaba receptor agonist	3	0.37 uM	0.06351159070938073	L1000	0.225	FALSE	0.6478174818886375
+gaba receptor modulator	4	0.37 uM	-0.03591170094320733	L1000	0.917	FALSE	0.03763066432997889
+gamma secretase inhibitor	7	0.37 uM	0.10607339602232443	L1000	0.016	TRUE	1.7958800173440752
+glucocorticoid receptor agonist	14	0.37 uM	0.3957290332629977	L1000	0	TRUE	3.5
+glucosidase inhibitor	3	0.37 uM	0.02546952556127463	L1000	0.461	FALSE	0.33629907461035186
+glutamate receptor agonist	4	0.37 uM	0.10633892431437808	L1000	0.046	TRUE	1.337242168318426
+glutamate receptor antagonist	5	0.37 uM	0.03499691167118554	L1000	0.375	FALSE	0.42596873227228116
+glutamate receptor modulator	3	0.37 uM	0.10833752187274708	L1000	0.089	FALSE	1.0506099933550872
+hcv inhibitor	7	0.37 uM	0.02960555445489942	L1000	0.461	FALSE	0.33629907461035186
+hdac inhibitor	13	0.37 uM	0.12410780163819034	L1000	0	TRUE	3.5
+histamine receptor antagonist	24	0.37 uM	0.04073038869992605	L1000	0.121	FALSE	0.9172146296835499
+hiv integrase inhibitor	3	0.37 uM	-0.06661314340453986	L1000	0.909	FALSE	0.041436116778032536
+hiv protease inhibitor	5	0.37 uM	0.02928870704274606	L1000	0.436	FALSE	0.36051351073141397
+hmgcr inhibitor	5	0.37 uM	0.006352350605270443	L1000	0.677	FALSE	0.16941133131485567
+hsp inhibitor	5	0.37 uM	0.3351257414088135	L1000	0	TRUE	3.5
+insulin secretagogue	4	0.37 uM	0.09449021544097844	L1000	0.067	FALSE	1.1739251972991736
+integrin antagonist	5	0.37 uM	0.0015912531837799686	L1000	0.726	FALSE	0.1390633792999063
+jak inhibitor	5	0.37 uM	0.015579314696136794	L1000	0.581	FALSE	0.2358238676096693
+leukotriene receptor antagonist	4	0.37 uM	0.02570035448287849	L1000	0.48	FALSE	0.3187587626244128
+lipoxygenase inhibitor	3	0.37 uM	0.02742571346146482	L1000	0.443	FALSE	0.3535962737769304
+matrix metalloprotease inhibitor	3	0.37 uM	0.024090760110732634	L1000	0.47	FALSE	0.3279021420642826
+mdm inhibitor	3	0.37 uM	0.023298963013852293	L1000	0.475	FALSE	0.3233063903751334
+mek inhibitor	8	0.37 uM	0.5035473825511201	L1000	0	TRUE	3.5
+microtubule inhibitor	3	0.37 uM	0.07077446448193793	L1000	0.189	FALSE	0.7235381958267558
+mineralocorticoid receptor antagonist	3	0.37 uM	-0.05614800386342803	L1000	0.884	FALSE	0.05354773498692691
+monoamine oxidase inhibitor	6	0.37 uM	0.06838377015122715	L1000	0.102	FALSE	0.9913998282380825
+mtor inhibitor	6	0.37 uM	0.431470478245013	L1000	0	TRUE	3.5
+mtor inhibitor|pi3k inhibitor	4	0.37 uM	0.133304143318933	L1000	0.02	TRUE	1.6989700043360187
+mucolytic agent	3	0.37 uM	0.032930631276508554	L1000	0.408	FALSE	0.3893398369101201
+nfkb pathway inhibitor	4	0.37 uM	0.0036699105296346627	L1000	0.69	FALSE	0.16115090926274472
+nitric oxide synthase inhibitor	4	0.37 uM	0.019287244553015056	L1000	0.539	FALSE	0.2684112348132613
+non-nucleoside reverse transcriptase inhibitor	4	0.37 uM	-0.02151807220646306	L1000	0.864	FALSE	0.06348625752110672
+nucleoside reverse transcriptase inhibitor	4	0.37 uM	0.05205264954746275	L1000	0.253	FALSE	0.5968794788241821
+opioid receptor agonist	3	0.37 uM	0.165170293422912	L1000	0.022	TRUE	1.6575773191777938
+opioid receptor antagonist	4	0.37 uM	0.054687288233620054	L1000	0.238	FALSE	0.623423042943488
+p38 mapk inhibitor	6	0.37 uM	0.09200854601649366	L1000	0.033	TRUE	1.4814860601221125
+parp inhibitor	5	0.37 uM	0.012176070400723053	L1000	0.619	FALSE	0.208309350979882
+phosphodiesterase inhibitor	28	0.37 uM	0.027668600322227878	L1000	0.46	FALSE	0.3372421683184259
+pi3k inhibitor	7	0.37 uM	0.05940294023887514	L1000	0.111	FALSE	0.9546770212133425
+pkc inhibitor	4	0.37 uM	-0.020220835569081413	L1000	0.859	FALSE	0.0660068361687577
+plk inhibitor	4	0.37 uM	0.4447402249416864	L1000	0	TRUE	3.5
+potassium channel activator	6	0.37 uM	0.013765722895255204	L1000	0.644	FALSE	0.1911141326401879
+potassium channel blocker	4	0.37 uM	0.06320184762230982	L1000	0.178	FALSE	0.7495799976911061
+ppar receptor agonist	3	0.37 uM	0.02574250945160788	L1000	0.459	FALSE	0.33818731446273875
+ppar receptor agonist|insulin sensitizer	3	0.37 uM	-0.060697814488903164	L1000	0.89	FALSE	0.05060999335508721
+progesterone receptor agonist	7	0.37 uM	0.027397596509638283	L1000	0.496	FALSE	0.30451832350980257
+prostanoid receptor agonist	3	0.37 uM	0.032435038618501395	L1000	0.41	FALSE	0.38721614328026455
+prostanoid receptor antagonist	3	0.37 uM	0.01234077642498389	L1000	0.547	FALSE	0.2620126736665692
+proteasome inhibitor	4	0.37 uM	0.3791856797599991	L1000	0	TRUE	3.5
+protein synthesis inhibitor	6	0.37 uM	-0.03741528935225799	L1000	0.964	FALSE	0.01592296609716924
+protein synthesis stimulant	3	0.37 uM	0.08212518632398788	L1000	0.15	FALSE	0.8239087409443188
+purinergic receptor antagonist	3	0.37 uM	0.17534585011661682	L1000	0.014	TRUE	1.853871964321762
+raf inhibitor	5	0.37 uM	0.04958914559668999	L1000	0.239	FALSE	0.6216020990518624
+retinoid receptor agonist	6	0.37 uM	0.06992753830578531	L1000	0.093	FALSE	1.031517051446065
+reverse transcriptase inhibitor	3	0.37 uM	-0.01316183292281264	L1000	0.71	FALSE	0.14874165128092473
+rho associated kinase inhibitor	6	0.37 uM	0.021020006211365173	L1000	0.548	FALSE	0.2612194415156308
+rna polymerase inhibitor	7	0.37 uM	0.0504442957807412	L1000	0.181	FALSE	0.7423214251308154
+selective serotonin reuptake inhibitor (ssri)	4	0.37 uM	-0.0018918313072182258	L1000	0.734	FALSE	0.13430394008392949
+serotonin receptor agonist	12	0.37 uM	0.04308506005845475	L1000	0.179	FALSE	0.7471469690201068
+serotonin receptor agonist|serotonin receptor antagonist	3	0.37 uM	-0.057312576186314974	L1000	0.886	FALSE	0.05256627811294924
+serotonin receptor antagonist	12	0.37 uM	0.05689885082854916	L1000	0.07	FALSE	1.154901959985743
+serotonin reuptake inhibitor	4	0.37 uM	0.08856557223742106	L1000	0.078	FALSE	1.1079053973095196
+sigma receptor antagonist	3	0.37 uM	0.012692701398322391	L1000	0.545	FALSE	0.2636034977233575
+sodium channel blocker	11	0.37 uM	0.053092827307424706	L1000	0.093	FALSE	1.031517051446065
+sterol demethylase inhibitor	7	0.37 uM	0.033151914193085365	L1000	0.413	FALSE	0.384049948343599
+t-type calcium channel blocker	3	0.37 uM	0.051643793588759035	L1000	0.293	FALSE	0.5331323796458906
+tachykinin antagonist	6	0.37 uM	0.0862996173902767	L1000	0.043	TRUE	1.3665315444204136
+topoisomerase inhibitor	15	0.37 uM	0.04353657634036748	L1000	0.131	FALSE	0.8827287043442357
+tubulin inhibitor	8	0.37 uM	-0.010141347606073764	L1000	0.95	FALSE	0.022276394711152253
+tyrosine kinase inhibitor	4	0.37 uM	0.062255210749596335	L1000	0.186	FALSE	0.7304870557820837
+vasopressin receptor antagonist	4	0.37 uM	0.03414805678189785	L1000	0.404	FALSE	0.393618634889395
+vegfr inhibitor	4	0.37 uM	0.017870862605844133	L1000	0.555	FALSE	0.2557070168773237
+vitamin d receptor agonist	5	0.37 uM	0.08062609749283409	L1000	0.088	FALSE	1.0555173278498313
+xanthine oxidase inhibitor	3	0.37 uM	-0.007556188954561016	L1000	0.667	FALSE	0.17587416608345102
+xiap inhibitor	3	0.37 uM	0.19021716498678667	L1000	0.008	TRUE	2.0969100130080562
+acat inhibitor	3	1.11 uM	-0.027784508138259327	L1000	0.761	FALSE	0.11861534322942717
+acetylcholine receptor agonist	8	1.11 uM	0.02141319658581414	L1000	0.506	FALSE	0.2958494831602009
+acetylcholine receptor antagonist	21	1.11 uM	0.02235741964460433	L1000	0.533	FALSE	0.2732727909734277
+adenosine receptor agonist	3	1.11 uM	0.02104148083792866	L1000	0.456	FALSE	0.341035157335565
+adenosine receptor antagonist	4	1.11 uM	0.19551645494534714	L1000	0.002	TRUE	2.6989700043360187
+adrenergic receptor agonist	20	1.11 uM	0.028509036444948815	L1000	0.305	FALSE	0.5157001606532142
+adrenergic receptor antagonist	31	1.11 uM	0.03551235758465457	L1000	0.066	FALSE	1.1804560644581312
+akt inhibitor	6	1.11 uM	0.07723477528471633	L1000	0.056	FALSE	1.2518119729937995
+alk tyrosine kinase receptor inhibitor	3	1.11 uM	0.13171619186362218	L1000	0.049	TRUE	1.3098039199714864
+androgen receptor agonist	3	1.11 uM	0.12910225755808016	L1000	0.05	FALSE	1.3010299956639813
+androgen receptor antagonist	5	1.11 uM	0.013364804916328956	L1000	0.593	FALSE	0.22694530663573742
+androgen receptor modulator	3	1.11 uM	-0.03600501488377635	L1000	0.802	FALSE	0.09582563171583647
+angiotensin converting enzyme inhibitor	8	1.11 uM	0.061442952870074286	L1000	0.052	FALSE	1.2839966563652008
+angiotensin receptor antagonist	4	1.11 uM	0.022926283133674473	L1000	0.482	FALSE	0.31695296176115045
+aromatase inhibitor	3	1.11 uM	0.064237598148390307	L1000	0.205	FALSE	0.6882461389442457
+atp channel blocker	3	1.11 uM	0.1054798238264771	L1000	0.083	FALSE	1.080921907623926
+atpase inhibitor	3	1.11 uM	0.032966020097411404	L1000	0.379	FALSE	0.42136079003192767
+bacterial 30s ribosomal subunit inhibitor	5	1.11 uM	0.017643319556959077	L1000	0.552	FALSE	0.2580609222708011
+bacterial 50s ribosomal subunit inhibitor	5	1.11 uM	0.04377186402152056	L1000	0.256	FALSE	0.5917600346881504
+bacterial cell wall synthesis inhibitor	14	1.11 uM	0.043570314134774274	L1000	0.057	FALSE	1.2441251443275085
+bacterial dna gyrase inhibitor	11	1.11 uM	0.0259133064902528	L1000	0.437	FALSE	0.3595185630295782
+bcl inhibitor	3	1.11 uM	-0.04249577966978584	L1000	0.836	FALSE	0.07779372256098363
+benzodiazepine receptor agonist	7	1.11 uM	0.038756934791088986	L1000	0.278	FALSE	0.5559552040819237
+benzodiazepine receptor antagonist	3	1.11 uM	0.04459093429062226	L1000	0.302	FALSE	0.5199930570428494
+calcineurin inhibitor	3	1.11 uM	-0.03140275685947613	L1000	0.782	FALSE	0.10679324694015198
+calcitonin antagonist	3	1.11 uM	0.06647813266167095	L1000	0.194	FALSE	0.712198270069774
+calcium channel blocker	15	1.11 uM	0.02265287871244174	L1000	0.509	FALSE	0.29328221766324125
+cannabinoid receptor agonist	3	1.11 uM	-0.10310386278685564	L1000	0.964	FALSE	0.01592296609716924
+carbonic anhydrase inhibitor	5	1.11 uM	-0.04471470890846327	L1000	0.97	FALSE	0.01322826573375516
+cc chemokine receptor antagonist	7	1.11 uM	0.005077551966595147	L1000	0.778	FALSE	0.10902040301031106
+cck receptor antagonist	4	1.11 uM	-3.248569814385295e-4	L1000	0.703	FALSE	0.15304467498017607
+cdk inhibitor	7	1.11 uM	0.15980988064323215	L1000	0	TRUE	3.5
+chelating agent	4	1.11 uM	0.0069497341179789885	L1000	0.636	FALSE	0.19654288435158612
+cholesterol inhibitor	3	1.11 uM	-0.02459678748284486	L1000	0.746	FALSE	0.1272611725273312
+coagulation factor inhibitor	4	1.11 uM	-0.07528585020853264	L1000	0.979	FALSE	0.009217308196862183
+cyclooxygenase inhibitor	27	1.11 uM	0.028841438796973342	L1000	0.258	FALSE	0.5883802940367698
+cyclooxygenase inhibitor|prostanoid receptor antagonist	4	1.11 uM	0.02376050051950399	L1000	0.474	FALSE	0.324221658325915
+dipeptidyl peptidase inhibitor	3	1.11 uM	0.0033791213837004357	L1000	0.575	FALSE	0.24033215531036956
+dna inhibitor	5	1.11 uM	-0.03126522906877863	L1000	0.927	FALSE	0.0329202658555029
+dna methyltransferase inhibitor	3	1.11 uM	0.06672112931312553	L1000	0.193	FALSE	0.7144426909922262
+dna polymerase inhibitor	3	1.11 uM	-0.078661487715304207	L1000	0.927	FALSE	0.0329202658555029
+dna synthesis inhibitor	7	1.11 uM	0.0214956048339116	L1000	0.535	FALSE	0.27164621797877153
+dopamine receptor agonist	9	1.11 uM	0.04142001875149691	L1000	0.175	FALSE	0.7569619513137056
+dopamine receptor antagonist	19	1.11 uM	0.049056123418274665	L1000	0.023	TRUE	1.6382721639824072
+dopamine receptor antagonist|serotonin receptor antagonist	9	1.11 uM	-0.0027234201904656804	L1000	0.902	FALSE	0.04479346245805826
+egfr inhibitor	13	1.11 uM	0.10750259227247645	L1000	0	TRUE	3.5
+endothelin receptor antagonist	4	1.11 uM	0.02786516003999069	L1000	0.43	FALSE	0.36653154442041347
+estrogen receptor agonist	6	1.11 uM	0.00604494467020873	L1000	0.693	FALSE	0.1592667653881933
+farnesyltransferase inhibitor	3	1.11 uM	0.05539875160367678	L1000	0.243	FALSE	0.6143937264016879
+fgfr inhibitor|vegfr inhibitor	3	1.11 uM	0.04930513876012352	L1000	0.279	FALSE	0.5543957967264024
+free radical scavenger	4	1.11 uM	0.15367578361343803	L1000	0.008	TRUE	2.0969100130080562
+fungal squalene epoxidase inhibitor	3	1.11 uM	-0.07872526730619825	L1000	0.927	FALSE	0.0329202658555029
+gaba receptor agonist	3	1.11 uM	0.19088251594466651	L1000	0.013	TRUE	1.8860566476931633
+gaba receptor modulator	4	1.11 uM	0.04220392729175602	L1000	0.286	FALSE	0.543633966870957
+gamma secretase inhibitor	7	1.11 uM	0.07013395177982418	L1000	0.051	FALSE	1.2924298239020637
+glucocorticoid receptor agonist	14	1.11 uM	0.433709869525685	L1000	0	TRUE	3.5
+glucosidase inhibitor	3	1.11 uM	0.014461975657872017	L1000	0.497	FALSE	0.3036436112666679
+glutamate receptor agonist	4	1.11 uM	0.0979662808577324	L1000	0.052	FALSE	1.2839966563652008
+glutamate receptor antagonist	5	1.11 uM	-0.0053852145967902	L1000	0.79	FALSE	0.10237290870955855
+glutamate receptor modulator	3	1.11 uM	0.007173608451731744	L1000	0.551	FALSE	0.2588484011482149
+hcv inhibitor	7	1.11 uM	0.02144437815471815	L1000	0.538	FALSE	0.2692177243336108
+hdac inhibitor	13	1.11 uM	0.20153709857028973	L1000	0	TRUE	3.5
+histamine receptor antagonist	24	1.11 uM	0.02766527738997304	L1000	0.325	FALSE	0.4881166390211256
+hiv integrase inhibitor	3	1.11 uM	-0.04491046291218276	L1000	0.842	FALSE	0.07468790850035051
+hiv protease inhibitor	5	1.11 uM	-0.03280392926289294	L1000	0.936	FALSE	0.028724151261894745
+hmgcr inhibitor	5	1.11 uM	0.053557734891859825	L1000	0.187	FALSE	0.7281583934635011
+hsp inhibitor	5	1.11 uM	0.6968216548980803	L1000	0	TRUE	3.5
+insulin secretagogue	4	1.11 uM	0.07915869042248432	L1000	0.094	FALSE	1.0268721464003014
+integrin antagonist	5	1.11 uM	-0.002978967925105702	L1000	0.768	FALSE	0.114638779968488
+jak inhibitor	5	1.11 uM	0.05518722779296251	L1000	0.177	FALSE	0.7520267336381934
+leukotriene receptor antagonist	4	1.11 uM	0.030766334694953608	L1000	0.403	FALSE	0.39469495385889053
+lipoxygenase inhibitor	3	1.11 uM	0.043907986148544215	L1000	0.305	FALSE	0.5157001606532142
+matrix metalloprotease inhibitor	3	1.11 uM	-0.06428921932872836	L1000	0.892	FALSE	0.04963514562387693
+mdm inhibitor	3	1.11 uM	0.20462402030140306	L1000	0.006	TRUE	2.221848749616356
+mek inhibitor	8	1.11 uM	0.5508164705458369	L1000	0	TRUE	3.5
+microtubule inhibitor	3	1.11 uM	0.07259429002592993	L1000	0.164	FALSE	0.7851561519523022
+mineralocorticoid receptor antagonist	3	1.11 uM	-0.010390900256672376	L1000	0.659	FALSE	0.18111458540599013
+monoamine oxidase inhibitor	6	1.11 uM	0.03316720082788768	L1000	0.321	FALSE	0.4934949675951279
+mtor inhibitor	6	1.11 uM	0.4710593378159846	L1000	0	TRUE	3.5
+mtor inhibitor|pi3k inhibitor	4	1.11 uM	0.4297330140941741	L1000	0	TRUE	3.5
+mucolytic agent	3	1.11 uM	0.04754198207943623	L1000	0.286	FALSE	0.543633966870957
+nfkb pathway inhibitor	4	1.11 uM	0.00730678242861702	L1000	0.633	FALSE	0.1985962899826449
+nitric oxide synthase inhibitor	4	1.11 uM	-0.02369622238654264	L1000	0.863	FALSE	0.06398920428479041
+non-nucleoside reverse transcriptase inhibitor	4	1.11 uM	0.06489054102170365	L1000	0.146	FALSE	0.835647144215563
+nucleoside reverse transcriptase inhibitor	4	1.11 uM	0.06928657060812528	L1000	0.129	FALSE	0.889410289700751
+opioid receptor agonist	3	1.11 uM	-0.01202588365769485	L1000	0.669	FALSE	0.17457388223217687
+opioid receptor antagonist	4	1.11 uM	-0.012950381023739386	L1000	0.795	FALSE	0.09963287134352969
+p38 mapk inhibitor	6	1.11 uM	0.09762720315564047	L1000	0.023	TRUE	1.6382721639824072
+parp inhibitor	5	1.11 uM	-0.003304180492959245	L1000	0.772	FALSE	0.11238269966426384
+phosphodiesterase inhibitor	28	1.11 uM	0.025713116936845287	L1000	0.401	FALSE	0.39685562737981767
+pi3k inhibitor	7	1.11 uM	0.043249265470174575	L1000	0.225	FALSE	0.6478174818886375
+pkc inhibitor	4	1.11 uM	-0.01923424723825877	L1000	0.84	FALSE	0.07572071393811836
+plk inhibitor	4	1.11 uM	0.39578866644708016	L1000	0	TRUE	3.5
+potassium channel activator	6	1.11 uM	0.024270713288563058	L1000	0.447	FALSE	0.34969247686806354
+potassium channel blocker	4	1.11 uM	-0.06958014564677792	L1000	0.975	FALSE	0.010995384301463193
+ppar receptor agonist	3	1.11 uM	0.16889207843780843	L1000	0.019	TRUE	1.7212463990471711
+ppar receptor agonist|insulin sensitizer	3	1.11 uM	0.07138509460049354	L1000	0.174	FALSE	0.7594507517174003
+progesterone receptor agonist	7	1.11 uM	0.055558685032929045	L1000	0.119	FALSE	0.9244530386074693
+prostanoid receptor agonist	3	1.11 uM	0.08870219022110651	L1000	0.127	FALSE	0.8961962790440431
+prostanoid receptor antagonist	3	1.11 uM	0.041296714010879434	L1000	0.326	FALSE	0.48678239993206096
+proteasome inhibitor	4	1.11 uM	0.607681827948317	L1000	0	TRUE	3.5
+protein synthesis inhibitor	6	1.11 uM	-0.0450448223959619	L1000	0.974	FALSE	0.011441043121384482
+protein synthesis stimulant	3	1.11 uM	-3.127370623084117e-4	L1000	0.598	FALSE	0.22329881601158919
+purinergic receptor antagonist	3	1.11 uM	-0.012665630205405367	L1000	0.672	FALSE	0.17263072694617473
+raf inhibitor	5	1.11 uM	0.03094780701776595	L1000	0.386	FALSE	0.41341269532824504
+retinoid receptor agonist	6	1.11 uM	0.08339690059467542	L1000	0.044	TRUE	1.3565473235138126
+reverse transcriptase inhibitor	3	1.11 uM	0.005430937962809796	L1000	0.559	FALSE	0.25258819211357664
+rho associated kinase inhibitor	6	1.11 uM	0.04546073768773678	L1000	0.199	FALSE	0.7011469235902933
+rna polymerase inhibitor	7	1.11 uM	0.02399513137443647	L1000	0.494	FALSE	0.30627305107635305
+selective serotonin reuptake inhibitor (ssri)	4	1.11 uM	0.014298832690807024	L1000	0.569	FALSE	0.24488773360492885
+serotonin receptor agonist	12	1.11 uM	0.022699154652504057	L1000	0.502	FALSE	0.29929628285498067
+serotonin receptor agonist|serotonin receptor antagonist	3	1.11 uM	0.12141189504526786	L1000	0.06	FALSE	1.2218487496163564
+serotonin receptor antagonist	12	1.11 uM	0.04758421464196064	L1000	0.081	FALSE	1.0915149811213503
+serotonin reuptake inhibitor	4	1.11 uM	-0.019070744999746723	L1000	0.839	FALSE	0.07623803917129975
+sigma receptor antagonist	3	1.11 uM	0.07489145175456917	L1000	0.16	FALSE	0.7958800173440752
+sodium channel blocker	11	1.11 uM	0.09385420551232046	L1000	0.002	TRUE	2.6989700043360187
+sterol demethylase inhibitor	7	1.11 uM	0.033789712974655335	L1000	0.35	FALSE	0.4559319556497244
+t-type calcium channel blocker	3	1.11 uM	4.336903809896848e-4	L1000	0.592	FALSE	0.22767829327708025
+tachykinin antagonist	6	1.11 uM	0.03159535868383164	L1000	0.338	FALSE	0.47108329972234525
+topoisomerase inhibitor	15	1.11 uM	0.04454839504076501	L1000	0.07	FALSE	1.154901959985743
+tubulin inhibitor	8	1.11 uM	0.046322818523814785	L1000	0.133	FALSE	0.8761483590329142
+tyrosine kinase inhibitor	4	1.11 uM	-0.0325616962289743	L1000	0.893	FALSE	0.049148541111453566
+vasopressin receptor antagonist	4	1.11 uM	0.02158309431584475	L1000	0.49	FALSE	0.3098039199714863
+vegfr inhibitor	4	1.11 uM	-0.019290270276481024	L1000	0.84	FALSE	0.07572071393811836
+vitamin d receptor agonist	5	1.11 uM	0.1475930621958427	L1000	0.007	TRUE	2.154901959985743
+xanthine oxidase inhibitor	3	1.11 uM	0.015200409525683129	L1000	0.494	FALSE	0.30627305107635305
+xiap inhibitor	3	1.11 uM	0.21350074504108155	L1000	0.004	TRUE	2.3979400086720375
+acat inhibitor	3	3.33 uM	-0.07205789291440688	L1000	0.91	FALSE	0.040958607678906384
+acetylcholine receptor agonist	8	3.33 uM	0.02295835939686315	L1000	0.436	FALSE	0.36051351073141397
+acetylcholine receptor antagonist	21	3.33 uM	0.016791549047469156	L1000	0.69	FALSE	0.16115090926274472
+adenosine receptor agonist	3	3.33 uM	0.004704607728849526	L1000	0.533	FALSE	0.2732727909734277
+adenosine receptor antagonist	4	3.33 uM	0.11694950644675987	L1000	0.03	TRUE	1.5228787452803376
+adrenergic receptor agonist	20	3.33 uM	0.024944582547288884	L1000	0.36	FALSE	0.44369749923271273
+adrenergic receptor antagonist	31	3.33 uM	0.034113397866223125	L1000	0.058	FALSE	1.2365720064370627
+akt inhibitor	6	3.33 uM	0.05537277152968329	L1000	0.131	FALSE	0.8827287043442357
+alk tyrosine kinase receptor inhibitor	3	3.33 uM	-0.0027806793534416773	L1000	0.589	FALSE	0.2298847052128984
+androgen receptor agonist	3	3.33 uM	0.11468176867671645	L1000	0.06	FALSE	1.2218487496163564
+androgen receptor antagonist	5	3.33 uM	0.011207307494119158	L1000	0.603	FALSE	0.2196826878598487
+androgen receptor modulator	3	3.33 uM	0.051490557807606835	L1000	0.244	FALSE	0.6126101736612706
+angiotensin converting enzyme inhibitor	8	3.33 uM	0.06276861129504682	L1000	0.046	TRUE	1.337242168318426
+angiotensin receptor antagonist	4	3.33 uM	0.042994518290356984	L1000	0.274	FALSE	0.562249437179612
+aromatase inhibitor	3	3.33 uM	0.08119276754924595	L1000	0.135	FALSE	0.8696662315049939
+atp channel blocker	3	3.33 uM	0.11850022313083486	L1000	0.057	FALSE	1.2441251443275085
+atpase inhibitor	3	3.33 uM	0.03699523996408117	L1000	0.32	FALSE	0.494850021680094
+bacterial 30s ribosomal subunit inhibitor	5	3.33 uM	0.03752722658842937	L1000	0.285	FALSE	0.5451551399914898
+bacterial 50s ribosomal subunit inhibitor	5	3.33 uM	0.022270064445769466	L1000	0.463	FALSE	0.33441900898204685
+bacterial cell wall synthesis inhibitor	14	3.33 uM	0.028431287516784007	L1000	0.273	FALSE	0.563837352959244
+bacterial dna gyrase inhibitor	11	3.33 uM	0.02961806721781904	L1000	0.303	FALSE	0.518557371497695
+bcl inhibitor	3	3.33 uM	-0.022164481110014622	L1000	0.724	FALSE	0.1402614338028531
+benzodiazepine receptor agonist	7	3.33 uM	0.024540690653782893	L1000	0.421	FALSE	0.3757179041643317
+benzodiazepine receptor antagonist	3	3.33 uM	0.026329841107144522	L1000	0.39	FALSE	0.4089353929735008
+calcineurin inhibitor	3	3.33 uM	0.037537103110796104	L1000	0.314	FALSE	0.5030703519267851
+calcitonin antagonist	3	3.33 uM	0.0793589159051098	L1000	0.138	FALSE	0.8601209135987634
+calcium channel blocker	15	3.33 uM	0.02926712275507572	L1000	0.268	FALSE	0.5718652059712112
+cannabinoid receptor agonist	3	3.33 uM	0.06895893893862332	L1000	0.173	FALSE	0.7619538968712046
+carbonic anhydrase inhibitor	5	3.33 uM	0.027666639123658313	L1000	0.401	FALSE	0.39685562737981767
+cc chemokine receptor antagonist	7	3.33 uM	0.03381347885565456	L1000	0.288	FALSE	0.5406075122407692
+cck receptor antagonist	4	3.33 uM	-0.0019185842186442807	L1000	0.7	FALSE	0.1549019599857432
+cdk inhibitor	7	3.33 uM	0.16340210263045754	L1000	0	TRUE	3.5
+chelating agent	4	3.33 uM	0.06830139237212347	L1000	0.124	FALSE	0.906578314837765
+cholesterol inhibitor	3	3.33 uM	0.026283615160546756	L1000	0.39	FALSE	0.4089353929735008
+coagulation factor inhibitor	4	3.33 uM	0.049274788261094084	L1000	0.221	FALSE	0.6556077263148893
+cyclooxygenase inhibitor	27	3.33 uM	0.012169622291200593	L1000	0.928	FALSE	0.032452023781137915
+cyclooxygenase inhibitor|prostanoid receptor antagonist	4	3.33 uM	0.016838957835850998	L1000	0.527	FALSE	0.27818938478745336
+dipeptidyl peptidase inhibitor	3	3.33 uM	0.07434974008772144	L1000	0.155	FALSE	0.8096683018297085
+dna inhibitor	5	3.33 uM	0.006394866551645718	L1000	0.661	FALSE	0.17979854051435976
+dna methyltransferase inhibitor	3	3.33 uM	0.050448477556154864	L1000	0.25	FALSE	0.6020599913279624
+dna polymerase inhibitor	3	3.33 uM	0.039497745396435066	L1000	0.302	FALSE	0.5199930570428494
+dna synthesis inhibitor	7	3.33 uM	0.010465672219474613	L1000	0.652	FALSE	0.1857524042680798
+dopamine receptor agonist	9	3.33 uM	0.046257335505358745	L1000	0.116	FALSE	0.9355420107730815
+dopamine receptor antagonist	19	3.33 uM	0.03927759180385006	L1000	0.063	FALSE	1.2006594505464183
+dopamine receptor antagonist|serotonin receptor antagonist	9	3.33 uM	0.022383699765989425	L1000	0.458	FALSE	0.3391345219961308
+egfr inhibitor	13	3.33 uM	0.14988695579297073	L1000	0	TRUE	3.5
+endothelin receptor antagonist	4	3.33 uM	0.0541588918380025	L1000	0.185	FALSE	0.7328282715969862
+estrogen receptor agonist	6	3.33 uM	-0.03309305765217012	L1000	0.957	FALSE	0.01908806222315645
+farnesyltransferase inhibitor	3	3.33 uM	0.04417224318703313	L1000	0.279	FALSE	0.5543957967264024
+fgfr inhibitor|vegfr inhibitor	3	3.33 uM	0.024306965691746982	L1000	0.406	FALSE	0.39147396642280585
+free radical scavenger	4	3.33 uM	0.06951070467948137	L1000	0.118	FALSE	0.9281179926938746
+fungal squalene epoxidase inhibitor	3	3.33 uM	-0.09604885846293651	L1000	0.958	FALSE	0.018634490921455603
+gaba receptor agonist	3	3.33 uM	-0.03501512252395835	L1000	0.797	FALSE	0.09854167860388763
+gaba receptor modulator	4	3.33 uM	0.004703110981980972	L1000	0.644	FALSE	0.1911141326401879
+gamma secretase inhibitor	7	3.33 uM	0.08641377884094295	L1000	0.021	TRUE	1.6777807052660807
+glucocorticoid receptor agonist	14	3.33 uM	0.444676752314633	L1000	0	TRUE	3.5
+glucosidase inhibitor	3	3.33 uM	-0.021185250933911718	L1000	0.718	FALSE	0.14387555575769967
+glutamate receptor agonist	4	3.33 uM	-0.05376709945985942	L1000	0.948	FALSE	0.023191662661933767
+glutamate receptor antagonist	5	3.33 uM	0.005714707842068932	L1000	0.665	FALSE	0.17717835469689538
+glutamate receptor modulator	3	3.33 uM	-0.02306577059357997	L1000	0.732	FALSE	0.13548891894160814
+hcv inhibitor	7	3.33 uM	-0.016845951143181333	L1000	0.933	FALSE	0.030118356253500032
+hdac inhibitor	13	3.33 uM	0.23618797156179916	L1000	0	TRUE	3.5
+histamine receptor antagonist	24	3.33 uM	0.025433032097236668	L1000	0.345	FALSE	0.4621809049267259
+hiv integrase inhibitor	3	3.33 uM	-0.02276115033239108	L1000	0.729	FALSE	0.1372724716820254
+hiv protease inhibitor	5	3.33 uM	0.018801606412142215	L1000	0.507	FALSE	0.294992040666664
+hmgcr inhibitor	5	3.33 uM	-0.011226206821091623	L1000	0.815	FALSE	0.08884239126002341
+hsp inhibitor	5	3.33 uM	0.7037139339523656	L1000	0	TRUE	3.5
+insulin secretagogue	4	3.33 uM	0.04058132530030492	L1000	0.293	FALSE	0.5331323796458906
+integrin antagonist	5	3.33 uM	-0.02878147192035483	L1000	0.914	FALSE	0.039053804266168564
+jak inhibitor	5	3.33 uM	0.030948639652851617	L1000	0.357	FALSE	0.4473317838878068
+leukotriene receptor antagonist	4	3.33 uM	0.01199011117902564	L1000	0.575	FALSE	0.24033215531036956
+lipoxygenase inhibitor	3	3.33 uM	-0.011157424851012076	L1000	0.65	FALSE	0.18708664335714442
+matrix metalloprotease inhibitor	3	3.33 uM	0.02572651619220945	L1000	0.395	FALSE	0.40340290437353976
+mdm inhibitor	3	3.33 uM	0.44334374770924306	L1000	0	TRUE	3.5
+mek inhibitor	8	3.33 uM	0.6190278638384056	L1000	0	TRUE	3.5
+microtubule inhibitor	3	3.33 uM	0.0017229239935670796	L1000	0.558	FALSE	0.25336580106242124
+mineralocorticoid receptor antagonist	3	3.33 uM	-0.03230735800042096	L1000	0.788	FALSE	0.10347378251044466
+monoamine oxidase inhibitor	6	3.33 uM	0.02198503496469122	L1000	0.447	FALSE	0.34969247686806354
+mtor inhibitor	6	3.33 uM	0.4642950542878065	L1000	0	TRUE	3.5
+mtor inhibitor|pi3k inhibitor	4	3.33 uM	0.5931055248332862	L1000	0	TRUE	3.5
+mucolytic agent	3	3.33 uM	4.4846944081081456e-4	L1000	0.563	FALSE	0.24949160514865382
+nfkb pathway inhibitor	4	3.33 uM	-0.005583963062682336	L1000	0.729	FALSE	0.1372724716820254
+nitric oxide synthase inhibitor	4	3.33 uM	0.025051341195698813	L1000	0.433	FALSE	0.36351210364663455
+non-nucleoside reverse transcriptase inhibitor	4	3.33 uM	-0.014835484685019946	L1000	0.79	FALSE	0.10237290870955855
+nucleoside reverse transcriptase inhibitor	4	3.33 uM	-0.021106290653475416	L1000	0.836	FALSE	0.07779372256098363
+opioid receptor agonist	3	3.33 uM	-0.0204701803227343	L1000	0.71	FALSE	0.14874165128092473
+opioid receptor antagonist	4	3.33 uM	0.027800222166172776	L1000	0.409	FALSE	0.38827669199265824
+p38 mapk inhibitor	6	3.33 uM	0.11982435932822233	L1000	0.005	TRUE	2.3010299956639813
+parp inhibitor	5	3.33 uM	-0.0013265578615023893	L1000	0.73	FALSE	0.1366771398795441
+phosphodiesterase inhibitor	28	3.33 uM	0.019244981810234672	L1000	0.685	FALSE	0.1643094285075744
+pi3k inhibitor	7	3.33 uM	-0.007120777823213821	L1000	0.875	FALSE	0.057991946977686754
+pkc inhibitor	4	3.33 uM	0.007306474142051208	L1000	0.613	FALSE	0.21253952548158497
+plk inhibitor	4	3.33 uM	0.3686304182278656	L1000	0	TRUE	3.5
+potassium channel activator	6	3.33 uM	-0.004197658436247461	L1000	0.782	FALSE	0.10679324694015198
+potassium channel blocker	4	3.33 uM	0.011726237367337147	L1000	0.576	FALSE	0.239577516576788
+ppar receptor agonist	3	3.33 uM	-0.002868379755207049	L1000	0.59	FALSE	0.22914798835785583
+ppar receptor agonist|insulin sensitizer	3	3.33 uM	0.04310699419794895	L1000	0.283	FALSE	0.5482135644757098
+progesterone receptor agonist	7	3.33 uM	0.0359240806465778	L1000	0.266	FALSE	0.575118363368933
+prostanoid receptor agonist	3	3.33 uM	0.08095125650500652	L1000	0.135	FALSE	0.8696662315049939
+prostanoid receptor antagonist	3	3.33 uM	0.0826010775623596	L1000	0.131	FALSE	0.8827287043442357
+proteasome inhibitor	4	3.33 uM	0.7390543729432919	L1000	0	TRUE	3.5
+protein synthesis inhibitor	6	3.33 uM	-0.001960874242761786	L1000	0.756	FALSE	0.12147820449879346
+protein synthesis stimulant	3	3.33 uM	-5.768447516749253e-4	L1000	0.573	FALSE	0.24184537803261005
+purinergic receptor antagonist	3	3.33 uM	-0.062430900463193315	L1000	0.879	FALSE	0.056011124926228104
+raf inhibitor	5	3.33 uM	0.02221042222773787	L1000	0.464	FALSE	0.3334820194451191
+retinoid receptor agonist	6	3.33 uM	0.06468351096203731	L1000	0.091	FALSE	1.0409586076789064
+reverse transcriptase inhibitor	3	3.33 uM	-0.014881685559915122	L1000	0.672	FALSE	0.17263072694617473
+rho associated kinase inhibitor	6	3.33 uM	0.023865918254407464	L1000	0.418	FALSE	0.3788237182249648
+rna polymerase inhibitor	7	3.33 uM	0.012227959356909174	L1000	0.628	FALSE	0.20204035626280387
+selective serotonin reuptake inhibitor (ssri)	4	3.33 uM	-0.02064880829952551	L1000	0.833	FALSE	0.07935499859321243
+serotonin receptor agonist	12	3.33 uM	0.021203531740546455	L1000	0.511	FALSE	0.29157909986528724
+serotonin receptor agonist|serotonin receptor antagonist	3	3.33 uM	0.09698643017124987	L1000	0.096	FALSE	1.0177287669604316
+serotonin receptor antagonist	12	3.33 uM	0.04786994231527867	L1000	0.06	FALSE	1.2218487496163564
+serotonin reuptake inhibitor	4	3.33 uM	0.014699625661570556	L1000	0.56	FALSE	0.25181197299379954
+sigma receptor antagonist	3	3.33 uM	-0.16896596674417128	L1000	0.996	FALSE	0.00174066157630127
+sodium channel blocker	11	3.33 uM	0.04485901524059088	L1000	0.093	FALSE	1.031517051446065
+sterol demethylase inhibitor	7	3.33 uM	0.0581423469208026	L1000	0.094	FALSE	1.0268721464003014
+t-type calcium channel blocker	3	3.33 uM	0.09682137373212375	L1000	0.096	FALSE	1.0177287669604316
+tachykinin antagonist	6	3.33 uM	0.061084966176482285	L1000	0.1	FALSE	1
+topoisomerase inhibitor	15	3.33 uM	0.06982646791056023	L1000	0.001	TRUE	3
+tubulin inhibitor	8	3.33 uM	0.27021218451824275	L1000	0	TRUE	3.5
+tyrosine kinase inhibitor	4	3.33 uM	-0.07014997442957766	L1000	0.977	FALSE	0.010105436281226938
+vasopressin receptor antagonist	4	3.33 uM	0.05991861446871566	L1000	0.161	FALSE	0.7931741239681502
+vegfr inhibitor	4	3.33 uM	0.08019244407248291	L1000	0.088	FALSE	1.0555173278498313
+vitamin d receptor agonist	5	3.33 uM	0.121867163117868	L1000	0.02	TRUE	1.6989700043360187
+xanthine oxidase inhibitor	3	3.33 uM	0.001745183450234194	L1000	0.558	FALSE	0.25336580106242124
+xiap inhibitor	3	3.33 uM	0.17596266142083286	L1000	0.013	TRUE	1.8860566476931633
+acat inhibitor	3	10 uM	-0.05354170566112717	L1000	0.875	FALSE	0.057991946977686754
+acetylcholine receptor agonist	8	10 uM	-6.884150373137423e-4	L1000	0.891	FALSE	0.0501222959631252
+acetylcholine receptor antagonist	21	10 uM	0.03614232847274	L1000	0.191	FALSE	0.7189666327522725
+adenosine receptor agonist	3	10 uM	0.12269649349620604	L1000	0.059	FALSE	1.2291479883578558
+adenosine receptor antagonist	4	10 uM	0.0029132137500959172	L1000	0.694	FALSE	0.15864052954514513
+adrenergic receptor agonist	20	10 uM	0.02060911430176974	L1000	0.741	FALSE	0.13018179202067184
+adrenergic receptor antagonist	31	10 uM	0.029479711585676027	L1000	0.402	FALSE	0.3957739469155299
+akt inhibitor	6	10 uM	0.07528909363426965	L1000	0.097	FALSE	1.0132282657337552
+alk tyrosine kinase receptor inhibitor	3	10 uM	0.07094741076511718	L1000	0.189	FALSE	0.7235381958267558
+androgen receptor agonist	3	10 uM	0.17927608207903067	L1000	0.013	TRUE	1.8860566476931633
+androgen receptor antagonist	5	10 uM	0.011817158516945802	L1000	0.636	FALSE	0.19654288435158612
+androgen receptor modulator	3	10 uM	-0.04501424741922282	L1000	0.854	FALSE	0.06854212931099495
+angiotensin converting enzyme inhibitor	8	10 uM	0.03329345170658157	L1000	0.369	FALSE	0.4329736338409396
+angiotensin receptor antagonist	4	10 uM	0.04584598537425618	L1000	0.284	FALSE	0.5466816599529624
+aromatase inhibitor	3	10 uM	0.03099488440619807	L1000	0.407	FALSE	0.39040559077478
+atp channel blocker	3	10 uM	0.06968470312620083	L1000	0.189	FALSE	0.7235381958267558
+atpase inhibitor	3	10 uM	0.019841602398167697	L1000	0.493	FALSE	0.30715308072277
+bacterial 30s ribosomal subunit inhibitor	5	10 uM	0.07500479134710147	L1000	0.1	FALSE	1
+bacterial 50s ribosomal subunit inhibitor	5	10 uM	0.04113822219096011	L1000	0.315	FALSE	0.5016894462103995
+bacterial cell wall synthesis inhibitor	14	10 uM	0.03633978678294462	L1000	0.263	FALSE	0.5800442515102421
+bacterial dna gyrase inhibitor	11	10 uM	0.010146279381059185	L1000	0.86	FALSE	0.06550154875643228
+bcl inhibitor	3	10 uM	0.2097225369285996	L1000	0.007	TRUE	2.154901959985743
+benzodiazepine receptor agonist	7	10 uM	0.06598095506490761	L1000	0.092	FALSE	1.0362121726544447
+benzodiazepine receptor antagonist	3	10 uM	-0.015954181195279093	L1000	0.719	FALSE	0.14327110961711742
+calcineurin inhibitor	3	10 uM	0.19111757136250068	L1000	0.011	TRUE	1.958607314841775
+calcitonin antagonist	3	10 uM	0.0678084168944376	L1000	0.201	FALSE	0.6968039425795111
+calcium channel blocker	15	10 uM	0.045194278192266145	L1000	0.096	FALSE	1.0177287669604316
+cannabinoid receptor agonist	3	10 uM	-0.18873097300703248	L1000	0.999	FALSE	4.345117740176917e-4
+carbonic anhydrase inhibitor	5	10 uM	0.019831784316697958	L1000	0.543	FALSE	0.265200170411153
+cc chemokine receptor antagonist	7	10 uM	0.014508987976259333	L1000	0.658	FALSE	0.1817741063860445
+cck receptor antagonist	4	10 uM	6.341363798926906e-4	L1000	0.718	FALSE	0.14387555575769967
+cdk inhibitor	7	10 uM	0.21469003238979648	L1000	0	TRUE	3.5
+chelating agent	4	10 uM	-0.02632028925678195	L1000	0.881	FALSE	0.05502409158795209
+cholesterol inhibitor	3	10 uM	0.04128237649517545	L1000	0.353	FALSE	0.4522252946121775
+coagulation factor inhibitor	4	10 uM	-0.08484643744714948	L1000	0.99	FALSE	0.004364805402450088
+cyclooxygenase inhibitor	27	10 uM	0.022899506208943033	L1000	0.707	FALSE	0.1505805862031006
+cyclooxygenase inhibitor|prostanoid receptor antagonist	4	10 uM	-0.04764468919096887	L1000	0.954	FALSE	0.020451625295904902
+dipeptidyl peptidase inhibitor	3	10 uM	0.04270889437332053	L1000	0.342	FALSE	0.46597389394386496
+dna inhibitor	5	10 uM	0.019852527480908787	L1000	0.542	FALSE	0.266000713461613
+dna methyltransferase inhibitor	3	10 uM	0.10183403842137403	L1000	0.093	FALSE	1.031517051446065
+dna polymerase inhibitor	3	10 uM	0.07842096445578874	L1000	0.161	FALSE	0.7931741239681502
+dna synthesis inhibitor	7	10 uM	-0.00391315479699852	L1000	0.891	FALSE	0.0501222959631252
+dopamine receptor agonist	9	10 uM	0.04125166252358133	L1000	0.238	FALSE	0.623423042943488
+dopamine receptor antagonist	19	10 uM	0.05496809367047058	L1000	0.026	TRUE	1.585026652029182
+dopamine receptor antagonist|serotonin receptor antagonist	9	10 uM	0.030434058927509236	L1000	0.422	FALSE	0.37468754903832613
+egfr inhibitor	13	10 uM	0.16127231166304629	L1000	0	TRUE	3.5
+endothelin receptor antagonist	4	10 uM	0.06800612301786982	L1000	0.161	FALSE	0.7931741239681502
+estrogen receptor agonist	6	10 uM	0.012090304959836628	L1000	0.659	FALSE	0.18111458540599013
+farnesyltransferase inhibitor	3	10 uM	0.03763755662888513	L1000	0.371	FALSE	0.43062609038495414
+fgfr inhibitor|vegfr inhibitor	3	10 uM	-0.049411384908386626	L1000	0.87	FALSE	0.060480747381381476
+free radical scavenger	4	10 uM	0.11833881262191717	L1000	0.038	TRUE	1.4202164033831899
+fungal squalene epoxidase inhibitor	3	10 uM	0.08309409173250339	L1000	0.142	FALSE	0.8477116556169435
+gaba receptor agonist	3	10 uM	0.05816697004559856	L1000	0.243	FALSE	0.6143937264016879
+gaba receptor modulator	4	10 uM	0.021458712423748628	L1000	0.505	FALSE	0.2967086218813386
+gamma secretase inhibitor	7	10 uM	0.09006422823922418	L1000	0.023	TRUE	1.6382721639824072
+glucocorticoid receptor agonist	14	10 uM	0.40610606092827295	L1000	0	TRUE	3.5
+glucosidase inhibitor	3	10 uM	-0.03640101130655335	L1000	0.82	FALSE	0.08618614761628333
+glutamate receptor agonist	4	10 uM	0.03273919779074916	L1000	0.406	FALSE	0.39147396642280585
+glutamate receptor antagonist	5	10 uM	-0.009349108909767931	L1000	0.849	FALSE	0.07109230975604734
+glutamate receptor modulator	3	10 uM	-0.00493893000769635	L1000	0.649	FALSE	0.18775530319963074
+hcv inhibitor	7	10 uM	0.11027916645235641	L1000	0.009	TRUE	2.0457574905606752
+hdac inhibitor	13	10 uM	0.4820752555659501	L1000	0	TRUE	3.5
+histamine receptor antagonist	24	10 uM	0.037821029030541436	L1000	0.169	FALSE	0.7721132953863264
+hiv integrase inhibitor	3	10 uM	0.10793100654977067	L1000	0.082	FALSE	1.0861861476162833
+hiv protease inhibitor	5	10 uM	0.035417183302195655	L1000	0.362	FALSE	0.4412914294668343
+hmgcr inhibitor	5	10 uM	0.039869316328702886	L1000	0.328	FALSE	0.4841261562883209
+hsp inhibitor	5	10 uM	0.7374533799410818	L1000	0	TRUE	3.5
+insulin secretagogue	4	10 uM	0.012794635544816364	L1000	0.596	FALSE	0.22475374025976358
+integrin antagonist	5	10 uM	0.023189230369884205	L1000	0.502	FALSE	0.29929628285498067
+jak inhibitor	5	10 uM	0.018378435415352085	L1000	0.556	FALSE	0.2549252084179425
+leukotriene receptor antagonist	4	10 uM	0.033804612172974896	L1000	0.393	FALSE	0.4056074496245733
+lipoxygenase inhibitor	3	10 uM	-0.004766983729766997	L1000	0.647	FALSE	0.1890957193312996
+matrix metalloprotease inhibitor	3	10 uM	0.103949268051317	L1000	0.091	FALSE	1.0409586076789064
+mdm inhibitor	3	10 uM	0.6834689372653592	L1000	0	TRUE	3.5
+mek inhibitor	8	10 uM	0.6716873912992891	L1000	0	TRUE	3.5
+microtubule inhibitor	3	10 uM	0.0916411471765792	L1000	0.115	FALSE	0.9393021596463883
+mineralocorticoid receptor antagonist	3	10 uM	0.059510930326524256	L1000	0.236	FALSE	0.6270879970298935
+monoamine oxidase inhibitor	6	10 uM	0.0459626387119386	L1000	0.276	FALSE	0.5590909179347823
+mtor inhibitor	6	10 uM	0.4443303821178165	L1000	0	TRUE	3.5
+mtor inhibitor|pi3k inhibitor	4	10 uM	0.6671653862167258	L1000	0	TRUE	3.5
+mucolytic agent	3	10 uM	0.015292434658143282	L1000	0.521	FALSE	0.2831622767004755
+nfkb pathway inhibitor	4	10 uM	0.042423832629139235	L1000	0.311	FALSE	0.5072396109731625
+nitric oxide synthase inhibitor	4	10 uM	0.09748689290186446	L1000	0.074	FALSE	1.1307682802690238
+non-nucleoside reverse transcriptase inhibitor	4	10 uM	0.07005199784482724	L1000	0.156	FALSE	0.8068754016455384
+nucleoside reverse transcriptase inhibitor	4	10 uM	-0.03287890422671898	L1000	0.905	FALSE	0.043351420794796675
+opioid receptor agonist	3	10 uM	0.08000822095490978	L1000	0.153	FALSE	0.8153085691824012
+opioid receptor antagonist	4	10 uM	0.030481824617702775	L1000	0.429	FALSE	0.36754270781527576
+p38 mapk inhibitor	6	10 uM	0.11791941128702568	L1000	0.011	TRUE	1.958607314841775
+parp inhibitor	5	10 uM	-0.01679598406704607	L1000	0.9	FALSE	0.045757490560675115
+phosphodiesterase inhibitor	28	10 uM	0.026719181323522745	L1000	0.526	FALSE	0.27901425584626094
+pi3k inhibitor	7	10 uM	0.07166276518294962	L1000	0.066	FALSE	1.1804560644581312
+pkc inhibitor	4	10 uM	0.06453557374332047	L1000	0.179	FALSE	0.7471469690201068
+plk inhibitor	4	10 uM	0.22275872827923998	L1000	0.002	TRUE	2.6989700043360187
+potassium channel activator	6	10 uM	0.02391990502590516	L1000	0.51	FALSE	0.2924298239020636
+potassium channel blocker	4	10 uM	0.04890617594180735	L1000	0.271	FALSE	0.5670307091255943
+ppar receptor agonist	3	10 uM	0.04624928039290923	L1000	0.317	FALSE	0.4989407377822485
+ppar receptor agonist|insulin sensitizer	3	10 uM	0.11174985097311456	L1000	0.078	FALSE	1.1079053973095196
+progesterone receptor agonist	7	10 uM	0.08272017347874526	L1000	0.038	TRUE	1.4202164033831899
+prostanoid receptor agonist	3	10 uM	0.1605545403043915	L1000	0.021	TRUE	1.6777807052660807
+prostanoid receptor antagonist	3	10 uM	-0.020750541564280543	L1000	0.746	FALSE	0.1272611725273312
+proteasome inhibitor	4	10 uM	0.7245629237915516	L1000	0	TRUE	3.5
+protein synthesis inhibitor	6	10 uM	-0.012122207191712163	L1000	0.89	FALSE	0.05060999335508721
+protein synthesis stimulant	3	10 uM	0.015039138984356723	L1000	0.521	FALSE	0.2831622767004755
+purinergic receptor antagonist	3	10 uM	0.028335626156234136	L1000	0.421	FALSE	0.3757179041643317
+raf inhibitor	5	10 uM	0.02362857697285956	L1000	0.491	FALSE	0.3089185078770315
+retinoid receptor agonist	6	10 uM	0.11855969044004806	L1000	0.011	TRUE	1.958607314841775
+reverse transcriptase inhibitor	3	10 uM	0.01748238613793398	L1000	0.505	FALSE	0.2967086218813386
+rho associated kinase inhibitor	6	10 uM	0.04765520742239162	L1000	0.259	FALSE	0.5867002359187482
+rna polymerase inhibitor	7	10 uM	0.014617272583088842	L1000	0.656	FALSE	0.1830961606243397
+selective serotonin reuptake inhibitor (ssri)	4	10 uM	0.07631190466928789	L1000	0.129	FALSE	0.889410289700751
+serotonin receptor agonist	12	10 uM	-9.121108058106341e-4	L1000	0.973	FALSE	0.0118871597316481
+serotonin receptor agonist|serotonin receptor antagonist	3	10 uM	0.04169435929470202	L1000	0.35	FALSE	0.4559319556497244
+serotonin receptor antagonist	12	10 uM	0.04589384246350452	L1000	0.154	FALSE	0.8124792791635369
+serotonin reuptake inhibitor	4	10 uM	0.08939859868316281	L1000	0.09	FALSE	1.0457574905606752
+sigma receptor antagonist	3	10 uM	0.02594581914485556	L1000	0.439	FALSE	0.35753547975787864
+sodium channel blocker	11	10 uM	0.03464114269377532	L1000	0.345	FALSE	0.4621809049267259
+sterol demethylase inhibitor	7	10 uM	0.04112280736613907	L1000	0.295	FALSE	0.530177984021837
+t-type calcium channel blocker	3	10 uM	0.09875010725945532	L1000	0.098	FALSE	1.0087739243075051
+tachykinin antagonist	6	10 uM	0.03912835956385511	L1000	0.348	FALSE	0.4584207560534191
+topoisomerase inhibitor	15	10 uM	0.13561694979472405	L1000	0	TRUE	3.5
+tubulin inhibitor	8	10 uM	0.2767789591657714	L1000	0	TRUE	3.5
+tyrosine kinase inhibitor	4	10 uM	-0.023352631371960423	L1000	0.874	FALSE	0.05848856736559697
+vasopressin receptor antagonist	4	10 uM	0.013339025945210326	L1000	0.591	FALSE	0.22841251911874466
+vegfr inhibitor	4	10 uM	0.20163889882295036	L1000	0.002	TRUE	2.6989700043360187
+vitamin d receptor agonist	5	10 uM	0.10035780478219135	L1000	0.038	TRUE	1.4202164033831899
+xanthine oxidase inhibitor	3	10 uM	0.017549852980399714	L1000	0.505	FALSE	0.2967086218813386
+xiap inhibitor	3	10 uM	0.17877415214746992	L1000	0.013	TRUE	1.8860566476931633

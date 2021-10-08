@@ -57,7 +57,7 @@ for (assay in unique(plate_df$assay)) {
                 ggplot(plate_subset_df, aes(x = row, y = col))
                 + geom_point(aes(fill = mean_cor), size = 3, pch = 22, stroke = 0.2)
                  + facet_grid(
-                    "Metadata_broad_sample_replicate~normalization",
+                    "~normalization",
                     labeller = labeller(
                         Metadata_broad_sample_replicate = as_labeller(append_replicate),
                         normalization = as_labeller(append_norm)
@@ -70,7 +70,7 @@ for (assay in unique(plate_df$assay)) {
                 + ggtitle(assay)
                 + scale_fill_gradient(name = "Same-well\nmean\npairwise\nPearson\ncorrelation", low = "white", high = "red", na.value = "grey")
                 + theme(
-                    plot.margin = unit(c(t = -2.75, r = 0.25, b = -2.75, l = 0.25), "cm"),
+                    plot.margin = unit(c(t = 0, r = 0.25, b = 0, l = 0.25), "cm"),
                     axis.text = element_text(size = 6),
                     panel.grid.major = element_blank(),
                     panel.grid.minor = element_blank(),

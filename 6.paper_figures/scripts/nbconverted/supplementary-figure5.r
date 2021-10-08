@@ -135,12 +135,21 @@ diffusion_results_viz$dataset <- factor(diffusion_results_viz$dataset, levels = 
 
 diffusion_results_viz$cor_category[diffusion_results_viz$cor_category == 'nonreplicate'] <- "non_replicate"
 
+diffusion_results_viz <- diffusion_results_viz %>%
+    dplyr::mutate(diffusion_facet = paste("Diffusion:", diffusion))
+
+diffusion_results_viz$diffusion_facet <- dplyr::recode_factor(diffusion_results_viz$diffusion_facet, "Diffusion: All" = "Replicates")
+
+diffusion_results_viz$diffusion_facet <- factor(
+    diffusion_results_viz$diffusion_facet,
+    levels = c("Diffusion: 0", "Diffusion: 1", "Diffusion: 2", "Diffusion: 3", "Diffusion: 4", "Replicates")
+    )
+
 boxplot_diffusion_gg = (
     ggplot(diffusion_results_viz, aes(x = dataset, y = mean, color = cor_category))
     + geom_boxplot(outlier.size = 0.4, lwd = 0.5)
     + facet_grid(
-        "~diffusion",
-        labeller = labeller(diffusion = as_labeller(append_diffusion)),
+        "~diffusion_facet",
         scales = "free_x"
     )
     + figure_theme
