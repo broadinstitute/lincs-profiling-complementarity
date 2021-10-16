@@ -12,7 +12,8 @@ extensions <- c(".png", ".pdf")
 performance_dir <- file.path("../2.MOA-prediction/4.model_viz/performance_results")
 
 # From 1.moa_predictions_visualization.ipynb
-dose_baseline <- 0.4749651035173523
+# Divide by 100 to return back to <=1 (it was previously multiplied)
+dose_baseline <- 0.4749651035173523 / 100
 
 # Load and process dose results
 metrics_dose_file <- file.path(performance_dir, "all_performance_metrics_by_dose.csv")
@@ -28,7 +29,7 @@ metrics_dose_cols <- readr::cols(
 
 all_dose_metrics_df <- readr::read_csv(metrics_dose_file, col_types = metrics_dose_cols) %>%
     dplyr::filter(profile_tech != "CP_L1000") %>%
-    dplyr::mutate(performance = values * 100)
+    dplyr::mutate(performance = values)
 
 # Process data
 all_dose_metrics_df$profile_tech <- dplyr::recode(
