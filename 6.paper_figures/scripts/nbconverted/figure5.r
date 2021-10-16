@@ -25,7 +25,8 @@ metrics_cols <- readr::cols(
     shuffle = readr::col_logical()
 )
 
-all_metrics_df <- readr::read_csv(metrics_file, col_types = metrics_cols)
+all_metrics_df <- readr::read_csv(metrics_file, col_types = metrics_cols) %>%
+    dplyr::mutate(updated_metric = values / 100)
 
 # Process data
 all_metrics_df$profile_tech <- dplyr::recode(
@@ -47,11 +48,10 @@ all_metrics_df$model <- dplyr::recode(
 
 head(all_metrics_df)
 
-table(all_metrics_df$profile_tech)
-
 # Panel A
 panel_a_df <- all_metrics_df %>%
-    dplyr::filter(profile_tech %in% c("Cell Painting", "L1000"))
+    dplyr::filter(profile_tech %in% c("Cell Painting", "L1000")) %>%
+    dplyr::filter(metrics == 'Precision-recall')
 
 ensemble_df <- panel_a_df %>%
     dplyr::filter(model == "Ensemble")
@@ -60,7 +60,7 @@ panel_a_df <- panel_a_df %>%
     dplyr::filter(model != "Ensemble")
 
 panel_a_gg <- (
-    ggplot(data = NULL, aes(x = model, y = values))
+    ggplot(data = NULL, aes(x = model, y = updated_metric))
     + geom_bar(
         data = panel_a_df %>% dplyr::filter(!shuffle),
         stat = "identity",
@@ -84,10 +84,9 @@ panel_a_gg <- (
     + scale_fill_manual("Assay", values = assay_colors)
     + scale_color_manual(breaks = "Cell Painting", name = "", values = c("black", "black"), labels = c("Shuffled"))
     + scale_linetype_manual(name = "", values = "solid", labels = "Model\nEnsemble")
-    + geom_hline(data = ensemble_df, aes(yintercept = values, linetype = "Ensemble"), color = rep(paste(assay_colors), 2), lwd = 0.8)    
-    + facet_wrap("~metrics")
-    + xlab("Area under the curve")
-    + ylab("Model")
+    + geom_hline(data = ensemble_df, aes(yintercept = updated_metric, linetype = "Ensemble"), color = paste(assay_colors), lwd = 0.8)    
+    + xlab("Architecture")
+    + ylab("Area under the precision-recall curve")
     + guides(
         fill = guide_legend(order = 1),
         color = guide_legend(order = 3),
@@ -146,10 +145,6 @@ head(moa_metrics_df)
 
 color_logic <- moa_metrics_df$cp_values > 0.2 | moa_metrics_df$L1_values > 0.3
 
-# Baselines derived from 1.moa_predictions_visualization.ipynb
-cp_baseline <- 0.01187097486689307
-l1000_baseline <- 0.010994768416209987
-
 cor.test(moa_metrics_df$cp_values, moa_metrics_df$L1_values, method = "spearman")
 
 panel_b_gg <- (
@@ -160,8 +155,6 @@ panel_b_gg <- (
     + xlab("AUPR of the best model trained with\nCell Painting data")
     + ylab("AUPR of the best model trained with\nL1000 data")
     + coord_fixed()
-    + geom_hline(yintercept = l1000_baseline, linetype = "dashed", color = "grey")
-    + geom_vline(xintercept = cp_baseline, linetype = "dashed", color = "grey")
     + geom_text_repel(
         data = subset(moa_metrics_df, color_logic),
         arrow = arrow(length = unit(0.015, "npc")),
@@ -197,5 +190,5 @@ figure5_gg
 
 for (extension in extensions) {
     output_file <- paste0(output_figure_base, extension)
-    cowplot::save_plot(output_file, figure5_gg, base_width = 8, base_height = 11, dpi = 500)
+    cowplot::save_plot(output_file, figure5_gg, base_width = 8, base_height = 10, dpi = 500)
 }
