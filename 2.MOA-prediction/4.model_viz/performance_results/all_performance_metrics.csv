@@ -23,30 +23,30 @@ CP_L1000_cnn,Precision-Recall_AUC,13.984262133328325,Cell painting & L1000,1D-CN
 CP_L1000_tabnet,Precision-Recall_AUC,14.130523887860369,Cell painting & L1000,TabNet,False
 CP_L1000_simplenn,Precision-Recall_AUC,8.135270449698645,Cell painting & L1000,Simple NN,False
 CP_L1000_blend,Precision-Recall_AUC,14.758454153770417,Cell painting & L1000,Models Ensemble,False
-CP_mlknn,ROC_AUC,52.997187489457545,Cell painting,Ml-KNN,False
+CP_mlknn,ROC_AUC,52.99718748945753,Cell painting,Ml-KNN,False
 CP_resnet,ROC_AUC,59.16528175820547,Cell painting,ResNet,False
 CP_cnn,ROC_AUC,59.710278266377195,Cell painting,1D-CNN,False
 CP_tabnet,ROC_AUC,60.35507406746308,Cell painting,TabNet,False
 CP_simplenn,ROC_AUC,59.939227601783664,Cell painting,Simple NN,False
-CP_blend,ROC_AUC,60.81274872666585,Cell painting,Models Ensemble,False
-CPsubsample_mlknn,ROC_AUC,52.89547839245156,Cell painting subsample,Ml-KNN,False
+CP_blend,ROC_AUC,60.812748726665845,Cell painting,Models Ensemble,False
+CPsubsample_mlknn,ROC_AUC,52.895478392451565,Cell painting subsample,Ml-KNN,False
 CPsubsample_resnet,ROC_AUC,60.09228167971812,Cell painting subsample,ResNet,False
-CPsubsample_cnn,ROC_AUC,60.46628070897137,Cell painting subsample,1D-CNN,False
+CPsubsample_cnn,ROC_AUC,60.46628070897139,Cell painting subsample,1D-CNN,False
 CPsubsample_tabnet,ROC_AUC,54.08490559649635,Cell painting subsample,TabNet,False
-CPsubsample_simplenn,ROC_AUC,64.20140171205465,Cell painting subsample,Simple NN,False
-CPsubsample_blend,ROC_AUC,59.91171651055836,Cell painting subsample,Models Ensemble,False
+CPsubsample_simplenn,ROC_AUC,64.20140171205463,Cell painting subsample,Simple NN,False
+CPsubsample_blend,ROC_AUC,59.911716510558385,Cell painting subsample,Models Ensemble,False
 L1000_mlknn,ROC_AUC,52.40571669230823,L1000,Ml-KNN,False
-L1000_resnet,ROC_AUC,61.097977293630336,L1000,ResNet,False
+L1000_resnet,ROC_AUC,61.09797729363032,L1000,ResNet,False
 L1000_cnn,ROC_AUC,58.74976272149208,L1000,1D-CNN,False
-L1000_tabnet,ROC_AUC,55.96056725452505,L1000,TabNet,False
+L1000_tabnet,ROC_AUC,55.96056725452506,L1000,TabNet,False
 L1000_simplenn,ROC_AUC,64.38543579131219,L1000,Simple NN,False
-L1000_blend,ROC_AUC,62.925531202166205,L1000,Models Ensemble,False
+L1000_blend,ROC_AUC,62.92553120216622,L1000,Models Ensemble,False
 CP_L1000_mlknn,ROC_AUC,52.95517751842597,Cell painting & L1000,Ml-KNN,False
 CP_L1000_resnet,ROC_AUC,59.16163724529518,Cell painting & L1000,ResNet,False
-CP_L1000_cnn,ROC_AUC,62.32920710383236,Cell painting & L1000,1D-CNN,False
+CP_L1000_cnn,ROC_AUC,62.32920710383235,Cell painting & L1000,1D-CNN,False
 CP_L1000_tabnet,ROC_AUC,55.40028879294402,Cell painting & L1000,TabNet,False
-CP_L1000_simplenn,ROC_AUC,60.232081744949525,Cell painting & L1000,Simple NN,False
-CP_L1000_blend,ROC_AUC,61.75208394547427,Cell painting & L1000,Models Ensemble,False
+CP_L1000_simplenn,ROC_AUC,60.23208174494952,Cell painting & L1000,Simple NN,False
+CP_L1000_blend,ROC_AUC,61.75208394547423,Cell painting & L1000,Models Ensemble,False
 CP_mlknnshuf,Precision-Recall_AUC,1.0906890509112037,Cell painting,Ml-KNN,True
 CP_resnetshuf,Precision-Recall_AUC,1.2254580527383019,Cell painting,ResNet,True
 CP_cnnshuf,Precision-Recall_AUC,1.1437037934185323,Cell painting,1D-CNN,True
@@ -69,21 +69,21 @@ CP_L1000_tabnetshuf,Precision-Recall_AUC,1.080866857637283,Cell painting & L1000
 CP_L1000_simplennshuf,Precision-Recall_AUC,1.028883829933689,Cell painting & L1000,Simple NN,True
 CP_mlknnshuf,ROC_AUC,49.983738613458854,Cell painting,Ml-KNN,True
 CP_resnetshuf,ROC_AUC,51.92690530806241,Cell painting,ResNet,True
-CP_cnnshuf,ROC_AUC,52.32764117262673,Cell painting,1D-CNN,True
+CP_cnnshuf,ROC_AUC,52.32764117262674,Cell painting,1D-CNN,True
 CP_tabnetshuf,ROC_AUC,49.36194354572803,Cell painting,TabNet,True
 CP_simplennshuf,ROC_AUC,51.339409047905434,Cell painting,Simple NN,True
-CPsubsample_mlknnshuf,ROC_AUC,50.11450195885479,Cell painting subsample,Ml-KNN,True
-CPsubsample_resnetshuf,ROC_AUC,51.32384307070854,Cell painting subsample,ResNet,True
+CPsubsample_mlknnshuf,ROC_AUC,50.114501958854774,Cell painting subsample,Ml-KNN,True
+CPsubsample_resnetshuf,ROC_AUC,51.323843070708556,Cell painting subsample,ResNet,True
 CPsubsample_cnnshuf,ROC_AUC,51.08846614328597,Cell painting subsample,1D-CNN,True
 CPsubsample_tabnetshuf,ROC_AUC,50.90401433453897,Cell painting subsample,TabNet,True
 CPsubsample_simplennshuf,ROC_AUC,52.91914518818967,Cell painting subsample,Simple NN,True
 L1000_mlknnshuf,ROC_AUC,49.90012010599794,L1000,Ml-KNN,True
 L1000_resnetshuf,ROC_AUC,49.35933340422278,L1000,ResNet,True
-L1000_cnnshuf,ROC_AUC,48.23862558680646,L1000,1D-CNN,True
+L1000_cnnshuf,ROC_AUC,48.23862558680645,L1000,1D-CNN,True
 L1000_tabnetshuf,ROC_AUC,50.089050200893304,L1000,TabNet,True
-L1000_simplennshuf,ROC_AUC,52.294693463121924,L1000,Simple NN,True
+L1000_simplennshuf,ROC_AUC,52.29469346312193,L1000,Simple NN,True
 CP_L1000_mlknnshuf,ROC_AUC,50.308907517578525,Cell painting & L1000,Ml-KNN,True
 CP_L1000_resnetshuf,ROC_AUC,49.89433648558757,Cell painting & L1000,ResNet,True
 CP_L1000_cnnshuf,ROC_AUC,53.15718928060752,Cell painting & L1000,1D-CNN,True
 CP_L1000_tabnetshuf,ROC_AUC,50.695152290312215,Cell painting & L1000,TabNet,True
-CP_L1000_simplennshuf,ROC_AUC,53.03391852447136,Cell painting & L1000,Simple NN,True
+CP_L1000_simplennshuf,ROC_AUC,53.033918524471346,Cell painting & L1000,Simple NN,True
