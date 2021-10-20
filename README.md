@@ -1,5 +1,7 @@
 # LINCS profiling complementarity
 
+[![DOI](https://zenodo.org/badge/300036005.svg)](https://zenodo.org/badge/latestdoi/300036005)
+
 Assessing information contained in different profiling data modalities.
 
 The two assays we evaluated are:
