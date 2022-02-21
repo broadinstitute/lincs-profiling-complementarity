@@ -9,8 +9,8 @@ source("data_functions.R")
 output_figure_base <- file.path("figures", "supplementary", "cv-supfig")
 extensions <- c(".png", ".pdf")
 
-dose_rename <- c(dose_rename, "all" = "All")
-dose_order <- c(dose_order, "All")
+dose_rename_update <- c(dose_rename, "all" = "All")
+dose_order_update <- c(dose_order, "All")
 
 # Load CV results
 cv_cutoff <- 0.3
@@ -36,11 +36,45 @@ cv_df <- readr::read_tsv(input_file, col_types = cv_cols) %>%
 
 cv_df[((cv_df$mean > -cv_cutoff) & (cv_df$mean < cv_cutoff)), "cv_cutoff"] <- NA
 
-cv_df$dose <- dplyr::recode_factor(cv_df$Metadata_dose_recode, !!!dose_rename)
-cv_df$dose <- factor(cv_df$dose, levels = dose_order)
+cv_df$dose <- dplyr::recode_factor(cv_df$Metadata_dose_recode, !!!dose_rename_update)
+cv_df$dose <- factor(cv_df$dose, levels = dose_order_update)
 
 print(dim(cv_df))
 head(cv_df, 2)
+
+# Load CV replicate results
+cv_replicate_cutoff <- 5000
+
+input_file <- file.path(results_dir, "coefficient_of_variation_per_replicate.tsv.gz")
+
+cv_replicate_cols <- readr::cols(
+  pert_iname = readr::col_character(),
+  Metadata_dose_recode = readr::col_character(),
+  cv_mean_cp = readr::col_double(),
+  cv_percentile_5_cp = readr::col_double(),
+  cv_percentile_95_cp = readr::col_double(),
+  cv_mean_l1000 = readr::col_double(),
+  cv_percentile_5_l1000 = readr::col_double(),
+  cv_percentile_95_l1000 = readr::col_double()
+)
+
+cv_replicate_df <- readr::read_tsv(input_file, col_types = cv_replicate_cols) %>%
+    dplyr::filter(Metadata_dose_recode != 7) %>%
+    dplyr::mutate(dose = Metadata_dose_recode) %>%
+    dplyr::filter(is.finite(cv_mean_cp)) %>%
+    dplyr::filter(is.finite(cv_mean_l1000)) %>%
+    dplyr::mutate(
+        cv_mean_cp_abs = abs(cv_mean_cp),
+        cv_mean_l1000_abs = abs(cv_mean_l1000)
+    ) %>%
+    dplyr::filter(cv_mean_cp_abs < cv_replicate_cutoff) %>%
+    dplyr::filter(cv_mean_l1000_abs < cv_replicate_cutoff)
+
+cv_replicate_df$dose <- dplyr::recode_factor(cv_replicate_df$Metadata_dose_recode, !!!dose_rename)
+cv_replicate_df$dose <- factor(cv_replicate_df$dose, levels = dose_order)
+
+print(dim(cv_replicate_df))
+head(cv_replicate_df, 2)
 
 color_limits <- c(min(cv_df$cv_cutoff, na.rm = TRUE), max(cv_df$cv_cutoff, na.rm = TRUE))
 color_limits
@@ -54,10 +88,10 @@ panel_a_gg = (
     + geom_point(aes(x = mean, y = stddev, fill = cv_cutoff), shape = 21, size = 0.8)
     + figure_theme
     + facet_grid("dataset~dose", scales = "free")
-    + xlab("Mean")
-    + ylab("Standard Deviation")
+    + xlab("Feature mean")
+    + ylab("Feature\nstandard deviation")
     + colorspace::scale_fill_continuous_diverging(
-        name="Coefficient\nof Variation", limits = color_limits, l1 = 20, l2 = 100, p1 = 0.3, p2 = 0.9
+        name="Coefficient\nof variation", limits = color_limits, l1 = 20, l2 = 100, p1 = 0.3, p2 = 0.9
     )
 )
 
@@ -70,10 +104,10 @@ panel_b_gg = (
     + geom_point(aes(x = mean, y = stddev, fill = cv_cutoff), shape = 21, size = 0.8)
     + figure_theme
     + facet_grid("dataset~dose", scales = "free")
-    + xlab("Mean")
-    + ylab("Standard Deviation")
+    + xlab("Feature mean")
+    + ylab("Feature\nstandard deviation")
     + colorspace::scale_fill_continuous_diverging(
-        name="Coefficient\nof Variation", limits = color_limits, l1 = 20, l2 = 100, p1 = 0.3, p2 = 0.9
+        name="Coefficient\nof variation", limits = color_limits, l1 = 20, l2 = 100, p1 = 0.3, p2 = 0.9
     )
 )
 
@@ -82,15 +116,42 @@ panel_c_gg <- (
     + geom_density(aes(fill = dataset), alpha = 0.5)
     + figure_theme
     + facet_grid("~dose")
-    + xlab("Coefficient of Variation")
+    + xlab("Per feature coefficient of variation")
+    + ylab("Density")
     + scale_fill_manual("Assay", values = assay_colors)
 )
+
+panel_d_gg <- (
+    ggplot(cv_replicate_df, aes(x = cv_mean_cp_abs, y = cv_mean_l1000_abs))
+    + geom_point(size = 0.5, alpha = 0.1)
+    + facet_grid("~dose")
+    + scale_y_continuous(
+        trans='log10',
+        breaks=scales::trans_breaks('log10', function(x) 10^x),
+        labels=scales::trans_format('log10', scales::math_format(10^.x))
+    )
+    + scale_x_continuous(
+        trans='log10',
+        breaks=scales::trans_breaks('log10', function(x) 10^x),
+        labels=scales::trans_format('log10', scales::math_format(10^.x))
+    )
+    + figure_theme
+    + ggtitle("Coefficient of variation (CV) per compound replicate")
+    + geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "red")
+    + geom_hline(yintercept = 10^0, linetype = "dashed", color = "blue")
+    + geom_vline(xintercept = 10^0, linetype = "dashed", color = "blue")
+    + xlab("Cell Painting CV\n(Mean abs. value)")
+    + ylab("L1000 CV\n(Mean abs. value)")
+)
+
+panel_d_gg
 
 legend <- cowplot::get_legend(panel_a_gg)
 
 panel_a_gg <- panel_a_gg + theme(legend.position = "none") + labs(tag = "a")
 panel_b_gg <- panel_b_gg + theme(legend.position = "none") + labs(tag = "b")
 panel_c_gg <- panel_c_gg + labs(tag = "c")
+panel_d_gg <- panel_d_gg + labs(tag = "d")
 
 cv_supfig_gg <- (
     (
@@ -105,12 +166,14 @@ cv_supfig_gg <- (
     )
     / (
         panel_c_gg
+    ) / (
+        panel_d_gg
     )
-) + plot_layout(heights = c(1, 0.5))
+) + plot_layout(heights = c(1, 0.4, 0.4))
 
 cv_supfig_gg
 
 for (extension in extensions) {
     output_file <- paste0(output_figure_base, extension)
-    ggplot2::ggsave(output_file, cv_supfig_gg, height = 8, width = 8, dpi = 500)
+    ggplot2::ggsave(output_file, cv_supfig_gg, height = 7.5, width = 8, dpi = 500)
 }
