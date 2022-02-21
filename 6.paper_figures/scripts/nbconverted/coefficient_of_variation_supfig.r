@@ -43,7 +43,7 @@ print(dim(cv_df))
 head(cv_df, 2)
 
 # Load CV replicate results
-cv_replicate_cutoff <- 5000
+cv_replicate_cutoff <- 1*10^13
 
 input_file <- file.path(results_dir, "coefficient_of_variation_per_replicate.tsv.gz")
 
@@ -65,7 +65,9 @@ cv_replicate_df <- readr::read_tsv(input_file, col_types = cv_replicate_cols) %>
     dplyr::filter(is.finite(cv_mean_l1000)) %>%
     dplyr::mutate(
         cv_mean_cp_abs = abs(cv_mean_cp),
-        cv_mean_l1000_abs = abs(cv_mean_l1000)
+        cv_mean_l1000_abs = abs(cv_mean_l1000),
+        cv_mean_cp_abs_log10 = log10(cv_mean_cp_abs),
+        cv_mean_l1000_abs_log10 = log10(cv_mean_l1000_abs)
     ) %>%
     dplyr::filter(cv_mean_cp_abs < cv_replicate_cutoff) %>%
     dplyr::filter(cv_mean_l1000_abs < cv_replicate_cutoff)
@@ -83,10 +85,9 @@ panel_a_gg = (
     ggplot(
         cv_df %>% dplyr::filter(dataset == "Cell Painting")
     )
-    # + geom_vline(xintercept=cv_cutoff, linetype = "dashed", color = "grey")
-    # + geom_vline(xintercept=-cv_cutoff, linetype = "dashed", color = "grey")
     + geom_point(aes(x = mean, y = stddev, fill = cv_cutoff), shape = 21, size = 0.8)
     + figure_theme
+    + theme(axis.text.x = element_text(size = 6))
     + facet_grid("dataset~dose", scales = "free")
     + xlab("Feature mean")
     + ylab("Feature\nstandard deviation")
@@ -99,10 +100,9 @@ panel_b_gg = (
     ggplot(
         cv_df %>% dplyr::filter(dataset == "L1000")
     )
-    # + geom_vline(xintercept=cv_cutoff, linetype = "dashed", color = "grey")
-    # + geom_vline(xintercept=-cv_cutoff, linetype = "dashed", color = "grey")
     + geom_point(aes(x = mean, y = stddev, fill = cv_cutoff), shape = 21, size = 0.8)
     + figure_theme
+    + theme(axis.text.x = element_text(size = 6))
     + facet_grid("dataset~dose", scales = "free")
     + xlab("Feature mean")
     + ylab("Feature\nstandard deviation")
@@ -122,29 +122,17 @@ panel_c_gg <- (
 )
 
 panel_d_gg <- (
-    ggplot(cv_replicate_df, aes(x = cv_mean_cp_abs, y = cv_mean_l1000_abs))
+    ggplot(cv_replicate_df, aes(x = cv_mean_cp_abs_log10, y = cv_mean_l1000_abs_log10))
     + geom_point(size = 0.5, alpha = 0.1)
     + facet_grid("~dose")
-    + scale_y_continuous(
-        trans='log10',
-        breaks=scales::trans_breaks('log10', function(x) 10^x),
-        labels=scales::trans_format('log10', scales::math_format(10^.x))
-    )
-    + scale_x_continuous(
-        trans='log10',
-        breaks=scales::trans_breaks('log10', function(x) 10^x),
-        labels=scales::trans_format('log10', scales::math_format(10^.x))
-    )
     + figure_theme
     + ggtitle("Coefficient of variation (CV) per compound replicate")
     + geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "red")
-    + geom_hline(yintercept = 10^0, linetype = "dashed", color = "blue")
-    + geom_vline(xintercept = 10^0, linetype = "dashed", color = "blue")
-    + xlab("Cell Painting CV\n(Mean abs. value)")
-    + ylab("L1000 CV\n(Mean abs. value)")
+    + geom_hline(yintercept = 0, linetype = "dashed", color = "blue")
+    + geom_vline(xintercept = 0, linetype = "dashed", color = "blue")
+    + xlab("Cell Painting CV\n(Mean log10 abs. value)")
+    + ylab("L1000 CV\n(Mean log10 abs. value)")
 )
-
-panel_d_gg
 
 legend <- cowplot::get_legend(panel_a_gg)
 
