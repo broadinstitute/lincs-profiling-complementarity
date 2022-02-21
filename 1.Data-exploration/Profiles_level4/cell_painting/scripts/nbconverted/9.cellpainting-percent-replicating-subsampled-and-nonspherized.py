@@ -43,14 +43,16 @@ dose_recode_info = {
 results_dir = pathlib.Path("../results")
 cp_level4_path = 'cellpainting_lvl4_cpd_replicate_datasets'
 
-file_indicator = "subsample"
+# For each subset analysis update the file indicators
+file_indicator = ""
+null_distrib_file_indicator = "_dose_independent"
 
 
 # In[4]:
 
 
-df_cpd_median_scrs = pd.read_csv(os.path.join(cp_level4_path, f'cpd_replicate_median_scores_{file_indicator}.csv'))
-df_null_p_vals = pd.read_csv(os.path.join(cp_level4_path, f'cpd_replicate_p_values_{file_indicator}.csv'))
+df_cpd_median_scrs = pd.read_csv(os.path.join(cp_level4_path, f'cpd_replicate_median_scores{file_indicator}.csv'))
+df_null_p_vals = pd.read_csv(os.path.join(cp_level4_path, f'cpd_replicate_p_values{file_indicator}.csv'))
 
 
 # In[5]:
@@ -74,20 +76,20 @@ df_cpd_median_scrs = df_cpd_median_scrs.loc[df_cpd_median_scrs.cpd.isin(common_c
 # In[7]:
 
 
-df_level4 = pd.read_csv(os.path.join(cp_level4_path, f'cp_level4_cpd_replicates_{file_indicator}.csv.gz'), 
+df_level4 = pd.read_csv(os.path.join(cp_level4_path, f'cp_level4_cpd_replicates{file_indicator}.csv.gz'), 
                         compression='gzip',low_memory = False)
 
-with open(os.path.join(cp_level4_path, f'null_distribution_{file_indicator}.pickle'), 'rb') as handle:
+with open(os.path.join(cp_level4_path, f'null_distribution{null_distrib_file_indicator}.pickle'), 'rb') as handle:
     null_distribution_replicates = pickle.load(handle)
     
-with open(os.path.join(cp_level4_path, f'null_dist_medians_per_dose_{file_indicator}.pickle'), 'rb') as handle:
+with open(os.path.join(cp_level4_path, f'null_dist_medians_per_dose{null_distrib_file_indicator}.pickle'), 'rb') as handle:
     null_dist_med_cp = pickle.load(handle)
 
 
 # In[8]:
 
 
-df_all_scores = pd.read_csv(os.path.join(cp_level4_path, f'cp_all_scores_{file_indicator}.csv'))
+df_all_scores = pd.read_csv(os.path.join(cp_level4_path, f'cp_all_scores{file_indicator}.csv'))
 
 
 # In[9]:
@@ -167,7 +169,7 @@ df_medians_p_vals.head()
 # In[15]:
 
 
-plot_p_vs_median(df_medians_p_vals, 'cellpainting_figures', f'p_vs_median_{file_indicator}.png')
+plot_p_vs_median(df_medians_p_vals, 'cellpainting_figures', f'p_vs_median{null_distrib_file_indicator}.png')
 
 
 # In[16]:
@@ -183,7 +185,7 @@ def plot_p_value_dist(df, path, file_name):
     plt.savefig(os.path.join(path, file_name))
     plt.show()
     
-plot_p_value_dist(df_medians_p_vals, 'cellpainting_figures', f'p_value_distribution_{file_indicator}.png')
+plot_p_value_dist(df_medians_p_vals, 'cellpainting_figures', f'p_value_distribution{null_distrib_file_indicator}.png')
 
 
 # In[17]:
@@ -201,8 +203,12 @@ def plot_median_score_distribution(df, title, path, file_name):
     plt.savefig(os.path.join(path, file_name))
     plt.show()
     
-plot_median_score_distribution(df_medians_p_vals, "Median score distribution across all doses(1-6)",
-                               'cellpainting_figures', f'median_score_distribution_{file_indicator}.png')
+plot_median_score_distribution(
+    df_medians_p_vals,
+    "Median score distribution across all doses(1-6)",
+    'cellpainting_figures',
+    f'median_score_distribution{null_distrib_file_indicator}.png'
+)
 
 
 # In[18]:
@@ -275,7 +281,7 @@ def get_random_replicate_score(random_rep_list, df):
 # In[22]:
 
 
-def get_rand_replicate_corr(df_lvl4, null_dist):
+def get_rand_replicate_corr(df_lvl4, null_dist, dose=True):
     """
     This function gets spearman correlation values 
     between randomly selected replicates across all doses (1-6)
@@ -286,26 +292,40 @@ def get_rand_replicate_corr(df_lvl4, null_dist):
     """
     dose_list = list(set(df_lvl4['Metadata_dose_recode'].unique().tolist()))[1:7]
     random_replicates = {}
-    for dose in dose_list:
-        rep_list = []
-        df_dose = df_lvl4[df_lvl4['Metadata_dose_recode'] == dose].copy()
-        for key in null_dist:
-            rand_rep_list = null_dist[key][dose-1]
-            rep_list += get_random_replicate_score(rand_rep_list, df_dose)
-        random_replicates[dose] = rep_list
+    
+    if dose:
+        for dose in dose_list:
+            rep_list = []
+            df_dose = df_lvl4[df_lvl4['Metadata_dose_recode'] == dose].copy()
+            for key in null_dist:
+                rand_rep_list = null_dist[key][dose-1]
+                rep_list += get_random_replicate_score(rand_rep_list, df_dose)
+            random_replicates[dose] = rep_list
+    else:
+        for dose in dose_list:
+            rep_list = []
+            for key in null_dist:
+                rand_rep_list = null_dist[key]
+                rep_list += get_random_replicate_score(rand_rep_list, df_lvl4)
+            random_replicates[dose] = rep_list
     return random_replicates
 
 
 # In[23]:
 
 
-random_replicates = get_rand_replicate_corr(df_level4, null_distribution_replicates)
+if null_distrib_file_indicator == "_dose_independent":
+    use_dose = False
+else:
+    use_dose = True
+
+random_replicates = get_rand_replicate_corr(df_level4, null_distribution_replicates, use_dose)
 
 
 # In[24]:
 
 
-def transform_dataframe(rep, rep_name):
+def transform_dataframe(rep, rep_name, dose=True):
     """
     Transforms replicate correlation dataframe to have 3 columns: 
     dose, correlation_values and type of replicates
@@ -329,7 +349,7 @@ df_rand_rep = transform_dataframe(random_replicates, 'non replicate')
 null_percent_replicating_score_df = transform_dataframe(null_dist_med_cp, "non_replicate").assign(assay="Cell Painting")
 null_percent_replicating_score_df.dose = null_percent_replicating_score_df.dose.replace(dose_recode_info)
 
-output_file = pathlib.Path(f"{results_dir}/cell_paintint_percent_replicating_data_null_distribution_{file_indicator}.tsv.gz")
+output_file = pathlib.Path(f"{results_dir}/cell_paintint_percent_replicating_data_null_distribution{null_distrib_file_indicator}.tsv.gz")
 null_percent_replicating_score_df.to_csv(output_file, sep="\t", index=False)
 
 print(null_percent_replicating_score_df.shape)
@@ -367,9 +387,13 @@ def plot_replicate_vs_non_replicate(df_true, df_rand, title, path, file_name):
 # In[28]:
 
 
-plot_replicate_vs_non_replicate(df_true_rep, df_rand_rep, 
-                                "Cell painting replicate vs non-replicate spearman correlation values distribution", 
-                                'cellpainting_figures', f'replicate_non_replicate_dist_{file_indicator}.png')
+plot_replicate_vs_non_replicate(
+    df_true_rep,
+    df_rand_rep, 
+    "Cell painting replicate vs non-replicate spearman correlation values distribution", 
+    'cellpainting_figures',
+    f'replicate_non_replicate_dist{null_distrib_file_indicator}.png'
+)
 
 
 # In[29]:
@@ -381,7 +405,7 @@ full_cor_df.dose = full_cor_df.dose.replace(dose_recode_info)
 
 print(full_cor_df.shape)
 
-output_file = pathlib.Path(f"{results_dir}/cell_painting_pairwise_correlation_distribution_{file_indicator}.tsv.gz")
+output_file = pathlib.Path(f"{results_dir}/cell_painting_pairwise_correlation_distribution{null_distrib_file_indicator}.tsv.gz")
 full_cor_df.to_csv(output_file, sep="\t", index=False)
 
 
@@ -410,7 +434,7 @@ df_all_scores = df_all_scores.merge(df_cp_pvals[['cpd', 'no_of_replicates', 'No_
 # In[32]:
 
 
-output_file = pathlib.Path(f"{results_dir}/cell_painting_percent_replicating_data_{file_indicator}.tsv.gz")
+output_file = pathlib.Path(f"{results_dir}/cell_painting_percent_replicating_data{null_distrib_file_indicator}.tsv.gz")
 df_all_scores.to_csv(output_file, sep="\t", index=False)
 
 print(df_all_scores.shape)
