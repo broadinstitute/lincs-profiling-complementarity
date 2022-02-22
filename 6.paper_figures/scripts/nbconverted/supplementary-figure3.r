@@ -73,8 +73,13 @@ recode_dataset_name <- c(
 pr_pval_df$assay_norm_group <- dplyr::recode(pr_pval_df$assay_norm_group, !!!recode_dataset_name)
 pr_pval_df$assay_norm_group <- factor(pr_pval_df$assay_norm_group, levels = paste(recode_dataset_name))
 
+# Convert column type for plotting
+pr_pval_df$no_of_replicates <- factor(paste(pr_pval_df$no_of_replicates), levels = names(viridis_colors))
+
 print(dim(pr_pval_df))
 head(pr_pval_df, 2)
+
+table(pr_pval_df$no_of_replicates, pr_pval_df$assay)
 
 percent_replicating_df <- pr_pval_df %>%
     dplyr::group_by(assay_norm_group, dose) %>%
@@ -168,6 +173,9 @@ recode_dataset_name <- c(
 pr_pval_well_null_df$assay_norm_group <- dplyr::recode(pr_pval_well_null_df$assay_norm_group, !!!recode_dataset_name)
 pr_pval_well_null_df$assay_norm_group <- factor(pr_pval_well_null_df$assay_norm_group, levels = paste(recode_dataset_name))
 
+# Convert column type for plotting
+pr_pval_well_null_df$no_of_compounds <- factor(paste(pr_pval_well_null_df$no_of_compounds), levels = names(viridis_colors))
+
 print(dim(pr_pval_well_null_df))
 head(pr_pval_well_null_df, 2)
 
@@ -189,18 +197,15 @@ percent_replicating_all_gg <- (
     + geom_hline(linetype = "dashed", color = "blue", yintercept = 2)
     + theme_bw()
     + figure_theme
-    + scale_color_continuous(
-        "Number of\nreplicates\nper compound",
-        values = scales::rescale(c(0, 0.5, 1, 1.5, 2, 3, 6)),
-        limits = c(2, 10),
-        type = "viridis"
+    + scale_color_manual(
+        "Number of\nreplicates\nper\ncompound",
+        values = viridis_colors
     )
     + ggtitle("Full non-replicate null distribution")
     + xlab("Median pairwise Pearson correlation between replicate profiles")
     + ylab("Non-parametric -log10 p value")
+    + guides(color = guide_legend(override.aes = list(alpha = 1, size = 2)))
 )
-
-percent_replicating_all_gg
 
 percent_replicating_all_well_null_gg <- (
     ggplot(pr_pval_well_null_df, aes(x = median_score, y = neg_log_10_p_val))
@@ -210,25 +215,26 @@ percent_replicating_all_well_null_gg <- (
     + geom_hline(linetype = "dashed", color = "blue", yintercept = 2)
     + theme_bw()
     + figure_theme
-    + scale_color_continuous(
-        "Number of\nreplicates\nper compound",
-        values = scales::rescale(c(0, 0.5, 1, 1.5, 2, 3, 6)),
-        limits = c(2, 10),
-        type = "viridis"
+    + scale_color_manual(
+        "Number of\nreplicates\nper\ncompound",
+        values = viridis_colors
     )
     + ggtitle("Well-controlled non-replicate null distribution")
     + xlab("Median pairwise Pearson correlation between replicate profiles")
     + ylab("Non-parametric -log10 p value")
+    + guides(color = guide_legend(override.aes = list(alpha = 1, size = 2)))
 )
 
-percent_replicating_all_well_null_gg
+legend <- cowplot::get_legend(percent_replicating_all_gg)
+
+percent_replicating_all_gg <- percent_replicating_all_gg + theme(legend.position = "none") + labs(tag = "a")
+percent_replicating_all_well_null_gg <- percent_replicating_all_well_null_gg + theme(legend.position = "none") + labs(tag = "b")
 
 sup_fig3_gg <- (
-    percent_replicating_all_gg
-    + percent_replicating_all_well_null_gg 
-    + plot_layout(guides = 'collect')
-    + plot_annotation(tag_levels = 'a')
-    )
+    percent_replicating_all_gg |
+    percent_replicating_all_well_null_gg |
+    legend 
+) + plot_layout(widths = c(1, 1, 0.1))
 
 sup_fig3_gg
 
