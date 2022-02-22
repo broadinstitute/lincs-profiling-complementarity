@@ -55,6 +55,8 @@ readr::write_tsv(pm_df, output_file)
 print(dim(pm_df))
 head(pm_df)
 
+table(pm_df$no_of_replicates, pm_df$assay)
+
 percent_matching_df <- pm_df %>%
     dplyr::group_by(assay, dose) %>%
     dplyr::mutate(percent_matching = paste0(100 * round((sum(pass_thresh) / length(pass_thresh)), 2), "%")) %>%

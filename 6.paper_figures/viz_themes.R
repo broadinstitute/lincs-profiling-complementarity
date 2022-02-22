@@ -59,3 +59,12 @@ feature_legend_scale_cols = circlize::colorRamp2(c(-1, 0, 1), c("blue", "white",
 lgd_title_fontsize = 9
 lgd_label_fontsize = 6.5
 heatmap_pert_colors <- c("DMSO" = "red", "proteasome inhibitor" = "#117733", "other" = "grey")
+
+viridis_colors <- c(
+    "2" = "#440154",
+    "3" = "#365c8d",
+    "4" = "#26828e",
+    "5" = "#35b779",
+    "6" = "#7ad151",
+    "10" = "#fde725"
+)

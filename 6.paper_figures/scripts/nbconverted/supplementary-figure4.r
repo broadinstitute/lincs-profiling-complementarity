@@ -46,8 +46,10 @@ cp_values = c(
     "Cell Painting spherized" = "#332288",
     "Cell Painting subsampled" = "#117733",
     "Cell Painting nonspherized" = "#88CCEE",
+    "CP spherized (dose ind.)" = "black",
     "L1000 spherized" = "#882255",
-    "L1000 nonspherized" = "#AA4499"
+    "L1000 nonspherized" = "#AA4499",
+    "L1000 nonsph. (dose ind.)" = "red"
 )
 
 results_dir <- file.path("../1.Data-exploration/Profiles_level4/results")
@@ -62,12 +64,17 @@ subsample_info <- get_scores(cp_file_indicator)
 cp_file_indicator <- ""
 standard_info <- get_scores(cp_file_indicator)
 
+cp_file_indicator <- "_dose_independent"
+dose_independent_info <- get_scores(cp_file_indicator)
+
 file_indicator <- ""
 standard_info_l1000 <- get_scores(file_indicator=file_indicator, assay = "l1000")
 
 file_indicator <- "_w"
 spherized_l1000 <- get_scores(file_indicator=file_indicator, assay = "l1000")
 
+file_indicator <- "_dose_independent"
+dose_independent_l1000 <- get_scores(file_indicator=file_indicator, assay = "l1000")
 
 # Extract and combine percent strong results
 non_spherized_df <- non_spherized_info[["percent_strong"]] %>%
@@ -79,14 +86,30 @@ subsampled_df <- subsample_info[["percent_strong"]] %>%
 original_df <- standard_info[["percent_strong"]] %>%
     dplyr::mutate(sample_type = "Cell Painting spherized")
 
+dose_independent_df <- dose_independent_info[["percent_strong"]] %>%
+    dplyr::mutate(sample_type = "CP spherized (dose ind.)")
+
 non_spherized_l1000_df <- standard_info_l1000[["percent_strong"]] %>%
     dplyr::mutate(sample_type = "L1000 nonspherized")
 
 spherized_l1000_df <- spherized_l1000[["percent_strong"]] %>%
     dplyr::mutate(sample_type = "L1000 spherized")
 
-pr_df <- dplyr::bind_rows(non_spherized_df, subsampled_df, original_df, non_spherized_l1000_df, spherized_l1000_df) %>%
+dose_independent_l1000_df <- dose_independent_l1000[["percent_strong"]] %>%
+    dplyr::mutate(sample_type = "L1000 nonsph. (dose ind.)")
+
+pr_df <- dplyr::bind_rows(
+    non_spherized_df,
+    subsampled_df,
+    original_df,
+    dose_independent_df,
+    non_spherized_l1000_df,
+    spherized_l1000_df,
+    dose_independent_l1000_df
+) %>%
     dplyr::mutate(percent_strong_round = paste0(round(percent_strong, 0), "%"))
+
+pr_df$sample_type <- factor(pr_df$sample_type, levels = paste(names(cp_values)))
 
 print(dim(pr_df))
 head(pr_df)
@@ -100,13 +123,27 @@ subsampled_pr_df <- subsample_info[["median_cor_distrib"]] %>%
 original_pr_df <- standard_info[["median_cor_distrib"]] %>%
     dplyr::mutate(sample_type = "Cell Painting spherized")
 
+dose_independent_pr_df <- dose_independent_info[["median_cor_distrib"]] %>%
+    dplyr::mutate(sample_type = "CP spherized (dose ind.)")
+
 non_spherized_l1000_pr_df <- standard_info_l1000[["median_cor_distrib"]] %>%
     dplyr::mutate(sample_type = "L1000 nonspherized")
 
 spherized_l1000_pr_df <- spherized_l1000[["median_cor_distrib"]] %>%
     dplyr::mutate(sample_type = "L1000 spherized")
 
-pr_distrib_df <- dplyr::bind_rows(non_spherized_pr_df, subsampled_pr_df, original_pr_df, non_spherized_l1000_pr_df, spherized_l1000_pr_df)
+dose_independent_l1000_pr_df <- dose_independent_l1000[["median_cor_distrib"]] %>%
+    dplyr::mutate(sample_type = "L1000 nonsph. (dose ind.)")
+
+pr_distrib_df <- dplyr::bind_rows(
+    non_spherized_pr_df,
+    subsampled_pr_df,
+    original_pr_df,
+    dose_independent_pr_df,
+    non_spherized_l1000_pr_df,
+    spherized_l1000_pr_df,
+    dose_independent_l1000_pr_df
+)
 
 pr_distrib_df$sample_type <- factor(pr_distrib_df$sample_type, levels = paste(names(cp_values)))
 
@@ -122,18 +159,29 @@ subsampled_thresh_df <- subsample_info[["threshold"]] %>%
 original_threshr_df <- subsample_info[["threshold"]] %>%
     dplyr::mutate(sample_type = "Cell Painting spherized")
 
+dose_independent_threshr_df <- dose_independent_info[["threshold"]] %>%
+    dplyr::mutate(sample_type = "CP spherized (dose ind.)")
+
 non_spherized_l1000_thresh_df <- standard_info_l1000[["threshold"]] %>%
     dplyr::mutate(sample_type = "L1000 nonspherized")
 
 spherized_l1000_thresh_df <- spherized_l1000[["threshold"]] %>%
     dplyr::mutate(sample_type = "L1000 spherized")
 
+dose_independent_l1000_thresh_df <- dose_independent_l1000[["threshold"]] %>%
+    dplyr::mutate(sample_type = "L1000 nonsph. (dose ind.)")
+
 threshold_df <- dplyr::bind_rows(
-    non_spherized_thresh_df, subsampled_thresh_df, original_threshr_df, non_spherized_l1000_thresh_df, spherized_l1000_thresh_df
+    non_spherized_thresh_df,
+    subsampled_thresh_df,
+    original_threshr_df,
+    dose_independent_threshr_df,
+    non_spherized_l1000_thresh_df,
+    spherized_l1000_thresh_df,
+    dose_independent_l1000_thresh_df
 )
 
-threshold_df$sample_type <- factor(threshold_df$sample_type, levels =  paste(names(cp_values)))
-
+threshold_df$sample_type <- factor(threshold_df$sample_type, levels = paste(names(cp_values)))
 
 print(dim(threshold_df))
 head(threshold_df)
@@ -176,5 +224,5 @@ sup_fig3_gg
 
 for (extension in extensions) {
     output_file <- paste0(output_figure_base, extension)
-    cowplot::save_plot(output_file, sup_fig3_gg, base_width = 10, base_height = 10, dpi = 500)
+    cowplot::save_plot(output_file, sup_fig3_gg, base_width = 10, base_height = 13, dpi = 500)
 }

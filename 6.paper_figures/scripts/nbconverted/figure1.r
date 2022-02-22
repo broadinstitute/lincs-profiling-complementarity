@@ -73,6 +73,9 @@ print(length(unique(pr_pval_df$compound)))
 output_file <- file.path("results", "compound_scores.tsv")
 readr::write_tsv(pr_pval_df, output_file)
 
+# Convert column type for plotting
+pr_pval_df$no_of_compounds <- paste(pr_pval_df$no_of_compounds)
+
 print(dim(pr_pval_df))
 head(pr_pval_df)
 
@@ -94,14 +97,13 @@ panel_a_gg <- (
     + geom_hline(linetype = "dashed", color = "blue", yintercept = plot_thresh)
     + theme_bw()
     + figure_theme
-    + scale_color_continuous(
+    + scale_color_manual(
         "Number of\nreplicates\nper compound",
-        values = scales::rescale(c(0, 0.5, 1, 1.5, 2, 3, 6)),
-        limits = c(2, 10),
-        type = "viridis"
+        values = viridis_colors
     )
     + xlab("Median pairwise Pearson correlation between replicate profiles")
     + ylab("Non-parametric -log10 p value")
+    + guides(color = guide_legend(override.aes = list(alpha = 1, size = 2)))
 )
 
 panel_a_gg
@@ -149,6 +151,8 @@ pr_summary_df <- pr_pval_df %>%
 
 print(length(unique(pr_summary_df$compound)))
 head(pr_summary_df, 2)
+
+table(pr_summary_df$total_reproducible)
 
 panel_b_gg <- (
     ggplot(
