@@ -221,7 +221,7 @@ plt.savefig(output_file, pad_inches=0.2, dpi=500)
 # 
 # Full FOV of merged channels across replicates for top and bottom replicating compounds
 
-# In[ ]:
+# In[12]:
 
 
 scale_bar_length = int(b_scale / resolution) + 1
@@ -265,7 +265,7 @@ for cpd_id in url_df.compound_id.unique():
     image_cpd_dict[cpd_id] = combined_image
 
 
-# In[ ]:
+# In[13]:
 
 
 # Output figures paneled by compound replicates
