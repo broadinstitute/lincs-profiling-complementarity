@@ -88,3 +88,4 @@
 2.MOA-prediction/L1000_CP_model_predictions/L1000_train_preds_mlknn.csv.gz filter=lfs diff=lfs merge=lfs -text
 2.MOA-prediction/L1000_CP_model_predictions/cp_L1000_test_preds_tabnet_shuffle.csv filter=lfs diff=lfs merge=lfs -text
 2.MOA-prediction/L1000_CP_model_predictions/cp_test_preds_blend_subsample.csv filter=lfs diff=lfs merge=lfs -text
+6.paper_figures/example_images/pngs/full/combined_component_b_full_merged.png filter=lfs diff=lfs merge=lfs -text
