@@ -34,9 +34,11 @@ figure_theme <- (
 
 # Select MOA colors
 moa_targets <- c(
+    "aurora kinase inhibitor" = "Aurora kinase inhibitor",
     "plk inhibitor" = "PLK inhibitor",
     "proteasome inhibitor" = "Proteasome inhibitor",
-    "cdk inhibitor" = "CDK inhibitor",
+    "exportin antagonist" = "Exportin antagonist",
+    "maternal embryonic leucine zipper kinase inhibitor" = "MELK inhibitor",
     "tubulin inhibitor" = "Tubulin inhibitor",
     "hsp inhibitor" = "HSP inhibitor",
     "xiap inhibitor" = "XIAP inhibitor",
@@ -44,9 +46,11 @@ moa_targets <- c(
 )
 
 moa_colors <- c(
+    "aurora kinase inhibitor" = "#ff75cf",
     "plk inhibitor" = "#332288",
     "proteasome inhibitor" = "#117733",
-    "cdk inhibitor" = "#88CCEE",
+    "exportin antagonist" = "#88CCEE",
+    "maternal embryonic leucine zipper kinase inhibitor" = "#4bf507",
     "tubulin inhibitor" = "#CC6677",
     "hsp inhibitor" = "#FF9A00",
     "xiap inhibitor" = "#882255",

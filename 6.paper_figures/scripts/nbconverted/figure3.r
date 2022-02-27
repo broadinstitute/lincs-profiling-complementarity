@@ -31,7 +31,7 @@ l1000_df$highlight_moa[!(l1000_df$highlight_moa %in% names(moa_targets))] <- "ot
 cp_umap_gg <- (
     ggplot(data = NULL, aes(x = UMAP_0, y = UMAP_1, color = highlight_moa, size = highlight_moa, alpha = highlight_moa))
     + geom_point(data = cp_df %>% dplyr::filter(highlight_moa == "other"))
-    + geom_point(data = cp_df %>% dplyr::filter(dmso_label == "DMSO"), size = 2, color = "red", alpha = 0.1, aes(shape = dmso_label))
+    + geom_point(data = cp_df %>% dplyr::filter(dmso_label == "DMSO"), size = 2, color = "red", alpha = 0.05, aes(shape = dmso_label))
     + geom_point(data = cp_df %>% dplyr::filter(highlight_moa != "other"))
     + ggtitle("Cell Painting UMAP")
     + figure_theme
@@ -49,7 +49,7 @@ cp_umap_gg
 l1000_umap_gg <- (
      ggplot(data = NULL, aes(x = UMAP_0, y = UMAP_1, color = highlight_moa, size = highlight_moa, alpha = highlight_moa))
     + geom_point(data = l1000_df %>% dplyr::filter(highlight_moa == "other"))
-    + geom_point(data = l1000_df %>% dplyr::filter(dmso_label == "DMSO"), size = 2, color = "red", alpha = 0.1, aes(shape = dmso_label))
+    + geom_point(data = l1000_df %>% dplyr::filter(dmso_label == "DMSO"), size = 2, color = "red", alpha = 0.05, aes(shape = dmso_label))
     + geom_point(data = l1000_df %>% dplyr::filter(highlight_moa != "other"))
     + ggtitle("L1000 UMAP")
     + figure_theme
