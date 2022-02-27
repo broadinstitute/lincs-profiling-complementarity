@@ -301,12 +301,16 @@ panel_c_gg <- (
 
 panel_c_gg
 
+panel_a_gg <- panel_a_gg + labs(tag = "b")
+panel_b_gg <- panel_b_gg + labs(tag = "c")
+panel_c_gg <- panel_c_gg + labs(tag = "d")
+
+# We add an updated panel a in the resubmission, update tags here
 left_panel <- (panel_a_gg / panel_b_gg) + plot_layout(heights = c(2, 1))
 
 figure_1_gg <- (
     ( left_panel | panel_c_gg)
     + plot_layout(widths = c(2, 1))
-    + plot_annotation(tag_levels = "a")
 )
 
 for (extension in extensions) {
