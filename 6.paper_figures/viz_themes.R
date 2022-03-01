@@ -14,6 +14,15 @@ recode_dose_factor_controls <- c(
     `7` = "Positive"
 )
 
+dose_colors <- c(
+    "0.04 uM" = "#3B9AB2",
+    "0.12 uM" = "#78B7C5",
+    "0.37 uM" = "#EBCC2A",
+    "1.11 uM" = "#E1AF00",
+    "3.33 uM" = "#F21A00",
+    "10 uM" = "black"
+)
+
 assay_colors <- c("Cell Painting" = "#F0C178", "L1000" = "#8AA7F0")
 
 replicate_labels <- c("non_replicate" = "non-replicates", "replicate" = "replicates")
