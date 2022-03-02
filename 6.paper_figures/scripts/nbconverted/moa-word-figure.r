@@ -166,25 +166,25 @@ word_gg <- (
             label = moa_with_replicate_count,
         ),
         color = "black",
-        size = 4
+        size = 3.5
     )
     + geom_text(
         aes(
             label = moa_with_replicate_count,
         ),
         color = "black",
-        size = 4
+        size = 3.5
     )
     + geom_text(
         aes(
             label = moa_with_replicate_count,
             color = x_axis_location
         ),
-        size = 4
+        size = 3.5                                                                                                                                            
     )
     + facet_wrap("~x_axis_location", strip.position = "bottom")
     + theme_void()
-    + theme(strip.text = element_text(size = 14.5))
+    + theme(strip.text = element_text(size = 13))
     + scale_color_manual(
         "Pass null\nthreshold",
         values = moa_colors
@@ -221,24 +221,103 @@ precision_df$impact_category <- factor(precision_df$impact_category, levels = im
 
 head(precision_df, 5)
 
-panel_d_df <- precision_df %>% dplyr::filter(impact_category == "MOA")
+# Merge precision scores and percent matching
+precision_melt_df <- precision_df %>%
+    dplyr::filter(impact_category == 'MOA') %>%
+    reshape2::melt(id.vars = c("drug_impact", "dose", "impact_category"), variable.name = "assay", value.name = "avg_precision") 
 
-color_logic <- (
-    panel_d_df$L1000 > 0.60 |
-    panel_d_df$cell_painting > 0.6
+precision_melt_df$assay <- dplyr::recode_factor(precision_melt_df$assay, "cell_painting" = "Cell Painting")
+precision_melt_df <- precision_melt_df %>%
+    dplyr::inner_join(dplyr::bind_rows(cell_painting_pm_df, l1000_pm_df), by = c("drug_impact" = "moa", "dose" = "dose", "assay" = "assay"))
+
+precision_melt_df$dose <- factor(precision_melt_df$dose, levels = dose_order)
+
+head(precision_melt_df, 2)
+
+precision_match_gg <- (
+    ggplot(precision_melt_df, aes(x = avg_precision, y = matching_score))
+    + geom_point()
+    + figure_theme
+    + facet_grid("assay~dose")
+    + xlab("MOA average precision")
+    + ylab("MOA median pairwise correlation")
+)
+
+precision_match_gg
+
+all_dose_pass_df <- list()
+for (use_dose in unique(pm_df$dose)) {
+  all_dose_pass_df[[use_dose]] <- pm_df %>%
+      dplyr::filter(dose == !!use_dose) %>%
+      reshape2::dcast("moa~assay", value.var = "pass_thresh") %>%
+        dplyr::mutate(dose = use_dose) %>%
+    dplyr::mutate(
+        `CP` = sum(`Cell Painting`),
+        `L1K` = sum(`L1000`),
+        `Neither`= sum(!(`Cell Painting` + `L1000`))
+    ) %>%
+    dplyr::select(dose, `CP`, `L1K`, `Neither`) %>%
+    dplyr::distinct()
+}
+
+all_dose_pass_df <- dplyr::bind_rows(all_dose_pass_df) %>%
+    reshape2::melt(id.vars = "dose", variable.name = "assay", value.name = "pass_thresh_count")
+
+all_dose_pass_df$dose <- factor(all_dose_pass_df$dose, levels = dose_order)
+
+no_match_bar_gg <- (
+    ggplot(all_dose_pass_df, aes(x = assay, y = pass_thresh_count))
+    + geom_bar(stat="identity")
+    + facet_grid("~dose")
+    + figure_theme
+    + ylab("MOA threshold count")
+    + theme(axis.text.x = element_text(angle = 45, vjust = 0.5))
+)
+
+no_match_bar_gg
+
+# Identify which MOAs do not match in either assay at any dose
+no_match_df <- pm_df %>% 
+    reshape2::dcast("moa+dose~assay", value.var="pass_thresh") %>%
+    dplyr::mutate(pass_neither = !(`Cell Painting` + `L1000`)) %>%
+    dplyr::filter(pass_neither) %>%
+    dplyr::group_by(moa) %>%
+    dplyr::mutate(neither_count = n()) %>%
+    dplyr::filter(neither_count >= 6) %>%
+    dplyr::select(moa) %>%
+    dplyr::distinct()
+
+print(dim(no_match_df))
+
+no_match_scores_df <- pm_df %>% 
+    reshape2::dcast("moa+dose~assay", value.var="matching_score") %>%
+    dplyr::filter(moa %in% no_match_df$moa) %>%
+    dplyr::group_by(moa) %>%
+    dplyr::mutate(
+        sum_matching_score = sum(`Cell Painting`) + sum(`L1000`),
+        sum_matching_score_cp = sum(`Cell Painting`),
+        sum_matching_score_l1k = sum(`L1000`)
+    ) %>%
+    dplyr::select(moa, sum_matching_score, sum_matching_score_cp, sum_matching_score_l1k) %>%
+    dplyr::distinct() %>%
+    dplyr::arrange(sum_matching_score)
+
+head(no_match_scores_df, 2)
+
+moa_logic <- (
+    no_match_scores_df$sum_matching_score_cp < 0 |
+    no_match_scores_df$sum_matching_score_l1k < 0
     )
 
-moa_gg <- (
-    ggplot(panel_d_df, aes(x = cell_painting, y = L1000))
-    + facet_grid("impact_category~dose")
-    + geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "black")
+no_match_gg <- (
+    ggplot(no_match_scores_df, aes(x = sum_matching_score_cp, y = sum_matching_score_l1k))
+    + geom_point()
     + figure_theme
-    + xlab("Cell Painting average precision")
-    + ylab("L1000 average precision")
-    + ylim(-0.1, 1.2)
-    + xlim(-0.1, 1.2)
+    + xlab("Cell Painting MOA Median Pairwise Correlation")
+    + ylab("L1000 MOA Median Pairwise Correlation")
+    + ggtitle(paste0("Non-matching MOAs in any dose or assay", " (n = ", dim(no_match_scores_df)[1], ")"))
     + geom_text_repel(
-        data = subset(panel_d_df, color_logic),
+        data = subset(no_match_scores_df, moa_logic),
         arrow = arrow(length = unit(0.015, "npc")),
         segment.size = 0.7,
         segment.alpha = 0.6,
@@ -247,62 +326,30 @@ moa_gg <- (
         box.padding = 0.5,
         point.padding = 0.25,
         aes(
-            x = cell_painting,
-            y = L1000,
-            label = drug_impact,
+            x = sum_matching_score_cp,
+            y = sum_matching_score_l1k,
+            label = moa,
         )
     )
-    + geom_point(color = ifelse(color_logic, "red", "grey50"), alpha = 0.8)
+    + geom_point(color = ifelse(moa_logic, "red", "grey50"), alpha = 0.8)
 )
 
-moa_gg
-
-panel_e_df <- precision_df %>% dplyr::filter(impact_category == "Gene target")
-
-color_logic <- (
-    panel_e_df$L1000 > 0.70 |
-    panel_e_df$cell_painting > 0.7
-    )
-
-gene_gg <- (
-    ggplot(panel_e_df, aes(x = cell_painting, y = L1000))
-    + facet_grid("impact_category~dose")
-    + geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "black")
-    + figure_theme
-    + xlab("Cell Painting average precision")
-    + ylab("L1000 average precision")
-    + ylim(-0.1, 1.2)
-    + xlim(-0.1, 1.2)
-    + geom_text_repel(
-        data = subset(panel_e_df, color_logic),
-        arrow = arrow(length = unit(0.015, "npc")),
-        segment.size = 0.7,
-        segment.alpha = 0.6,
-        size = 3,
-        fontface = "italic",
-        box.padding = 0.5,
-        point.padding = 0.25,
-        aes(
-            x = cell_painting,
-            y = L1000,
-            label = drug_impact,
-        )
-    )
-    + geom_point(color = ifelse(color_logic, "red", "grey50"), alpha = 0.8)
-)
-
-gene_gg
+no_match_gg
 
 # Compile figure
 sup_fig_gg <- (
     word_gg /
-    moa_gg /
-    gene_gg
+    precision_match_gg /
+    (no_match_bar_gg + no_match_gg)
+    + plot_layout(heights = c(1, 0.75, 1.2))
+    + plot_annotation(tag_levels = "a")
 )
 
 for (extension in extensions) {
     output_file <- paste0(output_figure_base, extension)
-    ggplot2::ggsave(output_file, sup_fig_gg, width = 18, height = 12, dpi = 500)
+    ggplot2::ggsave(output_file, sup_fig_gg, width = 15., height = 13, dpi = 500)
 }
 
 sup_fig_gg
+
+
