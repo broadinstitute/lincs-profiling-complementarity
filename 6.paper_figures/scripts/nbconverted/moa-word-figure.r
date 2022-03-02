@@ -166,21 +166,21 @@ word_gg <- (
             label = moa_with_replicate_count,
         ),
         color = "black",
-        size = 3.9
+        size = 4
     )
     + geom_text(
         aes(
             label = moa_with_replicate_count,
         ),
         color = "black",
-        size = 3.9
+        size = 4
     )
     + geom_text(
         aes(
             label = moa_with_replicate_count,
             color = x_axis_location
         ),
-        size = 3.9
+        size = 4
     )
     + facet_wrap("~x_axis_location", strip.position = "bottom")
     + theme_void()
@@ -242,7 +242,7 @@ moa_gg <- (
         arrow = arrow(length = unit(0.015, "npc")),
         segment.size = 0.7,
         segment.alpha = 0.6,
-        size = 4,
+        size = 3,
         fontface = "italic",
         box.padding = 0.5,
         point.padding = 0.25,
@@ -278,7 +278,7 @@ gene_gg <- (
         arrow = arrow(length = unit(0.015, "npc")),
         segment.size = 0.7,
         segment.alpha = 0.6,
-        size = 4,
+        size = 3,
         fontface = "italic",
         box.padding = 0.5,
         point.padding = 0.25,
@@ -302,7 +302,7 @@ sup_fig_gg <- (
 
 for (extension in extensions) {
     output_file <- paste0(output_figure_base, extension)
-    ggplot2::ggsave(output_file, sup_fig_gg, width = 14, height = 12, dpi = 500)
+    ggplot2::ggsave(output_file, sup_fig_gg, width = 18, height = 12, dpi = 500)
 }
 
 sup_fig_gg
