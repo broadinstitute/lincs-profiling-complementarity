@@ -1,6 +1,7 @@
 suppressPackageStartupMessages(library(dplyr))
 suppressPackageStartupMessages(library(ggplot2))
 suppressPackageStartupMessages(library(patchwork))
+suppressPackageStartupMessages(library(ggrepel))
 
 source("viz_themes.R")
 source("plotting_functions.R")
@@ -363,114 +364,136 @@ panel_c_gg <- (
 
 panel_c_gg
 
-moa_count_filter <- 2
+# Load precision scores
+precision_file <- file.path("..", "1.Data-exploration", "results", "moa_target_precision.tsv.gz")
 
-moa_match_df <- pm_df %>% dplyr::filter(pass_thresh)
+precision_cols <- readr::cols(
+  drug_impact = readr::col_character(),
+  dose = readr::col_double(),
+  avg_precision = readr::col_double(),
+  impact_category = readr::col_character(),
+  assay = readr::col_character()
+)
 
-consistent_match_moa_df <- moa_match_df %>%
-    dplyr::group_by(assay, moa) %>%
-    dplyr::tally() %>%
-    dplyr::filter(n >= !!moa_count_filter) %>%
-    reshape2::dcast(moa ~ assay, value.var = "n") %>%
-    tidyr::replace_na(
-        list(
-            `Cell Painting` = 0,
-            L1000 = 0
-        )
-    ) %>%
-    dplyr::mutate(x_axis_location = "Cell Painting")
+# Load and process data for plotting
+precision_df <- readr::read_tsv(precision_file, col_types = precision_cols) %>%
+    reshape2::dcast(drug_impact+dose+impact_category~assay, value.var = "avg_precision") %>%
+    dplyr::arrange(desc(L1000))
 
-consistent_match_moa_df$x_axis_location[consistent_match_moa_df$L1000 > 0] = "L1000"
-consistent_match_moa_df$x_axis_location[(consistent_match_moa_df$L1000 > 0 & consistent_match_moa_df$`Cell Painting` > 0)] = "Both"
+precision_df$dose <- dplyr::recode_factor(precision_df$dose, !!!dose_rename)
+precision_df$dose <- factor(precision_df$dose, levels = dose_order)
 
-# Define the order to plot the text
-cell_painting_order <- consistent_match_moa_df %>%
-    dplyr::filter(x_axis_location == "Cell Painting") %>%
-    dplyr::arrange(`Cell Painting`, moa) %>%
-    dplyr::mutate(y_axis_location = seq(1, n() * 3, 3)) %>%
-    dplyr::select(moa, y_axis_location)
+impact_recode <- c("moa" = "Compound mechanism of action (MOA)", "target" = "Gene target")
+precision_df$impact_category <- dplyr::recode_factor(precision_df$impact_category, !!!impact_recode)
+precision_df$impact_category <- factor(precision_df$impact_category, levels = impact_recode)
 
-l1000_order <- consistent_match_moa_df %>%
-    dplyr::filter(x_axis_location == "L1000") %>%
-    dplyr::arrange(L1000, moa) %>%
-    dplyr::mutate(y_axis_location = seq(1, n() * 3, 3)) %>%
-    dplyr::select(moa, y_axis_location)
+head(precision_df, 5)
 
-both_order <- consistent_match_moa_df %>%
-    dplyr::mutate(both_count = (`Cell Painting` + L1000) / 2) %>%
-    dplyr::filter(x_axis_location == "Both") %>%
-    dplyr::arrange(both_count, moa) %>%
-    dplyr::mutate(y_axis_location = seq(1, n() * 3, 3)) %>%
-    dplyr::select(moa, y_axis_location)
+dose_colors <- c(
+    "0.04 uM" = "#3B9AB2",
+    "0.12 uM" = "#78B7C5",
+    "0.37 uM" = "#EBCC2A",
+    "1.11 uM" = "#E1AF00",
+    "3.33 uM" = "#F21A00",
+    "10 uM" = "black"
+)
 
-full_moa_plot_order <- dplyr::bind_rows(cell_painting_order, l1000_order, both_order)
+panel_d_df <- precision_df %>% dplyr::filter(impact_category == "Compound mechanism of action (MOA)")
 
-plot_ready_moa_text_df <- consistent_match_moa_df %>% dplyr::left_join(full_moa_plot_order, by = "moa") %>%
-    dplyr::mutate(replicate_count = `Cell Painting` + L1000)
-
-plot_ready_moa_text_df$x_axis_location <- factor(plot_ready_moa_text_df$x_axis_location, levels = c("Cell Painting", "Both", "L1000"))
-
-plot_ready_moa_text_df <- plot_ready_moa_text_df %>%
-    dplyr::mutate(moa_with_replicate_count = paste0(moa, " (", replicate_count, ")"))
-
-print(length(unique(plot_ready_moa_text_df$moa)))
-head(plot_ready_moa_text_df)
-
-moa_labels <- c("None", "L1000", "Cell Painting", "Both")
-
-moa_colors <- unique(plot_ready_pm_df$moa_color_passing)
-names(moa_colors) <- moa_labels
-names(moa_labels) <- moa_labels
+color_logic <- (
+    panel_d_df$L1000 > 0.60 |
+    panel_d_df$cell_painting > 0.6
+    )
 
 panel_d_gg <- (
-    ggplot(plot_ready_moa_text_df, aes(y = y_axis_location, x = 0))
-    + geom_text(
+    ggplot(panel_d_df, aes(x = cell_painting, y = L1000, color = dose))
+    + facet_grid("~impact_category")
+    + geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "black")
+    + figure_theme
+    + xlab("Cell Painting average precision")
+    + ylab("L1000 average precision")
+    + ylim(-0.1, 1.2)
+    + xlim(-0.1, 1.2)
+    + geom_text_repel(
+        data = subset(panel_d_df, color_logic),
+        arrow = arrow(length = unit(0.015, "npc")),
+        segment.size = 0.7,
+        segment.alpha = 0.6,
+        size = 4,
+        fontface = "italic",
+        box.padding = 0.5,
+        point.padding = 0.25,
         aes(
-            label = moa_with_replicate_count,
-        ),
-        color = "black",
-        size = 3.9
+            x = cell_painting,
+            y = L1000,
+            label = drug_impact,
+        )
     )
-    + geom_text(
-        aes(
-            label = moa_with_replicate_count,
-        ),
-        color = "black",
-        size = 3.9
+    + geom_point(alpha = 0.8)
+    + scale_color_manual(name = "Dose", values = dose_colors)
+    + guides(
+        color = guide_legend(override.aes = list(size = 4, alpha = 1)),
+        text = guide_legend(override.aes = list(alpha = 0))
     )
-    + geom_text(
-        aes(
-            label = moa_with_replicate_count,
-            color = x_axis_location
-        ),
-        size = 3.9
-    )
-    + facet_wrap("~x_axis_location", strip.position = "bottom")
-    + theme_void()
-    + theme(strip.text = element_text(size = 14.5))
-    + scale_color_manual(
-        "Pass null\nthreshold",
-        values = moa_colors
-    )
-    + xlim(-110, 120)
-    + ylim(0, 60)
-    + guides(color = guide_legend(order = 1))
 )
 
 panel_d_gg
 
+panel_e_df <- precision_df %>% dplyr::filter(impact_category == "Gene target")
+
+color_logic <- (
+    panel_e_df$L1000 > 0.9 |
+    panel_e_df$cell_painting > 0.9
+    )
+
+panel_e_gg <- (
+    ggplot(panel_e_df, aes(x = cell_painting, y = L1000, color = dose))
+    + facet_grid("~impact_category")
+    + geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "black")
+    + figure_theme
+    + xlab("Cell Painting average precision")
+    + ylab("L1000 average precision")
+    + ylim(-0.1, 1.2)
+    + xlim(-0.1, 1.2)
+    + geom_text_repel(
+        data = subset(panel_e_df, color_logic),
+        arrow = arrow(length = unit(0.015, "npc")),
+        segment.size = 0.7,
+        segment.alpha = 0.6,
+        size = 4,
+        fontface = "italic",
+        box.padding = 0.5,
+        point.padding = 0.25,
+        aes(
+            x = cell_painting,
+            y = L1000,
+            label = drug_impact,
+        )
+    )
+    + geom_point(alpha = 0.8)
+    + scale_color_manual(name = "Dose", values = dose_colors)
+    + guides(
+        color = guide_legend(override.aes = list(size = 4, alpha = 1)),
+        text = guide_legend(override.aes = list(alpha = 0))
+    )
+)
+
+panel_e_gg
+
 left_panel <- (panel_a_gg / panel_b_gg) + plot_layout(heights = c(2, 1))
 top_panel <- (left_panel | panel_c_gg) + plot_layout(widths = c(2, 1))
 
+bottom_panel <- (panel_d_gg | panel_e_gg)
+
 figure_2_gg <- (
-    top_panel / panel_d_gg
-    + plot_layout(heights = c(2, 1.75))
+    top_panel / bottom_panel
+    + plot_layout(heights = c(2, 2.4))
     + plot_annotation(tag_levels = "a")
 )
 
 for (extension in extensions) {
     output_file <- paste0(output_figure_base, extension)
-    ggplot2::ggsave(output_file, figure_2_gg, width = 16, height = 11, dpi = 500)
+    ggplot2::ggsave(output_file, figure_2_gg, width = 17, height = 14, dpi = 500)
 }
 
 figure_2_gg
