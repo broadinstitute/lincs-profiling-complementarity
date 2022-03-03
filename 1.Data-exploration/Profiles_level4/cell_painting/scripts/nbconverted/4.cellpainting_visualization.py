@@ -13,6 +13,7 @@
 
 import re
 import os
+import sys
 import pathlib
 import pandas as pd
 import numpy as np
@@ -22,6 +23,9 @@ import seaborn as sns
 import pickle
 sns.set_style("darkgrid")
 sns.set_context("talk")
+
+sys.path.append("../../scripts")
+from define_edge_wells import get_edge_wells
 
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
@@ -38,6 +42,9 @@ dose_recode_info = {
     4: '1.11 uM', 5:'3.33 uM', 6:'10 uM'
 }
 
+# Define edge wells
+edge_wells = get_edge_wells()
+
 
 # In[3]:
 
@@ -50,12 +57,15 @@ results_dir = pathlib.Path("../results")
 
 cp_level4_path = 'cellpainting_lvl4_cpd_replicate_datasets'
 
+# Run using either "_edgewell_filter" or ""
+cp_edge_filter_indicator = "_edgewell_filter"
+
 
 # In[5]:
 
 
 df_cpd_median_scrs = pd.read_csv(os.path.join(cp_level4_path, 'cpd_replicate_median_scores.csv'))
-df_null_p_vals = pd.read_csv(os.path.join(cp_level4_path, 'cpd_replicate_p_values.csv'))
+df_null_p_vals = pd.read_csv(os.path.join(cp_level4_path, f'cpd_replicate_p_values{cp_edge_filter_indicator}.csv'))
 
 
 # In[6]:
@@ -66,6 +76,11 @@ common_file = pathlib.Path("..", "..", "..", "6.paper_figures", "data", "signifi
 common_df = pd.read_csv(common_file, sep="\t")
 
 common_compounds = common_df.compound.unique()
+
+# Subset to compounds measured outside edge wells, if applicable
+if cp_edge_filter_indicator == "_edgewell_filter":
+    common_compounds = list(set(common_compounds).intersection(set(df_null_p_vals.cpd.unique().tolist())))
+    
 print(len(common_compounds))
 
 
@@ -82,10 +97,13 @@ df_cpd_median_scrs = df_cpd_median_scrs.loc[df_cpd_median_scrs.cpd.isin(common_c
 df_level4 = pd.read_csv(os.path.join(cp_level4_path, 'cp_level4_cpd_replicates.csv.gz'), 
                         compression='gzip',low_memory = False)
 
-with open(os.path.join(cp_level4_path, 'null_distribution.pickle'), 'rb') as handle:
+if cp_edge_filter_indicator == "_edgewell_filter":
+    df_level4 = df_level4.query("Metadata_Well not in @edge_wells").reset_index(drop=True)
+    
+with open(os.path.join(cp_level4_path, f'null_distribution{cp_edge_filter_indicator}.pickle'), 'rb') as handle:
     null_distribution_replicates = pickle.load(handle)
     
-with open(os.path.join(cp_level4_path, 'null_dist_medians_per_dose.pickle'), 'rb') as handle:
+with open(os.path.join(cp_level4_path, f'null_dist_medians_per_dose{cp_edge_filter_indicator}.pickle'), 'rb') as handle:
     null_dist_med_cp = pickle.load(handle)
 
 
@@ -189,7 +207,7 @@ df_medians_p_vals.head()
 # In[17]:
 
 
-plot_p_vs_median(df_medians_p_vals, 'cellpainting_figures', 'p_vs_median.png')
+plot_p_vs_median(df_medians_p_vals, 'cellpainting_figures', f'p_vs_median{cp_edge_filter_indicator}.png')
 
 
 # In[18]:
@@ -205,7 +223,7 @@ def plot_p_value_dist(df, path, file_name):
     plt.savefig(os.path.join(path, file_name))
     plt.show()
     
-plot_p_value_dist(df_medians_p_vals, 'cellpainting_figures', 'p_value_distribution.png')
+plot_p_value_dist(df_medians_p_vals, 'cellpainting_figures', f'p_value_distribution{cp_edge_filter_indicator}.png')
 
 
 # In[19]:
@@ -224,7 +242,7 @@ def plot_median_score_distribution(df, title, path, file_name):
     plt.show()
     
 plot_median_score_distribution(df_medians_p_vals, "Median score distribution across all doses(1-6)",
-                               'cellpainting_figures', 'median_score_distribution.png')
+                               'cellpainting_figures', f'median_score_distribution{cp_edge_filter_indicator}.png')
 
 
 # ### - Replicate versus Non-replicate distribution across all doses (1-6)
@@ -353,7 +371,7 @@ df_rand_rep = transform_dataframe(random_replicates, 'non replicate')
 null_percent_replicating_score_df = transform_dataframe(null_dist_med_cp, "non_replicate").assign(assay="Cell Painting")
 null_percent_replicating_score_df.dose = null_percent_replicating_score_df.dose.replace(dose_recode_info)
 
-output_file = pathlib.Path(f"{results_dir}/cell_paintint_percent_replicating_data_null_distribution.tsv.gz")
+output_file = pathlib.Path(f"{results_dir}/cell_paintint_percent_replicating_data_null_distribution{cp_edge_filter_indicator}.tsv.gz")
 null_percent_replicating_score_df.to_csv(output_file, sep="\t", index=False)
 
 print(null_percent_replicating_score_df.shape)
@@ -393,7 +411,7 @@ def plot_replicate_vs_non_replicate(df_true, df_rand, title, path, file_name):
 
 plot_replicate_vs_non_replicate(df_true_rep, df_rand_rep, 
                                 "Cell painting replicate vs non-replicate spearman correlation values distribution", 
-                                'cellpainting_figures', 'replicate_non_replicate_dist.png')
+                                'cellpainting_figures', f'replicate_non_replicate_dist{cp_edge_filter_indicator}.png')
 
 
 # In[31]:
@@ -405,7 +423,7 @@ full_cor_df.dose = full_cor_df.dose.replace(dose_recode_info)
 
 print(full_cor_df.shape)
 
-output_file = pathlib.Path(f"{results_dir}/cell_painting_pairwise_correlation_distribution.tsv.gz")
+output_file = pathlib.Path(f"{results_dir}/cell_painting_pairwise_correlation_distribution{cp_edge_filter_indicator}.tsv.gz")
 full_cor_df.to_csv(output_file, sep="\t", index=False)
 
 
@@ -457,7 +475,7 @@ df_stat_p = df_stat_vals[['cpd', 'dose', 'replicate_correlation']].rename({'repl
 
 plot_median_score_distribution(df_stat_p, 
                                "Median score distribution of compounds with reproducible replicate median values",
-                               'cellpainting_figures', 'stat_sign_median_score_dist.png')
+                               'cellpainting_figures', f'stat_sign_median_score_dist{cp_edge_filter_indicator}.png')
 
 
 # **Notice that the distribution of these statistically significant median scores (i.e. reproducible, p_values < 0.05) are positive values (between ~0.2 - 0.95)**
@@ -467,7 +485,7 @@ plot_median_score_distribution(df_stat_p,
 # In[38]:
 
 
-output_file = pathlib.Path(f"{results_dir}/cell_painting_percent_replicating_data.tsv.gz")
+output_file = pathlib.Path(f"{results_dir}/cell_painting_percent_replicating_data{cp_edge_filter_indicator}.tsv.gz")
 df_all_scores.to_csv(output_file, sep="\t", index=False)
 
 print(df_all_scores.shape)
@@ -517,7 +535,7 @@ def plot_mas_vs_corr(df, title, cp_95pct, dmso_95pct, path, file_name, alp = 0.3
 
 plot_mas_vs_corr(df_all_scores,
                  "Morphological Activity Score (MAS) vs replicate correlation (median) for compound replicates",
-                 cp_95pct, dmso_95_pctile, 'cellpainting_figures', 'MAS_vs_median_corr.png')
+                 cp_95pct, dmso_95_pctile, 'cellpainting_figures', f'MAS_vs_median_corr{cp_edge_filter_indicator}.png')
 
 
 # In[43]:
@@ -549,7 +567,7 @@ def plot_ss_vs_corr(df, title, cp_95pct, path, file_name, alp = 0.3, size =(50,3
 
 
 plot_ss_vs_corr(df_all_scores, "Signature strength vs replicate correlation (median) for compound replicates", 
-                cp_95pct, 'cellpainting_figures', 'SS_vs_median_corr.png')
+                cp_95pct, 'cellpainting_figures', f'SS_vs_median_corr{cp_edge_filter_indicator}.png')
 
 
 # ### Visualization based on reproducible median score (compounds with p-values < 0.05 across all doses)
@@ -559,12 +577,12 @@ plot_ss_vs_corr(df_all_scores, "Signature strength vs replicate correlation (med
 
 plot_mas_vs_corr(df_stat_vals,
                  "Morphological Activity Score (MAS) vs reproducible median correlation scores for compound",
-                 cp_95pct, dmso_95_pctile, 'cellpainting_figures', 'stat_MAS_vs_median_corr.png', alp = 0.5, size = (200,200))
+                 cp_95pct, dmso_95_pctile, 'cellpainting_figures', f'stat_MAS_vs_median_corr{cp_edge_filter_indicator}.png', alp = 0.5, size = (200,200))
 
 
 # In[46]:
 
 
 plot_ss_vs_corr(df_stat_vals, "Signature strength vs reproducible median correlation scores for compound", 
-                cp_95pct, 'cellpainting_figures', 'stat_SS_vs_median_corr.png', alp = 0.5, size = (200,200))
+                cp_95pct, 'cellpainting_figures', f'stat_SS_vs_median_corr{cp_edge_filter_indicator}.png', alp = 0.5, size = (200,200))
 
