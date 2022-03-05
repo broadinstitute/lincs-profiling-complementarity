@@ -101,7 +101,7 @@ panel_a_gg <- (
         "Number of\nreplicates\nper compound",
         values = viridis_colors
     )
-    + xlab("Median pairwise Pearson correlation between replicate profiles")
+    + xlab("Median pairwise Spearman correlation between replicate profiles")
     + ylab("Non-parametric -log10 p value")
     + guides(color = guide_legend(override.aes = list(alpha = 1, size = 2)))
 )
@@ -165,8 +165,8 @@ panel_b_gg <- (
     + geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "black")
     + figure_theme
     + scale_color_gradient("How many total\ndoses is the\ncompound\nreproducible in\nboth assays?", low = "blue", high = "red")
-    + xlab("Cell Painting\nMedian pairwise replicate correlation")
-    + ylab("L1000\nMedian pairwise replicate correlation")
+    + xlab("Cell Painting:\nMedian pairwise replicate Spearman correlation")
+    + ylab("L1000: Median pairwise\nreplicate Spearman correlation")
 )
 
 panel_b_gg
