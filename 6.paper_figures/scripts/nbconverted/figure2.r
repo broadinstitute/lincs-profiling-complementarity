@@ -81,7 +81,7 @@ panel_a_gg <- (
     + theme_bw()
     + figure_theme
     + scale_color_continuous("Number of\ncompounds\nper MOA", values = scales::rescale(c(0, 2, 4, 6, 8, 15, 30)), type = "viridis")
-    + xlab("Median pairwise Pearson correlation between\ncompound profiles of the same mechanism of action (MOA)")
+    + xlab("Median pairwise Spearman correlation between\ncompound profiles of the same mechanism of action (MOA)")
     + ylab("Non-parametric -log10 p value")
 )
 
@@ -190,8 +190,8 @@ panel_b_gg <- (
     + geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "black")
     + xlim(c(-0.65, 1))
     + ylim(c(-0.3, 1))
-    + xlab("Cell Painting\nMedian MOA correlation")
-    + ylab("L1000\nMedian MOA correlation")
+    + xlab("Cell Painting:\nMedian MOA Spearman correlation")
+    + ylab("L1000: Median\nMOA Spearman cor.")
     + theme(legend.key.size = unit(0.3, 'cm'))
 )
 
