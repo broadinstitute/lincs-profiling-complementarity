@@ -77,7 +77,7 @@ def save_to_csv(df, path, file_name, compress=None):
 file_indicator = ""
 
 # We generate multiple target label datasets (MOA = "", Target = "_targets", Pathway = "_targets_pathways"
-split_indicator = "_targets"
+split_indicator = "_targets_pathways"
 
 
 # In[4]:
