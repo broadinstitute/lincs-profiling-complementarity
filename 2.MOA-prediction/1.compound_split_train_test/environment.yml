@@ -14,3 +14,4 @@ dependencies:
 - conda-forge::r-tidyr
 - bioconda::bioconductor-topgo=2.46.0
 - bioconda::bioconductor-org.hs.eg.db=3.14.0
+- bioconda::bioconductor-go.db=3.14.0
