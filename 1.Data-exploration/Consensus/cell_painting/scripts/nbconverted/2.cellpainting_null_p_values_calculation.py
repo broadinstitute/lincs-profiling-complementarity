@@ -215,6 +215,12 @@ len(data_moa_cpds['moa_size'].unique())
 len(moa_sizes_dict)
 
 
+# In[23]:
+
+
+moa_sizes_dict
+
+
 # In[21]:
 
 
