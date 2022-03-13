@@ -3,6 +3,8 @@
 
 # ## Consensus Signatures
 # 
+# Gregory Way, modified from code written by Adeniyi Adeboye
+# 
 # A consensus signature can be defined as a perturbation-specific summary profile acquired by aggregating replicate level information.
 # 
 # ### - Consensus Datasets
@@ -10,10 +12,6 @@
 # 1. Median Aggregation
 #    - consensus_median (whole plate normalization)
 #    - consensus_median_dmso (dmso normalization).
-#    
-#    
-#    
-#    
 #    
 # 2. Modified Z Score Aggregation (MODZ)
 #    - consensus_modz (whole plate normalization)
@@ -25,15 +23,10 @@
 # 
 # 
 # ### The goal here:
-# - is to determine the median score of each MOA (Mechanism of action) per dose based on taking the median of the correlation values between compounds of the same MOA.
 # 
+# - is to determine the median score of each MOA (Mechanism of action) based on taking the median of the correlation values between compounds of the same MOA.
 # 
-# 
-# 
-# 
-# ### Note:
-# 
-# To calculate the median score for each of the four consensus data, this notebook will have to be ran four times for each.
+# We do not adjust for dose in this notebook.
 
 # In[1]:
 
@@ -44,17 +37,18 @@ import pandas as pd
 import numpy as np
 from collections import defaultdict
 import matplotlib.pyplot as plt
-get_ipython().run_line_magic('matplotlib', 'inline')
 import seaborn as sns
 from pycytominer import feature_select
 from statistics import median
 import random
-sns.set_style("darkgrid")
 from scipy import stats
 import pickle
 from io import BytesIO
 from urllib.request import urlopen
 from zipfile import ZipFile
+
+get_ipython().run_line_magic('matplotlib', 'inline')
+sns.set_style("darkgrid")
 
 
 # In[2]:
@@ -89,10 +83,7 @@ def feature_selection(dataset_link):
 
 commit = "e9737c3e4e4443eb03c2c278a145f12efe255756"
 
-consensus_median_link = f'https://github.com/broadinstitute/lincs-cell-painting/blob/{commit}/consensus/2016_04_01_a549_48hr_batch1/2016_04_01_a549_48hr_batch1_consensus_median.csv.gz?raw=true'
-consensus_median_dmso_link = f'https://github.com/broadinstitute/lincs-cell-painting/blob/{commit}/consensus/2016_04_01_a549_48hr_batch1/2016_04_01_a549_48hr_batch1_consensus_median_dmso.csv.gz?raw=true'
 consensus_modz_link = f'https://github.com/broadinstitute/lincs-cell-painting/blob/{commit}/spherized_profiles/consensus/2016_04_01_a549_48hr_batch1_dmso_spherized_profiles_with_input_normalized_by_dmso_consensus_modz.csv.gz?raw=true'
-consensus_modz_dmso_link = f'https://github.com/broadinstitute/lincs-cell-painting/blob/{commit}/consensus/2016_04_01_a549_48hr_batch1/2016_04_01_a549_48hr_batch1_consensus_modz_dmso.csv.gz?raw=true'
 
 
 # In[4]:
@@ -305,11 +296,15 @@ def get_median_score(moa_list, df_dose, df_cpd_agg):
         moa_cpds[moa] = cpds
         ##taking correlation btw cpds for each MOA
         df_cpds = df_cpd_agg.loc[cpds]
-        cpds_corr = df_cpds.T.corr(method = 'spearman').values
-        if len(cpds_corr) == 1:
+        cpds_corr = df_cpds.transpose().corr(method = 'spearman')
+        if len(cpds) == 1:
             median_val = 1
         else:
-            median_val = median(list(cpds_corr[np.triu_indices(len(cpds_corr), k = 1)]))
+            cpds_corr.index.name = "pert_iname_compare"
+            cpds_corr = cpds_corr.reset_index().melt(id_vars="pert_iname_compare", value_name="spearman_corr")
+            cpds_corr = cpds_corr.assign(keep_me_diff_comparison = cpds_corr.pert_iname_compare != cpds_corr.pert_iname)
+            cpds_corr = cpds_corr.query("keep_me_diff_comparison")
+            median_val = cpds_corr.spearman_corr.median()
 
         moa_median_score[moa] = median_val
         
@@ -365,10 +360,10 @@ def get_moa_medianscores(df_moa):
     print(dose_list)
     for dose in dose_list:
         df_dose = df_moa[df_moa['Metadata_dose_recode'] == dose].copy()
-        df_cpd_agg = df_dose.groupby(['pert_iname']).agg(['mean'])
-        df_cpd_agg.columns  = df_cpd_agg.columns.droplevel(1)
-        df_cpd_agg.rename_axis(None, axis=0, inplace = True)
-        df_cpd_agg.drop(['Metadata_mmoles_per_liter', 'Metadata_dose_recode'], axis = 1, inplace = True)
+        df_cpd_agg = df_dose.groupby(['pert_iname']).agg(['mean']).reset_index()
+        df_cpd_agg.index = df_cpd_agg.pert_iname
+
+        df_cpd_agg.drop(['pert_iname', 'Metadata_mmoles_per_liter', 'Metadata_dose_recode'], axis = 1, inplace = True)
         dose_moa_list = df_dose['moa'].unique().tolist()
         #get the median of the corr values of the cpds for each MOA
         dose_moa_med_score, dose_moa_cpds = get_median_score(dose_moa_list, df_dose, df_cpd_agg)
@@ -389,6 +384,9 @@ def get_moa_medianscores(df_moa):
 
 
 data_moa_med_score = get_moa_medianscores(df_moa)
+
+print(data_moa_med_score.shape)
+data_moa_med_score.head()
 
 
 # ### - Exclude MOAs with median score 1 and only null values and  also columns with only null values
@@ -436,8 +434,8 @@ data_moa_medians = exclude_moa(data_moa_med_score)
 # In[21]:
 
 
-##228 MOAs with median values corresponding to correlation btw their cpds
-data_moa_medians.shape
+print(data_moa_medians.shape)
+data_moa_medians.head()
 
 
 # In[22]:

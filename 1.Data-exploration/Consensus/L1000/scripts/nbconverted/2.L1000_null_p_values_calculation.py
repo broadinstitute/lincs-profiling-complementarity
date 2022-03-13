@@ -343,6 +343,45 @@ def calc_null_dist_median_scores(data_moa, dose_num, moa_cpds_list):
         median_corr_list.append(median_corr_val)
     return median_corr_list
 
+def get_median_score(moa_list, df_dose, df_cpd_agg):
+    
+    """
+    Get the correlation values between compounds of each MOA, 
+    then calculate the median of these correlation values 
+    and assign it as the "median score" of the MOA.
+    
+    params: 
+    moa_list: list of distinct moas for a particular dose
+    df_dose: merged consensus and moa dataframe of a partcular dose
+    df_dose_corr: merged consensus and moa dataframe of compound correlations of a particular dose
+
+    Returns:
+    moa_median_score: Dict with moa as the keys, and their median scores as the values
+    moa_cpds: Dict with moa as the keys, and the list of moa for each moa as the values
+    
+    """
+    
+    moa_cpds = {}
+    moa_median_score = {}
+    for moa in moa_list:
+        cpds = df_dose['pert_iname'][df_dose['moa'] == moa].unique().tolist()
+        moa_cpds[moa] = cpds
+        ##taking correlation btw cpds for each MOA
+        df_cpds = df_cpd_agg.loc[cpds]
+        cpds_corr = df_cpds.transpose().corr(method = 'spearman')
+        if len(cpds) == 1:
+            median_val = 1
+        else:
+            cpds_corr.index.name = "pert_iname_compare"
+            cpds_corr = cpds_corr.reset_index().melt(id_vars="pert_iname_compare", value_name="spearman_corr")
+            cpds_corr = cpds_corr.assign(keep_me_diff_comparison = cpds_corr.pert_iname_compare != cpds_corr.pert_iname)
+            cpds_corr = cpds_corr.query("keep_me_diff_comparison")
+            median_val = cpds_corr.spearman_corr.median()
+
+        moa_median_score[moa] = median_val
+        
+    return moa_median_score, moa_cpds
+
 
 # In[31]:
 

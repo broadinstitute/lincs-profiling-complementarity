@@ -81,7 +81,7 @@ panel_a1_gg <- (
     + xlab("PCA 1")
     + ylab("PCA 2")
     + scale_shape_manual("Pass threshold", values = c("FALSE" = 3, "TRUE" = 16))
-    + scale_color_gradient(name = "Median\npairwise\nPearson\ncorrelation", limits = c(min(pca_df$median_score), 1),
+    + scale_color_gradient(name = "Median\npairwise\nSpearman\ncorrelation", limits = c(min(pca_df$median_score), 1),
                            low = "black", high = "red", na.value = "grey")
     + guides(shape = guide_legend(override.aes = list(alpha = 1, color = "black", size = 2)))
 )
@@ -100,7 +100,7 @@ panel_a2_gg <- (
     + xlab("PCA 3")
     + ylab("PCA 2")
     + scale_shape_manual("Pass threshold", values = c("FALSE" = 3, "TRUE" = 16))
-    + scale_color_gradient(name = "Median\npairwise\nPearson\ncorrelation", limits = c(min(pca_df$median_score), 1),
+    + scale_color_gradient(name = "Median\npairwise\nSpearman\ncorrelation", limits = c(min(pca_df$median_score), 1),
                            low = "black", high = "red", na.value = "grey")
     + guides(shape = guide_legend(override.aes = list(alpha = 1, color = "black", size = 2)))
 )
@@ -119,7 +119,7 @@ panel_b1_gg <- (
     + xlab("PCA 1")
     + ylab("PCA 2")
     + scale_shape_manual("Pass threshold", values = c("FALSE" = 3, "TRUE" = 16))
-    + scale_color_gradient(name = "Median\npairwise\nPearson\ncorrelation", limits = c(min(pca_df$median_score), 1),
+    + scale_color_gradient(name = "Median\npairwise\nSpearman\ncorrelation", limits = c(min(pca_df$median_score), 1),
                            low = "black", high = "red", na.value = "grey")
     + guides(shape = guide_legend(override.aes = list(alpha = 1, color = "black", size = 2)))
 )
@@ -138,7 +138,7 @@ panel_b2_gg <- (
     + xlab("PCA 3")
     + ylab("PCA 2")
     + scale_shape_manual("Pass threshold", values = c("FALSE" = 3, "TRUE" = 16))
-    + scale_color_gradient(name = "Median\npairwise\nPearson\ncorrelation", limits = c(min(pca_df$median_score), 1),
+    + scale_color_gradient(name = "Median\npairwise\nSpearman\ncorrelation", limits = c(min(pca_df$median_score), 1),
                        low = "black", high = "red", na.value = "grey")
     + guides(shape = guide_legend(override.aes = list(alpha = 1, color = "black", size = 2)))
 )

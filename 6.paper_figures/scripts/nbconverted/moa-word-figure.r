@@ -12,8 +12,11 @@ extensions <- c(".png", ".pdf")
 
 results_dir <- file.path("../1.Data-exploration/Consensus/")
 
-pm_cellpainting_list <- load_percent_matching(assay = "cellpainting", results_dir = results_dir)
-pm_l1000_list <- load_percent_matching(assay = "l1000", results_dir = results_dir)
+# To add analysis facet of all dose percent matching
+updated_dose_order <- c(dose_order, "All")
+
+pm_cellpainting_list <- load_percent_matching(assay = "cellpainting", results_dir = results_dir, append_all_dose = TRUE)
+pm_l1000_list <- load_percent_matching(assay = "l1000", results_dir = results_dir, append_all_dose = TRUE)
 
 print(dim(pm_cellpainting_list[["percent_matching"]]))
 print(dim(pm_l1000_list[["percent_matching"]]))
@@ -45,7 +48,7 @@ pm_df <- pm_df %>%
     dplyr::mutate(pass_thresh = p_value < p_val_alpha_thresh) %>%
     dplyr::mutate(neg_log_10_p_val = -log10(p_value))
 
-pm_df$dose <- factor(pm_df$dose, levels = dose_order)
+pm_df$dose <- factor(pm_df$dose, levels = updated_dose_order)
 
 pm_df$neg_log_10_p_val[pm_df$neg_log_10_p_val == Inf] = 3.5
 
@@ -154,8 +157,8 @@ plot_ready_pm_df <- pm_df %>%
     )
 
 moa_labels <- c("None", "L1000", "Cell Painting", "Both")
+moa_colors <- c("lightgrey", "#8AA7F0", "#F0C178", "#DF74F0")
 
-moa_colors <- unique(plot_ready_pm_df$moa_color_passing)
 names(moa_colors) <- moa_labels
 names(moa_labels) <- moa_labels
 
@@ -201,7 +204,7 @@ precision_file <- file.path("..", "1.Data-exploration", "results", "moa_target_p
 
 precision_cols <- readr::cols(
   drug_impact = readr::col_character(),
-  dose = readr::col_double(),
+  dose = readr::col_character(),
   avg_precision = readr::col_double(),
   impact_category = readr::col_character(),
   assay = readr::col_character()
@@ -209,29 +212,53 @@ precision_cols <- readr::cols(
 
 # Load and process data for plotting
 precision_df <- readr::read_tsv(precision_file, col_types = precision_cols) %>%
-    reshape2::dcast(drug_impact+dose+impact_category~assay, value.var = "avg_precision") %>%
+    reshape2::dcast(drug_impact+dose+impact_category+dose_comparison~assay, value.var = "avg_precision") %>%
     dplyr::arrange(desc(L1000))
 
-precision_df$dose <- dplyr::recode_factor(precision_df$dose, !!!dose_rename)
-precision_df$dose <- factor(precision_df$dose, levels = dose_order)
+# Separate the dose comparison and recode dose separately
+same_dose_precision_df <- precision_df %>%
+    dplyr::filter(dose_comparison == "same_dose")
+
+same_dose_precision_df$dose <- as.numeric(paste(same_dose_precision_df$dose))
+same_dose_precision_df$dose <- dplyr::recode_factor(same_dose_precision_df$dose, !!!dose_rename)
+
+precision_df <- dplyr::bind_rows(
+    same_dose_precision_df,
+    precision_df %>%
+        dplyr::filter(dose_comparison != "same_dose")
+    ) %>%
+    tidyr::drop_na()
+
+precision_df$dose <- factor(precision_df$dose, levels = updated_dose_order)
 
 impact_recode <- c("moa" = "MOA", "target" = "Gene target")
 precision_df$impact_category <- dplyr::recode_factor(precision_df$impact_category, !!!impact_recode)
 precision_df$impact_category <- factor(precision_df$impact_category, levels = impact_recode)
 
+print(dim(precision_df))
 head(precision_df, 5)
 
 # Merge precision scores and percent matching
 precision_melt_df <- precision_df %>%
     dplyr::filter(impact_category == 'MOA') %>%
-    reshape2::melt(id.vars = c("drug_impact", "dose", "impact_category"), variable.name = "assay", value.name = "avg_precision") 
+    reshape2::melt(
+        id.vars = c("drug_impact", "dose", "impact_category"),
+        variable.name = "assay",
+        value.name = "avg_precision"
+    ) 
 
 precision_melt_df$assay <- dplyr::recode_factor(precision_melt_df$assay, "cell_painting" = "Cell Painting")
 precision_melt_df <- precision_melt_df %>%
     dplyr::inner_join(dplyr::bind_rows(cell_painting_pm_df, l1000_pm_df), by = c("drug_impact" = "moa", "dose" = "dose", "assay" = "assay"))
 
-precision_melt_df$dose <- factor(precision_melt_df$dose, levels = dose_order)
+precision_melt_df$dose <- factor(precision_melt_df$dose, levels = updated_dose_order)
 
+precision_melt_df$avg_precision <- as.numeric(paste(precision_melt_df$avg_precision))
+
+output_file <- file.path("data", "moa_target_full_avgprecision_matching_score.tsv")
+precision_melt_df %>% readr::write_tsv(output_file)
+
+print(dim(precision_melt_df))
 head(precision_melt_df, 2)
 
 precision_match_gg <- (
@@ -263,7 +290,9 @@ for (use_dose in unique(pm_df$dose)) {
 all_dose_pass_df <- dplyr::bind_rows(all_dose_pass_df) %>%
     reshape2::melt(id.vars = "dose", variable.name = "assay", value.name = "pass_thresh_count")
 
-all_dose_pass_df$dose <- factor(all_dose_pass_df$dose, levels = dose_order)
+all_dose_pass_df$dose <- factor(all_dose_pass_df$dose, levels = updated_dose_order)
+
+all_dose_pass_df
 
 no_match_bar_gg <- (
     ggplot(all_dose_pass_df, aes(x = assay, y = pass_thresh_count))
@@ -283,7 +312,8 @@ no_match_df <- pm_df %>%
     dplyr::filter(pass_neither) %>%
     dplyr::group_by(moa) %>%
     dplyr::mutate(neither_count = n()) %>%
-    dplyr::filter(neither_count >= 6) %>%
+    # 6 doses, plus the "All" comparison
+    dplyr::filter(neither_count >= 7) %>%
     dplyr::select(moa) %>%
     dplyr::distinct()
 
@@ -316,22 +346,26 @@ no_match_gg <- (
     + xlab("Cell Painting MOA Median Pairwise Correlation")
     + ylab("L1000 MOA Median Pairwise Correlation")
     + ggtitle(paste0("Non-matching MOAs in any dose or assay", " (n = ", dim(no_match_scores_df)[1], ")"))
+    + geom_point(color = "red", alpha = 0.8)
     + geom_text_repel(
-        data = subset(no_match_scores_df, moa_logic),
+        data = no_match_scores_df,
         arrow = arrow(length = unit(0.015, "npc")),
         segment.size = 0.7,
         segment.alpha = 0.6,
         size = 3,
         fontface = "italic",
-        box.padding = 0.5,
-        point.padding = 0.25,
+        box.padding = 0.6,
+        point.padding = 0.4,
         aes(
             x = sum_matching_score_cp,
             y = sum_matching_score_l1k,
             label = moa,
         )
     )
-    + geom_point(color = ifelse(moa_logic, "red", "grey50"), alpha = 0.8)
+    + geom_hline(yintercept = 0, color = "blue", linetype = "dashed")
+    + geom_vline(xintercept = 0, color = "blue", linetype = "dashed")
+    + scale_x_continuous(breaks = seq(-0.4, 0.4, 0.2), limits = c(-0.6, 0.6))
+    + scale_y_continuous(breaks = seq(-0.4, 0.4, 0.2), limits = c(-0.6, 0.6))
 )
 
 no_match_gg
@@ -347,9 +381,7 @@ sup_fig_gg <- (
 
 for (extension in extensions) {
     output_file <- paste0(output_figure_base, extension)
-    ggplot2::ggsave(output_file, sup_fig_gg, width = 15., height = 13, dpi = 500)
+    ggplot2::ggsave(output_file, sup_fig_gg, width = 14.5, height = 13, dpi = 500)
 }
 
 sup_fig_gg
-
-
