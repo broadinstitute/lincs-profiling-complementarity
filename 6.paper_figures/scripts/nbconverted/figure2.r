@@ -12,8 +12,11 @@ extensions <- c(".png", ".pdf")
 
 results_dir <- file.path("../1.Data-exploration/Consensus/")
 
-pm_cellpainting_list <- load_percent_matching(assay = "cellpainting", results_dir = results_dir)
-pm_l1000_list <- load_percent_matching(assay = "l1000", results_dir = results_dir)
+# To add analysis facet of all dose percent matching
+updated_dose_order <- c(dose_order, "All")
+
+pm_cellpainting_list <- load_percent_matching(assay = "cellpainting", results_dir = results_dir, append_all_dose = TRUE)
+pm_l1000_list <- load_percent_matching(assay = "l1000", results_dir = results_dir, append_all_dose = TRUE)
 
 print(dim(pm_cellpainting_list[["percent_matching"]]))
 print(dim(pm_l1000_list[["percent_matching"]]))
@@ -45,7 +48,7 @@ pm_df <- pm_df %>%
     dplyr::mutate(pass_thresh = p_value < p_val_alpha_thresh) %>%
     dplyr::mutate(neg_log_10_p_val = -log10(p_value))
 
-pm_df$dose <- factor(pm_df$dose, levels = dose_order)
+pm_df$dose <- factor(pm_df$dose, levels = updated_dose_order)
 
 pm_df$neg_log_10_p_val[pm_df$neg_log_10_p_val == Inf] = 3.5
 
@@ -80,17 +83,18 @@ panel_a_gg <- (
     + geom_hline(linetype = "dashed", color = "blue", yintercept = plot_thresh)
     + theme_bw()
     + figure_theme
-    + scale_color_continuous("Number of\ncompounds\nper MOA", values = scales::rescale(c(0, 2, 4, 6, 8, 15, 30)), type = "viridis")
+    + scale_color_continuous("Number of\ncompounds\nper MOA", values = scales::rescale(c(0, 2, 4, 6, 8, 15, 150)), type = "viridis")
     + xlab("Median pairwise Spearman correlation between\ncompound profiles of the same mechanism of action (MOA)")
     + ylab("Non-parametric -log10 p value")
+    + scale_x_continuous(breaks = seq(-0.2, 0.8, 0.4), limits = c(-0.3, 0.8))
 )
 
 panel_a_gg
 
 results_dir <- file.path("../1.Data-exploration/Consensus/")
 
-pm_cellpainting_list <- load_percent_matching(assay = "cellpainting", results_dir = results_dir)
-pm_l1000_list <- load_percent_matching(assay = "l1000", results_dir = results_dir)
+pm_cellpainting_list <- load_percent_matching(assay = "cellpainting", results_dir = results_dir, append_all_dose = TRUE)
+pm_l1000_list <- load_percent_matching(assay = "l1000", results_dir = results_dir, append_all_dose = TRUE)
 
 cell_painting_pm_df <- pm_cellpainting_list[["percent_matching"]] %>%
     dplyr::filter(no_of_replicates >= no_replicates_thresh)
@@ -111,7 +115,7 @@ pm_df <- pm_df %>%
     dplyr::mutate(pass_thresh = p_value < p_val_alpha_thresh) %>%
     dplyr::mutate(neg_log_10_p_val = -log10(p_value))
 
-pm_df$dose <- factor(pm_df$dose, levels = dose_order)
+pm_df$dose <- factor(pm_df$dose, levels = updated_dose_order)
 
 pm_df$neg_log_10_p_val[pm_df$neg_log_10_p_val == Inf] = 3.5
 
@@ -223,6 +227,22 @@ summary_df <- pm_df %>%
 
 head(summary_df, 3)
 
+summary_df %>%
+    dplyr::group_by(dose) %>%
+    dplyr::mutate(
+        num_pass_cellpainting = sum(pass_cellpainting_thresh),
+        num_pass_l1000 = sum(pass_l1000_thresh),
+        num_pass_both = sum(pass_both)
+    ) %>%
+    dplyr::ungroup() %>%
+    dplyr::select(dose, num_pass_cellpainting, num_pass_l1000, num_pass_both) %>%
+    dplyr::distinct() %>%
+    dplyr::mutate(
+        unique_pass_cellpainting = num_pass_cellpainting - num_pass_both,
+        unique_pass_l1000 = num_pass_l1000 - num_pass_both
+    ) %>%
+    dplyr::arrange(dose)
+
 pass_thresh_summary_moa_df <- summary_df %>%
     dplyr::group_by(dose) %>%
     dplyr::mutate(
@@ -236,7 +256,8 @@ pass_thresh_summary_moa_df <- summary_df %>%
     dplyr::mutate(
         unique_pass_cellpainting = num_pass_cellpainting - num_pass_both,
         unique_pass_l1000 = num_pass_l1000 - num_pass_both
-    )
+    ) %>%
+    dplyr::arrange(dose)
 
 cell_painting_moa_rect <- pass_thresh_summary_moa_df %>%
     dplyr::select(dose, num_pass_cellpainting, unique_pass_cellpainting, num_pass_both) %>%
@@ -296,10 +317,19 @@ num_pass_both_moa_text <- full_moa_rect %>%
 total_moas <- length(unique(summary_df$moa))
 total_moas
 
+moa_count_summary_per_dose <- summary_df %>%
+    dplyr::group_by(dose) %>%
+    dplyr::mutate(total_moa_count = length(unique(moa))) %>%
+    dplyr::select(dose, total_moa_count) %>%
+    dplyr::distinct()
+
+moa_count_summary_per_dose
+
 percentile_pass_moa_df <- pass_thresh_summary_moa_df %>%
+    dplyr::left_join(moa_count_summary_per_dose, by = "dose") %>%
     dplyr::mutate(
         num_pass_total = unique_pass_l1000 + unique_pass_cellpainting + num_pass_both,
-        num_pass_percentile = paste("Total:\n", round(num_pass_total / total_moas, 2) * 100, "%")
+        num_pass_percentile = paste("Total:\n", round(num_pass_total / total_moa_count, 2) * 100, "%")
     ) %>%
     dplyr::select(dose, num_pass_total, num_pass_percentile)
 
@@ -310,6 +340,8 @@ full_moa_rect <- full_moa_rect %>%
     dplyr::left_join(percentile_pass_moa_df, by = "dose")
 
 full_moa_rect$assay <- factor(full_moa_rect$assay, levels = c("L1000", "Both", "Cell Painting"))
+full_moa_rect$dose <- factor(full_moa_rect$dose, levels = updated_dose_order)
+num_pass_both_moa_text$dose <- factor(num_pass_both_moa_text$dose, levels = updated_dose_order)
 
 updated_assay_colors <- c(assay_colors, "Both" = "#DF74F0") 
 
@@ -345,7 +377,7 @@ panel_c_gg <- (
         data = full_moa_rect %>% dplyr::filter(assay == "L1000"),
         aes(
             x = xmin_bar + 0.5,
-            y = ymax_bar + 2,
+            y = ymax_bar + 6,
             label = num_pass_percentile
         ),
         size = 3
@@ -359,7 +391,7 @@ panel_c_gg <- (
     )
     + ylab("Number of MOAs over 95% threshold\nof scores from matched null MOA median scores")
     + xlab("")
-    + ylim(0, max(full_moa_rect$num_pass_total, na.rm = TRUE) + 5)
+    + ylim(0, max(full_moa_rect$num_pass_total, na.rm = TRUE) + 10)
 )
 
 panel_c_gg
@@ -369,7 +401,7 @@ precision_file <- file.path("..", "1.Data-exploration", "results", "moa_target_p
 
 precision_cols <- readr::cols(
   drug_impact = readr::col_character(),
-  dose = readr::col_double(),
+  dose = readr::col_character(),
   avg_precision = readr::col_double(),
   impact_category = readr::col_character(),
   assay = readr::col_character()
@@ -377,16 +409,30 @@ precision_cols <- readr::cols(
 
 # Load and process data for plotting
 precision_df <- readr::read_tsv(precision_file, col_types = precision_cols) %>%
-    reshape2::dcast(drug_impact+dose+impact_category~assay, value.var = "avg_precision") %>%
+    reshape2::dcast(drug_impact+dose+impact_category+dose_comparison~assay, value.var = "avg_precision") %>%
     dplyr::arrange(desc(L1000))
 
-precision_df$dose <- dplyr::recode_factor(precision_df$dose, !!!dose_rename)
-precision_df$dose <- factor(precision_df$dose, levels = dose_order)
+# Separate the dose comparison and recode dose separately
+same_dose_precision_df <- precision_df %>%
+    dplyr::filter(dose_comparison == "same_dose")
+
+same_dose_precision_df$dose <- as.numeric(paste(same_dose_precision_df$dose))
+same_dose_precision_df$dose <- dplyr::recode_factor(same_dose_precision_df$dose, !!!dose_rename)
+
+precision_df <- dplyr::bind_rows(
+    same_dose_precision_df,
+    precision_df %>%
+        dplyr::filter(dose_comparison != "same_dose")
+    ) %>%
+    tidyr::drop_na()
+
+precision_df$dose <- factor(precision_df$dose, levels = updated_dose_order)
 
 impact_recode <- c("moa" = "Compound mechanism of action (MOA)", "target" = "Gene target")
 precision_df$impact_category <- dplyr::recode_factor(precision_df$impact_category, !!!impact_recode)
 precision_df$impact_category <- factor(precision_df$impact_category, levels = impact_recode)
 
+print(dim(precision_df))
 head(precision_df, 5)
 
 dose_colors <- c(
@@ -395,10 +441,12 @@ dose_colors <- c(
     "0.37 uM" = "#EBCC2A",
     "1.11 uM" = "#E1AF00",
     "3.33 uM" = "#F21A00",
-    "10 uM" = "black"
+    "10 uM" = "#8B008B",
+    "All" = "black"
 )
 
-panel_d_df <- precision_df %>% dplyr::filter(impact_category == "Compound mechanism of action (MOA)")
+panel_d_df <- precision_df %>%
+    dplyr::filter(impact_category == "Compound mechanism of action (MOA)")
 
 color_logic <- (
     panel_d_df$L1000 > 0.60 |
@@ -412,8 +460,6 @@ panel_d_gg <- (
     + figure_theme
     + xlab("Cell Painting average precision")
     + ylab("L1000 average precision")
-    + ylim(-0.1, 1.2)
-    + xlim(-0.1, 1.2)
     + geom_text_repel(
         data = subset(panel_d_df, color_logic),
         arrow = arrow(length = unit(0.015, "npc")),
@@ -431,6 +477,8 @@ panel_d_gg <- (
     )
     + geom_point(alpha = 0.8)
     + scale_color_manual(name = "Dose", values = dose_colors)
+    + scale_x_continuous(breaks = seq(0, 1, 0.2), limits = c(0, 1.2))
+    + scale_y_continuous(breaks = seq(0, 1, 0.2), limits = c(0, 1.2))
     + guides(
         color = guide_legend(override.aes = list(size = 4, alpha = 1)),
         text = guide_legend(override.aes = list(alpha = 0))
@@ -442,8 +490,8 @@ panel_d_gg
 panel_e_df <- precision_df %>% dplyr::filter(impact_category == "Gene target")
 
 color_logic <- (
-    panel_e_df$L1000 > 0.9 |
-    panel_e_df$cell_painting > 0.9
+    panel_e_df$L1000 > 0.85 |
+    panel_e_df$cell_painting > 0.85
     )
 
 panel_e_gg <- (
@@ -453,8 +501,6 @@ panel_e_gg <- (
     + figure_theme
     + xlab("Cell Painting average precision")
     + ylab("L1000 average precision")
-    + ylim(-0.1, 1.2)
-    + xlim(-0.1, 1.2)
     + geom_text_repel(
         data = subset(panel_e_df, color_logic),
         arrow = arrow(length = unit(0.015, "npc")),
@@ -472,6 +518,8 @@ panel_e_gg <- (
     )
     + geom_point(alpha = 0.8)
     + scale_color_manual(name = "Dose", values = dose_colors)
+    + scale_x_continuous(breaks = seq(0, 1, 0.2), limits = c(0, 1.2))
+    + scale_y_continuous(breaks = seq(0, 1, 0.2), limits = c(0, 1.2))
     + guides(
         color = guide_legend(override.aes = list(size = 4, alpha = 1)),
         text = guide_legend(override.aes = list(alpha = 0))
