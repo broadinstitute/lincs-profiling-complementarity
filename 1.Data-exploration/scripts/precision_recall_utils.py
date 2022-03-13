@@ -125,7 +125,9 @@ def categorize_comparisons(cor_row, moa_col="moa", target_col="Metadata_target")
     return result
 
 
-def process_precision_matching(results_df, dose_col="Metadata_dose_recode"):
+def process_precision_matching(
+    results_df, compare_within_dose=True, dose_col="Metadata_dose_recode"
+):
     """
     Given an elongated correlation metrics with same MOA and target mapping,
     output average precision
@@ -134,6 +136,8 @@ def process_precision_matching(results_df, dose_col="Metadata_dose_recode"):
     ----------
     results_df - pandas.core.frame.DataFrame
         The elongated correlation matrix with matching column details
+    compare_within_dose - boolean
+        If True, compare MOAs and targets within doses. If False, only look within dose
     dose_col - str
         Which column represents dose in the results_df
 
@@ -142,9 +146,17 @@ def process_precision_matching(results_df, dose_col="Metadata_dose_recode"):
     precision_df
         A pandas dataframe storing the precision per MOA and target
     """
+
+    if compare_within_dose:
+        moa_groupby_cols = ["moa", dose_col]
+        target_groupby_cols = ["Metadata_target", dose_col]
+    else:
+        moa_groupby_cols = ["moa"]
+        target_groupby_cols = ["Metadata_target"]
+
     # Get precision scores for moa
     moa_precision_df = (
-        results_df.groupby(["moa", dose_col])
+        results_df.groupby(moa_groupby_cols)
         .apply(
             lambda x: average_precision_score(
                 y_true=x.match_moa.astype(int), y_score=x.correlation
@@ -157,7 +169,7 @@ def process_precision_matching(results_df, dose_col="Metadata_dose_recode"):
 
     # Get precision scores for target
     target_precision_df = (
-        results_df.groupby(["Metadata_target", dose_col])
+        results_df.groupby(target_groupby_cols)
         .apply(
             lambda x: average_precision_score(
                 y_true=x.match_target.astype(int), y_score=x.correlation
