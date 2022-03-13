@@ -305,7 +305,7 @@ def get_median_score(moa_list, df_dose, df_cpd_agg):
     df_dose_corr: merged consensus and moa dataframe of compound correlations of a particular dose
 
     Returns:
-    moa_med_score: Dict with moa as the keys, and their median scores as the values
+    moa_median_score: Dict with moa as the keys, and their median scores as the values
     moa_cpds: Dict with moa as the keys, and the list of moa for each moa as the values
     
     """
@@ -317,11 +317,15 @@ def get_median_score(moa_list, df_dose, df_cpd_agg):
         moa_cpds[moa] = cpds
         ##taking correlation btw cpds for each MOA
         df_cpds = df_cpd_agg.loc[cpds]
-        cpds_corr = df_cpds.T.corr(method = 'spearman').values
-        if len(cpds_corr) == 1:
+        cpds_corr = df_cpds.transpose().corr(method = 'spearman')
+        if len(cpds) == 1:
             median_val = 1
         else:
-            median_val = median(list(cpds_corr[np.triu_indices(len(cpds_corr), k = 1)]))
+            cpds_corr.index.name = "pert_iname_compare"
+            cpds_corr = cpds_corr.reset_index().melt(id_vars="pert_iname_compare", value_name="spearman_corr")
+            cpds_corr = cpds_corr.assign(keep_me_diff_comparison = cpds_corr.pert_iname_compare != cpds_corr.pert_iname)
+            cpds_corr = cpds_corr.query("keep_me_diff_comparison")
+            median_val = cpds_corr.spearman_corr.median()
 
         moa_median_score[moa] = median_val
         
@@ -374,13 +378,12 @@ def get_moa_medianscores(df_moa):
     
     """
     dose_list = list(set(df_moa['dose'].unique().tolist()))
-    
     for dose in dose_list:
         df_dose = df_moa[df_moa['dose'] == dose].copy()
-        df_cpd_agg = df_dose.groupby(['pert_iname']).agg(['mean'])
-        df_cpd_agg.columns  = df_cpd_agg.columns.droplevel(1)
-        df_cpd_agg.rename_axis(None, axis=0, inplace = True)
-        df_cpd_agg.drop(['dose'], axis = 1, inplace = True)
+        df_cpd_agg = df_dose.groupby(['pert_iname']).agg(['mean']).reset_index()
+        df_cpd_agg.index = df_cpd_agg.pert_iname
+
+        df_cpd_agg.drop(['pert_iname', 'dose'], axis = 1, inplace = True)
         dose_moa_list = df_dose['moa'].unique().tolist()
         #get the median of the corr values of the cpds for each MOA
         dose_moa_med_score, dose_moa_cpds = get_median_score(dose_moa_list, df_dose, df_cpd_agg)
