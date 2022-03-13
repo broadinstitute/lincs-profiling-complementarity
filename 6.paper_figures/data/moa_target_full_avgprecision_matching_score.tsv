@@ -1,0 +1,1929 @@
+drug_impact	dose	impact_category	assay	avg_precision	no_of_replicates	matching_score
+proteasome inhibitor	3.33 uM	MOA	Cell Painting	0.909385521885522	4	0.5364523492969862
+proteasome inhibitor	10 uM	MOA	Cell Painting	0.924242424242424	4	0.5921636286259633
+hsp inhibitor	3.33 uM	MOA	Cell Painting	0.132617243891127	5	0.3674167692548067
+hsp inhibitor	10 uM	MOA	Cell Painting	0.125992570591992	5	0.3227394150762182
+mek inhibitor	3.33 uM	MOA	Cell Painting	0.586587532151529	8	0.4099457923183255
+mek inhibitor	10 uM	MOA	Cell Painting	0.577348516756277	8	0.4296945634488759
+mek inhibitor	1.11 uM	MOA	Cell Painting	0.627709150980529	8	0.37847732277633084
+mdm inhibitor	10 uM	MOA	Cell Painting	0.239643784135179	3	0.22218662439118134
+mek inhibitor	0.37 uM	MOA	Cell Painting	0.584314879152282	8	0.3323275691232261
+glucocorticoid receptor agonist	1.11 uM	MOA	Cell Painting	0.456471442751366	14	0.3683398183171005
+glucocorticoid receptor agonist	0.37 uM	MOA	Cell Painting	0.416682765887259	14	0.3651532862994547
+glucocorticoid receptor agonist	3.33 uM	MOA	Cell Painting	0.597912702285089	14	0.3672822242462069
+mtor inhibitor	1.11 uM	MOA	Cell Painting	0.312700652903046	6	0.3099254511122797
+hsp inhibitor	1.11 uM	MOA	Cell Painting	0.210213863575395	5	0.35699523197632943
+mtor inhibitor	0.37 uM	MOA	Cell Painting	0.459400240053174	6	0.3663088656832304
+glucocorticoid receptor agonist	0.12 uM	MOA	Cell Painting	0.579062367977948	14	0.3459664919953673
+mtor inhibitor	3.33 uM	MOA	Cell Painting	0.375501774296256	6	0.3046217619111401
+glucocorticoid receptor agonist	0.04 uM	MOA	Cell Painting	0.506951183680416	14	0.32076217116691647
+proteasome inhibitor	1.11 uM	MOA	Cell Painting	0.808056198187777	4	0.5107888402056746
+hdac inhibitor	10 uM	MOA	Cell Painting	0.155039579049816	13	0.07651824844125704
+mtor inhibitor	10 uM	MOA	Cell Painting	0.238025303763134	6	0.330449092975246
+glucocorticoid receptor agonist	10 uM	MOA	Cell Painting	0.299628781186266	14	0.35110486839552696
+plk inhibitor	0.12 uM	MOA	Cell Painting	0.883882783882784	4	0.5872633027724714
+mtor inhibitor	0.12 uM	MOA	Cell Painting	0.218617164313191	6	0.24749596986488717
+proteasome inhibitor	0.37 uM	MOA	Cell Painting	0.591849415204678	4	0.4191919257385207
+plk inhibitor	1.11 uM	MOA	Cell Painting	1	4	0.6029968875628768
+mek inhibitor	0.12 uM	MOA	Cell Painting	0.23380810983048	8	0.22201471573434242
+plk inhibitor	0.37 uM	MOA	Cell Painting	0.972027972027972	4	0.5851894216596509
+mtor inhibitor|pi3k inhibitor	3.33 uM	MOA	Cell Painting	0.308549509635752	4	0.22968911305125414
+mtor inhibitor|pi3k inhibitor	10 uM	MOA	Cell Painting	0.169288820035115	4	0.20918226338842966
+hsp inhibitor	0.37 uM	MOA	Cell Painting	0.155796212622641	5	0.29158124824503484
+xiap inhibitor	10 uM	MOA	Cell Painting	0.0578686764445278	3	0.21445113623673434
+hdac inhibitor	3.33 uM	MOA	Cell Painting	0.116466272672189	13	0.07193794099318841
+plk inhibitor	3.33 uM	MOA	Cell Painting	1	4	0.6414705469931521
+mdm inhibitor	3.33 uM	MOA	Cell Painting	0.36375049934372	3	0.21144117110341992
+mtor inhibitor	0.04 uM	MOA	Cell Painting	0.147814177145829	6	0.2106155766144697
+mtor inhibitor|pi3k inhibitor	1.11 uM	MOA	Cell Painting	0.333164598760209	4	0.2153633513097417
+hdac inhibitor	1.11 uM	MOA	Cell Painting	0.124801396575168	13	0.04205311389866659
+plk inhibitor	0.04 uM	MOA	Cell Painting	1	4	0.6104446984996958
+hsp inhibitor	0.12 uM	MOA	Cell Painting	0.0744826388753526	5	0.06179563575806861
+mtor inhibitor|pi3k inhibitor	0.37 uM	MOA	Cell Painting	0.222935204167468	4	0.15742047366097622
+cdk inhibitor	10 uM	MOA	Cell Painting	0.285400686507956	7	0.26606586473658284
+tubulin inhibitor	3.33 uM	MOA	Cell Painting	0.184686475755964	8	0.3050076376240948
+cannabinoid receptor agonist	10 uM	MOA	Cell Painting	0.00199319971151629	3	-0.024013931759099435
+xiap inhibitor	0.37 uM	MOA	Cell Painting	0.723809523809524	3	0.26485652250770975
+tubulin inhibitor	10 uM	MOA	Cell Painting	0.215742524327625	8	0.29320251172867334
+plk inhibitor	10 uM	MOA	Cell Painting	0.958333333333333	4	0.6289110187942608
+hdac inhibitor	0.37 uM	MOA	Cell Painting	0.131364211193086	13	0.04522495137420972
+topoisomerase inhibitor	3.33 uM	MOA	Cell Painting	0.0557622827986653	15	0.014873162632232215
+mtor inhibitor|pi3k inhibitor	0.12 uM	MOA	Cell Painting	0.123044355178228	4	0.05596414572970215
+proteasome inhibitor	0.12 uM	MOA	Cell Painting	0.163446827797728	4	0.20090386137490351
+mdm inhibitor	1.11 uM	MOA	Cell Painting	0.342829213796956	3	0.07533133661257488
+xiap inhibitor	3.33 uM	MOA	Cell Painting	0.4710027100271	3	0.26595047838829705
+mek inhibitor	0.04 uM	MOA	Cell Painting	0.0726702443076069	8	0.16943328012062248
+topoisomerase inhibitor	0.37 uM	MOA	Cell Painting	0.0618165748930509	15	0.006252420239452251
+hsp inhibitor	0.04 uM	MOA	Cell Painting	0.0895786517775972	5	0.02379169236146562
+topoisomerase inhibitor	1.11 uM	MOA	Cell Painting	0.0666929331205658	15	0.019936129707703205
+topoisomerase inhibitor	0.12 uM	MOA	Cell Painting	0.0619005499219297	15	0.009568127793505467
+topoisomerase inhibitor	10 uM	MOA	Cell Painting	0.0436417329786565	15	0.039545755832323365
+akt inhibitor	10 uM	MOA	Cell Painting	0.0477676548180214	6	0.1139619401503426
+cdk inhibitor	1.11 uM	MOA	Cell Painting	0.082068027694247	7	0.14310591134634262
+tubulin inhibitor	0.37 uM	MOA	Cell Painting	0.109571654314522	8	0.036374622327798735
+cdk inhibitor	3.33 uM	MOA	Cell Painting	0.126004444774333	7	0.21741848197441696
+topoisomerase inhibitor	0.04 uM	MOA	Cell Painting	0.0443444999619702	15	0.006913620207003219
+bcl inhibitor	10 uM	MOA	Cell Painting	0.0205561473042765	3	0.1814500466252116
+akt inhibitor	3.33 uM	MOA	Cell Painting	0.156819416509343	6	0.013857602029719028
+protein synthesis inhibitor	0.12 uM	MOA	Cell Painting	0.0306826751820506	6	0.010323748559372693
+protein synthesis inhibitor	3.33 uM	MOA	Cell Painting	0.0537380649301237	6	0.017966851343081586
+protein synthesis inhibitor	1.11 uM	MOA	Cell Painting	0.103305818108444	6	0.008003162587566094
+protein synthesis inhibitor	0.04 uM	MOA	Cell Painting	0.00791560064448087	6	0.007533874306028405
+protein synthesis inhibitor	0.37 uM	MOA	Cell Painting	0.107963962877855	6	0.03975504194290166
+protein synthesis inhibitor	10 uM	MOA	Cell Painting	0.0336239097418786	6	0.0011002792311072059
+tubulin inhibitor	1.11 uM	MOA	Cell Painting	0.149953176644889	8	0.10136753869467127
+xiap inhibitor	1.11 uM	MOA	Cell Painting	0.681818181818182	3	0.23679435655426992
+hdac inhibitor	0.12 uM	MOA	Cell Painting	0.0589107071877028	13	0.04439865079986818
+hmgcr inhibitor	10 uM	MOA	Cell Painting	0.0296268765110141	5	0.0495621730644855
+microtubule inhibitor	1.11 uM	MOA	Cell Painting	0.0242637208453812	3	0.029150626204889833
+pi3k inhibitor	10 uM	MOA	Cell Painting	0.0398593818095445	7	0.04761859745777398
+aromatase inhibitor	3.33 uM	MOA	Cell Painting	0.0517073512386131	3	0.13972026456139594
+microtubule inhibitor	0.37 uM	MOA	Cell Painting	0.0920142602495544	3	0.026294844082993624
+adenosine receptor antagonist	1.11 uM	MOA	Cell Painting	0.00363916569719153	4	8.94583260279724e-4
+egfr inhibitor	10 uM	MOA	Cell Painting	0.0554197953594088	13	0.12122376088002812
+dopamine receptor antagonist|serotonin receptor antagonist	10 uM	MOA	Cell Painting	0.0766732946613456	9	0.04975950410698836
+dopamine receptor antagonist|serotonin receptor antagonist	0.04 uM	MOA	Cell Painting	0.0460406836032337	9	-0.004271014123936502
+dopamine receptor antagonist|serotonin receptor antagonist	3.33 uM	MOA	Cell Painting	0.0692052207704776	9	0.02764991523683695
+mtor inhibitor|pi3k inhibitor	0.04 uM	MOA	Cell Painting	0.0497670401049662	4	0.0779713813717694
+dopamine receptor antagonist|serotonin receptor antagonist	0.37 uM	MOA	Cell Painting	0.0473283870891608	9	0.008475057341957762
+dna polymerase inhibitor	3.33 uM	MOA	Cell Painting	0.00182010389204626	3	-0.03605647222561616
+dopamine receptor antagonist|serotonin receptor antagonist	0.12 uM	MOA	Cell Painting	0.0482502820848135	9	0.01801473453050567
+dopamine receptor antagonist	10 uM	MOA	Cell Painting	0.0759585252368283	19	0.04939263403638751
+dopamine receptor antagonist|serotonin receptor antagonist	1.11 uM	MOA	Cell Painting	0.0500479554577959	9	0.011427841375754543
+alk tyrosine kinase receptor inhibitor	3.33 uM	MOA	Cell Painting	0.0105376313629932	3	0.10646183680339674
+dna inhibitor	3.33 uM	MOA	Cell Painting	0.0159909285763969	5	0.021875809816109582
+cyclooxygenase inhibitor|prostanoid receptor antagonist	0.12 uM	MOA	Cell Painting	0.0456912726534911	4	0.02264842068430893
+cyclooxygenase inhibitor|prostanoid receptor antagonist	0.37 uM	MOA	Cell Painting	0.0502849835780865	4	0.0044748442947482306
+cyclooxygenase inhibitor|prostanoid receptor antagonist	3.33 uM	MOA	Cell Painting	0.0417207472317133	4	8.78788985418032e-4
+serotonin receptor agonist|serotonin receptor antagonist	0.37 uM	MOA	Cell Painting	0.0374436673915038	3	0.026709040304276926
+serotonin receptor agonist|serotonin receptor antagonist	0.04 uM	MOA	Cell Painting	0.0427218084139402	3	0.007557213768043629
+serotonin receptor agonist|serotonin receptor antagonist	1.11 uM	MOA	Cell Painting	0.0503704199404384	3	0.03455800309914472
+prostanoid receptor agonist	10 uM	MOA	Cell Painting	0.00863965559596952	3	0.04836067714620764
+egfr inhibitor	3.33 uM	MOA	Cell Painting	0.142688729857482	13	0.1302955749488086
+serotonin receptor agonist|serotonin receptor antagonist	10 uM	MOA	Cell Painting	0.048001445156011	3	0.10465151294048217
+aromatase inhibitor	0.37 uM	MOA	Cell Painting	0.0738939227314537	3	0.22193795219854284
+cyclooxygenase inhibitor|prostanoid receptor antagonist	10 uM	MOA	Cell Painting	0.0392542769629544	4	-0.04395359517895368
+cyclooxygenase inhibitor|prostanoid receptor antagonist	1.11 uM	MOA	Cell Painting	0.0403983085109836	4	-0.00984756247037
+pi3k inhibitor	3.33 uM	MOA	Cell Painting	0.0360888408066451	7	0.03010766296535572
+dopamine receptor antagonist	3.33 uM	MOA	Cell Painting	0.0425126501033502	19	0.01808917997718743
+adrenergic receptor antagonist	1.11 uM	MOA	Cell Painting	0.0327443041175842	31	0.006356362262147955
+adrenergic receptor antagonist	0.37 uM	MOA	Cell Painting	0.0345774923077802	31	0.009023008927191614
+cyclooxygenase inhibitor	0.12 uM	MOA	Cell Painting	0.0319670972046537	27	0.010191237151493292
+serotonin receptor agonist|serotonin receptor antagonist	3.33 uM	MOA	Cell Painting	0.043189723973857	3	0.06493828753369112
+adrenergic receptor antagonist	3.33 uM	MOA	Cell Painting	0.0339492376626251	31	0.005774187425717837
+cyclooxygenase inhibitor	0.37 uM	MOA	Cell Painting	0.0307216089560697	27	0.00400335097682829
+dna polymerase inhibitor	10 uM	MOA	Cell Painting	0.00284313850795233	3	0.02592736056070796
+cyclooxygenase inhibitor|prostanoid receptor antagonist	0.04 uM	MOA	Cell Painting	0.0480786130566374	4	0.0017120524339023706
+adrenergic receptor antagonist	10 uM	MOA	Cell Painting	0.0355733814108854	31	0.017612812912331202
+cyclooxygenase inhibitor	3.33 uM	MOA	Cell Painting	0.0296153327371648	27	4.176112750408031e-4
+dopamine receptor antagonist	0.04 uM	MOA	Cell Painting	0.0289800192721989	19	0.013710181290233398
+cyclooxygenase inhibitor	1.11 uM	MOA	Cell Painting	0.0302423214200622	27	0.0026671893922145143
+dopamine receptor antagonist	0.37 uM	MOA	Cell Painting	0.0308200007333156	19	0.006587048682550403
+cyclooxygenase inhibitor	10 uM	MOA	Cell Painting	0.0293456702662929	27	0.008501636504501696
+hdac inhibitor	0.04 uM	MOA	Cell Painting	0.0236892424236777	13	0.011561508952758679
+serotonin receptor agonist|serotonin receptor antagonist	0.12 uM	MOA	Cell Painting	0.0482102826757882	3	0.04960464545757134
+adrenergic receptor antagonist	0.12 uM	MOA	Cell Painting	0.0335474054970529	31	0.009110430087823206
+adrenergic receptor antagonist	0.04 uM	MOA	Cell Painting	0.0369368245748569	31	0.011885553217579345
+dopamine receptor antagonist	1.11 uM	MOA	Cell Painting	0.0291742689763308	19	0.005111161255271804
+cyclooxygenase inhibitor	0.04 uM	MOA	Cell Painting	0.0307153614210844	27	0.0017630000888233886
+tubulin inhibitor	0.12 uM	MOA	Cell Painting	0.0550268031924564	8	0.03941576045631294
+dopamine receptor antagonist	0.12 uM	MOA	Cell Painting	0.0302925895401224	19	-0.001498395727189042
+phosphodiesterase inhibitor	0.37 uM	MOA	Cell Painting	0.0293691063267355	28	0.0075949142362407
+phosphodiesterase inhibitor	1.11 uM	MOA	Cell Painting	0.0310311933896925	28	0.010289807960808386
+phosphodiesterase inhibitor	0.04 uM	MOA	Cell Painting	0.0306353642279919	28	0.007999917226326574
+nucleoside reverse transcriptase inhibitor	3.33 uM	MOA	Cell Painting	0.00441680897721297	4	0.006697956327044831
+phosphodiesterase inhibitor	3.33 uM	MOA	Cell Painting	0.0316942259225795	28	0.010500959998663968
+prostanoid receptor antagonist	0.04 uM	MOA	Cell Painting	0.00828896087543132	3	-0.04396586988148156
+phosphodiesterase inhibitor	10 uM	MOA	Cell Painting	0.033441471910131	28	0.01871649584188156
+histamine receptor antagonist	0.37 uM	MOA	Cell Painting	0.0250821310264686	24	0.007205776210441034
+histamine receptor antagonist	0.12 uM	MOA	Cell Painting	0.0236833356201671	24	0.007805857062870054
+acat inhibitor	3.33 uM	MOA	Cell Painting	0.00542229621132913	3	-0.10149004542821634
+phosphodiesterase inhibitor	0.12 uM	MOA	Cell Painting	0.0317711257348072	28	0.013802077576337054
+serotonin receptor antagonist	10 uM	MOA	Cell Painting	0.0379514683724926	12	0.04626586417665666
+matrix metalloprotease inhibitor	10 uM	MOA	Cell Painting	0.0217839196307003	3	0.11287040724138471
+serotonin receptor antagonist	0.37 uM	MOA	Cell Painting	0.028638074977061	12	0.00201953063253399
+pi3k inhibitor	1.11 uM	MOA	Cell Painting	0.0261875662663041	7	0.011255625206844075
+acetylcholine receptor antagonist	1.11 uM	MOA	Cell Painting	0.0204828250423488	21	0.004113574532043903
+sterol demethylase inhibitor	3.33 uM	MOA	Cell Painting	0.00679932116445477	7	0.003776430138688478
+histamine receptor antagonist	10 uM	MOA	Cell Painting	0.02686482474101	24	0.016887986405726328
+serotonin receptor antagonist	0.04 uM	MOA	Cell Painting	0.0312120848651786	12	0.005230060789545676
+serotonin receptor antagonist	1.11 uM	MOA	Cell Painting	0.0284179467822809	12	0.01045527046947995
+histamine receptor antagonist	1.11 uM	MOA	Cell Painting	0.0218379380737668	24	0.004465699060325722
+serotonin receptor antagonist	3.33 uM	MOA	Cell Painting	0.0317848392442534	12	0.006649004513709474
+sigma receptor antagonist	0.12 uM	MOA	Cell Painting	0.003736084081586	3	-0.010967947113299086
+adrenergic receptor agonist	3.33 uM	MOA	Cell Painting	0.0216545748180382	20	0.0060439453744752375
+acat inhibitor	1.11 uM	MOA	Cell Painting	0.00269078063429828	3	-0.0804719433714995
+rho associated kinase inhibitor	10 uM	MOA	Cell Painting	0.00732502174307839	6	0.06518040052846241
+mdm inhibitor	0.37 uM	MOA	Cell Painting	0.338659538082975	3	0.02200121990528871
+egfr inhibitor	1.11 uM	MOA	Cell Painting	0.109993454903488	13	0.13165772448661728
+acetylcholine receptor antagonist	10 uM	MOA	Cell Painting	0.02460469729127	21	0.02600397434062479
+egfr inhibitor	0.37 uM	MOA	Cell Painting	0.109413547914436	13	0.12803826486715608
+adrenergic receptor agonist	0.37 uM	MOA	Cell Painting	0.0223685649721633	20	0.007998582908235224
+histamine receptor antagonist	3.33 uM	MOA	Cell Painting	0.0242482927895582	24	0.005990784191788863
+adrenergic receptor agonist	0.12 uM	MOA	Cell Painting	0.0196911524909934	20	0.002574939720989639
+fungal squalene epoxidase inhibitor	10 uM	MOA	Cell Painting	0.00944202102456435	3	-0.02199970452512478
+serotonin receptor antagonist	0.12 uM	MOA	Cell Painting	0.0252331077332231	12	0.0035545129942511308
+acetylcholine receptor antagonist	0.37 uM	MOA	Cell Painting	0.022154113491326	21	0.00583613483125941
+adrenergic receptor agonist	10 uM	MOA	Cell Painting	0.0209616894139389	20	0.008378001810730645
+acetylcholine receptor antagonist	3.33 uM	MOA	Cell Painting	0.0207509080871882	21	0.0018287949872760776
+acetylcholine receptor antagonist	0.12 uM	MOA	Cell Painting	0.021619333322239	21	0.013668237501608511
+cannabinoid receptor agonist	0.37 uM	MOA	Cell Painting	0.00493552556967179	3	0.03589192572751055
+histamine receptor antagonist	0.04 uM	MOA	Cell Painting	0.0235517070501117	24	0.004609950831646434
+gamma secretase inhibitor	0.37 uM	MOA	Cell Painting	0.0152852346626875	7	0.03137577930367552
+microtubule inhibitor	3.33 uM	MOA	Cell Painting	0.010127817137874	3	0.056338532564118644
+adrenergic receptor agonist	1.11 uM	MOA	Cell Painting	0.0221587151550015	20	0.003154966055726471
+acetylcholine receptor antagonist	0.04 uM	MOA	Cell Painting	0.0237152605179158	21	0.01926218300767919
+calcium channel blocker	10 uM	MOA	Cell Painting	0.0235082697156265	15	0.03409558425633424
+pi3k inhibitor	0.37 uM	MOA	Cell Painting	0.0133274101830688	7	-0.003100818295225414
+cannabinoid receptor agonist	0.04 uM	MOA	Cell Painting	0.00286663738810237	3	0.00494214238960245
+sigma receptor antagonist	1.11 uM	MOA	Cell Painting	0.00571925717276477	3	0.008739271579235184
+adrenergic receptor agonist	0.04 uM	MOA	Cell Painting	0.0201154527260864	20	0.0050159376071951586
+gamma secretase inhibitor	10 uM	MOA	Cell Painting	0.0128273201319135	7	0.06947029335258507
+cdk inhibitor	0.37 uM	MOA	Cell Painting	0.0796573639164041	7	0.14559085895485752
+egfr inhibitor	0.12 uM	MOA	Cell Painting	0.0663952849096087	13	0.10843464893653823
+gamma secretase inhibitor	3.33 uM	MOA	Cell Painting	0.0224279585388594	7	0.0751515696075187
+alk tyrosine kinase receptor inhibitor	10 uM	MOA	Cell Painting	0.00782953299161313	3	0.1249325894935218
+angiotensin receptor antagonist	0.12 uM	MOA	Cell Painting	0.00263691863806404	4	-0.01192826869646108
+bacterial dna gyrase inhibitor	0.37 uM	MOA	Cell Painting	0.0128388185500316	11	0.009629354330941229
+calcium channel blocker	0.04 uM	MOA	Cell Painting	0.0135408867690277	15	-5.641048459745336e-4
+bacterial dna gyrase inhibitor	0.04 uM	MOA	Cell Painting	0.0110830049125325	11	0.01103833297440241
+sigma receptor antagonist	0.04 uM	MOA	Cell Painting	0.00290313062684165	3	0.019860174685243776
+gamma secretase inhibitor	1.11 uM	MOA	Cell Painting	0.0167104807358438	7	0.050055473909842586
+sodium channel blocker	0.04 uM	MOA	Cell Painting	0.0120135264001911	11	0.007823638702414114
+nitric oxide synthase inhibitor	10 uM	MOA	Cell Painting	0.00394399444885633	4	-0.004449834098443051
+serotonin receptor agonist	0.37 uM	MOA	Cell Painting	0.0128393839842807	12	6.136390055224718e-4
+calcium channel blocker	3.33 uM	MOA	Cell Painting	0.0204001727352997	15	0.023505009428523575
+rho associated kinase inhibitor	1.11 uM	MOA	Cell Painting	0.0283821703933104	6	0.027524734303150177
+bacterial dna gyrase inhibitor	1.11 uM	MOA	Cell Painting	0.0126742528787443	11	0.020449032478093952
+ppar receptor agonist|insulin sensitizer	0.12 uM	MOA	Cell Painting	0.0176127830202354	3	0.052359911918408227
+calcium channel blocker	1.11 uM	MOA	Cell Painting	0.0176386625963352	15	0.014952917101996446
+sodium channel blocker	10 uM	MOA	Cell Painting	0.0124463044630304	11	0.018871193305394184
+progesterone receptor agonist	3.33 uM	MOA	Cell Painting	0.0168103827463021	7	0.06676430643153139
+vegfr inhibitor	10 uM	MOA	Cell Painting	0.0201519576040467	4	0.06232541889323869
+rho associated kinase inhibitor	0.04 uM	MOA	Cell Painting	0.00763446175684108	6	0.033773123223632934
+serotonin reuptake inhibitor	0.04 uM	MOA	Cell Painting	0.00330821454210589	4	0.012625668027435142
+bacterial cell wall synthesis inhibitor	0.12 uM	MOA	Cell Painting	0.0147466576439166	14	7.836360066157877e-4
+bacterial dna gyrase inhibitor	0.12 uM	MOA	Cell Painting	0.0128755875037641	11	0.002880721731251867
+gaba receptor agonist	1.11 uM	MOA	Cell Painting	0.00259403372243839	3	0.004900552011069509
+bacterial cell wall synthesis inhibitor	10 uM	MOA	Cell Painting	0.0158195909925398	14	0.026447421218431865
+sodium channel blocker	1.11 uM	MOA	Cell Painting	0.0104978968491563	11	0.004393529337698099
+microtubule inhibitor	0.12 uM	MOA	Cell Painting	0.117805484423175	3	0.07395537108133231
+tachykinin antagonist	0.04 uM	MOA	Cell Painting	0.00916255960298749	6	0.027084427959567323
+bacterial cell wall synthesis inhibitor	0.37 uM	MOA	Cell Painting	0.01359291492579	14	-0.0012579902178932144
+microtubule inhibitor	10 uM	MOA	Cell Painting	0.00760314287653659	3	0.02853102228935584
+calcium channel blocker	0.37 uM	MOA	Cell Painting	0.0162006283958508	15	0.016355981798261397
+adenosine receptor agonist	10 uM	MOA	Cell Painting	0.0024682255414962	3	0.010341219232296849
+serotonin receptor agonist	0.04 uM	MOA	Cell Painting	0.013290429262699	12	0.0044449632247989925
+serotonin receptor agonist	10 uM	MOA	Cell Painting	0.013924112424847	12	0.006519054388011246
+ppar receptor agonist	0.37 uM	MOA	Cell Painting	0.00609440548586751	3	8.502394132386879e-5
+serotonin receptor agonist	3.33 uM	MOA	Cell Painting	0.0122018248615387	12	-0.005574086033830939
+rna polymerase inhibitor	0.12 uM	MOA	Cell Painting	0.0132099206685436	7	0.021337385157429094
+aromatase inhibitor	0.04 uM	MOA	Cell Painting	0.230672133783566	3	0.07616831167092399
+sterol demethylase inhibitor	10 uM	MOA	Cell Painting	0.0196812234186123	7	0.02089809096430934
+prostanoid receptor agonist	1.11 uM	MOA	Cell Painting	0.0234190873725757	3	0.06496448788906382
+calcium channel blocker	0.12 uM	MOA	Cell Painting	0.0127117722849948	15	-0.003119600673337827
+tubulin inhibitor	0.04 uM	MOA	Cell Painting	0.0359584199148546	8	0.024847294200385166
+sodium channel blocker	0.12 uM	MOA	Cell Painting	0.0147752191030568	11	0.008714371629934058
+raf inhibitor	10 uM	MOA	Cell Painting	0.0081550359300626	5	0.012392739838761144
+serotonin receptor agonist	1.11 uM	MOA	Cell Painting	0.0129894078019387	12	0.013444101206658388
+sodium channel blocker	3.33 uM	MOA	Cell Painting	0.0134297209512619	11	0.011900570047136327
+nucleoside reverse transcriptase inhibitor	0.04 uM	MOA	Cell Painting	0.00554656713129168	4	0.03496877866370612
+pi3k inhibitor	0.12 uM	MOA	Cell Painting	0.0112650935857119	7	-0.022786382351160185
+vitamin d receptor agonist	1.11 uM	MOA	Cell Painting	0.0335716395729028	5	0.0851189560168148
+bacterial dna gyrase inhibitor	3.33 uM	MOA	Cell Painting	0.0120401026222937	11	0.004686199872204572
+bacterial cell wall synthesis inhibitor	3.33 uM	MOA	Cell Painting	0.0133690253851928	14	-5.288581874951482e-4
+hcv inhibitor	10 uM	MOA	Cell Painting	0.00902858634154658	7	0.05479664673898017
+t-type calcium channel blocker	10 uM	MOA	Cell Painting	0.00352195786112345	3	0.05786675847156603
+serotonin receptor agonist	0.12 uM	MOA	Cell Painting	0.0130296286150458	12	0.004452638454201262
+sodium channel blocker	0.37 uM	MOA	Cell Painting	0.010517592194376	11	0.008503174400068047
+potassium channel blocker	0.04 uM	MOA	Cell Painting	0.00354045276749716	4	-0.010366752422887622
+calcitonin antagonist	0.04 uM	MOA	Cell Painting	0.00305534852006513	3	0.03451345561258935
+vitamin d receptor agonist	10 uM	MOA	Cell Painting	0.0532965777234923	5	0.1618853015836741
+retinoid receptor agonist	10 uM	MOA	Cell Painting	0.0314643005386921	6	0.07952019312952502
+progesterone receptor agonist	10 uM	MOA	Cell Painting	0.0159149627674879	7	0.07049064284468985
+egfr inhibitor	0.04 uM	MOA	Cell Painting	0.0360400463947645	13	0.06073401259360432
+bacterial cell wall synthesis inhibitor	0.04 uM	MOA	Cell Painting	0.014979103119011	14	0.008101778622211226
+tachykinin antagonist	0.12 uM	MOA	Cell Painting	0.00569414516397859	6	0.004840835102686566
+fgfr inhibitor|vegfr inhibitor	0.04 uM	MOA	Cell Painting	0.0101945938242611	3	-0.01766182125941162
+bacterial cell wall synthesis inhibitor	1.11 uM	MOA	Cell Painting	0.0144526873001525	14	0.010413335200641066
+p38 mapk inhibitor	1.11 uM	MOA	Cell Painting	0.113437872887601	6	0.11025151411155866
+pi3k inhibitor	0.04 uM	MOA	Cell Painting	0.0141329340861938	7	0.01211031430707503
+dopamine receptor agonist	0.12 uM	MOA	Cell Painting	0.00926884701023605	9	-0.005176413370368144
+cc chemokine receptor antagonist	0.04 uM	MOA	Cell Painting	0.00648344934756974	7	3.7888178986534746e-4
+dopamine receptor agonist	3.33 uM	MOA	Cell Painting	0.008954871615105	9	1.2691680461350292e-4
+rho associated kinase inhibitor	0.37 uM	MOA	Cell Painting	0.0126881870815587	6	0.01915057136167725
+rho associated kinase inhibitor	0.12 uM	MOA	Cell Painting	0.00425829127776204	6	-0.0012029208477313258
+ppar receptor agonist|insulin sensitizer	10 uM	MOA	Cell Painting	0.0153792878325235	3	0.1861853684363781
+acetylcholine receptor agonist	1.11 uM	MOA	Cell Painting	0.00891807105992981	8	2.75850052199572e-4
+progesterone receptor agonist	1.11 uM	MOA	Cell Painting	0.00967458929846411	7	0.021806628208777788
+dna methyltransferase inhibitor	10 uM	MOA	Cell Painting	0.00893093358857829	3	0.09624379967798553
+dna inhibitor	10 uM	MOA	Cell Painting	0.110655364533009	5	0.024848374065538092
+bacterial 30s ribosomal subunit inhibitor	0.04 uM	MOA	Cell Painting	0.00453408851188798	5	-0.016825354842652844
+bacterial dna gyrase inhibitor	10 uM	MOA	Cell Painting	0.0174871106267602	11	0.04159872374755771
+prostanoid receptor antagonist	0.12 uM	MOA	Cell Painting	0.00840717052331597	3	-0.018765832090550327
+leukotriene receptor antagonist	1.11 uM	MOA	Cell Painting	0.00284192747840535	4	-0.0275349537209083
+adenosine receptor antagonist	0.04 uM	MOA	Cell Painting	0.00509312454527988	4	0.0017039192367026192
+androgen receptor modulator	10 uM	MOA	Cell Painting	0.0041595599886322	3	0.06186349451413379
+vegfr inhibitor	3.33 uM	MOA	Cell Painting	0.0126009636896289	4	0.022516870429509058
+dna methyltransferase inhibitor	0.37 uM	MOA	Cell Painting	0.0671513321680174	3	0.15350532132809375
+opioid receptor antagonist	3.33 uM	MOA	Cell Painting	0.00676365553634382	4	-0.02065729824332577
+angiotensin receptor antagonist	0.37 uM	MOA	Cell Painting	0.00410062566555648	4	0.0029736922987490307
+calcineurin inhibitor	1.11 uM	MOA	Cell Painting	0.0384935926400517	3	0.10379610582659379
+prostanoid receptor antagonist	1.11 uM	MOA	Cell Painting	0.00728832093002472	3	-0.045819123935141634
+vitamin d receptor agonist	3.33 uM	MOA	Cell Painting	0.0533297397531079	5	0.11928249473066979
+prostanoid receptor agonist	3.33 uM	MOA	Cell Painting	0.021805638701911	3	0.03672559334278031
+opioid receptor antagonist	0.12 uM	MOA	Cell Painting	0.00642439381474984	4	0.016070799878540102
+dopamine receptor agonist	10 uM	MOA	Cell Painting	0.00976928427801384	9	9.92079786201259e-4
+glucosidase inhibitor	1.11 uM	MOA	Cell Painting	0.00282248916007959	3	-0.008011609573091952
+angiotensin converting enzyme inhibitor	10 uM	MOA	Cell Painting	0.00864009805324321	8	0.0019817849294583418
+nitric oxide synthase inhibitor	3.33 uM	MOA	Cell Painting	0.00328588542091771	4	-0.0022686884324865635
+p38 mapk inhibitor	3.33 uM	MOA	Cell Painting	0.0395626325843809	6	0.06569451324189368
+dopamine receptor agonist	0.04 uM	MOA	Cell Painting	0.0105402654150846	9	0.0012615748154992347
+acetylcholine receptor agonist	0.37 uM	MOA	Cell Painting	0.0105249906998123	8	0.00870744555411801
+androgen receptor antagonist	10 uM	MOA	Cell Painting	0.0125198988727346	5	0.03546440864910255
+p38 mapk inhibitor	10 uM	MOA	Cell Painting	0.0147986863147118	6	0.048266623999777825
+glutamate receptor modulator	0.37 uM	MOA	Cell Painting	0.00176132990031726	3	-0.030184466078948518
+akt inhibitor	0.12 uM	MOA	Cell Painting	0.0193089671446591	6	0.04214911802869475
+hcv inhibitor	0.12 uM	MOA	Cell Painting	0.00820234615380129	7	0.006637583574801544
+cdk inhibitor	0.12 uM	MOA	Cell Painting	0.083638185738079407	7	0.10220626357604508
+potassium channel activator	0.04 uM	MOA	Cell Painting	0.0073788283432025	6	-0.00153885531359773
+ppar receptor agonist	10 uM	MOA	Cell Painting	0.00999993310236501	3	0.053403527519401146
+angiotensin receptor antagonist	10 uM	MOA	Cell Painting	0.00866256857757944	4	0.031275328715616293
+nucleoside reverse transcriptase inhibitor	0.37 uM	MOA	Cell Painting	0.00541203818104575	4	0.01506375132967923
+atpase inhibitor	1.11 uM	MOA	Cell Painting	0.00416677339784169	3	-0.0020185807673447453
+selective serotonin reuptake inhibitor (ssri)	10 uM	MOA	Cell Painting	0.0162808862114765	4	0.1554796030459581
+vegfr inhibitor	1.11 uM	MOA	Cell Painting	0.0129892046160443	4	0.04213713709270929
+rho associated kinase inhibitor	3.33 uM	MOA	Cell Painting	0.0694682617406285	6	0.06131058446669071
+angiotensin receptor antagonist	3.33 uM	MOA	Cell Painting	0.00961907515369616	4	0.04350531128244181
+jak inhibitor	0.37 uM	MOA	Cell Painting	0.00601865556460478	5	0.0019921259846971606
+alk tyrosine kinase receptor inhibitor	1.11 uM	MOA	Cell Painting	0.00646124803377583	3	0.02212142824990115
+prostanoid receptor antagonist	3.33 uM	MOA	Cell Painting	0.00980454779163034	3	-0.018354926387687348
+dopamine receptor agonist	0.37 uM	MOA	Cell Painting	0.00819524657661267	9	0.005416440061485461
+retinoid receptor agonist	3.33 uM	MOA	Cell Painting	0.0439143075388553	6	0.12030154946775792
+dopamine receptor agonist	1.11 uM	MOA	Cell Painting	0.0078707556993656	9	-0.013812924600250933
+raf inhibitor	1.11 uM	MOA	Cell Painting	0.0188844655765525	5	0.04073641046180193
+ppar receptor agonist|insulin sensitizer	0.37 uM	MOA	Cell Painting	0.00931500456038702	3	-0.012326616999824106
+benzodiazepine receptor agonist	10 uM	MOA	Cell Painting	0.00173635374395316	7	-0.006662438311491911
+vegfr inhibitor	0.04 uM	MOA	Cell Painting	0.00960625569838439	4	0.007791479094869881
+angiotensin receptor antagonist	0.04 uM	MOA	Cell Painting	0.00534627555105345	4	-0.0012266702480597455
+bacterial 30s ribosomal subunit inhibitor	1.11 uM	MOA	Cell Painting	0.00408261678226258	5	-0.0060072258476852455
+tachykinin antagonist	1.11 uM	MOA	Cell Painting	0.00955929132845751	6	0.02140880000619672
+glucosidase inhibitor	0.37 uM	MOA	Cell Painting	0.00192677108865191	3	-0.015682354489457904
+fgfr inhibitor|vegfr inhibitor	1.11 uM	MOA	Cell Painting	0.0105332810640268	3	0.051453133110752815
+angiotensin converting enzyme inhibitor	0.37 uM	MOA	Cell Painting	0.00947781470692347	8	0.02087433034281681
+akt inhibitor	1.11 uM	MOA	Cell Painting	0.157664679260798	6	0.0688066115178018
+androgen receptor modulator	3.33 uM	MOA	Cell Painting	0.00632116372198265	3	0.04113667274108962
+rna polymerase inhibitor	0.37 uM	MOA	Cell Painting	0.00972043208869585	7	0.011246103941004986
+fgfr inhibitor|vegfr inhibitor	0.12 uM	MOA	Cell Painting	0.00774781551328273	3	0.026947958975625803
+ppar receptor agonist|insulin sensitizer	1.11 uM	MOA	Cell Painting	0.0118844143761271	3	-0.013523821753011336
+p38 mapk inhibitor	0.12 uM	MOA	Cell Painting	0.0278942075485368	6	0.07387812151559196
+rna polymerase inhibitor	0.04 uM	MOA	Cell Painting	0.0094718134279555	7	0.014843349451517976
+fgfr inhibitor|vegfr inhibitor	3.33 uM	MOA	Cell Painting	0.0136999851899961	3	0.02022394920609347
+nfkb pathway inhibitor	0.04 uM	MOA	Cell Painting	0.0061458227992477	4	-0.003903807719018207
+free radical scavenger	10 uM	MOA	Cell Painting	0.00511006550540797	4	0.022718444614829053
+tachykinin antagonist	3.33 uM	MOA	Cell Painting	0.0281780114816747	6	0.037902263163981056
+sterol demethylase inhibitor	0.04 uM	MOA	Cell Painting	0.0131049963223404	7	0.02059483632663678
+raf inhibitor	0.12 uM	MOA	Cell Painting	0.0218397719923776	5	0.06145731262250253
+sterol demethylase inhibitor	0.37 uM	MOA	Cell Painting	0.0102333318953065	7	0.010594040789085388
+dna methyltransferase inhibitor	1.11 uM	MOA	Cell Painting	0.00975733385991692	3	0.06528981009517053
+fgfr inhibitor|vegfr inhibitor	10 uM	MOA	Cell Painting	0.016049665389545	3	0.09326568884799458
+vegfr inhibitor	0.37 uM	MOA	Cell Painting	0.00915092444932804	4	-0.00950428073609701
+acetylcholine receptor agonist	0.12 uM	MOA	Cell Painting	0.00759564227498727	8	-0.008460580434801697
+selective serotonin reuptake inhibitor (ssri)	3.33 uM	MOA	Cell Painting	0.00628076923575962	4	0.021773968227500638
+angiotensin converting enzyme inhibitor	3.33 uM	MOA	Cell Painting	0.0071580408976687	8	0.003309041572445763
+calcineurin inhibitor	10 uM	MOA	Cell Painting	0.108426111561376	3	0.24558281810090285
+dna synthesis inhibitor	3.33 uM	MOA	Cell Painting	0.00732881771059522	7	-0.012074530455877702
+tachykinin antagonist	10 uM	MOA	Cell Painting	0.0139088472276356	6	0.10246776929416729
+bacterial 50s ribosomal subunit inhibitor	0.04 uM	MOA	Cell Painting	0.00662403053297761	5	0.01884359357283811
+benzodiazepine receptor agonist	3.33 uM	MOA	Cell Painting	0.00937197626603836	7	0.004733828658195865
+ppar receptor agonist|insulin sensitizer	0.04 uM	MOA	Cell Painting	0.00796710449939316	3	0.028111454751268222
+sterol demethylase inhibitor	1.11 uM	MOA	Cell Painting	0.0111147301763951	7	0.00469317682022785
+prostanoid receptor antagonist	10 uM	MOA	Cell Painting	0.0112384235402606	3	0.058654612317005306
+aromatase inhibitor	10 uM	MOA	Cell Painting	0.0143130768605952	3	0.0819360649135572
+acetylcholine receptor agonist	0.04 uM	MOA	Cell Painting	0.00812860531472451	8	0.0051423427356670276
+angiotensin converting enzyme inhibitor	0.12 uM	MOA	Cell Painting	0.0127037890235314	8	0.021701572298365397
+vegfr inhibitor	0.12 uM	MOA	Cell Painting	0.00808748074939499	4	-0.005843555608727715
+nitric oxide synthase inhibitor	0.04 uM	MOA	Cell Painting	0.00345742874595214	4	-0.0012199731205503423
+tachykinin antagonist	0.37 uM	MOA	Cell Painting	0.00796954542756625	6	0.012061961782597665
+bacterial 30s ribosomal subunit inhibitor	10 uM	MOA	Cell Painting	0.00738245812876917	5	0.022206992135046837
+reverse transcriptase inhibitor	0.04 uM	MOA	Cell Painting	0.00205583372341844	3	-0.016963328022757605
+t-type calcium channel blocker	3.33 uM	MOA	Cell Painting	0.0027487681986909	3	0.008830413083034942
+coagulation factor inhibitor	0.12 uM	MOA	Cell Painting	0.00230592317318361	4	-0.03484726712270758
+acetylcholine receptor agonist	3.33 uM	MOA	Cell Painting	0.00922517217111567	8	0.005321060941408855
+bcl inhibitor	3.33 uM	MOA	Cell Painting	0.0170207142665486	3	0.15299246944170816
+retinoid receptor agonist	1.11 uM	MOA	Cell Painting	0.036887822165388	6	0.12693366566435513
+nucleoside reverse transcriptase inhibitor	1.11 uM	MOA	Cell Painting	0.00571984526251901	4	0.0012041081750140768
+mucolytic agent	1.11 uM	MOA	Cell Painting	0.00222963672090362	3	9.370047679105917e-4
+prostanoid receptor antagonist	0.37 uM	MOA	Cell Painting	0.0122726552059108	3	-0.01659676607102603
+non-nucleoside reverse transcriptase inhibitor	10 uM	MOA	Cell Painting	0.0332826990060499	4	0.09223350566352287
+opioid receptor agonist	0.37 uM	MOA	Cell Painting	0.00389533572266969	3	0.020704194765096627
+benzodiazepine receptor agonist	0.12 uM	MOA	Cell Painting	0.0584409246755432	7	0.003899358079700978
+cc chemokine receptor antagonist	0.37 uM	MOA	Cell Painting	0.0076679180162583	7	0.01795213974186261
+free radical scavenger	1.11 uM	MOA	Cell Painting	0.0032668404404515	4	0.02181169981356171
+bacterial 30s ribosomal subunit inhibitor	0.37 uM	MOA	Cell Painting	0.00608253299916747	5	-0.004841677539663375
+raf inhibitor	3.33 uM	MOA	Cell Painting	0.00737874997789461	5	0.035704381679682456
+angiotensin converting enzyme inhibitor	1.11 uM	MOA	Cell Painting	0.00938774029252414	8	0.010031615133175999
+cannabinoid receptor agonist	3.33 uM	MOA	Cell Painting	0.00219252441509827	3	-0.015451549372917475
+monoamine oxidase inhibitor	0.12 uM	MOA	Cell Painting	0.00432686056335066	6	-0.004178001166181549
+progesterone receptor agonist	0.12 uM	MOA	Cell Painting	0.00840004057576192	7	0.012013501901467903
+gamma secretase inhibitor	0.04 uM	MOA	Cell Painting	0.0110425926743128	7	0.024607742402900517
+proteasome inhibitor	0.04 uM	MOA	Cell Painting	0.0217137340098983	4	0.06797949632785114
+p38 mapk inhibitor	0.04 uM	MOA	Cell Painting	0.0179065324037655	6	0.04250240997049155
+progesterone receptor agonist	0.37 uM	MOA	Cell Painting	0.00913797157184944	7	0.038365348968111807
+nucleoside reverse transcriptase inhibitor	0.12 uM	MOA	Cell Painting	0.00394245234687183	4	-0.011467483939843669
+selective serotonin reuptake inhibitor (ssri)	1.11 uM	MOA	Cell Painting	0.00370261266351928	4	0.01538381513472518
+progesterone receptor agonist	0.04 uM	MOA	Cell Painting	0.0104588876507417	7	0.010186804462971022
+bacterial 30s ribosomal subunit inhibitor	0.12 uM	MOA	Cell Painting	0.00382490932773698	5	-0.01454523414461522
+vasopressin receptor antagonist	10 uM	MOA	Cell Painting	0.00318082225446491	4	-0.0026555309545747904
+benzodiazepine receptor agonist	1.11 uM	MOA	Cell Painting	0.00220111717013775	7	0.0014760343966340132
+hmgcr inhibitor	1.11 uM	MOA	Cell Painting	0.0086161091653716	5	0.01131766587019979
+rna polymerase inhibitor	1.11 uM	MOA	Cell Painting	0.00707975262573327	7	0.008818291036871996
+atpase inhibitor	10 uM	MOA	Cell Painting	0.00321814881430633	3	-0.005679608326737542
+cc chemokine receptor antagonist	3.33 uM	MOA	Cell Painting	0.00535380838117589	7	-0.001241706872301198
+ppar receptor agonist|insulin sensitizer	3.33 uM	MOA	Cell Painting	0.0232108307721721	3	0.12200646098275758
+raf inhibitor	0.37 uM	MOA	Cell Painting	0.0256343573241837	5	0.053439415826873
+fgfr inhibitor|vegfr inhibitor	0.37 uM	MOA	Cell Painting	0.0074289795115471	3	-0.01654321195663451
+p38 mapk inhibitor	0.37 uM	MOA	Cell Painting	0.0711547622863099	6	0.11037639801426861
+purinergic receptor antagonist	10 uM	MOA	Cell Painting	0.0029806259314456	3	0.008145483574218905
+coagulation factor inhibitor	3.33 uM	MOA	Cell Painting	0.00392109043356945	4	0.015410694006396455
+acetylcholine receptor agonist	10 uM	MOA	Cell Painting	0.007343989067114	8	0.017490439047055648
+androgen receptor antagonist	3.33 uM	MOA	Cell Painting	0.0203943866777577	5	0.03690189171063647
+benzodiazepine receptor agonist	0.04 uM	MOA	Cell Painting	0.0294368581509367	7	0.03129204446054435
+prostanoid receptor agonist	0.37 uM	MOA	Cell Painting	0.0115517493713135	3	0.012317864701568397
+adenosine receptor antagonist	0.12 uM	MOA	Cell Painting	0.00521104071585726	4	0.010194253557004271
+benzodiazepine receptor agonist	0.37 uM	MOA	Cell Painting	0.00378708780004621	7	0.0014631942959892705
+tyrosine kinase inhibitor	0.04 uM	MOA	Cell Painting	0.0454019051750743	4	0.02362863281476522
+gamma secretase inhibitor	0.12 uM	MOA	Cell Painting	0.00900550746557745	7	0.010392630474405662
+integrin antagonist	0.12 uM	MOA	Cell Painting	0.00580614189852532	5	0.001875080956462331
+rna polymerase inhibitor	10 uM	MOA	Cell Painting	0.0113099117202358	7	0.01568597296636703
+potassium channel activator	0.37 uM	MOA	Cell Painting	0.00969263531112978	6	0.019180740782538012
+free radical scavenger	3.33 uM	MOA	Cell Painting	0.00518259475361443	4	0.013513441117425282
+hcv inhibitor	3.33 uM	MOA	Cell Painting	0.0172368885285156	7	0.02748984934117188
+cc chemokine receptor antagonist	0.12 uM	MOA	Cell Painting	0.00589577765529779	7	-0.006995494884513481
+opioid receptor agonist	0.12 uM	MOA	Cell Painting	0.0100333531346123	3	0.04021711579771177
+calcineurin inhibitor	0.37 uM	MOA	Cell Painting	0.0216111633856694	3	0.057217703347233084
+ppar receptor agonist	1.11 uM	MOA	Cell Painting	0.00664750654989923	3	-8.532812326583077e-4
+integrin antagonist	0.37 uM	MOA	Cell Painting	0.00551212546976067	5	0.012903171856926078
+raf inhibitor	0.04 uM	MOA	Cell Painting	0.00987271618654034	5	0.02975626497412295
+insulin secretagogue	1.11 uM	MOA	Cell Painting	0.00300105052519358	4	-0.002066890858747153
+reverse transcriptase inhibitor	10 uM	MOA	Cell Painting	0.00175969373896814	3	-0.039092049806604315
+free radical scavenger	0.12 uM	MOA	Cell Painting	0.00311231640656789	4	-0.007935682820329734
+free radical scavenger	0.04 uM	MOA	Cell Painting	0.00497084790478371	4	0.021772639580065534
+hcv inhibitor	0.04 uM	MOA	Cell Painting	0.011188030626794	7	0.004548277673074514
+insulin secretagogue	0.37 uM	MOA	Cell Painting	0.00268153101352113	4	-0.015615920656684712
+tyrosine kinase inhibitor	0.37 uM	MOA	Cell Painting	0.00563059237511814	4	0.019406016345652005
+retinoid receptor agonist	0.04 uM	MOA	Cell Painting	0.0439020313150249	6	0.11777264412640784
+coagulation factor inhibitor	0.37 uM	MOA	Cell Painting	0.0071803622379055	4	0.002758099092294226
+estrogen receptor agonist	1.11 uM	MOA	Cell Painting	0.00521397679532912	6	0.00787765083044017
+ppar receptor agonist	0.04 uM	MOA	Cell Painting	0.00414155379283948	3	-0.014673691648730015
+vitamin d receptor agonist	0.12 uM	MOA	Cell Painting	0.0256132748619547	5	0.07749228640813959
+opioid receptor antagonist	0.37 uM	MOA	Cell Painting	0.00439500852171591	4	-0.014602073197822352
+acat inhibitor	10 uM	MOA	Cell Painting	0.00614599218145494	3	0.03819405732627611
+prostanoid receptor agonist	0.12 uM	MOA	Cell Painting	0.0125256451787064	3	0.07192470219146127
+leukotriene receptor antagonist	3.33 uM	MOA	Cell Painting	0.0034175376605583	4	-0.009904449582223205
+gaba receptor agonist	10 uM	MOA	Cell Painting	0.00122624156958921	3	0.02249609785594163
+vasopressin receptor antagonist	0.37 uM	MOA	Cell Painting	0.00540886735876121	4	0.02449743978909769
+nfkb pathway inhibitor	3.33 uM	MOA	Cell Painting	0.0064225915766164	4	0.014628949203964113
+parp inhibitor	0.12 uM	MOA	Cell Painting	0.00555759134363761	5	0.01382737047651994
+opioid receptor antagonist	0.04 uM	MOA	Cell Painting	0.00545075563644764	4	-0.014102737134859164
+rna polymerase inhibitor	3.33 uM	MOA	Cell Painting	0.00833606499020023	7	-0.009631519816981527
+glutamate receptor agonist	0.37 uM	MOA	Cell Painting	0.00269591913805574	4	-0.021774293303897907
+parp inhibitor	10 uM	MOA	Cell Painting	0.0090319894013142	5	0.01566758072046506
+opioid receptor agonist	3.33 uM	MOA	Cell Painting	0.00373817955858115	3	0.016749207633601902
+pkc inhibitor	0.12 uM	MOA	Cell Painting	0.00463783693542171	4	0.019838237544547208
+jak inhibitor	10 uM	MOA	Cell Painting	0.0195774190742099	5	0.06202464867430396
+xiap inhibitor	0.12 uM	MOA	Cell Painting	0.200176366843033	3	0.19114526420984887
+retinoid receptor agonist	0.37 uM	MOA	Cell Painting	0.0287970863171319	6	0.10382753042201061
+bacterial 50s ribosomal subunit inhibitor	0.37 uM	MOA	Cell Painting	0.00387500197525004	5	-0.00954360100420749
+opioid receptor antagonist	10 uM	MOA	Cell Painting	0.0254646140330721	4	0.00835965477724242
+vitamin d receptor agonist	0.37 uM	MOA	Cell Painting	0.0256177300723043	5	0.07001542913047432
+dna synthesis inhibitor	0.12 uM	MOA	Cell Painting	0.00679545465844172	7	0.005972606793368265
+endothelin receptor antagonist	0.04 uM	MOA	Cell Painting	0.003263235490712	4	0.011250236983128853
+dna synthesis inhibitor	0.37 uM	MOA	Cell Painting	0.00572561486928644	7	0.0010548328658750434
+dna synthesis inhibitor	0.04 uM	MOA	Cell Painting	0.00739746577510525	7	0.003188081188048955
+leukotriene receptor antagonist	0.37 uM	MOA	Cell Painting	0.00529161844296337	4	-0.010007611352813823
+hiv integrase inhibitor	0.04 uM	MOA	Cell Painting	0.0042813907391223	3	0.03366942422485762
+bacterial 50s ribosomal subunit inhibitor	10 uM	MOA	Cell Painting	0.030020466557059	5	-0.006487361224977778
+vasopressin receptor antagonist	3.33 uM	MOA	Cell Painting	0.00249924480804387	4	-0.010551282846903532
+dna synthesis inhibitor	1.11 uM	MOA	Cell Painting	0.00556647380682061	7	0.007031278726871462
+monoamine oxidase inhibitor	10 uM	MOA	Cell Painting	0.00456527889426789	6	-0.004994073837492306
+sterol demethylase inhibitor	0.12 uM	MOA	Cell Painting	0.00965998269538661	7	0.013239739527533073
+chelating agent	0.37 uM	MOA	Cell Painting	0.00308077438705182	4	1.2207420648514735e-4
+non-nucleoside reverse transcriptase inhibitor	1.11 uM	MOA	Cell Painting	0.00617612236789894	4	0.023152893355922334
+angiotensin converting enzyme inhibitor	0.04 uM	MOA	Cell Painting	0.0114386949513252	8	0.019951211623272454
+monoamine oxidase inhibitor	1.11 uM	MOA	Cell Painting	0.0070545169421636	6	0.002809951363116741
+potassium channel activator	0.12 uM	MOA	Cell Painting	0.0137617563264125	6	0.011649252438953992
+carbonic anhydrase inhibitor	1.11 uM	MOA	Cell Painting	0.00505630819426911	5	0.017522313180193122
+integrin antagonist	0.04 uM	MOA	Cell Painting	0.0110351079888551	5	-0.00843796183850958
+parp inhibitor	0.37 uM	MOA	Cell Painting	0.0045063100888563	5	-0.008928537214647017
+dna methyltransferase inhibitor	3.33 uM	MOA	Cell Painting	0.00918934862785292	3	0.029543620227601593
+leukotriene receptor antagonist	0.04 uM	MOA	Cell Painting	0.00742734701139812	4	0.018417063182151326
+angiotensin receptor antagonist	1.11 uM	MOA	Cell Painting	0.00494961750361883	4	0.011832349613833108
+nfkb pathway inhibitor	0.37 uM	MOA	Cell Painting	0.00588794099169271	4	0.022569452066465257
+potassium channel activator	1.11 uM	MOA	Cell Painting	0.0147674734184963	6	0.015888497077167735
+chelating agent	0.12 uM	MOA	Cell Painting	0.00335774531967076	4	-0.04564397606958824
+jak inhibitor	3.33 uM	MOA	Cell Painting	0.01674685434819	5	0.04918339869946954
+cc chemokine receptor antagonist	10 uM	MOA	Cell Painting	0.00782987098575293	7	0.039382255211086875
+ppar receptor agonist	0.12 uM	MOA	Cell Painting	0.00745763754621255	3	0.008318505405985928
+calcitonin antagonist	1.11 uM	MOA	Cell Painting	0.00235243117847987	3	-0.061623914309346134
+potassium channel activator	10 uM	MOA	Cell Painting	0.00304878653888566	6	-0.0013382309264494284
+potassium channel activator	3.33 uM	MOA	Cell Painting	0.00418690026728113	6	0.021867736048255558
+cdk inhibitor	0.04 uM	MOA	Cell Painting	0.0355729935408015	7	0.06292101865817265
+integrin antagonist	3.33 uM	MOA	Cell Painting	0.0148002141329008	5	-0.009659201450031924
+dna synthesis inhibitor	10 uM	MOA	Cell Painting	0.0181875594322579	7	-0.00634772304268108
+jak inhibitor	1.11 uM	MOA	Cell Painting	0.00629135986064562	5	0.02474339171798512
+hcv inhibitor	1.11 uM	MOA	Cell Painting	0.0147944999948698	7	-0.013347124837080674
+dipeptidyl peptidase inhibitor	0.37 uM	MOA	Cell Painting	0.00633134531473215	3	0.01840943036390507
+cc chemokine receptor antagonist	1.11 uM	MOA	Cell Painting	0.00972335745699168	7	0.03176031503298254
+cholesterol inhibitor	0.37 uM	MOA	Cell Painting	0.00775586530039491	3	0.043201576123825275
+hcv inhibitor	0.37 uM	MOA	Cell Painting	0.00956644409044047	7	0.017852313787080444
+integrin antagonist	10 uM	MOA	Cell Painting	0.0290377161947097	5	0.03716653570399585
+matrix metalloprotease inhibitor	0.37 uM	MOA	Cell Painting	0.00682030715535035	3	-0.023084763416514928
+dipeptidyl peptidase inhibitor	0.12 uM	MOA	Cell Painting	0.00474714546104988	3	0.016353499672608636
+fungal squalene epoxidase inhibitor	0.12 uM	MOA	Cell Painting	0.00182065908753964	3	-0.04492375490174643
+jak inhibitor	0.04 uM	MOA	Cell Painting	0.00793834872494318	5	0.023890698580018275
+monoamine oxidase inhibitor	0.04 uM	MOA	Cell Painting	0.00511057760019068	6	-0.001965959558518809
+serotonin reuptake inhibitor	10 uM	MOA	Cell Painting	0.00541586767654683	4	0.02367792379202029
+akt inhibitor	0.37 uM	MOA	Cell Painting	0.0268187638656474	6	0.06074509457567888
+hiv integrase inhibitor	10 uM	MOA	Cell Painting	0.0033979592218366	3	0.015298598959460293
+atpase inhibitor	3.33 uM	MOA	Cell Painting	0.00245423900777878	3	-0.0022050476901310997
+atp channel blocker	3.33 uM	MOA	Cell Painting	0.0162060052708518	3	0.0141452179291169
+hmgcr inhibitor	3.33 uM	MOA	Cell Painting	0.0160245978937694	5	0.004007489660499595
+integrin antagonist	1.11 uM	MOA	Cell Painting	0.0049561455326177	5	0.00362809336330135
+akt inhibitor	0.04 uM	MOA	Cell Painting	0.0100418773569143	6	0.02062407844320813
+monoamine oxidase inhibitor	0.37 uM	MOA	Cell Painting	0.00658525349668322	6	0.006636729811181604
+serotonin reuptake inhibitor	1.11 uM	MOA	Cell Painting	0.0045968180540474	4	0.007258923230979879
+monoamine oxidase inhibitor	3.33 uM	MOA	Cell Painting	0.00463890184464714	6	-0.013080581132249997
+benzodiazepine receptor antagonist	3.33 uM	MOA	Cell Painting	0.00193295783749567	3	-0.01472185194651241
+carbonic anhydrase inhibitor	0.12 uM	MOA	Cell Painting	0.00534754912820745	5	0.014596549338035518
+nitric oxide synthase inhibitor	0.37 uM	MOA	Cell Painting	0.00369076751366663	4	-0.004821959343298019
+carbonic anhydrase inhibitor	3.33 uM	MOA	Cell Painting	0.00566024642381334	5	0.011184119802905932
+parp inhibitor	3.33 uM	MOA	Cell Painting	0.00741701063480999	5	-0.010562503084930707
+farnesyltransferase inhibitor	10 uM	MOA	Cell Painting	0.00428549641257351	3	0.07678394652096993
+adenosine receptor agonist	0.12 uM	MOA	Cell Painting	0.00315605706915874	3	-0.018228040678737338
+coagulation factor inhibitor	0.04 uM	MOA	Cell Painting	0.00354303828105127	4	0.02913683354879461
+bacterial 50s ribosomal subunit inhibitor	3.33 uM	MOA	Cell Painting	0.0116436002648815	5	0.009046288985084337
+lipoxygenase inhibitor	1.11 uM	MOA	Cell Painting	0.0019016839224603	3	-0.015270074878145095
+alk tyrosine kinase receptor inhibitor	0.37 uM	MOA	Cell Painting	0.00206566871988396	3	-0.050049101637081206
+mineralocorticoid receptor antagonist	10 uM	MOA	Cell Painting	0.0154385285273142	3	0.08695683098503555
+endothelin receptor antagonist	10 uM	MOA	Cell Painting	0.00433239908315209	4	0.017011508024096386
+purinergic receptor antagonist	0.37 uM	MOA	Cell Painting	0.00122324159021407	3	-0.008489627537127583
+opioid receptor agonist	1.11 uM	MOA	Cell Painting	0.00283082685673637	3	0.009531637295294564
+aromatase inhibitor	1.11 uM	MOA	Cell Painting	0.0274406830641284	3	0.11443770187037405
+estrogen receptor agonist	0.04 uM	MOA	Cell Painting	0.00584635168022065	6	0.021242291489639468
+carbonic anhydrase inhibitor	0.04 uM	MOA	Cell Painting	0.00470112207265003	5	0.018438412485437802
+adenosine receptor antagonist	3.33 uM	MOA	Cell Painting	0.00388892533162972	4	-0.010807228199724055
+retinoid receptor agonist	0.12 uM	MOA	Cell Painting	0.0572548112732753	6	0.13268630630196093
+glutamate receptor agonist	1.11 uM	MOA	Cell Painting	0.00380460690172058	4	0.0015532530874868798
+pkc inhibitor	10 uM	MOA	Cell Painting	0.00509066093511956	4	0.021522625115036467
+mucolytic agent	3.33 uM	MOA	Cell Painting	0.00222104386751094	3	0.010239425706301214
+chelating agent	0.04 uM	MOA	Cell Painting	0.00313846961929824	4	0.006284257572448308
+glutamate receptor antagonist	3.33 uM	MOA	Cell Painting	0.0077237444316321	5	-0.008956854984722463
+hmgcr inhibitor	0.37 uM	MOA	Cell Painting	0.00401109812450873	5	-0.0012859941835832841
+glutamate receptor antagonist	0.12 uM	MOA	Cell Painting	0.00951292268322601	5	0.01849846297765298
+dipeptidyl peptidase inhibitor	0.04 uM	MOA	Cell Painting	0.00584314821434978	3	0.06256219686757054
+opioid receptor antagonist	1.11 uM	MOA	Cell Painting	0.00338137451152725	4	-0.028819952793276187
+aromatase inhibitor	0.12 uM	MOA	Cell Painting	0.00871708698497152	3	0.08440498195743115
+chelating agent	3.33 uM	MOA	Cell Painting	0.003336389377811	4	-0.010760410784596641
+nfkb pathway inhibitor	1.11 uM	MOA	Cell Painting	0.00422413037148823	4	0.024314916432848437
+hmgcr inhibitor	0.04 uM	MOA	Cell Painting	0.00668818360225067	5	0.040273443337700866
+carbonic anhydrase inhibitor	10 uM	MOA	Cell Painting	0.00461105482528246	5	0.009036682943391347
+hiv protease inhibitor	1.11 uM	MOA	Cell Painting	0.00499228097989308	5	-0.003463948192274423
+nfkb pathway inhibitor	0.12 uM	MOA	Cell Painting	0.0052421488765144	4	0.01717390890135306
+bacterial 30s ribosomal subunit inhibitor	3.33 uM	MOA	Cell Painting	0.00555026816530626	5	0.010244582070125472
+vitamin d receptor agonist	0.04 uM	MOA	Cell Painting	0.00807550961861547	5	0.038206611727519726
+estrogen receptor agonist	3.33 uM	MOA	Cell Painting	0.00612123420789401	6	0.00544858836115081
+bacterial 50s ribosomal subunit inhibitor	1.11 uM	MOA	Cell Painting	0.00375235663474894	5	0.01540788960886782
+cholesterol inhibitor	3.33 uM	MOA	Cell Painting	0.00501566944254691	3	0.0013226939046029284
+estrogen receptor agonist	0.12 uM	MOA	Cell Painting	0.00760856298122789	6	0.020177965716484354
+calcitonin antagonist	3.33 uM	MOA	Cell Painting	0.00175539793199426	3	-0.01498437562104991
+fungal squalene epoxidase inhibitor	0.04 uM	MOA	Cell Painting	0.00250489949960426	3	0.019639060421558857
+dipeptidyl peptidase inhibitor	3.33 uM	MOA	Cell Painting	0.00430509935856921	3	0.008056479236501064
+calcitonin antagonist	0.12 uM	MOA	Cell Painting	0.0030408610876743	3	0.012761190093189927
+gaba receptor agonist	0.12 uM	MOA	Cell Painting	0.0028735632183908	3	0.014258805572500099
+glutamate receptor antagonist	0.04 uM	MOA	Cell Painting	0.00652242056738354	5	0.011282716042554295
+hiv protease inhibitor	10 uM	MOA	Cell Painting	0.00788513696655613	5	0.027878308928575884
+ppar receptor agonist	3.33 uM	MOA	Cell Painting	0.00488917224584058	3	-0.0021674942243595117
+atpase inhibitor	0.04 uM	MOA	Cell Painting	0.00301370745026552	3	-0.016961038081374096
+endothelin receptor antagonist	3.33 uM	MOA	Cell Painting	0.00264640651736715	4	-0.036255818822450644
+opioid receptor agonist	0.04 uM	MOA	Cell Painting	0.00438375073169391	3	0.007614872642469804
+insulin secretagogue	0.12 uM	MOA	Cell Painting	0.00333487848326098	4	-0.017247053964666876
+estrogen receptor agonist	0.37 uM	MOA	Cell Painting	0.00499636753468845	6	-0.01899675028522711
+androgen receptor antagonist	0.37 uM	MOA	Cell Painting	0.0112220237992239	5	0.02263277047046939
+adenosine receptor antagonist	0.37 uM	MOA	Cell Painting	0.00349605427225527	4	-0.010265247218784784
+hiv protease inhibitor	3.33 uM	MOA	Cell Painting	0.00457133362983816	5	0.0015803608784162623
+potassium channel blocker	10 uM	MOA	Cell Painting	0.00530837777217399	4	0.05590497173593273
+bacterial 50s ribosomal subunit inhibitor	0.12 uM	MOA	Cell Painting	0.00760794547872142	5	-0.020298779064869918
+benzodiazepine receptor antagonist	0.12 uM	MOA	Cell Painting	0.00323157943351866	3	0.008617892807301361
+dna inhibitor	0.04 uM	MOA	Cell Painting	0.0111269755052055	5	0.019653161377477427
+hiv protease inhibitor	0.37 uM	MOA	Cell Painting	0.00499155234856037	5	0.01691885123390328
+dna polymerase inhibitor	0.04 uM	MOA	Cell Painting	0.00213161800501602	3	4.253345563181275e-4
+glutamate receptor antagonist	10 uM	MOA	Cell Painting	0.00351060523594095	5	-0.0033991088147573246
+leukotriene receptor antagonist	0.12 uM	MOA	Cell Painting	0.00336669718670439	4	0.0029621101835569648
+gaba receptor modulator	1.11 uM	MOA	Cell Painting	0.0069594026600695	4	0.01122217646928783
+estrogen receptor agonist	10 uM	MOA	Cell Painting	0.00648036171219099	6	0.02550192423347988
+hmgcr inhibitor	0.12 uM	MOA	Cell Painting	0.0038498433969887	5	-0.007048726724356826
+cholesterol inhibitor	1.11 uM	MOA	Cell Painting	0.00194361653038998	3	-0.011939435226858383
+protein synthesis stimulant	0.37 uM	MOA	Cell Painting	0.00281053008602882	3	0.013393017825796811
+gaba receptor agonist	3.33 uM	MOA	Cell Painting	0.00187617260787992	3	0.009067494071703147
+androgen receptor antagonist	1.11 uM	MOA	Cell Painting	0.0073696654650865	5	0.0251904374216161
+chelating agent	1.11 uM	MOA	Cell Painting	0.00328854945894031	4	0.009633083087950585
+cholesterol inhibitor	10 uM	MOA	Cell Painting	0.00783420305075722	3	0.04214527888464872
+calcineurin inhibitor	0.04 uM	MOA	Cell Painting	0.00349780800158664	3	0.02680199106869802
+calcineurin inhibitor	3.33 uM	MOA	Cell Painting	0.148161964099104	3	0.14888710965696814
+dna polymerase inhibitor	0.37 uM	MOA	Cell Painting	0.00274017101394266	3	-0.009080803445148843
+carbonic anhydrase inhibitor	0.37 uM	MOA	Cell Painting	0.00493958441925349	5	8.972066881806594e-4
+glutamate receptor agonist	10 uM	MOA	Cell Painting	0.00394376778679622	4	0.019497157849451763
+farnesyltransferase inhibitor	3.33 uM	MOA	Cell Painting	0.0265640791956581	3	0.09395082192165755
+glutamate receptor modulator	10 uM	MOA	Cell Painting	0.00395204240773831	3	0.03832803307604347
+glutamate receptor agonist	0.04 uM	MOA	Cell Painting	0.00223457521554019	4	-0.03952809846765237
+microtubule inhibitor	0.04 uM	MOA	Cell Painting	0.0111187132875303	3	0.018612372866224455
+tyrosine kinase inhibitor	0.12 uM	MOA	Cell Painting	0.0624155719914972	4	0.01972969029961438
+androgen receptor antagonist	0.12 uM	MOA	Cell Painting	0.00522332569958941	5	0.019625191308108435
+glutamate receptor antagonist	1.11 uM	MOA	Cell Painting	0.00697371197582621	5	0.021435302907926508
+endothelin receptor antagonist	0.12 uM	MOA	Cell Painting	0.00241920299085805	4	-0.030542727866339513
+parp inhibitor	1.11 uM	MOA	Cell Painting	0.00615208169035344	5	0.022095759302299352
+serotonin reuptake inhibitor	0.37 uM	MOA	Cell Painting	0.00297908661356766	4	-0.014117377931306106
+hiv protease inhibitor	0.12 uM	MOA	Cell Painting	0.00737526929564565	5	0.02086456316240371
+glutamate receptor antagonist	0.37 uM	MOA	Cell Painting	0.00777909337434507	5	0.0032588628561193485
+selective serotonin reuptake inhibitor (ssri)	0.04 uM	MOA	Cell Painting	0.00367674118870317	4	-0.0045885902484357945
+gaba receptor modulator	0.04 uM	MOA	Cell Painting	0.00974157625792117	4	0.04518767218772253
+gaba receptor modulator	3.33 uM	MOA	Cell Painting	0.00693954150598814	4	0.02631463279670475
+parp inhibitor	0.04 uM	MOA	Cell Painting	0.0111977617774247	5	0.032174059013445236
+t-type calcium channel blocker	0.37 uM	MOA	Cell Painting	0.00250122431662848	3	-0.01608635103398962
+leukotriene receptor antagonist	10 uM	MOA	Cell Painting	0.00619671176847923	4	0.010656437659679791
+xanthine oxidase inhibitor	0.37 uM	MOA	Cell Painting	0.00183234776497553	3	-0.007911071221940135
+alk tyrosine kinase receptor inhibitor	0.04 uM	MOA	Cell Painting	0.00268327281897035	3	0.006649767814332792
+dna methyltransferase inhibitor	0.12 uM	MOA	Cell Painting	0.0902206157802549	3	0.13647024447577608
+opioid receptor agonist	10 uM	MOA	Cell Painting	0.00419209133182139	3	0.04285626165029559
+nucleoside reverse transcriptase inhibitor	10 uM	MOA	Cell Painting	0.00332945983852877	4	8.433189943690916e-4
+calcineurin inhibitor	0.12 uM	MOA	Cell Painting	0.00393895187104695	3	0.009993185335041385
+free radical scavenger	0.37 uM	MOA	Cell Painting	0.0079829748853868	4	0.027541158841605056
+insulin secretagogue	3.33 uM	MOA	Cell Painting	0.00382124980749622	4	0.009312162647102076
+nitric oxide synthase inhibitor	0.12 uM	MOA	Cell Painting	0.00374180978511192	4	-0.026674686968229326
+tyrosine kinase inhibitor	1.11 uM	MOA	Cell Painting	0.00303548751493852	4	-0.019902358772729556
+potassium channel blocker	0.37 uM	MOA	Cell Painting	0.0046644656059464	4	0.02964356491511204
+xiap inhibitor	0.04 uM	MOA	Cell Painting	0.0427802371973548	3	0.07731236370118862
+endothelin receptor antagonist	0.37 uM	MOA	Cell Painting	0.00364506241246627	4	-0.0017471747123261475
+androgen receptor antagonist	0.04 uM	MOA	Cell Painting	0.00630388635615232	5	0.029894772440498492
+sigma receptor antagonist	10 uM	MOA	Cell Painting	0.00350690530934357	3	0.03723491151556504
+mucolytic agent	0.12 uM	MOA	Cell Painting	0.0037139910192377	3	0.023319186988385622
+insulin secretagogue	0.04 uM	MOA	Cell Painting	0.00236688953794526	4	-0.03611663019841692
+nfkb pathway inhibitor	10 uM	MOA	Cell Painting	0.0070478129244985	4	0.069735180219037
+benzodiazepine receptor antagonist	1.11 uM	MOA	Cell Painting	0.00301962489824333	3	0.014677378017245985
+atp channel blocker	0.37 uM	MOA	Cell Painting	0.00584213202293916	3	0.025387284957360534
+tyrosine kinase inhibitor	10 uM	MOA	Cell Painting	0.00281529079489069	4	0.007402773606152045
+non-nucleoside reverse transcriptase inhibitor	0.04 uM	MOA	Cell Painting	0.0049980901634596	4	0.011741697211373218
+protein synthesis stimulant	0.12 uM	MOA	Cell Painting	0.00684996900086925	3	0.016091925818279108
+benzodiazepine receptor antagonist	0.37 uM	MOA	Cell Painting	0.00264754308871956	3	-0.02433059780569421
+alk tyrosine kinase receptor inhibitor	0.12 uM	MOA	Cell Painting	0.00932326281038273	3	0.022172913022602565
+matrix metalloprotease inhibitor	3.33 uM	MOA	Cell Painting	0.022683002394029	3	0.08360263141126342
+dna inhibitor	1.11 uM	MOA	Cell Painting	0.0485727848393617	5	-7.255926643075794e-4
+endothelin receptor antagonist	1.11 uM	MOA	Cell Painting	0.00299781985637189	4	-0.0014256238651733247
+potassium channel blocker	3.33 uM	MOA	Cell Painting	0.00345002232366238	4	0.010520926873968038
+potassium channel blocker	0.12 uM	MOA	Cell Painting	0.0029100005917926	4	-0.006436368341822162
+hiv protease inhibitor	0.04 uM	MOA	Cell Painting	0.0042581120066577	5	-0.012832000030757431
+dna inhibitor	0.37 uM	MOA	Cell Painting	0.0417762645250707	5	4.87533544115965e-4
+adenosine receptor agonist	0.37 uM	MOA	Cell Painting	0.00281205431470422	3	0.004757343392400255
+androgen receptor modulator	1.11 uM	MOA	Cell Painting	0.0133240490160769	3	0.08175828267288145
+serotonin reuptake inhibitor	3.33 uM	MOA	Cell Painting	0.00595624436812676	4	0.019422729390641588
+selective serotonin reuptake inhibitor (ssri)	0.37 uM	MOA	Cell Painting	0.00336281654759362	4	-0.014045391974334734
+cholesterol inhibitor	0.12 uM	MOA	Cell Painting	0.0103577828979749	3	0.013346451980555198
+vasopressin receptor antagonist	0.04 uM	MOA	Cell Painting	0.00267636548026421	4	-0.014859813681210428
+adenosine receptor antagonist	10 uM	MOA	Cell Painting	0.00521258629170022	4	0.04162152620298877
+gaba receptor modulator	10 uM	MOA	Cell Painting	0.00876912266179705	4	0.0446328934483664
+jak inhibitor	0.12 uM	MOA	Cell Painting	0.0063850982799296	5	-0.0027960426662788124
+glucosidase inhibitor	0.04 uM	MOA	Cell Painting	0.0028193193339804	3	0.025710809098836145
+pkc inhibitor	3.33 uM	MOA	Cell Painting	0.0143339156404637	4	-0.014270667559646968
+dna inhibitor	0.12 uM	MOA	Cell Painting	0.0224672302423004	5	-0.004901128726747902
+cck receptor antagonist	0.04 uM	MOA	Cell Painting	0.00544460712744218	4	0.015832766196091173
+matrix metalloprotease inhibitor	1.11 uM	MOA	Cell Painting	0.00446435098680055	3	0.0089867332007183
+vasopressin receptor antagonist	0.12 uM	MOA	Cell Painting	0.00367842981359797	4	0.0032419292982788337
+serotonin reuptake inhibitor	0.12 uM	MOA	Cell Painting	0.00422607881649866	4	-0.007370365238253591
+dipeptidyl peptidase inhibitor	10 uM	MOA	Cell Painting	0.00389516340839202	3	0.021159732785548016
+cck receptor antagonist	0.37 uM	MOA	Cell Painting	0.00367752476713934	4	-0.0013694321930797066
+pkc inhibitor	1.11 uM	MOA	Cell Painting	0.0116068577344522	4	0.05700080974872822
+dna methyltransferase inhibitor	0.04 uM	MOA	Cell Painting	0.0320205262733998	3	0.0786813181345641
+nitric oxide synthase inhibitor	1.11 uM	MOA	Cell Painting	0.00335856366902039	4	-0.002163270731596582
+non-nucleoside reverse transcriptase inhibitor	3.33 uM	MOA	Cell Painting	0.00253856578140402	4	-0.006747004244242167
+calcitonin antagonist	10 uM	MOA	Cell Painting	0.00810639262667291	3	0.0934762076291658
+protein synthesis stimulant	10 uM	MOA	Cell Painting	0.00421509465017086	3	0.029064607252388994
+atpase inhibitor	0.12 uM	MOA	Cell Painting	0.00424332078178232	3	-0.019006712526523337
+protein synthesis stimulant	0.04 uM	MOA	Cell Painting	0.00297344116835434	3	0.014608060760987628
+xanthine oxidase inhibitor	10 uM	MOA	Cell Painting	0.0020582322752162	3	-0.005502413895745845
+gaba receptor agonist	0.37 uM	MOA	Cell Painting	0.00242718446601942	3	0.02241356158437631
+tyrosine kinase inhibitor	3.33 uM	MOA	Cell Painting	0.00338954819897187	4	-0.0015461630212602654
+coagulation factor inhibitor	10 uM	MOA	Cell Painting	0.00593123288657482	4	0.03098009689571763
+xanthine oxidase inhibitor	3.33 uM	MOA	Cell Painting	0.00264971651616426	3	-0.008808068739261597
+glucosidase inhibitor	10 uM	MOA	Cell Painting	0.00372949885540437	3	0.005791810771330804
+fungal squalene epoxidase inhibitor	3.33 uM	MOA	Cell Painting	0.0147065668887301	3	0.02492551083180449
+selective serotonin reuptake inhibitor (ssri)	0.12 uM	MOA	Cell Painting	0.00561811720929063	4	0.009244456736093844
+potassium channel blocker	1.11 uM	MOA	Cell Painting	0.00239208205936803	4	-0.020060383606818145
+lipoxygenase inhibitor	0.12 uM	MOA	Cell Painting	0.00838283555524935	3	0.010601628375837563
+cck receptor antagonist	3.33 uM	MOA	Cell Painting	0.00287196312324368	4	-0.024375456015390057
+mdm inhibitor	0.12 uM	MOA	Cell Painting	0.113626254385999	3	0.005024147127264466
+atpase inhibitor	0.37 uM	MOA	Cell Painting	0.0119560400476283	3	0.013349799112704668
+coagulation factor inhibitor	1.11 uM	MOA	Cell Painting	0.00848104868163658	4	0.006844995516835921
+lipoxygenase inhibitor	10 uM	MOA	Cell Painting	0.00186151399886811	3	-0.031665634252610084
+adenosine receptor agonist	0.04 uM	MOA	Cell Painting	0.00284565828997854	3	0.009583710050606715
+mineralocorticoid receptor antagonist	1.11 uM	MOA	Cell Painting	0.0150824628754335	3	0.03840157930359636
+hiv integrase inhibitor	0.12 uM	MOA	Cell Painting	0.0057060249114149	3	0.03145376974433395
+glutamate receptor agonist	0.12 uM	MOA	Cell Painting	0.00327293472775709	4	-0.00924319022719056
+dna polymerase inhibitor	1.11 uM	MOA	Cell Painting	0.00421961210712161	3	-0.015392838822074088
+lipoxygenase inhibitor	0.37 uM	MOA	Cell Painting	0.00578893132084621	3	0.01273664637807974
+cck receptor antagonist	1.11 uM	MOA	Cell Painting	0.00408020559229948	4	0.0083402504570786
+purinergic receptor antagonist	0.04 uM	MOA	Cell Painting	0.00164609053497942	3	-0.003932049157645144
+insulin secretagogue	10 uM	MOA	Cell Painting	0.00450421891795636	4	0.044075957832730675
+mineralocorticoid receptor antagonist	3.33 uM	MOA	Cell Painting	0.00875430373904206	3	0.041880810094181625
+non-nucleoside reverse transcriptase inhibitor	0.12 uM	MOA	Cell Painting	0.00514165728761871	4	0.0021657386916383607
+gaba receptor modulator	0.12 uM	MOA	Cell Painting	0.00722367630933975	4	0.032117700545090645
+dna polymerase inhibitor	0.12 uM	MOA	Cell Painting	0.00256922574983627	3	0.02320528844393378
+vasopressin receptor antagonist	1.11 uM	MOA	Cell Painting	0.0023539646249479502	4	-0.03859208890218218
+androgen receptor modulator	0.37 uM	MOA	Cell Painting	0.0104260336490396	3	0.048813761238586356
+mineralocorticoid receptor antagonist	0.04 uM	MOA	Cell Painting	0.00610707382952302	3	0.0459448675486799
+xanthine oxidase inhibitor	1.11 uM	MOA	Cell Painting	0.00244008255767084	3	-0.045013341318203545
+prostanoid receptor agonist	0.04 uM	MOA	Cell Painting	0.00342011697523118	3	-0.011154419659018828
+cck receptor antagonist	0.12 uM	MOA	Cell Painting	0.00327995443442059	4	-0.014075143003676814
+mucolytic agent	0.37 uM	MOA	Cell Painting	0.0040585221607246	3	-0.0024267047388626434
+glucosidase inhibitor	0.12 uM	MOA	Cell Painting	0.00384564901572983	3	0.022107581689671887
+atp channel blocker	0.12 uM	MOA	Cell Painting	0.00642938811255643	3	0.007274754261416562
+cck receptor antagonist	10 uM	MOA	Cell Painting	0.00268363442727945	4	0.003661881304248489
+atp channel blocker	10 uM	MOA	Cell Painting	0.00345656021516631	3	0.006994234075790476
+mineralocorticoid receptor antagonist	0.37 uM	MOA	Cell Painting	0.00322195928445159	3	0.026462274266961235
+sigma receptor antagonist	0.37 uM	MOA	Cell Painting	0.00370382474871186	3	0.029907055454912294
+gaba receptor modulator	0.37 uM	MOA	Cell Painting	0.00970864864994766	4	0.032922001700365744
+pkc inhibitor	0.04 uM	MOA	Cell Painting	0.00651242725283487	4	0.01902741725275874
+non-nucleoside reverse transcriptase inhibitor	0.37 uM	MOA	Cell Painting	0.0026737463939278	4	-0.025254191222903566
+cannabinoid receptor agonist	0.12 uM	MOA	Cell Painting	0.00272434380986842	3	0.0026348997515119052
+calcitonin antagonist	0.37 uM	MOA	Cell Painting	0.00227017778365562	3	-0.005134432884528613
+lipoxygenase inhibitor	0.04 uM	MOA	Cell Painting	0.002763370916633	3	0.00812330882366598
+glutamate receptor agonist	3.33 uM	MOA	Cell Painting	0.00259000203188112	4	-0.018242051237622306
+glutamate receptor modulator	0.12 uM	MOA	Cell Painting	0.00180802783076368	3	-0.031378555565353836
+mucolytic agent	10 uM	MOA	Cell Painting	0.00310303348831482	3	-0.04789285875221062
+chelating agent	10 uM	MOA	Cell Painting	0.00303198134721312	4	0.009894917041201337
+hiv integrase inhibitor	1.11 uM	MOA	Cell Painting	0.00315870637253005	3	0.01628247488534235
+pkc inhibitor	0.37 uM	MOA	Cell Painting	0.0118143917412192	4	0.022774387609364857
+hiv integrase inhibitor	3.33 uM	MOA	Cell Painting	0.00529797570779662	3	0.02501632999059241
+reverse transcriptase inhibitor	0.12 uM	MOA	Cell Painting	0.00177955460241707	3	-0.04806221685424647
+fungal squalene epoxidase inhibitor	1.11 uM	MOA	Cell Painting	0.00341343325699293	3	0.034699413680825957
+fungal squalene epoxidase inhibitor	0.37 uM	MOA	Cell Painting	0.001934003664154	3	-0.027465582633088223
+t-type calcium channel blocker	1.11 uM	MOA	Cell Painting	0.00320118267389528	3	0.012534195732485664
+glutamate receptor modulator	1.11 uM	MOA	Cell Painting	0.0020975851500592	3	-0.023641325908847658
+gaba receptor agonist	0.04 uM	MOA	Cell Painting	0.00533333333333333	3	0.018943625870233155
+androgen receptor modulator	0.12 uM	MOA	Cell Painting	0.00748229144006881	3	0.027854223122429897
+farnesyltransferase inhibitor	0.04 uM	MOA	Cell Painting	0.00564974814101373	3	0.019493822025181178
+adenosine receptor agonist	3.33 uM	MOA	Cell Painting	0.00473785365021646	3	0.0034734524644758746
+androgen receptor modulator	0.04 uM	MOA	Cell Painting	0.00756843889847179	3	0.020145941860348158
+dipeptidyl peptidase inhibitor	1.11 uM	MOA	Cell Painting	0.00752364766638148	3	0.01692700136593523
+matrix metalloprotease inhibitor	0.04 uM	MOA	Cell Painting	0.00287181679392552	3	-0.016643512842329778
+xanthine oxidase inhibitor	0.12 uM	MOA	Cell Painting	0.00280450282632065	3	0.00411616968444742
+cholesterol inhibitor	0.04 uM	MOA	Cell Painting	0.00382160153113394	3	0.015164442284388291
+benzodiazepine receptor antagonist	10 uM	MOA	Cell Painting	0.00246144658191131	3	-0.0016056396508218585
+atp channel blocker	1.11 uM	MOA	Cell Painting	0.00522433071882501	3	0.0036123245250422307
+benzodiazepine receptor antagonist	0.04 uM	MOA	Cell Painting	0.00613675676708355	3	0.04068250297604291
+glucosidase inhibitor	3.33 uM	MOA	Cell Painting	0.00303978501028633	3	-0.014969403989408362
+farnesyltransferase inhibitor	1.11 uM	MOA	Cell Painting	0.00332637435918232	3	0.03364358572160918
+acat inhibitor	0.04 uM	MOA	Cell Painting	0.00250549137003268	3	0.004444607026614167
+bcl inhibitor	0.37 uM	MOA	Cell Painting	0.00332415132814746	3	0.026211357938863162
+glutamate receptor modulator	0.04 uM	MOA	Cell Painting	0.00211509261889171	3	-0.007278163607475038
+purinergic receptor antagonist	0.12 uM	MOA	Cell Painting	0.00140252454417952	3	-0.002210057080476421
+farnesyltransferase inhibitor	0.12 uM	MOA	Cell Painting	0.00349491186180224	3	0.017165625928597716
+t-type calcium channel blocker	0.04 uM	MOA	Cell Painting	0.0022933726659033	3	-0.008397728429182764
+acat inhibitor	0.37 uM	MOA	Cell Painting	0.00254207747065614	3	-0.017092616560060697
+atp channel blocker	0.04 uM	MOA	Cell Painting	0.00917138569165768	3	0.05068545266452767
+hiv integrase inhibitor	0.37 uM	MOA	Cell Painting	0.00518646531883216	3	0.0754282055573029
+purinergic receptor antagonist	1.11 uM	MOA	Cell Painting	0.00248756218905473	3	0.00788956365860757
+glutamate receptor modulator	3.33 uM	MOA	Cell Painting	0.00249587683811672	3	-0.04610520748742154
+mineralocorticoid receptor antagonist	0.12 uM	MOA	Cell Painting	0.00604248505443911	3	0.021848676494758825
+xanthine oxidase inhibitor	0.04 uM	MOA	Cell Painting	0.001816508510649	3	-0.0021678447686048954
+reverse transcriptase inhibitor	1.11 uM	MOA	Cell Painting	0.00284704921173905	3	-0.007472958762483828
+farnesyltransferase inhibitor	0.37 uM	MOA	Cell Painting	0.00283779070682532	3	-0.004862467074990404
+reverse transcriptase inhibitor	0.37 uM	MOA	Cell Painting	0.00179707044791981	3	-0.02992370639116143
+bcl inhibitor	0.12 uM	MOA	Cell Painting	0.0025103301089881	3	0.013295509986185729
+cannabinoid receptor agonist	1.11 uM	MOA	Cell Painting	0.0112778367770142	3	0.029442810487356575
+protein synthesis stimulant	1.11 uM	MOA	Cell Painting	0.00429940474471265	3	0.03463372621239261
+matrix metalloprotease inhibitor	0.12 uM	MOA	Cell Painting	0.0027271666588662	3	-0.010173642091950808
+protein synthesis stimulant	3.33 uM	MOA	Cell Painting	0.00398886433098279	3	0.01425113883061719
+lipoxygenase inhibitor	3.33 uM	MOA	Cell Painting	0.00644599089061744	3	0.052240127705078215
+adenosine receptor agonist	1.11 uM	MOA	Cell Painting	0.00259040126776748	3	-0.01488758017780848
+acat inhibitor	0.12 uM	MOA	Cell Painting	0.00557695167097404	3	0.02324071030893521
+bcl inhibitor	1.11 uM	MOA	Cell Painting	0.0130099087903095	3	0.11745734653950354
+mdm inhibitor	0.04 uM	MOA	Cell Painting	0.0311533058406611	3	0.07607910968342606
+reverse transcriptase inhibitor	3.33 uM	MOA	Cell Painting	0.00179942403055434	3	-0.059695954883372516
+bcl inhibitor	0.04 uM	MOA	Cell Painting	0.00179146146462171	3	-0.025009036479412442
+mucolytic agent	0.04 uM	MOA	Cell Painting	0.00680255375613706	3	0.04277973004695011
+purinergic receptor antagonist	3.33 uM	MOA	Cell Painting	0.00141743444365698	3	0.009184553233903532
+sigma receptor antagonist	3.33 uM	MOA	Cell Painting	0.00713263882944464	3	0.06613251280951576
+t-type calcium channel blocker	0.12 uM	MOA	Cell Painting	0.00425131182267987	3	0.04097331889015657
+glucocorticoid receptor agonist	All	MOA	Cell Painting	0.474828877465503	84	0.3465772836509424
+mek inhibitor	All	MOA	Cell Painting	0.331239276345299	48	0.29530174677688653
+mtor inhibitor	All	MOA	Cell Painting	0.238507453996186	36	0.307607629946045
+hsp inhibitor	All	MOA	Cell Painting	0.099890352785675	30	0.2806764576689837
+proteasome inhibitor	All	MOA	Cell Painting	0.258894149005094	24	0.3243634003056352
+plk inhibitor	All	MOA	Cell Painting	0.794102480057271	24	0.5824570847390291
+mtor inhibitor|pi3k inhibitor	All	MOA	Cell Painting	0.166189033827188	24	0.13934289539765862
+hdac inhibitor	All	MOA	Cell Painting	0.0846951690030782	78	0.036316276448232473
+topoisomerase inhibitor	All	MOA	Cell Painting	0.049326643290387	90	0.012532680476715297
+mdm inhibitor	All	MOA	Cell Painting	0.0856214699646512	18	0.10364019025856819
+purine antagonist	All	MOA	Cell Painting	0.00828588315090995	12	0.04279495333883104
+tubulin inhibitor	All	MOA	Cell Painting	0.0912209210457228	48	0.06722416686408822
+protein synthesis inhibitor	All	MOA	Cell Painting	0.0396954879264389	30	0.007629555923199827
+cdk inhibitor	All	MOA	Cell Painting	0.0714832475194683	42	0.10973081738417556
+inosine monophosphate dehydrogenase inhibitor	All	MOA	Cell Painting	0.0244163293769927	12	0.0281266356287216
+dopamine receptor antagonist|serotonin receptor antagonist	All	MOA	Cell Painting	0.049658857797672	54	0.011410232165107621
+xiap inhibitor	All	MOA	Cell Painting	0.231441865987577	18	0.20933591484669656
+cyclooxygenase inhibitor|prostanoid receptor antagonist	All	MOA	Cell Painting	0.0396330996605909	24	0.0036035241776737293
+serotonin receptor agonist|serotonin receptor antagonist	All	MOA	Cell Painting	0.0388021351472655	18	0.027852866176963892
+adrenergic receptor antagonist	All	MOA	Cell Painting	0.0337392176305139	180	0.006295542835573886
+cyclooxygenase inhibitor	All	MOA	Cell Painting	0.029683247465111	150	0.002667076317195393
+dopamine receptor antagonist	All	MOA	Cell Painting	0.0313569798843203	108	0.006990708844538628
+phosphodiesterase inhibitor	All	MOA	Cell Painting	0.0300993103390772	168	0.00804270624002115
+histamine receptor antagonist	All	MOA	Cell Painting	0.0229137521848572	138	0.003508676507197493
+serotonin receptor antagonist	All	MOA	Cell Painting	0.0282077241376861	72	0.00891090823148804
+diacylglycerol o acyltransferase inhibitor	All	MOA	Cell Painting	0.0383617891658552	12	0.14206035679461726
+egfr inhibitor	All	MOA	Cell Painting	0.0594110564925425	72	0.09100204938342943
+adrenergic receptor agonist	All	MOA	Cell Painting	0.0203661627858053	120	0.004513737763296247
+acetylcholine receptor antagonist	All	MOA	Cell Painting	0.0209541933944033	120	0.007053382793335537
+progestogen hormone	All	MOA	Cell Painting	0.00422624677023649	12	0.07296569421358311
+pi3k inhibitor	All	MOA	Cell Painting	0.0179397855735604	36	0.016320579656347284
+calcium channel blocker	All	MOA	Cell Painting	0.0150720446902962	90	0.006407247717123006
+microtubule inhibitor	All	MOA	Cell Painting	0.0213307874863107	18	0.04350162491392584
+akt inhibitor	All	MOA	Cell Painting	0.0214872231315207	30	0.035792374039278145
+serotonin receptor agonist	All	MOA	Cell Painting	0.0124358596473793	60	0.003391820886817009
+sodium channel blocker	All	MOA	Cell Painting	0.0112141478320238	72	0.004616017508667348
+bacterial cell wall synthesis inhibitor	All	MOA	Cell Painting	0.0136471358487226	84	0.004923956500366866
+bacterial dna gyrase inhibitor	All	MOA	Cell Painting	0.0111659508038043	66	0.007820924844662923
+norepinephrine reputake inhibitor|tricyclic antidepressant	All	MOA	Cell Painting	0.0214278953887947	12	0.1724613854311437
+cannabinoid receptor agonist	All	MOA	Cell Painting	0.00232481323044345	18	0.014697638931606364
+dopamine receptor agonist	All	MOA	Cell Painting	0.00840022762661181	54	-0.00177781341016057
+gamma secretase inhibitor	All	MOA	Cell Painting	0.0130890580705386	42	0.03686928826574688
+prostanoid receptor antagonist	All	MOA	Cell Painting	0.00727520298709919	18	-0.003470670726270572
+sodium/glucose cotransporter inhibitor	All	MOA	Cell Painting	7.74168005450092e-4	12	-0.0016523496695807459
+progesterone receptor agonist	All	MOA	Cell Painting	0.0104447257491927	42	0.03578733632793957
+vegfr inhibitor	All	MOA	Cell Painting	0.0097144070588829	24	0.0214688618048856
+opioid receptor agonist|opioid receptor antagonist	All	MOA	Cell Painting	0.00730897261726164	6	0.014757381277957182
+tachykinin antagonist	All	MOA	Cell Painting	0.00625497439794101	36	0.011121592918060884
+acetylcholine receptor agonist	All	MOA	Cell Painting	0.00766765023550562	48	8.406107543695199e-4
+p38 mapk inhibitor	All	MOA	Cell Painting	0.0279787473654222	36	0.0688011749632519
+fgfr inhibitor|vegfr inhibitor	All	MOA	Cell Painting	0.00859331906528042	18	0.015850468702536466
+angiotensin converting enzyme inhibitor	All	MOA	Cell Painting	0.0079318251696574	48	0.0073818342205023944
+rna polymerase inhibitor	All	MOA	Cell Painting	0.00804877468197185	42	0.010129335010070389
+sterol demethylase inhibitor	All	MOA	Cell Painting	0.00728488262407057	42	0.00765667788138384
+ppar receptor agonist|insulin sensitizer	All	MOA	Cell Painting	0.00933490559912534	18	0.03838212697866285
+benzodiazepine receptor agonist	All	MOA	Cell Painting	0.00661521259259482	18	0.005594426075109306
+bacterial antifolate	All	MOA	Cell Painting	5.64570482754207e-4	12	-0.025588904476275785
+pdgfr tyrosine kinase receptor inhibitor|vegfr inhibitor	All	MOA	Cell Painting	0.0101848779047143	12	9.758529858143225e-4
+rho associated kinase inhibitor	All	MOA	Cell Painting	0.00815903841142754	24	0.023247749529260776
+cathepsin inhibitor	All	MOA	Cell Painting	0.00161224835519543	12	0.03134462044341246
+vitamin d receptor agonist	All	MOA	Cell Painting	0.022673578517291	30	0.07921069659709838
+aurora kinase inhibitor	All	MOA	Cell Painting	0.30149828381512	12	0.5290879353243605
+cc chemokine receptor antagonist	All	MOA	Cell Painting	0.00624926388137115	42	0.007936338677304968
+bacterial 50s ribosomal subunit inhibitor	All	MOA	Cell Painting	0.00351005657797241	24	0.0028195574100162357
+retinoid receptor agonist	All	MOA	Cell Painting	0.0358610898974422	36	0.11212164473324515
+nucleoside reverse transcriptase inhibitor	All	MOA	Cell Painting	0.003211137353864	24	0.003806483653422707
+angiotensin receptor antagonist	All	MOA	Cell Painting	0.00319258853741644	24	0.00810845874099983
+adenosine receptor antagonist	All	MOA	Cell Painting	0.00318563320306151	24	0.007354406960270841
+dna synthesis inhibitor	All	MOA	Cell Painting	0.0065345772587283	42	0.005656226468349413
+hcv inhibitor	All	MOA	Cell Painting	0.00782012566093574	42	0.002499357853827912
+opioid receptor antagonist	All	MOA	Cell Painting	0.00403752840201549	24	-0.011961773941592431
+raf inhibitor	All	MOA	Cell Painting	0.0101840003642766	30	0.032402893776902184
+potassium channel activator	All	MOA	Cell Painting	0.00572601982148123	24	0.015155486487580444
+hmgcr inhibitor	All	MOA	Cell Painting	0.00499057293895647	30	0.00804216911577419
+monoamine oxidase inhibitor	All	MOA	Cell Painting	0.00486915811435393	36	0.0025326765189576874
+bacterial 30s ribosomal subunit inhibitor	All	MOA	Cell Painting	0.00419915524180154	30	0.0010781949436480336
+ppar receptor agonist	All	MOA	Cell Painting	0.00552852154044939	18	0.001728960548245704
+cannabinoid receptor antagonist	All	MOA	Cell Painting	7.46672221886378e-4	12	-0.0019004982547389808
+jnk inhibitor	All	MOA	Cell Painting	0.0351445116173438	12	0.034641067901734435
+vesicular monoamine transporter inhibitor	All	MOA	Cell Painting	0.00457133372581222	12	0.06338871235091198
+aldose reductase inhibitor	All	MOA	Cell Painting	0.00179374356905765	12	0.012065224071556711
+insulin sensitizer	All	MOA	Cell Painting	0.00471109765488777	12	0.028222181540122335
+estrogen receptor agonist	All	MOA	Cell Painting	0.00533105150290734	36	0.00570479947049362
+opioid receptor agonist	All	MOA	Cell Painting	0.00307412657455332	18	0.012273079847250911
+integrin antagonist	All	MOA	Cell Painting	0.00430085347037205	30	-0.005018283992063452
+leukotriene receptor antagonist	All	MOA	Cell Painting	0.00320023516625472	24	0.0026592767077630256
+tyrosine kinase inhibitor	All	MOA	Cell Painting	0.00411916220599544	24	0.0021248126390103856
+carbonic anhydrase inhibitor	All	MOA	Cell Painting	0.00391474943102448	30	0.007673651007727772
+dna inhibitor	All	MOA	Cell Painting	0.0143542358920681	30	0.004360210672568324
+aromatase inhibitor	All	MOA	Cell Painting	0.0174884964880048	18	0.10450767969436292
+androgen receptor antagonist	All	MOA	Cell Painting	0.00475872094332619	30	0.0075040017275656845
+dna methyltransferase inhibitor	All	MOA	Cell Painting	0.0130511937654527	18	0.09547123987259112
+bcl inhibitor	All	MOA	Cell Painting	0.00327342936154173	18	0.04127932434523951
+jak inhibitor	All	MOA	Cell Painting	0.0057247965574425104	30	0.015304134187994322
+prostanoid receptor agonist	All	MOA	Cell Painting	0.0046144353233533	18	0.028191723729521646
+hiv protease inhibitor	All	MOA	Cell Painting	0.00380063437310124	30	-0.0011798838733253088
+free radical scavenger	All	MOA	Cell Painting	0.00320502596632218	24	0.009523670867675596
+immunostimulant	All	MOA	Cell Painting	6.73867372846506e-4	12	-0.027693758667135793
+nfkb pathway inhibitor	All	MOA	Cell Painting	0.00419802877678779	30	0.013469184909062279
+nitric oxide synthase inhibitor	All	MOA	Cell Painting	0.00290878280764566	24	-0.004729554266595571
+parp inhibitor	All	MOA	Cell Painting	0.00476562703239948	30	0.010147000743743025
+estrogen receptor antagonist	All	MOA	Cell Painting	0.00587496054529578	12	0.004907780586519834
+androgen receptor modulator	All	MOA	Cell Painting	0.00452118143409563	18	0.041422668729009085
+glutamate receptor antagonist	All	MOA	Cell Painting	0.0043150428273099	30	-0.0026169484937338477
+coagulation factor inhibitor	All	MOA	Cell Painting	0.0034726073570248	24	-0.0010013409462776195
+alk tyrosine kinase receptor inhibitor	All	MOA	Cell Painting	0.00272784023206715	18	0.024649468475980055
+angiogenesis inhibitor	All	MOA	Cell Painting	7.21532855342067e-4	12	-0.016143060137861476
+vasopressin receptor antagonist	All	MOA	Cell Painting	0.00263554350090159	24	-0.004959726141266051
+tricyclic antidepressant	All	MOA	Cell Painting	0.00416464932751062	12	0.001084750693403118
+serotonin reuptake inhibitor	All	MOA	Cell Painting	0.00296878947604605	24	0.0018470798222604981
+acat inhibitor	All	MOA	Cell Painting	0.00254148513275166	18	5.24340690330181e-4
+potassium channel blocker	All	MOA	Cell Painting	0.00245836753730501	24	-0.010224668909857067
+insulin secretagogue	All	MOA	Cell Painting	0.00240499311049574	24	-0.010868369931570851
+sigma receptor antagonist	All	MOA	Cell Painting	0.00270071067282835	18	0.01680572436491136
+chelating agent	All	MOA	Cell Painting	0.00266496752298261	24	-0.0023684239242376635
+estrogen receptor antagonist|selective estrogen receptor modulator (serm)	All	MOA	Cell Painting	0.00398521066800317	12	-0.03266752919397496
+dna polymerase inhibitor	All	MOA	Cell Painting	0.001716597160219	18	8.769825467977981e-4
+endothelin receptor antagonist	All	MOA	Cell Painting	0.00244630999954866	24	-0.010413199537137076
+calcineurin inhibitor	All	MOA	Cell Painting	0.0111392914755039	18	0.07034419167788793
+selective serotonin reuptake inhibitor (ssri)	All	MOA	Cell Painting	0.00347776062750316	24	0.009602133425877802
+atpase inhibitor	All	MOA	Cell Painting	0.002549925880906	18	0.001021073193468818
+gaba receptor agonist	All	MOA	Cell Painting	0.00101632292238094	12	0.018153196706696736
+pkc inhibitor	All	MOA	Cell Painting	0.00542208723427134	24	0.025426288694065713
+dipeptidyl peptidase inhibitor	All	MOA	Cell Painting	0.00226664832874884	18	0.007023767428547541
+gaba receptor modulator	All	MOA	Cell Painting	0.00490901675408308	24	0.02500581931717034
+glutamate receptor agonist	All	MOA	Cell Painting	0.00261600855901954	24	-0.0026370991302056704
+non-nucleoside reverse transcriptase inhibitor	All	MOA	Cell Painting	0.00307864463751269	24	-7.971206586331251e-5
+calcium channel activator	All	MOA	Cell Painting	0.00115747362085364	12	-0.022324305688267262
+calcitonin antagonist	All	MOA	Cell Painting	0.00177009278725391	18	0.006043054861927124
+carnitine palmitoyltransferase inhibitor	All	MOA	Cell Painting	0.00762579530476924	12	0.11196501396541422
+adenosine receptor agonist	All	MOA	Cell Painting	0.00196253461640186	18	0.0013726521117737355
+cholesterol inhibitor	All	MOA	Cell Painting	0.00282958760492933	18	0.01717944410806646
+matrix metalloprotease inhibitor	All	MOA	Cell Painting	0.00396755899911175	18	0.026016003060218285
+cck receptor antagonist	All	MOA	Cell Painting	0.00296069414531947	24	1.9158939192050924e-4
+gaba receptor antagonist	All	MOA	Cell Painting	0.0153850856219285	12	0.08650799631937392
+gonadotropin releasing factor hormone receptor agonist	All	MOA	Cell Painting	8.68567817818219e-4	12	-0.009428170189853997
+progesterone receptor antagonist	All	MOA	Cell Painting	0.00370960976690669	12	0.06940334485926582
+dihydroorotate dehydrogenase inhibitor	All	MOA	Cell Painting	0.00931408770078483	12	0.02740513071257786
+lipase inhibitor	All	MOA	Cell Painting	9.39081424672969e-4	12	-0.004655790158831569
+glucosidase inhibitor	All	MOA	Cell Painting	0.00190414438906945	18	-0.002724282880397987
+hiv integrase inhibitor	All	MOA	Cell Painting	0.00302067182096551	18	0.029720147566413467
+benzodiazepine receptor antagonist	All	MOA	Cell Painting	0.00195630754169767	18	0.008137282522854315
+fungal squalene epoxidase inhibitor	All	MOA	Cell Painting	0.0019830582561474	18	0.007490217433804151
+mucolytic agent	All	MOA	Cell Painting	0.00210948753821766	18	0.014999369889246689
+t-type calcium channel blocker	All	MOA	Cell Painting	0.00191860329629786	18	0.003124101200314382
+mineralocorticoid receptor antagonist	All	MOA	Cell Painting	0.00288128011841399	18	0.020670341831896616
+elastase inhibitor	All	MOA	Cell Painting	0.00102360295013113	12	0.009463631714328815
+glutamate receptor modulator	All	MOA	Cell Painting	0.00161499101574209	18	-0.008700711726095907
+diuretic	All	MOA	Cell Painting	0.00161457507974524	12	-0.016881685080811056
+protein synthesis stimulant	All	MOA	Cell Painting	0.00241254488257667	18	0.014696935014423002
+lipoxygenase inhibitor	All	MOA	Cell Painting	0.00196845195329107	18	7.936321715486644e-4
+atp channel blocker	All	MOA	Cell Painting	0.00295703917053188	18	0.0069819565364066406
+xanthine oxidase inhibitor	All	MOA	Cell Painting	0.00153427260701264	18	-0.01036695877572177
+purinergic receptor antagonist	All	MOA	Cell Painting	7.80498106849595e-4	12	0.006634270347524476
+farnesyltransferase inhibitor	All	MOA	Cell Painting	0.00427099781763865	18	0.03447287163527703
+fatty acid synthase inhibitor	All	MOA	Cell Painting	0.00172217583883334	12	0.013308912673485445
+reverse transcriptase inhibitor	All	MOA	Cell Painting	0.00141073153071024	18	-0.024336262846669177
+c-met inhibitor	All	MOA	Cell Painting	8.81904128100836e-4	12	-0.012273077034636808
+sulfonylurea	All	MOA	Cell Painting	0.00142212110002635	12	0.03438243121996804
+acetylcholinesterase inhibitor	All	MOA	Cell Painting	9.9851231599203e-4	12	4.480747031257581e-4
+isocitrate dehydrogenase inhibitor	All	MOA	Cell Painting	0.00158686876345596	12	0.011879998204659266
+beta-secretase inhibitor	All	MOA	Cell Painting	9.43509421390252e-4	12	-0.0053468711632740935
+thromboxane synthase inhibitor	All	MOA	Cell Painting	0.00826270159051579	12	0.0614513476879158
+histamine receptor agonist	All	MOA	Cell Painting	0.00143548362924362	12	0.014484230987889625
+dna alkylating agent	All	MOA	Cell Painting	0.0016684369401938	12	0.026739735541505764
+5 alpha reductase inhibitor	All	MOA	Cell Painting	9.07475746562211e-4	12	-0.0184115223431441
+dopamine uptake inhibitor	All	MOA	Cell Painting	9.01249859023882e-4	12	-0.0034411628214761785
+dopamine reuptake inhibitor	All	MOA	Cell Painting	8.72480142515557e-4	12	-0.003631711883387725
+nitric oxide stimulant	All	MOA	Cell Painting	8.34053578754292e-4	12	-0.008815579997831093
+bruton's tyrosine kinase (btk) inhibitor	All	MOA	Cell Painting	0.00100966514921638	12	0.003708783569480708
+thymidylate synthase inhibitor	All	MOA	Cell Painting	0.00177422490545338	12	0.030295933494566298
+focal adhesion kinase inhibitor	All	MOA	Cell Painting	0.00114869683987103	12	0.030761425201185445
+glucose-dependent insulinotropic receptor (gdir, gpr119) agonists	All	MOA	Cell Painting	0.0013821933209461	12	0.013480877261173847
+tyrosinase inhibitor	All	MOA	Cell Painting	0.00114716738817143	12	0.0025167606794293798
+thyrotropin releasing hormone receptor agonist	All	MOA	Cell Painting	0.00235733138255199	12	0.028587324218316015
+sodium/potassium/chloride transporter inhibitor	All	MOA	Cell Painting	8.4965659259179e-4	12	-0.00905100153035179
+dna directed dna polymerase inhibitor	All	MOA	Cell Painting	0.00105191040989082	12	-0.013052167296483955
+dna alkylating drug	All	MOA	Cell Painting	7.35354392798645e-4	12	-0.02118265939034815
+acetylcholine release stimulant	All	MOA	Cell Painting	7.86489453242062e-4	12	-0.010061965480098896
+oxidative stress inducer	All	MOA	Cell Painting	8.06940745529085e-4	12	-0.0010858447237126164
+pim kinase inhibitor	All	MOA	Cell Painting	0.00110326943193625	12	0.017214931107638203
+o6-alkylguanine-dna alkyltransferase inhibitor	All	MOA	Cell Painting	9.79289790232628e-4	12	-0.0071977645789191285
+cftr channel agonist	All	MOA	Cell Painting	0.00110829815719837	12	0.003179687914020501
+cytochrome p450 inhibitor	All	MOA	Cell Painting	7.63537239479116e-4	12	-0.03225261489345804
+platelet activating factor receptor antagonist	All	MOA	Cell Painting	0.00142437068607576	12	0.01919459298967846
+dihydrofolate reductase inhibitor	All	MOA	Cell Painting	8.47066120357373e-4	12	0.0028400981743698433
+alcohol dehydrogenase inhibitor	All	MOA	Cell Painting	8.05447478210105e-4	12	-0.009154683471833177
+immunosuppressant	All	MOA	Cell Painting	0.00142227083668234	12	0.01544869413349136
+growth hormone secretagogue receptor agonist	All	MOA	Cell Painting	0.00108952278374888	12	0.01929855757262358
+antiviral	All	MOA	Cell Painting	0.00381297680262892	12	0.03911607328477994
+tgf beta receptor inhibitor	All	MOA	Cell Painting	0.00102123229962127	12	0.00932374191507862
+membrane permeability inhibitor	All	MOA	Cell Painting	6.59810796026359e-4	12	-0.03126115985621808
+neurotrophic agent	All	MOA	Cell Painting	0.00129261184615958	12	0.030440442579716315
+cannabinoid receptor inverse agonist	All	MOA	Cell Painting	7.88132028829123e-4	12	0.00890931380794348
+antithyroid agent	All	MOA	Cell Painting	0.00111944896864422	12	0.018127683279939466
+beta lactamase inhibitor	All	MOA	Cell Painting	0.00172342678941638	12	0.010197301028775458
+tumor necrosis factor release inhibitor	All	MOA	Cell Painting	7.05686085311394e-4	12	-0.024107611881708506
+trpv antagonist	All	MOA	Cell Painting	0.00365957850916579	12	0.052323774912384505
+rna synthesis inhibitor	All	MOA	Cell Painting	0.00107458919941108	12	-0.008760157238451041
+adrenergic inhibitor	All	MOA	Cell Painting	0.00107558188920121	12	0.010135511948474465
+thrombin inhibitor	All	MOA	Cell Painting	8.72658716919543e-4	12	0.003114749588669405
+thromboxane receptor antagonist	All	MOA	Cell Painting	0.0013760061132391	12	0.02779900396003434
+nitric oxide donor	All	MOA	Cell Painting	0.00194156390194797	12	0.016153305011868187
+ribonucleoside reductase inhibitor	All	MOA	Cell Painting	0.00186578109408218	12	0.03317580708681236
+histamine receptor modulator	All	MOA	Cell Painting	9.78897939027269e-4	12	-0.0026019542389364987
+bcr-abl kinase inhibitor	All	MOA	Cell Painting	0.00160174096103055	12	0.02500419098261114
+calmodulin antagonist	All	MOA	Cell Painting	8.278886464812e-4	12	-0.020437699214259877
+ribonucleotide reductase inhibitor	All	MOA	Cell Painting	0.0010462923038802	12	0.005647618327858855
+proteasome inhibitor	3.33 uM	MOA	L1000	1	4	0.7390543729432919
+proteasome inhibitor	10 uM	MOA	L1000	1	4	0.7245629237915516
+hsp inhibitor	3.33 uM	MOA	L1000	1	5	0.7037139339523656
+hsp inhibitor	10 uM	MOA	L1000	1	5	0.7374533799410818
+mek inhibitor	3.33 uM	MOA	L1000	1	8	0.6190278638384056
+mek inhibitor	10 uM	MOA	L1000	0.985031387735471	8	0.6716873912992891
+mek inhibitor	1.11 uM	MOA	L1000	0.942919237965781	8	0.5508164705458369
+mdm inhibitor	10 uM	MOA	L1000	0.885714285714286	3	0.6834689372653592
+mek inhibitor	0.37 uM	MOA	L1000	0.868906323698446	8	0.5035473825511201
+glucocorticoid receptor agonist	1.11 uM	MOA	L1000	0.854869213157595	14	0.433709869525685
+glucocorticoid receptor agonist	0.37 uM	MOA	L1000	0.852137071809857	14	0.3957290332629977
+glucocorticoid receptor agonist	3.33 uM	MOA	L1000	0.810337541671348	14	0.444676752314633
+mtor inhibitor	1.11 uM	MOA	L1000	0.787270583927318	6	0.4710593378159846
+hsp inhibitor	1.11 uM	MOA	L1000	0.741206624916302	5	0.6968216548980803
+mtor inhibitor	0.37 uM	MOA	L1000	0.732215820155793	6	0.431470478245013
+glucocorticoid receptor agonist	0.12 uM	MOA	L1000	0.712604138739733	14	0.337704900138569
+mtor inhibitor	3.33 uM	MOA	L1000	0.695598991649121	6	0.4642950542878065
+glucocorticoid receptor agonist	0.04 uM	MOA	L1000	0.663277265901587	14	0.3021105579944646
+proteasome inhibitor	1.11 uM	MOA	L1000	0.656926406926407	4	0.607681827948317
+hdac inhibitor	10 uM	MOA	L1000	0.646798999402206	13	0.4820752555659501
+mtor inhibitor	10 uM	MOA	L1000	0.605859112603633	6	0.4443303821178165
+glucocorticoid receptor agonist	10 uM	MOA	L1000	0.579940307939533	14	0.40610606092827295
+plk inhibitor	0.12 uM	MOA	L1000	0.546561369387456	4	0.4120128901279094
+mtor inhibitor	0.12 uM	MOA	L1000	0.523138005622264	6	0.3904233043126125
+proteasome inhibitor	0.37 uM	MOA	L1000	0.520637102865481	4	0.3791856797599991
+plk inhibitor	1.11 uM	MOA	L1000	0.510872667780563	4	0.39578866644708016
+mek inhibitor	0.12 uM	MOA	L1000	0.507284453695566	8	0.28515164909042734
+plk inhibitor	0.37 uM	MOA	L1000	0.479023800155514	4	0.4447402249416864
+mtor inhibitor|pi3k inhibitor	3.33 uM	MOA	L1000	0.467066959131941	4	0.5931055248332862
+mtor inhibitor|pi3k inhibitor	10 uM	MOA	L1000	0.462308152938876	4	0.6671653862167258
+hsp inhibitor	0.37 uM	MOA	L1000	0.444218166431184	5	0.3351257414088135
+xiap inhibitor	10 uM	MOA	L1000	0.435327635327635	3	0.17877415214746992
+hdac inhibitor	3.33 uM	MOA	L1000	0.422918116292563	13	0.23618797156179916
+plk inhibitor	3.33 uM	MOA	L1000	0.40491452991453	4	0.3686304182278656
+mdm inhibitor	3.33 uM	MOA	L1000	0.403783244269636	3	0.44334374770924306
+mtor inhibitor	0.04 uM	MOA	L1000	0.402436735234755	6	0.3847240198679786
+mtor inhibitor|pi3k inhibitor	1.11 uM	MOA	L1000	0.375724125077502	4	0.4297330140941741
+hdac inhibitor	1.11 uM	MOA	L1000	0.342383475022025	13	0.20153709857028973
+plk inhibitor	0.04 uM	MOA	L1000	0.32352715095784	4	0.22994070028179908
+hsp inhibitor	0.12 uM	MOA	L1000	0.305875375145332	5	0.02972171550842905
+mtor inhibitor|pi3k inhibitor	0.37 uM	MOA	L1000	0.271217337831009	4	0.133304143318933
+cdk inhibitor	10 uM	MOA	L1000	0.235888404836999	7	0.21469003238979648
+tubulin inhibitor	3.33 uM	MOA	L1000	0.229334842068171	8	0.27021218451824275
+cannabinoid receptor agonist	10 uM	MOA	L1000	0.223460738342134	3	-0.18873097300703248
+xiap inhibitor	0.37 uM	MOA	L1000	0.211166905786705	3	0.19021716498678667
+tubulin inhibitor	10 uM	MOA	L1000	0.209603278390872	8	0.2767789591657714
+plk inhibitor	10 uM	MOA	L1000	0.204093444168381	4	0.22275872827923998
+hdac inhibitor	0.37 uM	MOA	L1000	0.195024074303178	13	0.12410780163819034
+topoisomerase inhibitor	3.33 uM	MOA	L1000	0.191551272497116	15	0.06982646791056023
+mtor inhibitor|pi3k inhibitor	0.12 uM	MOA	L1000	0.188854201121292	4	0.09878628689399996
+proteasome inhibitor	0.12 uM	MOA	L1000	0.174323804039324	4	0.06801762776302017
+mdm inhibitor	1.11 uM	MOA	L1000	0.172111179797147	3	0.20462402030140306
+xiap inhibitor	3.33 uM	MOA	L1000	0.171438841532299	3	0.17596266142083286
+mek inhibitor	0.04 uM	MOA	L1000	0.158177719199103	8	0.17654681413958412
+topoisomerase inhibitor	0.37 uM	MOA	L1000	0.152200922902631	15	0.04353657634036748
+hsp inhibitor	0.04 uM	MOA	L1000	0.145308293072671	5	0.1202837558186641
+topoisomerase inhibitor	1.11 uM	MOA	L1000	0.145070413830022	15	0.04454839504076501
+topoisomerase inhibitor	0.12 uM	MOA	L1000	0.140828542482436	15	0.01684000309737092
+topoisomerase inhibitor	10 uM	MOA	L1000	0.138759687092697	15	0.13561694979472405
+akt inhibitor	10 uM	MOA	L1000	0.127275717226686	6	0.07528909363426965
+cdk inhibitor	1.11 uM	MOA	L1000	0.116986064514645	7	0.15980988064323215
+tubulin inhibitor	0.37 uM	MOA	L1000	0.116860767579563	8	-0.010141347606073764
+cdk inhibitor	3.33 uM	MOA	L1000	0.113826531692551	7	0.16340210263045754
+topoisomerase inhibitor	0.04 uM	MOA	L1000	0.112082130312019	15	0.012178375448432914
+bcl inhibitor	10 uM	MOA	L1000	0.0862423542835914	3	0.2097225369285996
+akt inhibitor	3.33 uM	MOA	L1000	0.0763590174501298	6	0.05537277152968329
+protein synthesis inhibitor	0.12 uM	MOA	L1000	0.0745200676144105	6	0.06393943048959078
+protein synthesis inhibitor	3.33 uM	MOA	L1000	0.0719741185738461	6	-0.001960874242761786
+protein synthesis inhibitor	1.11 uM	MOA	L1000	0.0716562627877058	6	-0.0450448223959619
+protein synthesis inhibitor	0.04 uM	MOA	L1000	0.0716322813539105	6	0.03385420571185717
+protein synthesis inhibitor	0.37 uM	MOA	L1000	0.0713152136034962	6	-0.03741528935225799
+protein synthesis inhibitor	10 uM	MOA	L1000	0.0704649444005461	6	-0.012122207191712163
+tubulin inhibitor	1.11 uM	MOA	L1000	0.0697630703184915	8	0.046322818523814785
+xiap inhibitor	1.11 uM	MOA	L1000	0.0683606479200114	3	0.21350074504108155
+hdac inhibitor	0.12 uM	MOA	L1000	0.0665141297293252	13	0.07554743514798468
+hmgcr inhibitor	10 uM	MOA	L1000	0.0663855873625418	5	0.039869316328702886
+microtubule inhibitor	1.11 uM	MOA	L1000	0.0599218431754317	3	0.07259429002592993
+pi3k inhibitor	10 uM	MOA	L1000	0.058467818624028	7	0.07166276518294962
+aromatase inhibitor	3.33 uM	MOA	L1000	0.0584413024256896	3	0.08119276754924595
+microtubule inhibitor	0.37 uM	MOA	L1000	0.0582327006351268	3	0.07077446448193793
+adenosine receptor antagonist	1.11 uM	MOA	L1000	0.0568738147761136	4	0.19551645494534714
+egfr inhibitor	10 uM	MOA	L1000	0.05627104149572	13	0.16127231166304629
+dopamine receptor antagonist|serotonin receptor antagonist	10 uM	MOA	L1000	0.0519204552203233	9	0.030434058927509236
+dopamine receptor antagonist|serotonin receptor antagonist	0.04 uM	MOA	L1000	0.04673336420899	9	0.007341301553054408
+dopamine receptor antagonist|serotonin receptor antagonist	3.33 uM	MOA	L1000	0.0464078776436301	9	0.022383699765989425
+mtor inhibitor|pi3k inhibitor	0.04 uM	MOA	L1000	0.0462115159927347	4	0.052582572954741356
+dopamine receptor antagonist|serotonin receptor antagonist	0.37 uM	MOA	L1000	0.0460347042599097	9	-0.006103297984102565
+dna polymerase inhibitor	3.33 uM	MOA	L1000	0.0460271796230677	3	0.039497745396435066
+dopamine receptor antagonist|serotonin receptor antagonist	0.12 uM	MOA	L1000	0.0457769466805188	9	0.03965044531996562
+dopamine receptor antagonist	10 uM	MOA	L1000	0.0454457920753076	19	0.05496809367047058
+dopamine receptor antagonist|serotonin receptor antagonist	1.11 uM	MOA	L1000	0.044251507101478	9	-0.0027234201904656804
+alk tyrosine kinase receptor inhibitor	3.33 uM	MOA	L1000	0.0435490108496987	3	-0.0027806793534416773
+dna inhibitor	3.33 uM	MOA	L1000	0.0435345006939283	5	0.006394866551645718
+cyclooxygenase inhibitor|prostanoid receptor antagonist	0.12 uM	MOA	L1000	0.0435305146745731	4	0.01047400330438999
+cyclooxygenase inhibitor|prostanoid receptor antagonist	0.37 uM	MOA	L1000	0.0433064775608382	4	0.05273080822634311
+cyclooxygenase inhibitor|prostanoid receptor antagonist	3.33 uM	MOA	L1000	0.0430127348054284	4	0.016838957835850998
+serotonin receptor agonist|serotonin receptor antagonist	0.37 uM	MOA	L1000	0.0406854841814748	3	-0.057312576186314974
+serotonin receptor agonist|serotonin receptor antagonist	0.04 uM	MOA	L1000	0.040250007848338	3	0.10637700945590979
+serotonin receptor agonist|serotonin receptor antagonist	1.11 uM	MOA	L1000	0.0397250161026046	3	0.12141189504526786
+prostanoid receptor agonist	10 uM	MOA	L1000	0.0395295748177411	3	0.1605545403043915
+egfr inhibitor	3.33 uM	MOA	L1000	0.0374702359449108	13	0.14988695579297073
+serotonin receptor agonist|serotonin receptor antagonist	10 uM	MOA	L1000	0.037374480377547	3	0.04169435929470202
+aromatase inhibitor	0.37 uM	MOA	L1000	0.0369308410699511	3	0.12145687531515117
+cyclooxygenase inhibitor|prostanoid receptor antagonist	10 uM	MOA	L1000	0.036871233836825	4	-0.04764468919096887
+cyclooxygenase inhibitor|prostanoid receptor antagonist	1.11 uM	MOA	L1000	0.0368131036012688	4	0.02376050051950399
+pi3k inhibitor	3.33 uM	MOA	L1000	0.0367243947140296	7	-0.007120777823213821
+dopamine receptor antagonist	3.33 uM	MOA	L1000	0.0365485046897409	19	0.03927759180385006
+adrenergic receptor antagonist	1.11 uM	MOA	L1000	0.0363680311679312	31	0.03551235758465457
+adrenergic receptor antagonist	0.37 uM	MOA	L1000	0.0357303020818072	31	0.03005516674116861
+cyclooxygenase inhibitor	0.12 uM	MOA	L1000	0.0354740090585324	27	0.023633699926879644
+serotonin receptor agonist|serotonin receptor antagonist	3.33 uM	MOA	L1000	0.0352763388496233	3	0.09698643017124987
+adrenergic receptor antagonist	3.33 uM	MOA	L1000	0.0343247399698592	31	0.034113397866223125
+cyclooxygenase inhibitor	0.37 uM	MOA	L1000	0.0341112121221592	27	0.025800282090626975
+dna polymerase inhibitor	10 uM	MOA	L1000	0.0340896787609407	3	0.07842096445578874
+cyclooxygenase inhibitor|prostanoid receptor antagonist	0.04 uM	MOA	L1000	0.0337483961148254	4	0.03326156242233237
+adrenergic receptor antagonist	10 uM	MOA	L1000	0.0337233698272716	31	0.029479711585676027
+cyclooxygenase inhibitor	3.33 uM	MOA	L1000	0.0336460322801857	27	0.012169622291200593
+dopamine receptor antagonist	0.04 uM	MOA	L1000	0.033435182619004	19	0.04508661046189499
+cyclooxygenase inhibitor	1.11 uM	MOA	L1000	0.0326017451579797	27	0.028841438796973342
+dopamine receptor antagonist	0.37 uM	MOA	L1000	0.0324128765852584	19	0.032462492672558706
+cyclooxygenase inhibitor	10 uM	MOA	L1000	0.0319552836497969	27	0.022899506208943033
+hdac inhibitor	0.04 uM	MOA	L1000	0.0319089360988986	13	0.041945695794801355
+serotonin receptor agonist|serotonin receptor antagonist	0.12 uM	MOA	L1000	0.0318552924470448	3	0.06183805607779679
+adrenergic receptor antagonist	0.12 uM	MOA	L1000	0.0316432752485745	31	0.03289347538456498
+adrenergic receptor antagonist	0.04 uM	MOA	L1000	0.0306615425044226	31	0.02824026971230739
+dopamine receptor antagonist	1.11 uM	MOA	L1000	0.0305217032782515	19	0.049056123418274665
+cyclooxygenase inhibitor	0.04 uM	MOA	L1000	0.0299621948340024	27	0.021509994297136247
+tubulin inhibitor	0.12 uM	MOA	L1000	0.0299253347722207	8	0.022460737863476875
+dopamine receptor antagonist	0.12 uM	MOA	L1000	0.029503999087765	19	0.04456242087134499
+phosphodiesterase inhibitor	0.37 uM	MOA	L1000	0.0280564456235102	28	0.027668600322227878
+phosphodiesterase inhibitor	1.11 uM	MOA	L1000	0.0279912692177154	28	0.025713116936845287
+phosphodiesterase inhibitor	0.04 uM	MOA	L1000	0.0278437474945418	28	0.03431174021657605
+nucleoside reverse transcriptase inhibitor	3.33 uM	MOA	L1000	0.0278070547616009	4	-0.021106290653475416
+phosphodiesterase inhibitor	3.33 uM	MOA	L1000	0.027714640251625	28	0.019244981810234672
+prostanoid receptor antagonist	0.04 uM	MOA	L1000	0.0275393749310347	3	0.18378554192661814
+phosphodiesterase inhibitor	10 uM	MOA	L1000	0.027485930120624	28	0.026719181323522745
+histamine receptor antagonist	0.37 uM	MOA	L1000	0.0274352999672343	24	0.04073038869992605
+histamine receptor antagonist	0.12 uM	MOA	L1000	0.0272755575495597	24	0.033598124623743564
+acat inhibitor	3.33 uM	MOA	L1000	0.0271204253479283	3	-0.07205789291440688
+phosphodiesterase inhibitor	0.12 uM	MOA	L1000	0.027115023210394	28	0.027456917331712086
+serotonin receptor antagonist	10 uM	MOA	L1000	0.0270914204757167	12	0.04589384246350452
+matrix metalloprotease inhibitor	10 uM	MOA	L1000	0.027045062946929	3	0.103949268051317
+serotonin receptor antagonist	0.37 uM	MOA	L1000	0.0266898667132763	12	0.05689885082854916
+pi3k inhibitor	1.11 uM	MOA	L1000	0.026278349958542	7	0.043249265470174575
+acetylcholine receptor antagonist	1.11 uM	MOA	L1000	0.02612595292725	21	0.02235741964460433
+sterol demethylase inhibitor	3.33 uM	MOA	L1000	0.0261194251980124	7	0.0581423469208026
+histamine receptor antagonist	10 uM	MOA	L1000	0.0261046403599917	24	0.037821029030541436
+serotonin receptor antagonist	0.04 uM	MOA	L1000	0.0259148213266547	12	0.05453724129534295
+serotonin receptor antagonist	1.11 uM	MOA	L1000	0.0257807168745874	12	0.04758421464196064
+histamine receptor antagonist	1.11 uM	MOA	L1000	0.0257002348095461	24	0.02766527738997304
+serotonin receptor antagonist	3.33 uM	MOA	L1000	0.0255760079673396	12	0.04786994231527867
+sigma receptor antagonist	0.12 uM	MOA	L1000	0.0252061604159262	3	-0.05340025273572771
+adrenergic receptor agonist	3.33 uM	MOA	L1000	0.0249284279093779	20	0.024944582547288884
+acat inhibitor	1.11 uM	MOA	L1000	0.0248949151940883	3	-0.027784508138259327
+rho associated kinase inhibitor	10 uM	MOA	L1000	0.0248752870090426	6	0.04765520742239162
+mdm inhibitor	0.37 uM	MOA	L1000	0.0244657900470544	3	0.023298963013852293
+egfr inhibitor	1.11 uM	MOA	L1000	0.0243982536649235	13	0.10750259227247645
+acetylcholine receptor antagonist	10 uM	MOA	L1000	0.0243268105387419	21	0.03614232847274
+egfr inhibitor	0.37 uM	MOA	L1000	0.024264476314289	13	0.10937881659740453
+adrenergic receptor agonist	0.37 uM	MOA	L1000	0.0241800512749835	20	0.029667212868663632
+histamine receptor antagonist	3.33 uM	MOA	L1000	0.024130433446908	24	0.025433032097236668
+adrenergic receptor agonist	0.12 uM	MOA	L1000	0.0241110189647278	20	0.028389297501136643
+fungal squalene epoxidase inhibitor	10 uM	MOA	L1000	0.0233216395054842	3	0.08309409173250339
+serotonin receptor antagonist	0.12 uM	MOA	L1000	0.0230645246712834	12	0.03370916504178709
+acetylcholine receptor antagonist	0.37 uM	MOA	L1000	0.0229767858933916	21	0.032626033261054524
+adrenergic receptor agonist	10 uM	MOA	L1000	0.022858142668753	20	0.02060911430176974
+acetylcholine receptor antagonist	3.33 uM	MOA	L1000	0.0224255706176069	21	0.016791549047469156
+acetylcholine receptor antagonist	0.12 uM	MOA	L1000	0.0220813778843627	21	0.030580856270988502
+cannabinoid receptor agonist	0.37 uM	MOA	L1000	0.0220491739522588	3	-0.16740047626136292
+histamine receptor antagonist	0.04 uM	MOA	L1000	0.0219583000096623	24	0.03057111591228856
+gamma secretase inhibitor	0.37 uM	MOA	L1000	0.0219323428751259	7	0.10607339602232443
+microtubule inhibitor	3.33 uM	MOA	L1000	0.0218101744182505	3	0.0017229239935670796
+adrenergic receptor agonist	1.11 uM	MOA	L1000	0.0218022007145535	20	0.028509036444948815
+acetylcholine receptor antagonist	0.04 uM	MOA	L1000	0.0217230053143752	21	0.024049673768068394
+calcium channel blocker	10 uM	MOA	L1000	0.0216816621805007	15	0.045194278192266145
+pi3k inhibitor	0.37 uM	MOA	L1000	0.0215628745938792	7	0.05940294023887514
+cannabinoid receptor agonist	0.04 uM	MOA	L1000	0.0215314950995484	3	-0.09476375191215983
+sigma receptor antagonist	1.11 uM	MOA	L1000	0.0212228129674052	3	0.07489145175456917
+adrenergic receptor agonist	0.04 uM	MOA	L1000	0.0210755460321735	20	0.023120714874278935
+gamma secretase inhibitor	10 uM	MOA	L1000	0.0210405528732387	7	0.09006422823922418
+cdk inhibitor	0.37 uM	MOA	L1000	0.0208119358238567	7	0.05664369991021196
+egfr inhibitor	0.12 uM	MOA	L1000	0.0200004599410636	13	0.10566933659063288
+gamma secretase inhibitor	3.33 uM	MOA	L1000	0.0192193740851563	7	0.08641377884094295
+alk tyrosine kinase receptor inhibitor	10 uM	MOA	L1000	0.0188886608040723	3	0.07094741076511718
+angiotensin receptor antagonist	0.12 uM	MOA	L1000	0.0186291519429901	4	0.03755299043815272
+bacterial dna gyrase inhibitor	0.37 uM	MOA	L1000	0.0186089602288481	11	0.0804900896662264
+calcium channel blocker	0.04 uM	MOA	L1000	0.0184780468959774	15	0.037350027101995545
+bacterial dna gyrase inhibitor	0.04 uM	MOA	L1000	0.0182004562987779	11	0.04141624525593326
+sigma receptor antagonist	0.04 uM	MOA	L1000	0.0178598583580703	3	-0.21283924807703106
+gamma secretase inhibitor	1.11 uM	MOA	L1000	0.0174888151851045	7	0.07013395177982418
+sodium channel blocker	0.04 uM	MOA	L1000	0.0169651667329219	11	0.05456462501098568
+nitric oxide synthase inhibitor	10 uM	MOA	L1000	0.0169346888585823	4	0.09748689290186446
+serotonin receptor agonist	0.37 uM	MOA	L1000	0.0167411454544927	12	0.04308506005845475
+calcium channel blocker	3.33 uM	MOA	L1000	0.0166943628445286	15	0.02926712275507572
+rho associated kinase inhibitor	1.11 uM	MOA	L1000	0.0164727786840375	6	0.04546073768773678
+bacterial dna gyrase inhibitor	1.11 uM	MOA	L1000	0.0164557235206529	11	0.0259133064902528
+ppar receptor agonist|insulin sensitizer	0.12 uM	MOA	L1000	0.0162255012750741	3	-0.009472130398666376
+calcium channel blocker	1.11 uM	MOA	L1000	0.0162107765924851	15	0.02265287871244174
+sodium channel blocker	10 uM	MOA	L1000	0.0161856407330551	11	0.03464114269377532
+progesterone receptor agonist	3.33 uM	MOA	L1000	0.015825709128012	7	0.0359240806465778
+vegfr inhibitor	10 uM	MOA	L1000	0.015757239741806	4	0.20163889882295036
+rho associated kinase inhibitor	0.04 uM	MOA	L1000	0.0156817124496466	6	-0.01842980189280403
+serotonin reuptake inhibitor	0.04 uM	MOA	L1000	0.0155118006954159	4	0.06021187199172311
+bacterial cell wall synthesis inhibitor	0.12 uM	MOA	L1000	0.0155095842009205	14	0.02122689985874138
+bacterial dna gyrase inhibitor	0.12 uM	MOA	L1000	0.0153345513410175	11	0.053698094543807334
+gaba receptor agonist	1.11 uM	MOA	L1000	0.0152508952687097	3	0.19088251594466651
+bacterial cell wall synthesis inhibitor	10 uM	MOA	L1000	0.015179025957935	14	0.03633978678294462
+sodium channel blocker	1.11 uM	MOA	L1000	0.0151657829637229	11	0.09385420551232046
+microtubule inhibitor	0.12 uM	MOA	L1000	0.0151040618374422	3	0.11872533771164354
+tachykinin antagonist	0.04 uM	MOA	L1000	0.0149881172028952	6	0.01979742096727719
+bacterial cell wall synthesis inhibitor	0.37 uM	MOA	L1000	0.0149268200696131	14	0.040584903108945476
+microtubule inhibitor	10 uM	MOA	L1000	0.0146811796340497	3	0.0916411471765792
+calcium channel blocker	0.37 uM	MOA	L1000	0.0145449255602783	15	0.004864839856345625
+adenosine receptor agonist	10 uM	MOA	L1000	0.0144981556870866	3	0.12269649349620604
+serotonin receptor agonist	0.04 uM	MOA	L1000	0.0144760915217734	12	0.006808932132952777
+serotonin receptor agonist	10 uM	MOA	L1000	0.014448223800154	12	-9.121108058106341e-4
+ppar receptor agonist	0.37 uM	MOA	L1000	0.0144328547750876	3	0.02574250945160788
+serotonin receptor agonist	3.33 uM	MOA	L1000	0.0142412968908922	12	0.021203531740546455
+rna polymerase inhibitor	0.12 uM	MOA	L1000	0.0142223736247477	7	0.04169591785569699
+aromatase inhibitor	0.04 uM	MOA	L1000	0.014105808886186	3	0.005931244726920643
+sterol demethylase inhibitor	10 uM	MOA	L1000	0.0140956878617777	7	0.04112280736613907
+prostanoid receptor agonist	1.11 uM	MOA	L1000	0.0140781609921213	3	0.08870219022110651
+calcium channel blocker	0.12 uM	MOA	L1000	0.0140596221380409	15	0.00879050100623971
+tubulin inhibitor	0.04 uM	MOA	L1000	0.0140025451828014	8	0.08910115071583247
+sodium channel blocker	0.12 uM	MOA	L1000	0.0138855334018108	11	0.01999062119935892
+raf inhibitor	10 uM	MOA	L1000	0.0137823514171769	5	0.02362857697285956
+serotonin receptor agonist	1.11 uM	MOA	L1000	0.0137496576212247	12	0.022699154652504057
+sodium channel blocker	3.33 uM	MOA	L1000	0.0136561413182235	11	0.04485901524059088
+nucleoside reverse transcriptase inhibitor	0.04 uM	MOA	L1000	0.0136494569182833	4	0.06901797296356074
+pi3k inhibitor	0.12 uM	MOA	L1000	0.0136363739710237	7	0.03467500251214963
+vitamin d receptor agonist	1.11 uM	MOA	L1000	0.0134862453839361	5	0.1475930621958427
+bacterial dna gyrase inhibitor	3.33 uM	MOA	L1000	0.0133066292467446	11	0.02961806721781904
+bacterial cell wall synthesis inhibitor	3.33 uM	MOA	L1000	0.0133027998376886	14	0.028431287516784007
+hcv inhibitor	10 uM	MOA	L1000	0.0132966512911246	7	0.11027916645235641
+t-type calcium channel blocker	10 uM	MOA	L1000	0.0132246527105948	3	0.09875010725945532
+serotonin receptor agonist	0.12 uM	MOA	L1000	0.0131782986042534	12	-0.005439137818789814
+sodium channel blocker	0.37 uM	MOA	L1000	0.0131665921062057	11	0.053092827307424706
+potassium channel blocker	0.04 uM	MOA	L1000	0.0131037938996541	4	0.19284139319325985
+calcitonin antagonist	0.04 uM	MOA	L1000	0.0130717418806243	3	0.11285356659501697
+vitamin d receptor agonist	10 uM	MOA	L1000	0.0130681912397599	5	0.10035780478219135
+retinoid receptor agonist	10 uM	MOA	L1000	0.0130020298503854	6	0.11855969044004806
+progesterone receptor agonist	10 uM	MOA	L1000	0.0129946619117877	7	0.08272017347874526
+egfr inhibitor	0.04 uM	MOA	L1000	0.0129885524752873	13	0.03209830980265936
+bacterial cell wall synthesis inhibitor	0.04 uM	MOA	L1000	0.0129318043503904	14	0.018874742089081693
+tachykinin antagonist	0.12 uM	MOA	L1000	0.0128843600485549	6	0.005904452600565936
+fgfr inhibitor|vegfr inhibitor	0.04 uM	MOA	L1000	0.0128471566329717	3	0.061428586238253036
+bacterial cell wall synthesis inhibitor	1.11 uM	MOA	L1000	0.0128407731868962	14	0.043570314134774274
+p38 mapk inhibitor	1.11 uM	MOA	L1000	0.0127485785428945	6	0.09762720315564047
+pi3k inhibitor	0.04 uM	MOA	L1000	0.0125775408391323	7	0.024469015982466414
+dopamine receptor agonist	0.12 uM	MOA	L1000	0.0124906468831557	9	0.02713017067237842
+cc chemokine receptor antagonist	0.04 uM	MOA	L1000	0.0124557825148145	7	0.0353250036195248
+dopamine receptor agonist	3.33 uM	MOA	L1000	0.0124386232945364	9	0.046257335505358745
+rho associated kinase inhibitor	0.37 uM	MOA	L1000	0.0123775615130177	6	0.021020006211365173
+rho associated kinase inhibitor	0.12 uM	MOA	L1000	0.0122332223095559	6	-0.01007363074046483
+ppar receptor agonist|insulin sensitizer	10 uM	MOA	L1000	0.0122119875357096	3	0.11174985097311456
+acetylcholine receptor agonist	1.11 uM	MOA	L1000	0.0121931767558626	8	0.02141319658581414
+progesterone receptor agonist	1.11 uM	MOA	L1000	0.0121495917748192	7	0.055558685032929045
+dna methyltransferase inhibitor	10 uM	MOA	L1000	0.0119195359848542	3	0.10183403842137403
+dna inhibitor	10 uM	MOA	L1000	0.0118779660595445	5	0.019852527480908787
+bacterial 30s ribosomal subunit inhibitor	0.04 uM	MOA	L1000	0.0117794981855656	5	0.012782180961460946
+bacterial dna gyrase inhibitor	10 uM	MOA	L1000	0.0115893795976312	11	0.010146279381059185
+prostanoid receptor antagonist	0.12 uM	MOA	L1000	0.0115433288687371	3	0.06398913127998854
+leukotriene receptor antagonist	1.11 uM	MOA	L1000	0.0115243299793398	4	0.030766334694953608
+adenosine receptor antagonist	0.04 uM	MOA	L1000	0.0115170361248573	4	0.012554783865449313
+androgen receptor modulator	10 uM	MOA	L1000	0.0114887852630618	3	-0.04501424741922282
+vegfr inhibitor	3.33 uM	MOA	L1000	0.011441511593615	4	0.08019244407248291
+dna methyltransferase inhibitor	0.37 uM	MOA	L1000	0.0114412298466349	3	0.10738676571128174
+opioid receptor antagonist	3.33 uM	MOA	L1000	0.0112482430071514	4	0.027800222166172776
+angiotensin receptor antagonist	0.37 uM	MOA	L1000	0.0110972894664582	4	0.061035841192708065
+calcineurin inhibitor	1.11 uM	MOA	L1000	0.0110839426904745	3	-0.03140275685947613
+prostanoid receptor antagonist	1.11 uM	MOA	L1000	0.0110583213845375	3	0.041296714010879434
+vitamin d receptor agonist	3.33 uM	MOA	L1000	0.0110527122143976	5	0.121867163117868
+prostanoid receptor agonist	3.33 uM	MOA	L1000	0.0110081213090887	3	0.08095125650500652
+opioid receptor antagonist	0.12 uM	MOA	L1000	0.0109664823299803	4	0.07004623243517319
+dopamine receptor agonist	10 uM	MOA	L1000	0.0109117684623042	9	0.04125166252358133
+glucosidase inhibitor	1.11 uM	MOA	L1000	0.0107265259281476	3	0.014461975657872017
+angiotensin converting enzyme inhibitor	10 uM	MOA	L1000	0.0107251108534311	8	0.03329345170658157
+nitric oxide synthase inhibitor	3.33 uM	MOA	L1000	0.0107219201915716	4	0.025051341195698813
+p38 mapk inhibitor	3.33 uM	MOA	L1000	0.010711119090514	6	0.11982435932822233
+dopamine receptor agonist	0.04 uM	MOA	L1000	0.0106938455252664	9	0.02980641594087593
+acetylcholine receptor agonist	0.37 uM	MOA	L1000	0.0106002686746199	8	0.11547448476683238
+androgen receptor antagonist	10 uM	MOA	L1000	0.0105840123151646	5	0.011817158516945802
+p38 mapk inhibitor	10 uM	MOA	L1000	0.0105082341722884	6	0.11791941128702568
+glutamate receptor modulator	0.37 uM	MOA	L1000	0.010469071767659	3	0.10833752187274708
+akt inhibitor	0.12 uM	MOA	L1000	0.0104179646826504	6	0.03934795472059296
+hcv inhibitor	0.12 uM	MOA	L1000	0.0103179496676758	7	0.08584312345252189
+cdk inhibitor	0.12 uM	MOA	L1000	0.0103040439068255	7	-0.020038867136224662
+potassium channel activator	0.04 uM	MOA	L1000	0.0103035788285554	6	-0.00863491818184327
+ppar receptor agonist	10 uM	MOA	L1000	0.0102870128731748	3	0.04624928039290923
+angiotensin receptor antagonist	10 uM	MOA	L1000	0.0102804126253094	4	0.04584598537425618
+nucleoside reverse transcriptase inhibitor	0.37 uM	MOA	L1000	0.0102466285376793	4	0.05205264954746275
+atpase inhibitor	1.11 uM	MOA	L1000	0.0102120040647504	3	0.032966020097411404
+selective serotonin reuptake inhibitor (ssri)	10 uM	MOA	L1000	0.0101888038304142	4	0.07631190466928789
+vegfr inhibitor	1.11 uM	MOA	L1000	0.0101681383865284	4	-0.019290270276481024
+rho associated kinase inhibitor	3.33 uM	MOA	L1000	0.0100441086911171	6	0.023865918254407464
+angiotensin receptor antagonist	3.33 uM	MOA	L1000	0.0100099754986594	4	0.042994518290356984
+jak inhibitor	0.37 uM	MOA	L1000	0.00996010624572123	5	0.015579314696136794
+alk tyrosine kinase receptor inhibitor	1.11 uM	MOA	L1000	0.0099477896970557	3	0.13171619186362218
+prostanoid receptor antagonist	3.33 uM	MOA	L1000	0.00993942741720872	3	0.0826010775623596
+dopamine receptor agonist	0.37 uM	MOA	L1000	0.00993176196085037	9	0.04468421692716075
+retinoid receptor agonist	3.33 uM	MOA	L1000	0.00989278349215897	6	0.06468351096203731
+dopamine receptor agonist	1.11 uM	MOA	L1000	0.00982805900045826	9	0.04142001875149691
+raf inhibitor	1.11 uM	MOA	L1000	0.00981818766458296	5	0.03094780701776595
+ppar receptor agonist|insulin sensitizer	0.37 uM	MOA	L1000	0.00980366012003193	3	-0.060697814488903164
+benzodiazepine receptor agonist	10 uM	MOA	L1000	0.00977957724296316	7	0.06598095506490761
+vegfr inhibitor	0.04 uM	MOA	L1000	0.0097621978987996	4	-0.008459023876866194
+angiotensin receptor antagonist	0.04 uM	MOA	L1000	0.00967150201398168	4	0.08968765630080197
+bacterial 30s ribosomal subunit inhibitor	1.11 uM	MOA	L1000	0.00966479467182649	5	0.017643319556959077
+tachykinin antagonist	1.11 uM	MOA	L1000	0.00963301323625158	6	0.03159535868383164
+glucosidase inhibitor	0.37 uM	MOA	L1000	0.00960872525227893	3	0.02546952556127463
+fgfr inhibitor|vegfr inhibitor	1.11 uM	MOA	L1000	0.00951362955372636	3	0.04930513876012352
+angiotensin converting enzyme inhibitor	0.37 uM	MOA	L1000	0.0095065887072586	8	0.07376114822202305
+akt inhibitor	1.11 uM	MOA	L1000	0.00944499839789822	6	0.07723477528471633
+androgen receptor modulator	3.33 uM	MOA	L1000	0.00942651851962103	3	0.051490557807606835
+rna polymerase inhibitor	0.37 uM	MOA	L1000	0.00941619428554809	7	0.0504442957807412
+fgfr inhibitor|vegfr inhibitor	0.12 uM	MOA	L1000	0.00930559327187695	3	0.0635991419685128
+ppar receptor agonist|insulin sensitizer	1.11 uM	MOA	L1000	0.00923934600359196	3	0.07138509460049354
+p38 mapk inhibitor	0.12 uM	MOA	L1000	0.0091808429510632	6	0.1053813340644428
+rna polymerase inhibitor	0.04 uM	MOA	L1000	0.0091417685408588	7	0.04118885161138401
+fgfr inhibitor|vegfr inhibitor	3.33 uM	MOA	L1000	0.00901163558707075	3	0.024306965691746982
+nfkb pathway inhibitor	0.04 uM	MOA	L1000	0.00898956111750472	4	0.04729726379384144
+free radical scavenger	10 uM	MOA	L1000	0.0089852988975319	4	0.11833881262191717
+tachykinin antagonist	3.33 uM	MOA	L1000	0.00897087408120332	6	0.061084966176482285
+sterol demethylase inhibitor	0.04 uM	MOA	L1000	0.00892476826924964	7	0.05313029804854559
+raf inhibitor	0.12 uM	MOA	L1000	0.00891650885907729	5	0.05544394458991879
+sterol demethylase inhibitor	0.37 uM	MOA	L1000	0.00890861828862997	7	0.033151914193085365
+dna methyltransferase inhibitor	1.11 uM	MOA	L1000	0.00890414429520394	3	0.06672112931312553
+fgfr inhibitor|vegfr inhibitor	10 uM	MOA	L1000	0.00886604888699005	3	-0.049411384908386626
+vegfr inhibitor	0.37 uM	MOA	L1000	0.008865176608533	4	0.017870862605844133
+acetylcholine receptor agonist	0.12 uM	MOA	L1000	0.00877394549619673	8	0.10347940180786444
+selective serotonin reuptake inhibitor (ssri)	3.33 uM	MOA	L1000	0.00873129021393966	4	-0.02064880829952551
+angiotensin converting enzyme inhibitor	3.33 uM	MOA	L1000	0.00866010169679121	8	0.06276861129504682
+calcineurin inhibitor	10 uM	MOA	L1000	0.00862844509110069	3	0.19111757136250068
+dna synthesis inhibitor	3.33 uM	MOA	L1000	0.00860180244645714	7	0.010465672219474613
+tachykinin antagonist	10 uM	MOA	L1000	0.00858411481017673	6	0.03912835956385511
+bacterial 50s ribosomal subunit inhibitor	0.04 uM	MOA	L1000	0.00853746400393856	5	0.037527804504596786
+benzodiazepine receptor agonist	3.33 uM	MOA	L1000	0.0084841173273451	7	0.024540690653782893
+ppar receptor agonist|insulin sensitizer	0.04 uM	MOA	L1000	0.00843167788251823	3	-0.02102779143654862
+sterol demethylase inhibitor	1.11 uM	MOA	L1000	0.00839976893279147	7	0.033789712974655335
+prostanoid receptor antagonist	10 uM	MOA	L1000	0.00836158123215933	3	-0.020750541564280543
+aromatase inhibitor	10 uM	MOA	L1000	0.00834967122017583	3	0.03099488440619807
+acetylcholine receptor agonist	0.04 uM	MOA	L1000	0.00827799891623567	8	0.015122660302234282
+angiotensin converting enzyme inhibitor	0.12 uM	MOA	L1000	0.00827502993458758	8	0.028162796521666502
+vegfr inhibitor	0.12 uM	MOA	L1000	0.00825867608784431	4	-0.006830478924389545
+nitric oxide synthase inhibitor	0.04 uM	MOA	L1000	0.00824804848557821	4	0.027122592739717108
+tachykinin antagonist	0.37 uM	MOA	L1000	0.0082196961173302	6	0.0862996173902767
+bacterial 30s ribosomal subunit inhibitor	10 uM	MOA	L1000	0.00815573621380465	5	0.07500479134710147
+reverse transcriptase inhibitor	0.04 uM	MOA	L1000	0.00811188837604246	3	0.047825043503045485
+t-type calcium channel blocker	3.33 uM	MOA	L1000	0.00810493757382593	3	0.09682137373212375
+coagulation factor inhibitor	0.12 uM	MOA	L1000	0.00810444170656299	4	0.13684259420354622
+acetylcholine receptor agonist	3.33 uM	MOA	L1000	0.0081036167351817	8	0.02295835939686315
+bcl inhibitor	3.33 uM	MOA	L1000	0.00810168426401156	3	-0.022164481110014622
+retinoid receptor agonist	1.11 uM	MOA	L1000	0.0080672108143383	6	0.08339690059467542
+nucleoside reverse transcriptase inhibitor	1.11 uM	MOA	L1000	0.00797922492109996	4	0.06928657060812528
+mucolytic agent	1.11 uM	MOA	L1000	0.00797386366517099	3	0.04754198207943623
+prostanoid receptor antagonist	0.37 uM	MOA	L1000	0.00795608284353804	3	0.01234077642498389
+non-nucleoside reverse transcriptase inhibitor	10 uM	MOA	L1000	0.00791996677416633	4	0.07005199784482724
+opioid receptor agonist	0.37 uM	MOA	L1000	0.00789615909937117	3	0.165170293422912
+benzodiazepine receptor agonist	0.12 uM	MOA	L1000	0.00784701724712679	7	0.0451692983681407
+cc chemokine receptor antagonist	0.37 uM	MOA	L1000	0.00781212978709068	7	0.011877482421851854
+free radical scavenger	1.11 uM	MOA	L1000	0.00779651154939395	4	0.15367578361343803
+bacterial 30s ribosomal subunit inhibitor	0.37 uM	MOA	L1000	0.00779640173072981	5	0.06575595101850996
+raf inhibitor	3.33 uM	MOA	L1000	0.0077666788547109	5	0.02221042222773787
+angiotensin converting enzyme inhibitor	1.11 uM	MOA	L1000	0.00776487242671802	8	0.061442952870074286
+cannabinoid receptor agonist	3.33 uM	MOA	L1000	0.00776105054486577	3	0.06895893893862332
+monoamine oxidase inhibitor	0.12 uM	MOA	L1000	0.0077193562840211	6	0.057334238488581164
+progesterone receptor agonist	0.12 uM	MOA	L1000	0.00770309404882178	7	0.01287752414220439
+gamma secretase inhibitor	0.04 uM	MOA	L1000	0.00761092423366809	7	0.03031974874698196
+proteasome inhibitor	0.04 uM	MOA	L1000	0.00756923710944288	4	0.06035202811011936
+p38 mapk inhibitor	0.04 uM	MOA	L1000	0.00753859767217162	6	0.06408942916359599
+progesterone receptor agonist	0.37 uM	MOA	L1000	0.00750411265347631	7	0.027397596509638283
+nucleoside reverse transcriptase inhibitor	0.12 uM	MOA	L1000	0.00750150236382157	4	-0.09818617114792495
+selective serotonin reuptake inhibitor (ssri)	1.11 uM	MOA	L1000	0.00748667034595213	4	0.014298832690807024
+progesterone receptor agonist	0.04 uM	MOA	L1000	0.00745332950954335	7	0.019877764301689006
+bacterial 30s ribosomal subunit inhibitor	0.12 uM	MOA	L1000	0.00739671525407971	5	0.0028731373603143135
+vasopressin receptor antagonist	10 uM	MOA	L1000	0.00739150644983856	4	0.013339025945210326
+benzodiazepine receptor agonist	1.11 uM	MOA	L1000	0.00738340912168876	7	0.038756934791088986
+hmgcr inhibitor	1.11 uM	MOA	L1000	0.00730552405017935	5	0.053557734891859825
+rna polymerase inhibitor	1.11 uM	MOA	L1000	0.00730406437215212	7	0.02399513137443647
+atpase inhibitor	10 uM	MOA	L1000	0.00730234105607488	3	0.019841602398167697
+cc chemokine receptor antagonist	3.33 uM	MOA	L1000	0.00728088255461091	7	0.03381347885565456
+ppar receptor agonist|insulin sensitizer	3.33 uM	MOA	L1000	0.00725440018926969	3	0.04310699419794895
+raf inhibitor	0.37 uM	MOA	L1000	0.00723446029828934	5	0.04958914559668999
+fgfr inhibitor|vegfr inhibitor	0.37 uM	MOA	L1000	0.00722552232749394	3	-0.2148182900077483
+p38 mapk inhibitor	0.37 uM	MOA	L1000	0.00722013806277709	6	0.09200854601649366
+purinergic receptor antagonist	10 uM	MOA	L1000	0.00721118749215772	3	0.028335626156234136
+coagulation factor inhibitor	3.33 uM	MOA	L1000	0.00720604692822022	4	0.049274788261094084
+acetylcholine receptor agonist	10 uM	MOA	L1000	0.00716937770033662	8	-6.884150373137423e-4
+androgen receptor antagonist	3.33 uM	MOA	L1000	0.00709663804341452	5	0.011207307494119158
+benzodiazepine receptor agonist	0.04 uM	MOA	L1000	0.00709652368872905	7	0.04971988127303205
+prostanoid receptor agonist	0.37 uM	MOA	L1000	0.00708001519834813	3	0.032435038618501395
+adenosine receptor antagonist	0.12 uM	MOA	L1000	0.00707218208814603	4	0.07159006676259663
+benzodiazepine receptor agonist	0.37 uM	MOA	L1000	0.00705375961621197	7	0.01324778684726673
+tyrosine kinase inhibitor	0.04 uM	MOA	L1000	0.00701533204257087	4	0.042087530807561446
+gamma secretase inhibitor	0.12 uM	MOA	L1000	0.00693900170491826	7	0.011757649346355542
+integrin antagonist	0.12 uM	MOA	L1000	0.00691560780275997	5	0.04665596133809101
+rna polymerase inhibitor	10 uM	MOA	L1000	0.00690228026330805	7	0.014617272583088842
+potassium channel activator	0.37 uM	MOA	L1000	0.0068993755429508	6	0.013765722895255204
+free radical scavenger	3.33 uM	MOA	L1000	0.00688184557185168	4	0.06951070467948137
+hcv inhibitor	3.33 uM	MOA	L1000	0.00688134312917683	7	-0.016845951143181333
+cc chemokine receptor antagonist	0.12 uM	MOA	L1000	0.00685114346652046	7	0.029103631015149133
+opioid receptor agonist	0.12 uM	MOA	L1000	0.00685080780135819	3	0.056881424936340505
+calcineurin inhibitor	0.37 uM	MOA	L1000	0.00684738090519982	3	0.11719200654902422
+ppar receptor agonist	1.11 uM	MOA	L1000	0.00681806786283644	3	0.16889207843780843
+integrin antagonist	0.37 uM	MOA	L1000	0.00679931323738489	5	0.0015912531837799686
+raf inhibitor	0.04 uM	MOA	L1000	0.00679555215885342	5	0.06372803005423808
+insulin secretagogue	1.11 uM	MOA	L1000	0.00675567644007007	4	0.07915869042248432
+reverse transcriptase inhibitor	10 uM	MOA	L1000	0.00674023158658246	3	0.01748238613793398
+free radical scavenger	0.12 uM	MOA	L1000	0.00668046927046758	4	0.014605652620688673
+free radical scavenger	0.04 uM	MOA	L1000	0.00665300560500715	4	0.07836164013257657
+hcv inhibitor	0.04 uM	MOA	L1000	0.0066301359756652	7	0.04830205826337853
+insulin secretagogue	0.37 uM	MOA	L1000	0.00660549076143734	4	0.09449021544097844
+tyrosine kinase inhibitor	0.37 uM	MOA	L1000	0.00657384855142854	4	0.062255210749596335
+retinoid receptor agonist	0.04 uM	MOA	L1000	0.00656192890480162	6	0.062418277215671336
+coagulation factor inhibitor	0.37 uM	MOA	L1000	0.00655804669057671	4	0.04707096664433465
+estrogen receptor agonist	1.11 uM	MOA	L1000	0.0065564077972547	6	0.00604494467020873
+ppar receptor agonist	0.04 uM	MOA	L1000	0.00653765787169145	3	0.09154583646303617
+vitamin d receptor agonist	0.12 uM	MOA	L1000	0.00650767625990865	5	0.0637653511663383
+opioid receptor antagonist	0.37 uM	MOA	L1000	0.00646635253312063	4	0.054687288233620054
+acat inhibitor	10 uM	MOA	L1000	0.00645927735148069	3	-0.05354170566112717
+prostanoid receptor agonist	0.12 uM	MOA	L1000	0.00644479888252255	3	0.06656520991043777
+leukotriene receptor antagonist	3.33 uM	MOA	L1000	0.00643853203897364	4	0.01199011117902564
+gaba receptor agonist	10 uM	MOA	L1000	0.00642209045099956	3	0.05816697004559856
+vasopressin receptor antagonist	0.37 uM	MOA	L1000	0.00639902017779328	4	0.03414805678189785
+nfkb pathway inhibitor	3.33 uM	MOA	L1000	0.00630159893622228	4	-0.005583963062682336
+parp inhibitor	0.12 uM	MOA	L1000	0.00628344235179254	5	0.07697220629074734
+opioid receptor antagonist	0.04 uM	MOA	L1000	0.006281994787713	4	0.07450035494766855
+rna polymerase inhibitor	3.33 uM	MOA	L1000	0.00627116533235664	7	0.012227959356909174
+glutamate receptor agonist	0.37 uM	MOA	L1000	0.0062689429007643	4	0.10633892431437808
+parp inhibitor	10 uM	MOA	L1000	0.00624743497744372	5	-0.01679598406704607
+opioid receptor agonist	3.33 uM	MOA	L1000	0.00624347397750174	3	-0.0204701803227343
+pkc inhibitor	0.12 uM	MOA	L1000	0.00624340598410185	4	0.08826077379285766
+jak inhibitor	10 uM	MOA	L1000	0.00619478446203284	5	0.018378435415352085
+xiap inhibitor	0.12 uM	MOA	L1000	0.00619367441998124	3	0.04332418042907737
+retinoid receptor agonist	0.37 uM	MOA	L1000	0.006193449064906	6	0.06992753830578531
+bacterial 50s ribosomal subunit inhibitor	0.37 uM	MOA	L1000	0.00615968726671225	5	0.06572889292115647
+opioid receptor antagonist	10 uM	MOA	L1000	0.00613913407889335	4	0.030481824617702775
+vitamin d receptor agonist	0.37 uM	MOA	L1000	0.00613353364226202	5	0.08062609749283409
+dna synthesis inhibitor	0.12 uM	MOA	L1000	0.00611854728811802	7	0.032541985366058755
+endothelin receptor antagonist	0.04 uM	MOA	L1000	0.00609921576403809	4	0.058533275657778966
+dna synthesis inhibitor	0.37 uM	MOA	L1000	0.00609412616163434	7	0.03976645056963363
+dna synthesis inhibitor	0.04 uM	MOA	L1000	0.00607737815750069	7	0.03550126678899226
+leukotriene receptor antagonist	0.37 uM	MOA	L1000	0.00606962117359354	4	0.02570035448287849
+hiv integrase inhibitor	0.04 uM	MOA	L1000	0.00606485790200608	3	0.16876177849231633
+bacterial 50s ribosomal subunit inhibitor	10 uM	MOA	L1000	0.00603753879321688	5	0.04113822219096011
+vasopressin receptor antagonist	3.33 uM	MOA	L1000	0.00602067548500708	4	0.05991861446871566
+dna synthesis inhibitor	1.11 uM	MOA	L1000	0.00600720846695846	7	0.0214956048339116
+monoamine oxidase inhibitor	10 uM	MOA	L1000	0.00594712859113345	6	0.0459626387119386
+sterol demethylase inhibitor	0.12 uM	MOA	L1000	0.00593058887893424	7	0.009273612948439001
+chelating agent	0.37 uM	MOA	L1000	0.00591866494670928	4	0.01093597257639961
+non-nucleoside reverse transcriptase inhibitor	1.11 uM	MOA	L1000	0.00591324467915835	4	0.06489054102170365
+angiotensin converting enzyme inhibitor	0.04 uM	MOA	L1000	0.00590408937632601	8	-0.0014904296295823525
+monoamine oxidase inhibitor	1.11 uM	MOA	L1000	0.0058889197273279	6	0.03316720082788768
+potassium channel activator	0.12 uM	MOA	L1000	0.00588336415256925	6	-0.005177096403072501
+carbonic anhydrase inhibitor	1.11 uM	MOA	L1000	0.0058710739417897	5	-0.04471470890846327
+integrin antagonist	0.04 uM	MOA	L1000	0.00586324347964309	5	0.031415297388940146
+parp inhibitor	0.37 uM	MOA	L1000	0.00585663224129413	5	0.012176070400723053
+dna methyltransferase inhibitor	3.33 uM	MOA	L1000	0.00584599909415445	3	0.050448477556154864
+leukotriene receptor antagonist	0.04 uM	MOA	L1000	0.00583551089785768	4	0.06655194146439868
+angiotensin receptor antagonist	1.11 uM	MOA	L1000	0.005825372249482	4	0.022926283133674473
+nfkb pathway inhibitor	0.37 uM	MOA	L1000	0.00582482973683695	4	0.0036699105296346627
+potassium channel activator	1.11 uM	MOA	L1000	0.00577549808251828	6	0.024270713288563058
+chelating agent	0.12 uM	MOA	L1000	0.00571244037504244	4	0.05005287770595852
+jak inhibitor	3.33 uM	MOA	L1000	0.00566277498070572	5	0.030948639652851617
+cc chemokine receptor antagonist	10 uM	MOA	L1000	0.00562887639126869	7	0.014508987976259333
+ppar receptor agonist	0.12 uM	MOA	L1000	0.00562506143140882	3	-0.02081975460315909
+calcitonin antagonist	1.11 uM	MOA	L1000	0.00560409824388526	3	0.06647813266167095
+potassium channel activator	10 uM	MOA	L1000	0.00558996546453062	6	0.02391990502590516
+potassium channel activator	3.33 uM	MOA	L1000	0.00556139470978505	6	-0.004197658436247461
+cdk inhibitor	0.04 uM	MOA	L1000	0.00550665247257147	7	4.1074255380421453e-4
+integrin antagonist	3.33 uM	MOA	L1000	0.00548634902673476	5	-0.02878147192035483
+dna synthesis inhibitor	10 uM	MOA	L1000	0.00545201476211854	7	-0.00391315479699852
+jak inhibitor	1.11 uM	MOA	L1000	0.00544576462623091	5	0.05518722779296251
+hcv inhibitor	1.11 uM	MOA	L1000	0.00543350997501541	7	0.02144437815471815
+dipeptidyl peptidase inhibitor	0.37 uM	MOA	L1000	0.00542060185706123	3	0.07227280794339168
+cc chemokine receptor antagonist	1.11 uM	MOA	L1000	0.00542041925358504	7	0.005077551966595147
+cholesterol inhibitor	0.37 uM	MOA	L1000	0.00541089464770983	3	0.04679252499068613
+hcv inhibitor	0.37 uM	MOA	L1000	0.00538754735197694	7	0.02960555445489942
+integrin antagonist	10 uM	MOA	L1000	0.00536889344331857	5	0.023189230369884205
+matrix metalloprotease inhibitor	0.37 uM	MOA	L1000	0.00536624314294443	3	0.024090760110732634
+dipeptidyl peptidase inhibitor	0.12 uM	MOA	L1000	0.00536404838317002	3	0.010373166739104779
+fungal squalene epoxidase inhibitor	0.12 uM	MOA	L1000	0.00535796809436749	3	-0.026862264233336576
+jak inhibitor	0.04 uM	MOA	L1000	0.0053519088666587	5	-0.04061491369470634
+monoamine oxidase inhibitor	0.04 uM	MOA	L1000	0.00531886665682366	6	0.012034169170134036
+serotonin reuptake inhibitor	10 uM	MOA	L1000	0.00531242580999478	4	0.08939859868316281
+akt inhibitor	0.37 uM	MOA	L1000	0.00527778594968148	6	0.027831247920130843
+hiv integrase inhibitor	10 uM	MOA	L1000	0.00527624340348355	3	0.10793100654977067
+atpase inhibitor	3.33 uM	MOA	L1000	0.00526413984476247	3	0.03699523996408117
+atp channel blocker	3.33 uM	MOA	L1000	0.00526304608460146	3	0.11850022313083486
+hmgcr inhibitor	3.33 uM	MOA	L1000	0.00525487072145406	5	-0.011226206821091623
+integrin antagonist	1.11 uM	MOA	L1000	0.00523327487670247	5	-0.002978967925105702
+akt inhibitor	0.04 uM	MOA	L1000	0.00523039923709424	6	0.00418091178612946
+monoamine oxidase inhibitor	0.37 uM	MOA	L1000	0.00522031616704048	6	0.06838377015122715
+serotonin reuptake inhibitor	1.11 uM	MOA	L1000	0.00520682926516268	4	-0.019070744999746723
+monoamine oxidase inhibitor	3.33 uM	MOA	L1000	0.00518786624001072	6	0.02198503496469122
+benzodiazepine receptor antagonist	3.33 uM	MOA	L1000	0.00518155477305739	3	0.026329841107144522
+carbonic anhydrase inhibitor	0.12 uM	MOA	L1000	0.00512900991387065	5	0.0022608145550512358
+nitric oxide synthase inhibitor	0.37 uM	MOA	L1000	0.00512218741638328	4	0.019287244553015056
+carbonic anhydrase inhibitor	3.33 uM	MOA	L1000	0.00511689159577527	5	0.027666639123658313
+parp inhibitor	3.33 uM	MOA	L1000	0.00506916682195262	5	-0.0013265578615023893
+farnesyltransferase inhibitor	10 uM	MOA	L1000	0.00506660523075355	3	0.03763755662888513
+adenosine receptor agonist	0.12 uM	MOA	L1000	0.00506488152979608	3	0.01198816999073451
+coagulation factor inhibitor	0.04 uM	MOA	L1000	0.00503519419968133	4	0.05859160855984752
+bacterial 50s ribosomal subunit inhibitor	3.33 uM	MOA	L1000	0.00503237741723233	5	0.022270064445769466
+lipoxygenase inhibitor	1.11 uM	MOA	L1000	0.00501455068418385	3	0.043907986148544215
+alk tyrosine kinase receptor inhibitor	0.37 uM	MOA	L1000	0.00500857468430301	3	0.09783219188446131
+mineralocorticoid receptor antagonist	10 uM	MOA	L1000	0.00500494294749203	3	0.059510930326524256
+endothelin receptor antagonist	10 uM	MOA	L1000	0.00500113762837758	4	0.06800612301786982
+purinergic receptor antagonist	0.37 uM	MOA	L1000	0.00498424098040665	3	0.17534585011661682
+opioid receptor agonist	1.11 uM	MOA	L1000	0.0049753681136127	3	-0.01202588365769485
+aromatase inhibitor	1.11 uM	MOA	L1000	0.00495891500038551	3	0.064237598148390307
+estrogen receptor agonist	0.04 uM	MOA	L1000	0.00495461873995539	6	0.03895864701383736
+carbonic anhydrase inhibitor	0.04 uM	MOA	L1000	0.00493869966345214	5	0.042010282343125316
+adenosine receptor antagonist	3.33 uM	MOA	L1000	0.00486841499152507	4	0.11694950644675987
+retinoid receptor agonist	0.12 uM	MOA	L1000	0.00481350558487226	6	0.003666709252811213
+glutamate receptor agonist	1.11 uM	MOA	L1000	0.00480632438655598	4	0.0979662808577324
+pkc inhibitor	10 uM	MOA	L1000	0.00479819544218382	4	0.06453557374332047
+mucolytic agent	3.33 uM	MOA	L1000	0.00478382568306195	3	4.4846944081081456e-4
+chelating agent	0.04 uM	MOA	L1000	0.00476989291346053	4	0.06310984206233572
+glutamate receptor antagonist	3.33 uM	MOA	L1000	0.00475744849132196	5	0.005714707842068932
+hmgcr inhibitor	0.37 uM	MOA	L1000	0.0047474818465211	5	0.006352350605270443
+glutamate receptor antagonist	0.12 uM	MOA	L1000	0.00474331264974972	5	0.036803974245068594
+dipeptidyl peptidase inhibitor	0.04 uM	MOA	L1000	0.00471434734335733	3	-0.019673493918381905
+opioid receptor antagonist	1.11 uM	MOA	L1000	0.00467518905611118	4	-0.012950381023739386
+aromatase inhibitor	0.12 uM	MOA	L1000	0.00465482818639725	3	0.11643434392994378
+chelating agent	3.33 uM	MOA	L1000	0.00463566583355659	4	0.06830139237212347
+nfkb pathway inhibitor	1.11 uM	MOA	L1000	0.00463537702528662	4	0.00730678242861702
+hmgcr inhibitor	0.04 uM	MOA	L1000	0.00463465422461257	5	0.011244771424168918
+carbonic anhydrase inhibitor	10 uM	MOA	L1000	0.00462797594277827	5	0.019831784316697958
+hiv protease inhibitor	1.11 uM	MOA	L1000	0.00457973179747699	5	-0.03280392926289294
+nfkb pathway inhibitor	0.12 uM	MOA	L1000	0.00457397581394368	4	0.014201043258175035
+bacterial 30s ribosomal subunit inhibitor	3.33 uM	MOA	L1000	0.00455150437276193	5	0.03752722658842937
+vitamin d receptor agonist	0.04 uM	MOA	L1000	0.00455016457024812	5	0.03285022338570093
+estrogen receptor agonist	3.33 uM	MOA	L1000	0.0045401745438832	6	-0.03309305765217012
+bacterial 50s ribosomal subunit inhibitor	1.11 uM	MOA	L1000	0.00450160533795037	5	0.04377186402152056
+cholesterol inhibitor	3.33 uM	MOA	L1000	0.00448672078696507	3	0.026283615160546756
+estrogen receptor agonist	0.12 uM	MOA	L1000	0.00447981769120812	6	0.02519210607161682
+calcitonin antagonist	3.33 uM	MOA	L1000	0.0044763987604563	3	0.0793589159051098
+fungal squalene epoxidase inhibitor	0.04 uM	MOA	L1000	0.00442883906046582	3	0.055555321430965886
+dipeptidyl peptidase inhibitor	3.33 uM	MOA	L1000	0.00440476202478596	3	0.07434974008772144
+calcitonin antagonist	0.12 uM	MOA	L1000	0.00437820369908655	3	-0.0287980821910363
+gaba receptor agonist	0.12 uM	MOA	L1000	0.00436590929226498	3	0.04711406375913384
+glutamate receptor antagonist	0.04 uM	MOA	L1000	0.00436566066233634	5	0.05008712791722887
+hiv protease inhibitor	10 uM	MOA	L1000	0.00436326734176706	5	0.035417183302195655
+ppar receptor agonist	3.33 uM	MOA	L1000	0.00435864828102068	3	-0.002868379755207049
+atpase inhibitor	0.04 uM	MOA	L1000	0.0043583878829989	3	-0.010243564100703399
+endothelin receptor antagonist	3.33 uM	MOA	L1000	0.00435596587974332	4	0.0541588918380025
+opioid receptor agonist	0.04 uM	MOA	L1000	0.00433344543971468	3	0.001796559548173452
+insulin secretagogue	0.12 uM	MOA	L1000	0.00431949215428633	4	0.05470968722235471
+estrogen receptor agonist	0.37 uM	MOA	L1000	0.00430405424229682	6	0.0031918312102602125
+androgen receptor antagonist	0.37 uM	MOA	L1000	0.00426359125302653	5	0.0013651873365580838
+adenosine receptor antagonist	0.37 uM	MOA	L1000	0.00425645706480723	4	0.05386339085773438
+hiv protease inhibitor	3.33 uM	MOA	L1000	0.0042408948983691	5	0.018801606412142215
+potassium channel blocker	10 uM	MOA	L1000	0.0042361079654646	4	0.04890617594180735
+bacterial 50s ribosomal subunit inhibitor	0.12 uM	MOA	L1000	0.00422516815042717	5	0.02267963198731035
+benzodiazepine receptor antagonist	0.12 uM	MOA	L1000	0.00422389698039513	3	0.025944871439543254
+dna inhibitor	0.04 uM	MOA	L1000	0.00420640395103354	5	-0.022767868239682652
+hiv protease inhibitor	0.37 uM	MOA	L1000	0.00420360839374945	5	0.02928870704274606
+dna polymerase inhibitor	0.04 uM	MOA	L1000	0.00420232547134394	3	-0.01668693972772681
+glutamate receptor antagonist	10 uM	MOA	L1000	0.00420160512050182	5	-0.009349108909767931
+leukotriene receptor antagonist	0.12 uM	MOA	L1000	0.00415891246821015	4	0.009081338971427403
+gaba receptor modulator	1.11 uM	MOA	L1000	0.0041410027777473	4	0.04220392729175602
+estrogen receptor agonist	10 uM	MOA	L1000	0.00412386063351186	6	0.012090304959836628
+hmgcr inhibitor	0.12 uM	MOA	L1000	0.00412251025580088	5	-0.0015304421800900435
+cholesterol inhibitor	1.11 uM	MOA	L1000	0.0041218719674732	3	-0.02459678748284486
+protein synthesis stimulant	0.37 uM	MOA	L1000	0.00411211175396988	3	0.08212518632398788
+gaba receptor agonist	3.33 uM	MOA	L1000	0.00405673818881209	3	-0.03501512252395835
+androgen receptor antagonist	1.11 uM	MOA	L1000	0.00405072224727601	5	0.013364804916328956
+chelating agent	1.11 uM	MOA	L1000	0.00403603704434233	4	0.0069497341179789885
+cholesterol inhibitor	10 uM	MOA	L1000	0.004014393205294	3	0.04128237649517545
+calcineurin inhibitor	0.04 uM	MOA	L1000	0.00401396797748047	3	0.043873505981589817
+calcineurin inhibitor	3.33 uM	MOA	L1000	0.00398907756519049	3	0.037537103110796104
+dna polymerase inhibitor	0.37 uM	MOA	L1000	0.00397432612361023	3	-0.007137375056066797
+carbonic anhydrase inhibitor	0.37 uM	MOA	L1000	0.0039566569394448	5	-0.011617751496939487
+glutamate receptor agonist	10 uM	MOA	L1000	0.00393287686053345	4	0.03273919779074916
+farnesyltransferase inhibitor	3.33 uM	MOA	L1000	0.00391066862898179	3	0.04417224318703313
+glutamate receptor modulator	10 uM	MOA	L1000	0.00390821297979342	3	-0.00493893000769635
+glutamate receptor agonist	0.04 uM	MOA	L1000	0.003907838919469	4	0.017566385278851848
+microtubule inhibitor	0.04 uM	MOA	L1000	0.00390011273541356	3	0.08993461917516103
+tyrosine kinase inhibitor	0.12 uM	MOA	L1000	0.00389283477155501	4	0.006546472029738891
+androgen receptor antagonist	0.12 uM	MOA	L1000	0.0038878523596676	5	0.01691883669769226
+glutamate receptor antagonist	1.11 uM	MOA	L1000	0.00388066474906184	5	-0.0053852145967902
+endothelin receptor antagonist	0.12 uM	MOA	L1000	0.00385179821884375	4	0.04230885691062783
+parp inhibitor	1.11 uM	MOA	L1000	0.00385113292003907	5	-0.003304180492959245
+serotonin reuptake inhibitor	0.37 uM	MOA	L1000	0.00384389194776294	4	0.08856557223742106
+hiv protease inhibitor	0.12 uM	MOA	L1000	0.00384163398286289	5	0.006317779738567545
+glutamate receptor antagonist	0.37 uM	MOA	L1000	0.00383949865579127	5	0.03499691167118554
+selective serotonin reuptake inhibitor (ssri)	0.04 uM	MOA	L1000	0.0038149412789038	4	-0.04730784603349876
+gaba receptor modulator	0.04 uM	MOA	L1000	0.0038108449908832	4	-0.041958248021850456
+gaba receptor modulator	3.33 uM	MOA	L1000	0.0038086713303196	4	0.004703110981980972
+parp inhibitor	0.04 uM	MOA	L1000	0.00380108601546148	5	0.01347797746280138
+t-type calcium channel blocker	0.37 uM	MOA	L1000	0.00380031151111193	3	0.051643793588759035
+leukotriene receptor antagonist	10 uM	MOA	L1000	0.0037889966845452	4	0.033804612172974896
+xanthine oxidase inhibitor	0.37 uM	MOA	L1000	0.0037875493276923102	3	-0.007556188954561016
+alk tyrosine kinase receptor inhibitor	0.04 uM	MOA	L1000	0.00378452130589892	3	0.0623671511082742
+dna methyltransferase inhibitor	0.12 uM	MOA	L1000	0.00378354059107202	3	0.033396625976065505
+opioid receptor agonist	10 uM	MOA	L1000	0.00378115592568018	3	0.08000822095490978
+nucleoside reverse transcriptase inhibitor	10 uM	MOA	L1000	0.00377897890476857	4	-0.03287890422671898
+calcineurin inhibitor	0.12 uM	MOA	L1000	0.00377795592811283	3	0.007618694808803092
+free radical scavenger	0.37 uM	MOA	L1000	0.00377548716034745	4	0.053303104205265434
+insulin secretagogue	3.33 uM	MOA	L1000	0.00376682410972701	4	0.04058132530030492
+nitric oxide synthase inhibitor	0.12 uM	MOA	L1000	0.00376526143752612	4	-0.02260542317769121
+tyrosine kinase inhibitor	1.11 uM	MOA	L1000	0.00376507346104849	4	-0.0325616962289743
+potassium channel blocker	0.37 uM	MOA	L1000	0.00374357505554743	4	0.06320184762230982
+xiap inhibitor	0.04 uM	MOA	L1000	0.00372477367551259	3	0.051281267906777145
+endothelin receptor antagonist	0.37 uM	MOA	L1000	0.00371642428046453	4	0.04065315243845549
+androgen receptor antagonist	0.04 uM	MOA	L1000	0.00370789160688978	5	0.008591733521444852
+sigma receptor antagonist	10 uM	MOA	L1000	0.00370638499082066	3	0.02594581914485556
+mucolytic agent	0.12 uM	MOA	L1000	0.00367147209107238	3	-0.14629569258072747
+insulin secretagogue	0.04 uM	MOA	L1000	0.00366537689595613	4	0.037919438672735645
+nfkb pathway inhibitor	10 uM	MOA	L1000	0.00363445270856345	4	0.042423832629139235
+benzodiazepine receptor antagonist	1.11 uM	MOA	L1000	0.00363262744775433	3	0.04459093429062226
+atp channel blocker	0.37 uM	MOA	L1000	0.00362127800358684	3	0.09114480160349009
+tyrosine kinase inhibitor	10 uM	MOA	L1000	0.0036149088443185	4	-0.023352631371960423
+non-nucleoside reverse transcriptase inhibitor	0.04 uM	MOA	L1000	0.00360188175609878	4	8.136442945324103e-4
+protein synthesis stimulant	0.12 uM	MOA	L1000	0.00358901456154544	3	-0.010723585132165044
+benzodiazepine receptor antagonist	0.37 uM	MOA	L1000	0.00357393570876717	3	0.07865705918916738
+alk tyrosine kinase receptor inhibitor	0.12 uM	MOA	L1000	0.00355952383326207	3	-0.020494667018827566
+matrix metalloprotease inhibitor	3.33 uM	MOA	L1000	0.00354915871898558	3	0.02572651619220945
+dna inhibitor	1.11 uM	MOA	L1000	0.00354017108165429	5	-0.03126522906877863
+endothelin receptor antagonist	1.11 uM	MOA	L1000	0.00351861825165816	4	0.02786516003999069
+potassium channel blocker	3.33 uM	MOA	L1000	0.00348067829342897	4	0.011726237367337147
+potassium channel blocker	0.12 uM	MOA	L1000	0.00347920627383121	4	0.021162108292219765
+hiv protease inhibitor	0.04 uM	MOA	L1000	0.0034779532449558	5	-0.04680464503202203
+dna inhibitor	0.37 uM	MOA	L1000	0.00347776747952244	5	-0.026013610655534335
+adenosine receptor agonist	0.37 uM	MOA	L1000	0.00343208357358421	3	0.022152702297397967
+androgen receptor modulator	1.11 uM	MOA	L1000	0.00340870356392371	3	-0.03600501488377635
+serotonin reuptake inhibitor	3.33 uM	MOA	L1000	0.0034053287729636	4	0.014699625661570556
+selective serotonin reuptake inhibitor (ssri)	0.37 uM	MOA	L1000	0.00340488272845604	4	-0.0018918313072182258
+cholesterol inhibitor	0.12 uM	MOA	L1000	0.00337367666146312	3	0.026175141390599413
+vasopressin receptor antagonist	0.04 uM	MOA	L1000	0.00336020708039525	4	0.03587227640400114
+adenosine receptor antagonist	10 uM	MOA	L1000	0.00335315703425155	4	0.0029132137500959172
+gaba receptor modulator	10 uM	MOA	L1000	0.00335210480109739	4	0.021458712423748628
+jak inhibitor	0.12 uM	MOA	L1000	0.00334512073170078	5	-0.015677592907734874
+glucosidase inhibitor	0.04 uM	MOA	L1000	0.00334413427993268	3	0.07088006172508382
+pkc inhibitor	3.33 uM	MOA	L1000	0.0033239686268148	4	0.007306474142051208
+dna inhibitor	0.12 uM	MOA	L1000	0.00331768760642918	5	0.014235847926825692
+cck receptor antagonist	0.04 uM	MOA	L1000	0.00330190338583735	4	-0.017906961248914402
+matrix metalloprotease inhibitor	1.11 uM	MOA	L1000	0.00328204411312199	3	-0.06428921932872836
+vasopressin receptor antagonist	0.12 uM	MOA	L1000	0.00328202673116144	4	0.01142009747064112
+serotonin reuptake inhibitor	0.12 uM	MOA	L1000	0.00325357108359399	4	-0.06919825377888669
+dipeptidyl peptidase inhibitor	10 uM	MOA	L1000	0.00324383400379293	3	0.04270889437332053
+cck receptor antagonist	0.37 uM	MOA	L1000	0.00321191906580791	4	0.041580626912347526
+pkc inhibitor	1.11 uM	MOA	L1000	0.00320125409067479	4	-0.01923424723825877
+dna methyltransferase inhibitor	0.04 uM	MOA	L1000	0.00316070512759269	3	0.05475926534854291
+nitric oxide synthase inhibitor	1.11 uM	MOA	L1000	0.003154833884615	4	-0.02369622238654264
+non-nucleoside reverse transcriptase inhibitor	3.33 uM	MOA	L1000	0.0031454255064002	4	-0.014835484685019946
+calcitonin antagonist	10 uM	MOA	L1000	0.00314317182094553	3	0.0678084168944376
+protein synthesis stimulant	10 uM	MOA	L1000	0.00313917875691344	3	0.015039138984356723
+atpase inhibitor	0.12 uM	MOA	L1000	0.00312143335814407	3	0.024422958091249905
+protein synthesis stimulant	0.04 uM	MOA	L1000	0.00312059968390141	3	0.04660779635927617
+xanthine oxidase inhibitor	10 uM	MOA	L1000	0.00307234398878592	3	0.017549852980399714
+gaba receptor agonist	0.37 uM	MOA	L1000	0.00304707100268802	3	0.06351159070938073
+tyrosine kinase inhibitor	3.33 uM	MOA	L1000	0.00302974302448644	4	-0.07014997442957766
+coagulation factor inhibitor	10 uM	MOA	L1000	0.0029945291662375	4	-0.08484643744714948
+xanthine oxidase inhibitor	3.33 uM	MOA	L1000	0.0029558659635938	3	0.001745183450234194
+glucosidase inhibitor	10 uM	MOA	L1000	0.00294779122051165	3	-0.03640101130655335
+fungal squalene epoxidase inhibitor	3.33 uM	MOA	L1000	0.00291974801060628	3	-0.09604885846293651
+selective serotonin reuptake inhibitor (ssri)	0.12 uM	MOA	L1000	0.00291346422682989	4	-0.028072469364049023
+potassium channel blocker	1.11 uM	MOA	L1000	0.00286631875995666	4	-0.06958014564677792
+lipoxygenase inhibitor	0.12 uM	MOA	L1000	0.00286069099792762	3	0.04887007890779817
+cck receptor antagonist	3.33 uM	MOA	L1000	0.00285883186228437	4	-0.0019185842186442807
+mdm inhibitor	0.12 uM	MOA	L1000	0.00284502902542581	3	-0.006790807171939637
+atpase inhibitor	0.37 uM	MOA	L1000	0.00284371474218596	3	-0.0663813275935652
+coagulation factor inhibitor	1.11 uM	MOA	L1000	0.00282043358109388	4	-0.07528585020853264
+lipoxygenase inhibitor	10 uM	MOA	L1000	0.00281008797015697	3	-0.004766983729766997
+adenosine receptor agonist	0.04 uM	MOA	L1000	0.00279795971413696	3	0.02931698664294796
+mineralocorticoid receptor antagonist	1.11 uM	MOA	L1000	0.00278582006968528	3	-0.010390900256672376
+hiv integrase inhibitor	0.12 uM	MOA	L1000	0.00277671437819323	3	-0.005624026897127513
+glutamate receptor agonist	0.12 uM	MOA	L1000	0.00277179806824698	4	-0.012455586901941136
+dna polymerase inhibitor	1.11 uM	MOA	L1000	0.00277074429380588	3	-0.078661487715304207
+lipoxygenase inhibitor	0.37 uM	MOA	L1000	0.00275704024267289	3	0.02742571346146482
+cck receptor antagonist	1.11 uM	MOA	L1000	0.00274668128196197	4	-3.248569814385295e-4
+purinergic receptor antagonist	0.04 uM	MOA	L1000	0.00274625470138554	3	-0.013521348989866159
+insulin secretagogue	10 uM	MOA	L1000	0.00274072569925334	4	0.012794635544816364
+mineralocorticoid receptor antagonist	3.33 uM	MOA	L1000	0.00274051291583429	3	-0.03230735800042096
+non-nucleoside reverse transcriptase inhibitor	0.12 uM	MOA	L1000	0.00273854992294074	4	0.0025095782381108055
+gaba receptor modulator	0.12 uM	MOA	L1000	0.0027332876263307	4	-0.0307470821057774
+dna polymerase inhibitor	0.12 uM	MOA	L1000	0.00273261367704104	3	-0.0587086658042296
+vasopressin receptor antagonist	1.11 uM	MOA	L1000	0.00272467861646965	4	0.02158309431584475
+androgen receptor modulator	0.37 uM	MOA	L1000	0.00271445222776591	3	-0.018042497292641325
+mineralocorticoid receptor antagonist	0.04 uM	MOA	L1000	0.00271391164920037	3	-0.08148227081925062
+xanthine oxidase inhibitor	1.11 uM	MOA	L1000	0.0026966624167499	3	0.015200409525683129
+prostanoid receptor agonist	0.04 uM	MOA	L1000	0.00268056475312217	3	-0.010228395424619506
+cck receptor antagonist	0.12 uM	MOA	L1000	0.00267346343704058	4	-0.010582388629420764
+mucolytic agent	0.37 uM	MOA	L1000	0.00267064168497539	3	0.032930631276508554
+glucosidase inhibitor	0.12 uM	MOA	L1000	0.00266535215322449	3	0.02398300804385607
+atp channel blocker	0.12 uM	MOA	L1000	0.00266181047622921	3	0.03756488866287533
+cck receptor antagonist	10 uM	MOA	L1000	0.00263262399695491	4	6.341363798926906e-4
+atp channel blocker	10 uM	MOA	L1000	0.00262246840920893	3	0.06968470312620083
+mineralocorticoid receptor antagonist	0.37 uM	MOA	L1000	0.00262158262454873	3	-0.05614800386342803
+sigma receptor antagonist	0.37 uM	MOA	L1000	0.00261613437421514	3	0.012692701398322391
+gaba receptor modulator	0.37 uM	MOA	L1000	0.00260575858481926	4	-0.03591170094320733
+pkc inhibitor	0.04 uM	MOA	L1000	0.00259341529204769	4	-0.03270483459588233
+non-nucleoside reverse transcriptase inhibitor	0.37 uM	MOA	L1000	0.00258415525981126	4	-0.02151807220646306
+cannabinoid receptor agonist	0.12 uM	MOA	L1000	0.00257875196369344	3	-0.11862502897494764
+calcitonin antagonist	0.37 uM	MOA	L1000	0.00257043712920529	3	0.06527484561529596
+lipoxygenase inhibitor	0.04 uM	MOA	L1000	0.00256219958024834	3	0.024555196919252287
+glutamate receptor agonist	3.33 uM	MOA	L1000	0.00256141304344555	4	-0.05376709945985942
+glutamate receptor modulator	0.12 uM	MOA	L1000	0.00254988228303958	3	1.1253131664400186e-5
+mucolytic agent	10 uM	MOA	L1000	0.00253981776864198	3	0.015292434658143282
+chelating agent	10 uM	MOA	L1000	0.00252315065142056	4	-0.02632028925678195
+hiv integrase inhibitor	1.11 uM	MOA	L1000	0.00252214404433712	3	-0.04491046291218276
+pkc inhibitor	0.37 uM	MOA	L1000	0.00252143469491233	4	-0.020220835569081413
+hiv integrase inhibitor	3.33 uM	MOA	L1000	0.00250909067748563	3	-0.02276115033239108
+reverse transcriptase inhibitor	0.12 uM	MOA	L1000	0.00250730915768282	3	0.07791686596657772
+fungal squalene epoxidase inhibitor	1.11 uM	MOA	L1000	0.00248537312846277	3	-0.07872526730619825
+fungal squalene epoxidase inhibitor	0.37 uM	MOA	L1000	0.00246478759246963	3	0.03735784520385587
+t-type calcium channel blocker	1.11 uM	MOA	L1000	0.00245525405625231	3	4.336903809896848e-4
+glutamate receptor modulator	1.11 uM	MOA	L1000	0.00245119778234327	3	0.007173608451731744
+gaba receptor agonist	0.04 uM	MOA	L1000	0.00243760297355531	3	0.01845145414908906
+androgen receptor modulator	0.12 uM	MOA	L1000	0.00243035691974444	3	-0.011560810335868319
+farnesyltransferase inhibitor	0.04 uM	MOA	L1000	0.00242125897109313	3	-0.002476279869215623
+adenosine receptor agonist	3.33 uM	MOA	L1000	0.00240867003879079	3	0.004704607728849526
+androgen receptor modulator	0.04 uM	MOA	L1000	0.00237827784451209	3	-0.019090720958234397
+dipeptidyl peptidase inhibitor	1.11 uM	MOA	L1000	0.00236724253717102	3	0.0033791213837004357
+matrix metalloprotease inhibitor	0.04 uM	MOA	L1000	0.00236596802497747	3	-0.051065089790967744
+xanthine oxidase inhibitor	0.12 uM	MOA	L1000	0.00236021546799354	3	-0.07552644210140852
+cholesterol inhibitor	0.04 uM	MOA	L1000	0.00234344757090411	3	-0.032309247486592266
+benzodiazepine receptor antagonist	10 uM	MOA	L1000	0.00231922269567458	3	-0.015954181195279093
+atp channel blocker	1.11 uM	MOA	L1000	0.00231360252502066	3	0.1054798238264771
+benzodiazepine receptor antagonist	0.04 uM	MOA	L1000	0.00230997009872786	3	0.029630119042613687
+glucosidase inhibitor	3.33 uM	MOA	L1000	0.00230311214065372	3	-0.021185250933911718
+farnesyltransferase inhibitor	1.11 uM	MOA	L1000	0.00229190164909502	3	0.05539875160367678
+acat inhibitor	0.04 uM	MOA	L1000	0.00227757496732544	3	-0.06868249113082911
+bcl inhibitor	0.37 uM	MOA	L1000	0.00223789242431118	3	-0.00268827121634396
+glutamate receptor modulator	0.04 uM	MOA	L1000	0.00218467213561648	3	-0.04301517695517075
+purinergic receptor antagonist	0.12 uM	MOA	L1000	0.00215140206490905	3	0.01664252508385946
+farnesyltransferase inhibitor	0.12 uM	MOA	L1000	0.00214875987981496	3	-0.1533846850377494
+t-type calcium channel blocker	0.04 uM	MOA	L1000	0.00213454478790663	3	-0.019600579651240974
+acat inhibitor	0.37 uM	MOA	L1000	0.00211519952306761	3	0.0046466733318583486
+atp channel blocker	0.04 uM	MOA	L1000	0.00210161841130731	3	0.03442879096807153
+hiv integrase inhibitor	0.37 uM	MOA	L1000	0.00209424347726822	3	-0.06661314340453986
+purinergic receptor antagonist	1.11 uM	MOA	L1000	0.00203364566542555	3	-0.012665630205405367
+glutamate receptor modulator	3.33 uM	MOA	L1000	0.00201903718836126	3	-0.02306577059357997
+mineralocorticoid receptor antagonist	0.12 uM	MOA	L1000	0.00201768103944112	3	-0.07979273588598039
+xanthine oxidase inhibitor	0.04 uM	MOA	L1000	0.00197270571121255	3	-0.09722087970347627
+reverse transcriptase inhibitor	1.11 uM	MOA	L1000	0.00195415152634989	3	0.005430937962809796
+farnesyltransferase inhibitor	0.37 uM	MOA	L1000	0.00194713741225369	3	-0.01036000169283992
+reverse transcriptase inhibitor	0.37 uM	MOA	L1000	0.00193340926516481	3	-0.01316183292281264
+bcl inhibitor	0.12 uM	MOA	L1000	0.00192388984441013	3	-0.002329774881619798
+cannabinoid receptor agonist	1.11 uM	MOA	L1000	0.00192158965499362	3	-0.10310386278685564
+protein synthesis stimulant	1.11 uM	MOA	L1000	0.00191006664873415	3	-3.127370623084117e-4
+matrix metalloprotease inhibitor	0.12 uM	MOA	L1000	0.00190494561345877	3	-0.06039730535868392
+protein synthesis stimulant	3.33 uM	MOA	L1000	0.00190070205078812	3	-5.768447516749253e-4
+lipoxygenase inhibitor	3.33 uM	MOA	L1000	0.00188736394439494	3	-0.011157424851012076
+adenosine receptor agonist	1.11 uM	MOA	L1000	0.00187025460888535	3	0.02104148083792866
+acat inhibitor	0.12 uM	MOA	L1000	0.00183274986852064	3	-0.12401277105124663
+bcl inhibitor	1.11 uM	MOA	L1000	0.00181564575283005	3	-0.04249577966978584
+mdm inhibitor	0.04 uM	MOA	L1000	0.00180322466290994	3	-0.08151158870132201
+reverse transcriptase inhibitor	3.33 uM	MOA	L1000	0.00180314102449419	3	-0.014881685559915122
+bcl inhibitor	0.04 uM	MOA	L1000	0.00179688336296784	3	0.05338847346204089
+mucolytic agent	0.04 uM	MOA	L1000	0.00177290922534611	3	-0.01917099224472217
+purinergic receptor antagonist	3.33 uM	MOA	L1000	0.00160511510782809	3	-0.062430900463193315
+sigma receptor antagonist	3.33 uM	MOA	L1000	0.0016002370653153	3	-0.16896596674417128
+t-type calcium channel blocker	0.12 uM	MOA	L1000	0.0015981890945441	3	-0.08606036037638044
+glucocorticoid receptor agonist	All	MOA	L1000	0.71210453154642706	84	0.3954102300056735
+mek inhibitor	All	MOA	L1000	0.625582396074334	48	0.4611769067946221
+mtor inhibitor	All	MOA	L1000	0.562902131218856	36	0.43210987851403315
+hsp inhibitor	All	MOA	L1000	0.535698663347842	30	0.33994731927369115
+proteasome inhibitor	All	MOA	L1000	0.477337693792142	24	0.38855331036650426
+plk inhibitor	All	MOA	L1000	0.290034822218512	24	0.36860389252512515
+mtor inhibitor|pi3k inhibitor	All	MOA	L1000	0.246514480367855	24	0.19947792093317304
+hdac inhibitor	All	MOA	L1000	0.239012027065132	78	0.10387375718602895
+topoisomerase inhibitor	All	MOA	L1000	0.136537629862354	90	0.03132847023492389
+mdm inhibitor	All	MOA	L1000	0.0961867710424645	18	0.06559270436261627
+purine antagonist	All	MOA	L1000	0.0804956585809011	12	0.06197742467783405
+tubulin inhibitor	All	MOA	L1000	0.0709997188765554	48	0.07611657880154352
+protein synthesis inhibitor	All	MOA	L1000	0.0688442897554252	36	-0.018636309401381123
+cdk inhibitor	All	MOA	L1000	0.0574277143003295	42	0.07026554111540742
+inosine monophosphate dehydrogenase inhibitor	All	MOA	L1000	0.0497345146288337	12	0.0031121630326060063
+dopamine receptor antagonist|serotonin receptor antagonist	All	MOA	L1000	0.0449556849573364	54	0.012408516032684253
+xiap inhibitor	All	MOA	L1000	0.0386010972660166	18	0.18425822947723414
+cyclooxygenase inhibitor|prostanoid receptor antagonist	All	MOA	L1000	0.0364205703364463	24	0.013878491227981004
+serotonin receptor agonist|serotonin receptor antagonist	All	MOA	L1000	0.0359783049318479	18	0.0971050427523609
+adrenergic receptor antagonist	All	MOA	L1000	0.033242897311553	186	0.029270763040991847
+cyclooxygenase inhibitor	All	MOA	L1000	0.032455032750337	162	0.02410970345098583
+dopamine receptor antagonist	All	MOA	L1000	0.0310091823552484	114	0.03189214177663503
+phosphodiesterase inhibitor	All	MOA	L1000	0.0280127114648386	168	0.024177249603680548
+histamine receptor antagonist	All	MOA	L1000	0.0250672823338001	144	0.03487166015813446
+serotonin receptor antagonist	All	MOA	L1000	0.0243100223361783	72	0.03503033665412297
+diacylglycerol o acyltransferase inhibitor	All	MOA	L1000	0.0239447005450508	12	0.18674641862184338
+egfr inhibitor	All	MOA	L1000	0.0236190405806236	78	0.09167745200008506
+adrenergic receptor agonist	All	MOA	L1000	0.0223826520863183	120	0.02970492371346617
+acetylcholine receptor antagonist	All	MOA	L1000	0.0223391195454649	126	0.028169770341634495
+progestogen hormone	All	MOA	L1000	0.01806830808219	12	0.12855106880798065
+pi3k inhibitor	All	MOA	L1000	0.017579286690576	42	0.04186498092633144
+calcium channel blocker	All	MOA	L1000	0.015734709375286	90	0.023650807086861264
+microtubule inhibitor	All	MOA	L1000	0.0151015162229466	18	0.07217515145543155
+akt inhibitor	All	MOA	L1000	0.0147534897770537	36	0.04087083524957456
+serotonin receptor agonist	All	MOA	L1000	0.0135218058494595	72	0.01980591441905568
+sodium channel blocker	All	MOA	L1000	0.0134245276169962	66	0.04477472101089247
+bacterial cell wall synthesis inhibitor	All	MOA	L1000	0.013287462410998	84	0.02562637452544476
+bacterial dna gyrase inhibitor	All	MOA	L1000	0.0128796983122524	66	0.03864914412454059
+norepinephrine reputake inhibitor|tricyclic antidepressant	All	MOA	L1000	0.0117659276824336	12	0.10211969601165577
+cannabinoid receptor agonist	All	MOA	L1000	0.0112673175688868	18	-0.03297518558811878
+dopamine receptor agonist	All	MOA	L1000	0.0104067878795939	54	0.03723417138602196
+gamma secretase inhibitor	All	MOA	L1000	0.0100801698632102	42	0.045113123177841274
+prostanoid receptor antagonist	All	MOA	L1000	0.00885854887339453	18	0.036922995814072775
+sodium/glucose cotransporter inhibitor	All	MOA	L1000	0.00852566681433214	12	0.05961444559464762
+progesterone receptor agonist	All	MOA	L1000	0.00841450097243871	42	0.041617873063960545
+vegfr inhibitor	All	MOA	L1000	0.00836782557256266	24	0.030498805209255915
+opioid receptor agonist|opioid receptor antagonist	All	MOA	L1000	0.00801288066553024	12	-0.027165092855388442
+tachykinin antagonist	All	MOA	L1000	0.00800092121513302	36	0.03817294076375517
+acetylcholine receptor agonist	All	MOA	L1000	0.00787310177157498	48	0.0351329201339439
+p38 mapk inhibitor	All	MOA	L1000	0.00745279555838306	36	0.07554493278819022
+fgfr inhibitor|vegfr inhibitor	All	MOA	L1000	0.00741129404651734	18	0.018689279669649842
+angiotensin converting enzyme inhibitor	All	MOA	L1000	0.00740860178166354	48	0.03569389468906406
+rna polymerase inhibitor	All	MOA	L1000	0.00739660472927958	42	0.033274718455892
+sterol demethylase inhibitor	All	MOA	L1000	0.00738973318626558	42	0.031233255294985343
+ppar receptor agonist|insulin sensitizer	All	MOA	L1000	0.0072093852018702	18	0.029159805670818627
+benzodiazepine receptor agonist	All	MOA	L1000	0.00701188881426286	42	0.035486715277622746
+bacterial antifolate	All	MOA	L1000	0.00684211580302368	12	0.06511615241745232
+pdgfr tyrosine kinase receptor inhibitor|vegfr inhibitor	All	MOA	L1000	0.00680894729761156	12	0.016649979561688535
+rho associated kinase inhibitor	All	MOA	L1000	0.006680104409835	36	0.019458236092093118
+cathepsin inhibitor	All	MOA	L1000	0.00652473744648308	12	0.031911492021503625
+vitamin d receptor agonist	All	MOA	L1000	0.0063872509184579	30	0.05890644634467838
+aurora kinase inhibitor	All	MOA	L1000	0.00613483872902071	12	0.21867196985064535
+cc chemokine receptor antagonist	All	MOA	L1000	0.00609060022050226	42	0.015314616597739888
+bacterial 50s ribosomal subunit inhibitor	All	MOA	L1000	0.00604120985948189	30	0.028965677833725147
+retinoid receptor agonist	All	MOA	L1000	0.00596264182434138	36	0.05523023384663436
+nucleoside reverse transcriptase inhibitor	All	MOA	L1000	0.00572299633851539	24	0.01977807391999676
+angiotensin receptor antagonist	All	MOA	L1000	0.0056002961296195	24	0.04880738133464871
+adenosine receptor antagonist	All	MOA	L1000	0.00557929990486928	24	0.06796649006311462
+dna synthesis inhibitor	All	MOA	L1000	0.0055049178050133	42	0.010466331286653516
+hcv inhibitor	All	MOA	L1000	0.00547282995843913	42	0.019415241465298407
+opioid receptor antagonist	All	MOA	L1000	0.00546996046204793	24	0.02306692000736655
+raf inhibitor	All	MOA	L1000	0.00544845441142425	30	0.027417557611570637
+potassium channel activator	All	MOA	L1000	0.00541163255518134	36	0.016837841082521947
+hmgcr inhibitor	All	MOA	L1000	0.00535853115061557	30	0.0015779286693664294
+monoamine oxidase inhibitor	All	MOA	L1000	0.00528635588888377	36	0.031205077573069145
+bacterial 30s ribosomal subunit inhibitor	All	MOA	L1000	0.00520533774865217	30	0.034164920120718714
+ppar receptor agonist	All	MOA	L1000	0.00510712996852856	18	0.03828316041572952
+cannabinoid receptor antagonist	All	MOA	L1000	0.00481218945193192	12	0.04850486469325341
+jnk inhibitor	All	MOA	L1000	0.00470075137146143	12	0.07013862682897887
+vesicular monoamine transporter inhibitor	All	MOA	L1000	0.00469517738848849	12	0.07070914696813978
+aldose reductase inhibitor	All	MOA	L1000	0.00453912485457842	12	0.1025959088489709
+insulin sensitizer	All	MOA	L1000	0.00451927791306526	12	0.09126825725693412
+estrogen receptor agonist	All	MOA	L1000	0.00450555200574056	36	0.010507149121358344
+opioid receptor agonist	All	MOA	L1000	0.00432919669227791	18	0.053401583890949116
+integrin antagonist	All	MOA	L1000	0.00430284176678045	30	0.021102237171767617
+leukotriene receptor antagonist	All	MOA	L1000	0.00426852830412586	24	0.038472824496002554
+tyrosine kinase inhibitor	All	MOA	L1000	0.00408815494050967	24	0.03049215927549307
+carbonic anhydrase inhibitor	All	MOA	L1000	0.00407778899913288	30	0.00876473506444572
+dna inhibitor	All	MOA	L1000	0.00407546022911449	30	0.016470175844378987
+aromatase inhibitor	All	MOA	L1000	0.00402612302713882	18	0.0639913734901573
+androgen receptor antagonist	All	MOA	L1000	0.00391379448735459	30	0.026317766598087503
+dna methyltransferase inhibitor	All	MOA	L1000	0.00384767410756665	18	0.06655548815004003
+bcl inhibitor	All	MOA	L1000	0.00380597437054162	18	-4.5385249977135785e-4
+jak inhibitor	All	MOA	L1000	0.00377546998601749	30	0.010916976029419346
+prostanoid receptor agonist	All	MOA	L1000	0.003772896081028	18	0.06677203528568607
+hiv protease inhibitor	All	MOA	L1000	0.00366950455772687	30	0.0160355048316876
+free radical scavenger	All	MOA	L1000	0.00364132431408345	24	0.04917655549951356
+immunostimulant	All	MOA	L1000	0.00362113856409906	12	0.07766924368785993
+nfkb pathway inhibitor	All	MOA	L1000	0.00361130390002191	24	0.018155700948464647
+nitric oxide synthase inhibitor	All	MOA	L1000	0.00358647408386181	24	0.018032231273439583
+parp inhibitor	All	MOA	L1000	0.00358104925550076	30	0.007677934510353094
+estrogen receptor antagonist	All	MOA	L1000	0.00356071553088372	12	0.19431009747899103
+androgen receptor modulator	All	MOA	L1000	0.00350327334687059	18	-0.01418370558872531
+glutamate receptor antagonist	All	MOA	L1000	0.00339288497082395	30	0.012755025477595102
+coagulation factor inhibitor	All	MOA	L1000	0.00337662148217821	24	0.0307711658143756
+alk tyrosine kinase receptor inhibitor	All	MOA	L1000	0.00333459038029569	18	0.046121703625433705
+angiogenesis inhibitor	All	MOA	L1000	0.00330006147796206	12	0.005032968006983045
+vasopressin receptor antagonist	All	MOA	L1000	0.0032175533450523202	24	0.042765124456568465
+tricyclic antidepressant	All	MOA	L1000	0.00321720529636647	12	0.03959549115000934
+serotonin reuptake inhibitor	All	MOA	L1000	0.0032169862263656	24	0.0402844493728535
+acat inhibitor	All	MOA	L1000	0.00318013780811417	18	-0.027409100121522808
+potassium channel blocker	All	MOA	L1000	0.00315322256442583	24	0.03665590787313237
+insulin secretagogue	All	MOA	L1000	0.00312597621774502	24	0.05336349969148043
+sigma receptor antagonist	All	MOA	L1000	0.00312147904664787	18	-0.02745633646047889
+chelating agent	All	MOA	L1000	0.00311879552194331	24	0.03394664005596201
+estrogen receptor antagonist|selective estrogen receptor modulator (serm)	All	MOA	L1000	0.0030670834772754	12	0.0623190059863182
+dna polymerase inhibitor	All	MOA	L1000	0.00297135551887869	18	0.04410772422295032
+endothelin receptor antagonist	All	MOA	L1000	0.00296062374837496	24	0.028019889255469957
+calcineurin inhibitor	All	MOA	L1000	0.00292609100084419	18	0.04379852037407549
+selective serotonin reuptake inhibitor (ssri)	All	MOA	L1000	0.00292331926689391	24	-0.017412992451167054
+atpase inhibitor	All	MOA	L1000	0.00291550253195331	18	0.02599918015279852
+gaba receptor agonist	All	MOA	L1000	0.00289322762750838	18	0.0735628451763249
+pkc inhibitor	All	MOA	L1000	0.00283518729862906	24	0.002322736020538502
+dipeptidyl peptidase inhibitor	All	MOA	L1000	0.00281712365353347	18	0.04130742169357683
+gaba receptor modulator	All	MOA	L1000	0.00280090082396331	24	0.008868568447228987
+glutamate receptor agonist	All	MOA	L1000	0.00274098059443764	24	0.04019252082323042
+non-nucleoside reverse transcriptase inhibitor	All	MOA	L1000	0.00274019862552701	24	-0.005020750665814206
+calcium channel activator	All	MOA	L1000	0.00272570195502385	12	0.08138692624901453
+calcitonin antagonist	All	MOA	L1000	0.00263902567492208	18	0.04889263632531031
+carnitine palmitoyltransferase inhibitor	All	MOA	L1000	0.00247701202749463	12	0.09627119088546565
+adenosine receptor agonist	All	MOA	L1000	0.00242276745430087	18	0.031170786013946114
+cholesterol inhibitor	All	MOA	L1000	0.00242073420144496	18	0.02669292531540603
+matrix metalloprotease inhibitor	All	MOA	L1000	0.0023856766238105	18	0.012199972853324265
+cck receptor antagonist	All	MOA	L1000	0.00232077512230105	24	-0.0020933487785752152
+gaba receptor antagonist	All	MOA	L1000	0.0022998759710703	12	0.06973097615325105
+gonadotropin releasing factor hormone receptor agonist	All	MOA	L1000	0.00229045163089903	12	0.0824315372188372
+progesterone receptor antagonist	All	MOA	L1000	0.00224369670835126	12	0.027658477795138314
+dihydroorotate dehydrogenase inhibitor	All	MOA	L1000	0.00211949823269514	12	0.045814444153223693
+lipase inhibitor	All	MOA	L1000	0.00208053595346515	12	0.03661314839349256
+glucosidase inhibitor	All	MOA	L1000	0.00204776722303841	18	0.03199734493623635
+hiv integrase inhibitor	All	MOA	L1000	0.00202652229171242	18	0.01071131904023847
+benzodiazepine receptor antagonist	All	MOA	L1000	0.00202003175277729	18	0.029262830591180643
+fungal squalene epoxidase inhibitor	All	MOA	L1000	0.00199877192012171	18	0.008325311052076012
+mucolytic agent	All	MOA	L1000	0.00198631722990404	18	0.016684871702296038
+t-type calcium channel blocker	All	MOA	L1000	0.00197537761104528	18	4.1708340299441654e-4
+mineralocorticoid receptor antagonist	All	MOA	L1000	0.00193940772716451	18	-0.004876518324168173
+elastase inhibitor	All	MOA	L1000	0.00190633575459735	12	0.09636682967809528
+glutamate receptor modulator	All	MOA	L1000	0.00187780624129498	18	0.029242363268038002
+diuretic	All	MOA	L1000	0.00186715261243404	12	0.03985482616005713
+protein synthesis stimulant	All	MOA	L1000	0.00185479621802574	18	0.022841737241902246
+lipoxygenase inhibitor	All	MOA	L1000	0.00184205011500683	18	0.011839538106944358
+atp channel blocker	All	MOA	L1000	0.00182590394608524	18	0.043354706302046714
+xanthine oxidase inhibitor	All	MOA	L1000	0.00182112900032168	18	0.006714509250960583
+purinergic receptor antagonist	All	MOA	L1000	0.00177067311264506	18	0.007274409380762684
+farnesyltransferase inhibitor	All	MOA	L1000	0.00171204365879751	18	-0.0017981179737934496
+fatty acid synthase inhibitor	All	MOA	L1000	0.00163273163038311	12	0.13655071731019436
+reverse transcriptase inhibitor	All	MOA	L1000	0.00161108191380084	18	0.008563509834873419
+c-met inhibitor	All	MOA	L1000	0.00133054851949488	12	0.08852044886073551
+sulfonylurea	All	MOA	L1000	0.00131379694375335	12	0.1206943890021904
+acetylcholinesterase inhibitor	All	MOA	L1000	0.00124880580430382	12	0.07247679772106227
+isocitrate dehydrogenase inhibitor	All	MOA	L1000	0.00121380384371612	12	0.03731752314858782
+beta-secretase inhibitor	All	MOA	L1000	0.00120914424986171	12	0.08857795801302018
+thromboxane synthase inhibitor	All	MOA	L1000	0.00119276524422878	12	0.043130309707519535
+histamine receptor agonist	All	MOA	L1000	0.00116590564633548	12	0.08682494431404283
+dna alkylating agent	All	MOA	L1000	0.00115072039327455	12	-0.008308785180634631
+5 alpha reductase inhibitor	All	MOA	L1000	0.00114465402176037	12	0.08463029030709589
+dopamine uptake inhibitor	All	MOA	L1000	0.00109496893072891	12	0.07618655023305854
+dopamine reuptake inhibitor	All	MOA	L1000	0.00105707511222289	12	0.04828077314912664
+nitric oxide stimulant	All	MOA	L1000	0.00104641155620665	12	0.021884688551681034
+bruton's tyrosine kinase (btk) inhibitor	All	MOA	L1000	0.00103578939400571	12	0.04525598528337439
+thymidylate synthase inhibitor	All	MOA	L1000	0.00102795038960602	12	0.012527404975563539
+focal adhesion kinase inhibitor	All	MOA	L1000	0.00100269498529704	12	0.02357320375357935
+glucose-dependent insulinotropic receptor (gdir, gpr119) agonists	All	MOA	L1000	0.00100041465496512	12	0.050714413526960586
+tyrosinase inhibitor	All	MOA	L1000	9.87224281319583e-4	12	0.055464689342894724
+thyrotropin releasing hormone receptor agonist	All	MOA	L1000	9.50240039113077e-4	12	0.005768074225887076
+sodium/potassium/chloride transporter inhibitor	All	MOA	L1000	9.32563752442091e-4	12	0.05472220701547586
+dna directed dna polymerase inhibitor	All	MOA	L1000	8.97185587465313e-4	12	0.02693782190214613
+dna alkylating drug	All	MOA	L1000	8.86457766104122e-4	12	0.03167703317319969
+acetylcholine release stimulant	All	MOA	L1000	8.8543092485589e-4	12	0.04417655497469136
+oxidative stress inducer	All	MOA	L1000	8.80064850084941e-4	12	-0.00364999514988725
+pim kinase inhibitor	All	MOA	L1000	8.76491084795807e-4	12	0.0031306108395319984
+o6-alkylguanine-dna alkyltransferase inhibitor	All	MOA	L1000	8.74967174132432e-4	12	0.03325755044816249
+cftr channel agonist	All	MOA	L1000	8.62749267336534e-4	12	0.0031855616401565904
+cytochrome p450 inhibitor	All	MOA	L1000	8.60845677648884e-4	12	0.017607227748527347
+platelet activating factor receptor antagonist	All	MOA	L1000	8.49165506962627e-4	12	-0.07891942352276474
+dihydrofolate reductase inhibitor	All	MOA	L1000	8.38357652433507e-4	12	0.012822440391429194
+alcohol dehydrogenase inhibitor	All	MOA	L1000	8.36576326369194e-4	12	0.008792049699059779
+immunosuppressant	All	MOA	L1000	8.3400371940806e-4	12	-0.008234747043876106
+growth hormone secretagogue receptor agonist	All	MOA	L1000	8.29795812819574e-4	12	0.011286520933308637
+antiviral	All	MOA	L1000	8.04419438063166e-4	12	0.01044322605429994
+tgf beta receptor inhibitor	All	MOA	L1000	7.86977620344337e-4	12	0.010360991437912241
+membrane permeability inhibitor	All	MOA	L1000	7.86506917540866e-4	12	0.03769288432667291
+neurotrophic agent	All	MOA	L1000	7.83881035237438e-4	12	-0.0136057021338216
+cannabinoid receptor inverse agonist	All	MOA	L1000	7.77323806681134e-4	12	-0.00655396219746039
+antithyroid agent	All	MOA	L1000	7.73965717221416e-4	12	0.0037157283002009524
+beta lactamase inhibitor	All	MOA	L1000	7.67326287522078e-4	12	-0.05428559415707274
+tumor necrosis factor release inhibitor	All	MOA	L1000	7.51184084017089e-4	12	-0.004423850883529611
+trpv antagonist	All	MOA	L1000	7.39850734063755e-4	12	-0.005961096161957667
+rna synthesis inhibitor	All	MOA	L1000	7.33322023221948e-4	12	-0.01162357270450674
+adrenergic inhibitor	All	MOA	L1000	7.27059579378039e-4	12	-3.8294089074067996e-4
+thrombin inhibitor	All	MOA	L1000	7.25307187098206e-4	12	-0.016226327582434648
+thromboxane receptor antagonist	All	MOA	L1000	7.1098818077621e-4	12	-0.0284933644764269
+nitric oxide donor	All	MOA	L1000	7.0526679540409e-4	12	-0.02643713964002497
+ribonucleoside reductase inhibitor	All	MOA	L1000	6.72098749511439e-4	12	-0.02465003048888622
+histamine receptor modulator	All	MOA	L1000	6.55498540745762e-4	12	-0.023347904338117162
+bcr-abl kinase inhibitor	All	MOA	L1000	6.48342395086046e-4	12	-0.05763149260628312
+calmodulin antagonist	All	MOA	L1000	6.39930975289384e-4	12	-0.03784847654967165
+ribonucleotide reductase inhibitor	All	MOA	L1000	6.19169106014557e-4	12	-0.05884459717477242
