@@ -22,8 +22,15 @@ from scripts.precision_recall_utils import calc_pairwise_corr, categorize_compar
 # In[2]:
 
 
+assay = "L1000"  # Can be either "L1000" or "cell_painting"
+
+partition = "part2" # L1000 large to fit into memory, split into two sections, Cell Painting worked in one part
+
+
+# In[3]:
+
+
 # Load input data
-assay = "cell_painting"  # Can also be "cell_painting"
 profile_dir = pathlib.Path("Consensus", assay, "moa_sizes_consensus_datasets")
 
 if assay == "cell_painting":
@@ -46,7 +53,7 @@ print(profile_df.shape)
 profile_df.head()
 
 
-# In[3]:
+# In[4]:
 
 
 # Distinguish profile and metadata features
@@ -60,19 +67,15 @@ else:
     dose_col = "dose"
 
 
-# In[4]:
+# In[5]:
 
 
 # Calculate pairwise correlations for precision/recall calculations
-corr_dose_df = (
-    profile_df
-    .groupby(dose_col)
-    .apply(
-        lambda x: calc_pairwise_corr(
-            profile_df=x,
-            metadata_cols=meta_features,
-            features=cp_features
-        )
+all_corr_df = (
+    calc_pairwise_corr(
+        profile_df=profile_df,
+        metadata_cols=meta_features,
+        features=cp_features
     )
     .reset_index(drop=True)
 )
@@ -80,19 +83,19 @@ corr_dose_df = (
 # Drop comparisons of the same perturbation across multiple doses
 id_cols = ["pert_iname"]
 
-compare_df = corr_dose_df.loc[:, [f"{x}_compare" for x in id_cols]]
+compare_df = all_corr_df.loc[:, [f"{x}_compare" for x in id_cols]]
 compare_df.columns = id_cols
 is_replicate = (
-    corr_dose_df.loc[:, id_cols] == 
+    all_corr_df.loc[:, id_cols] == 
     compare_df
 ).all(
     axis="columns"
 )
 
-corr_dose_df = corr_dose_df.loc[~is_replicate, :].reset_index(drop=True)
+all_corr_df = all_corr_df.loc[~is_replicate, :].reset_index(drop=True)
 
-print(corr_dose_df.shape)
-corr_dose_df.head()
+print(all_corr_df.shape)
+all_corr_df.head()
 
 
 # ### Categorize comparisons
@@ -100,22 +103,25 @@ corr_dose_df.head()
 # We need to create a column that captures which MOAs/Targets are the same, and which are different.
 # We also need to make sure that comparisons are not of the same compound but at different doses.
 
-# In[5]:
-
-
-# Note, this takes a couple minutes to complete
-corr_match_df = corr_dose_df.apply(lambda x: categorize_comparisons(x), axis="columns")
-
-corr_dose_df = pd.concat([corr_dose_df, corr_match_df], axis="columns")
-
-print(corr_dose_df.shape)
-corr_dose_df.head(10)
-
-
 # In[6]:
 
 
+# Note, this takes several minutes to complete
+if partition == "part1":
+    all_corr_match_df = all_corr_df.iloc[0:int(32867208/2),:].apply(lambda x: categorize_comparisons(x), axis="columns")
+    all_corr_match_df = pd.concat([all_corr_df.iloc[0:int(32867208/2),:], all_corr_match_df], axis="columns")
+elif partition == "part2":
+    all_corr_match_df = all_corr_df.iloc[int(32867208/2):32867208,:].apply(lambda x: categorize_comparisons(x), axis="columns")
+    all_corr_match_df = pd.concat([all_corr_df.iloc[int(32867208/2):32867208,:], all_corr_match_df], axis="columns")
+
+print(all_corr_match_df.shape)
+all_corr_match_df.head(10)
+
+
+# In[7]:
+
+
 # Output data
-output_file = pathlib.Path("results", f"dose_corr_matching_moa_target_{assay}.tsv.gz")
-corr_dose_df.to_csv(output_file, sep="\t", index=False)
+output_file = pathlib.Path("results", f"dose_corr_matching_moa_target_{assay}_{partition}.tsv.gz")
+all_corr_match_df.to_csv(output_file, sep="\t", index=False)
 
