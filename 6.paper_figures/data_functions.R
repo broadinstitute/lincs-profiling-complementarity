@@ -156,7 +156,7 @@ load_median_correlation_scores <- function(assay, results_dir = default_results_
 }
 
 
-load_percent_matching <- function(assay, results_dir = default_consensus_dir) {
+load_percent_matching <- function(assay, results_dir = default_consensus_dir, append_all_dose = FALSE) {
 
     cell_painting_pm_pval_file <- file.path(
         results_dir, "cell_painting", "moa_sizes_consensus_datasets",
@@ -199,6 +199,60 @@ load_percent_matching <- function(assay, results_dir = default_consensus_dir) {
             dplyr::mutate(assay = "L1000")
         pm_pval_df <- readr::read_tsv(l1000_pm_pval_file, col_types = pm_pval_col_types) %>%
             dplyr::mutate(assay = "L1000")
+    }
+    
+    if (append_all_dose) {
+        cp_pm_alldose_file <- file.path(
+            results_dir, "cell_painting", 'moa_sizes_consensus_datasets',
+            'matching_score_per_MOA_CellPainting_dose_independent.tsv.gz'
+        )
+        
+        l1000_pm_alldose_file <- file.path(
+            results_dir, "L1000", 'moa_sizes_consensus_datasets',
+            'matching_score_per_MOA_L1000_dose_independent.tsv.gz'
+        )
+        
+        cp_pm_alldose_pval_file <- file.path(
+            results_dir, "cell_painting", 'moa_sizes_consensus_datasets',
+            'modz_null_p_values_doseindependent.csv'
+        )
+        
+        l1000_pm_alldose_pval_file <- file.path(
+            results_dir, "L1000", 'moa_sizes_consensus_datasets',
+            'modz_null_p_values_doseindependent.csv'
+        )
+        
+        all_dose_cols <- readr::cols(
+          moa = readr::col_character(),
+          spearman_correlation = readr::col_double(),
+          no_of_replicates = readr::col_double()
+        )
+
+        all_dose_pval_cols <- readr::cols(
+          moa = readr::col_character(),
+          p_value_alldose = readr::col_double(),
+          moa_size = readr::col_double()
+        )
+        
+        if (assay == "cellpainting") {
+            pm_alldose_df <- readr::read_tsv(cp_pm_alldose_file, col_types = all_dose_cols) %>%
+                dplyr::mutate(assay = "Cell Painting", dose = "All") %>%
+                dplyr::rename(matching_score = spearman_correlation)
+            pm_alldose_pval_df <- readr::read_csv(cp_pm_alldose_pval_file, col_types = all_dose_pval_cols) %>%
+                dplyr::mutate(assay = "Cell Painting", dose = "All") %>%
+                dplyr::rename(p_value = p_value_alldose, no_of_replicates = moa_size)
+        } else if (assay == "l1000") {
+            pm_alldose_df <- readr::read_tsv(l1000_pm_alldose_file, col_types = all_dose_cols) %>%
+                dplyr::mutate(assay = "L1000", dose = "All") %>%
+                dplyr::rename(matching_score = spearman_correlation)
+            pm_alldose_pval_df <- readr::read_csv(l1000_pm_alldose_pval_file, col_types = all_dose_pval_cols) %>%
+                dplyr::mutate(assay = "L1000", dose = "All") %>%
+                dplyr::rename(p_value = p_value_alldose, no_of_replicates = moa_size)
+        }
+        
+        pm_df <- dplyr::bind_rows(pm_df, pm_alldose_df)
+        pm_pval_df <- dplyr::bind_rows(pm_pval_df, pm_alldose_pval_df)
+        
     }
     
     pm_output_list[["percent_matching"]] <- pm_df
