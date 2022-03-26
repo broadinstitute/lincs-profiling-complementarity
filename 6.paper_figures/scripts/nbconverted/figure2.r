@@ -13,7 +13,7 @@ extensions <- c(".png", ".pdf")
 results_dir <- file.path("../1.Data-exploration/Consensus/")
 
 # To add analysis facet of all dose percent matching
-updated_dose_order <- c(dose_order, "All")
+updated_dose_order <- c(dose_order, "All*", "All")
 
 pm_cellpainting_list <- load_percent_matching(assay = "cellpainting", results_dir = results_dir, append_all_dose = TRUE)
 pm_l1000_list <- load_percent_matching(assay = "l1000", results_dir = results_dir, append_all_dose = TRUE)
@@ -48,9 +48,28 @@ pm_df <- pm_df %>%
     dplyr::mutate(pass_thresh = p_value < p_val_alpha_thresh) %>%
     dplyr::mutate(neg_log_10_p_val = -log10(p_value))
 
-pm_df$dose <- factor(pm_df$dose, levels = updated_dose_order)
-
 pm_df$neg_log_10_p_val[pm_df$neg_log_10_p_val == Inf] = 3.5
+
+# Append a new set of results for All dose
+# when you only consider the common MOAs in the dose-specific results
+dose_specific_moa_class <- unique(
+    pm_df %>%
+        dplyr::filter(dose == "0.04 uM") %>%
+        dplyr::pull(moa)
+    )
+
+print(length(dose_specific_moa_class))
+
+pm_all_dose_df <- pm_df %>%
+    dplyr::filter(dose == "All") %>%
+    dplyr::filter(moa %in% !!dose_specific_moa_class)
+
+pm_all_dose_df$dose <- "All*"
+
+# Add back to pm_df
+pm_df <- dplyr::bind_rows(pm_df, pm_all_dose_df)
+
+pm_df$dose <- factor(pm_df$dose, levels = updated_dose_order)
 
 # Output percent matching (MOA)
 output_file <- file.path("results", "moa_scores.tsv")
@@ -71,6 +90,7 @@ percent_matching_df
 
 # How many compounds per assay per dose with greater than 3 compounds?
 for (dose in unique(pm_df$dose)) {
+    print(dose)
     pm_sub_df <- pm_df %>% dplyr::filter(dose == !!dose)
     print(table(pm_sub_df %>% dplyr::pull(assay)))
 }
@@ -114,6 +134,25 @@ pm_df <- pm_df %>%
     dplyr::left_join(pm_pval_df, by = c("moa", "dose", "assay", "no_of_replicates")) %>%
     dplyr::mutate(pass_thresh = p_value < p_val_alpha_thresh) %>%
     dplyr::mutate(neg_log_10_p_val = -log10(p_value))
+
+# Append a new set of results for All dose
+# when you only consider the common MOAs in the dose-specific results
+dose_specific_moa_class <- unique(
+    pm_df %>%
+        dplyr::filter(dose == "0.04 uM") %>%
+        dplyr::pull(moa)
+    )
+
+print(length(dose_specific_moa_class))
+
+pm_all_dose_df <- pm_df %>%
+    dplyr::filter(dose == "All") %>%
+    dplyr::filter(moa %in% !!dose_specific_moa_class)
+
+pm_all_dose_df$dose <- "All*"
+
+# Add back to pm_df
+pm_df <- dplyr::bind_rows(pm_df, pm_all_dose_df)
 
 pm_df$dose <- factor(pm_df$dose, levels = updated_dose_order)
 
@@ -541,7 +580,7 @@ figure_2_gg <- (
 
 for (extension in extensions) {
     output_file <- paste0(output_figure_base, extension)
-    ggplot2::ggsave(output_file, figure_2_gg, width = 17, height = 14, dpi = 500)
+    ggplot2::ggsave(output_file, figure_2_gg, width = 17.2, height = 14, dpi = 500)
 }
 
 figure_2_gg
