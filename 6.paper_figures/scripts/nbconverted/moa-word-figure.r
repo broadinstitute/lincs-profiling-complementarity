@@ -193,7 +193,7 @@ word_gg <- (
         values = moa_colors
     )
     + xlim(-110, 120)
-    + ylim(0, 60)
+    + ylim(0, 80)
     + guides(color = guide_legend(order = 1))
 )
 
@@ -237,6 +237,13 @@ precision_df$impact_category <- factor(precision_df$impact_category, levels = im
 
 print(dim(precision_df))
 head(precision_df, 5)
+
+# How many counts
+precision_df %>%
+    dplyr::select(drug_impact, impact_category) %>%
+    dplyr::distinct() %>%
+    dplyr::group_by(impact_category) %>%
+    dplyr::tally()
 
 # Merge precision scores and percent matching
 precision_melt_df <- precision_df %>%
@@ -375,13 +382,13 @@ sup_fig_gg <- (
     word_gg /
     precision_match_gg /
     (no_match_bar_gg + no_match_gg)
-    + plot_layout(heights = c(1, 0.75, 1.2))
+    + plot_layout(heights = c(1.1, 0.75, 1.2))
     + plot_annotation(tag_levels = "a")
 )
 
 for (extension in extensions) {
     output_file <- paste0(output_figure_base, extension)
-    ggplot2::ggsave(output_file, sup_fig_gg, width = 14.5, height = 13, dpi = 500)
+    ggplot2::ggsave(output_file, sup_fig_gg, width = 14.5, height = 13.5, dpi = 500)
 }
 
 sup_fig_gg
