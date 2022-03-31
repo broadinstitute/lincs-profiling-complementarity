@@ -90,8 +90,8 @@ class cp_simplenn_moa_train_prediction:
         ##dir names
         model_file_name = "cp_simplenn"
         model_dir_name = "cp_simplenn_model"
-        trn_pred_name = 'cp_train_preds_simplenn'
-        tst_pred_name = 'cp_test_preds_simplenn'
+        trn_pred_name = 'cp_train_pathway_preds_simplenn'
+        tst_pred_name = 'cp_test_pathway_preds_simplenn'
         model_file_name,model_dir_name,trn_pred_name,tst_pred_name = \
         check_if_shuffle_data(self.shuffle, model_file_name, model_dir_name, trn_pred_name, tst_pred_name)
         model_dir = os.path.join(self.data_dir, model_dir_name)
@@ -103,20 +103,20 @@ class cp_simplenn_moa_train_prediction:
                 input_train_file = os.path.join(self.data_dir, "train_shuffle_lvl4_data_subsample.csv.gz")
                 input_test_file = os.path.join(self.data_dir, "test_lvl4_data_subsample.csv.gz")
             else:
-                input_train_file = os.path.join(self.data_dir, "train_shuffle_lvl4_data.csv.gz")
-                input_test_file = os.path.join(self.data_dir, "test_lvl4_data.csv.gz")
+                input_train_file = os.path.join(self.data_dir, "train_shuffle_lvl4_data_targets_pathways.csv.gz")
+                input_test_file = os.path.join(self.data_dir, "test_lvl4_data_targets_pathways.csv.gz")
         else:
             if self.subsample:
                 input_train_file = os.path.join(self.data_dir, "train_lvl4_data_subsample.csv.gz")
                 input_test_file = os.path.join(self.data_dir, "test_lvl4_data_subsample.csv.gz")
             else:
-                input_train_file = os.path.join(self.data_dir, "train_lvl4_data.csv.gz")
-                input_test_file = os.path.join(self.data_dir, "test_lvl4_data.csv.gz")
+                input_train_file = os.path.join(self.data_dir, "train_lvl4_data_targets_pathways.csv.gz")
+                input_test_file = os.path.join(self.data_dir, "test_lvl4_data_targets_pathways.csv.gz")
         
         if self.subsample:
             input_target_file = os.path.join(self.data_dir, 'target_labels_subsample.csv')
         else:
-            input_target_file = os.path.join(self.data_dir, 'target_labels.csv')
+            input_target_file = os.path.join(self.data_dir, 'target_labels_targets_pathways.csv')
 
         df_train = pd.read_csv(input_train_file, compression='gzip',low_memory = False)
         df_test = pd.read_csv(input_test_file, compression='gzip',low_memory = False)
@@ -132,7 +132,7 @@ class cp_simplenn_moa_train_prediction:
         features = df_train_x.columns.tolist()
         num_features=len(features)
         num_targets=len(target_cols)
-        df_train = drug_stratification(df_train,NFOLDS,target_cols,col_name='replicate_name',cpd_freq_num=24)
+        df_train = drug_stratification(df_train,NFOLDS,target_cols,col_name='replicate_name',cpd_freq_num=25)
         pos_weight = initialize_weights(df_train, target_cols, DEVICE)
         
         def model_train_pred(fold, seed):
@@ -223,7 +223,7 @@ class cp_simplenn_moa_train_prediction:
         df_oofs = pd.DataFrame(oofs, columns=df_train_y.columns)
         df_preds = pd.DataFrame(predictions, columns=df_test_y.columns)
         
-        model_eval_results(df_train_y, oofs, df_test, df_test_y, df_preds, target_cols)
+        model_eval_results(df_train_y, oofs, df_test_y, df_preds, target_cols)
         save_to_csv(df_preds, self.model_pred_dir, f"{tst_pred_name}{self.output_file_indicator}.csv")
         save_to_csv(df_oofs, self.model_pred_dir, f"{trn_pred_name}{self.output_file_indicator}.csv.gz", compress="gzip")
         print("\n All is set, Train and Test predictions have been read as csv files into the model predictions directory!!")

@@ -92,3 +92,4 @@
 1.Data-exploration/results/dose_corr_matching_moa_target_cell_painting.tsv.gz filter=lfs diff=lfs merge=lfs -text
 1.Data-exploration/results/dose_corr_matching_moa_target_L1000_part1.tsv.gz filter=lfs diff=lfs merge=lfs -text
 1.Data-exploration/results/dose_corr_matching_moa_target_L1000_part2.tsv.gz filter=lfs diff=lfs merge=lfs -text
+*.csv filter=lfs diff=lfs merge=lfs -text

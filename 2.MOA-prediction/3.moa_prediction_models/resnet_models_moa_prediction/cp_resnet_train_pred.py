@@ -83,8 +83,8 @@ class cp_resnet_moa_train_prediction:
         ##dir names
         model_file_name = "cp_resnet"
         model_dir_name = "cp_resnet_model"
-        trn_pred_name = 'cp_train_preds_resnet'
-        tst_pred_name = 'cp_test_preds_resnet'
+        trn_pred_name = 'cp_train_pathway_preds_resnet'
+        tst_pred_name = 'cp_test_pathway_preds_resnet'
         model_file_name,model_dir_name,trn_pred_name,tst_pred_name = \
         check_if_shuffle_data(self.shuffle, model_file_name, model_dir_name, trn_pred_name, tst_pred_name)
         model_dir = os.path.join(self.data_dir, model_dir_name)
@@ -96,20 +96,20 @@ class cp_resnet_moa_train_prediction:
                 input_train_file = os.path.join(self.data_dir, "train_shuffle_lvl4_data_subsample.csv.gz")
                 input_test_file = os.path.join(self.data_dir, "test_lvl4_data_subsample.csv.gz")
             else:
-                input_train_file = os.path.join(self.data_dir, "train_shuffle_lvl4_data.csv.gz")
-                input_test_file = os.path.join(self.data_dir, "test_lvl4_data.csv.gz")
+                input_train_file = os.path.join(self.data_dir, "train_shuffle_lvl4_data_targets_pathways.csv.gz")
+                input_test_file = os.path.join(self.data_dir, "test_lvl4_data_targets_pathways.csv.gz")
         else:
             if self.subsample:
                 input_train_file = os.path.join(self.data_dir, "train_lvl4_data_subsample.csv.gz")
                 input_test_file = os.path.join(self.data_dir, "test_lvl4_data_subsample.csv.gz")
             else:
-                input_train_file = os.path.join(self.data_dir, "train_lvl4_data.csv.gz")
-                input_test_file = os.path.join(self.data_dir, "test_lvl4_data.csv.gz")
+                input_train_file = os.path.join(self.data_dir, "train_lvl4_data_targets_pathways.csv.gz")
+                input_test_file = os.path.join(self.data_dir, "test_lvl4_data_targets_pathways.csv.gz")
         
         if self.subsample:
             input_target_file = os.path.join(self.data_dir, 'target_labels_subsample.csv')
         else:
-            input_target_file = os.path.join(self.data_dir, 'target_labels.csv')
+            input_target_file = os.path.join(self.data_dir, 'target_labels_targets_pathways.csv')
 
         df_train = pd.read_csv(input_train_file, compression='gzip',low_memory = False)
         df_test = pd.read_csv(input_test_file, compression='gzip',low_memory = False)
@@ -121,7 +121,7 @@ class cp_resnet_moa_train_prediction:
         
         target_cols = df_targets.columns[1:]
         df_train_x, df_train_y, df_test_x, df_test_y = split_data(df_train, df_test, metadata_cols, target_cols)
-        df_train = drug_stratification(df_train,NFOLDS,target_cols,col_name='replicate_name',cpd_freq_num=24)
+        df_train = drug_stratification(df_train,NFOLDS,target_cols,col_name='replicate_name',cpd_freq_num=25)
         
         oof_preds = np.zeros(df_train_y.shape)
         y_pred = np.zeros(df_test_y.shape)
@@ -167,7 +167,7 @@ class cp_resnet_moa_train_prediction:
         df_oofs = pd.DataFrame(oof_preds, columns=df_train_y.columns)
         df_preds = pd.DataFrame(y_pred, columns=df_test_y.columns)
         
-        model_eval_results(df_train_y, oof_preds, df_test, df_test_y, df_preds, target_cols)
+        model_eval_results(df_train_y, oof_preds, df_test_y, df_preds, target_cols)
         save_to_csv(df_preds, self.model_pred_dir, f"{tst_pred_name}{self.output_file_indicator}.csv")
         save_to_csv(df_oofs, self.model_pred_dir, f"{trn_pred_name}{self.output_file_indicator}.csv.gz", compress="gzip")
         print("\n All is set, Train and Test predictions have been read as csv files into the model predictions directory!!")

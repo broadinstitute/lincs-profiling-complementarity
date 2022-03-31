@@ -49,19 +49,19 @@ class L1000_mlknn_moa_train_prediction:
         ##dir names
         model_file_name = None
         model_dir_name = None
-        trn_pred_name = 'L1000_train_preds_mlknn'
-        tst_pred_name = 'L1000_test_preds_mlknn'
+        trn_pred_name = 'L1000_train_pathway_preds_mlknn'
+        tst_pred_name = 'L1000_test_pathway_preds_mlknn'
         _,_,trn_pred_name,tst_pred_name = check_if_shuffle_data(self.shuffle, model_file_name, 
                                                                 model_dir_name, trn_pred_name, tst_pred_name)
         if self.shuffle:
-            df_train = pd.read_csv(os.path.join(self.data_dir, 'train_shuffle_lvl4_data.csv.gz'),
+            df_train = pd.read_csv(os.path.join(self.data_dir, 'train_shuffle_lvl4_data_targets_pathways.csv.gz'),
                                    compression='gzip',low_memory = False)
         else:
-            df_train = pd.read_csv(os.path.join(self.data_dir, 'train_lvl4_data.csv.gz'),
+            df_train = pd.read_csv(os.path.join(self.data_dir, 'train_lvl4_data_targets_pathways.csv.gz'),
                                    compression='gzip',low_memory = False)
-        df_test = pd.read_csv(os.path.join(self.data_dir, 'test_lvl4_data.csv.gz'),
+        df_test = pd.read_csv(os.path.join(self.data_dir, 'test_lvl4_data_targets_pathways.csv.gz'),
                               compression='gzip',low_memory = False)
-        df_targets = pd.read_csv(os.path.join(self.data_dir, 'target_labels.csv'))
+        df_targets = pd.read_csv(os.path.join(self.data_dir, 'target_labels_targets_pathways.csv'))
         
         metadata_cols = ['Metadata_broad_sample', 'pert_id', 'pert_idose', 'replicate_id', 
                          'pert_iname', 'moa', 'sig_id', 'det_plate', 'dose', 'det_well']
@@ -72,7 +72,7 @@ class L1000_mlknn_moa_train_prediction:
         df_oofs,df_preds = mlknn_train_pred(self.k_list, df_train_x, df_train_y, df_test_x, df_test_y, target_cols, 
                                             NFOLDS = NFOLDS)
         
-        model_eval_results(df_train_y, df_oofs.values, df_test, df_test_y, df_preds, target_cols)
+        model_eval_results(df_train_y, df_oofs.values, df_test_y, df_preds, target_cols)
         save_to_csv(df_preds, self.model_pred_dir, f"{tst_pred_name}.csv")
         save_to_csv(df_oofs, self.model_pred_dir, f"{trn_pred_name}.csv.gz", compress="gzip")
         print("\n All is set, Train and Test predictions have been read as csv files into the model predictions directory!!")

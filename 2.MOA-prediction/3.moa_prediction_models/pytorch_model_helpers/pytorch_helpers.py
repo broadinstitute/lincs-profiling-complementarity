@@ -32,7 +32,7 @@ def check_if_shuffle_data(shuffle, model_file_name=None, model_dir_name=None, tr
             dir_name_list[idx] = f"{x}_shuffle"
     return dir_name_list
 
-def drug_stratification(df, nfold, target_cols,col_name,cpd_freq_num=60):
+def drug_stratification(df, nfold, target_cols,col_name,cpd_freq_num=20):
     """
     This function performs multi-label K-fold stratification on the compounds/drugs found
     in the train dataset. Here, because the distribution of drugs is highly imbalanced
@@ -257,7 +257,7 @@ def preprocess(fold, df_train, df_train_x, df_train_y, df_test_x, no_of_componen
     
     return x_fold_train,y_fold_train, x_fold_val, y_fold_val, df_test_x_copy, val_idx
     
-def model_eval_results(df_trn_y, oofs, df_tst, df_tst_y, df_preds, target_cols):
+def model_eval_results(df_trn_y, oofs, df_tst_y, df_preds, target_cols):
     """
     This function prints out the model evaluation results from the train and test predictions.
     The evaluation metrics used in assessing the performance of the models are: ROC AUC score,
@@ -270,12 +270,10 @@ def model_eval_results(df_trn_y, oofs, df_tst, df_tst_y, df_preds, target_cols):
     print(f'{eval_metrics[2]}:', average_precision_score(df_trn_y,oofs, average="micro"))
     
     ###test prediction results
-    moa_class_list = df_tst['moa'].unique()
-    val_moas = [moa for moa_list in moa_class_list for moa in moa_list.split('|')]
     print('\n','-' * 10, 'Test data prediction results', '-' * 10)
     print(f'{eval_metrics[0]}:', log_loss(np.ravel(df_tst_y), np.ravel(df_preds)))
-    print(f'{eval_metrics[1]}:', roc_auc_score(df_tst_y[val_moas],df_preds[val_moas], average='macro'))
-    print(f'{eval_metrics[2]}:', average_precision_score(df_tst_y[val_moas], df_preds[val_moas], average="micro"))
+    print(f'{eval_metrics[1]}:', roc_auc_score(df_tst_y.values,df_preds.values, average='macro'))
+    print(f'{eval_metrics[2]}:', average_precision_score(df_tst_y.values, df_preds.values, average="micro"))
     
 def save_to_csv(df, path, file_name, compress=None):
     """saves dataframes to csv"""
