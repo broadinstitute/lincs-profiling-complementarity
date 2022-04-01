@@ -35,7 +35,7 @@ from scipy.optimize import minimize, fsolve
 
 
 # The two options here are "" and "_subsample"
-file_indicator = ""
+file_indicator = "_subsample"
 data_dir = pathlib.Path("../2.data_split/model_data")
 
 
@@ -283,64 +283,64 @@ def model_eval_results(df_tst, df_tst_y, df_preds):
 # In[28]:
 
 
-##[1.57502187e-01,1.15142271e-16,0.00000000e+00,8.42497813e-01] <-- modify the model weights
 df_L1000_blend = pd.DataFrame(np.zeros(df_L1000_cnn_test.shape), columns = df_L1000_cnn_test.columns)
-df_L1000_blend = df_L1000_cnn_test*0.45 + df_L1000_resnet_test*0.05 + df_L1000_tabnet_test*0.05 + df_L1000_simplenn_test*0.45
+
+# Equal weighted predictions
+df_L1000_blend = (
+    df_L1000_cnn_test * 0.25 +
+    df_L1000_resnet_test * 0.25 +
+    df_L1000_tabnet_test * 0.25 +
+    df_L1000_simplenn_test * 0.25
+)
+
+model_eval_results(
+    df_L1000_test,
+    df_L1000_tst_targets,
+    df_L1000_blend
+)
 
 
 # In[29]:
 
 
-0.45+(0.05*2)+0.45
+df_cp_blend = pd.DataFrame(np.zeros(df_cp_cnn_test.shape), columns = df_cp_cnn_test.columns)
+
+# Equal weighted predictions
+df_cp_blend = (
+    df_cp_cnn_test * 0.25 +
+    df_cp_resnet_test * 0.25 +
+    df_cp_tabnet_test * 0.25 +
+    df_cp_simplenn_test * 0.25
+)
+
+model_eval_results(
+    df_cp_test,
+    df_cp_tst_targets,
+    df_cp_blend
+)
 
 
 # In[30]:
 
 
-model_eval_results(df_L1000_test, df_L1000_tst_targets, df_L1000_blend)
+df_cp_L1000_blend = pd.DataFrame(np.zeros(df_cp_L1000_cnn_test.shape), columns = df_cp_L1000_cnn_test.columns)
+
+# Equal weighted predictions
+df_cp_L1000_blend = (
+    df_cp_L1000_cnn_test * 0.25 +
+    df_cp_L1000_resnet_test * 0.25 +
+    df_cp_L1000_tabnet_test * 0.25 +
+    df_cp_L1000_simplenn_test * 0.25
+)
+
+model_eval_results(
+    df_cp_L1000_test,
+    df_cp_L1000_tst_targets,
+    df_cp_L1000_blend
+)
 
 
 # In[31]:
-
-
-##[4.29598527e-01 3.27312317e-01 2.43089156e-01 5.42101086e-18] <-- modify the model weights
-df_cp_blend = pd.DataFrame(np.zeros(df_cp_cnn_test.shape), columns = df_cp_cnn_test.columns)
-df_cp_blend = df_cp_cnn_test*0.35 + df_cp_resnet_test*0.35 + df_cp_tabnet_test*0.25 + df_cp_simplenn_test*0.05
-
-
-# In[32]:
-
-
-0.35+0.35+0.25+0.05
-
-
-# In[33]:
-
-
-model_eval_results(df_cp_test, df_cp_tst_targets, df_cp_blend)
-
-
-# In[34]:
-
-
-##[0.28574384 0.09796798 0.06528908 0.5509991 ] <-- modify the model weights
-df_cp_L1000_blend = pd.DataFrame(np.zeros(df_cp_L1000_cnn_test.shape), columns = df_cp_L1000_cnn_test.columns)
-df_cp_L1000_blend = df_cp_L1000_cnn_test*0.30 + df_cp_L1000_resnet_test*0.20 + df_cp_L1000_tabnet_test*0.15 + df_cp_L1000_simplenn_test*0.35
-
-
-# In[35]:
-
-
-0.30+0.20+0.15+0.35
-
-
-# In[36]:
-
-
-model_eval_results(df_cp_L1000_test, df_cp_L1000_tst_targets, df_cp_L1000_blend)
-
-
-# In[37]:
 
 
 def save_to_csv(df, path, file_name, compress=None):
@@ -352,7 +352,7 @@ def save_to_csv(df, path, file_name, compress=None):
     df.to_csv(os.path.join(path, file_name), index=False, compression=compress)
 
 
-# In[38]:
+# In[32]:
 
 
 save_to_csv(df_cp_blend, model_preds_dir, f'cp_test_preds_blend{file_indicator}.csv')
