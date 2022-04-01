@@ -18,6 +18,8 @@ cp_df$Metadata_time_point <- factor(cp_df$Metadata_time_point, levels = c("6H", 
 print(dim(cp_df))
 head(cp_df, 3)
 
+table(cp_df$Metadata_time_point, cp_df$Metadata_dose_recode)
+
 supfig8_gg <- (
     ggplot(data = NULL, aes(x = UMAP_0, y = UMAP_1, color = Metadata_cell_line, size = highlight_moa, alpha = highlight_moa))
     + geom_point(data = cp_df %>% dplyr::filter(dmso_label != "DMSO"), size = 0.05, alpha = 0.3)
