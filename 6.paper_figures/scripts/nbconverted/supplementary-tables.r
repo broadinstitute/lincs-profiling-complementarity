@@ -257,3 +257,39 @@ map_df %>% readr::write_tsv(output_file)
 
 print(dim(map_df))
 head(map_df, 7)
+
+# Load Signature Strength and MAS scores
+ora_results_dir <- file.path("..", "5.Gene-analysis", "results")
+
+ora_results_file <- file.path(ora_results_dir, "ora_compound_results.tsv")
+
+ora_cols <- readr::cols(
+    geneSet = readr::col_character(),
+    description = readr::col_character(),
+    link = readr::col_character(),
+    size = readr::col_double(),
+    overlap = readr::col_double(),
+    expect = readr::col_double(),
+    enrichmentRatio = readr::col_double(),
+    pValue = readr::col_double(),
+    FDR = readr::col_double(),
+    overlapId = readr::col_character(),
+    database = readr::col_character(),
+    userId = readr::col_character(),
+    compound = readr::col_character()
+)
+
+ora_df <- readr::read_tsv(ora_results_file, col_types = ora_cols) %>%
+    dplyr::left_join(
+        map_df %>%
+            dplyr::select(broad_id, pert_iname, moa, target) %>%
+            dplyr::distinct(),
+        by = c("compound" = "pert_iname")
+        )
+
+# This is Supplementary Table 4
+output_file <- file.path("results", "supplementary_table5_overrepresentationanalysis.tsv")
+ora_df %>% readr::write_tsv(output_file)
+
+print(dim(ora_df))
+head(ora_df, 3)

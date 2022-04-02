@@ -288,7 +288,7 @@ panel_e_gg <- (
 
 panel_e_gg
 
-# Load Signature Strength and MAS scores
+# Load overrepresentation analysis results
 ora_results_dir <- file.path("..", "5.Gene-analysis", "results")
 
 ora_results_file <- file.path(ora_results_dir, "ora_compound_results.tsv")
@@ -311,7 +311,10 @@ ora_cols <- readr::cols(
 
 ora_df <- readr::read_tsv(ora_results_file, col_types = ora_cols)
 
-moa_targets <- c(
+print(dim(ora_df))
+head(ora_df, 3)
+
+cpd_targets <- c(
     "alisertib" = "Alisertib",
     "dasatinib" = "Dasatinib",
     "brequinar" = "Brequinar",
@@ -322,18 +325,7 @@ moa_targets <- c(
     "lasalocid" = "Lasalocid"
 )
 
-moa_colors <- c(
-    "alisertib" = "#F0700A",
-    "dasatinib" = "#9C55DF",
-    "brequinar" = "#E6898F",
-    "aphidicolin" = "black",
-    "at13387" = "#D3EB5A",
-    "sta-5326" = "brown",
-    "l-ergothioneine" = "#01E3E6",
-    "lasalocid" = "#34EB62"
-)
-
-moa_colors <- c(
+cpd_colors <- c(
     "alisertib" = "#1b9e77",
     "dasatinib" = "#d95f02",
     "brequinar" = "#7570b3",
@@ -344,40 +336,37 @@ moa_colors <- c(
     "lasalocid" = "#e6ab02" 
 )
 
-# Obtained by taking the top enrichment score for the top three compounds
-top_geneSet_selections <- c(
-    "GO:0016125", # sta-5326
-    "GO:0006695", # sta-5326
-    "GO:0009267", # aphidicolin
-    "GO:0052548", # aphidicolin
-    "GO:0044272", # dasatinib
-    "GO:0008380", # l-ergothioneine
-    "GO:0034644" # brequinar
-)
-
 # Added to plot
-ora_df %>%
-    dplyr::filter(geneSet %in% !!top_geneSet_selections) %>%
+ora_subset_df <- ora_df %>%
+    dplyr::group_by(compound) %>%
+    dplyr::arrange(desc(enrichmentRatio)) %>%
+    dplyr::filter(row_number() == 1) %>%
     dplyr::select(geneSet, description, enrichmentRatio, pValue, compound)
 
+ora_subset_df$compound <- paste(ora_subset_df$compound)
+
+ora_subset_df
+
 panel_f_gg <- (
-    ggplot(ora_df, aes(x = enrichmentRatio, y = -log10(pValue), color = compound))
+    ggplot(ora_subset_df, aes(x = enrichmentRatio, y = -log10(pValue), color = compound))
     + geom_point()
     + ggrepel::geom_text_repel(
-        data = ora_df %>% dplyr::filter(geneSet %in% !!top_geneSet_selections),
+        data = ora_subset_df,
         aes(label = description),
+        force = 9,
         arrow = arrow(length = unit(0.015, "npc")),
         segment.size = 0.7,
         segment.alpha = 0.6,
-        size = 6,
+        size = 3.75,
         fontface = "italic",
-        box.padding = 3,
+        box.padding = 1,
         point.padding = 0.25,
         show.legend = FALSE
     )
     + figure_theme
     + ylim(c(0, 9))
-    + scale_color_manual("Compounds", labels = moa_targets, values = moa_colors)
+    + xlim(c(-1, 20))
+    + scale_color_manual("High activity\nscore\ncompounds\nreproducible\nin both assays", labels = cpd_targets, values = cpd_colors)
     + xlab("Overrepresentation enrichment")
     + ylab("-log10 p value")
     + theme(legend.position = "right", legend.key.size = unit(0.5, "cm"))
@@ -386,6 +375,7 @@ panel_f_gg <- (
 
 panel_f_gg
 
+# Merge panels together
 top_right_gg <- cowplot::plot_grid(
     cowplot::ggdraw(),
     panel_b_gg + theme(plot.margin = margin(t = 10)),
