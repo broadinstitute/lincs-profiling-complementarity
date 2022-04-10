@@ -37,34 +37,47 @@ from adjustText import adjust_text
 # In[4]:
 
 
+drop_bortezomib_from_test = True
+
+
+# In[5]:
+
+
 base_dir = pathlib.Path("../2.data_split/model_data/")
 cp_data_dir = pathlib.Path(f"{base_dir}/cp/")
 l1000_data_dir = pathlib.Path(f"{base_dir}/L1/")
 
 
-# In[5]:
+# In[6]:
 
 
 cp_test = f"{cp_data_dir}/test_lvl4_data_targets_pathways.csv.gz"
 L1000_test = f"{l1000_data_dir}/test_lvl4_data_targets_pathways.csv.gz"
 
 
-# In[6]:
+# In[7]:
 
 
 model_preds_dir = pathlib.Path("../L1000_CP_model_predictions/")
 model_preds_figures = pathlib.Path("moa_predictions_figures")
 
 
-# In[7]:
+# In[8]:
 
 
 df_cp_test = pd.read_csv(cp_test, compression='gzip',low_memory = False)
 df_L1000_test = pd.read_csv(L1000_test, compression='gzip',low_memory = False)
 # df_cp_L1000_test = pd.read_csv(cp_L1000_test, compression='gzip',low_memory = False)
 
+# Drop Bortezomib from test sets
+if drop_bortezomib_from_test:
+    print("dropping bortezomib from all test sets!")
+    df_cp_test = df_cp_test.loc[df_cp_test.pert_iname != 'bortezomib', :]
+    df_L1000_test = df_L1000_test.loc[df_L1000_test.pert_iname != 'bortezomib', :]
+    #df_cp_L1000_test = df_cp_L1000_test.loc[df_cp_L1000_test.pert_iname != 'bortezomib', :]
 
-# In[8]:
+
+# In[9]:
 
 
 ##mlknn
@@ -72,8 +85,14 @@ df_cp_mlknn_test = pd.read_csv(os.path.join(model_preds_dir, 'cp_test_pathway_pr
 df_L1000_mlknn_test = pd.read_csv(os.path.join(model_preds_dir, 'L1000_test_pathway_preds_mlknn.csv'))
 # df_cp_L1000_mlknn_test = pd.read_csv(os.path.join(model_preds_dir, 'cp_L1000_test_pathway_preds_mlknn.csv'))
 
+# Drop bortezomib from evaluation
+if drop_bortezomib_from_test:
+    df_cp_mlknn_test = df_cp_mlknn_test.iloc[df_cp_test.index, :]
+    df_L1000_mlknn_test = df_L1000_mlknn_test.iloc[df_L1000_test.index, :]
+    # df_cp_L1000_mlknn_test = df_cp_L1000_mlknn_test.iloc[df_cp_L1000_test.index, :]
 
-# In[9]:
+
+# In[10]:
 
 
 ##resnet
@@ -81,8 +100,14 @@ df_cp_resnet_test = pd.read_csv(os.path.join(model_preds_dir, 'cp_test_pathway_p
 df_L1000_resnet_test = pd.read_csv(os.path.join(model_preds_dir, 'L1000_test_pathway_preds_resnet.csv'))
 # df_cp_L1000_resnet_test = pd.read_csv(os.path.join(model_preds_dir, 'cp_L1000_test_preds_resnet.csv'))
 
+# Drop bortezomib from evaluation
+if drop_bortezomib_from_test:
+    df_cp_resnet_test = df_cp_resnet_test.iloc[df_cp_test.index, :]
+    df_L1000_resnet_test = df_L1000_resnet_test.iloc[df_L1000_test.index, :]
+    # df_cp_L1000_resnet_test = df_cp_L1000_resnet_test.iloc[df_cp_L1000_test.index, :]
 
-# In[10]:
+
+# In[11]:
 
 
 ##1-d cnn
@@ -90,8 +115,14 @@ df_cp_cnn_test = pd.read_csv(os.path.join(model_preds_dir, 'cp_test_pathway_pred
 df_L1000_cnn_test = pd.read_csv(os.path.join(model_preds_dir, 'L1000_test_pathway_preds_1dcnn.csv'))
 # df_cp_L1000_cnn_test = pd.read_csv(os.path.join(model_preds_dir, 'cp_L1000_test_preds_1dcnn.csv'))
 
+# Drop bortezomib from evaluation
+if drop_bortezomib_from_test:
+    df_cp_cnn_test = df_cp_cnn_test.iloc[df_cp_test.index, :]
+    df_L1000_cnn_test = df_L1000_cnn_test.iloc[df_L1000_test.index, :]
+    # df_cp_L1000_cnn_test = df_cp_L1000_cnn_test.iloc[df_cp_L1000_test.index, :]
 
-# In[11]:
+
+# In[12]:
 
 
 ##tabnet
@@ -99,8 +130,14 @@ df_cp_tabnet_test = pd.read_csv(os.path.join(model_preds_dir, 'cp_test_pathway_p
 df_L1000_tabnet_test = pd.read_csv(os.path.join(model_preds_dir, 'L1000_test_pathway_preds_tabnet.csv'))
 # df_cp_L1000_tabnet_test = pd.read_csv(os.path.join(model_preds_dir, 'cp_L1000_test_preds_tabnet.csv'))
 
+# Drop bortezomib from evaluation
+if drop_bortezomib_from_test:
+    df_cp_tabnet_test = df_cp_tabnet_test.iloc[df_cp_test.index, :]
+    df_L1000_tabnet_test = df_L1000_tabnet_test.iloc[df_L1000_test.index, :]
+    # df_cp_L1000_tabnet_test = df_cp_L1000_tabnet_test.iloc[df_cp_L1000_test.index, :]
 
-# In[12]:
+
+# In[13]:
 
 
 ##Simple NN
@@ -108,8 +145,13 @@ df_cp_simplenn_test = pd.read_csv(os.path.join(model_preds_dir, 'cp_test_pathway
 df_L1000_simplenn_test = pd.read_csv(os.path.join(model_preds_dir, 'L1000_test_pathway_preds_simplenn.csv'))
 # df_cp_L1000_simplenn_test = pd.read_csv(os.path.join(model_preds_dir, 'cp_L1000_test_preds_simplenn.csv'))
 
+# Drop bortezomib from evaluation
+if drop_bortezomib_from_test:
+    df_cp_simplenn_test = df_cp_simplenn_test.iloc[df_cp_test.index, :]
+    df_L1000_simplenn_test = df_L1000_simplenn_test.iloc[df_L1000_test.index, :]
 
-# In[13]:
+
+# In[14]:
 
 
 #blend
@@ -117,10 +159,16 @@ df_cp_blend_test = pd.read_csv(os.path.join(model_preds_dir, 'cp_test_pathway_pr
 df_L1000_blend_test = pd.read_csv(os.path.join(model_preds_dir, 'L1000_test_pathway_preds_blend.csv'))
 # df_cp_L1000_blend_test = pd.read_csv(os.path.join(model_preds_dir, 'cp_L1000_test_preds_blend.csv'))
 
+# Drop bortezomib from evaluation
+if drop_bortezomib_from_test:
+    df_cp_blend_test = df_cp_blend_test.iloc[df_cp_test.index, :]
+    df_L1000_blend_test = df_L1000_blend_test.iloc[df_L1000_test.index, :]
+    # df_cp_L1000_blend_test = df_cp_L1000_blend_test.iloc[df_cp_L1000_test.index, :]
+
 
 # ##### - Shuffled test predictions
 
-# In[14]:
+# In[15]:
 
 
 ##mlknn shuffle
@@ -128,8 +176,14 @@ df_cp_mlknn_shuf = pd.read_csv(os.path.join(model_preds_dir, 'cp_test_pathway_pr
 df_L1000_mlknn_shuf = pd.read_csv(os.path.join(model_preds_dir, 'L1000_test_pathway_preds_mlknn_shuffle.csv'))
 # df_cp_L1000_mlknn_shuf = pd.read_csv(os.path.join(model_preds_dir, 'cp_L1000_test_preds_mlknn_shuffle.csv'))
 
+# Drop bortezomib from evaluation
+if drop_bortezomib_from_test:
+    df_cp_mlknn_shuf = df_cp_mlknn_shuf.iloc[df_cp_test.index, :]
+    df_L1000_mlknn_shuf = df_L1000_mlknn_shuf.iloc[df_L1000_test.index, :]
+    # df_cp_L1000_mlknn_shuf = df_cp_L1000_mlknn_shuf.iloc[df_cp_L1000_test.index, :]
 
-# In[15]:
+
+# In[16]:
 
 
 ##resnet shuffle
@@ -137,8 +191,14 @@ df_cp_resnet_shuf = pd.read_csv(os.path.join(model_preds_dir, 'cp_test_pathway_p
 df_L1000_resnet_shuf = pd.read_csv(os.path.join(model_preds_dir, 'L1000_test_pathway_preds_resnet_shuffle.csv'))
 # df_cp_L1000_resnet_shuf = pd.read_csv(os.path.join(model_preds_dir, 'cp_L1000_test_preds_resnet_shuffle.csv'))
 
+# Drop bortezomib from evaluation
+if drop_bortezomib_from_test:
+    df_cp_resnet_shuf = df_cp_resnet_shuf.iloc[df_cp_test.index, :]
+    df_L1000_resnet_shuf = df_L1000_resnet_shuf.iloc[df_L1000_test.index, :]
+    # df_cp_L1000_resnet_shuf = df_cp_L1000_resnet_shuf.iloc[df_cp_L1000_test.index, :]
 
-# In[16]:
+
+# In[17]:
 
 
 ##1-d cnn shuffle
@@ -146,8 +206,14 @@ df_cp_cnn_shuf = pd.read_csv(os.path.join(model_preds_dir, 'cp_test_pathway_pred
 df_L1000_cnn_shuf = pd.read_csv(os.path.join(model_preds_dir, 'L1000_test_pathway_preds_1dcnn_shuffle.csv'))
 # df_cp_L1000_cnn_shuf = pd.read_csv(os.path.join(model_preds_dir, 'cp_L1000_test_preds_1dcnn_shuffle.csv'))
 
+# Drop bortezomib from evaluation
+if drop_bortezomib_from_test:
+    df_cp_cnn_shuf = df_cp_cnn_shuf.iloc[df_cp_test.index, :]
+    df_L1000_cnn_shuf = df_L1000_cnn_shuf.iloc[df_L1000_test.index, :]
+    # df_cp_L1000_cnn_shuf = df_cp_L1000_cnn_shuf.iloc[df_cp_L1000_test.index, :]
 
-# In[17]:
+
+# In[18]:
 
 
 ##tabnet shuffle
@@ -155,8 +221,14 @@ df_cp_tabnet_shuf = pd.read_csv(os.path.join(model_preds_dir, 'cp_test_pathway_p
 df_L1000_tabnet_shuf = pd.read_csv(os.path.join(model_preds_dir, 'L1000_test_pathway_preds_tabnet_shuffle.csv'))
 # df_cp_L1000_tabnet_shuf = pd.read_csv(os.path.join(model_preds_dir, 'cp_L1000_test_preds_tabnet_shuffle.csv'))
 
+# Drop bortezomib from evaluation
+if drop_bortezomib_from_test:
+    df_cp_tabnet_shuf = df_cp_tabnet_shuf.iloc[df_cp_test.index, :]
+    df_L1000_tabnet_shuf = df_L1000_tabnet_shuf.iloc[df_L1000_test.index, :]
+    # df_cp_L1000_tabnet_shuf = df_cp_L1000_tabnet_shuf.iloc[df_cp_L1000_test.index, :]
 
-# In[18]:
+
+# In[19]:
 
 
 ##simpleNN shuffle
@@ -164,14 +236,20 @@ df_cp_simplenn_shuf = pd.read_csv(os.path.join(model_preds_dir, 'cp_test_pathway
 df_L1000_simplenn_shuf = pd.read_csv(os.path.join(model_preds_dir, 'L1000_test_pathway_preds_simplenn_shuffle.csv'))
 # df_cp_L1000_simplenn_shuf = pd.read_csv(os.path.join(model_preds_dir, 'cp_L1000_test_preds_simplenn_shuffle.csv'))
 
+# Drop bortezomib from evaluation
+if drop_bortezomib_from_test:
+    df_cp_simplenn_shuf = df_cp_simplenn_shuf.iloc[df_cp_test.index, :]
+    df_L1000_simplenn_shuf = df_L1000_simplenn_shuf.iloc[df_L1000_test.index, :]
+    # df_cp_L1000_simplenn_shuf = df_cp_L1000_simplenn_shuf.iloc[df_cp_L1000_test.index, :]
 
-# In[19]:
+
+# In[20]:
 
 
 df_cp_blend_test.shape
 
 
-# In[20]:
+# In[21]:
 
 
 df_cp_tst_target_pathways = df_cp_test[df_cp_cnn_test.columns].copy()
@@ -181,7 +259,7 @@ df_L1000_tst_targets_pathways = df_L1000_test[df_L1000_cnn_test.columns].copy()
 
 # ##### - Baseline of Precision-Recall AUC score is determined by the ratio of positives (P i.e. 1) to ratio of positives (P i.e. 1) and negatives (N i.e. 0) i.e. y = P / (P + N)
 
-# In[21]:
+# In[22]:
 
 
 def calculate_baseline(df):
@@ -192,7 +270,7 @@ def calculate_baseline(df):
   return baseline
 
 
-# In[22]:
+# In[23]:
 
 
 cp_no_skill = calculate_baseline(df_cp_tst_target_pathways)
@@ -200,19 +278,19 @@ L1000_no_skill = calculate_baseline(df_L1000_tst_targets_pathways)
 # cp_L1000_no_skill = calculate_baseline(df_cp_L1000_tst_targets)
 
 
-# In[23]:
+# In[24]:
 
 
 L1000_no_skill
 
 
-# In[24]:
+# In[25]:
 
 
 cp_no_skill
 
 
-# In[25]:
+# In[26]:
 
 
 def evaluate(actual, pred):
@@ -222,7 +300,7 @@ def evaluate(actual, pred):
   return [rocauc_score, pr_auc_score]
 
 
-# In[26]:
+# In[27]:
 
 
 cp_preds = [df_cp_mlknn_test, df_cp_resnet_test, df_cp_cnn_test, df_cp_tabnet_test, df_cp_simplenn_test,             df_cp_mlknn_shuf, df_cp_resnet_shuf, df_cp_cnn_shuf, df_cp_tabnet_shuf, df_cp_simplenn_shuf,             df_cp_blend_test]
@@ -244,7 +322,7 @@ preds_all = [cp_preds, L1_preds]
 
 # #### - All models target pathway predictions
 
-# In[27]:
+# In[28]:
 
 
 ##models target pathway predictions for all profiling assays
@@ -259,20 +337,20 @@ for idx, (assay_name, actual_df) in enumerate(zip(assays, targets_dfs)):
       score_dict[score_name][met] = eval_list[io]
 
 
-# In[28]:
+# In[29]:
 
 
 df_pred_scores = pd.DataFrame([(k,k1,v1) for k,v in score_dict.items() for k1,v1 in v.items()], 
                               columns = ['id_name', 'metrics', 'values'])
 
 
-# In[29]:
+# In[30]:
 
 
 df_pred_scores.head(10)
 
 
-# In[30]:
+# In[31]:
 
 
 df_pred_scores['profile_tech'] = df_pred_scores['id_name'].apply(lambda x: '_'.join(x.split('_')[:-1]))
@@ -280,33 +358,33 @@ df_pred_scores['model'] = df_pred_scores['id_name'].apply(lambda x: x.split('_')
 df_pred_scores['values'] = df_pred_scores['values'].apply(lambda x: x*100)
 
 
-# In[31]:
+# In[32]:
 
 
 df_pred_scores['model'].unique()
 
 
-# In[32]:
+# In[33]:
 
 
 normal_models = ['mlknn', 'resnet', 'cnn', 'tabnet', 'simplenn', 'blend']
 shuffle_models = ['mlknnshuf', 'resnetshuf', 'cnnshuf', 'tabnetshuf', 'simplennshuf']
 
 
-# In[33]:
+# In[34]:
 
 
 df_score_normal = df_pred_scores.loc[df_pred_scores['model'].isin(normal_models)].reset_index(drop=True)
 df_score_shuffle = df_pred_scores.loc[df_pred_scores['model'].isin(shuffle_models)].reset_index(drop=True)
 
 
-# In[34]:
+# In[35]:
 
 
 df_score_normal.head()
 
 
-# In[35]:
+# In[36]:
 
 
 normal_model_names = {'resnet':'ResNet', 'cnn':'1D-CNN', 'tabnet':'TabNet', 'simplenn':'Simple NN', 'mlknn': 'Ml-KNN', 'blend': 'Models Ensemble'}
@@ -319,14 +397,14 @@ def rename_col_values(df, model_name_dict):
   return df
 
 
-# In[36]:
+# In[37]:
 
 
 df_score_normal = rename_col_values(df_score_normal, normal_model_names)
 df_score_shuffle = rename_col_values(df_score_shuffle, shuffle_model_names)
 
 
-# In[37]:
+# In[38]:
 
 
 def extract_new_dfs(df):
@@ -336,14 +414,14 @@ def extract_new_dfs(df):
   return df_roc, df_pr_auc
 
 
-# In[38]:
+# In[39]:
 
 
 df_roc_normal, df_pr_auc_normal = extract_new_dfs(df_score_normal)
 df_roc_shuffle, df_pr_auc_shuffle = extract_new_dfs(df_score_shuffle)
 
 
-# In[39]:
+# In[40]:
 
 
 # Output files
@@ -365,13 +443,13 @@ full_results_df.head()
 
 # ##### - Baseline of Precision-Recall AUC score is determined by the ratio of positives (P i.e. 1) to ratio of positives (P i.e. 1) and negatives (N i.e. 0) i.e. y = P / (P + N)
 
-# In[40]:
+# In[41]:
 
 
 pr_baseline = ((cp_no_skill + L1000_no_skill) * 100)/2
 
 
-# In[41]:
+# In[42]:
 
 
 def plot_model_predictions(df, baseline, file_name, txt_cord_y = 3.15, y_label= "Precision-Recall AUC %", title_label="Precision-Recall AUC score for all models", 
@@ -392,26 +470,26 @@ def plot_model_predictions(df, baseline, file_name, txt_cord_y = 3.15, y_label= 
   plt.show()
 
 
-# In[42]:
+# In[43]:
 
 
 plot_model_predictions(df_pr_auc_normal, pr_baseline, "pr_auc_all_assays_pathways.png")
 
 
-# In[43]:
+# In[44]:
 
 
 plot_model_predictions(df_pr_auc_shuffle, pr_baseline, "pr_auc_all_assays_pathways_wrong_labels.png", txt_cord_y = 3.15, 
                        title_label="Precision-Recall AUC score for all models (Trained on wrong MOA labels)")
 
 
-# In[44]:
+# In[45]:
 
 
 plot_model_predictions(df_roc_normal, 50, "roc_auc_all_assays_pathways.png", txt_cord_y = 51, y_label= "ROC-AUC %", title_label="ROC-AUC score for all models")
 
 
-# In[45]:
+# In[46]:
 
 
 plot_model_predictions(df_roc_shuffle, 50, "roc_auc_all_assays_pathways_wrong_labels.png", txt_cord_y = 51, y_label= "ROC-AUC %", 
@@ -420,19 +498,19 @@ plot_model_predictions(df_roc_shuffle, 50, "roc_auc_all_assays_pathways_wrong_la
 
 # ### - MOA Pathways predictions PER Dose treatment
 
-# In[46]:
+# In[47]:
 
 
 df_cp_test.rename(columns={'Metadata_dose_recode': "dose"}, inplace = True)
 
 
-# In[47]:
+# In[48]:
 
 
 df_cp_test['dose'].unique()
 
 
-# In[48]:
+# In[49]:
 
 
 def get_actual_preds_dose(dose, df_test, df_model_preds, df_targets):
@@ -443,7 +521,7 @@ def get_actual_preds_dose(dose, df_test, df_model_preds, df_targets):
   return df_dose_targets, df_dose_preds
 
 
-# In[49]:
+# In[50]:
 
 
 def dose_class_baseline(dose_num, df_test, df_targets):
@@ -454,7 +532,7 @@ def dose_class_baseline(dose_num, df_test, df_targets):
   return class_baseline_score
 
 
-# In[50]:
+# In[51]:
 
 
 dose_num = [1,2,3,4,5,6]
@@ -462,7 +540,7 @@ dose_num = [1,2,3,4,5,6]
 
 # ##### - The baseline pr-auc score for each dose is the same across all profiling assays i.e. the baseline score in CP == baseline score in L1000
 
-# In[51]:
+# In[52]:
 
 
 dose_no_skill_scrs = {}
@@ -472,13 +550,13 @@ for num in dose_num:
   dose_no_skill_scrs[class_name] = no_skill_score
 
 
-# In[52]:
+# In[53]:
 
 
 dose_no_skill_scrs
 
 
-# In[53]:
+# In[54]:
 
 
 def evaluate(actual, pred):
@@ -488,7 +566,7 @@ def evaluate(actual, pred):
   return [rocauc_score, pr_auc_score]
 
 
-# In[54]:
+# In[55]:
 
 
 cp_preds_dose = [df_cp_mlknn_test, df_cp_resnet_test, df_cp_cnn_test, df_cp_tabnet_test, df_cp_simplenn_test, df_cp_blend_test]
@@ -500,7 +578,7 @@ L1_preds_dose = [df_L1000_mlknn_test, df_L1000_resnet_test, df_L1000_cnn_test, d
                     # df_cp_L1000_simplenn_test, df_cp_L1000_blend_test]
 
 
-# In[55]:
+# In[56]:
 
 
 def dose_class_preds(assay_name, df_val, df_targets, model_preds, dose_num = dose_num):
@@ -521,7 +599,7 @@ def dose_class_preds(assay_name, df_val, df_targets, model_preds, dose_num = dos
   return class_results
 
 
-# In[56]:
+# In[57]:
 
 
 cp_dose_preds = dose_class_preds('cp_', df_cp_test, df_cp_tst_target_pathways, cp_preds_dose)
@@ -529,7 +607,7 @@ L1000_dose_preds = dose_class_preds('L1000_', df_L1000_test, df_L1000_tst_target
 # cp_L1000_dose_preds = dose_class_preds('cp_L1000_', df_cp_L1000_test, df_cp_L1000_tst_targets, cp_L1_preds_dose)
 
 
-# In[57]:
+# In[58]:
 
 
 def get_class_dfs(class_preds):
@@ -542,7 +620,7 @@ def get_class_dfs(class_preds):
   return df_results
 
 
-# In[58]:
+# In[59]:
 
 
 # df_dose_cp_L1_results = get_class_dfs(cp_L1000_dose_preds)
@@ -550,13 +628,13 @@ df_dose_cp_results = get_class_dfs(cp_dose_preds)
 df_dose_L1_results = get_class_dfs(L1000_dose_preds)
 
 
-# In[59]:
+# In[60]:
 
 
 df_dose_cp_results.head()
 
 
-# In[60]:
+# In[61]:
 
 
 df_pr_cp_dose = df_dose_cp_results[df_dose_cp_results['metrics'] == 'pr_auc_score'].copy()
@@ -564,7 +642,7 @@ df_pr_L1_dose = df_dose_L1_results[df_dose_L1_results['metrics'] == 'pr_auc_scor
 # df_pr_cp_L1_dose = df_dose_cp_L1_results[df_dose_cp_L1_results['metrics'] == 'pr_auc_score'].copy()
 
 
-# In[61]:
+# In[62]:
 
 
 # Output files
@@ -580,7 +658,7 @@ print(full_dose_results_df.shape)
 full_dose_results_df.head()
 
 
-# In[62]:
+# In[63]:
 
 
 def top_class_auc(df):
@@ -595,7 +673,7 @@ def top_class_auc(df):
   return df_cls_top_auc
 
 
-# In[63]:
+# In[64]:
 
 
 df_top_dose_pr_cp = top_class_auc(df_pr_cp_dose)
@@ -603,25 +681,25 @@ df_top_dose_pr_L1 = top_class_auc(df_pr_L1_dose)
 # df_top_dose_pr_cp_L1 = top_class_auc(df_pr_cp_L1_dose)
 
 
-# In[64]:
+# In[65]:
 
 
 df_top_dose_pr_cp
 
 
-# In[65]:
+# In[66]:
 
 
 df_best_doses = pd.concat([df_top_dose_pr_cp, df_top_dose_pr_L1], ignore_index = True)
 
 
-# In[66]:
+# In[67]:
 
 
 df_dose_no_skill = pd.DataFrame(dose_no_skill_scrs.items(), columns = ['id_name', 'values'])
 
 
-# In[67]:
+# In[68]:
 
 
 df_dose_no_skill['class'] = df_dose_no_skill['id_name'].apply(lambda x: x.split('_')[0] + '_' + x.split('_')[-1])
@@ -629,44 +707,44 @@ df_dose_no_skill['profile_tech'] = 'No_skill'
 df_dose_no_skill['metrics'] = 'No_skill'
 
 
-# In[68]:
+# In[69]:
 
 
 df_dose_no_skill.drop(['id_name'], axis = 1, inplace = True)
 
 
-# In[69]:
+# In[70]:
 
 
 df_best_doses = pd.concat([df_best_doses, df_dose_no_skill], ignore_index = True)
 
 
-# In[70]:
+# In[71]:
 
 
 df_best_doses['class'] = df_best_doses['class'].map({'dose_1': 0.04, 'dose_2': 0.12, 'dose_3':0.37, 'dose_4':1.11, 'dose_5':3.33, 'dose_6':10})
 df_best_doses['profile_tech'] = df_best_doses['profile_tech'].map({'cp': 'Cell painting', 'L1000': 'L1000', 'CP_L1000':'Cell Painting and L1000', 'No_skill':'Baseline'})
 
 
-# In[71]:
+# In[72]:
 
 
 df_best_doses['values'] = df_best_doses['values'].apply(lambda x:x*100)
 
 
-# In[72]:
+# In[73]:
 
 
 dose_baseline = np.mean(list(dose_no_skill_scrs.values()))*100
 
 
-# In[73]:
+# In[74]:
 
 
 dose_baseline
 
 
-# In[74]:
+# In[75]:
 
 
 ##plot moa predictions PER dose treatment
@@ -684,7 +762,7 @@ plt.text(-0.42,3.65, "Baseline", color='red')
 
 # ### - Test set MOA Pathways predictions
 
-# In[75]:
+# In[76]:
 
 
 def evaluate_pathway(actual, pred, pathway):
@@ -695,13 +773,13 @@ def evaluate_pathway(actual, pred, pathway):
   return metrics_dict
 
 
-# In[76]:
+# In[77]:
 
 
 target_pathways = df_cp_tst_target_pathways.columns.tolist()
 
 
-# In[77]:
+# In[78]:
 
 
 pathway_results = {}
@@ -714,14 +792,14 @@ for pathway in target_pathways:
       pathway_results[score_name] = pathway_eval_dict
 
 
-# In[78]:
+# In[79]:
 
 
 df_pathway_preds = pd.DataFrame([(k,k1,v1) for k,v in pathway_results.items() for k1,v1 in v.items()], 
                               columns = ['id_name', 'metrics', 'values'])
 
 
-# In[79]:
+# In[80]:
 
 
 df_pathway_preds['pathway'] = df_pathway_preds['id_name'].apply(lambda x: x.split('_')[0])
@@ -729,32 +807,32 @@ df_pathway_preds['model'] = df_pathway_preds['id_name'].apply(lambda x: x.split(
 df_pathway_preds['profile_tech'] = df_pathway_preds['id_name'].apply(lambda x: 'CP_L1000' if len(x.split('_')) == 4 else x.split('_')[1])
 
 
-# In[80]:
+# In[81]:
 
 
 df_pathway_preds['model'].unique()
 
 
-# In[81]:
+# In[82]:
 
 
 normal_models
 
 
-# In[82]:
+# In[83]:
 
 
 shuffle_models
 
 
-# In[83]:
+# In[84]:
 
 
 df_pathway_preds_normal = df_pathway_preds[df_pathway_preds['model'].isin(normal_models)].reset_index(drop=True)
 df_pathway_preds_shuffle = df_pathway_preds[df_pathway_preds['model'].isin(shuffle_models)].reset_index(drop=True)
 
 
-# In[84]:
+# In[85]:
 
 
 def get_profile_tech_preds(df):
@@ -765,14 +843,14 @@ def get_profile_tech_preds(df):
   return df_cp,df_L1
 
 
-# In[85]:
+# In[86]:
 
 
 df_pathway_cp_preds, df_pathway_L1_preds = get_profile_tech_preds(df_pathway_preds_normal)
 df_pathway_cp_shuf, df_pathway_L1_shuf = get_profile_tech_preds(df_pathway_preds_shuffle)
 
 
-# In[86]:
+# In[87]:
 
 
 def get_metric_preds(df_cp,df_L1):
@@ -783,14 +861,14 @@ def get_metric_preds(df_cp,df_L1):
   return df_pr_cp,df_pr_L1
 
 
-# In[87]:
+# In[88]:
 
 
 df_pr_cp_preds, df_pr_L1_preds = get_metric_preds(df_pathway_cp_preds, df_pathway_L1_preds)
 df_pr_cp_shuf, df_pr_L1_shuf = get_metric_preds(df_pathway_cp_shuf, df_pathway_L1_shuf)
 
 
-# In[88]:
+# In[89]:
 
 
 def top_pathway_auc(df):
@@ -805,7 +883,7 @@ def top_pathway_auc(df):
   return df_pathway_top_auc
 
 
-# In[89]:
+# In[90]:
 
 
 df_top_pathway_pr_cp = top_pathway_auc(df_pr_cp_preds)
@@ -813,7 +891,7 @@ df_top_pathway_pr_L1 = top_pathway_auc(df_pr_L1_preds)
 # df_top_moa_pr_cp_L1 = top_moa_auc(df_pr_cp_L1_preds)
 
 
-# In[90]:
+# In[91]:
 
 
 df_shuf_pathway_pr_cp = top_pathway_auc(df_pr_cp_shuf)
@@ -821,7 +899,7 @@ df_shuf_pathway_pr_L1 = top_pathway_auc(df_pr_L1_shuf)
 # df_shuf_moa_pr_cp_L1 = top_moa_auc(df_pr_cp_L1_shuf)
 
 
-# In[91]:
+# In[92]:
 
 
 pathway_cp_baseline = np.mean(df_shuf_pathway_pr_cp['values'])
@@ -829,7 +907,7 @@ pathway_L1_baseline = np.mean(df_shuf_pathway_pr_L1['values'])
 # moa_cp_L1_baseline = np.mean(df_shuf_moa_pr_cp_L1['values'])
 
 
-# In[92]:
+# In[93]:
 
 
 df_pathway_pr_cp = df_top_pathway_pr_cp[['pathway', 'values']].copy()
@@ -837,7 +915,7 @@ df_pathway_pr_L1 = df_top_pathway_pr_L1[['pathway', 'values']].copy()
 # df_moa_pr_cp_L1 = df_top_moa_pr_cp_L1[['moa', 'values']].copy()
 
 
-# In[93]:
+# In[94]:
 
 
 df_pathway_pr_cp.rename(columns={"values": "cp_values"}, inplace = True)
@@ -845,19 +923,19 @@ df_pathway_pr_L1.rename(columns={"values": "L1_values"}, inplace = True)
 # df_moa_pr_cp_L1.rename(columns={"values": "cp_L1_values"}, inplace = True)
 
 
-# In[94]:
+# In[95]:
 
 
 df_pathway_prs = pd.merge(df_pathway_pr_cp, df_pathway_pr_L1, on='pathway')
 
 
-# In[95]:
+# In[96]:
 
 
 df_pathway_prs.head(10)
 
 
-# In[96]:
+# In[97]:
 
 
 # Output individual MOA Precision Recall
@@ -869,7 +947,7 @@ df_pathway_prs.to_csv(output_file, index=False)
 # 
 # ##### - Note: The red horizontal and vertical lines are PR-AUC baseline score based on getting the average shuffle moa predictions across all Pathways for each profiling assays i.e. Cell Painting (CP), L1000
 
-# In[97]:
+# In[98]:
 
 
 def plot_pathway_predictions(df, file_name, col_x, col_y, x_label, y_label, title_label, baseline_x, baseline_y, path=model_preds_figures):
@@ -893,7 +971,7 @@ def plot_pathway_predictions(df, file_name, col_x, col_y, x_label, y_label, titl
   plt.show()
 
 
-# In[98]:
+# In[99]:
 
 
 plot_pathway_predictions(df_pathway_prs, 'pr_auc_pathways_cp_vs_L1000.png', 'L1_values', 'cp_values', "L1000 PR-AUC scores", "CP PR-AUC scores", 
