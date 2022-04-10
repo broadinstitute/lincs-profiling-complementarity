@@ -24,10 +24,33 @@ dose_colors <- c(
 )
 
 assay_colors <- c("Cell Painting" = "#F0C178", "L1000" = "#8AA7F0")
+assay_rename <- c("cp" = "Cell Painting", "l1000" = "L1000")
 
 replicate_labels <- c("non_replicate" = "non-replicates", "replicate" = "replicates")
 replicate_colors <- c("non_replicate" = "black", "replicate" = "red")
 cell_line_colors <- c("A549" = "#2ED6D9", "MCF7" = "#434FDE", "U2OS" = "#D950C4")
+
+shuffled_labels <- c("FALSE" = "FALSE", "TRUE" = "TRUE")
+shuffled_linetypes <- c("FALSE" = "solid", "TRUE" = "dashed")
+shuffled_alphas <- c("TRUE" = 0.4, "FALSE" = 1)
+
+model_names <- c(
+    "mlknn" = "KNN",
+    "simplenn" = "Neural Net",
+    "resnet" = "ResNet",
+    "1dcnn" = "1D-CNN",
+    "tabnet" = "TabNet",
+    "blend" = "Ensemble"
+)
+
+model_colors <- c(
+    "mlknn" = "#1b9e77",
+    "simplenn" = "#7570b3",
+    "resnet" = "#d95f02",
+    "1dcnn" = "#66a61e",
+    "tabnet" = "#e7298a",
+    "blend" = "#a6761d"
+)
 
 figure_theme <- (
     theme_bw()
@@ -65,6 +88,13 @@ moa_colors <- c(
     "xiap inhibitor" = "#882255",
     "other" = "grey"
 )
+
+dl_moa_targets <- c(
+    "mek inhibitor" = "MEK inhibitor",
+    "mtor inhibitor" = "MTOR inhibitor",
+    "xiap inhibitor" = "XIAP inhibitor"
+)
+
 
 # Set heatmap legend info
 legend_scale_cols = circlize::colorRamp2(c(-1, -0.25, 0, 0.25, 1), c("#29732d", "#a1d76a", "white", "#e9a3c9", "#a11b9a"))
