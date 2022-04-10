@@ -599,3 +599,49 @@ load_plate_diffusion_results <- function(
     
     return(diffuse_df)
 }
+
+process_pr_deeplearning_data <- function(
+    target,
+    results_dir,
+    results_prefix,
+    results_suffix,
+    plot_category
+) {
+    # Recode the target name to match the file name
+    update_target_name <- gsub("[[:punct:]]", "", target)
+    update_target_name <- gsub(" ", "", update_target_name)
+
+    # Set file name
+    target_file <- file.path(results_dir, paste0(results_prefix, update_target_name, results_suffix))
+
+    target_cols <- readr::cols(
+      precision = readr::col_double(),
+      recall = readr::col_double(),
+      target = readr::col_character(),
+      assay = readr::col_character(),
+      model = readr::col_character(),
+      data_shuffle = readr::col_logical(),
+      train_or_test = readr::col_character(),
+      subsample_status = readr::col_logical(),
+      target_category = readr::col_character(),
+      n_pos_count = readr::col_double()
+    )
+
+    # Load and process precision-recall curve data
+    pr_df <- suppressWarnings(readr::read_tsv(target_file, col_types = target_cols)) %>%
+        tidyr::drop_na() %>%
+        dplyr::mutate(precision_round = round(precision, 3), recall_round = round(recall, 3)) %>%
+        dplyr::distinct(target, assay, model, data_shuffle, train_or_test, subsample_status, precision_round, recall_round)
+
+    pr_df$assay <- dplyr::recode(pr_df$assay, !!!assay_rename)
+
+    if (plot_category == "main") {
+        pr_df <- pr_df %>%
+            dplyr::filter(
+                !subsample_status,
+                train_or_test == "test"
+            )
+    }
+    
+    return(pr_df)
+}

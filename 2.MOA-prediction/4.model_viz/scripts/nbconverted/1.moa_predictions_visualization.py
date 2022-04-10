@@ -52,6 +52,12 @@ from adjustText import adjust_text
 # In[4]:
 
 
+drop_bortezomib_from_test = True
+
+
+# In[5]:
+
+
 base_dir = pathlib.Path("../2.data_split/model_data/")
 
 cp_data_dir = pathlib.Path(f"{base_dir}/cp/")
@@ -59,7 +65,7 @@ l1000_data_dir = pathlib.Path(f"{base_dir}/L1/")
 merged_data_dir = pathlib.Path(f"{base_dir}/merged/")
 
 
-# In[5]:
+# In[6]:
 
 
 cp_test = f"{cp_data_dir}/test_lvl4_data.csv.gz"
@@ -68,14 +74,14 @@ L1000_test = f"{l1000_data_dir}/test_lvl4_data.csv.gz"
 cp_L1000_test = f"{merged_data_dir}/test_lvl4_data.csv.gz"
 
 
-# In[6]:
+# In[7]:
 
 
 model_preds_dir = pathlib.Path("../L1000_CP_model_predictions/")
 model_preds_figures = pathlib.Path("moa_predictions_figures")
 
 
-# In[7]:
+# In[8]:
 
 
 df_cp_test = pd.read_csv(cp_test, compression='gzip',low_memory = False)
@@ -83,8 +89,16 @@ df_cp_test_subsample = pd.read_csv(cp_test_subsample, compression='gzip',low_mem
 df_L1000_test = pd.read_csv(L1000_test, compression='gzip',low_memory = False)
 df_cp_L1000_test = pd.read_csv(cp_L1000_test, compression='gzip',low_memory = False)
 
+# Drop Bortezomib from test sets
+if drop_bortezomib_from_test:
+    print("dropping bortezomib from all test sets!")
+    df_cp_test = df_cp_test.loc[df_cp_test.pert_iname != 'bortezomib', :]
+    df_cp_test_subsample = df_cp_test_subsample.loc[df_cp_test_subsample.pert_iname != 'bortezomib', :]
+    df_L1000_test = df_L1000_test.loc[df_L1000_test.pert_iname != 'bortezomib', :]
+    df_cp_L1000_test = df_cp_L1000_test.loc[df_cp_L1000_test.pert_iname != 'bortezomib', :]
 
-# In[8]:
+
+# In[9]:
 
 
 ##mlknn
@@ -93,8 +107,15 @@ df_cp_mlknn_test_subsample = pd.read_csv(os.path.join(model_preds_dir, 'cp_test_
 df_L1000_mlknn_test = pd.read_csv(os.path.join(model_preds_dir, 'L1000_test_preds_mlknn.csv'))
 df_cp_L1000_mlknn_test = pd.read_csv(os.path.join(model_preds_dir, 'cp_L1000_test_preds_mlknn.csv'))
 
+# Drop bortezomib from evaluation
+if drop_bortezomib_from_test:
+    df_cp_mlknn_test = df_cp_mlknn_test.iloc[df_cp_test.index, :]
+    df_cp_mlknn_test_subsample = df_cp_mlknn_test_subsample.iloc[df_cp_test_subsample.index, :]
+    df_L1000_mlknn_test = df_L1000_mlknn_test.iloc[df_L1000_test.index, :]
+    df_cp_L1000_mlknn_test = df_cp_L1000_mlknn_test.iloc[df_cp_L1000_test.index, :]
 
-# In[9]:
+
+# In[10]:
 
 
 ##resnet
@@ -103,8 +124,15 @@ df_cp_resnet_test_subsample = pd.read_csv(os.path.join(model_preds_dir, 'cp_test
 df_L1000_resnet_test = pd.read_csv(os.path.join(model_preds_dir, 'L1000_test_preds_resnet.csv'))
 df_cp_L1000_resnet_test = pd.read_csv(os.path.join(model_preds_dir, 'cp_L1000_test_preds_resnet.csv'))
 
+# Drop bortezomib from evaluation
+if drop_bortezomib_from_test:
+    df_cp_resnet_test = df_cp_resnet_test.iloc[df_cp_test.index, :]
+    df_cp_resnet_test_subsample = df_cp_resnet_test_subsample.iloc[df_cp_test_subsample.index, :]
+    df_L1000_resnet_test = df_L1000_resnet_test.iloc[df_L1000_test.index, :]
+    df_cp_L1000_resnet_test = df_cp_L1000_resnet_test.iloc[df_cp_L1000_test.index, :]
 
-# In[10]:
+
+# In[11]:
 
 
 ##1-d cnn
@@ -113,8 +141,15 @@ df_cp_cnn_test_subsample = pd.read_csv(os.path.join(model_preds_dir, 'cp_test_pr
 df_L1000_cnn_test = pd.read_csv(os.path.join(model_preds_dir, 'L1000_test_preds_1dcnn.csv'))
 df_cp_L1000_cnn_test = pd.read_csv(os.path.join(model_preds_dir, 'cp_L1000_test_preds_1dcnn.csv'))
 
+# Drop bortezomib from evaluation
+if drop_bortezomib_from_test:
+    df_cp_cnn_test = df_cp_cnn_test.iloc[df_cp_test.index, :]
+    df_cp_cnn_test_subsample = df_cp_cnn_test_subsample.iloc[df_cp_test_subsample.index, :]
+    df_L1000_cnn_test = df_L1000_cnn_test.iloc[df_L1000_test.index, :]
+    df_cp_L1000_cnn_test = df_cp_L1000_cnn_test.iloc[df_cp_L1000_test.index, :]
 
-# In[11]:
+
+# In[12]:
 
 
 ##tabnet
@@ -123,8 +158,15 @@ df_cp_tabnet_test_subsample = pd.read_csv(os.path.join(model_preds_dir, 'cp_test
 df_L1000_tabnet_test = pd.read_csv(os.path.join(model_preds_dir, 'L1000_test_preds_tabnet.csv'))
 df_cp_L1000_tabnet_test = pd.read_csv(os.path.join(model_preds_dir, 'cp_L1000_test_preds_tabnet.csv'))
 
+# Drop bortezomib from evaluation
+if drop_bortezomib_from_test:
+    df_cp_tabnet_test = df_cp_tabnet_test.iloc[df_cp_test.index, :]
+    df_cp_tabnet_test_subsample = df_cp_tabnet_test_subsample.iloc[df_cp_test_subsample.index, :]
+    df_L1000_tabnet_test = df_L1000_tabnet_test.iloc[df_L1000_test.index, :]
+    df_cp_L1000_tabnet_test = df_cp_L1000_tabnet_test.iloc[df_cp_L1000_test.index, :]
 
-# In[12]:
+
+# In[13]:
 
 
 ##stagedNN
@@ -133,8 +175,15 @@ df_cp_simplenn_test_subsample = pd.read_csv(os.path.join(model_preds_dir, 'cp_te
 df_L1000_simplenn_test = pd.read_csv(os.path.join(model_preds_dir, 'L1000_test_preds_simplenn.csv'))
 df_cp_L1000_simplenn_test = pd.read_csv(os.path.join(model_preds_dir, 'cp_L1000_test_preds_simplenn.csv'))
 
+# Drop bortezomib from evaluation
+if drop_bortezomib_from_test:
+    df_cp_simplenn_test = df_cp_simplenn_test.iloc[df_cp_test.index, :]
+    df_cp_simplenn_test_subsample = df_cp_simplenn_test_subsample.iloc[df_cp_test_subsample.index, :]
+    df_L1000_simplenn_test = df_L1000_simplenn_test.iloc[df_L1000_test.index, :]
+    df_cp_L1000_simplenn_test = df_cp_L1000_simplenn_test.iloc[df_cp_L1000_test.index, :]
 
-# In[13]:
+
+# In[14]:
 
 
 #blend
@@ -143,10 +192,17 @@ df_cp_blend_test_subsample = pd.read_csv(os.path.join(model_preds_dir, 'cp_test_
 df_L1000_blend_test = pd.read_csv(os.path.join(model_preds_dir, 'L1000_test_preds_blend.csv'))
 df_cp_L1000_blend_test = pd.read_csv(os.path.join(model_preds_dir, 'cp_L1000_test_preds_blend.csv'))
 
+# Drop bortezomib from evaluation
+if drop_bortezomib_from_test:
+    df_cp_blend_test = df_cp_blend_test.iloc[df_cp_test.index, :]
+    df_cp_blend_test_subsample = df_cp_blend_test_subsample.iloc[df_cp_test_subsample.index, :]
+    df_L1000_blend_test = df_L1000_blend_test.iloc[df_L1000_test.index, :]
+    df_cp_L1000_blend_test = df_cp_L1000_blend_test.iloc[df_cp_L1000_test.index, :]
+
 
 # ##### - Shuffled test predictions
 
-# In[14]:
+# In[15]:
 
 
 ##mlknn shuffle
@@ -155,8 +211,15 @@ df_cp_mlknn_shuf_subsample = pd.read_csv(os.path.join(model_preds_dir, 'cp_test_
 df_L1000_mlknn_shuf = pd.read_csv(os.path.join(model_preds_dir, 'L1000_test_preds_mlknn_shuffle.csv'))
 df_cp_L1000_mlknn_shuf = pd.read_csv(os.path.join(model_preds_dir, 'cp_L1000_test_preds_mlknn_shuffle.csv'))
 
+# Drop bortezomib from evaluation
+if drop_bortezomib_from_test:
+    df_cp_mlknn_shuf = df_cp_mlknn_shuf.iloc[df_cp_test.index, :]
+    df_cp_mlknn_shuf_subsample = df_cp_mlknn_shuf_subsample.iloc[df_cp_test_subsample.index, :]
+    df_L1000_mlknn_shuf = df_L1000_mlknn_shuf.iloc[df_L1000_test.index, :]
+    df_cp_L1000_mlknn_shuf = df_cp_L1000_mlknn_shuf.iloc[df_cp_L1000_test.index, :]
 
-# In[15]:
+
+# In[16]:
 
 
 ##resnet shuffle
@@ -165,8 +228,15 @@ df_cp_resnet_shuf_subsample = pd.read_csv(os.path.join(model_preds_dir, 'cp_test
 df_L1000_resnet_shuf = pd.read_csv(os.path.join(model_preds_dir, 'L1000_test_preds_resnet_shuffle.csv'))
 df_cp_L1000_resnet_shuf = pd.read_csv(os.path.join(model_preds_dir, 'cp_L1000_test_preds_resnet_shuffle.csv'))
 
+# Drop bortezomib from evaluation
+if drop_bortezomib_from_test:
+    df_cp_resnet_shuf = df_cp_resnet_shuf.iloc[df_cp_test.index, :]
+    df_cp_resnet_shuf_subsample = df_cp_resnet_shuf_subsample.iloc[df_cp_test_subsample.index, :]
+    df_L1000_resnet_shuf = df_L1000_resnet_shuf.iloc[df_L1000_test.index, :]
+    df_cp_L1000_resnet_shuf = df_cp_L1000_resnet_shuf.iloc[df_cp_L1000_test.index, :]
 
-# In[16]:
+
+# In[17]:
 
 
 ##1-d cnn shuffle
@@ -175,8 +245,15 @@ df_cp_cnn_shuf_subsample = pd.read_csv(os.path.join(model_preds_dir, 'cp_test_pr
 df_L1000_cnn_shuf = pd.read_csv(os.path.join(model_preds_dir, 'L1000_test_preds_1dcnn_shuffle.csv'))
 df_cp_L1000_cnn_shuf = pd.read_csv(os.path.join(model_preds_dir, 'cp_L1000_test_preds_1dcnn_shuffle.csv'))
 
+# Drop bortezomib from evaluation
+if drop_bortezomib_from_test:
+    df_cp_cnn_shuf = df_cp_cnn_shuf.iloc[df_cp_test.index, :]
+    df_cp_cnn_shuf_subsample = df_cp_cnn_shuf_subsample.iloc[df_cp_test_subsample.index, :]
+    df_L1000_cnn_shuf = df_L1000_cnn_shuf.iloc[df_L1000_test.index, :]
+    df_cp_L1000_cnn_shuf = df_cp_L1000_cnn_shuf.iloc[df_cp_L1000_test.index, :]
 
-# In[17]:
+
+# In[18]:
 
 
 ##tabnet shuffle
@@ -185,8 +262,15 @@ df_cp_tabnet_shuf_subsample = pd.read_csv(os.path.join(model_preds_dir, 'cp_test
 df_L1000_tabnet_shuf = pd.read_csv(os.path.join(model_preds_dir, 'L1000_test_preds_tabnet_shuffle.csv'))
 df_cp_L1000_tabnet_shuf = pd.read_csv(os.path.join(model_preds_dir, 'cp_L1000_test_preds_tabnet_shuffle.csv'))
 
+# Drop bortezomib from evaluation
+if drop_bortezomib_from_test:
+    df_cp_tabnet_shuf = df_cp_tabnet_shuf.iloc[df_cp_test.index, :]
+    df_cp_tabnet_shuf_subsample = df_cp_tabnet_shuf_subsample.iloc[df_cp_test_subsample.index, :]
+    df_L1000_tabnet_shuf = df_L1000_tabnet_shuf.iloc[df_L1000_test.index, :]
+    df_cp_L1000_tabnet_shuf = df_cp_L1000_tabnet_shuf.iloc[df_cp_L1000_test.index, :]
 
-# In[18]:
+
+# In[19]:
 
 
 ##simpleNN shuffle
@@ -195,8 +279,15 @@ df_cp_simplenn_shuf_subsample = pd.read_csv(os.path.join(model_preds_dir, 'cp_te
 df_L1000_simplenn_shuf = pd.read_csv(os.path.join(model_preds_dir, 'L1000_test_preds_simplenn_shuffle.csv'))
 df_cp_L1000_simplenn_shuf = pd.read_csv(os.path.join(model_preds_dir, 'cp_L1000_test_preds_simplenn_shuffle.csv'))
 
+# Drop bortezomib from evaluation
+if drop_bortezomib_from_test:
+    df_cp_simplenn_shuf = df_cp_simplenn_shuf.iloc[df_cp_test.index, :]
+    df_cp_simplenn_shuf_subsample = df_cp_simplenn_shuf_subsample.iloc[df_cp_test_subsample.index, :]
+    df_L1000_simplenn_shuf = df_L1000_simplenn_shuf.iloc[df_L1000_test.index, :]
+    df_cp_L1000_simplenn_shuf = df_cp_L1000_simplenn_shuf.iloc[df_cp_L1000_test.index, :]
 
-# In[19]:
+
+# In[20]:
 
 
 df_cp_test['moa'] = df_cp_test['moa'].apply(lambda x:x.lower())
@@ -205,31 +296,31 @@ df_L1000_test['moa'] = df_L1000_test['moa'].apply(lambda x:x.lower())
 df_cp_L1000_test['moa'] = df_cp_L1000_test['moa'].apply(lambda x:x.lower())
 
 
-# In[20]:
+# In[21]:
 
 
 moa_class_list = df_cp_test['moa'].unique()
 
 
-# In[21]:
+# In[22]:
 
 
 val_moas = [moa for moa_list in moa_class_list for moa in moa_list.split('|')]
 
 
-# In[22]:
+# In[23]:
 
 
 val_moas = list(set(val_moas))
 
 
-# In[23]:
+# In[24]:
 
 
 len(val_moas)
 
 
-# In[24]:
+# In[25]:
 
 
 df_cp_tst_targets = df_cp_test[df_cp_cnn_test.columns]
@@ -240,7 +331,7 @@ df_cp_L1000_tst_targets = df_cp_L1000_test[df_cp_L1000_cnn_test.columns]
 
 # ##### - Baseline of Precision-Recall AUC score is determined by the ratio of positives (P i.e. 1) to ratio of positives (P i.e. 1) and negatives (N i.e. 0) i.e. y = P / (P + N)
 
-# In[25]:
+# In[26]:
 
 
 def calculate_baseline(df, val_moas=val_moas):
@@ -251,7 +342,7 @@ def calculate_baseline(df, val_moas=val_moas):
     return baseline
 
 
-# In[26]:
+# In[27]:
 
 
 cp_no_skill = calculate_baseline(df_cp_tst_targets)
@@ -260,31 +351,31 @@ L1000_no_skill = calculate_baseline(df_L1000_tst_targets)
 cp_L1000_no_skill = calculate_baseline(df_cp_L1000_tst_targets)
 
 
-# In[27]:
+# In[28]:
 
 
 cp_L1000_no_skill
 
 
-# In[28]:
+# In[29]:
 
 
 cp_no_skill
 
 
-# In[29]:
+# In[30]:
 
 
 L1000_no_skill
 
 
-# In[30]:
+# In[31]:
 
 
 cp_no_skill_subsample
 
 
-# In[31]:
+# In[32]:
 
 
 def evaluate(actual, pred, val_moas=val_moas):
@@ -294,7 +385,7 @@ def evaluate(actual, pred, val_moas=val_moas):
     return [rocauc_score, pr_auc_score]
 
 
-# In[32]:
+# In[33]:
 
 
 cp_preds = [df_cp_mlknn_test, df_cp_resnet_test, df_cp_cnn_test, df_cp_tabnet_test, df_cp_simplenn_test,             df_cp_mlknn_shuf, df_cp_resnet_shuf, df_cp_cnn_shuf, df_cp_tabnet_shuf, df_cp_simplenn_shuf,             df_cp_blend_test]
@@ -316,7 +407,7 @@ preds_all = [cp_preds, cp_preds_subsample, L1_preds, cp_L1_preds]
 
 # #### - All models predictions
 
-# In[33]:
+# In[34]:
 
 
 ##models predictions for all profiling assays
@@ -331,20 +422,20 @@ for idx, (assay_name, actual_df) in enumerate(zip(assays, targets_dfs)):
             score_dict[score_name][met] = eval_list[io]
 
 
-# In[34]:
+# In[35]:
 
 
 df_pred_scores = pd.DataFrame([(k,k1,v1) for k,v in score_dict.items() for k1,v1 in v.items()], 
                               columns = ['id_name', 'metrics', 'values'])
 
 
-# In[35]:
+# In[36]:
 
 
 df_pred_scores.head(10)
 
 
-# In[36]:
+# In[37]:
 
 
 df_pred_scores['profile_tech'] = df_pred_scores['id_name'].apply(lambda x: '_'.join(x.split('_')[:-1]))
@@ -352,33 +443,33 @@ df_pred_scores['model'] = df_pred_scores['id_name'].apply(lambda x: x.split('_')
 df_pred_scores['values'] = df_pred_scores['values'].apply(lambda x: x*100)
 
 
-# In[37]:
+# In[38]:
 
 
 df_pred_scores['model'].unique()
 
 
-# In[38]:
+# In[39]:
 
 
 normal_models = ['mlknn', 'resnet', 'cnn', 'tabnet', 'simplenn', 'blend']
 shuffle_models = ['mlknnshuf', 'resnetshuf', 'cnnshuf', 'tabnetshuf', 'simplennshuf']
 
 
-# In[39]:
+# In[40]:
 
 
 df_score_normal = df_pred_scores.loc[df_pred_scores['model'].isin(normal_models)].reset_index(drop=True)
 df_score_shuffle = df_pred_scores.loc[df_pred_scores['model'].isin(shuffle_models)].reset_index(drop=True)
 
 
-# In[40]:
+# In[41]:
 
 
 df_score_normal.head()
 
 
-# In[41]:
+# In[42]:
 
 
 normal_model_names = {'resnet':'ResNet', 'cnn':'1D-CNN', 'tabnet':'TabNet', 'simplenn':'Simple NN', 'mlknn': 'Ml-KNN', 'blend': 'Models Ensemble'}
@@ -392,14 +483,14 @@ def rename_col_values(df, model_name_dict):
     return df
 
 
-# In[42]:
+# In[43]:
 
 
 df_score_normal = rename_col_values(df_score_normal, normal_model_names)
 df_score_shuffle = rename_col_values(df_score_shuffle, shuffle_model_names)
 
 
-# In[43]:
+# In[44]:
 
 
 def extract_new_dfs(df):
@@ -409,14 +500,14 @@ def extract_new_dfs(df):
     return df_roc, df_pr_auc
 
 
-# In[44]:
+# In[45]:
 
 
 df_roc_normal, df_pr_auc_normal = extract_new_dfs(df_score_normal)
 df_roc_shuffle, df_pr_auc_shuffle = extract_new_dfs(df_score_shuffle)
 
 
-# In[45]:
+# In[108]:
 
 
 # Output files
@@ -438,19 +529,19 @@ full_results_df.head()
 
 # ##### - Baseline of Precision-Recall AUC score is determined by the ratio of positives (P i.e. 1) to ratio of positives (P i.e. 1) and negatives (N i.e. 0) i.e. y = P / (P + N)
 
-# In[46]:
+# In[47]:
 
 
 pr_baseline = (cp_no_skill + cp_no_skill_subsample + L1000_no_skill + cp_L1000_no_skill)/4 * 100
 
 
-# In[47]:
+# In[48]:
 
 
 pr_baseline
 
 
-# In[48]:
+# In[49]:
 
 
 def plot_model_predictions(df, baseline, file_name, txt_cord_y = 0.51, y_label= "Precision-Recall AUC %", title_label="Precision-Recall AUC score for all models", 
@@ -471,26 +562,26 @@ def plot_model_predictions(df, baseline, file_name, txt_cord_y = 0.51, y_label= 
   plt.show()
 
 
-# In[49]:
+# In[50]:
 
 
 plot_model_predictions(df_pr_auc_normal, pr_baseline, "pr_auc_all_assays.png")
 
 
-# In[50]:
+# In[51]:
 
 
 plot_model_predictions(df_pr_auc_shuffle, pr_baseline, "pr_auc_all_assays_wrong_labels.png", txt_cord_y = 0.46, 
                        title_label="Precision-Recall AUC score for all models (Trained on wrong MOA labels)")
 
 
-# In[51]:
+# In[52]:
 
 
 plot_model_predictions(df_roc_normal, 50, "roc_auc_all_assays.png", txt_cord_y = 51, y_label= "ROC-AUC %", title_label="ROC-AUC score for all models")
 
 
-# In[52]:
+# In[53]:
 
 
 plot_model_predictions(df_roc_shuffle, 50, "roc_auc_all_assays_wrong_labels.png", txt_cord_y = 51, y_label= "ROC-AUC %", 
@@ -499,20 +590,20 @@ plot_model_predictions(df_roc_shuffle, 50, "roc_auc_all_assays_wrong_labels.png"
 
 # ### - MOA predictions PER Dose treatment
 
-# In[53]:
+# In[54]:
 
 
 df_cp_L1000_test['dose'].unique()
 
 
-# In[54]:
+# In[55]:
 
 
 df_cp_test.rename(columns={'Metadata_dose_recode': "dose"}, inplace = True)
 df_cp_test_subsample.rename(columns={'Metadata_dose_recode': "dose"}, inplace = True)
 
 
-# In[55]:
+# In[56]:
 
 
 def get_actual_preds_dose(dose, df_test, df_model_preds, df_targets):
@@ -523,7 +614,7 @@ def get_actual_preds_dose(dose, df_test, df_model_preds, df_targets):
   return df_dose_targets, df_dose_preds
 
 
-# In[56]:
+# In[57]:
 
 
 def dose_class_baseline(dose_num, df_test, df_targets):
@@ -534,7 +625,7 @@ def dose_class_baseline(dose_num, df_test, df_targets):
   return class_baseline_score
 
 
-# In[57]:
+# In[58]:
 
 
 dose_num = [1,2,3,4,5,6]
@@ -542,7 +633,7 @@ dose_num = [1,2,3,4,5,6]
 
 # ##### - The baseline pr-auc score for each dose is the same across all profiling assays i.e. the baseline score in CP == baseline score in L1000 or CP & L1000 combined
 
-# In[58]:
+# In[59]:
 
 
 dose_no_skill_scrs = {}
@@ -552,13 +643,13 @@ for num in dose_num:
     dose_no_skill_scrs[class_name] = no_skill_score
 
 
-# In[59]:
+# In[60]:
 
 
 dose_no_skill_scrs
 
 
-# In[60]:
+# In[61]:
 
 
 def evaluate(actual, pred, val_moas=val_moas):
@@ -568,7 +659,7 @@ def evaluate(actual, pred, val_moas=val_moas):
   return [rocauc_score, pr_auc_score]
 
 
-# In[61]:
+# In[62]:
 
 
 cp_preds_dose = [df_cp_mlknn_test, df_cp_resnet_test, df_cp_cnn_test, df_cp_tabnet_test, df_cp_simplenn_test, df_cp_blend_test]
@@ -586,7 +677,7 @@ cp_L1_preds_dose = [df_cp_L1000_mlknn_test, df_cp_L1000_resnet_test, df_cp_L1000
                     df_cp_L1000_simplenn_test, df_cp_L1000_blend_test]
 
 
-# In[62]:
+# In[63]:
 
 
 def dose_class_preds(assay_name, df_val, df_targets, model_preds, dose_num = dose_num):
@@ -607,7 +698,7 @@ def dose_class_preds(assay_name, df_val, df_targets, model_preds, dose_num = dos
     return class_results
 
 
-# In[63]:
+# In[64]:
 
 
 cp_dose_preds = dose_class_preds('cp_', df_cp_test, df_cp_tst_targets, cp_preds_dose)
@@ -616,7 +707,7 @@ L1000_dose_preds = dose_class_preds('L1000_', df_L1000_test, df_L1000_tst_target
 cp_L1000_dose_preds = dose_class_preds('cp_L1000_', df_cp_L1000_test, df_cp_L1000_tst_targets, cp_L1_preds_dose)
 
 
-# In[64]:
+# In[65]:
 
 
 def get_class_dfs(class_preds):
@@ -629,7 +720,7 @@ def get_class_dfs(class_preds):
     return df_results
 
 
-# In[65]:
+# In[66]:
 
 
 df_dose_cp_L1_results = get_class_dfs(cp_L1000_dose_preds)
@@ -638,13 +729,13 @@ df_dose_cp_results_subsample = get_class_dfs(cp_dose_preds_subsample)
 df_dose_L1_results = get_class_dfs(L1000_dose_preds)
 
 
-# In[66]:
+# In[67]:
 
 
 df_dose_cp_L1_results.head()
 
 
-# In[67]:
+# In[68]:
 
 
 df_pr_cp_dose = df_dose_cp_results[df_dose_cp_results['metrics'] == 'pr_auc_score'].copy()
@@ -653,7 +744,7 @@ df_pr_L1_dose = df_dose_L1_results[df_dose_L1_results['metrics'] == 'pr_auc_scor
 df_pr_cp_L1_dose = df_dose_cp_L1_results[df_dose_cp_L1_results['metrics'] == 'pr_auc_score'].copy()
 
 
-# In[68]:
+# In[69]:
 
 
 # Output files
@@ -671,7 +762,7 @@ print(full_dose_results_df.shape)
 full_dose_results_df.head()
 
 
-# In[69]:
+# In[70]:
 
 
 def top_class_auc(df):
@@ -686,7 +777,7 @@ def top_class_auc(df):
     return df_cls_top_auc
 
 
-# In[70]:
+# In[71]:
 
 
 df_top_dose_pr_cp = top_class_auc(df_pr_cp_dose)
@@ -695,25 +786,25 @@ df_top_dose_pr_L1 = top_class_auc(df_pr_L1_dose)
 df_top_dose_pr_cp_L1 = top_class_auc(df_pr_cp_L1_dose)
 
 
-# In[71]:
+# In[72]:
 
 
 df_top_dose_pr_cp_L1
 
 
-# In[72]:
+# In[73]:
 
 
 df_best_doses = pd.concat([df_top_dose_pr_cp, df_top_dose_pr_cp_subsample, df_top_dose_pr_L1, df_top_dose_pr_cp_L1], ignore_index = True)
 
 
-# In[73]:
+# In[74]:
 
 
 df_dose_no_skill = pd.DataFrame(dose_no_skill_scrs.items(), columns = ['id_name', 'values'])
 
 
-# In[74]:
+# In[75]:
 
 
 df_dose_no_skill['class'] = df_dose_no_skill['id_name'].apply(lambda x: x.split('_')[0] + '_' + x.split('_')[-1])
@@ -721,39 +812,39 @@ df_dose_no_skill['profile_tech'] = 'No_skill'
 df_dose_no_skill['metrics'] = 'No_skill'
 
 
-# In[75]:
+# In[76]:
 
 
 df_dose_no_skill.drop(['id_name'], axis = 1, inplace = True)
 
 
-# In[76]:
+# In[77]:
 
 
 df_best_doses = pd.concat([df_best_doses, df_dose_no_skill], ignore_index = True)
 
 
-# In[77]:
+# In[78]:
 
 
 df_best_doses['class'] = df_best_doses['class'].map({'dose_1': 0.04, 'dose_2': 0.12, 'dose_3':0.37, 'dose_4':1.11, 'dose_5':3.33, 'dose_6':10})
 df_best_doses['profile_tech'] = df_best_doses['profile_tech'].map({'cp': 'Cell painting', 'L1000': 'L1000', 'CP_L1000':'Cell Painting and L1000', 'No_skill':'Baseline'})
 
 
-# In[78]:
+# In[79]:
 
 
 df_best_doses['values'] = df_best_doses['values'].apply(lambda x:x*100)
 
 
-# In[79]:
+# In[80]:
 
 
 dose_baseline = np.mean(list(dose_no_skill_scrs.values()))*100
 dose_baseline
 
 
-# In[80]:
+# In[81]:
 
 
 ##plot moa predictions PER dose treatment
@@ -771,7 +862,7 @@ plt.text(-0.42,0.55, "Baseline", color='red')
 
 # ### - Test set MOA predictions
 
-# In[81]:
+# In[82]:
 
 
 def evaluate_moa(actual, pred, moa):
@@ -782,7 +873,7 @@ def evaluate_moa(actual, pred, moa):
   return metrics_dict
 
 
-# In[82]:
+# In[83]:
 
 
 moa_results = {}
@@ -795,14 +886,14 @@ for moa in val_moas:
       moa_results[score_name] = moa_eval_dict
 
 
-# In[83]:
+# In[84]:
 
 
 df_moa_preds = pd.DataFrame([(k,k1,v1) for k,v in moa_results.items() for k1,v1 in v.items()], 
                               columns = ['id_name', 'metrics', 'values'])
 
 
-# In[84]:
+# In[85]:
 
 
 df_moa_preds['moa'] = df_moa_preds['id_name'].apply(lambda x: x.split('_')[0])
@@ -810,32 +901,32 @@ df_moa_preds['model'] = df_moa_preds['id_name'].apply(lambda x: x.split('_')[-1]
 df_moa_preds['profile_tech'] = df_moa_preds['id_name'].apply(lambda x: 'CP_L1000' if len(x.split('_')) == 4 else x.split('_')[1])
 
 
-# In[85]:
+# In[86]:
 
 
 df_moa_preds['model'].unique()
 
 
-# In[86]:
+# In[87]:
 
 
 normal_models
 
 
-# In[87]:
+# In[88]:
 
 
 shuffle_models
 
 
-# In[88]:
+# In[89]:
 
 
 df_moa_preds_normal = df_moa_preds[df_moa_preds['model'].isin(normal_models)].reset_index(drop=True)
 df_moa_preds_shuffle = df_moa_preds[df_moa_preds['model'].isin(shuffle_models)].reset_index(drop=True)
 
 
-# In[89]:
+# In[90]:
 
 
 def get_profile_tech_preds(df):
@@ -847,14 +938,14 @@ def get_profile_tech_preds(df):
     return df_cp,df_cp_subsample,df_L1,df_cp_L1
 
 
-# In[90]:
+# In[91]:
 
 
 df_moa_cp_preds, df_moa_cp_preds_subsample, df_moa_L1_preds, df_moa_cp_L1_preds = get_profile_tech_preds(df_moa_preds_normal)
 df_moa_cp_shuf, df_moa_cp_shuf_subsample, df_moa_L1_shuf, df_moa_cp_L1_shuf = get_profile_tech_preds(df_moa_preds_shuffle)
 
 
-# In[91]:
+# In[92]:
 
 
 def get_metric_preds(df_cp,df_cp_subsample,df_L1,df_cp_L1):
@@ -866,14 +957,14 @@ def get_metric_preds(df_cp,df_cp_subsample,df_L1,df_cp_L1):
     return df_pr_cp,df_pr_cp_subsample,df_pr_L1,df_pr_cp_L1
 
 
-# In[92]:
+# In[93]:
 
 
 df_pr_cp_preds, df_pr_cp_preds_subsample, df_pr_L1_preds, df_pr_cp_L1_preds = get_metric_preds(df_moa_cp_preds, df_moa_cp_preds_subsample, df_moa_L1_preds, df_moa_cp_L1_preds)
 df_pr_cp_shuf, df_pr_cp_shuf_subsample, df_pr_L1_shuf, df_pr_cp_L1_shuf = get_metric_preds(df_moa_cp_shuf, df_moa_cp_shuf_subsample, df_moa_L1_shuf, df_moa_cp_L1_shuf)
 
 
-# In[93]:
+# In[94]:
 
 
 def top_moa_auc(df):
@@ -888,7 +979,7 @@ def top_moa_auc(df):
     return df_moa_top_auc
 
 
-# In[94]:
+# In[95]:
 
 
 df_top_moa_pr_cp = top_moa_auc(df_pr_cp_preds)
@@ -897,7 +988,7 @@ df_top_moa_pr_L1 = top_moa_auc(df_pr_L1_preds)
 df_top_moa_pr_cp_L1 = top_moa_auc(df_pr_cp_L1_preds)
 
 
-# In[95]:
+# In[96]:
 
 
 df_shuf_moa_pr_cp = top_moa_auc(df_pr_cp_shuf)
@@ -906,7 +997,7 @@ df_shuf_moa_pr_L1 = top_moa_auc(df_pr_L1_shuf)
 df_shuf_moa_pr_cp_L1 = top_moa_auc(df_pr_cp_L1_shuf)
 
 
-# In[96]:
+# In[97]:
 
 
 moa_cp_baseline = np.mean(df_shuf_moa_pr_cp['values'])
@@ -915,7 +1006,7 @@ moa_L1_baseline = np.mean(df_shuf_moa_pr_L1['values'])
 moa_cp_L1_baseline = np.mean(df_shuf_moa_pr_cp_L1['values'])
 
 
-# In[97]:
+# In[98]:
 
 
 print(moa_cp_baseline)
@@ -924,7 +1015,7 @@ print(moa_L1_baseline)
 print(moa_cp_L1_baseline)
 
 
-# In[98]:
+# In[99]:
 
 
 df_moa_pr_cp = df_top_moa_pr_cp[['moa', 'values']].copy()
@@ -933,7 +1024,7 @@ df_moa_pr_L1 = df_top_moa_pr_L1[['moa', 'values']].copy()
 df_moa_pr_cp_L1 = df_top_moa_pr_cp_L1[['moa', 'values']].copy()
 
 
-# In[99]:
+# In[100]:
 
 
 df_moa_pr_cp.rename(columns={"values": "cp_values"}, inplace = True)
@@ -942,7 +1033,7 @@ df_moa_pr_L1.rename(columns={"values": "L1_values"}, inplace = True)
 df_moa_pr_cp_L1.rename(columns={"values": "cp_L1_values"}, inplace = True)
 
 
-# In[100]:
+# In[101]:
 
 
 df_moa_prs = pd.merge(df_moa_pr_cp, df_moa_pr_L1, on='moa')
@@ -950,13 +1041,13 @@ df_moa_prs = pd.merge(df_moa_prs, df_moa_pr_cp_subsample, on = 'moa')
 df_moa_prs = pd.merge(df_moa_prs, df_moa_pr_cp_L1, on = 'moa')
 
 
-# In[101]:
+# In[102]:
 
 
 df_moa_prs.head(10)
 
 
-# In[102]:
+# In[103]:
 
 
 # Output individual MOA Precision Recall
@@ -968,7 +1059,7 @@ df_moa_prs.to_csv(output_file, index=False)
 # 
 # ##### - Note: The red horizontal and vertical lines are PR-AUC baseline score based on getting the average shuffle moa predictions across all MOAs for each profiling assays i.e. Cell Painting (CP), L1000, & Integrated CP & L1000
 
-# In[103]:
+# In[104]:
 
 
 def plot_moa_predictions(df, file_name, col_x, col_y, x_label, y_label, title_label, baseline_x, baseline_y, path=model_preds_figures):
@@ -992,21 +1083,21 @@ def plot_moa_predictions(df, file_name, col_x, col_y, x_label, y_label, title_la
   plt.show()
 
 
-# In[104]:
+# In[105]:
 
 
 plot_moa_predictions(df_moa_prs, 'pr_auc_moas_cp_and_L1000_vs_L1000.png', 'L1_values', 'cp_L1_values', "L1000 PR-AUC scores", "CP & L1000 PR-AUC scores", 
                      "PR-AUC scores for MOAs in L1000 & Integrated CP & L1000", moa_L1_baseline, moa_cp_L1_baseline)
 
 
-# In[105]:
+# In[106]:
 
 
 plot_moa_predictions(df_moa_prs, 'pr_auc_moas_cp_and_L1000_vs_cp.png', 'cp_values', 'cp_L1_values', "CP PR-AUC scores", "CP & L1000 PR-AUC scores", 
                      "PR-AUC scores for MOAs in CP & Integrated CP & L1000", moa_cp_baseline, moa_cp_L1_baseline)
 
 
-# In[106]:
+# In[107]:
 
 
 plot_moa_predictions(df_moa_prs, 'pr_auc_moas_cp_vs_L1000.png', 'cp_values', 'L1_values', "CP PR-AUC scores", "L1000 PR-AUC scores", 

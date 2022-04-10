@@ -287,9 +287,46 @@ ora_df <- readr::read_tsv(ora_results_file, col_types = ora_cols) %>%
         by = c("compound" = "pert_iname")
         )
 
-# This is Supplementary Table 4
+# This is Supplementary Table 5
 output_file <- file.path("results", "supplementary_table5_overrepresentationanalysis.tsv")
 ora_df %>% readr::write_tsv(output_file)
 
 print(dim(ora_df))
 head(ora_df, 3)
+
+# Load average precision scores for all models and targets
+metric_dir <- file.path("..", "2.MOA-prediction", "metrics")
+ap_file <- file.path(metric_dir, "average_precision_full_results.tsv.gz")
+
+ap_cols <- readr::cols(
+  average_precision = readr::col_double(),
+  target = readr::col_character(),
+  assay = readr::col_character(),
+  model = readr::col_character(),
+  shuffle = readr::col_logical(),
+  data_split = readr::col_character(),
+  target_category = readr::col_character()
+)
+
+ap_df <- readr::read_tsv(ap_file, col_types = ap_cols)
+
+ap_df$assay <- dplyr::recode(
+    ap_df$assay, "cp" = "Cell_Painting", "L1000" = "L1000"
+)
+
+ap_df$model <- dplyr::recode(
+    ap_df$model,
+        "mlknn" = "KNN",
+        "simplenn" = "Simple_NN",
+        "resnet" = "ResNet",
+        "1dcnn" = "1D_CNN",
+        "tabnet" = "TabNet",
+        "blend" = "Ensemble"
+)
+
+# This is Supplementary Table 6
+output_file <- file.path("results", "supplementary_table6_deeplearning_avgprecision.tsv.gz")
+ora_df %>% readr::write_tsv(output_file)
+
+print(dim(ap_df))
+head(ap_df, 2)
