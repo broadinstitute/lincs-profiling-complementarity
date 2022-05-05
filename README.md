@@ -30,7 +30,7 @@ We evaluated the two assays in several tasks:
 ## Data collection and data processing procedures
 
 ![our workflow](6.paper_figures/figures/supplementary/figureS3_workflowpipeline.png)
-Data collection and data processing workflows, related to Figure 1.
+> Data collection and data processing workflows, related to Figure 1.
 (a) We cultured A549 lung cancer cells and exposed them to 1,327 different compound perturbations in about six doses per compound.
 We plated these cells in 384 well plates, and, using the same plate layout, measured gene expression (using the L1000 assay) and morphology (using the Cell Painting assay) in compound-perturbed A549 cells.
 (b) Our image-based profiling pipeline we used to process the Cell Painting images.
