@@ -6,7 +6,7 @@ source("viz_themes.R")
 source("plotting_functions.R")
 source("data_functions.R")
 
-output_figure_base <- file.path("figures", "supplementary", "figureS2_cellcount_death")
+output_figure_base <- file.path("figures", "supplementary", "figureS4_cellcount_death")
 extensions <- c(".png", ".pdf")
 
 # Load data
