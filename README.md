@@ -60,3 +60,10 @@ python3 -m venv pytorch_env
 source pytorch_env/bin/activate
 python3 -m pip install -r pytorch_requirements.txt && python3 setup.py
 ```
+
+## Citation
+
+For a complete discussion of our findings please view our preprint:
+
+> Morphology and gene expression profiling provide complementary information for mapping cell state.
+Gregory P. Way, Ted Natoli, Adeniyi Adeboye, Lev Litichevskiy, Andrew Yang, Xiaodong Lu, Juan C. Caicedo, Beth A. Cimini, Kyle Karhohs, David J. Logan, Mohammad Rohban, Maria Kost-Alimova, Kate Hartland, Michael Bornholdt, Niranj Chandrasekaran, Marzieh Haghighi, Shantanu Singh, Aravind Subramanian, Anne E. Carpenter. bioRxiv 2021.10.21.465335; doi: https://doi.org/10.1101/2021.10.21.465335 
