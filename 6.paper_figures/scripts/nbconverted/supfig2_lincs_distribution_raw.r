@@ -6,7 +6,7 @@ source("viz_themes.R")
 source("plotting_functions.R")
 source("data_functions.R")
 
-output_figure_base <- file.path("figures", "supplementary", "lincs_distribution_raw")
+output_figure_base <- file.path("figures", "supplementary", "figureS2_lincs_distribution_raw")
 extensions <- c(".png", ".pdf")
 
 # Compounds of interest
@@ -84,7 +84,15 @@ for (cpd_info in select_compounds) {
     l1000_ggs[[cpd]] <- (
         ggplot(df_melted_subset, aes(x = x_axis_dummy, y = gene_exprs, color = replicate_truncated))
         + geom_point(alpha = 0.3)
-        + geom_smooth(aes(group = replicate_truncated), color = "black", se = FALSE, method = "loess", span = 0.02, formula = 'y ~ x', lwd = 1.5)
+        + geom_smooth(
+            aes(group = replicate_truncated),
+            color = "black",
+            se = FALSE,
+            method = "loess",
+            span = 0.02,
+            formula = 'y ~ x',
+            lwd = 1.5
+        )
         + geom_smooth(se = FALSE, method = "loess", span = 0.02, formula = 'y ~ x', lwd = 1)
         + figure_theme
         + ggtitle(fig_title)
