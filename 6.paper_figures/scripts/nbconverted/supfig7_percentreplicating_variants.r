@@ -12,7 +12,7 @@ plot_thresh <- -log10(threshold)
 
 results_dir <- file.path("../1.Data-exploration/Profiles_level4/")
 
-output_figure_base <- file.path("figures", "supplementary", "supfigure3")
+output_figure_base <- file.path("figures", "supplementary", "figureS7_percentreplicating_variants")
 extensions <- c(".png", ".pdf")
 
 # Load percent replicating with different input data
