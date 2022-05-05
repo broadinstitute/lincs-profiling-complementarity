@@ -4,12 +4,18 @@
 
 Assessing information contained in different profiling data modalities.
 
+## Assays
+
 We evaluated two assays:
 
 * L1000 (gene expression)
 * Cell Painting (morphology)
 
-In their ability to measure cell states from 1,327 compound perturbations across 6 doses (0.04µM, 0.12µM, 0.37µM, 1.11µM, 3.33µM, and 10µM) from the Drug Repurposing Hub.
+## Perturbations
+
+We tested each assay in their ability to measure cell states from 1,327 compound perturbations across 6 doses (0.04µM, 0.12µM, 0.37µM, 1.11µM, 3.33µM, and 10µM) from the Drug Repurposing Hub.
+
+## Evaluations
 
 We evaluated the two assays in several tasks:
 
@@ -43,7 +49,7 @@ By combining each data type, one can capture more mechanisms than either alone.
 
 See our paper (linked below) for more details and extensive resources.
 
-## Computational environment
+## Reproduce computational environment
 
 We use a combination of conda and pip to manage the proper python packages for data assessment and model predictions.
 To reproduce our environment run the following:
