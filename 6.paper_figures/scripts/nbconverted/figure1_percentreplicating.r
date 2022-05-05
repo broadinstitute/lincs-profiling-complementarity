@@ -6,7 +6,7 @@ source("viz_themes.R")
 source("plotting_functions.R")
 source("data_functions.R")
 
-output_figure_base <- file.path("figures", "figure1")
+output_figure_base <- file.path("figures", "figure1_percentreplicating")
 extensions <- c(".png", ".pdf")
 
 # The threshold indicats above the 95% percentile of carefully-controlled null distribution
@@ -89,7 +89,7 @@ percent_replicating_df <- pr_pval_df %>%
 
 percent_replicating_df
 
-panel_a_gg <- (
+panel_b_gg <- (
     ggplot(pr_pval_df, aes(x = median_score, y = neg_log_10_p_val))
     + geom_point(aes(color = no_of_compounds), alpha = 0.05)
     + geom_text(data = percent_replicating_df, aes(label = percent_replicating, x = 0.65, y = 2.5))
@@ -106,7 +106,7 @@ panel_a_gg <- (
     + guides(color = guide_legend(override.aes = list(alpha = 1, size = 2)))
 )
 
-panel_a_gg
+panel_b_gg
 
 pr_summary_df <- pr_pval_df %>%
     dplyr::select(compound, dose, well, assay, normalization, category, median_score) %>%
@@ -154,7 +154,7 @@ head(pr_summary_df, 2)
 
 table(pr_summary_df$total_reproducible)
 
-panel_b_gg <- (
+panel_c_gg <- (
     ggplot(
         pr_summary_df %>%
             # Remove compounds measured in different wells inconsistently
@@ -169,7 +169,7 @@ panel_b_gg <- (
     + ylab("L1000: Median pairwise\nreplicate Spearman correlation")
 )
 
-panel_b_gg
+panel_c_gg
 
 significant_compounds_df <- pr_summary_df %>%
     dplyr::select(compound, well, dose, pass_thresh_cp, pass_thresh_l1000, pass_both) %>%
@@ -269,7 +269,7 @@ full_rect$assay <- factor(full_rect$assay, levels = c("L1000", "Both", "Cell Pai
 
 updated_assay_colors <- c(assay_colors, "Both" = "#DF74F0")
 
-panel_c_gg <- (
+panel_d_gg <- (
     ggplot(full_rect)
     + geom_rect(
         aes(
@@ -299,17 +299,17 @@ panel_c_gg <- (
 
 )
 
-panel_c_gg
+panel_d_gg
 
-panel_a_gg <- panel_a_gg + labs(tag = "b")
-panel_b_gg <- panel_b_gg + labs(tag = "c")
-panel_c_gg <- panel_c_gg + labs(tag = "d")
+panel_b_gg <- panel_b_gg + labs(tag = "b")
+panel_c_gg <- panel_c_gg + labs(tag = "c")
+panel_d_gg <- panel_d_gg + labs(tag = "d")
 
 # We add an updated panel a in the resubmission, update tags here
-left_panel <- (panel_a_gg / panel_b_gg) + plot_layout(heights = c(2, 1))
+left_panel <- (panel_b_gg / panel_c_gg) + plot_layout(heights = c(2, 1))
 
 figure_1_gg <- (
-    ( left_panel | panel_c_gg)
+    ( left_panel | panel_d_gg)
     + plot_layout(widths = c(2, 1))
 )
 
