@@ -6,7 +6,7 @@ source("viz_themes.R")
 source("plotting_functions.R")
 source("data_functions.R")
 
-output_figure_base <- file.path("figures", "supplementary", "big_labeled_umap")
+output_figure_base <- file.path("figures", "supplementary", "figureS11_largeumap")
 extensions <- c(".png", ".pdf")
 
 results_dir <- file.path("../1.Data-exploration/Profiles_level4/")
@@ -237,6 +237,8 @@ cp_umap_gg <- (
         legend.title = element_text(size = 12)
     )
 )
+
+output_figure_base <- file.path("figures", "supplementary", "figureS10_largeumap")
 
 for (extension in extensions) {
     output_file <- paste0(output_figure_base, "_cellpainting", extension)
