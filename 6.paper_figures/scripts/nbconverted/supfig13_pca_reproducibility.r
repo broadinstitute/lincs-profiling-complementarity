@@ -6,7 +6,7 @@ source("viz_themes.R")
 source("plotting_functions.R")
 source("data_functions.R")
 
-output_figure_base <- file.path("figures", "supplementary", "figureS12_pca_reproducibility")
+output_figure_base <- file.path("figures", "supplementary", "figureS13_pca_reproducibility")
 extensions <- c(".png", ".pdf")
 
 # Load PCA embeddings
