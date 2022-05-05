@@ -7,7 +7,7 @@ source("viz_themes.R")
 source("plotting_functions.R")
 source("data_functions.R")
 
-output_figure_base <- file.path("figures", "supplementary", "moa_target_label_hits")
+output_figure_base <- file.path("figures", "supplementary", "figureS17_moawordhits")
 extensions <- c(".png", ".pdf")
 
 results_dir <- file.path("../1.Data-exploration/Consensus/")
@@ -51,10 +51,6 @@ pm_df <- pm_df %>%
 pm_df$dose <- factor(pm_df$dose, levels = updated_dose_order)
 
 pm_df$neg_log_10_p_val[pm_df$neg_log_10_p_val == Inf] = 3.5
-
-# Output percent matching (MOA)
-output_file <- file.path("results", "moa_scores.tsv")
-readr::write_tsv(pm_df, output_file)
 
 print(dim(pm_df))
 head(pm_df)
@@ -268,13 +264,24 @@ precision_melt_df %>% readr::write_tsv(output_file)
 print(dim(precision_melt_df))
 head(precision_melt_df, 2)
 
+# Calculate pairwise correlations between median correlation and avg. precision
+precision_cor_df <- precision_melt_df %>%
+    dplyr::group_by(assay, dose) %>%
+    dplyr::summarise(cor_coef = cor.test(avg_precision, matching_score, method="pearson")$estimate) %>%
+    dplyr::mutate(cor_coef_round = paste("r =", round(cor_coef, 2))) %>%
+    dplyr::ungroup()
+
+head(precision_cor_df)
+
 precision_match_gg <- (
-    ggplot(precision_melt_df, aes(x = avg_precision, y = matching_score))
-    + geom_point()
+    ggplot(precision_melt_df)
+    + geom_text(data=precision_cor_df, x = .2, y = .6, aes(label=cor_coef_round))
+    + geom_smooth(method="lm", se = FALSE, formula=y~x, aes(x = avg_precision, y = matching_score))
+    + geom_point(aes(x = avg_precision, y = matching_score))
     + figure_theme
     + facet_grid("assay~dose")
     + xlab("MOA average precision")
-    + ylab("MOA median pairwise correlation")
+    + ylab("MOA median pairwise\nSpearman correlation")
 )
 
 precision_match_gg
@@ -361,8 +368,9 @@ no_match_gg <- (
         segment.alpha = 0.6,
         size = 3,
         fontface = "italic",
-        box.padding = 0.6,
+        box.padding = 0.7,
         point.padding = 0.4,
+        force = 20,
         aes(
             x = sum_matching_score_cp,
             y = sum_matching_score_l1k,
