@@ -1,32 +1,55 @@
-# LINCS profiling complementarity
+# Morphology and gene expression profiling provide complementary information for mapping cell state
 
 [![DOI](https://zenodo.org/badge/300036005.svg)](https://zenodo.org/badge/latestdoi/300036005)
 
 Assessing information contained in different profiling data modalities.
 
-The two assays we evaluated are:
+## Assays
+
+We evaluated two assays:
 
 * L1000 (gene expression)
 * Cell Painting (morphology)
 
-## Evaluation
+## Perturbations
 
-First, we aligned profiles with [`1.Data-exploration/Profiles_level4/align_MOA_L1000_CellPainting.ipynb`](1.Data-exploration/Profiles_level4/align_MOA_L1000_CellPainting.ipynb).
-This resulted in us using only the perturbations measured in common (by Broad ID and dose).
-Next, using these perturbations, we explored various data levels and evaluated the assays in the following ways:
+We tested each assay in their ability to measure cell states from 1,327 compound perturbations across 6 doses (0.04µM, 0.12µM, 0.37µM, 1.11µM, 3.33µM, and 10µM) from the Drug Repurposing Hub.
 
-- Level 4 spherized feature selected profiles
-  - Median pairwise replicate reproducibility compared to a carefully matched null distribution
-  - Morphological activity score and signature strength
-  - PCA and sample clustering
-  - Multi-label / Multi-class mechanism of action (MOA) prediction
-    - We used the top models as presented in a recent [Kaggle competition](https://www.kaggle.com/c/lish-moa)
-- Level 5 consensus profiles
-  - MOA median pairwise similarity compared to a null distribution
-    - Across increasing treatment dose
-  - MOA query recall
+## Evaluations
 
-## Computational environment
+We evaluated the two assays in several tasks:
+
+- Reproducibility
+- Sample diversity
+- Feature diversity
+- MOA prediction (unsupervised)
+- Gene target prediction (unsupervised)
+- MOA prediction (supervised)
+- Gene Ontology pathway prediction (supervised)
+
+## Data collection and data processing procedures
+
+![our workflow](6.paper_figures/figures/supplementary/figureS3_workflowpipeline.png)
+> Data collection and data processing workflows, related to Figure 1.
+(a) We cultured A549 lung cancer cells and exposed them to 1,327 different compound perturbations in about six doses per compound.
+We plated these cells in 384 well plates, and, using the same plate layout, measured gene expression (using the L1000 assay) and morphology (using the Cell Painting assay) in compound-perturbed A549 cells.
+(b) Our image-based profiling pipeline we used to process the Cell Painting images.
+We used pycytominer to process the single cell profiles.
+All processing code and profile data are available at https://github.com/broadinstitute/lincs-cell-painting. Image data available at Image Data Resource (accession: idr0125).
+
+## Findings summary
+
+We find that each assay provides complementary information for mapping cell state.
+Cell Painting has generally higher reproducibility, but suffers from more technical artifacts.
+L1000 has a more diverse feature space, but contains less diverse samples.
+In general Cell Painting captures more MOAs by an unsupervised analysis, but L1000 performs better in deep learning predictions.
+
+**Importantly, each assay captures complementary cell states.**
+By combining each data type, one can capture more mechanisms than either alone.
+
+See our paper (linked below) for more details and extensive resources.
+
+## Reproduce computational environment
 
 We use a combination of conda and pip to manage the proper python packages for data assessment and model predictions.
 To reproduce our environment run the following:
