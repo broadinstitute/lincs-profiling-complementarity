@@ -41,6 +41,7 @@ cp_df.head(2)
 # Note the compound can also target _other_ genes as well
 all_targets = {x: list(set(x.split("|"))) for x in cp_df.Metadata_target.unique().tolist()}
 
+all_unique_targets = []
 cp_target_comparisons = {}
 for target in all_targets:
     target_set = set(all_targets[target])
@@ -54,6 +55,11 @@ for target in all_targets:
                 cp_target_comparisons[target].append(compare_target)
             else:
                 cp_target_comparisons[target] = [compare_target]
+    
+    all_unique_targets += list(target_set)
+
+all_unique_targets = set(all_unique_targets)
+print(f"Number of unique targets: {len(all_unique_targets)}")
 
 
 # In[4]:
