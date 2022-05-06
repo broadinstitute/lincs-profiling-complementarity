@@ -55,6 +55,13 @@ pm_df$neg_log_10_p_val[pm_df$neg_log_10_p_val == Inf] = 3.5
 print(dim(pm_df))
 head(pm_df)
 
+# when you only consider the common MOAs in the dose-specific results
+dose_specific_moa_class <- unique(
+    pm_df %>%
+        dplyr::filter(dose == "0.04 uM") %>%
+        dplyr::pull(moa)
+    )
+
 moa_count_filter <- 2
 
 moa_match_df <- pm_df %>% dplyr::filter(pass_thresh)
@@ -264,8 +271,19 @@ precision_melt_df %>% readr::write_tsv(output_file)
 print(dim(precision_melt_df))
 head(precision_melt_df, 2)
 
+# Append a new set of results for All dose
+precision_melt_all_dose_df <- precision_melt_df %>%
+    dplyr::filter(dose == "All") %>%
+    dplyr::filter(drug_impact %in% !!dose_specific_moa_class)
+
+precision_melt_all_dose_df$dose <- "All*"
+
+# Add all dose to rest of dose info
+precision_melt_all_dose_df <- dplyr::bind_rows(precision_melt_df, precision_melt_all_dose_df)
+precision_melt_all_dose_df$dose <- factor(precision_melt_all_dose_df$dose, levels = c(dose_order, "All*", "All"))
+
 # Calculate pairwise correlations between median correlation and avg. precision
-precision_cor_df <- precision_melt_df %>%
+precision_cor_df <- precision_melt_all_dose_df %>%
     dplyr::group_by(assay, dose) %>%
     dplyr::summarise(cor_coef = cor.test(avg_precision, matching_score, method="pearson")$estimate) %>%
     dplyr::mutate(cor_coef_round = paste("r =", round(cor_coef, 2))) %>%
@@ -274,7 +292,7 @@ precision_cor_df <- precision_melt_df %>%
 head(precision_cor_df)
 
 precision_match_gg <- (
-    ggplot(precision_melt_df)
+    ggplot(precision_melt_all_dose_df)
     + geom_text(data=precision_cor_df, x = .2, y = .6, aes(label=cor_coef_round))
     + geom_smooth(method="lm", se = FALSE, formula=y~x, aes(x = avg_precision, y = matching_score))
     + geom_point(aes(x = avg_precision, y = matching_score))
@@ -286,25 +304,35 @@ precision_match_gg <- (
 
 precision_match_gg
 
+# Append a new set of results for All dose
+pm_all_dose_df <- pm_df %>%
+    dplyr::filter(dose == "All") %>%
+    dplyr::filter(moa %in% !!dose_specific_moa_class)
+
+pm_all_dose_df$dose <- "All*"
+
+# Add all dose to rest of dose info
+pm_all_dose_df <- dplyr::bind_rows(pm_df, pm_all_dose_df)
+
 all_dose_pass_df <- list()
-for (use_dose in unique(pm_df$dose)) {
-  all_dose_pass_df[[use_dose]] <- pm_df %>%
-      dplyr::filter(dose == !!use_dose) %>%
-      reshape2::dcast("moa~assay", value.var = "pass_thresh") %>%
+for (use_dose in unique(pm_all_dose_df$dose)) {
+    all_dose_pass_df[[use_dose]] <- pm_all_dose_df %>%
+        dplyr::filter(dose == !!use_dose) %>%
+        reshape2::dcast("moa~assay", value.var = "pass_thresh") %>%
         dplyr::mutate(dose = use_dose) %>%
-    dplyr::mutate(
-        `CP` = sum(`Cell Painting`),
-        `L1K` = sum(`L1000`),
-        `Neither`= sum(!(`Cell Painting` + `L1000`))
-    ) %>%
-    dplyr::select(dose, `CP`, `L1K`, `Neither`) %>%
-    dplyr::distinct()
+        dplyr::mutate(
+            `CP` = sum(`Cell Painting`),
+            `L1K` = sum(`L1000`),
+            `Neither`= sum(!(`Cell Painting` + `L1000`))
+        ) %>%
+        dplyr::select(dose, `CP`, `L1K`, `Neither`) %>%
+        dplyr::distinct()
 }
 
 all_dose_pass_df <- dplyr::bind_rows(all_dose_pass_df) %>%
     reshape2::melt(id.vars = "dose", variable.name = "assay", value.name = "pass_thresh_count")
 
-all_dose_pass_df$dose <- factor(all_dose_pass_df$dose, levels = updated_dose_order)
+all_dose_pass_df$dose <- factor(all_dose_pass_df$dose, levels = c(dose_order, "All*", "All"))
 
 all_dose_pass_df
 
@@ -396,7 +424,7 @@ sup_fig_gg <- (
 
 for (extension in extensions) {
     output_file <- paste0(output_figure_base, extension)
-    ggplot2::ggsave(output_file, sup_fig_gg, width = 14.5, height = 13.5, dpi = 500)
+    ggplot2::ggsave(output_file, sup_fig_gg, width = 15, height = 13.5, dpi = 500)
 }
 
 sup_fig_gg
