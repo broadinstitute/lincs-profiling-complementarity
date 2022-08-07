@@ -326,7 +326,7 @@ ap_df$model <- dplyr::recode(
 
 # This is Supplementary Table 6
 output_file <- file.path("results", "tableS6_deeplearning_avgprecision.tsv.gz")
-ora_df %>% readr::write_tsv(output_file)
+ap_df %>% readr::write_tsv(output_file)
 
 print(dim(ap_df))
 head(ap_df, 2)
